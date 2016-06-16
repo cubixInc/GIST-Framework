@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint GISTFramework.podspec' to ensure this is a
+#  Be sure to run `pod spec lint GIST Framework.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -52,10 +52,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = "Cubix Labs"
-  # Or just: s.author    = ""
-  # s.authors            = { "" => "" }
-  # s.social_media_url   = "http://twitter.com/"
+  s.author             = { "Cubix Labs Inc." => "" }
+  # Or just: s.author    = "Cubix Labs Inc."
+  # s.authors            = { "Cubix Labs Inc." => "" }
+  # s.social_media_url   = "http://twitter.com/Cubix Labs Inc."
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -90,10 +90,10 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "GIST\ Framework", "GIST\ Framework/Classes/**/*.{swift}"
-  # s.exclude_files = "GIST Framework/Exclude"
+  s.source_files  = "Classes", "GIST\ Framework/Classes/**/*.{swift}"
+  #s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "GIST Framework/**/*.h"
+  # s.public_header_files = "Classes/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
