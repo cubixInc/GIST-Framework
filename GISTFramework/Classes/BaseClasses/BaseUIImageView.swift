@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUIImageView: UIImageView, BaseView {
+public class BaseUIImageView: UIImageView, BaseView {
 
     @IBInspectable var bgColorStyle:String! = nil;
     
@@ -21,13 +21,13 @@ class BaseUIImageView: UIImageView, BaseView {
     
     @IBInspectable var hasDropShadow:Bool = false;
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.updateView();
     } //F.E.
     
-    func updateView() {
+    public func updateView() {
         if (boarder > 0) {
             self.addBorder(SyncedColors.color(forKey: boarderColorStyle), width: boarder)
         }
@@ -47,7 +47,7 @@ class BaseUIImageView: UIImageView, BaseView {
         self.clipsToBounds = true;        
     } //F.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         if rounded {

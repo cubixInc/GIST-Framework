@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUILabel: UILabel, BaseView {
+public class BaseUILabel: UILabel, BaseView {
     
     @IBInspectable var bgColorStyle:String! = nil;
     
@@ -31,8 +31,7 @@ class BaseUILabel: UILabel, BaseView {
     @IBInspectable var sizeForIPad:Bool = false;
     
     private var _textKey: String?
-    
-    override var text: String? {
+    override public var text: String? {
         get {
             return super.text;
         }
@@ -48,14 +47,14 @@ class BaseUILabel: UILabel, BaseView {
         }
     } //P.E.
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         
         super.awakeFromNib()
         //--
         self.updateView()
     } //F.E.
     
-    func updateView()
+    public func updateView()
     {
         self.updateFont();
         //--
@@ -99,7 +98,7 @@ class BaseUILabel: UILabel, BaseView {
         self.font = UIFont(name: self.font.fontName, size: UIView.convertFontSizeToRatio(self.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
     } //F.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         if rounded {

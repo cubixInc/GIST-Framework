@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUIScrollView: UIScrollView, BaseView {
+public class BaseUIScrollView: UIScrollView, BaseView {
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -18,7 +18,7 @@ class BaseUIScrollView: UIScrollView, BaseView {
     }
     */
     
-    func updateView() {
+    public func updateView() {
         //DOING NOTHING FOR NOW
     }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomUIButtonDetailed: CustomUIButton {
+public class CustomUIButtonDetailed: CustomUIButton {
     
     @IBInspectable var detailText:String? {
         get {
@@ -86,7 +86,7 @@ class CustomUIButtonDetailed: CustomUIButton {
         }
     } //F.E.
     
-    override func updateView()  {
+    override public func updateView()  {
         super.updateView();
         
         self.detailLabel.font = self.titleLabel!.font;
@@ -97,7 +97,7 @@ class CustomUIButtonDetailed: CustomUIButton {
         self.detailLabel.updateView();
     } //F.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         self.detailLabel.sizeToFit();

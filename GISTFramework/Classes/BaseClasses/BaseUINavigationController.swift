@@ -12,7 +12,7 @@ enum BarStyle {
     case Default;//, Black, Gray, Red
 }
 
-class BaseUINavigationController: UINavigationController {
+public class BaseUINavigationController: UINavigationController {
 
     private var _barStyle:BarStyle = BarStyle.Default;
     
@@ -44,16 +44,16 @@ class BaseUINavigationController: UINavigationController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     } //F.E.
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad();
         //--
     } //F.E.
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning();
     } //F.E.
     
@@ -102,7 +102,7 @@ class BaseUINavigationController: UINavigationController {
         self.navigationBar.translucent = false
     } //F.E.
     
-    override func pushViewController(viewController: UIViewController, animated: Bool) {
+    override public func pushViewController(viewController: UIViewController, animated: Bool) {
         if (self.topViewController == nil || !self.topViewController!.isEqual(viewController)) {
             super.pushViewController(viewController, animated: animated);
         }

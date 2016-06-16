@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUICollectionView: UICollectionView, BaseView {
+public class BaseUICollectionView: UICollectionView, BaseView {
 
     /*
     // Only override drawRect: if you perform custom drawing.

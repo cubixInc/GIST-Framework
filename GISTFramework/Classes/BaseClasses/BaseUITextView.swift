@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUITextView: UITextView, BaseView {
+public class BaseUITextView: UITextView, BaseView {
 
     @IBInspectable var bgColorStyle:String! = nil;
     
@@ -75,13 +75,13 @@ class BaseUITextView: UITextView, BaseView {
         }
     } //P.E.
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.updateView()
     } //F.E.
     
-    func updateView()  {
+    public func updateView()  {
         self.font = (self.font != nil) ?UIFont(name: self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle)):UIView.font(fontStyle);
         //--
         _lblPlaceholder?.font = self.font;
@@ -112,7 +112,7 @@ class BaseUITextView: UITextView, BaseView {
         }
     } //F.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         if rounded {

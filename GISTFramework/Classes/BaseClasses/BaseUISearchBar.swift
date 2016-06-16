@@ -16,7 +16,7 @@ extension UISearchBar {
     }
 }
 
-class BaseUISearchBar: UISearchBar, BaseView {
+public class BaseUISearchBar: UISearchBar, BaseView {
 
     @IBInspectable var bgColorStyle:String! = nil;
     
@@ -32,7 +32,7 @@ class BaseUISearchBar: UISearchBar, BaseView {
     @IBInspectable var fontColorStyle:String! = nil;
     
     private var _placeholderKey:String?
-    override var placeholder: String? {
+    override public var placeholder: String? {
         get {
             return super.placeholder;
         }
@@ -55,18 +55,18 @@ class BaseUISearchBar: UISearchBar, BaseView {
         self.updateView();
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder);
     }
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.updateView();
     } //F.E.
     
-    func updateView() {
+    public func updateView() {
         //DOING NOTHING FOR NOW
         
         if let placeHoldertxt:String = self.placeholder where placeHoldertxt.hasPrefix("#") == true{

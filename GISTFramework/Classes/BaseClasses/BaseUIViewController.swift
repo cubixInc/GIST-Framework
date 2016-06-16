@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUIViewController: UIViewController {
+public class BaseUIViewController: UIViewController {
 
     private var _hasBackButton:Bool = true;
     private var _hasMenuButton:Bool = false;
@@ -18,7 +18,7 @@ class BaseUIViewController: UIViewController {
     
     private var _titleKey:String?;
     
-    override var title: String? {
+    override public var title: String? {
         get {
             return super.title;
         }
@@ -67,11 +67,11 @@ class BaseUIViewController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //F.E.
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad();
         //--
         self.navigationItem.hidesBackButton = true;
@@ -91,31 +91,31 @@ class BaseUIViewController: UIViewController {
         
     } //F.E.
     
-    override func viewWillAppear(animated: Bool) {
+    override public func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated);
         //--
         self.updateSyncedData();
     }//F.E.
 
-    override func  preferredStatusBarStyle() -> UIStatusBarStyle {
+    override public func  preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent;
     } //F.E.
     
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     } //F.E.
     
-    func backButtonTapped() {
+    public func backButtonTapped() {
         self.view.endEditing(true);
         self.navigationController?.popViewControllerAnimated(true)
     } //F.E.
     
-    func menuButtonTapped() {
+    public func menuButtonTapped() {
         //??NSNotificationCenter.defaultCenter().postNotificationName(MENU_BUTTON_DID_TAP_NOTIFICATION, object: self);
     } //F.E.
     
-    func doneType(sender: UIButton!) {
+    public func doneType(sender: UIButton!) {
         self.view.endEditing(true);
     } //F.E.
     

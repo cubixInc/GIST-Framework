@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomUIButton: BaseUIButton {
+public class CustomUIButton: BaseUIButton {
     
     private var _titleOffSet:CGPoint = CGPoint.zero;
     @IBInspectable var titleOffSet:CGPoint {
@@ -210,7 +210,7 @@ class CustomUIButton: BaseUIButton {
         }
     } //F.E.
     
-    override var contentMode:UIViewContentMode {
+    override public var contentMode:UIViewContentMode {
         get {
             return super.contentMode;
         }
@@ -220,7 +220,7 @@ class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         self.titleLabel!.sizeToFit();

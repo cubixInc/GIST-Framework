@@ -8,20 +8,20 @@
 
 import UIKit
 
-class BaseUISwitch: UISwitch, BaseView {
+public class BaseUISwitch: UISwitch, BaseView {
     
     @IBInspectable var onColorStyle:String! = nil;
     //--
     @IBInspectable var thumbColorStyle:String! = nil;
     
     //--
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.updateView()
     } //F.E.
     
-    func updateView(){
+    public func updateView(){
         if (onColorStyle != nil) {
             self.onTintColor = SyncedColors.color(forKey: onColorStyle);
         }

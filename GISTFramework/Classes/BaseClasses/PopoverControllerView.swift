@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopoverControllerView: UIView {
+public class PopoverControllerView: UIView {
 
     //Defining here so that the class be independent
     private func afterDelay(delay:Double, closure:()->()) {
@@ -25,7 +25,7 @@ class PopoverControllerView: UIView {
     private var _containerView:UIView!
     
     private var _contentView:UIView?;
-    var contentView:UIView? {
+    public var contentView:UIView? {
         get {
             return _contentView;
         }
@@ -33,7 +33,7 @@ class PopoverControllerView: UIView {
     
     private var _popoverContentSize:CGSize = CGSize(width: 320, height: 480);
     
-    var popoverContentSize:CGSize {
+    public var popoverContentSize:CGSize {
         set {
             _popoverContentSize = newValue;
         }
@@ -82,7 +82,7 @@ class PopoverControllerView: UIView {
     private var _backgroundView:UIView!;
     
     private var _backgroundColor:UIColor? = UIColor.blackColor().colorWithAlphaComponent(0.5);
-    override var backgroundColor:UIColor? {
+    override public var backgroundColor:UIColor? {
         get {
             return _backgroundColor;
         }
@@ -131,12 +131,11 @@ class PopoverControllerView: UIView {
         setupPopoverController(contentView);
     } //F.E.
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented");
     } //F.E
     
-    private func setupPopoverController(contentView:UIView)
-    {
+    private func setupPopoverController(contentView:UIView) {
         _contentView = contentView;
         //Background View
         _backgroundView = UIView(frame: UIScreen.mainScreen().bounds);
@@ -167,8 +166,7 @@ class PopoverControllerView: UIView {
     } //F.E.
     
     
-    func presentPopoverFromRect(rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection, animated:Bool)
-    {
+    public func presentPopoverFromRect(rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection, animated:Bool) {
         updatePopoverFrame(fromRect:rect, permittedArrowDirection:permittedArrowDirection);
         //--
 //        (UIApplication.sharedApplication().delegate as! AppDelegate).window!.addSubview(self);
@@ -186,13 +184,11 @@ class PopoverControllerView: UIView {
         }
     } //F.E.
     
-    func backgroundViewTapped(gestureRecognizer:UITapGestureRecognizer)
-    {
+    func backgroundViewTapped(gestureRecognizer:UITapGestureRecognizer) {
         self.dismissPopoverAnimated(true);
     } //F.E.
     
-    func dismissPopoverAnimated(animated: Bool, completion:((Bool)->Void)? = nil)
-    {
+    public func dismissPopoverAnimated(animated: Bool, completion:((Bool)->Void)? = nil) {
         if (animated == true)
         {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
@@ -213,8 +209,7 @@ class PopoverControllerView: UIView {
         }
     } //F.E.
     
-    private func cleanup()
-    {
+    private func cleanup() {
         if (_contentView != nil)
         {_contentView!.removeFromSuperview();}
         //--
@@ -224,8 +219,7 @@ class PopoverControllerView: UIView {
         self.removeFromSuperview();
     } //F.E.
     
-    private func updatePopoverFrame(fromRect rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection)
-    {
+    private func updatePopoverFrame(fromRect rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection) {
         _fromRect = rect;
         _arrowDirection = permittedArrowDirection;
         //--
@@ -239,8 +233,7 @@ class PopoverControllerView: UIView {
     } //F.E.
     
     //MARK: - ArrowView
-    private func updateArrow()
-    {
+    private func updateArrow() {
         switch (_arrowDirection) {
         case UIPopoverArrowDirection.Up:
             self.arrowView.hidden = false;

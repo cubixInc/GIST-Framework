@@ -41,17 +41,3 @@ public class SyncedColors: SyncEngine {
     } //F.E.
     
 } //CLS END
-
-/*
-extension UIColor {
-    public convenience init(aKey: String) {
-        if let haxColor:String = SyncedColors.sharedInstance.objectForKey(aKey) as? String {
-            self.init(rgba: haxColor)
-        } else {
-            print("Incorrect Color code");
-            //--
-            abort();
-        }
-    } //C.E.
-} //E.E.
-*/

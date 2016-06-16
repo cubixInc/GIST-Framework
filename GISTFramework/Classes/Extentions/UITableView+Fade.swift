@@ -8,8 +8,8 @@
 
 import UIKit
 
-extension UITableView {
-    func reloadData(animated:Bool, completion:(()->Void)? = nil)
+public extension UITableView {
+    public func reloadData(animated:Bool, completion:(()->Void)? = nil)
     {
         if (animated) {
             self.fadeOut({ (finished) -> () in

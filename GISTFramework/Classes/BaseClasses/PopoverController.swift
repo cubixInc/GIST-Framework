@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopoverController: UIViewController {
+public class PopoverController: UIViewController {
 
     //Defining here so that the class be independent
     private func afterDelay(delay:Double, closure:()->()) {
@@ -180,15 +180,15 @@ class PopoverController: UIViewController {
         setupPopoverController(contentViewController);
     } //F.E.
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented");
     } //F.E
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad();
     } //F.E.
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     } //F.E.
     
@@ -230,8 +230,7 @@ class PopoverController: UIViewController {
         }
     } //F.E.
     
-    func presentPopoverFromRect(rect:CGRect, inViewController viewController:UIViewController, permittedArrowDirection:UIPopoverArrowDirection, animated:Bool)
-    {
+    public func presentPopoverFromRect(rect:CGRect, inViewController viewController:UIViewController, permittedArrowDirection:UIPopoverArrowDirection, animated:Bool) {
         updatePopoverFrame(fromRect:rect, permittedArrowDirection:permittedArrowDirection);
         //--
         _parentViewController = viewController;
@@ -250,15 +249,12 @@ class PopoverController: UIViewController {
         }
     } //F.E.
     
-    func backgroundViewTapped(gestureRecognizer:UITapGestureRecognizer)
-    {
+    func backgroundViewTapped(gestureRecognizer:UITapGestureRecognizer) {
         self.dismissPopoverAnimated(true);
     } //F.E.
     
-    func dismissPopoverAnimated(animated: Bool, completion:((Bool)->Void)? = nil)
-    {
-        if (animated == true)
-        {
+    public func dismissPopoverAnimated(animated: Bool, completion:((Bool)->Void)? = nil) {
+        if (animated == true) {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.view.alpha = 0.0;
             }, completion: { (Bool) -> Void in
@@ -267,9 +263,7 @@ class PopoverController: UIViewController {
                 if (completion != nil)
                 {completion!(true);}
             })
-        }
-        else
-        {
+        } else {
             cleanup();
             //--
             if (completion != nil)
@@ -277,8 +271,7 @@ class PopoverController: UIViewController {
         }
     } //F.E.
     
-    private func cleanup()
-    {
+    private func cleanup() {
         if (_contentView != nil)
         {_contentView!.removeFromSuperview();}
         //--

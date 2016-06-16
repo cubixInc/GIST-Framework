@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUITextField: UITextField, BaseView {
+public class BaseUITextField: UITextField, BaseView {
    
     @IBInspectable var bgColorStyle:String! = nil;
     
@@ -28,7 +28,7 @@ class BaseUITextField: UITextField, BaseView {
     @IBInspectable var fontColorStyle:String! = nil;
     
     private var _placeholderKey:String?
-    override var placeholder: String? {
+    override public var placeholder: String? {
         get {
             return super.placeholder;
         }
@@ -45,34 +45,13 @@ class BaseUITextField: UITextField, BaseView {
         }
     } //P.E.
     
-    /*
-    private var _textKey:String?
-    
-    override var text: String? {
-        get {
-            return super.text;
-        }
-        
-        set {
-            if let key:String = newValue where key.hasPrefix("#") == true{
-                
-                _textKey = key; // holding key for using later
-                
-                super.text = SyncedStrings.string(forKey: key);
-            } else {
-                super.text = newValue;
-            }
-        }
-    } //P.E.
-    */
-    
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         //--
         updateView();
     } //F.E.
     
-    func updateView() {
+    public func updateView() {
         self.font = UIFont(name: self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle));
         
         if (fontColorStyle != nil) {
@@ -108,7 +87,7 @@ class BaseUITextField: UITextField, BaseView {
          */
     } //F.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         if rounded {
@@ -116,7 +95,7 @@ class BaseUITextField: UITextField, BaseView {
         }
     } //F.E.
     
-    override func textRectForBounds(bounds: CGRect) -> CGRect {
+    override public func textRectForBounds(bounds: CGRect) -> CGRect {
         //??super.textRectForBounds(bounds)
        
         let x:CGFloat = bounds.origin.x + horizontalPadding
@@ -127,7 +106,7 @@ class BaseUITextField: UITextField, BaseView {
         return CGRectMake(x,y,widht,height)
     }
     
-    override func editingRectForBounds(bounds: CGRect) -> CGRect {
+    override public func editingRectForBounds(bounds: CGRect) -> CGRect {
         super.editingRectForBounds(bounds)
         return self.textRectForBounds(bounds)
     }

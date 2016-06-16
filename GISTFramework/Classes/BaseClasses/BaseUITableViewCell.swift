@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUITableViewCell: UITableViewCell, BaseView {
+public class BaseUITableViewCell: UITableViewCell, BaseView {
 
     private var _data:AnyObject?
     var data:AnyObject? {
@@ -81,19 +81,19 @@ class BaseUITableViewCell: UITableViewCell, BaseView {
         commonInitializer(textColor);
     }//C.F.
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder);
         //--
         commonInitializer(nil);
     } //F.E.
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.updateView();
     } //F.E.
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override public func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated);
         //--
         
@@ -115,7 +115,7 @@ class BaseUITableViewCell: UITableViewCell, BaseView {
         self.addSubview(_seperatorView);
     } //F.E.
     
-    func updateView() {
+    public func updateView() {
         if (bgColorStyle != nil) {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
@@ -125,13 +125,13 @@ class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     } //F.E.
     
-    override func updateSyncedData() {
+    override public func updateSyncedData() {
         super.updateSyncedData();
         //--
         self.contentView.updateSyncedData();
     } //F.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         if (_seperatorView != nil)

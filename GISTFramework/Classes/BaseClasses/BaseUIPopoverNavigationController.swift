@@ -8,18 +8,17 @@
 
 import UIKit
 
-class BaseUIPopoverNavigationController: BaseUINavigationController {
+public class BaseUIPopoverNavigationController: BaseUINavigationController {
 
     private var _mainNavigationController:UINavigationController?
-    
-    var mainNavigationController:UINavigationController? {
+    public var mainNavigationController:UINavigationController? {
         get {
             return _mainNavigationController;
         }
     } //P.E.
     
     private var _popoverController:PopoverController?;//UIPopoverController?
-    var popoverController:PopoverController? {
+    public var popoverController:PopoverController? {
         get {
             return _popoverController;
         }
@@ -27,9 +26,8 @@ class BaseUIPopoverNavigationController: BaseUINavigationController {
     
     private var _parentViewController:UIViewController!
     
-    
     private var _popoverContentSize:CGSize = CGSize(width: 414, height: 736);
-    var popoverContentSize:CGSize {
+    public var popoverContentSize:CGSize {
         set {
             _popoverContentSize = newValue;
         }
@@ -40,7 +38,7 @@ class BaseUIPopoverNavigationController: BaseUINavigationController {
     } //P.E.
     
     private var _popoverContentPosition:CGPoint?;
-    var popoverContentPosition:CGPoint?
+    public var popoverContentPosition:CGPoint?
         {
         set {
             _popoverContentPosition = newValue;
@@ -52,7 +50,7 @@ class BaseUIPopoverNavigationController: BaseUINavigationController {
     } //P.E.
     
     private var _popoverContentRoundedCorner:Bool = true;
-    var popoverContentRoundedCorner:Bool
+    public var popoverContentRoundedCorner:Bool
         {
         set {
             _popoverContentRoundedCorner = newValue;
@@ -64,7 +62,7 @@ class BaseUIPopoverNavigationController: BaseUINavigationController {
     } //P.E.
     
     private var _arrowColor:UIColor = UIColor.blackColor();
-    var arrowColor:UIColor {
+    public var arrowColor:UIColor {
         set {
             _arrowColor = newValue;
         }
@@ -86,21 +84,20 @@ class BaseUIPopoverNavigationController: BaseUINavigationController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     } //F.E.
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
     } //F.E.
     
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     } //F.E.
     
-    func show(inViewController viewController:UIViewController, fromRect rect:CGRect = CGRect.zero, permittedArrowDirection:UIPopoverArrowDirection = UIPopoverArrowDirection())
-    {
+    public func show(inViewController viewController:UIViewController, fromRect rect:CGRect = CGRect.zero, permittedArrowDirection:UIPopoverArrowDirection = UIPopoverArrowDirection()) {
         _parentViewController = viewController;
         _mainNavigationController = _parentViewController.navigationController;
         //--
@@ -116,8 +113,7 @@ class BaseUIPopoverNavigationController: BaseUINavigationController {
         self._popoverController!.presentPopoverFromRect(rect, inViewController: _parentViewController, permittedArrowDirection: permittedArrowDirection, animated: true);
     } //F.E.
     
-    func dismissPopover(animated:Bool = true)
-    {
+    public func dismissPopover(animated:Bool = true) {
         _popoverController!.dismissPopoverAnimated(animated);
     } //F.E.
 } //CLS END

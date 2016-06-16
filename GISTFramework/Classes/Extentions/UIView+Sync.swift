@@ -8,8 +8,8 @@
 
 import UIKit
 
-extension UIView {
-    func updateSyncedData() {
+public extension UIView {
+    public func updateSyncedData() {
         (self as? BaseView)?.updateView();
         //--
         for viw in self.subviews{

@@ -8,11 +8,11 @@
 
 import UIKit
 
-class BaseUIStepper: UIStepper, BaseView {
+public class BaseUIStepper: UIStepper, BaseView {
    
     @IBInspectable var tintColorStyle:String! = nil;
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         
         super.awakeFromNib()
         //--

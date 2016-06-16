@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUITableView: UITableView, BaseView {
+public class BaseUITableView: UITableView, BaseView {
     
     @IBInspectable var bgColorStyle:String! = nil;
     
@@ -23,14 +23,14 @@ class BaseUITableView: UITableView, BaseView {
     
     @IBInspectable var tintColorStyle:String! = nil;
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         
         super.awakeFromNib()
         //--
         self.updateView()
     } //F.E.
     
-    func updateView(){
+    public func updateView(){
         if (tintColorStyle != nil) {
             self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
@@ -52,7 +52,7 @@ class BaseUITableView: UITableView, BaseView {
         }
     } //F.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         if rounded {

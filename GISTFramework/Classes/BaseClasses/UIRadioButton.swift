@@ -16,7 +16,7 @@ private class WeakRef<T: AnyObject> {
     }
 } //CLS END
 
-class UIRadioButton: BaseUIButton {
+public class UIRadioButton: BaseUIButton {
 
     var _groupId:Int?
     
@@ -42,11 +42,11 @@ class UIRadioButton: BaseUIButton {
         self.commonInitialization();
     } //F.E.
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //F.E.
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commonInitialization();

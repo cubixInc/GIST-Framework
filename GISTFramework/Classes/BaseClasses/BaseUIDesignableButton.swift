@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUIDesignableButton: BaseUIButton {
+public class BaseUIDesignableButton: BaseUIButton {
    
     private var _view: UIView! // NOT USING BASE CLASS HERE SO THAT THERE MAY NOT BE DEPENDENCY ISSUE
     //--
@@ -19,19 +19,19 @@ class BaseUIDesignableButton: BaseUIButton {
         xibSetup();
     } //F.E.
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetup();
     } //F.E.
     
-    override var selected: Bool {
+    override public var selected: Bool {
         
         didSet(newValue) {
             //super.selected = newValue;
         }
     } //F.E.
     
-    override func updateView() {
+    override public func updateView() {
         super.updateView();
         //--
         (_view as? BaseView)?.updateView();
@@ -53,7 +53,7 @@ class BaseUIDesignableButton: BaseUIButton {
         self.addSubview(_view);
     }//F.E.
     
-    func getNib() -> (nibName:String, viewIndex:Int)
+    public func getNib() -> (nibName:String, viewIndex:Int)
     {
         assert(false, "Override this method in your class");
         return ("", 0);

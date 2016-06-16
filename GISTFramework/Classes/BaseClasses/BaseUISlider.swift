@@ -8,19 +8,19 @@
 
 import UIKit
 
-class BaseUISlider: UISlider, BaseView {
+public class BaseUISlider: UISlider, BaseView {
 
     @IBInspectable var minColorStyle:String! = nil;
     @IBInspectable var maxColorStyle:String! = nil;
     @IBInspectable var thumbColorStyle:String! = nil;
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.updateView();
     } //F.E.
     
-    func updateView() {
+    public func updateView() {
         
         if (minColorStyle != nil) {
             self.minimumTrackTintColor = SyncedColors.color(forKey: minColorStyle);

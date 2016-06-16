@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomImageView: BaseUIView {
+public class CustomImageView: BaseUIView {
 
     private var _imageView:UIImageView?;
     private var imageView:UIImageView? {
@@ -144,7 +144,7 @@ class CustomImageView: BaseUIView {
         }
     } //P.E.
     
-    override var contentMode:UIViewContentMode {
+    override public var contentMode:UIViewContentMode {
         get {
             return super.contentMode;
         }
@@ -166,7 +166,7 @@ class CustomImageView: BaseUIView {
         }
     } //F.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         self.imageView!.frame = self.imageViewFrame;

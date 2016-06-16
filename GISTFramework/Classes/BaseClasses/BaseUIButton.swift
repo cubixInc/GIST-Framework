@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUIButton: UIButton, BaseView {
+public class BaseUIButton: UIButton, BaseView {
     
     @IBInspectable var bgColorStyle:String! = nil;
     @IBInspectable var bgSelectedColorStyle:String! = nil;
@@ -28,7 +28,7 @@ class BaseUIButton: UIButton, BaseView {
     
     @IBInspectable var sizeForIPad:Bool = false ;
     
-    override var selected:Bool {
+    override public var selected:Bool {
         get  {
             return super.selected;
         }
@@ -42,7 +42,7 @@ class BaseUIButton: UIButton, BaseView {
         }
     } //P.E.
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.updateView()
@@ -58,7 +58,7 @@ class BaseUIButton: UIButton, BaseView {
         }
     } //F.E.
     
-    func updateView() {
+    public func updateView() {
         self.titleLabel?.font = UIFont(name: self.titleLabel!.font.fontName, size: UIView.convertFontSizeToRatio(self.titleLabel!.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
         
         if (fontColorStyle != nil) {
@@ -93,7 +93,7 @@ class BaseUIButton: UIButton, BaseView {
         
     } //F.E.
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews();
         //--
         if rounded {
@@ -103,7 +103,7 @@ class BaseUIButton: UIButton, BaseView {
     
     private var _titleKey:String?;
     
-    override func setTitle(title: String?, forState state: UIControlState) {
+    override public func setTitle(title: String?, forState state: UIControlState) {
         if let key:String = title where key.hasPrefix("#") == true{
             //--
             _titleKey = key;  // holding key for using later

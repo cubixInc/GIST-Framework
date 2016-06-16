@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUIDesignableView: BaseUIView {
+public class BaseUIDesignableView: BaseUIView {
     
     private var _view: UIView!
     //--
@@ -19,7 +19,7 @@ class BaseUIDesignableView: BaseUIView {
         xibSetup();
     } //F.E.
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetup();
     } //F.E.
@@ -30,7 +30,7 @@ class BaseUIDesignableView: BaseUIView {
         (_view as? BaseView)?.updateView();
     } //F.E.
     
-    func xibSetup() {
+    public func xibSetup() {
         
         let nib = getNib();
         //--
@@ -47,7 +47,7 @@ class BaseUIDesignableView: BaseUIView {
     }//F.E.
     
 
-    func getNib() -> (nibName:String, viewIndex:Int) {
+    public func getNib() -> (nibName:String, viewIndex:Int) {
         assert(false, "Override this method in your class");
         return ("", 0);
     }//F.E.

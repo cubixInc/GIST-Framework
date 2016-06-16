@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseUISegmentedControl: UISegmentedControl, BaseView {
+public class BaseUISegmentedControl: UISegmentedControl, BaseView {
 
     @IBInspectable var bgColorStyle:String! = nil;
     
@@ -16,7 +16,7 @@ class BaseUISegmentedControl: UISegmentedControl, BaseView {
 
     private var _titleKeys:[Int:String] = [Int:String]();
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.updateView()
@@ -40,7 +40,7 @@ class BaseUISegmentedControl: UISegmentedControl, BaseView {
         }
     } //F.E.
     
-    override func setTitle(title: String?, forSegmentAtIndex segment: Int) {
+    override public func setTitle(title: String?, forSegmentAtIndex segment: Int) {
         if let key:String = title where key.hasPrefix("#") == true {
             //--
             _titleKeys[segment] = key;  // holding key for using later

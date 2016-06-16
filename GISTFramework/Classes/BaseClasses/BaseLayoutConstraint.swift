@@ -8,8 +8,8 @@
 
 import UIKit
 
-class BaseLayoutConstraint: NSLayoutConstraint {
-    override func awakeFromNib() {
+public class BaseLayoutConstraint: NSLayoutConstraint {
+    override public func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.constant = UIView.convertToRatio(constant);

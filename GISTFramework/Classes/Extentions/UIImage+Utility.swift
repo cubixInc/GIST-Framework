@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-extension UIImage {
+public extension UIImage {
     
-    func scaleAndRotateImage(maxSize: CGFloat) -> UIImage {
+    public func scaleAndRotateImage(maxSize: CGFloat) -> UIImage {
         
         let imgRef = self.CGImage
         

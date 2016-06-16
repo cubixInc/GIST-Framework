@@ -19,7 +19,7 @@ public enum UIColorInputError : ErrorType {
     MismatchedHexStringLength
 }
 
-extension UIColor {
+public extension UIColor {
     /**
      The shorthand three-digit hexadecimal representation of color.
      #RGB defines to the color #RRGGBB.

@@ -8,14 +8,14 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     
-    class func loadWithNib(nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject
+    public class func loadWithNib(nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject
     {
         return (NSBundle.mainBundle().loadNibNamed(nibName, owner: owner, options: nil) as NSArray).objectAtIndex(viewIndex);
     } //F.E.
     
-    class func loadDynamicViewWithNib(nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject {
+    public class func loadDynamicViewWithNib(nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject {
         
         let bundle = NSBundle(forClass: owner.dynamicType);
         let nib = UINib(nibName: nibName, bundle: bundle);
@@ -25,23 +25,23 @@ extension UIView {
         return rView;
     } //F.E.
     
-    func addBorder(color:UIColor?, width:Int){
+    public func addBorder(color:UIColor?, width:Int){
         let layer:CALayer = self.layer;
         layer.borderColor = color?.CGColor
         layer.borderWidth = (CGFloat(width)/CGFloat(2)) as CGFloat
     } //F.E.
     
-    func addRoundedCorners() {
+    public func addRoundedCorners() {
         self.addRoundedCorners(self.frame.size.width/2.0);
     } //F.E.
     
-    func addRoundedCorners(radius:CGFloat) {
+    public func addRoundedCorners(radius:CGFloat) {
         let layer:CALayer = self.layer;
         layer.cornerRadius = radius
         layer.masksToBounds = true
     } //F.E.
     
-    func addDropShadow() {
+    public func addDropShadow() {
         let shadowPath:UIBezierPath=UIBezierPath(rect: self.bounds)
         let layer:CALayer = self.layer;
         
@@ -54,14 +54,14 @@ extension UIView {
         layer.masksToBounds = false;
     } //F.E.
     
-    func fadeIn() {
+    public func fadeIn() {
         self.alpha=0.0
         UIView.animateWithDuration(0.25, animations: { () -> Void in
             self.alpha=1.0
         })
     } //F.E.
     
-    func fadeOut(completion:((finished:Bool)->())?)
+    public func fadeOut(completion:((finished:Bool)->())?)
     {
         self.alpha = 1.0
         UIView.animateWithDuration(0.25, animations: { () -> Void in
@@ -71,7 +71,7 @@ extension UIView {
         }
     } //F.E.
     
-    func shake() {
+    public func shake() {
         let shake:CABasicAnimation = CABasicAnimation(keyPath: "position");
         shake.duration = 0.1;
         shake.repeatCount = 2;
@@ -81,7 +81,7 @@ extension UIView {
         self.layer.addAnimation(shake, forKey: "position");
     } //F.E.
     
-    func removeAllSubviews() {
+    public func removeAllSubviews() {
         for view in self.subviews {
             view.removeFromSuperview();
         }
@@ -90,7 +90,7 @@ extension UIView {
     @nonobjc static let deviceRatio:CGFloat = UIScreen.mainScreen().bounds.height / 736.0;
     @nonobjc static let isIPad:Bool = UIDevice.currentDevice().userInterfaceIdiom == .Pad;
     //--
-    class func convertToRatio(value:CGFloat, sizedForIPad:Bool = false) ->CGFloat
+    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool = false) ->CGFloat
     {
         /*
          iPhone6 Hight:667   =====  0.90625
@@ -110,7 +110,7 @@ extension UIView {
         return value * UIView.deviceRatio;
     } //F.E.
     
-    class func convertFontSizeToRatio(value:CGFloat, fontStyle:String?, sizedForIPad:Bool = false) ->CGFloat
+    public class func convertFontSizeToRatio(value:CGFloat, fontStyle:String?, sizedForIPad:Bool = false) ->CGFloat
     {
         if (fontStyle == nil)
         {return UIView.convertToRatio(value, sizedForIPad: sizedForIPad);}
@@ -120,21 +120,21 @@ extension UIView {
         return UIView.convertToRatio(newValue, sizedForIPad: sizedForIPad);
     } //F.E.
     
-    class func convertPointToRatio(value:CGPoint, sizedForIPad:Bool = false) ->CGPoint
+    public class func convertPointToRatio(value:CGPoint, sizedForIPad:Bool = false) ->CGPoint
     {
         return CGPoint(x:self.convertToRatio(value.x, sizedForIPad: sizedForIPad), y:self.convertToRatio(value.y, sizedForIPad: sizedForIPad));
     } //F.E.
     
-    class func convertSizeToRatio(value:CGSize, sizedForIPad:Bool = false) ->CGSize
+    public class func convertSizeToRatio(value:CGSize, sizedForIPad:Bool = false) ->CGSize
     {
         return CGSize(width:self.convertToRatio(value.width, sizedForIPad: sizedForIPad), height:self.convertToRatio(value.height, sizedForIPad: sizedForIPad));
     } //F.E.
     
-    class func font(fontStyle:String = "Medium", sizedForIPad:Bool = false) ->UIFont! {
+    public class func font(fontStyle:String = "Medium", sizedForIPad:Bool = false) ->UIFont! {
         return self.font(SyncedConstants.constant(forKey: "FontRegular"), fontStyle: fontStyle, sizedForIPad:sizedForIPad);
     } //F.E.
     
-    class func font(fontName:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont!
+    public class func font(fontName:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont!
     {
         return UIFont(name: fontName ?? "Helvetica Neue", size: UIView.convertFontSizeToRatio(22, fontStyle: fontStyle, sizedForIPad:sizedForIPad));
     } //F.E.
