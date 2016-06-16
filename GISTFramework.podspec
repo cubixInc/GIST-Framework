@@ -90,11 +90,22 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "GISTFramework", "GISTFramework/**/*.{swift}"
-  s.exclude_files = "GISTFramework/Exclude"
+  #s.source_files  = "GISTFramework", "GISTFramework/Classes/*.{swift}"
+  #s.exclude_files = "GISTFramework/Exclude"
 
   # s.public_header_files = "GISTFramework/**/*.h"
 
+  s.subspec 'BaseClasses' do |sp|
+    sp.source_files = 'GISTFramework/Classes/BaseClasses/**/*.{swift}'
+  end
+
+  s.subspec 'Extentions' do |sp|
+    sp.source_files = 'GISTFramework/Classes/Extentions/**/*.{swift}'
+  end
+
+  s.subspec 'SyncEngine' do |sp|
+    sp.source_files = 'GISTFramework/Classes/SyncEngine/**/*.{swift}'
+  end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
