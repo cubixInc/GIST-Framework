@@ -1,1 +1,1 @@
-# GIST-Framwork
+# GIST Framework
