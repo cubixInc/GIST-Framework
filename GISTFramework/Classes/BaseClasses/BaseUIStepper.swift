@@ -1,9 +1,9 @@
 //
 //  BaseUIStepper.swift
-//  eGrocery
+//  GISTFramework
 //
-//  Created by Muneeba Meer on 06/03/2015.
-//  Copyright (c) 2015 cubixlabs. All rights reserved.
+//  Created by Shoaib Abdul on 14/06/2016.
+//  Copyright © 2016 Social Cubix. All rights reserved.
 //
 
 import UIKit

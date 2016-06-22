@@ -1,9 +1,9 @@
 //
 //  BaseUICustomPopover.swift
-//  eGrocery
+//  GISTFramework
 //
-//  Created by Shoaib on 4/10/15.
-//  Copyright (c) 2015 cubixlabs. All rights reserved.
+//  Created by Shoaib Abdul on 14/06/2016.
+//  Copyright © 2016 Social Cubix. All rights reserved.
 //
 
 import UIKit
@@ -43,8 +43,7 @@ public class PopoverController: UIViewController {
     var popoverContentRoundedCorner:Bool
         {
         set {
-            if (_roundedCorner != newValue)
-            {
+            if (_roundedCorner != newValue) {
                 _roundedCorner = newValue;
                 //--
                 _containerView.addRoundedCorners(_roundedCorner ?6:0);
@@ -126,8 +125,7 @@ public class PopoverController: UIViewController {
         }
         
         set {
-            if (_backgroundColor != newValue)
-            {
+            if (_backgroundColor != newValue) {
                 _backgroundColor = newValue;
                 //--
                 _backgroundView.backgroundColor = _backgroundColor;
@@ -148,8 +146,7 @@ public class PopoverController: UIViewController {
     private var _arrowView:ArrowView?;
     private var arrowView:ArrowView {
         get {
-            if (_arrowView == nil)
-            {
+            if (_arrowView == nil) {
                 _arrowView = ArrowView(frame: CGRect(x: 0, y: 0, width: 20, height: 20));
                 //--
                 self.view.addSubview(_arrowView!);
@@ -192,16 +189,14 @@ public class PopoverController: UIViewController {
         super.didReceiveMemoryWarning()
     } //F.E.
     
-    private func setupPopoverController(contentViewController:UIViewController)
-    {
+    private func setupPopoverController(contentViewController:UIViewController) {
         _contentViewController = contentViewController;
         self.addChildViewController(_contentViewController!);
         //--
         setupPopoverController(_contentViewController!.view);
     } //F.E.
     
-    private func setupPopoverController(contentView:UIView)
-    {
+    private func setupPopoverController(contentView:UIView) {
         _contentView = contentView;
         //Background View
         _backgroundView = UIView(frame: UIScreen.mainScreen().bounds);
@@ -285,8 +280,7 @@ public class PopoverController: UIViewController {
     } //F.E.
     
     
-    private func updatePopoverFrame(fromRect rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection)
-    {
+    private func updatePopoverFrame(fromRect rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection) {
         _fromRect = rect;
         _arrowDirection = permittedArrowDirection;
         //--
@@ -300,8 +294,7 @@ public class PopoverController: UIViewController {
     } //F.E.
     
     //MARK: - ArrowView
-    private func updateArrow()
-    {
+    private func updateArrow() {
         switch (_arrowDirection) {
         case UIPopoverArrowDirection.Up:
             self.arrowView.hidden = false;
@@ -337,8 +330,7 @@ public class PopoverController: UIViewController {
         }
     } //F.E.
     
-    private func degreestoradians(a:Double) -> CGFloat
-    {
+    private func degreestoradians(a:Double) -> CGFloat {
         return CGFloat(M_PI * a / 180.0);
     } //F.E.
     

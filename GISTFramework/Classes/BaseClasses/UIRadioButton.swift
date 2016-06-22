@@ -1,9 +1,9 @@
 //
 //  UIRadioButton.swift
-//  Assess Your Relationships
+//  GISTFramework
 //
-//  Created by Shoaib on 8/28/15.
-//  Copyright (c) 2015 Cubix. All rights reserved.
+//  Created by Shoaib Abdul on 14/06/2016.
+//  Copyright © 2016 Social Cubix. All rights reserved.
 //
 
 import UIKit
@@ -121,8 +121,6 @@ internal class UIRadioButtonManager:NSObject {
                         //--
                         break;
                 }
-                //--
-                
             }
         }
     } //F.E.

@@ -1,17 +1,16 @@
 //
 //  UIView+Utility.swift
-//  Assess Your Relationships
+//  GISTFramework
 //
-//  Created by Shoaib on 8/18/15.
-//  Copyright (c) 2015 Cubix. All rights reserved.
+//  Created by Shoaib Abdul on 14/06/2016.
+//  Copyright © 2016 Social Cubix. All rights reserved.
 //
 
 import UIKit
 
 public extension UIView {
     
-    public class func loadWithNib(nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject
-    {
+    public class func loadWithNib(nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject {
         return (NSBundle.mainBundle().loadNibNamed(nibName, owner: owner, options: nil) as NSArray).objectAtIndex(viewIndex);
     } //F.E.
     

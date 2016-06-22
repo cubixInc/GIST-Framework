@@ -12,20 +12,17 @@ public class BaseUIDesignableButton: BaseUIButton {
    
     private var _view: UIView! // NOT USING BASE CLASS HERE SO THAT THERE MAY NOT BE DEPENDENCY ISSUE
     //--
-    override init(frame: CGRect)
-    {
+    override init(frame: CGRect) {
         super.init(frame: frame);
-        //--
         xibSetup();
     } //F.E.
     
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder);
         xibSetup();
     } //F.E.
     
     override public var selected: Bool {
-        
         didSet(newValue) {
             //super.selected = newValue;
         }
@@ -38,7 +35,6 @@ public class BaseUIDesignableButton: BaseUIButton {
     } //F.E.
     
     private func xibSetup() {
-        
         let nib = getNib();
         //--
         _view = UIView.loadDynamicViewWithNib(nib.nibName, viewIndex: nib.viewIndex, owner: self) as! UIView;
@@ -53,8 +49,7 @@ public class BaseUIDesignableButton: BaseUIButton {
         self.addSubview(_view);
     }//F.E.
     
-    public func getNib() -> (nibName:String, viewIndex:Int)
-    {
+    public func getNib() -> (nibName:String, viewIndex:Int) {
         assert(false, "Override this method in your class");
         return ("", 0);
     }//F.E.

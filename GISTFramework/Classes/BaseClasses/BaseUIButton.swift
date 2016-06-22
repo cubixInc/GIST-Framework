@@ -9,7 +9,6 @@
 import UIKit
 
 public class BaseUIButton: UIButton, BaseView {
-    
     @IBInspectable var bgColorStyle:String! = nil;
     @IBInspectable var bgSelectedColorStyle:String! = nil;
 

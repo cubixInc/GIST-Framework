@@ -1,10 +1,11 @@
 //
 //  UIImageExtension.swift
-//  FoodHunch
+//  GISTFramework
 //
 //  Created by Alizain on 23/05/2016.
 //  Copyright © 2016 Social Cubix. All rights reserved.
 //
+
 
 import Foundation
 import UIKit

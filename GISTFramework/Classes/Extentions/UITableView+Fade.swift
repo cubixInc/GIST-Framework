@@ -1,9 +1,9 @@
 //
 //  UITableView+Fade.swift
-//  eGrocery
+//  GISTFramework
 //
 //  Created by Shoaib on 5/18/15.
-//  Copyright (c) 2015 cubixlabs. All rights reserved.
+//  Copyright (c) 2015 Social Cubix. All rights reserved.
 //
 
 import UIKit

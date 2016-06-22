@@ -1,9 +1,9 @@
 //
 //  BaseLayoutConstraint.swift
-//  TestApp
+//  GISTFramework
 //
-//  Created by Shoaib Mac Mini on 22/01/2015.
-//  Copyright (c) 2015 CubixLabs. All rights reserved.
+//  Created by Shoaib Abdul on 14/06/2016.
+//  Copyright © 2016 Social Cubix. All rights reserved.
 //
 
 import UIKit

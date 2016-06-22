@@ -1,6 +1,6 @@
 //
 //  UIView+Sync.swift
-//  GIST
+//  GISTFramework
 //
 //  Created by Shoaib Abdul on 08/05/2016.
 //  Copyright © 2016 Social Cubix. All rights reserved.

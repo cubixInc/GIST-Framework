@@ -24,14 +24,13 @@ public class BaseUIDesignableView: BaseUIView {
         xibSetup();
     } //F.E.
     
-    override func updateView() {
+    override public func updateView() {
         super.updateView();
         //--
         (_view as? BaseView)?.updateView();
     } //F.E.
     
     public func xibSetup() {
-        
         let nib = getNib();
         //--
         _view = UIView.loadDynamicViewWithNib(nib.nibName, viewIndex: nib.viewIndex, owner: self) as! UIView;
