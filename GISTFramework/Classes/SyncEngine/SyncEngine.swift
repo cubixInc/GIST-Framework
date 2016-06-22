@@ -82,12 +82,18 @@ public class SyncEngine: NSObject {
         }
     } //P.E.
     
-    public class func initialize(UrlPathToSync urlPath:String, authentication:[String:String]? = nil) {
-        SyncEngine.sharedInstance.initialize(UrlPathToSync: urlPath, authentication: authentication);
+    public class func initialize(urlToSync:String, authentication:[String:String]? = nil) {
+        SyncEngine.sharedInstance.initialize(urlToSync, authentication: authentication);
     } //F.E.
     
-    private func initialize(UrlPathToSync urlPath:String, authentication:[String:String]? = nil) {
-        _urlToSync = NSURL(string: urlPath);
+    private func initialize(urlToSync:String, authentication:[String:String]? = nil) {
+        
+        #if !DEBUG && !RELEASE
+            UIAlertView(title: "Sync Engine Error", message: "Add '-DDEBUG' and -DRELEASE in their respective sections of Project Build Settings ('Swift Compiler – Custom Flags' -> 'Other Swift Flags')", delegate: nil, cancelButtonTitle: "OK").show();
+        #endif
+        
+        //--
+        _urlToSync = NSURL(string: urlToSync);
         _authentication = authentication;
     } //F.E.
     
@@ -95,16 +101,6 @@ public class SyncEngine: NSObject {
         super.init();
         //--
         self.setupSyncedFile();
-    } //P.E.
-    
-    init(customData:Bool) {
-        super.init();
-        //--
-        _isCustomData = customData;
-        
-        if (_isCustomData) {
-            self.setupCustomSyncedFile();
-        }
     } //P.E.
     
     private func setupSyncedFile() {
@@ -349,26 +345,7 @@ public class SyncEngine: NSObject {
     } //F.E.
     
     private func syncForServerData(dict:NSDictionary) {
-        /*
-        data: {
-            updated_at: "09-05-2016 10:00:00",
-            sync_data: {
-                text: {
-                    app_name: "my test application"
-                },
-                color: { },
-                constant: {
-                    application_id: 2,
-                    time_interval_in_minutes: 1.5
-                },
-                font_style: { }
-            }
-        }
-        */
-        
-        //??print("Data : \(dict)")
-        
-        //Updating server updated date
+       //Updating server updated date
         self.lastSyncedServerDate = dict["updated_at"] as? String;
         
         //Updating server response date - local
@@ -405,7 +382,16 @@ public class SyncEngine: NSObject {
     } //F.E.
     
     //MARK: - Custom Data
-    
+    init(customData:Bool) {
+        super.init();
+        //--
+        _isCustomData = customData;
+        
+        if (_isCustomData) {
+            self.setupCustomSyncedFile();
+        }
+    } //P.E.
+ 
     private func setupCustomSyncedFile() {
         _dictData = NSMutableDictionary();
     } //F.E.
