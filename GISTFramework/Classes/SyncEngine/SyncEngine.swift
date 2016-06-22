@@ -120,7 +120,7 @@ public class SyncEngine: NSObject {
                     abort()
                 }
             } else {
-                NSLog("Unresolved error : \(self.syncedFile).plist file not found in the resource folder");
+                NSLog("Unresolved error : \(self.syncedFile).plist file not found in the resource folder: For ref., You may download 'Synced PLists' folder from git repo (https://github.com/cubixlabs/GIST-Framework).");
                 abort();
             }
         }
