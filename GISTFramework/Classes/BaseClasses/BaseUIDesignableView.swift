@@ -1,9 +1,9 @@
 //
 //  BaseDesignableView.swift
-//  eGrocery
+//  GISTFramework
 //
-//  Created by Shoaib on 2/16/15.
-//  Copyright (c) 2015 cubixlabs. All rights reserved.
+//  Created by Shoaib Abdul on 14/06/2016.
+//  Copyright © 2016 Social Cubix. All rights reserved.
 //
 
 import UIKit
@@ -12,8 +12,7 @@ public class BaseUIDesignableView: BaseUIView {
     
     private var _view: UIView!
     //--
-    override init(frame: CGRect)
-    {
+    override init(frame: CGRect) {
         super.init(frame: frame);
         //--
         xibSetup();
