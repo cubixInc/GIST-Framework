@@ -26,6 +26,8 @@ public class SyncEngine: NSObject {
     private var _urlToSync:NSURL!
     private var _authentication:[String:String]?;
     
+    private var _languageCode:String = "";
+    
     private var _isCustomData = false;
     
     private lazy var syncedFile: String = {
@@ -37,11 +39,11 @@ public class SyncEngine: NSObject {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1]
         //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString;
-    }()
+    }();
     
     private lazy var syncedFileUrl: NSURL = {
-        return self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.syncedFile).plist");
-    }()
+        return self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.syncedFile + self._languageCode).plist");
+    }();
     
     //Flag if dict date is updated
     private var _hasUpdate:Bool = false;
@@ -62,22 +64,22 @@ public class SyncEngine: NSObject {
     
     private var lastSyncedServerDate:String? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("LAST_SYNCED_SERVER_DATE") as? String;
+            return NSUserDefaults.standardUserDefaults().objectForKey("LAST_SYNCED_SERVER_DATE" + _languageCode) as? String;
         }
         
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "LAST_SYNCED_SERVER_DATE");
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "LAST_SYNCED_SERVER_DATE" + _languageCode);
             NSUserDefaults.standardUserDefaults().synchronize();
         }
     } //P.E.
     
     private var lastSyncedResponseDate:NSDate? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("LAST_SYNCED_RESPONSE_DATE") as? NSDate;
+            return NSUserDefaults.standardUserDefaults().objectForKey("LAST_SYNCED_RESPONSE_DATE" + _languageCode) as? NSDate;
         }
         
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "LAST_SYNCED_RESPONSE_DATE");
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "LAST_SYNCED_RESPONSE_DATE" + _languageCode);
             NSUserDefaults.standardUserDefaults().synchronize();
         }
     } //P.E.
@@ -106,10 +108,16 @@ public class SyncEngine: NSObject {
     private func setupSyncedFile() {
         var hasToSync:Bool = true;
         
-        //If File does not exist
-        if (NSFileManager.defaultManager().fileExistsAtPath(self.syncedFileUrl.path!) == false) {
+        if let syncedFileUrlRes:String = NSBundle.mainBundle().pathForResource(self.syncedFile, ofType: "plist") {
             
-            if let syncedFileUrlRes = NSBundle.mainBundle().pathForResource(self.syncedFile, ofType: "plist") {
+            //Localization
+            if (syncedFileUrlRes.rangeOfString("lproj") != nil && syncedFileUrlRes.rangeOfString("Base.lproj") == nil) {
+                _languageCode = "-" + NSBundle.mainBundle().preferredLocalizations[0]
+            }
+            
+            //--
+            //If File does not exist
+            if (NSFileManager.defaultManager().fileExistsAtPath(self.syncedFileUrl.path!) == false) {
                 do {
                     try NSFileManager.defaultManager().copyItemAtURL(NSURL(fileURLWithPath: syncedFileUrlRes), toURL: syncedFileUrl);
                     //--
@@ -119,11 +127,13 @@ public class SyncEngine: NSObject {
                     NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
                     abort()
                 }
-            } else {
-                NSLog("Unresolved error : \(self.syncedFile).plist file not found in the resource folder: For ref., You may download 'Synced PLists' folder from git repo (https://github.com/cubixlabs/GIST-Framework).");
-                abort();
             }
+            
+        } else {
+            NSLog("Unresolved error : \(self.syncedFile).plist file not found in the resource folder: For ref., You may download 'Synced PLists' folder from git repo (https://github.com/cubixlabs/GIST-Framework).");
+            abort();
         }
+        
         
         //Fetching Data
         _dictData = NSMutableDictionary(contentsOfURL: self.syncedFileUrl);//NSDictionary(contentsOfURL: self.syncedFileUrl);
@@ -287,10 +297,11 @@ public class SyncEngine: NSObject {
     } //F.E.
     
     private func syncDataRequest() {
-        var params:String = "";
+        let langSuff:String = NSBundle.mainBundle().preferredLocalizations[0];
+        let params:NSMutableString = NSMutableString(string: "language=\(langSuff)");
         
         if let lastUpdatedAt:String = self.lastSyncedServerDate {
-            params = "updated_at=\(lastUpdatedAt)";
+            params.appendString("&updated_at=\(lastUpdatedAt)");
         }
         
         let request = NSMutableURLRequest(URL: _urlToSync);//NSURLRequest(URL: url!)
@@ -400,15 +411,22 @@ public class SyncEngine: NSObject {
         let rtnData:T? = _dictData?.objectForKey(aKey) as? T;
         
         if (rtnData == nil) {
-            //If File does not exist
-            let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(aKey).plist");
             
-            var isFileExist:Bool = NSFileManager.defaultManager().fileExistsAtPath(url.path!);
-            
-            #if DEBUG
-                if (isFileExist) {
-                    if let syncedFileUrlRes = NSBundle.mainBundle().pathForResource(aKey, ofType: "plist") where NSFileManager.defaultManager().fileExistsAtPath(syncedFileUrlRes) == true {
-                        
+            if let syncedFileUrlRes = NSBundle.mainBundle().pathForResource(aKey, ofType: "plist") {
+                
+                var languageCode:String = "";
+                
+                //Localization
+                if (syncedFileUrlRes.rangeOfString("lproj") != nil && syncedFileUrlRes.rangeOfString("Base.lproj") == nil) {
+                    languageCode = "-" + NSBundle.mainBundle().preferredLocalizations[0]
+                }
+                
+                let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(aKey+languageCode).plist");
+                //--
+                var isFileExist:Bool = NSFileManager.defaultManager().fileExistsAtPath(url.path!);
+                
+                #if DEBUG
+                    if (isFileExist) {
                         do {
                             try NSFileManager.defaultManager().removeItemAtURL(url);
                         } catch  {
@@ -419,13 +437,10 @@ public class SyncEngine: NSObject {
                         //--
                         isFileExist = false;
                     }
-                }
+                #endif
                 
-            #endif
-            
-            if (isFileExist == false) {
-                
-                if let syncedFileUrlRes = NSBundle.mainBundle().pathForResource(aKey, ofType: "plist") {
+                //If File does not exist
+                if (isFileExist == false) {
                     do {
                         try NSFileManager.defaultManager().copyItemAtURL(NSURL(fileURLWithPath: syncedFileUrlRes), toURL: url);
                     } catch  {
@@ -433,21 +448,22 @@ public class SyncEngine: NSObject {
                         NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
                         abort()
                     }
-                } else {
-                    NSLog("Unresolved error : \(self.syncedFile).plist file not found in the resource folder");
-                    abort();
                 }
-            }
-            
-            //Fetching Data
-            if let arr = NSMutableArray(contentsOfURL: url) {
-                _dictData?.setObject(arr, forKey: aKey);
-                //--
-                return arr as? T;
-            } else if let dict = NSMutableDictionary(contentsOfURL: url) {
-                _dictData?.setObject(dict, forKey: aKey);
-                //--
-                return dict as? T;
+                
+                //Fetching Data
+                if let arr = NSMutableArray(contentsOfURL: url) {
+                    _dictData?.setObject(arr, forKey: aKey);
+                    //--
+                    return arr as? T;
+                } else if let dict = NSMutableDictionary(contentsOfURL: url) {
+                    _dictData?.setObject(dict, forKey: aKey);
+                    //--
+                    return dict as? T;
+                }
+                
+            } else {
+                NSLog("Unresolved error : \(self.syncedFile).plist file not found in the resource folder");
+                abort();
             }
         }
         
@@ -467,14 +483,19 @@ public class SyncEngine: NSObject {
             if _dictData?.objectForKey(key) != nil {
                 _dictData![key] = nValue;
             }
+            
+            //Localization
+            var languageCode:String = "";
+            if let syncedFileUrlRes = NSBundle.mainBundle().pathForResource(key, ofType: "plist") where (syncedFileUrlRes.rangeOfString("lproj") != nil && syncedFileUrlRes.rangeOfString("Base.lproj") == nil) {
+                //Localization
+                languageCode = "-" + NSBundle.mainBundle().preferredLocalizations[0];
+            }
             //-
-            let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(key).plist");
+            let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(key+languageCode).plist");
             nValue.writeToURL(url, atomically: true);
         }
         
         return true;
     } //F.E.
-    
-    
     
 } //CLS END
