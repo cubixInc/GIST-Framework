@@ -89,10 +89,11 @@ public class SyncEngine: NSObject {
     } //F.E.
     
     private func initialize(urlToSync:String, authentication:[String:String]? = nil) {
-        
+        /*
         #if !DEBUG && !RELEASE
             UIAlertView(title: "Sync Engine Error", message: "Add '-DDEBUG' and -DRELEASE in their respective sections of Project Build Settings ('Swift Compiler – Custom Flags' -> 'Other Swift Flags')", delegate: nil, cancelButtonTitle: "OK").show();
         #endif
+        */
         
         //--
         _urlToSync = NSURL(string: urlToSync);
