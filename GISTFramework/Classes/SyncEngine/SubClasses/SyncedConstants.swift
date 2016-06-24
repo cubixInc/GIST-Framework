@@ -22,12 +22,16 @@ public class SyncedConstants: SyncEngine {
         return Static.instance!
     } //P.E.
     
-    public static func syncForData(dict:NSDictionary) -> Bool {
+    public class func syncForData(dict:NSDictionary) -> Bool {
         return SyncedConstants.sharedInstance.syncForData(dict);
     } //F.E.
     
     public class func constant<T>(forKey key: String) -> T? {
         return SyncedConstants.sharedInstance.objectForKey(key);
+    } //F.E.
+    
+    public override class func objectForKey<T>(aKey: String?) -> T? {
+        return SyncedConstants.sharedInstance.objectForKey(aKey);
     } //F.E.
     
 } //CLS END

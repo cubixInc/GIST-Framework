@@ -23,7 +23,7 @@ public class SyncedText: SyncEngine {
         return Static.instance!
     } //P.E.
     
-    public static func syncForData(dict:NSDictionary) -> Bool {
+    public class func syncForData(dict:NSDictionary) -> Bool {
         return SyncedText.sharedInstance.syncForData(dict);
     } //F.E.
     
@@ -33,6 +33,10 @@ public class SyncedText: SyncEngine {
     
     public func text(forKey key: String) -> String {
         return (super.objectForKey(key.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "#")))) ?? key
+    } //F.E.
+    
+    public override class func objectForKey<T>(aKey: String?) -> T? {
+        return SyncedText.sharedInstance.objectForKey(aKey);
     } //F.E.
     
 } //CLS END

@@ -22,7 +22,7 @@ public class SyncedFontStyles: SyncEngine {
         return Static.instance!
     } //P.E.
     
-    public static func syncForData(dict:NSDictionary) -> Bool {
+    public class func syncForData(dict:NSDictionary) -> Bool {
         return SyncedFontStyles.sharedInstance.syncForData(dict);
     } //F.E.
     
@@ -32,6 +32,10 @@ public class SyncedFontStyles: SyncEngine {
     
     public func style(forKey key: String) -> Float {
         return super.objectForKey(key) ?? 22;
+    } //F.E.
+    
+    public override class func objectForKey<T>(aKey: String?) -> T? {
+        return SyncedFontStyles.sharedInstance.objectForKey(aKey);
     } //F.E.
     
 } //CLS END

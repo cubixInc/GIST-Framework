@@ -24,7 +24,7 @@ public class SyncedColors: SyncEngine {
         return Static.instance!
     } //P.E.
     
-    public static func syncForData(dict:NSDictionary) -> Bool {
+    public class func syncForData(dict:NSDictionary) -> Bool {
         return SyncedColors.sharedInstance.syncForData(dict);
     } //F.E.
     
@@ -38,6 +38,10 @@ public class SyncedColors: SyncEngine {
         } else {
             return nil;
         }
+    } //F.E.
+    
+    public override class func objectForKey<T>(aKey: String?) -> T? {
+        return SyncedColors.sharedInstance.objectForKey(aKey);
     } //F.E.
     
 } //CLS END
