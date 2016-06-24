@@ -147,7 +147,7 @@ Pod::Spec.new do |s|
   # s.dependency "JSONKit", "~> 1.4"
 
   s.pod_target_xcconfig = {
-    'OTHER_SWIFT_FLAGS [config = Debug]' => '-D DEBUG'
+    'OTHER_SWIFT_FLAGS [config = Debug]' => '-DDEBUG'
   }
 
 end
