@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "GISTFramework"
   s.version      = "1.0"
-  s.summary      = "A short description of GISTFramework."
+  s.summary      = "GISTFramework short desc to be written here."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,6 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
+                    GISTFramework desc. here
                    DESC
 
   s.homepage     = "https://github.com/cubixlabs/GIST-Framework"
