@@ -28,24 +28,24 @@ public class BaseUINavigationController: UINavigationController {
         }
     } //P.E.
     
-    init(rootViewController: UIViewController, barStyle:BarStyle) {
+    public init(rootViewController: UIViewController, barStyle:BarStyle) {
         super.init(rootViewController: rootViewController);
         //--
         self.barStyle = barStyle;
     } //F.E.
 
-    override init(rootViewController: UIViewController) {
+    override public init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController);
         //--
         self.barStyle = BarStyle.Default;
     } //F.E.
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)!;
     } //F.E.
     
     override public func viewDidLoad() {
