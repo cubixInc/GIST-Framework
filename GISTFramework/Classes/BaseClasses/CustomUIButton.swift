@@ -11,7 +11,7 @@ import UIKit
 public class CustomUIButton: BaseUIButton {
     
     private var _titleOffSet:CGPoint = CGPoint.zero;
-    @IBInspectable var titleOffSet:CGPoint {
+    @IBInspectable public var titleOffSet:CGPoint {
         set {
             _titleOffSet = newValue;
         }
@@ -22,7 +22,7 @@ public class CustomUIButton: BaseUIButton {
     } //P.E.
     
     private var _containtOffSet:CGPoint = CGPoint.zero;
-    @IBInspectable var containtOffSet:CGPoint {
+    @IBInspectable public var containtOffSet:CGPoint {
         set {
             _containtOffSet = newValue;
         }
@@ -33,7 +33,7 @@ public class CustomUIButton: BaseUIButton {
     } //P.E.
     
     private var _containtCenter:Bool = true;
-    @IBInspectable var containtCenter:Bool {
+    @IBInspectable public var containtCenter:Bool {
         set {
             _containtCenter = newValue;
         }
@@ -44,7 +44,7 @@ public class CustomUIButton: BaseUIButton {
     } //P.E.
     
     private var _reversedOrder:Bool = false;
-    @IBInspectable var reversedOrder:Bool {
+    @IBInspectable public var reversedOrder:Bool {
         set {
             _reversedOrder = newValue;
         }

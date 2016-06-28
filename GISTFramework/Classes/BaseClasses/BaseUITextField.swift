@@ -10,22 +10,22 @@ import UIKit
 
 public class BaseUITextField: UITextField, BaseView {
    
-    @IBInspectable var bgColorStyle:String! = nil;
+    @IBInspectable public var bgColorStyle:String! = nil;
     
-    @IBInspectable var boarder:Int = 0;
-    @IBInspectable var boarderColorStyle:String! = nil;
+    @IBInspectable public var boarder:Int = 0;
+    @IBInspectable public var boarderColorStyle:String! = nil;
     
-    @IBInspectable var cornerRadius:Int = 0;
+    @IBInspectable public var cornerRadius:Int = 0;
     
-    @IBInspectable var rounded:Bool = false;
+    @IBInspectable public var rounded:Bool = false;
     
-    @IBInspectable var hasDropShadow:Bool = false;
+    @IBInspectable public var hasDropShadow:Bool = false;
     
-    @IBInspectable var verticalPadding:CGFloat=0
-    @IBInspectable var horizontalPadding:CGFloat=0
+    @IBInspectable public var verticalPadding:CGFloat=0
+    @IBInspectable public var horizontalPadding:CGFloat=0
     
-    @IBInspectable var fontStyle:String = "Medium";
-    @IBInspectable var fontColorStyle:String! = nil;
+    @IBInspectable public var fontStyle:String = "Medium";
+    @IBInspectable public var fontColorStyle:String! = nil;
     
     private var _placeholderKey:String?
     override public var placeholder: String? {

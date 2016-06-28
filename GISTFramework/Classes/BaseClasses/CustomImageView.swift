@@ -142,7 +142,7 @@ public class CustomImageView: BaseUIView {
         }
     } //P.E.
     
-    @IBInspectable var image: UIImage? {
+    @IBInspectable public var image: UIImage? {
         get {
             return self.imageView!.image;
         }

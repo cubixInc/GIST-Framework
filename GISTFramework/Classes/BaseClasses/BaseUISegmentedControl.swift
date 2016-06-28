@@ -10,9 +10,9 @@ import UIKit
 
 public class BaseUISegmentedControl: UISegmentedControl, BaseView {
 
-    @IBInspectable var bgColorStyle:String! = nil;
+    @IBInspectable public var bgColorStyle:String! = nil;
     
-    @IBInspectable var tintColorStyle:String! = nil;
+    @IBInspectable public var tintColorStyle:String! = nil;
 
     private var _titleKeys:[Int:String] = [Int:String]();
     

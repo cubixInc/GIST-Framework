@@ -20,7 +20,7 @@ public class UIRadioButton: BaseUIButton {
 
     var _groupId:Int?
     
-    @IBInspectable var groupId:Int {
+    @IBInspectable public var groupId:Int {
         get {
             return _groupId!;
         }

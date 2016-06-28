@@ -10,9 +10,9 @@ import UIKit
 
 public class BaseUISwitch: UISwitch, BaseView {
     
-    @IBInspectable var onColorStyle:String! = nil;
+    @IBInspectable public var onColorStyle:String! = nil;
     //--
-    @IBInspectable var thumbColorStyle:String! = nil;
+    @IBInspectable public var thumbColorStyle:String! = nil;
     
     //--
     override public func awakeFromNib() {

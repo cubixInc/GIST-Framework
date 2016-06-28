@@ -9,23 +9,23 @@
 import UIKit
 
 public class BaseUIButton: UIButton, BaseView {
-    @IBInspectable var bgColorStyle:String! = nil;
-    @IBInspectable var bgSelectedColorStyle:String! = nil;
+    @IBInspectable public var bgColorStyle:String! = nil;
+    @IBInspectable public var bgSelectedColorStyle:String! = nil;
 
-    @IBInspectable var boarder:Int = 0;
-    @IBInspectable var boarderColorStyle:String! = nil;
+    @IBInspectable public var boarder:Int = 0;
+    @IBInspectable public var boarderColorStyle:String! = nil;
     
-    @IBInspectable var cornerRadius:Int = 0;
+    @IBInspectable public var cornerRadius:Int = 0;
     
-    @IBInspectable var rounded:Bool = false;
+    @IBInspectable public var rounded:Bool = false;
     
-    @IBInspectable var fontStyle:String = "Medium";
-    @IBInspectable var fontColorStyle:String! = nil;
-    @IBInspectable var fontSelectedColorStyle:String! = nil;
+    @IBInspectable public var fontStyle:String = "Medium";
+    @IBInspectable public var fontColorStyle:String! = nil;
+    @IBInspectable public var fontSelectedColorStyle:String! = nil;
     
-    @IBInspectable var hasDropShadow:Bool = false;
+    @IBInspectable public var hasDropShadow:Bool = false;
     
-    @IBInspectable var sizeForIPad:Bool = false ;
+    @IBInspectable public var sizeForIPad:Bool = false ;
     
     override public var selected:Bool {
         get  {

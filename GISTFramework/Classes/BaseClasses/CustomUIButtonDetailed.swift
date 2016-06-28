@@ -10,7 +10,7 @@ import UIKit
 
 public class CustomUIButtonDetailed: CustomUIButton {
     
-    @IBInspectable var detailText:String? {
+    @IBInspectable public var detailText:String? {
         get {
             return self.detailLabel.text;
         }
@@ -20,11 +20,11 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
-    @IBInspectable var dFontStyle:String = "Medium";
-    @IBInspectable var dFontColorStyle:String?;
+    @IBInspectable public var dFontStyle:String = "Medium";
+    @IBInspectable public var dFontColorStyle:String?;
     
     private var _detailOffSet:CGPoint = CGPoint.zero;
-    @IBInspectable var detailOffSet:CGPoint {
+    @IBInspectable public var detailOffSet:CGPoint {
         set {
             _detailOffSet = newValue;
         }

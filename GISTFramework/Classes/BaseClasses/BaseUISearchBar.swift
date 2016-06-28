@@ -18,18 +18,18 @@ extension UISearchBar {
 
 public class BaseUISearchBar: UISearchBar, BaseView {
 
-    @IBInspectable var bgColorStyle:String! = nil;
+    @IBInspectable public var bgColorStyle:String! = nil;
     
-    @IBInspectable var boarder:Int?;
-    @IBInspectable var boarderColorStyle:String?;
+    @IBInspectable public var boarder:Int?;
+    @IBInspectable public var boarderColorStyle:String?;
     
-    @IBInspectable var tintColorStyle:String?;
-    @IBInspectable var barTintColorStyle:String?;
+    @IBInspectable public var tintColorStyle:String?;
+    @IBInspectable public var barTintColorStyle:String?;
     
-    @IBInspectable var cornerRadius:Int?;
+    @IBInspectable public var cornerRadius:Int?;
     
-    @IBInspectable var fontStyle:String = "Medium";
-    @IBInspectable var fontColorStyle:String! = nil;
+    @IBInspectable public var fontStyle:String = "Medium";
+    @IBInspectable public var fontColorStyle:String! = nil;
     
     private var _placeholderKey:String?
     override public var placeholder: String? {

@@ -22,7 +22,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     } //P.E.
     
     private var _seperatorView:UIView!;
-    @IBInspectable var bgColorStyle:String! = nil;
+    @IBInspectable public var bgColorStyle:String! = nil;
     
     private var seperatorFrame:CGRect {
         get  {
@@ -39,7 +39,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     } //P.E.
     */
     
-    @IBInspectable var hasSeperator:Bool {
+    @IBInspectable public var hasSeperator:Bool {
         get {
             return !_seperatorView.hidden;
         }
@@ -52,7 +52,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     var seperatorOnTop:Bool = false;
     
     private var _seperatorColorStyle:String = "";
-    @IBInspectable var seperatorColorStyle:String {
+    @IBInspectable public var seperatorColorStyle:String {
         get {
             return _seperatorColorStyle;
         }

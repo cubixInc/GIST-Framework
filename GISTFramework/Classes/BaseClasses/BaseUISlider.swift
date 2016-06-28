@@ -10,9 +10,9 @@ import UIKit
 
 public class BaseUISlider: UISlider, BaseView {
 
-    @IBInspectable var minColorStyle:String! = nil;
-    @IBInspectable var maxColorStyle:String! = nil;
-    @IBInspectable var thumbColorStyle:String! = nil;
+    @IBInspectable public var minColorStyle:String! = nil;
+    @IBInspectable public var maxColorStyle:String! = nil;
+    @IBInspectable public var thumbColorStyle:String! = nil;
     
     override public func awakeFromNib() {
         super.awakeFromNib();

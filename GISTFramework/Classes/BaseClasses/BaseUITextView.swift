@@ -10,20 +10,20 @@ import UIKit
 
 public class BaseUITextView: UITextView, BaseView {
 
-    @IBInspectable var bgColorStyle:String! = nil;
+    @IBInspectable public var bgColorStyle:String! = nil;
     
-    @IBInspectable var boarder:Int = 0;
-    @IBInspectable var boarderColorStyle:String! = nil;
+    @IBInspectable public var boarder:Int = 0;
+    @IBInspectable public var boarderColorStyle:String! = nil;
     
-    @IBInspectable var cornerRadius:Int = 0;
-    @IBInspectable var rounded:Bool = false;
+    @IBInspectable public var cornerRadius:Int = 0;
+    @IBInspectable public var rounded:Bool = false;
     
-    @IBInspectable var hasDropShadow:Bool = false;
+    @IBInspectable public var hasDropShadow:Bool = false;
     
-    @IBInspectable var fontStyle:String = "Medium";
-    @IBInspectable var fontColorStyle:String! = nil;
+    @IBInspectable public var fontStyle:String = "Medium";
+    @IBInspectable public var fontColorStyle:String! = nil;
 
-    @IBInspectable var placeholder:String? {
+    @IBInspectable public var placeholder:String? {
         set {
             if (newValue != nil) {
                 self.lblPlaceholder.text = newValue;
@@ -45,7 +45,7 @@ public class BaseUITextView: UITextView, BaseView {
         }
     } //P.E.
     
-    @IBInspectable var placeholderColorStyle:String? {
+    @IBInspectable public var placeholderColorStyle:String? {
         set {
             if (newValue != nil) {
                 _lblPlaceholder?.textColor = SyncedColors.color(forKey: newValue!);
