@@ -48,7 +48,7 @@ public class BaseUISearchBar: UISearchBar, BaseView {
         }
     } //P.E.
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
        
         super.init(frame: frame);
         
@@ -84,8 +84,6 @@ public class BaseUISearchBar: UISearchBar, BaseView {
             //??self.backgroundColor =  SyncedColors.color(forKey: bgColor);
         }
         
-        
-        
         if let txtField:UITextField = self.textField {
             txtField.font = UIView.font(fontStyle);
             
@@ -108,4 +106,4 @@ public class BaseUISearchBar: UISearchBar, BaseView {
         
     } //F.E.
 
-} //F.E.
+} //CLS END

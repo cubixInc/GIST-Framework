@@ -30,11 +30,11 @@ public class UIRadioButton: BaseUIButton {
         }
     } //P.E.
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         fatalError("init(frame:) has not been implemented")
     } //F.E.
 
-    init(frame: CGRect, radioGroupId:Int) {
+    public init(frame: CGRect, radioGroupId:Int) {
         super.init(frame: frame);
         //--
         self.groupId = radioGroupId;
@@ -58,7 +58,7 @@ public class UIRadioButton: BaseUIButton {
         UIRadioButtonManager.sharedInstance.addButton(self);
     } //F.E.
     
-    class func getSelectedButton(radioGroupId:Int) -> UIRadioButton? {
+    class public func getSelectedButton(radioGroupId:Int) -> UIRadioButton? {
         return nil;//UIRadioButtonManager.sharedInstance.getSelectedButton(radioGroupId);
     }//F.E.
     

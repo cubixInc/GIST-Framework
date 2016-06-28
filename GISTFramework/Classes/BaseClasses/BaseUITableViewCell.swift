@@ -99,8 +99,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         
     } //F.E.
     
-    private func commonInitializer(textColor:UIColor?)
-    {
+    private func commonInitializer(textColor:UIColor?) {
         self.backgroundColor = UIColor.clearColor();//GLOBAL.CLEAR_COLOR;
         self.contentView.backgroundColor  = UIColor.clearColor(); //GLOBAL.CLEAR_COLOR;
         self.textLabel?.textColor = (textColor == nil) ?UIColor.blueColor():textColor;
@@ -138,7 +137,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         {_seperatorView.frame = self.seperatorFrame;}
     } //F.E.
     
-    func updateData(data:AnyObject?) {
+    public func updateData(data:AnyObject?) {
         _data = data;
         //--
         self.updateSyncedData();

@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum BarStyle {
+public enum BarStyle {
     case Default;//, Black, Gray, Red
 }
 
@@ -16,7 +16,7 @@ public class BaseUINavigationController: UINavigationController {
 
     private var _barStyle:BarStyle = BarStyle.Default;
     
-    var barStyle:BarStyle {
+    public var barStyle:BarStyle {
         get {
             return _barStyle;
         }

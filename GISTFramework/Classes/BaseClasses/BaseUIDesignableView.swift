@@ -12,7 +12,7 @@ public class BaseUIDesignableView: BaseUIView {
     
     private var _view: UIView!
     //--
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame);
         //--
         xibSetup();

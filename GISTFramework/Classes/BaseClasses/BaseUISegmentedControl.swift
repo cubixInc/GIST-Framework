@@ -22,7 +22,7 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
         self.updateView()
     } //F.E.
     
-    func updateView(){
+    public func updateView(){
         if (tintColorStyle != nil) {
             self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
@@ -50,4 +50,4 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
         }
     } //P.E.
     
-} //F.E.
+} //CLS END

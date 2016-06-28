@@ -123,7 +123,7 @@ public class PopoverControllerView: UIView {
         }
     } //P.E.
     
-    init(contentView:UIView) {
+    public init(contentView:UIView) {
         super.init(frame:UIScreen.mainScreen().bounds);
         //--
         super.backgroundColor = UIColor.clearColor();

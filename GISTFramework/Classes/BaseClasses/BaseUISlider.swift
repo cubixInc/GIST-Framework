@@ -37,4 +37,4 @@ public class BaseUISlider: UISlider, BaseView {
         self.setThumbImage(UIImage(), forState: UIControlState.Normal);
     } //F.E.
     
-} //F.E.
+} //CLS END

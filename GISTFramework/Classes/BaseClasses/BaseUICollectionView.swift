@@ -18,7 +18,7 @@ public class BaseUICollectionView: UICollectionView, BaseView {
     }
     */
     
-    func updateView() {
+    public func updateView() {
         //DOING NOTHING FOR NOW
     } //F.E.
 

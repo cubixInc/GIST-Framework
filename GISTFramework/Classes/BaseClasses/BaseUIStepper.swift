@@ -19,9 +19,9 @@ public class BaseUIStepper: UIStepper, BaseView {
         self.updateView()
     } //F.E.
     
-    func updateView(){
+    public func updateView(){
         if (tintColorStyle != nil) {
             self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
     } //F.E.
-}
+} //CLS END

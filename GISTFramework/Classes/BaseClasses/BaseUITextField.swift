@@ -104,11 +104,11 @@ public class BaseUITextField: UITextField, BaseView {
         let height:CGFloat = bounds.size.height - (verticalPadding * 2)
         
         return CGRectMake(x,y,widht,height)
-    }
+    } //F.E.
     
     override public func editingRectForBounds(bounds: CGRect) -> CGRect {
         super.editingRectForBounds(bounds)
         return self.textRectForBounds(bounds)
-    }
+    } //F.E.
     
 } //CLS END

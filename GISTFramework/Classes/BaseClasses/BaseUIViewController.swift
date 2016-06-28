@@ -34,21 +34,21 @@ public class BaseUIViewController: UIViewController {
         }
     } //P.E.
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, menuButton:Bool) {
+    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, menuButton:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         //--
         _hasBackButton = false;
         _hasMenuButton = menuButton;
     } //F.E.
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, backButton:Bool) {
+    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, backButton:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         //--
         _hasBackButton = backButton;
         _hasMenuButton = false;
     } //F.E.
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, backButtonForced:Bool)
+    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, backButtonForced:Bool)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         //--
@@ -63,7 +63,7 @@ public class BaseUIViewController: UIViewController {
     } //F.E.
     */
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
 
@@ -132,4 +132,4 @@ public class BaseUIViewController: UIViewController {
         }
     } //F.E.
     
-} //F.E.
+} //CLS END
