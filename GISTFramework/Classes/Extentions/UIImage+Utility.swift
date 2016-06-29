@@ -109,5 +109,5 @@ public extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
-    }
-}
+    } //F.E.
+} //CLS END

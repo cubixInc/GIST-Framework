@@ -9,8 +9,7 @@
 import UIKit
 
 public extension UITableView {
-    public func reloadData(animated:Bool, completion:(()->Void)? = nil)
-    {
+    public func reloadData(animated:Bool, completion:(()->Void)? = nil) {
         if (animated) {
             self.fadeOut({ (finished) -> () in
                 self.reloadData();

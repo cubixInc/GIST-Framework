@@ -48,6 +48,7 @@
 		4895307D1D12AD4100DFD38B /* SyncedFontStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530541D12AD4100DFD38B /* SyncedFontStyles.swift */; };
 		4895307E1D12AD4100DFD38B /* SyncedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530551D12AD4100DFD38B /* SyncedText.swift */; };
 		4895307F1D12AD4100DFD38B /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530561D12AD4100DFD38B /* SyncEngine.swift */; };
+		489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */; };
 		48EA5C521D0FD35B003FDDAF /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 48EA5C511D0FD35B003FDDAF /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,7 @@
 		489530541D12AD4100DFD38B /* SyncedFontStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedFontStyles.swift; sourceTree = "<group>"; };
 		489530551D12AD4100DFD38B /* SyncedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedText.swift; sourceTree = "<group>"; };
 		489530561D12AD4100DFD38B /* SyncEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
+		489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
 		48EA5C4E1D0FD35B003FDDAF /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EA5C511D0FD35B003FDDAF /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
 		48EA5C531D0FD35B003FDDAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				4895304D1D12AD4100DFD38B /* UITableView+Fade.swift */,
 				4895304E1D12AD4100DFD38B /* UIView+Sync.swift */,
 				4895304F1D12AD4100DFD38B /* UIView+Utility.swift */,
+				489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				489530671D12AD4100DFD38B /* BaseUISwitch.swift in Sources */,
 				4895305D1D12AD4100DFD38B /* BaseUIDesignableView.swift in Sources */,
 				489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */,
+				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
 				489530691D12AD4100DFD38B /* BaseUITableViewCell.swift in Sources */,
 				489530651D12AD4100DFD38B /* BaseUISlider.swift in Sources */,
