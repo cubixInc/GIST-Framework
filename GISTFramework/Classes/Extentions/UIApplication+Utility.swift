@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIApplication {
-    class func topViewController(base: UIViewController) -> UIViewController? {
+    public class func topViewController(base: UIViewController) -> UIViewController? {
         if let nav = base as? UINavigationController {
             return topViewController(nav.visibleViewController!)
         }
