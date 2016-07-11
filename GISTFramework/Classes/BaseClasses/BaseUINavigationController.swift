@@ -46,6 +46,8 @@ public class BaseUINavigationController: UINavigationController {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!;
+        //--
+        self.barStyle = BarStyle.Default;
     } //F.E.
     
     override public func viewDidLoad() {
