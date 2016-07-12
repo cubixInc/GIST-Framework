@@ -11,7 +11,7 @@ import UIKit
 public class BaseUITableViewCell: UITableViewCell, BaseView {
 
     private var _data:AnyObject?
-    var data:AnyObject? {
+    public var data:AnyObject? {
         get {
             return _data;
         }
