@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BaseUINavigationItem: UINavigationItem {
+public class BaseUINavigationItem: UINavigationItem, BaseView {
     
     private var _titleKey:String?;
     override public var title: String? {
@@ -35,4 +35,18 @@ public class BaseUINavigationItem: UINavigationItem {
         super.init(coder: aDecoder);
     } //F.E.
     
+    
+    public override func awakeFromNib() {
+        super.awakeFromNib();
+        //--
+        self.updateView();
+    }
+    
+    public func updateView() {
+        if let txt:String = self.title where txt.hasPrefix("#") == true {
+            self.title = txt; // Assigning again to set value from synced data
+        } else if _titleKey != nil {
+            self.title = _titleKey;
+        }
+    } //F.E.
 } //CLS END
