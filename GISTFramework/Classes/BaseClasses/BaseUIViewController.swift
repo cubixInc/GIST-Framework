@@ -17,7 +17,6 @@ public class BaseUIViewController: UIViewController {
     private var _lastSyncedDate:String?
     
     private var _titleKey:String?;
-    
     override public var title: String? {
         get {
             return super.title;
