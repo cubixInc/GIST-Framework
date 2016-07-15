@@ -13,6 +13,7 @@ public class BaseUINavigationController: UINavigationController {
     @IBInspectable public var bgColor:String? = nil {
         didSet {
             self.navigationBar.barTintColor = SyncedColors.color(forKey:bgColor);
+            self.navigationBar.translucent = true;
         }
     }
     
