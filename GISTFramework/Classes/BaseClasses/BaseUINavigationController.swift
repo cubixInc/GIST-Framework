@@ -8,36 +8,52 @@
 
 import UIKit
 
-public enum BarStyle {
-    case Default;//, Black, Gray, Red
-}
-
 public class BaseUINavigationController: UINavigationController {
 
-    private var _barStyle:BarStyle = BarStyle.Default;
-    
-    public var barStyle:BarStyle {
-        get {
-            return _barStyle;
+    @IBInspectable public var bgColor:String? = nil {
+        didSet {
+            self.navigationBar.barTintColor = SyncedColors.color(forKey:bgColor);
         }
-        
-        set {
-            _barStyle = newValue;
+    }
+    
+    @IBInspectable public var tintColor:String? = nil {
+        didSet {
+            self.navigationBar.tintColor = SyncedColors.color(forKey:tintColor);
+        }
+    }
+    
+    @IBInspectable public var fontKey:String? = nil;
+    
+    @IBInspectable public var fontStyle:String? = nil {
+        didSet {
+            var attrDict:[String : AnyObject] = self.navigationBar.titleTextAttributes ?? [String : AnyObject]()
             //--
-            updateAppearance();
+            attrDict[NSFontAttributeName] = UIView.font(SyncedConstants.constant(forKey: fontKey ?? ""), fontStyle: fontStyle);
+            
+            self.navigationBar.titleTextAttributes = attrDict;
         }
-    } //P.E.
+    }
     
-    public init(rootViewController: UIViewController, barStyle:BarStyle) {
-        super.init(rootViewController: rootViewController);
-        //--
-        self.barStyle = barStyle;
-    } //F.E.
-
+    @IBInspectable public var fontColor:String? = nil {
+        didSet {
+            var attrDict:[String : AnyObject] = self.navigationBar.titleTextAttributes ?? [String : AnyObject]();
+            //--
+            attrDict[NSForegroundColorAttributeName] = SyncedColors.color(forKey: fontColor);
+            
+            self.navigationBar.titleTextAttributes = attrDict;
+        }
+    }
+    
+    @IBInspectable public var hasShadow:Bool = true {
+        didSet {
+            if (hasShadow == false) {
+                self.navigationBar.shadowImage = UIImage();
+            }
+        }
+    }
+    
     override public init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController);
-        //--
-        self.barStyle = BarStyle.Default;
     } //F.E.
     
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -46,8 +62,6 @@ public class BaseUINavigationController: UINavigationController {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!;
-        //--
-        self.barStyle = BarStyle.Default;
     } //F.E.
     
     override public func viewDidLoad() {
@@ -61,47 +75,24 @@ public class BaseUINavigationController: UINavigationController {
     
     private func updateAppearance()
     {
-        var attrDict:[String : AnyObject] = [String : AnyObject]()
-        //--
-        attrDict[NSFontAttributeName] = UIView.font(SyncedConstants.constant(forKey: "NavigationFont"),fontStyle: SyncedConstants.constant(forKey: "NavigationFontStyle") ?? "Medium");
+        //Reassing if there are changes from server
         
-        switch (_barStyle)
-        {
-            case .Default:
-                attrDict[NSForegroundColorAttributeName] = SyncedColors.color(forKey: "NavigationTextColor");
-                //--
-                self.navigationBar.barTintColor = SyncedColors.color(forKey: "NavigationBgColor");
-                self.navigationBar.barStyle = UIBarStyle.Default;
-                self.navigationBar.tintColor = SyncedColors.color(forKey: "NavigationTintColor");//UIColor.whiteColor();//GLOBAL.WHITE_COLOR;
-                break;
-/*
-            case .Black:
-                attrDict.setObject(GLOBAL.WHITE_COLOR, forKey: NSForegroundColorAttributeName)
-                self.navigationBar.barStyle = UIBarStyle.Black;
-                self.navigationBar.tintColor = GLOBAL.WHITE_COLOR;
-                break;
-            
-            case .Gray:
-                attrDict.setObject(GLOBAL.BLACK_COLOR, forKey: NSForegroundColorAttributeName)
-                //--
-                self.navigationBar.barTintColor = GLOBAL.LIGHT_GRAY_COLOR;
-                //??self.navigationBar.barStyle = UIBarStyle.Default;
-                self.navigationBar.tintColor = GLOBAL.GRAY_COLOR;
-                break;
-
-            case .Red:
-                attrDict.setObject(GLOBAL.WHITE_COLOR, forKey: NSForegroundColorAttributeName)
-                //--
-                self.navigationBar.barTintColor = GLOBAL.RED_COLOR;
-                //??self.navigationBar.barStyle = UIBarStyle.Default;
-                self.navigationBar.tintColor = GLOBAL.WHITE_COLOR;
-            break;
-*/
+        if let newBgColor = bgColor {
+            self.bgColor = newBgColor;
         }
         
-        self.navigationBar.titleTextAttributes = attrDict;// as [String : AnyObject];
-        //--
-        self.navigationBar.translucent = false
+        if let newTintColor = tintColor {
+            self.tintColor = newTintColor;
+        }
+        
+        if let newFontStyle = fontStyle {
+            self.fontStyle = newFontStyle;
+        }
+        
+        if let newFontColor = fontColor {
+            self.fontColor = newFontColor;
+        }
+        
     } //F.E.
     
     override public func pushViewController(viewController: UIViewController, animated: Bool) {

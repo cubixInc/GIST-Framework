@@ -73,13 +73,9 @@ public class BaseUIPopoverNavigationController: BaseUINavigationController {
     } //P.E.
     
     override public init(rootViewController: UIViewController) {
-        super.init(rootViewController: rootViewController, barStyle:BarStyle.Default);
-    } //F.E.
-
-    override public init(rootViewController: UIViewController, barStyle:BarStyle) {
         super.init(rootViewController: rootViewController);
     } //F.E.
-    
+
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
