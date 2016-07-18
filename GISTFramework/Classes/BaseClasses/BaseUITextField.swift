@@ -27,6 +27,16 @@ public class BaseUITextField: UITextField, BaseView {
     @IBInspectable public var fontStyle:String = "Medium";
     @IBInspectable public var fontColorStyle:String! = nil;
     
+    @IBInspectable public var placeholderColor:String? = nil {
+        didSet {
+            if let colorStyl:String = placeholderColor {
+                if let plcHolder:String = self.placeholder {
+                    self.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSForegroundColorAttributeName: SyncedColors.color(forKey: colorStyl)!]);
+                }
+            }
+        }
+    } //P.E.
+    
     private var _placeholderKey:String?
     override public var placeholder: String? {
         get {
@@ -34,11 +44,18 @@ public class BaseUITextField: UITextField, BaseView {
         }
         
         set {
-            if let key:String = newValue where key.hasPrefix("#") == true{
-                
+            if let key:String = newValue where key.hasPrefix("#") == true {
                 _placeholderKey = key; // holding key for using later
                 
-                super.placeholder = SyncedText.text(forKey: key);
+                if let plcHolder:String = SyncedText.text(forKey: key) {
+                    if let colorStyl:String = placeholderColor {
+                        self.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSForegroundColorAttributeName: SyncedColors.color(forKey: colorStyl)!]);
+                    } else {
+                        super.placeholder = plcHolder;
+                    }
+                } else {
+                    super.placeholder = nil;
+                }
             } else {
                 super.placeholder = newValue;
             }

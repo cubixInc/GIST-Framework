@@ -96,9 +96,11 @@ public class BaseUIViewController: UIViewController {
         self.updateSyncedData();
     }//F.E.
 
+    /*
     override public func  preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent;
     } //F.E.
+    */
     
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
