@@ -9,9 +9,11 @@
 import UIKit
 
 public class BaseLayoutConstraint: NSLayoutConstraint {
+    @IBInspectable public var sizeForIPad:Bool = false ;
+    
     override public func awakeFromNib() {
         super.awakeFromNib();
         //--
-        self.constant = UIView.convertToRatio(constant);
+        self.constant = UIView.convertToRatio(constant, sizedForIPad: sizeForIPad);
     } //F.E.
 } //CLS END
