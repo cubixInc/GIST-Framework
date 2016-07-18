@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BaseUITextField: UITextField, BaseView {
+public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
    
     @IBInspectable public var bgColorStyle:String! = nil;
     
@@ -27,6 +27,18 @@ public class BaseUITextField: UITextField, BaseView {
     @IBInspectable public var fontStyle:String = "Medium";
     @IBInspectable public var fontColorStyle:String! = nil;
     
+    //Maintainig Own delegate
+    private weak var _delegate:UITextFieldDelegate?;
+    public override weak var delegate: UITextFieldDelegate? {
+        get {
+            return _delegate;
+        }
+        
+        set {
+            _delegate = newValue;
+        }
+    } //P.E.
+    
     @IBInspectable public var placeholderColor:String? = nil {
         didSet {
             if let colorStyl:String = placeholderColor {
@@ -34,6 +46,19 @@ public class BaseUITextField: UITextField, BaseView {
                     self.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSForegroundColorAttributeName: SyncedColors.color(forKey: colorStyl)!]);
                 }
             }
+        }
+    } //P.E.
+    
+    
+    private var _maxCharLimit: Int = 50;
+    @IBInspectable public var maxCharLimit: Int {
+        get {
+            return _maxCharLimit;
+        }
+        
+        set {
+            if (_maxCharLimit != newValue)
+            {_maxCharLimit = newValue;}
         }
     } //P.E.
     
@@ -61,6 +86,22 @@ public class BaseUITextField: UITextField, BaseView {
             }
         }
     } //P.E.
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame);
+        //--
+        self.commonInit();
+    } //C.E.
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+        //--
+        self.commonInit();
+    } //C.E.
+    
+    private func commonInit() {
+        super.delegate = self;
+    } //F.E.
     
     override public func awakeFromNib() {
         super.awakeFromNib()
@@ -98,10 +139,10 @@ public class BaseUITextField: UITextField, BaseView {
         }
         
         /*
-        if let txt:String = self.text where txt.hasPrefix("#") == true{
+        if let txt:String = self.text where txt.hasPrefix("#") == true {
             self.text = txt; // Assigning again to set value from synced data
         }
-         */
+        */
     } //F.E.
     
     override public func layoutSubviews() {
@@ -126,6 +167,45 @@ public class BaseUITextField: UITextField, BaseView {
     override public func editingRectForBounds(bounds: CGRect) -> CGRect {
         super.editingRectForBounds(bounds)
         return self.textRectForBounds(bounds)
+    } //F.E.
+    
+    public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        return _delegate?.textFieldShouldBeginEditing?(textField) ?? true;
+    } //F.E.
+    
+    public func textFieldDidBeginEditing(textField: UITextField) {
+        _delegate?.textFieldDidBeginEditing?(textField);
+    } //F.E.
+    
+    public func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        return _delegate?.textFieldShouldEndEditing?(textField) ?? true;
+    } //F.E.
+    
+    public func textFieldDidEndEditing(textField: UITextField) {
+        _delegate?.textFieldDidEndEditing?(textField);
+    } //F.E.
+    
+    public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        let rtn = _delegate?.textField?(textField, shouldChangeCharactersInRange:range, replacementString:string) ?? true;
+        
+        //IF CHARACTERS-LIMIT <= ZERO, MEANS NO RESTRICTIONS ARE APPLIED
+        if (self.maxCharLimit <= 0) {
+            return rtn;
+        }
+        
+        guard let text = textField.text else { return true }
+        
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        return (newLength <= self.maxCharLimit) && rtn // Bool
+    } //F.E.
+    
+    public func textFieldShouldClear(textField: UITextField) -> Bool {
+        return _delegate?.textFieldShouldClear?(textField) ?? true;
+    } //F.E.
+    
+    public func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return _delegate?.textFieldShouldReturn?(textField) ?? true;
     } //F.E.
     
 } //CLS END
