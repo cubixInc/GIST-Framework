@@ -24,7 +24,7 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     @IBInspectable public var verticalPadding:CGFloat=0
     @IBInspectable public var horizontalPadding:CGFloat=0
     
-    @IBInspectable public var fontStyle:String = "Medium";
+    @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
     
     //Maintainig Own delegate

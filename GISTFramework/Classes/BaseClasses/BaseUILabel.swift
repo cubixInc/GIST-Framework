@@ -25,7 +25,7 @@ public class BaseUILabel: UILabel, BaseView {
     
     @IBInspectable public var underlinedText:Bool=false
     
-    @IBInspectable public var fontStyle:String = "Medium";
+    @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
      
     @IBInspectable public var sizeForIPad:Bool = false;

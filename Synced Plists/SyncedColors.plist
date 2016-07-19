@@ -2,25 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Black</key>
+	<key>black</key>
 	<string>#000000</string>
-	<key>White</key>
+	<key>white</key>
 	<string>#ffffff</string>
-	<key>Gray</key>
+	<key>gray</key>
 	<string>#999999</string>
-	<key>Red</key>
+	<key>red</key>
 	<string>#ce0d10</string>
-	<key>Blue</key>
+	<key>blue</key>
 	<string>#3598db</string>
-	<key>Green</key>
+	<key>green</key>
 	<string>#27ae60</string>
-	<key>Theme</key>
+	<key>theme</key>
 	<string>#ce0d10</string>
-	<key>NavigationTextColor</key>
+	<key>navigationTextColor</key>
 	<string>#ce0d10</string>
-	<key>NavigationBgColor</key>
+	<key>navigationBgColor</key>
 	<string>#ffffff</string>
-	<key>NavigationTintColor</key>
+	<key>navigationTintColor</key>
 	<string>#999999</string>
 </dict>
 </plist>

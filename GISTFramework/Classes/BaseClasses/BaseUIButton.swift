@@ -19,7 +19,7 @@ public class BaseUIButton: UIButton, BaseView {
     
     @IBInspectable public var rounded:Bool = false;
     
-    @IBInspectable public var fontStyle:String = "Medium";
+    @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
     @IBInspectable public var fontSelectedColorStyle:String! = nil;
     

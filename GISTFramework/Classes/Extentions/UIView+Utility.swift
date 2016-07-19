@@ -129,8 +129,8 @@ public extension UIView {
         return CGSize(width:self.convertToRatio(value.width, sizedForIPad: sizedForIPad), height:self.convertToRatio(value.height, sizedForIPad: sizedForIPad));
     } //F.E.
     
-    public class func font(fontStyle:String = "Medium", sizedForIPad:Bool = false) ->UIFont! {
-        return self.font(SyncedConstants.constant(forKey: "FontRegular"), fontStyle: fontStyle, sizedForIPad:sizedForIPad);
+    public class func font(fontStyle:String = "medium", sizedForIPad:Bool = false) ->UIFont! {
+        return self.font(SyncedConstants.constant(forKey: "fontRegular"), fontStyle: fontStyle, sizedForIPad:sizedForIPad);
     } //F.E.
     
     public class func font(fontName:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont!

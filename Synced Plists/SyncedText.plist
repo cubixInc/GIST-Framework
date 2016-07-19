@@ -4,13 +4,11 @@
 <dict>
 	<key>key2</key>
 	<string>test2</string>
-	<key>Label</key>
+	<key>label</key>
 	<string>SyncLabel new</string>
-	<key>MainViewConrollerTitle</key>
+	<key>mainViewConrollerTitle</key>
 	<string>This My VIew</string>
-	<key>app_name</key>
+	<key>appName</key>
 	<string>SampleName</string>
-	<key>MYNEY</key>
-	<string>This is my app</string>
 </dict>
 </plist>

@@ -2,11 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NavigationFont</key>
+	<key>navigationFont</key>
 	<string>Helvetica Neue</string>
-	<key>NavigationFontStyle</key>
+	<key>navigationFontStyle</key>
 	<string>Medium</string>
-	<key>FontRegular</key>
+	<key>fontRegular</key>
 	<string>Helvetica Neue</string>
 </dict>
 </plist>

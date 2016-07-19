@@ -105,7 +105,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         self.textLabel?.textColor = (textColor == nil) ?UIColor.blueColor():textColor;
         //--
         self.selectionStyle = UITableViewCellSelectionStyle.None
-        self.textLabel?.font = UIView.font("Medium");
+        self.textLabel?.font = UIView.font("medium");
         //--
         _seperatorView = UIView(frame: self.seperatorFrame);
         _seperatorView.backgroundColor = UIColor.lightGrayColor();

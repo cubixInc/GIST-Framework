@@ -28,7 +28,7 @@ public class BaseUISearchBar: UISearchBar, BaseView {
     
     @IBInspectable public var cornerRadius:Int?;
     
-    @IBInspectable public var fontStyle:String = "Medium";
+    @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
     
     private var _placeholderKey:String?

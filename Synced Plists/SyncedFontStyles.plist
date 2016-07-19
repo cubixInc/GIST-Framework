@@ -2,19 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>XXSmall</key>
+	<key>xxSmall</key>
 	<real>11</real>
-	<key>XSmall</key>
+	<key>xSmall</key>
 	<real>13</real>
-	<key>Small</key>
+	<key>small</key>
 	<real>16</real>
-	<key>Medium</key>
+	<key>medium</key>
 	<real>20</real>
-	<key>Large</key>
+	<key>large</key>
 	<real>24</real>
-	<key>XLarge</key>
+	<key>xLarge</key>
 	<real>32</real>
-	<key>XXLarge</key>
+	<key>xxLarge</key>
 	<real>55</real>
 </dict>
 </plist>

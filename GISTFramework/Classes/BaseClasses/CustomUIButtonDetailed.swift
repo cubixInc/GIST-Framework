@@ -20,7 +20,7 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
-    @IBInspectable public var dFontStyle:String = "Medium";
+    @IBInspectable public var dFontStyle:String = "medium";
     @IBInspectable public var dFontColorStyle:String?;
     
     private var _detailOffSet:CGPoint = CGPoint.zero;

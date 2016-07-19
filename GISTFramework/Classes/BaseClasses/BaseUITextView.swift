@@ -20,7 +20,7 @@ public class BaseUITextView: UITextView, BaseView {
     
     @IBInspectable public var hasDropShadow:Bool = false;
     
-    @IBInspectable public var fontStyle:String = "Medium";
+    @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
 
     @IBInspectable public var placeholder:String? {
