@@ -90,7 +90,7 @@ internal class UIRadioButtonManager:NSObject {
     //MARK - Adding Radio Buttons
     func addButton(radioButton:UIRadioButton) {
         
-        radioButton.addTarget(self, action: #selector(UIRadioButtonManager.buttonsTapHandler(_:)), forControlEvents: UIControlEvents.TouchUpInside);
+        radioButton.addTarget(self, action: #selector(buttonsTapHandler), forControlEvents: UIControlEvents.TouchUpInside);
         //--
         var hashTable:NSHashTable? = _mainBtnsDict[radioButton.groupId] as? NSHashTable
         
@@ -105,7 +105,7 @@ internal class UIRadioButtonManager:NSObject {
     
     func removeButton(radioButton:UIRadioButton) {
         
-        radioButton.removeTarget(self, action: #selector(UIRadioButtonManager.buttonsTapHandler(_:)), forControlEvents: UIControlEvents.TouchUpInside);
+        radioButton.removeTarget(self, action: #selector(buttonsTapHandler), forControlEvents: UIControlEvents.TouchUpInside);
         
         if let hashTable:NSHashTable = _mainBtnsDict[radioButton.groupId] as? NSHashTable {
             let enumerator:NSEnumerator = hashTable.objectEnumerator();

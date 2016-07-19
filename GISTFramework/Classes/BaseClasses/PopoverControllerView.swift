@@ -142,7 +142,7 @@ public class PopoverControllerView: UIView {
         _backgroundView.backgroundColor = _backgroundColor;
         self.addSubview(_backgroundView);
         
-        _backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PopoverControllerView.backgroundViewTapped(_:))));
+        _backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped)));
         
         let containtViewRect = self.popoverContentRect;
         

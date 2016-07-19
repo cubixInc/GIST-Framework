@@ -122,7 +122,7 @@ public class BaseUITextView: UITextView, BaseView {
     
     //MARK: - TEXT DID CHANGE OBSERVER HANDLING
     private func addTextDidChangeObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseUITextView.textDidChangeObserver(_:)), name: UITextViewTextDidChangeNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(textDidChangeObserver), name: UITextViewTextDidChangeNotification, object: nil);
     } //F.E.
     
     private func removeTextDidChangeObserver() {

@@ -81,7 +81,7 @@ public class BaseUIViewController: UIViewController {
        //--
         if (_hasBackButton) {
             if (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1)) {
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBackButton"), style:UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseUIViewController.backButtonTapped));
+                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBackButton"), style:UIBarButtonItemStyle.Plain, target: self, action: #selector(backButtonTapped));
             }
         }/* else if (_hasMenuButton) {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-icon"), style:UIBarButtonItemStyle.Plain, target: self, action: Selector("menuButtonTapped"));}
