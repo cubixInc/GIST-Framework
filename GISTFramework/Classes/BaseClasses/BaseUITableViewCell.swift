@@ -22,6 +22,12 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     } //P.E.
     
     private var _seperatorView:UIView!;
+    public var seperatorView:UIView? {
+        get {
+            return _seperatorView;
+        }
+    } //P.E.
+    
     @IBInspectable public var bgColorStyle:String! = nil;
     
     private var seperatorFrame:CGRect {
