@@ -55,8 +55,6 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     } //P.E.
     
-    var seperatorOnTop:Bool = false;
-    
     private var _seperatorColorStyle:String = "";
     @IBInspectable public var seperatorColorStyle:String {
         get {
@@ -73,7 +71,9 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     } //P.E.
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    @IBInspectable public var seperatorOnTop:Bool = false;
+    
+    override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
         //--
         self.selectionStyle = UITableViewCellSelectionStyle.None;
@@ -81,7 +81,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         commonInitializer(nil);
     } //F.E.
     
-    init(reuseIdentifier: String?, textColor:UIColor? = nil) {
+    public init(reuseIdentifier: String?, textColor:UIColor? = nil) {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier);//
         //--
         commonInitializer(textColor);
