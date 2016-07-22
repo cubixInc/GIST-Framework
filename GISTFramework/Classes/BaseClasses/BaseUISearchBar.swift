@@ -31,6 +31,12 @@ public class BaseUISearchBar: UISearchBar, BaseView {
     @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
     
+    @IBInspectable public var searchBarIcon:UIImage? = nil {
+        didSet {
+            self.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal);
+        }
+    } //P.E.
+    
     private var _placeholderKey:String?
     override public var placeholder: String? {
         get {
