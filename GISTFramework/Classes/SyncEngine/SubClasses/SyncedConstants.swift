@@ -26,7 +26,7 @@ public class SyncedConstants: SyncEngine {
         return SyncedConstants.sharedInstance.syncForData(dict);
     } //F.E.
     
-    public class func constant<T>(forKey key: String) -> T? {
+    public class func constant<T>(forKey key: String?) -> T? {
         return SyncedConstants.sharedInstance.objectForKey(key);
     } //F.E.
     

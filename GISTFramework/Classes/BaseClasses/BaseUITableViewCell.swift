@@ -73,6 +73,10 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     
     @IBInspectable public var seperatorOnTop:Bool = false;
     
+    @IBInspectable public var fontName:String = "fontRegular";
+    
+    @IBInspectable public var sizeForIPad:Bool = false;
+    
     override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
         //--
@@ -101,8 +105,6 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     
     override public func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated);
-        //--
-        
     } //F.E.
     
     private func commonInitializer(textColor:UIColor?) {
@@ -111,7 +113,8 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         self.textLabel?.textColor = (textColor == nil) ?UIColor.blueColor():textColor;
         //--
         self.selectionStyle = UITableViewCellSelectionStyle.None
-        self.textLabel?.font = UIView.font("medium");
+        self.textLabel?.font = UIView.font(SyncedConstants.constant(forKey: fontName), fontStyle: "medium", sizedForIPad:sizeForIPad);
+        self.detailTextLabel?.font = UIView.font(SyncedConstants.constant(forKey: fontName), fontStyle: "small", sizedForIPad:sizeForIPad);
         //--
         _seperatorView = UIView(frame: self.seperatorFrame);
         _seperatorView.backgroundColor = UIColor.lightGrayColor();

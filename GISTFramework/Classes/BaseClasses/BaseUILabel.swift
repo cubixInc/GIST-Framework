@@ -23,7 +23,9 @@ public class BaseUILabel: UILabel, BaseView {
     @IBInspectable public var hasDropShadow:Bool = false;
     
     
-    @IBInspectable public var underlinedText:Bool=false
+    @IBInspectable public var underlinedText:Bool=false;
+    
+    @IBInspectable public var fontName:String = "fontRegular";
     
     @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
@@ -56,8 +58,7 @@ public class BaseUILabel: UILabel, BaseView {
     
     public func updateView()
     {
-        self.updateFont();
-        //--
+        self.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font.fontName, size: UIView.convertFontSizeToRatio(self.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
         
         //Updating text with synced data
         if let txt:String = self.text where txt.hasPrefix("#") == true {
@@ -91,11 +92,6 @@ public class BaseUILabel: UILabel, BaseView {
         if (hasDropShadow) {
             self.addDropShadow();
         }
-    } //F.E.
-    
-    //Seperate Method so that child class may override it
-    func updateFont() {
-        self.font = UIFont(name: self.font.fontName, size: UIView.convertFontSizeToRatio(self.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
     } //F.E.
     
     override public func layoutSubviews() {

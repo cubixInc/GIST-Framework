@@ -28,8 +28,12 @@ public class BaseUISearchBar: UISearchBar, BaseView {
     
     @IBInspectable public var cornerRadius:Int?;
     
+    @IBInspectable public var fontName:String = "fontRegular";
+    
     @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
+    
+    @IBInspectable public var sizeForIPad:Bool = false;
     
     @IBInspectable public var searchBarIcon:UIImage? = nil {
         didSet {
@@ -91,7 +95,7 @@ public class BaseUISearchBar: UISearchBar, BaseView {
         }
         
         if let txtField:UITextField = self.textField {
-            txtField.font = UIView.font(fontStyle);
+            txtField.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? txtField.font!.fontName, size: UIView.convertFontSizeToRatio(txtField.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
             
             if (fontColorStyle != nil) {
                 txtField.textColor = SyncedColors.color(forKey: fontColorStyle);

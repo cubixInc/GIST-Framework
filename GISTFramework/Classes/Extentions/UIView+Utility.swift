@@ -133,8 +133,7 @@ public extension UIView {
         return self.font(SyncedConstants.constant(forKey: "fontRegular"), fontStyle: fontStyle, sizedForIPad:sizedForIPad);
     } //F.E.
     
-    public class func font(fontName:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont!
-    {
+    public class func font(fontName:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont! {
         return UIFont(name: fontName ?? "Helvetica Neue", size: UIView.convertFontSizeToRatio(22, fontStyle: fontStyle, sizedForIPad:sizedForIPad));
     } //F.E.
     

@@ -19,6 +19,8 @@ public class BaseUIButton: UIButton, BaseView {
     
     @IBInspectable public var rounded:Bool = false;
     
+    @IBInspectable public var fontName:String = "fontRegular";
+    
     @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
     @IBInspectable public var fontSelectedColorStyle:String! = nil;
@@ -58,7 +60,8 @@ public class BaseUIButton: UIButton, BaseView {
     } //F.E.
     
     public func updateView() {
-        self.titleLabel?.font = UIFont(name: self.titleLabel!.font.fontName, size: UIView.convertFontSizeToRatio(self.titleLabel!.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+        
+        self.titleLabel?.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.titleLabel!.font.fontName, size: UIView.convertFontSizeToRatio(self.titleLabel!.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
         
         if (fontColorStyle != nil) {
             self.setTitleColor(SyncedColors.color(forKey: fontColorStyle), forState: UIControlState.Normal);

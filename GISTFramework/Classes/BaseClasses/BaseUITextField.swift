@@ -24,8 +24,11 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     @IBInspectable public var verticalPadding:CGFloat=0
     @IBInspectable public var horizontalPadding:CGFloat=0
     
+    @IBInspectable public var fontName:String = "fontRegular";
     @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
+    
+    @IBInspectable public var sizeForIPad:Bool = false;
     
     //Maintainig Own delegate
     private weak var _delegate:UITextFieldDelegate?;
@@ -110,7 +113,8 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     } //F.E.
     
     public func updateView() {
-        self.font = UIFont(name: self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle));
+        
+        self.font =  UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
         
         if (fontColorStyle != nil) {
             self.textColor = SyncedColors.color(forKey: fontColorStyle);
