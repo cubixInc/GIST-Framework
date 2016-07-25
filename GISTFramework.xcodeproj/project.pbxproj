@@ -48,6 +48,7 @@
 		4895307D1D12AD4100DFD38B /* SyncedFontStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530541D12AD4100DFD38B /* SyncedFontStyles.swift */; };
 		4895307E1D12AD4100DFD38B /* SyncedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530551D12AD4100DFD38B /* SyncedText.swift */; };
 		4895307F1D12AD4100DFD38B /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530561D12AD4100DFD38B /* SyncEngine.swift */; };
+		48991B0C1D460C60007467A4 /* Array+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48991B0B1D460C60007467A4 /* Array+Utility.swift */; };
 		489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */; };
 		48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */; };
 		48EA5C521D0FD35B003FDDAF /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 48EA5C511D0FD35B003FDDAF /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -96,6 +97,7 @@
 		489530541D12AD4100DFD38B /* SyncedFontStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedFontStyles.swift; sourceTree = "<group>"; };
 		489530551D12AD4100DFD38B /* SyncedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedText.swift; sourceTree = "<group>"; };
 		489530561D12AD4100DFD38B /* SyncEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
+		48991B0B1D460C60007467A4 /* Array+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utility.swift"; sourceTree = "<group>"; };
 		489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
 		48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
 		48EA5C4E1D0FD35B003FDDAF /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 				4895304E1D12AD4100DFD38B /* UIView+Sync.swift */,
 				4895304F1D12AD4100DFD38B /* UIView+Utility.swift */,
 				489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */,
+				48991B0B1D460C60007467A4 /* Array+Utility.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				489530641D12AD4100DFD38B /* BaseUISegmentedControl.swift in Sources */,
 				489530741D12AD4100DFD38B /* UIRadioButton.swift in Sources */,
 				489530751D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift in Sources */,
+				48991B0C1D460C60007467A4 /* Array+Utility.swift in Sources */,
 				489530671D12AD4100DFD38B /* BaseUISwitch.swift in Sources */,
 				4895305D1D12AD4100DFD38B /* BaseUIDesignableView.swift in Sources */,
 				489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */,
