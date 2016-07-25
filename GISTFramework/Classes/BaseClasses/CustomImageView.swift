@@ -11,7 +11,7 @@ import UIKit
 public class CustomImageView: BaseUIView {
 
     private var _imageView:UIImageView?;
-    private var imageView:UIImageView? {
+    public var imageView:UIImageView? {
         get {
             if (_imageView == nil) {
                 _imageView = UIImageView();
