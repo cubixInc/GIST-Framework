@@ -10,8 +10,9 @@ import UIKit
 
 public class BaseUIViewController: UIViewController {
 
+    @IBInspectable var backBtnImageName:String = "NavBackButton";
+    
     private var _hasBackButton:Bool = true;
-    private var _hasMenuButton:Bool = false;
     private var _hasForcedBackButton = false;
     
     private var _lastSyncedDate:String?
@@ -33,18 +34,11 @@ public class BaseUIViewController: UIViewController {
         }
     } //P.E.
     
-    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, menuButton:Bool) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
-        //--
-        _hasBackButton = false;
-        _hasMenuButton = menuButton;
-    } //F.E.
     
     public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, backButton:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         //--
         _hasBackButton = backButton;
-        _hasMenuButton = false;
     } //F.E.
     
     public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, backButtonForced:Bool)
@@ -53,14 +47,7 @@ public class BaseUIViewController: UIViewController {
         //--
         _hasBackButton = backButtonForced;
         _hasForcedBackButton = backButtonForced;
-        _hasMenuButton = false;
     } //F.E.
-    
-    /*
-    init(deviceSpecificNibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: Utility.deviceSpecificNibName(nibNameOrNil), bundle: nibBundleOrNil);
-    } //F.E.
-    */
     
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
@@ -81,12 +68,9 @@ public class BaseUIViewController: UIViewController {
        //--
         if (_hasBackButton) {
             if (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1)) {
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBackButton"), style:UIBarButtonItemStyle.Plain, target: self, action: #selector(backButtonTapped));
+                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.Plain, target: self, action: #selector(backButtonTapped));
             }
-        }/* else if (_hasMenuButton) {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-icon"), style:UIBarButtonItemStyle.Plain, target: self, action: Selector("menuButtonTapped"));}
-        */
-        
+        }
         
     } //F.E.
     
@@ -110,14 +94,6 @@ public class BaseUIViewController: UIViewController {
     public func backButtonTapped() {
         self.view.endEditing(true);
         self.navigationController?.popViewControllerAnimated(true)
-    } //F.E.
-    
-    public func menuButtonTapped() {
-        //??NSNotificationCenter.defaultCenter().postNotificationName(MENU_BUTTON_DID_TAP_NOTIFICATION, object: self);
-    } //F.E.
-    
-    public func doneType(sender: UIButton!) {
-        self.view.endEditing(true);
     } //F.E.
     
     private func updateSyncedData() {
