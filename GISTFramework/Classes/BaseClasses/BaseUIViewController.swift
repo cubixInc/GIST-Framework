@@ -75,16 +75,22 @@ public class BaseUIViewController: UIViewController {
     } //F.E.
     
     override public func viewWillAppear(animated: Bool) {
-        super.viewDidAppear(animated);
+        super.viewWillAppear(animated);
         //--
         self.updateSyncedData();
     }//F.E.
+    
+    public override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
 
-    /*
-    override public func  preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent;
+    public override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
     } //F.E.
-    */
+    
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated);
+    } //F.E.
     
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
