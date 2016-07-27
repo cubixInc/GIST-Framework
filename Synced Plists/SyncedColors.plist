@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>theme</key>
+	<string>#ce0d10</string>
+	<key>accent</key>
+	<string>#ce0d10</string>
+	<key>primary</key>
+	<string>#ce0d10</string>
+	<key>secondary</key>
+	<string>#ce0d10</string>
 	<key>black</key>
 	<string>#000000</string>
 	<key>white</key>
@@ -14,8 +22,6 @@
 	<string>#3598db</string>
 	<key>green</key>
 	<string>#27ae60</string>
-	<key>theme</key>
-	<string>#ce0d10</string>
 	<key>navigationTextColor</key>
 	<string>#ce0d10</string>
 	<key>navigationBgColor</key>
