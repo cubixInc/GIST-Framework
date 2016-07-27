@@ -10,7 +10,7 @@ import UIKit
 
 public class BaseUIViewController: UIViewController {
 
-    @IBInspectable var backBtnImageName:String = "NavBackButton";
+    @IBInspectable public var backBtnImageName:String = "NavBackButton";
     
     private var _hasBackButton:Bool = true;
     private var _hasForcedBackButton = false;
