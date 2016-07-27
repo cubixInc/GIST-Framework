@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		489421C81D48954400310089 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489421C71D48954400310089 /* UIColor+Utility.swift */; };
 		489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */; };
 		489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302C1D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift */; };
 		489530591D12AD4100DFD38B /* BaseUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302D1D12AD4100DFD38B /* BaseUIButton.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		489421C71D48954400310089 /* UIColor+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
 		4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLayoutConstraint.swift; sourceTree = "<group>"; };
 		4895302C1D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSeperatorLayoutConstraint.swift; sourceTree = "<group>"; };
 		4895302D1D12AD4100DFD38B /* BaseUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIButton.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				4895304A1D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift */,
 				4895304B1D12AD4100DFD38B /* UIColor+Hex.swift */,
+				489421C71D48954400310089 /* UIColor+Utility.swift */,
 				4895304C1D12AD4100DFD38B /* UIImage+Utility.swift */,
 				4895304D1D12AD4100DFD38B /* UITableView+Utility.swift */,
 				4895304E1D12AD4100DFD38B /* UIView+Sync.swift */,
@@ -323,6 +326,7 @@
 				489530671D12AD4100DFD38B /* BaseUISwitch.swift in Sources */,
 				4895305D1D12AD4100DFD38B /* BaseUIDesignableView.swift in Sources */,
 				489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */,
+				489421C81D48954400310089 /* UIColor+Utility.swift in Sources */,
 				48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */,
 				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
