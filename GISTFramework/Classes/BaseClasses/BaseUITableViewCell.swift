@@ -123,7 +123,9 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     } //F.E.
     
     private func commonInitializer(textColor:UIColor?) {
-        self.selectionStyle = UITableViewCellSelectionStyle.None
+        self.selectionStyle = UITableViewCellSelectionStyle.None;
+        //--
+        self.backgroundColor  = UIColor.clearColor();
         self.contentView.backgroundColor  = UIColor.clearColor();
     } //F.E.
     
