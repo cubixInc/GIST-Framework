@@ -28,7 +28,7 @@ public class BaseUINavigationController: UINavigationController {
         didSet {
             var attrDict:[String : AnyObject] = self.navigationBar.titleTextAttributes ?? [String : AnyObject]()
             //--
-            attrDict[NSFontAttributeName] = UIView.font(SyncedConstants.constant(forKey: fontKey ?? ""), fontStyle: fontStyle);
+            attrDict[NSFontAttributeName] = UIFont.font(fontKey, fontStyle: fontStyle);
             
             self.navigationBar.titleTextAttributes = attrDict;
         }

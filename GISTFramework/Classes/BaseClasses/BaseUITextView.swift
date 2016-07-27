@@ -20,6 +20,7 @@ public class BaseUITextView: UITextView, BaseView {
     
     @IBInspectable public var hasDropShadow:Bool = false;
     
+    @IBInspectable public var fontName:String = "fontRegular";
     @IBInspectable public var fontStyle:String = "medium";
     @IBInspectable public var fontColorStyle:String! = nil;
 
@@ -82,7 +83,7 @@ public class BaseUITextView: UITextView, BaseView {
     } //F.E.
     
     public func updateView()  {
-        self.font = (self.font != nil) ?UIFont(name: self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle)):UIView.font(fontStyle);
+        self.font = UIFont.font(fontName, fontStyle: fontStyle);
         //--
         _lblPlaceholder?.font = self.font;
         _lblPlaceholder?.fontStyle = self.fontStyle;

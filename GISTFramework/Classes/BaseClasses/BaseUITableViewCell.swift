@@ -21,61 +21,84 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     } //P.E.
     
-    private var _seperatorView:UIView!;
-    public var seperatorView:UIView? {
-        get {
-            return _seperatorView;
+    public lazy var seperatorView:UIView = {
+        let sView = UIView(frame: self.seperatorFrame);
+        sView.hidden = true;
+        self.addSubview(sView);
+        return sView;
+    }()
+    
+    @IBInspectable public var bgColorStyle:String? = nil {
+        didSet {
+            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
-    } //P.E.
+    }
     
-    @IBInspectable public var bgColorStyle:String! = nil;
-    
-    private var seperatorFrame:CGRect {
+    public var seperatorFrame:CGRect {
         get  {
-            //??return CGRectMake(15, self.frame.size.height - 0.5, self.frame.size.width - 30, 0.5);
             return CGRectMake(0, (seperatorOnTop ? 0:self.frame.size.height - 0.5), self.frame.size.width, 0.5);
         }
     } //P.E.
     
-    /*
-    private var accessoryViewFrame:CGRect {
-        get  {
-            return CGRectMake(self.frame.size.width - 60, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-        }
-    } //P.E.
-    */
-    
     @IBInspectable public var hasSeperator:Bool {
         get {
-            return !_seperatorView.hidden;
+            return !self.seperatorView.hidden;
         }
         
         set {
-            _seperatorView.hidden = !newValue;
+            self.seperatorView.hidden = !newValue;
         }
     } //P.E.
     
-    private var _seperatorColorStyle:String = "";
-    @IBInspectable public var seperatorColorStyle:String {
-        get {
-            return _seperatorColorStyle;
-        }
-        
-        set {
-            if (_seperatorColorStyle != newValue)
-            {
-                _seperatorColorStyle = newValue;
-                //--
-                _seperatorView.backgroundColor = SyncedColors.color(forKey: _seperatorColorStyle);
-            }
+    @IBInspectable public var seperatorColorStyle:String? = nil {
+        didSet {
+            self.seperatorView.backgroundColor = SyncedColors.color(forKey: seperatorColorStyle);
         }
     } //P.E.
     
-    @IBInspectable public var seperatorOnTop:Bool = false;
+    @IBInspectable public var seperatorOnTop:Bool = false {
+        didSet {
+            self.seperatorView.frame = self.seperatorFrame;
+        }
+    }
     
-    @IBInspectable public var fontName:String = "fontRegular";
+    @IBInspectable public var fontName:String? = "fontRegular" {
+        didSet {
+            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
+            
+            self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
+        }
+    }
+    
+    @IBInspectable public var fontTitleStyle:String? = "medium" {
+        didSet {
+            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
+        }
+    }
+    
+    @IBInspectable public var fontDetailStyle:String? = "fontRegular" {
+        didSet {
+            self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
+        }
+    }
+    
+    @IBInspectable public var fontColor:String? = nil {
+        didSet {
+            self.textLabel?.textColor = UIColor.color(forKey: fontColor);
+        }
+    }
+    
+    @IBInspectable public var detailColor:String? = nil {
+        didSet {
+            self.detailTextLabel?.textColor = UIColor.color(forKey: detailColor);
+        }
+    }
     
     @IBInspectable public var sizeForIPad:Bool = false;
+    
+    public convenience init(reuseIdentifier: String?) {
+        self.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier);
+    } //F.E.
     
     override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
@@ -85,12 +108,6 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         commonInitializer(nil);
     } //F.E.
     
-    public init(reuseIdentifier: String?, textColor:UIColor? = nil) {
-        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier);//
-        //--
-        commonInitializer(textColor);
-    }//C.F.
-    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder);
         //--
@@ -99,8 +116,6 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        //--
-        self.updateView();
     } //F.E.
     
     override public func setSelected(selected: Bool, animated: Bool) {
@@ -108,28 +123,29 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     } //F.E.
     
     private func commonInitializer(textColor:UIColor?) {
-        self.backgroundColor = UIColor.clearColor();//GLOBAL.CLEAR_COLOR;
-        self.contentView.backgroundColor  = UIColor.clearColor(); //GLOBAL.CLEAR_COLOR;
-        self.textLabel?.textColor = (textColor == nil) ?UIColor.blueColor():textColor;
-        //--
         self.selectionStyle = UITableViewCellSelectionStyle.None
-        self.textLabel?.font = UIView.font(SyncedConstants.constant(forKey: fontName), fontStyle: "medium", sizedForIPad:sizeForIPad);
-        self.detailTextLabel?.font = UIView.font(SyncedConstants.constant(forKey: fontName), fontStyle: "small", sizedForIPad:sizeForIPad);
-        //--
-        _seperatorView = UIView(frame: self.seperatorFrame);
-        _seperatorView.backgroundColor = UIColor.lightGrayColor();
-        _seperatorView.hidden = true;
-        //--
-        self.addSubview(_seperatorView);
+        self.contentView.backgroundColor  = UIColor.clearColor();
     } //F.E.
     
     public func updateView() {
-        if (bgColorStyle != nil) {
-            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
+        if let bgCStyle = self.bgColorStyle {
+            self.bgColorStyle = bgCStyle;
         }
         
-        if (_seperatorColorStyle != "") {
-            _seperatorView.backgroundColor = SyncedColors.color(forKey: _seperatorColorStyle);
+        if let sepColorStyle = self.seperatorColorStyle {
+            self.seperatorColorStyle = sepColorStyle;
+        }
+        
+        if let fName = self.fontName {
+            self.fontName = fName;
+        }
+        
+        if let fColor = self.fontColor {
+            self.fontColor = fColor;
+        }
+        
+        if let dColor = self.detailColor {
+            self.detailColor = dColor;
         }
     } //F.E.
     
@@ -142,8 +158,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     override public func layoutSubviews() {
         super.layoutSubviews();
         //--
-        if (_seperatorView != nil)
-        {_seperatorView.frame = self.seperatorFrame;}
+        self.seperatorView.frame = self.seperatorFrame;
     } //F.E.
     
     public func updateData(data:AnyObject?) {
