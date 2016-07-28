@@ -10,6 +10,8 @@ import UIKit
 
 public class BaseUINavigationController: UINavigationController {
 
+    private var _lastSyncedDate:String?
+    
     @IBInspectable public var bgColor:String? = nil {
         didSet {
             self.navigationBar.barTintColor = SyncedColors.color(forKey:bgColor);
@@ -67,14 +69,14 @@ public class BaseUINavigationController: UINavigationController {
     override public func viewDidLoad() {
         super.viewDidLoad();
         //--
+         _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
 
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning();
     } //F.E.
     
-    private func updateAppearance()
-    {
+    private func updateAppearance() {
         //Reassing if there are changes from server
         
         if let newBgColor = bgColor {
@@ -101,9 +103,17 @@ public class BaseUINavigationController: UINavigationController {
         }
     } //F.E.
     
-    func updateSyncedData() {
-        //Update preference
-        self.updateAppearance();
+    public func updateSyncedData() -> Bool {
+        if let syncedDate:String = SyncEngine.lastSyncedServerDate where syncedDate != _lastSyncedDate {
+            _lastSyncedDate = syncedDate;
+            //--
+            
+            //Update preference
+            self.updateAppearance();
+            
+            return true;
+        } else {
+            return false;
+        }
     } //F.E.
-   
 } //F.E.

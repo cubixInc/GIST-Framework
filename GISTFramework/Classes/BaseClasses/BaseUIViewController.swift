@@ -102,7 +102,7 @@ public class BaseUIViewController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     } //F.E.
     
-    private func updateSyncedData() {
+    public func updateSyncedData() -> Bool {
         if let syncedDate:String = SyncEngine.lastSyncedServerDate where syncedDate != _lastSyncedDate {
             _lastSyncedDate = syncedDate;
             //--
@@ -111,7 +111,12 @@ public class BaseUIViewController: UIViewController {
             }
             //--
             self.view.updateSyncedData();
-            (self.navigationController as? BaseUINavigationController)?.updateSyncedData()
+            
+            (self.navigationController as? BaseUINavigationController)?.updateSyncedData();
+            
+            return true;
+        } else {
+            return false;
         }
     } //F.E.
     
