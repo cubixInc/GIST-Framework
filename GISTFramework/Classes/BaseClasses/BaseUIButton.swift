@@ -52,11 +52,15 @@ public class BaseUIButton: UIButton, BaseView {
         
         self.exclusiveTouch = true;
         //--
+        /*
+         THIS WAS BREAKING THE CONSTRAINTS
+         
         self.imageView?.contentMode = UIViewContentMode.ScaleAspectFit;
         
         for view:UIView in self.subviews {
             view.contentMode = UIViewContentMode.ScaleAspectFit;
         }
+        */
     } //F.E.
     
     public func updateView() {
