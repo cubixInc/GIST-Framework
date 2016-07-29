@@ -54,9 +54,10 @@ public extension UIView {
     } //F.E.
     
     public func fadeIn() {
-        self.alpha=0.0
+        self.alpha=0.0;
+        self.hidden = false;
         UIView.animateWithDuration(0.25, animations: { () -> Void in
-            self.alpha=1.0
+            self.alpha=1.0;
         })
     } //F.E.
     
@@ -66,6 +67,7 @@ public extension UIView {
         UIView.animateWithDuration(0.25, animations: { () -> Void in
             self.alpha=0.0;
             }) { (finish:Bool) -> Void in
+                self.hidden = true;
                 completion?(finished: finish)
         }
     } //F.E.
