@@ -10,20 +10,78 @@ import UIKit
 
 public class BaseUITextView: UITextView, BaseView {
 
-    @IBInspectable public var bgColorStyle:String! = nil;
+    @IBInspectable public var sizeForIPad:Bool = false;
     
-    @IBInspectable public var boarder:Int = 0;
-    @IBInspectable public var boarderColorStyle:String! = nil;
+    @IBInspectable public var bgColorStyle:String? = nil {
+        didSet {
+            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
+        }
+    }
     
-    @IBInspectable public var cornerRadius:Int = 0;
-    @IBInspectable public var rounded:Bool = false;
+    @IBInspectable public var boarder:Int = 0 {
+        didSet {
+            if let boarderCStyle:String = boarderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            }
+        }
+    }
     
-    @IBInspectable public var hasDropShadow:Bool = false;
+    @IBInspectable public var boarderColorStyle:String? = nil {
+        didSet {
+            if let boarderCStyle:String = boarderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            }
+        }
+    }
     
-    @IBInspectable public var fontName:String = "fontRegular";
-    @IBInspectable public var fontStyle:String = "medium";
-    @IBInspectable public var fontColorStyle:String! = nil;
-
+    @IBInspectable public var cornerRadius:Int = 0 {
+        didSet {
+            self.addRoundedCorners(UIView.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
+        }
+    }
+    
+    @IBInspectable public var rounded:Bool = false {
+        didSet {
+            if rounded {
+                self.addRoundedCorners();
+            }
+        }
+    }
+    
+    @IBInspectable public var hasDropShadow:Bool = false {
+        didSet {
+            if (hasDropShadow) {
+                self.addDropShadow();
+            } else {
+                // TO HANDLER
+            }
+        }
+    }
+    
+    @IBInspectable public var fontName:String = "fontRegular" {
+        didSet {
+            self.font =  UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+        }
+    }
+    
+    @IBInspectable public var fontStyle:String = "medium" {
+        didSet {
+            self.font =  UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+        }
+    }
+    
+    @IBInspectable public var fontColorStyle:String? = nil {
+        didSet {
+            self.textColor = SyncedColors.color(forKey: fontColorStyle);
+        }
+    }
+    
+    @IBInspectable public var placeholderColorStyle:String? = nil {
+        didSet {
+            self.lblPlaceholder.textColor = SyncedColors.color(forKey: placeholderColorStyle);
+        }
+    } //P.E.
+    
     @IBInspectable public var placeholder:String? {
         set {
             if (newValue != nil) {
@@ -46,18 +104,6 @@ public class BaseUITextView: UITextView, BaseView {
         }
     } //P.E.
     
-    @IBInspectable public var placeholderColorStyle:String? {
-        set {
-            if (newValue != nil) {
-                _lblPlaceholder?.textColor = SyncedColors.color(forKey: newValue!);
-            }
-        }
-        
-        get {
-            return nil; //TEMPERORILY BECAUSE CAN NOT RETURN COLOR STYLE FOR NOW
-        }
-    } //P.E.
-    
     private var _lblPlaceholder:BaseUILabel?
     private var lblPlaceholder:BaseUILabel {
         get {
@@ -65,7 +111,11 @@ public class BaseUITextView: UITextView, BaseView {
             if (_lblPlaceholder == nil) {
                 _lblPlaceholder = BaseUILabel(frame: CGRect(x: 3, y: 6, width: 0, height: 0)); //sizeToFit method to reset its frame
                 _lblPlaceholder!.numberOfLines = 1;
-                _lblPlaceholder!.font = self.font;
+                
+                _lblPlaceholder!.sizeForIPad = self.sizeForIPad;
+                _lblPlaceholder!.fontName = self.fontName;
+                _lblPlaceholder!.fontStyle = self.fontStyle;
+                
                 _lblPlaceholder!.textColor = UIColor(white: 0.80, alpha: 1);
                 _lblPlaceholder!.backgroundColor = UIColor.clearColor();
                 //--
@@ -76,41 +126,41 @@ public class BaseUITextView: UITextView, BaseView {
         }
     } //P.E.
     
+    override public init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer);
+        //--
+        self.commonInit()
+    } //F.E.
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+    }
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
         //--
-        self.updateView()
+        self.commonInit()
     } //F.E.
     
-    public func updateView()  {
+    private func commonInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle);
-        //--
-        _lblPlaceholder?.font = self.font;
-        _lblPlaceholder?.fontStyle = self.fontStyle;
+    }
+    
+    public func updateView()  {
+        if let bgCStyle:String = self.bgColorStyle {
+            self.bgColorStyle = bgCStyle;
+        }
+        
+        if let boarderCStyle:String = self.boarderColorStyle {
+            self.boarderColorStyle = boarderCStyle;
+        }
+        
+        if let fntClrStyle = self.fontColorStyle {
+            self.fontColorStyle = fntClrStyle;
+        }
+        
+        //Updating Placeholder
         _lblPlaceholder?.updateView();
-        //--
-        _lblPlaceholder?.sizeToFit();
-
-        
-        if (fontColorStyle != nil) {
-            self.textColor = SyncedColors.color(forKey: fontColorStyle);
-        }
-
-        if (boarder > 0) {
-            self.addBorder(SyncedColors.color(forKey: boarderColorStyle), width: boarder)
-        }
-        
-        if (bgColorStyle != nil) {
-            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
-        }
-        
-        if (cornerRadius != 0) {
-            self.addRoundedCorners(UIView.convertToRatio(CGFloat(cornerRadius)));
-        }
-        
-        if(hasDropShadow) {
-            self.addDropShadow();
-        }
     } //F.E.
     
     override public func layoutSubviews() {

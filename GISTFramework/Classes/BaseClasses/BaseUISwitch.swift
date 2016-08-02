@@ -10,9 +10,17 @@ import UIKit
 
 public class BaseUISwitch: UISwitch, BaseView {
     
-    @IBInspectable public var onColorStyle:String! = nil;
+    @IBInspectable public var onColorStyle:String? = nil {
+        didSet {
+            self.onTintColor = SyncedColors.color(forKey: onColorStyle);
+        }
+    }
     //--
-    @IBInspectable public var thumbColorStyle:String! = nil;
+    @IBInspectable public var thumbColorStyle:String? = nil {
+        didSet {
+            self.thumbTintColor = SyncedColors.color(forKey: thumbColorStyle);
+        }
+    }
     
     //--
     override public func awakeFromNib() {
@@ -22,12 +30,12 @@ public class BaseUISwitch: UISwitch, BaseView {
     } //F.E.
     
     public func updateView(){
-        if (onColorStyle != nil) {
-            self.onTintColor = SyncedColors.color(forKey: onColorStyle);
+        if let onCStyle = self.onColorStyle {
+            self.onColorStyle = onCStyle;
         }
         
-        if (thumbColorStyle != nil) {
-            self.thumbTintColor = SyncedColors.color(forKey: thumbColorStyle);
+        if let thumbCStyle = self.thumbColorStyle {
+            self.thumbColorStyle = thumbCStyle;
         }
     } //F.E.
 } //CLS END

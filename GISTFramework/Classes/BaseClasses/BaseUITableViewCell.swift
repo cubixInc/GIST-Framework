@@ -105,28 +105,31 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         //--
         self.selectionStyle = UITableViewCellSelectionStyle.None;
         //--
-        commonInitializer(nil);
+        self.commonInitializer();
     } //F.E.
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder);
-        //--
-        commonInitializer(nil);
     } //F.E.
     
     override public func awakeFromNib() {
-        super.awakeFromNib()
+        super.awakeFromNib();
+        //--
+        self.commonInitializer();
     } //F.E.
     
     override public func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated);
     } //F.E.
     
-    private func commonInitializer(textColor:UIColor?) {
+    private func commonInitializer() {
         self.selectionStyle = UITableViewCellSelectionStyle.None;
         //--
-        self.backgroundColor  = UIColor.clearColor();
         self.contentView.backgroundColor  = UIColor.clearColor();
+        
+        self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
+        
+        self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
     } //F.E.
     
     public func updateView() {

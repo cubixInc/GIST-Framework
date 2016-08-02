@@ -10,37 +10,71 @@ import UIKit
 
 public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
    
-    @IBInspectable public var bgColorStyle:String! = nil;
-    
-    @IBInspectable public var boarder:Int = 0;
-    @IBInspectable public var boarderColorStyle:String! = nil;
-    
-    @IBInspectable public var cornerRadius:Int = 0;
-    
-    @IBInspectable public var rounded:Bool = false;
-    
-    @IBInspectable public var hasDropShadow:Bool = false;
-    
-    @IBInspectable public var verticalPadding:CGFloat=0
-    @IBInspectable public var horizontalPadding:CGFloat=0
-    
-    @IBInspectable public var fontName:String = "fontRegular";
-    @IBInspectable public var fontStyle:String = "medium";
-    @IBInspectable public var fontColorStyle:String! = nil;
-    
     @IBInspectable public var sizeForIPad:Bool = false;
     
-    //Maintainig Own delegate
-    private weak var _delegate:UITextFieldDelegate?;
-    public override weak var delegate: UITextFieldDelegate? {
-        get {
-            return _delegate;
+    @IBInspectable public var bgColorStyle:String? = nil {
+        didSet {
+            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
-        
-        set {
-            _delegate = newValue;
+    }
+    
+    @IBInspectable public var boarder:Int = 0 {
+        didSet {
+            if let boarderCStyle:String = boarderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            }
         }
-    } //P.E.
+    }
+    
+    @IBInspectable public var boarderColorStyle:String? = nil {
+        didSet {
+            if let boarderCStyle:String = boarderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            }
+        }
+    }
+    
+    @IBInspectable public var cornerRadius:Int = 0 {
+        didSet {
+            self.addRoundedCorners(UIView.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
+        }
+    }
+    
+    @IBInspectable public var rounded:Bool = false {
+        didSet {
+            if rounded {
+                self.addRoundedCorners();
+            }
+        }
+    }
+    
+    @IBInspectable public var hasDropShadow:Bool = false {
+        didSet {
+            if (hasDropShadow) {
+                self.addDropShadow();
+            } else {
+                // TO HANDLER
+            }
+        }
+    }
+    
+    @IBInspectable public var fontName:String = "fontRegular" {
+        didSet {
+            self.font =  UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+        }
+    }
+    
+    @IBInspectable public var fontStyle:String = "medium" {
+        didSet {
+            self.font =  UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+        }
+    }
+    
+    @IBInspectable public var fontColorStyle:String? = nil {
+        didSet {
+            self.textColor = SyncedColors.color(forKey: fontColorStyle);
+        }
+    }
     
     @IBInspectable public var placeholderColor:String? = nil {
         didSet {
@@ -52,6 +86,8 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //P.E.
     
+    @IBInspectable public var verticalPadding:CGFloat=0
+    @IBInspectable public var horizontalPadding:CGFloat=0
     
     private var _maxCharLimit: Int = 50;
     @IBInspectable public var maxCharLimit: Int {
@@ -62,6 +98,18 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         set {
             if (_maxCharLimit != newValue)
             {_maxCharLimit = newValue;}
+        }
+    } //P.E.
+    
+    //Maintainig Own delegate
+    private weak var _delegate:UITextFieldDelegate?;
+    public override weak var delegate: UITextFieldDelegate? {
+        get {
+            return _delegate;
+        }
+        
+        set {
+            _delegate = newValue;
         }
     } //P.E.
     
@@ -109,37 +157,33 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     override public func awakeFromNib() {
         super.awakeFromNib()
         //--
-        updateView();
+        commontInit();
+    } //F.E.
+    
+    private func commontInit() {
+        self.font =  UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+        
+        if let placeHoldertxt:String = self.placeholder where placeHoldertxt.hasPrefix("#") == true{
+            self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
+        }
     } //F.E.
     
     public func updateView() {
         
-        self.font =  UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
-        
-        if (fontColorStyle != nil) {
-            self.textColor = SyncedColors.color(forKey: fontColorStyle);
+        if let bgCStyle:String = self.bgColorStyle {
+            self.bgColorStyle = bgCStyle;
         }
         
-        if (boarder > 0) {
-            self.addBorder(SyncedColors.color(forKey: boarderColorStyle), width: boarder)
+        if let boarderCStyle:String = self.boarderColorStyle {
+            self.boarderColorStyle = boarderCStyle;
         }
         
-        if (bgColorStyle != nil) {
-            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
+        if let fntClrStyle = self.fontColorStyle {
+            self.fontColorStyle = fntClrStyle;
         }
-        
-        if (cornerRadius != 0) {
-            self.addRoundedCorners(UIView.convertToRatio(CGFloat(cornerRadius)));
-        }
-        
-        if(hasDropShadow) {
-            self.addDropShadow();
-        }
-        
-        if let placeHoldertxt:String = self.placeholder where placeHoldertxt.hasPrefix("#") == true{
-            self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
-        } else if _placeholderKey != nil {
-            self.placeholder = _placeholderKey;
+
+        if let placeHolderKey:String = _placeholderKey {
+            self.placeholder = placeHolderKey;
         }
         
         /*

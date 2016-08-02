@@ -10,18 +10,19 @@ import UIKit
 
 public class BaseUIStepper: UIStepper, BaseView {
    
-    @IBInspectable public var tintColorStyle:String! = nil;
+    @IBInspectable public var tintColorStyle:String? = nil {
+        didSet {
+            self.tintColor = SyncedColors.color(forKey: tintColorStyle);
+        }
+    }
     
     override public func awakeFromNib() {
-        
         super.awakeFromNib()
-        //--
-        self.updateView()
     } //F.E.
     
     public func updateView(){
-        if (tintColorStyle != nil) {
-            self.tintColor = SyncedColors.color(forKey: tintColorStyle);
+        if let tintCStyle = self.tintColorStyle {
+            self.tintColorStyle = tintCStyle;
         }
     } //F.E.
 } //CLS END

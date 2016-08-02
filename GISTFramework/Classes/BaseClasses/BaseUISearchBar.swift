@@ -17,23 +17,98 @@ extension UISearchBar {
 }
 
 public class BaseUISearchBar: UISearchBar, BaseView {
-
-    @IBInspectable public var bgColorStyle:String! = nil;
-    
-    @IBInspectable public var boarder:Int?;
-    @IBInspectable public var boarderColorStyle:String?;
-    
-    @IBInspectable public var tintColorStyle:String?;
-    @IBInspectable public var barTintColorStyle:String?;
-    
-    @IBInspectable public var cornerRadius:Int?;
-    
-    @IBInspectable public var fontName:String = "fontRegular";
-    
-    @IBInspectable public var fontStyle:String = "medium";
-    @IBInspectable public var fontColorStyle:String! = nil;
     
     @IBInspectable public var sizeForIPad:Bool = false;
+    
+    @IBInspectable public var bgColorStyle:String? = nil {
+        didSet {
+            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
+        }
+    }
+    
+    @IBInspectable public var fontBgColorStyle:String? = nil {
+        didSet {
+            if let txtField:UITextField = self.textField {
+                txtField.backgroundColor =  SyncedColors.color(forKey: fontBgColorStyle);
+            }
+        }
+    }
+    
+    @IBInspectable public var tintColorStyle:String? = nil {
+        didSet {
+            self.tintColor =  SyncedColors.color(forKey: tintColorStyle);
+        }
+    }
+    
+    @IBInspectable public var barTintColorStyle:String? = nil {
+        didSet {
+            self.barTintColor =  SyncedColors.color(forKey: barTintColorStyle);
+        }
+    }
+    
+    @IBInspectable public var boarder:Int = 0 {
+        didSet {
+            if let boarderCStyle:String = boarderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            }
+        }
+    }
+    
+    @IBInspectable public var boarderColorStyle:String? = nil {
+        didSet {
+            if let boarderCStyle:String = boarderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            }
+        }
+    }
+    
+    @IBInspectable public var cornerRadius:Int = 0 {
+        didSet {
+            self.addRoundedCorners(UIView.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
+        }
+    }
+    
+    @IBInspectable public var rounded:Bool = false {
+        didSet {
+            if rounded {
+                self.addRoundedCorners();
+            }
+        }
+    }
+    
+    @IBInspectable public var hasDropShadow:Bool = false {
+        didSet {
+            if (hasDropShadow) {
+                self.addDropShadow();
+            } else {
+                // TO HANDLER
+            }
+        }
+    }
+
+    @IBInspectable public var fontName:String = "fontRegular" {
+        didSet {
+            if let txtField:UITextField = self.textField {
+                txtField.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? txtField.font!.fontName, size: UIView.convertFontSizeToRatio(txtField.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+            }
+        }
+    }
+    
+    @IBInspectable public var fontStyle:String = "medium" {
+        didSet {
+            if let txtField:UITextField = self.textField {
+                txtField.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? txtField.font!.fontName, size: UIView.convertFontSizeToRatio(txtField.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+            }
+        }
+    }
+    
+    @IBInspectable public var fontColorStyle:String? = nil {
+        didSet {
+            if let txtField:UITextField = self.textField {
+                txtField.textColor = SyncedColors.color(forKey: fontColorStyle);
+            }
+        }
+    }
     
     @IBInspectable public var searchBarIcon:UIImage? = nil {
         didSet {
@@ -59,61 +134,56 @@ public class BaseUISearchBar: UISearchBar, BaseView {
     } //P.E.
     
     override public init(frame: CGRect) {
-       
         super.init(frame: frame);
         
-        self.updateView();
+        self.commontInit();
     }
 
     required public init?(coder aDecoder: NSCoder) {
-        
         super.init(coder: aDecoder);
     }
     
     override public func awakeFromNib() {
         super.awakeFromNib();
         //--
-        self.updateView();
+        self.commontInit();
     } //F.E.
     
-    public func updateView() {
-        //DOING NOTHING FOR NOW
-        
+    private func commontInit() {
         if let placeHoldertxt:String = self.placeholder where placeHoldertxt.hasPrefix("#") == true{
             self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
-        } else if _placeholderKey != nil {
-            self.placeholder = _placeholderKey;
+        }
+    } //F.E.
+
+    
+    public func updateView() {
+        if let plcHKey:String = _placeholderKey {
+            self.placeholder = plcHKey;
         }
         
-        if let tintColorStyle:String = tintColorStyle {
-            self.tintColor =  SyncedColors.color(forKey: tintColorStyle);
+        if let bgCStyle:String = self.bgColorStyle {
+            self.bgColorStyle = bgCStyle;
         }
         
-        if let barTintColorStyle:String = barTintColorStyle {
-            self.barTintColor =  SyncedColors.color(forKey: barTintColorStyle);
-            //??self.backgroundColor =  SyncedColors.color(forKey: bgColor);
+        if let fBgCStyle:String = self.fontBgColorStyle {
+            self.fontBgColorStyle = fBgCStyle;
         }
         
-        if let txtField:UITextField = self.textField {
-            txtField.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? txtField.font!.fontName, size: UIView.convertFontSizeToRatio(txtField.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
-            
-            if (fontColorStyle != nil) {
-                txtField.textColor = SyncedColors.color(forKey: fontColorStyle);
-            }
-            
-            if let bgColor:String = bgColorStyle {
-                txtField.backgroundColor =  SyncedColors.color(forKey: bgColor);
-            }
-            
-            if let cornerRad:Int = cornerRadius {
-                txtField.addRoundedCorners(UIView.convertToRatio(CGFloat(cornerRad)));
-            }
-            
-            if let boder:Int = boarder {
-                txtField.addBorder(SyncedColors.color(forKey: boarderColorStyle), width: boder);
-            }
+        if let boarderCStyle:String = self.boarderColorStyle {
+            self.boarderColorStyle = boarderCStyle;
         }
         
+        if let tCStyle = self.tintColorStyle {
+            self.tintColorStyle = tCStyle;
+        }
+        
+        if let tBCStyle = self.barTintColorStyle {
+            self.barTintColorStyle = tBCStyle;
+        }
+        
+        if let fntClrStyle = self.fontColorStyle {
+            self.fontColorStyle = fntClrStyle;
+        }
     } //F.E.
 
 } //CLS END

@@ -10,31 +10,55 @@ import UIKit
 
 public class BaseUISegmentedControl: UISegmentedControl, BaseView {
 
-    @IBInspectable public var bgColorStyle:String! = nil;
+    @IBInspectable public var bgColorStyle:String? = nil {
+        didSet {
+            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
+        }
+    }
     
-    @IBInspectable public var tintColorStyle:String! = nil;
+    @IBInspectable public var tintColorStyle:String? {
+        didSet {
+            self.tintColor = SyncedColors.color(forKey: tintColorStyle);
+        }
+    }
 
     private var _titleKeys:[Int:String] = [Int:String]();
     
+    public override init(items: [AnyObject]?) {
+        super.init(items: items);
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame);
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+    }
+    
     override public func awakeFromNib() {
-        super.awakeFromNib()
-        //--
-        self.updateView()
+        super.awakeFromNib();
     } //F.E.
     
-    public func updateView(){
-        if (tintColorStyle != nil) {
-            self.tintColor = SyncedColors.color(forKey: tintColorStyle);
-        }
-        
-        if (bgColorStyle != nil) {
-            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
-        }
-        
+    private func commontInit() {
         for i:Int in 0..<numberOfSegments {
             if let txt:String = titleForSegmentAtIndex(i) where txt.hasPrefix("#") == true {
                 self.setTitle(txt, forSegmentAtIndex: i); // Assigning again to set value from synced data
-            } else if let key:String = _titleKeys[i] {
+            }
+        }
+    } //F.E.
+    
+    public func updateView(){
+        if let bColorStyle = self.bgColorStyle {
+            self.bgColorStyle = bColorStyle;
+        }
+        
+        if let tColorStyle =  self.tintColorStyle {
+            self.tintColorStyle = tColorStyle;
+        }
+        
+        for i:Int in 0..<numberOfSegments {
+            if let key:String = _titleKeys[i] {
                 self.setTitle(key, forSegmentAtIndex: i);
             }
         }

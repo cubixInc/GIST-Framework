@@ -20,8 +20,17 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
-    @IBInspectable public var dFontStyle:String = "medium";
-    @IBInspectable public var dFontColorStyle:String?;
+    @IBInspectable public var dFontStyle:String = "medium" {
+        didSet {
+            self.detailLabel.fontStyle = self.dFontStyle;
+        }
+    }
+    
+    @IBInspectable public var dFontColorStyle:String? {
+        didSet {
+            self.detailLabel.fontColorStyle = self.dFontColorStyle;
+        }
+    }
     
     private var _detailOffSet:CGPoint = CGPoint.zero;
     @IBInspectable public var detailOffSet:CGPoint {
@@ -39,6 +48,7 @@ public class CustomUIButtonDetailed: CustomUIButton {
         get {
             if (_detailLabel == nil) {
                 _detailLabel = BaseUILabel();
+                _detailLabel?.sizeForIPad = self.sizeForIPad;
                 _detailLabel!.textAlignment = NSTextAlignment.Center;
                 _detailLabel!.backgroundColor = UIColor.clearColor();
                 self.addSubview(_detailLabel!);
@@ -86,14 +96,15 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
     } //F.E.
     
+    override func commontInit() {
+        super.commontInit();
+        //--
+        self.detailLabel.font = self.titleLabel!.font;
+    } //F.E.
+    
     override public func updateView()  {
         super.updateView();
-        
-        self.detailLabel.font = self.titleLabel!.font;
-        
-        self.detailLabel.fontStyle = self.dFontStyle;
-        self.detailLabel.fontColorStyle = self.dFontColorStyle;
-        
+        //--
         self.detailLabel.updateView();
     } //F.E.
     

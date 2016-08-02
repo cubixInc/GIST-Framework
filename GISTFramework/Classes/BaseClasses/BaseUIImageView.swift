@@ -10,41 +10,68 @@ import UIKit
 
 public class BaseUIImageView: UIImageView, BaseView {
 
-    @IBInspectable public var bgColorStyle:String! = nil;
+    @IBInspectable public var sizeForIPad:Bool = false;
     
-    @IBInspectable public var boarder:Int = 0;
-    @IBInspectable public var boarderColorStyle:String! = nil;
+    @IBInspectable public var bgColorStyle:String? = nil {
+        didSet {
+            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
+        }
+    }
     
-    @IBInspectable public var cornerRadius:Int = 0;
+    @IBInspectable public var boarder:Int = 0 {
+        didSet {
+            if let boarderCStyle:String = boarderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            }
+        }
+    }
     
-    @IBInspectable public var rounded:Bool = false;
+    @IBInspectable public var boarderColorStyle:String? = nil {
+        didSet {
+            if let boarderCStyle:String = boarderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            }
+        }
+    }
     
-    @IBInspectable public var hasDropShadow:Bool = false;
+    @IBInspectable public var cornerRadius:Int = 0 {
+        didSet {
+            self.addRoundedCorners(UIView.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
+        }
+    }
+    
+    @IBInspectable public var rounded:Bool = false {
+        didSet {
+            if rounded {
+                self.addRoundedCorners();
+            }
+        }
+    }
+    
+    @IBInspectable public var hasDropShadow:Bool = false {
+        didSet {
+            if (hasDropShadow) {
+                self.addDropShadow();
+            } else {
+                // TO HANDLER
+            }
+        }
+    }
     
     override public func awakeFromNib() {
         super.awakeFromNib();
         //--
-        self.updateView();
+        self.clipsToBounds = true;
     } //F.E.
     
     public func updateView() {
-        if (boarder > 0) {
-            self.addBorder(SyncedColors.color(forKey: boarderColorStyle), width: boarder)
+        if let bgCStyle:String = self.bgColorStyle {
+            self.bgColorStyle = bgCStyle;
         }
         
-        if (bgColorStyle != nil) {
-            self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
+        if let boarderCStyle:String = self.boarderColorStyle {
+            self.boarderColorStyle = boarderCStyle;
         }
-        
-        if (cornerRadius != 0) {
-            self.addRoundedCorners(UIView.convertToRatio(CGFloat(cornerRadius)));
-        }
-        
-        if (hasDropShadow) {
-            self.addDropShadow();
-        }
-        //--
-        self.clipsToBounds = true;        
     } //F.E.
     
     override public func layoutSubviews() {

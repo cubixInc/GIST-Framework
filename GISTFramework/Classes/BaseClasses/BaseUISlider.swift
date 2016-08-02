@@ -10,31 +10,41 @@ import UIKit
 
 public class BaseUISlider: UISlider, BaseView {
 
-    @IBInspectable public var minColorStyle:String! = nil;
-    @IBInspectable public var maxColorStyle:String! = nil;
-    @IBInspectable public var thumbColorStyle:String! = nil;
+    @IBInspectable public var minColorStyle:String? = nil {
+        didSet {
+            self.minimumTrackTintColor = SyncedColors.color(forKey: minColorStyle);
+        }
+    }
+    
+    @IBInspectable public var maxColorStyle:String? = nil {
+        didSet {
+            self.maximumTrackTintColor = SyncedColors.color(forKey: maxColorStyle);
+        }
+    }
+    
+    @IBInspectable public var thumbColorStyle:String? = nil {
+        didSet {
+            self.thumbTintColor = SyncedColors.color(forKey: thumbColorStyle);
+        }
+    }
     
     override public func awakeFromNib() {
         super.awakeFromNib();
-        //--
-        self.updateView();
     } //F.E.
     
     public func updateView() {
-        
-        if (minColorStyle != nil) {
-            self.minimumTrackTintColor = SyncedColors.color(forKey: minColorStyle);
+        if let minCStyle = self.minColorStyle {
+            self.minColorStyle = minCStyle;
         }
         
-        if (maxColorStyle != nil) {
-            self.maximumTrackTintColor = SyncedColors.color(forKey: maxColorStyle);
+        if let maxCStyle = self.maxColorStyle {
+            self.maxColorStyle = maxCStyle;
         }
         
-        if (thumbColorStyle != nil) {
-            self.thumbTintColor = SyncedColors.color(forKey: thumbColorStyle);
+        if let thumbCStyle = self.thumbColorStyle {
+            self.thumbColorStyle = thumbCStyle;
         }
         
-        self.setThumbImage(UIImage(), forState: UIControlState.Normal);
     } //F.E.
     
 } //CLS END

@@ -58,7 +58,6 @@ public class BaseUILabel: UILabel, BaseView {
         }
     }
     
-    
     @IBInspectable public var underlinedText:Bool = false {
         didSet {
             if (underlinedText) {
