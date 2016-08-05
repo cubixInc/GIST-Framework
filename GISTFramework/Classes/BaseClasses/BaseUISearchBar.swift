@@ -89,7 +89,7 @@ public class BaseUISearchBar: UISearchBar, BaseView {
     @IBInspectable public var fontName:String = "fontRegular" {
         didSet {
             if let txtField:UITextField = self.textField {
-                txtField.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? txtField.font!.fontName, size: UIView.convertFontSizeToRatio(txtField.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+                txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             }
         }
     }
@@ -97,7 +97,7 @@ public class BaseUISearchBar: UISearchBar, BaseView {
     @IBInspectable public var fontStyle:String = "medium" {
         didSet {
             if let txtField:UITextField = self.textField {
-                txtField.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? txtField.font!.fontName, size: UIView.convertFontSizeToRatio(txtField.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+                txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             }
         }
     }

@@ -188,9 +188,21 @@ public class SyncEngine: NSObject {
         
         if (_isCustomData) {
             return self.customObjectForKey(aKey!);
+        } else {
+            return _dictData?.objectForKey(aKey!) as? T;
         }
-        
-        return _dictData?.objectForKey(aKey!) as? T;
+    } //F.E.
+    
+    public class func syncObject(anObject: AnyObject, forKey aKey: String) {
+        return SyncEngine.sharedInstance.syncObject(anObject, forKey:aKey);
+    } //F.E.
+    
+    internal func syncObject(anObject: AnyObject, forKey aKey: String) {
+        if (_isCustomData) {
+            self.syncForCustomData([aKey:anObject]);
+        } else {
+            self.syncForData([aKey:anObject]);
+        }
     } //F.E.
     
     private func syncFromResource(hasToOverride override:Bool = false) {

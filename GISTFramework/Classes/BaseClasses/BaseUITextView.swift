@@ -60,13 +60,13 @@ public class BaseUITextView: UITextView, BaseView {
     
     @IBInspectable public var fontName:String = "fontRegular" {
         didSet {
-            self.font =  UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+            self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
     @IBInspectable public var fontStyle:String = "medium" {
         didSet {
-            self.font =  UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.font!.fontName, size: UIView.convertFontSizeToRatio(self.font!.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+            self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
@@ -143,10 +143,13 @@ public class BaseUITextView: UITextView, BaseView {
     } //F.E.
     
     private func commonInit() {
-        self.font = UIFont.font(fontName, fontStyle: fontStyle);
+        self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
     }
     
     public func updateView()  {
+        
+        self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        
         if let bgCStyle:String = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }

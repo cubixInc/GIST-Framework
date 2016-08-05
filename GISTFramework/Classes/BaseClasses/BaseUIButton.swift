@@ -66,13 +66,13 @@ public class BaseUIButton: UIButton, BaseView {
     
     @IBInspectable public var fontName:String = "fontRegular" {
         didSet {
-            self.titleLabel?.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.titleLabel!.font.fontName, size: UIView.convertFontSizeToRatio(self.titleLabel!.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+            self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
     @IBInspectable public var fontStyle:String = "medium" {
         didSet {
-            self.titleLabel?.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.titleLabel!.font.fontName, size: UIView.convertFontSizeToRatio(self.titleLabel!.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+            self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
@@ -134,7 +134,7 @@ public class BaseUIButton: UIButton, BaseView {
     func commontInit() {
         self.exclusiveTouch = true;
         
-        self.titleLabel?.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.titleLabel!.font.fontName, size: UIView.convertFontSizeToRatio(self.titleLabel!.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+        self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         //Updating text with synced data
         if let txt:String = self.titleLabel?.text where txt.hasPrefix("#") == true {
@@ -145,7 +145,7 @@ public class BaseUIButton: UIButton, BaseView {
     } //F.E.
     
     public func updateView() {
-        self.titleLabel?.font = UIFont(name: SyncedConstants.constant(forKey: fontName) ?? self.titleLabel!.font.fontName, size: UIView.convertFontSizeToRatio(self.titleLabel!.font.pointSize, fontStyle: fontStyle, sizedForIPad:self.sizeForIPad));
+        self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         if let bgCStyle:String = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
