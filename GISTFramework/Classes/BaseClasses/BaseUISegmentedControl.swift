@@ -26,10 +26,14 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
     
     public override init(items: [AnyObject]?) {
         super.init(items: items);
+        //--
+        self.commontInit();
     }
     
     public override init(frame: CGRect) {
         super.init(frame: frame);
+        //--
+        self.commontInit();
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -38,6 +42,8 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib();
+        //--
+        self.commontInit();
     } //F.E.
     
     private func commontInit() {
