@@ -18,18 +18,18 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     }
     
-    @IBInspectable public var boarder:Int = 0 {
+    @IBInspectable public var border:Int = 0 {
         didSet {
-            if let boarderCStyle:String = boarderColorStyle {
-                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            if let borderCStyle:String = borderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
             }
         }
     }
     
-    @IBInspectable public var boarderColorStyle:String? = nil {
+    @IBInspectable public var borderColorStyle:String? = nil {
         didSet {
-            if let boarderCStyle:String = boarderColorStyle {
-                self.addBorder(SyncedColors.color(forKey: boarderCStyle), width: boarder)
+            if let borderCStyle:String = borderColorStyle {
+                self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
             }
         }
     }
@@ -172,8 +172,8 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
             self.bgColorStyle = bgCStyle;
         }
         
-        if let boarderCStyle:String = self.boarderColorStyle {
-            self.boarderColorStyle = boarderCStyle;
+        if let borderCStyle:String = self.borderColorStyle {
+            self.borderColorStyle = borderCStyle;
         }
         
         if let fntClrStyle = self.fontColorStyle {

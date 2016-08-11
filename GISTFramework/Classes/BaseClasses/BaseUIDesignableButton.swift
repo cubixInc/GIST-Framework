@@ -39,6 +39,9 @@ public class BaseUIDesignableButton: BaseUIButton {
         //--
         _view = UIView.loadDynamicViewWithNib(nib.nibName, viewIndex: nib.viewIndex, owner: self) as! UIView;
         
+        //Disabling the interaction for subview
+        _view.userInteractionEnabled = false;
+        
         // use bounds not frame
         _view.frame = bounds;
         
