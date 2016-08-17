@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
 		489421C81D48954400310089 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489421C71D48954400310089 /* UIColor+Utility.swift */; };
 		489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */; };
 		489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302C1D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		489421C71D48954400310089 /* UIColor+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
 		4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLayoutConstraint.swift; sourceTree = "<group>"; };
 		4895302C1D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSeperatorLayoutConstraint.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				489530481D12AD4100DFD38B /* UIRadioButton.swift */,
 				48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */,
 				48F569F11D37CE30007849A8 /* BaseUINavigationItem.swift */,
+				486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */,
 			);
 			path = BaseClasses;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				4895307F1D12AD4100DFD38B /* SyncEngine.swift in Sources */,
 				4895307A1D12AD4100DFD38B /* UIView+Utility.swift in Sources */,
 				489530771D12AD4100DFD38B /* UIImage+Utility.swift in Sources */,
+				486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */,
 				48F569F21D37CE30007849A8 /* BaseUINavigationItem.swift in Sources */,
 				48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */,
 				489530781D12AD4100DFD38B /* UITableView+Utility.swift in Sources */,
