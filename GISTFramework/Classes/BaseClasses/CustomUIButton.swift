@@ -64,7 +64,7 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
 
-    private var imageViewFrame:CGRect {
+    public var imageViewFrame:CGRect {
         get {
             
             var rFrame:CGRect = CGRect();
@@ -183,7 +183,7 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    private var titleLabelFrame:CGRect {
+    public var titleLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.titleOffSet;
             //--
