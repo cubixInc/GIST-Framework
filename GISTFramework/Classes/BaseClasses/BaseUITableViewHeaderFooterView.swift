@@ -18,7 +18,21 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
                 return;
             }
             //--
-            self.contentView.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
+            if (self.backgroundView == nil) {
+                self.backgroundView = UIView();
+            }
+            //--
+            self.backgroundView!.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
+        }
+    }
+    
+    @IBInspectable public var tintColorStyle:String? = nil {
+        didSet {
+            guard (self.tintColorStyle != oldValue) else {
+                return;
+            }
+            //--
+            self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
     }
     
