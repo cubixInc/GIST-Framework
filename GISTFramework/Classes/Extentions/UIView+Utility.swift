@@ -93,19 +93,11 @@ public extension UIView {
     @nonobjc static let isIPad:Bool = UIDevice.currentDevice().userInterfaceIdiom == .Pad;
     //--
     
-    public class func convertToRatio(value:CGFloat) ->CGFloat {
-        return self.convertToRatio(value, sizedForIPad: false, sizedForNavi:false);
+    public class func convertToRatioSizedForNavi(value:CGFloat) ->CGFloat {
+        return self.convertToRatio(value, sizedForIPad: false, sizedForNavi:true); // Explicit true for Sized For Navi
     } //F.E.
     
-    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool) ->CGFloat {
-        return self.convertToRatio(value, sizedForIPad: sizedForIPad, sizedForNavi:false);
-    } //F.E.
-    
-    public class func convertToRatio(value:CGFloat, sizedForNavi:Bool) ->CGFloat {
-        return self.convertToRatio(value, sizedForIPad: false, sizedForNavi:sizedForNavi);
-    } //F.E.
-    
-    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool, sizedForNavi:Bool) ->CGFloat {
+    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool = false, sizedForNavi:Bool = false) ->CGFloat {
         /*
          iPhone6 Hight:667   =====  0.90625
          iPhone5 Hight:568  ====== 0.77173913043478
