@@ -61,8 +61,7 @@ public extension UIView {
         })
     } //F.E.
     
-    public func fadeOut(completion:((finished:Bool)->())?)
-    {
+    public func fadeOut(completion:((finished:Bool)->())?) {
         self.alpha = 1.0
         UIView.animateWithDuration(0.25, animations: { () -> Void in
             self.alpha=0.0;
@@ -89,10 +88,24 @@ public extension UIView {
     } //F.E.
     
     @nonobjc static let deviceRatio:CGFloat = UIScreen.mainScreen().bounds.height / 736.0;
+    @nonobjc static let deviceRatioWN:CGFloat = (UIScreen.mainScreen().bounds.height - 64.0) / (736.0 - 64.0); // Ratio with Navigation
+    
     @nonobjc static let isIPad:Bool = UIDevice.currentDevice().userInterfaceIdiom == .Pad;
     //--
-    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool = false) ->CGFloat
-    {
+    
+    public class func convertToRatio(value:CGFloat) ->CGFloat {
+        return self.convertToRatio(value, sizedForIPad: false, sizedForNavi:false);
+    } //F.E.
+    
+    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool) ->CGFloat {
+        return self.convertToRatio(value, sizedForIPad: sizedForIPad, sizedForNavi:false);
+    } //F.E.
+    
+    public class func convertToRatio(value:CGFloat, sizedForNavi:Bool) ->CGFloat {
+        return self.convertToRatio(value, sizedForIPad: false, sizedForNavi:sizedForNavi);
+    } //F.E.
+    
+    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool, sizedForNavi:Bool) ->CGFloat {
         /*
          iPhone6 Hight:667   =====  0.90625
          iPhone5 Hight:568  ====== 0.77173913043478
@@ -108,11 +121,14 @@ public extension UIView {
             return value;
         }
         
+        if (sizedForNavi) {
+            return value * UIView.deviceRatioWN; // With Navigation
+        }
+        
         return value * UIView.deviceRatio;
     } //F.E.
     
-    public class func convertFontSizeToRatio(value:CGFloat, fontStyle:String?, sizedForIPad:Bool = false) ->CGFloat
-    {
+    public class func convertFontSizeToRatio(value:CGFloat, fontStyle:String?, sizedForIPad:Bool = false) ->CGFloat {
         if (fontStyle == nil)
         {return UIView.convertToRatio(value, sizedForIPad: sizedForIPad);}
         //--
