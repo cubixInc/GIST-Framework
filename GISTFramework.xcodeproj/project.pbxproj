@@ -54,6 +54,7 @@
 		489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */; };
 		48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */; };
 		48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */; };
+		48D7C1FB1D6C5B4400038C77 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7C1FA1D6C5B4400038C77 /* CustomUIImageView.swift */; };
 		48EA5C521D0FD35B003FDDAF /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 48EA5C511D0FD35B003FDDAF /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48F569F21D37CE30007849A8 /* BaseUINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F569F11D37CE30007849A8 /* BaseUINavigationItem.swift */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,7 @@
 		489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
 		48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
 		48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
+		48D7C1FA1D6C5B4400038C77 /* CustomUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
 		48EA5C4E1D0FD35B003FDDAF /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EA5C511D0FD35B003FDDAF /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
 		48EA5C531D0FD35B003FDDAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				489530411D12AD4100DFD38B /* BaseUIViewController.swift */,
 				489530421D12AD4100DFD38B /* BaseViewProtocol.swift */,
 				489530431D12AD4100DFD38B /* CustomImageView.swift */,
+				48D7C1FA1D6C5B4400038C77 /* CustomUIImageView.swift */,
 				489530441D12AD4100DFD38B /* CustomUIButton.swift */,
 				489530451D12AD4100DFD38B /* CustomUIButtonDetailed.swift */,
 				489530461D12AD4100DFD38B /* PopoverController.swift */,
@@ -341,6 +344,7 @@
 				489530621D12AD4100DFD38B /* BaseUIScrollView.swift in Sources */,
 				489530731D12AD4100DFD38B /* PopoverControllerView.swift in Sources */,
 				4895307E1D12AD4100DFD38B /* SyncedText.swift in Sources */,
+				48D7C1FB1D6C5B4400038C77 /* CustomUIImageView.swift in Sources */,
 				4895306E1D12AD4100DFD38B /* BaseViewProtocol.swift in Sources */,
 				4895307F1D12AD4100DFD38B /* SyncEngine.swift in Sources */,
 				4895307A1D12AD4100DFD38B /* UIView+Utility.swift in Sources */,

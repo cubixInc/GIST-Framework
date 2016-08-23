@@ -1,16 +1,15 @@
 //
-//  PreferencesImageView.swift
+//  CustomUIImageView.swift
 //  GISTFramework
 //
-//  Created by Shoaib Abdul on 14/06/2016.
+//  Created by Shoaib Abdul on 23/08/2016.
 //  Copyright © 2016 Social Cubix. All rights reserved.
 //
 
 import UIKit
 
-@available(*, deprecated, message="use CustomUIImageView class instead")
-public class CustomImageView: BaseUIView {
-
+public class CustomUIImageView: BaseUIImageView {
+    
     private var _imageView:UIImageView?;
     public var imageView:UIImageView? {
         get {
@@ -31,7 +30,7 @@ public class CustomImageView: BaseUIView {
             _imageView = newValue;
         }
     } //P.E.
-
+    
     private var imageViewFrame:CGRect {
         get {
             
@@ -105,7 +104,7 @@ public class CustomImageView: BaseUIView {
                     //--
                     rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width)/2.0,y: (self.frame.size.height - rFrame.size.height)/2.0);
                     break;
-                
+                    
                 case .ScaleAspectFill:
                     if (imgSize.width < imgSize.height) {
                         rFrame.size.width = self.frame.size.width;
@@ -133,7 +132,7 @@ public class CustomImageView: BaseUIView {
         }
     } //P.E.
     
-    override public var contentMode:UIViewContentMode {
+    public override var contentMode:UIViewContentMode {
         get {
             return super.contentMode;
         }
@@ -143,7 +142,7 @@ public class CustomImageView: BaseUIView {
         }
     } //P.E.
     
-    @IBInspectable public var image: UIImage? {
+    public override var image: UIImage? {
         get {
             return self.imageView!.image;
         }
@@ -159,5 +158,6 @@ public class CustomImageView: BaseUIView {
         //--
         self.imageView!.frame = self.imageViewFrame;
     } //F.E
-    
-} //CLS END
+
+
+}

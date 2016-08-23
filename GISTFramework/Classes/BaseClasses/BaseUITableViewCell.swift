@@ -24,6 +24,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     public lazy var seperatorView:UIView = {
         let sView = UIView(frame: self.seperatorFrame);
         sView.hidden = true;
+        sView.backgroundColor = UIColor.lightGrayColor();
         self.addSubview(sView);
         return sView;
     }()
