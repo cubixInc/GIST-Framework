@@ -10,6 +10,17 @@ import UIKit
 
 public class CustomUIImageView: BaseUIImageView {
     
+    public override func awakeFromNib() {
+        super.awakeFromNib();
+        //--
+        if let cImg:UIImage = super.image {
+            //Cleaning Up
+            super.image = UIImage();
+            //--
+            self.image = UIImage(CGImage:cImg.CGImage!, scale: cImg.scale, orientation:cImg.imageOrientation);
+        }
+    } //F.E.
+    
     private var _imageView:UIImageView?;
     public var imageView:UIImageView? {
         get {
