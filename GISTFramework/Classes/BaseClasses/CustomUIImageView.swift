@@ -8,9 +8,10 @@
 
 import UIKit
 
-public class CustomUIImageView: BaseUIImageView {
+//THIS CLASS WAS TO REPLACE CustomImageView(inharited from UIView) but there are some unknown implementations of UIImageView (of UIKit) that are causing the bugs so keeping this class private for future use after some fixes
+private class CustomUIImageView: BaseUIImageView {
     
-    public override func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib();
         //--
         if let cImg:UIImage = super.image {
@@ -22,7 +23,7 @@ public class CustomUIImageView: BaseUIImageView {
     } //F.E.
     
     private var _imageView:UIImageView?;
-    public var imageView:UIImageView? {
+    var imageView:UIImageView? {
         get {
             if (_imageView == nil) {
                 _imageView = UIImageView();
@@ -143,7 +144,7 @@ public class CustomUIImageView: BaseUIImageView {
         }
     } //P.E.
     
-    public override var contentMode:UIViewContentMode {
+    override var contentMode:UIViewContentMode {
         get {
             return super.contentMode;
         }
@@ -153,7 +154,7 @@ public class CustomUIImageView: BaseUIImageView {
         }
     } //P.E.
     
-    public override var image: UIImage? {
+    override var image: UIImage? {
         get {
             return self.imageView!.image;
         }
@@ -164,7 +165,7 @@ public class CustomUIImageView: BaseUIImageView {
         }
     } //F.E.
     
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews();
         //--
         self.imageView!.frame = self.imageViewFrame;

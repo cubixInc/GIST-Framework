@@ -8,7 +8,9 @@
 
 import UIKit
 
-@available(*, deprecated, message="use CustomUIImageView class instead")
+//??@available(*, deprecated, message="use CustomUIImageView class instead")
+//Now this class is available again after the bugs found in the CustomUIImageView
+
 public class CustomImageView: BaseUIView {
 
     private var _imageView:UIImageView?;
