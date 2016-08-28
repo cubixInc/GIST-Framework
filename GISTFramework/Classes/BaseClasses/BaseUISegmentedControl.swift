@@ -10,6 +10,8 @@ import UIKit
 
 public class BaseUISegmentedControl: UISegmentedControl, BaseView {
 
+    @IBInspectable public var sizeForIPad:Bool = false;
+    
     @IBInspectable public var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
@@ -21,6 +23,24 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
             self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
     }
+    
+    @IBInspectable public var fontName:String = "fontRegular" {
+        didSet {
+            self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        }
+    }
+    
+    @IBInspectable public var fontStyle:String = "medium" {
+        didSet {
+            self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        }
+    }
+    
+    public var font:UIFont? = nil {
+        didSet {
+            self.setTitleTextAttributes([NSFontAttributeName:self.font!], forState: UIControlState.Normal);
+        }
+    };
 
     private var _titleKeys:[Int:String] = [Int:String]();
     
@@ -47,6 +67,8 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
     } //F.E.
     
     private func commontInit() {
+        self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        
         for i:Int in 0..<numberOfSegments {
             if let txt:String = titleForSegmentAtIndex(i) where txt.hasPrefix("#") == true {
                 self.setTitle(txt, forSegmentAtIndex: i); // Assigning again to set value from synced data
