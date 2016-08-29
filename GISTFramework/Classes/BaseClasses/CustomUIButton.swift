@@ -10,6 +10,12 @@ import UIKit
 
 public class CustomUIButton: BaseUIButton {
     
+    @IBInspectable public var imgBgColorStyle:String? = nil {
+        didSet {
+            self.imageView?.backgroundColor = SyncedColors.color(forKey: imgBgColorStyle);
+        }
+    }
+    
     private var _titleOffSet:CGPoint = CGPoint.zero;
     @IBInspectable public var titleOffSet:CGPoint {
         set {
