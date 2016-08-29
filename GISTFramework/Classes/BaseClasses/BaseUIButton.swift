@@ -96,7 +96,7 @@ public class BaseUIButton: UIButton, BaseView {
         set {
             super.selected = newValue;
             //--
-            self.backgroundColor = SyncedColors.color(forKey: (selected == true) ? bgSelectedColorStyle:bgColorStyle);
+            self.backgroundColor = SyncedColors.color(forKey: (newValue == true) ? bgSelectedColorStyle:bgColorStyle);
         }
         
     } //P.E.

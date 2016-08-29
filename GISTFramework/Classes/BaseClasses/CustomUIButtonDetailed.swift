@@ -28,7 +28,13 @@ public class CustomUIButtonDetailed: CustomUIButton {
     
     @IBInspectable public var dFontColorStyle:String? {
         didSet {
-            self.detailLabel.fontColorStyle = self.dFontColorStyle;
+            self.detailLabel.fontColorStyle = (self.selected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
+        }
+    }
+    
+    @IBInspectable public var dSelectedFontColorStyle:String? {
+        didSet {
+            self.detailLabel.fontColorStyle = (self.selected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
     }
     
@@ -95,6 +101,18 @@ public class CustomUIButtonDetailed: CustomUIButton {
             return rFrame;
         }
     } //F.E.
+    
+    override public var selected:Bool {
+        get  {
+            return super.selected;
+        }
+        
+        set {
+            super.selected = newValue;
+            //--
+            self.detailLabel.fontColorStyle = (newValue == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
+        }
+    } //P.E.
     
     override func commontInit() {
         super.commontInit();
