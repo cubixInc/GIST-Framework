@@ -14,7 +14,7 @@ public class ValidatedTextField: BaseUITextField {
     @IBInspectable var validateURL:Bool = false;
     @IBInspectable var validateNumeric:Bool = false;
     @IBInspectable var validateAlphabetic:Bool = false;
-    @IBInspectable var validateRegix:String?;
+    @IBInspectable var validateRegex:String?;
     
     
     //??@IBInspectable var continuousValidation:Bool = false;
@@ -32,7 +32,7 @@ public class ValidatedTextField: BaseUITextField {
             (!validateURL || self.isValidUrl()) &&
             (!validateNumeric || self.isNumeric()) &&
             (!validateAlphabetic || self.isAlphabetic()) &&
-            ((validateRegix == nil) || self.isValidForRegex(validateRegix!));
+            ((validateRegex == nil) || self.isValidForRegex(validateRegex!));
         
     } //F.E.
     
@@ -40,6 +40,67 @@ public class ValidatedTextField: BaseUITextField {
         super.textFieldDidEndEditing(textField);
         //--
         self.validateText();
+    } //F.E.
+    
+    
+    public func isEmpty()->Bool {
+        guard (self.text != nil) else {
+            return true;
+        }
+        
+        return (self.text! == "");
+    } //F.E.
+    
+    private func isValidEmail()->Bool {
+        guard (self.text != nil) else {
+            return false;
+        }
+        
+        let emailRegex:String = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        
+        return predicate.evaluateWithObject(self.text!);
+    } //F.E.
+    
+    private func isValidUrl() -> Bool {
+        guard (self.text != nil) else {
+            return false;
+        }
+        
+        let regexURL: String = "(http://|https://)?((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
+        return predicate.evaluateWithObject(self.text)
+    } //F.E.
+    
+    private func isNumeric() -> Bool {
+        guard (self.text != nil) else {
+            return false;
+        }
+        
+        return Double(self.text!) != nil;
+    } //F.E.
+    
+    private func isAlphabetic() -> Bool {
+        guard (self.text != nil) else {
+            return false;
+        }
+        
+        for chr in self.text!.characters {
+            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
+                return false
+            }
+        }
+        return true;
+    } //F.E.
+    
+    private func isValidForRegex(regex:String)->Bool {
+        guard (self.text != nil) else {
+            return false;
+        }
+        
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        
+        return predicate.evaluateWithObject(self.text!);
     } //F.E.
     
 } //CLS END

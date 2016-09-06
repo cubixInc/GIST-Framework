@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
 		4877FEE71D7F0AFD002F23B6 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877FEE61D7F0AFD002F23B6 /* ValidatedTextField.swift */; };
-		4877FEE91D7F0B04002F23B6 /* UITextField+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877FEE81D7F0B04002F23B6 /* UITextField+Utility.swift */; };
 		489421C81D48954400310089 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489421C71D48954400310089 /* UIColor+Utility.swift */; };
 		489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */; };
 		489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302C1D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift */; };
@@ -64,7 +63,6 @@
 /* Begin PBXFileReference section */
 		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		4877FEE61D7F0AFD002F23B6 /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
-		4877FEE81D7F0B04002F23B6 /* UITextField+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Utility.swift"; sourceTree = "<group>"; };
 		489421C71D48954400310089 /* UIColor+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
 		4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLayoutConstraint.swift; sourceTree = "<group>"; };
 		4895302C1D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSeperatorLayoutConstraint.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 		489530491D12AD4100DFD38B /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				4877FEE81D7F0B04002F23B6 /* UITextField+Utility.swift */,
 				4895304A1D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift */,
 				4895304B1D12AD4100DFD38B /* UIColor+Hex.swift */,
 				489421C71D48954400310089 /* UIColor+Utility.swift */,
@@ -346,7 +343,6 @@
 				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
 				489530691D12AD4100DFD38B /* BaseUITableViewCell.swift in Sources */,
-				4877FEE91D7F0B04002F23B6 /* UITextField+Utility.swift in Sources */,
 				489530651D12AD4100DFD38B /* BaseUISlider.swift in Sources */,
 				489530621D12AD4100DFD38B /* BaseUIScrollView.swift in Sources */,
 				489530731D12AD4100DFD38B /* PopoverControllerView.swift in Sources */,
