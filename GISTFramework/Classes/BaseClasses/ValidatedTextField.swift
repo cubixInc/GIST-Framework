@@ -10,6 +10,7 @@ import UIKit
 
 public class ValidatedTextField: BaseUITextField {
     
+    @IBInspectable var validateEmpty:Bool = false;
     @IBInspectable var validateEmail:Bool = false;
     @IBInspectable var validateURL:Bool = false;
     @IBInspectable var validateNumeric:Bool = false;
@@ -28,6 +29,7 @@ public class ValidatedTextField: BaseUITextField {
     
     private func validateText() {
         _isValid =
+            (!validateEmpty || !self.isEmpty()) &&
             (!validateEmail || self.isValidEmail()) &&
             (!validateURL || self.isValidUrl()) &&
             (!validateNumeric || self.isNumeric()) &&
