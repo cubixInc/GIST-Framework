@@ -23,7 +23,7 @@ public class CustomUIButton: BaseUIButton {
         }
         
         get {
-            return UIView.convertPointToRatio(_titleOffSet);
+            return GISTUtility.convertPointToRatio(_titleOffSet);
         }
     } //P.E.
     
@@ -82,7 +82,7 @@ public class CustomUIButton: BaseUIButton {
                 let imgRatio:CGFloat = (imgSize.height / imgSize.width);
                 //--
                 
-                rFrame.size.width =  UIView.convertToRatio(imgSize.width);
+                rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
                 rFrame.size.height =  imgRatio * rFrame.width;
                 //--
                 

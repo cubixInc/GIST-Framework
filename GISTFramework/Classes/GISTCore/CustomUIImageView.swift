@@ -54,7 +54,7 @@ private class CustomUIImageView: BaseUIImageView {
                 let imgRatio:CGFloat = (imgSize.height / imgSize.width);
                 //--
                 if ((self.contentMode != UIViewContentMode.ScaleAspectFit) && (self.contentMode != UIViewContentMode.ScaleAspectFill)  && (self.contentMode != UIViewContentMode.ScaleToFill)) {
-                    rFrame.size.width =  UIView.convertToRatio(imgSize.width);
+                    rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
                     rFrame.size.height =  imgRatio * rFrame.width;
                 }
                 //--

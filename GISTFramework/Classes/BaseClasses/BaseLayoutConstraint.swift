@@ -15,6 +15,6 @@ public class BaseLayoutConstraint: NSLayoutConstraint {
     override public func awakeFromNib() {
         super.awakeFromNib();
         //--
-        self.constant = UIView.convertToRatio(constant, sizedForIPad: sizeForIPad, sizedForNavi:sizeForNavi);
+        self.constant = GISTUtility.convertToRatio(constant, sizedForIPad: sizeForIPad, sizedForNavi:sizeForNavi);
     } //F.E.
 } //CLS END

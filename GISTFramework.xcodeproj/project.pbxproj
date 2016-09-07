@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
-		4877FEE71D7F0AFD002F23B6 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877FEE61D7F0AFD002F23B6 /* ValidatedTextField.swift */; };
 		489421C81D48954400310089 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489421C71D48954400310089 /* UIColor+Utility.swift */; };
 		489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */; };
 		489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302C1D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift */; };
@@ -34,12 +33,6 @@
 		4895306C1D12AD4100DFD38B /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530401D12AD4100DFD38B /* BaseUIView.swift */; };
 		4895306D1D12AD4100DFD38B /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530411D12AD4100DFD38B /* BaseUIViewController.swift */; };
 		4895306E1D12AD4100DFD38B /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530421D12AD4100DFD38B /* BaseViewProtocol.swift */; };
-		4895306F1D12AD4100DFD38B /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530431D12AD4100DFD38B /* CustomImageView.swift */; };
-		489530701D12AD4100DFD38B /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530441D12AD4100DFD38B /* CustomUIButton.swift */; };
-		489530711D12AD4100DFD38B /* CustomUIButtonDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530451D12AD4100DFD38B /* CustomUIButtonDetailed.swift */; };
-		489530721D12AD4100DFD38B /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530461D12AD4100DFD38B /* PopoverController.swift */; };
-		489530731D12AD4100DFD38B /* PopoverControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530471D12AD4100DFD38B /* PopoverControllerView.swift */; };
-		489530741D12AD4100DFD38B /* UIRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530481D12AD4100DFD38B /* UIRadioButton.swift */; };
 		489530751D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895304A1D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift */; };
 		489530761D12AD4100DFD38B /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895304B1D12AD4100DFD38B /* UIColor+Hex.swift */; };
 		489530771D12AD4100DFD38B /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895304C1D12AD4100DFD38B /* UIImage+Utility.swift */; };
@@ -55,14 +48,22 @@
 		489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */; };
 		48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */; };
 		48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */; };
-		48D7C1FB1D6C5B4400038C77 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7C1FA1D6C5B4400038C77 /* CustomUIImageView.swift */; };
 		48EA5C521D0FD35B003FDDAF /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 48EA5C511D0FD35B003FDDAF /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		48EB0AE11D7FEF4B00BD93BC /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AD91D7FEF4B00BD93BC /* CustomImageView.swift */; };
+		48EB0AE21D7FEF4B00BD93BC /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADA1D7FEF4B00BD93BC /* CustomUIButton.swift */; };
+		48EB0AE31D7FEF4B00BD93BC /* CustomUIButtonDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADB1D7FEF4B00BD93BC /* CustomUIButtonDetailed.swift */; };
+		48EB0AE41D7FEF4B00BD93BC /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADC1D7FEF4B00BD93BC /* CustomUIImageView.swift */; };
+		48EB0AE51D7FEF4B00BD93BC /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADD1D7FEF4B00BD93BC /* PopoverController.swift */; };
+		48EB0AE61D7FEF4B00BD93BC /* PopoverControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADE1D7FEF4B00BD93BC /* PopoverControllerView.swift */; };
+		48EB0AE71D7FEF4B00BD93BC /* UIRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADF1D7FEF4B00BD93BC /* UIRadioButton.swift */; };
+		48EB0AE81D7FEF4B00BD93BC /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AE01D7FEF4B00BD93BC /* ValidatedTextField.swift */; };
+		48EB0AEA1D7FEFD700BD93BC /* GISTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */; };
+		48EB0AEC1D7FF45B00BD93BC /* GISTUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AEB1D7FF45B00BD93BC /* GISTUtility.swift */; };
 		48F569F21D37CE30007849A8 /* BaseUINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F569F11D37CE30007849A8 /* BaseUINavigationItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
-		4877FEE61D7F0AFD002F23B6 /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
 		489421C71D48954400310089 /* UIColor+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
 		4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLayoutConstraint.swift; sourceTree = "<group>"; };
 		4895302C1D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSeperatorLayoutConstraint.swift; sourceTree = "<group>"; };
@@ -88,12 +89,6 @@
 		489530401D12AD4100DFD38B /* BaseUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		489530411D12AD4100DFD38B /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
 		489530421D12AD4100DFD38B /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
-		489530431D12AD4100DFD38B /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
-		489530441D12AD4100DFD38B /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
-		489530451D12AD4100DFD38B /* CustomUIButtonDetailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButtonDetailed.swift; sourceTree = "<group>"; };
-		489530461D12AD4100DFD38B /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
-		489530471D12AD4100DFD38B /* PopoverControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverControllerView.swift; sourceTree = "<group>"; };
-		489530481D12AD4100DFD38B /* UIRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadioButton.swift; sourceTree = "<group>"; };
 		4895304A1D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+3DTouchFix.swift"; sourceTree = "<group>"; };
 		4895304B1D12AD4100DFD38B /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		4895304C1D12AD4100DFD38B /* UIImage+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
@@ -109,10 +104,19 @@
 		489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
 		48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
 		48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
-		48D7C1FA1D6C5B4400038C77 /* CustomUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
 		48EA5C4E1D0FD35B003FDDAF /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EA5C511D0FD35B003FDDAF /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
 		48EA5C531D0FD35B003FDDAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48EB0AD91D7FEF4B00BD93BC /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		48EB0ADA1D7FEF4B00BD93BC /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		48EB0ADB1D7FEF4B00BD93BC /* CustomUIButtonDetailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButtonDetailed.swift; sourceTree = "<group>"; };
+		48EB0ADC1D7FEF4B00BD93BC /* CustomUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
+		48EB0ADD1D7FEF4B00BD93BC /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
+		48EB0ADE1D7FEF4B00BD93BC /* PopoverControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverControllerView.swift; sourceTree = "<group>"; };
+		48EB0ADF1D7FEF4B00BD93BC /* UIRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadioButton.swift; sourceTree = "<group>"; };
+		48EB0AE01D7FEF4B00BD93BC /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
+		48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTApplication.swift; sourceTree = "<group>"; };
+		48EB0AEB1D7FF45B00BD93BC /* GISTUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUtility.swift; sourceTree = "<group>"; };
 		48F569F11D37CE30007849A8 /* BaseUINavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUINavigationItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +134,7 @@
 		489530291D12AD4100DFD38B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				48EB0AD71D7FEE7900BD93BC /* GISTCore */,
 				4895302A1D12AD4100DFD38B /* BaseClasses */,
 				489530491D12AD4100DFD38B /* Extentions */,
 				489530501D12AD4100DFD38B /* SyncEngine */,
@@ -164,16 +169,8 @@
 				489530401D12AD4100DFD38B /* BaseUIView.swift */,
 				489530411D12AD4100DFD38B /* BaseUIViewController.swift */,
 				489530421D12AD4100DFD38B /* BaseViewProtocol.swift */,
-				489530431D12AD4100DFD38B /* CustomImageView.swift */,
-				48D7C1FA1D6C5B4400038C77 /* CustomUIImageView.swift */,
-				489530441D12AD4100DFD38B /* CustomUIButton.swift */,
-				489530451D12AD4100DFD38B /* CustomUIButtonDetailed.swift */,
-				489530461D12AD4100DFD38B /* PopoverController.swift */,
-				489530471D12AD4100DFD38B /* PopoverControllerView.swift */,
-				489530481D12AD4100DFD38B /* UIRadioButton.swift */,
 				48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */,
 				48F569F11D37CE30007849A8 /* BaseUINavigationItem.swift */,
-				4877FEE61D7F0AFD002F23B6 /* ValidatedTextField.swift */,
 				486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */,
 			);
 			path = BaseClasses;
@@ -240,6 +237,23 @@
 				48EA5C531D0FD35B003FDDAF /* Info.plist */,
 			);
 			path = GISTFramework;
+			sourceTree = "<group>";
+		};
+		48EB0AD71D7FEE7900BD93BC /* GISTCore */ = {
+			isa = PBXGroup;
+			children = (
+				48EB0AD91D7FEF4B00BD93BC /* CustomImageView.swift */,
+				48EB0ADA1D7FEF4B00BD93BC /* CustomUIButton.swift */,
+				48EB0ADB1D7FEF4B00BD93BC /* CustomUIButtonDetailed.swift */,
+				48EB0ADC1D7FEF4B00BD93BC /* CustomUIImageView.swift */,
+				48EB0ADD1D7FEF4B00BD93BC /* PopoverController.swift */,
+				48EB0ADE1D7FEF4B00BD93BC /* PopoverControllerView.swift */,
+				48EB0ADF1D7FEF4B00BD93BC /* UIRadioButton.swift */,
+				48EB0AE01D7FEF4B00BD93BC /* ValidatedTextField.swift */,
+				48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */,
+				48EB0AEB1D7FF45B00BD93BC /* GISTUtility.swift */,
+			);
+			path = GISTCore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,44 +334,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48EB0AE61D7FEF4B00BD93BC /* PopoverControllerView.swift in Sources */,
 				489530611D12AD4100DFD38B /* BaseUIPopoverNavigationController.swift in Sources */,
 				489530601D12AD4100DFD38B /* BaseUINavigationController.swift in Sources */,
 				489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */,
 				4895305A1D12AD4100DFD38B /* BaseUICollectionView.swift in Sources */,
 				489530631D12AD4100DFD38B /* BaseUISearchBar.swift in Sources */,
+				48EB0AE41D7FEF4B00BD93BC /* CustomUIImageView.swift in Sources */,
 				489530791D12AD4100DFD38B /* UIView+Sync.swift in Sources */,
 				4895306D1D12AD4100DFD38B /* BaseUIViewController.swift in Sources */,
 				4895305F1D12AD4100DFD38B /* BaseUILabel.swift in Sources */,
 				489530681D12AD4100DFD38B /* BaseUITableView.swift in Sources */,
+				48EB0AEC1D7FF45B00BD93BC /* GISTUtility.swift in Sources */,
 				4895305B1D12AD4100DFD38B /* BaseUICollectionViewCell.swift in Sources */,
-				489530721D12AD4100DFD38B /* PopoverController.swift in Sources */,
 				489530641D12AD4100DFD38B /* BaseUISegmentedControl.swift in Sources */,
-				489530741D12AD4100DFD38B /* UIRadioButton.swift in Sources */,
 				489530751D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift in Sources */,
 				48991B0C1D460C60007467A4 /* Array+Utility.swift in Sources */,
 				489530671D12AD4100DFD38B /* BaseUISwitch.swift in Sources */,
 				4895305D1D12AD4100DFD38B /* BaseUIDesignableView.swift in Sources */,
 				489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */,
 				489421C81D48954400310089 /* UIColor+Utility.swift in Sources */,
+				48EB0AEA1D7FEFD700BD93BC /* GISTApplication.swift in Sources */,
 				48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */,
 				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
 				489530691D12AD4100DFD38B /* BaseUITableViewCell.swift in Sources */,
 				489530651D12AD4100DFD38B /* BaseUISlider.swift in Sources */,
 				489530621D12AD4100DFD38B /* BaseUIScrollView.swift in Sources */,
-				489530731D12AD4100DFD38B /* PopoverControllerView.swift in Sources */,
 				4895307E1D12AD4100DFD38B /* SyncedText.swift in Sources */,
-				48D7C1FB1D6C5B4400038C77 /* CustomUIImageView.swift in Sources */,
 				4895306E1D12AD4100DFD38B /* BaseViewProtocol.swift in Sources */,
+				48EB0AE31D7FEF4B00BD93BC /* CustomUIButtonDetailed.swift in Sources */,
 				4895307F1D12AD4100DFD38B /* SyncEngine.swift in Sources */,
-				4877FEE71D7F0AFD002F23B6 /* ValidatedTextField.swift in Sources */,
 				4895307A1D12AD4100DFD38B /* UIView+Utility.swift in Sources */,
+				48EB0AE81D7FEF4B00BD93BC /* ValidatedTextField.swift in Sources */,
+				48EB0AE71D7FEF4B00BD93BC /* UIRadioButton.swift in Sources */,
 				489530771D12AD4100DFD38B /* UIImage+Utility.swift in Sources */,
+				48EB0AE21D7FEF4B00BD93BC /* CustomUIButton.swift in Sources */,
 				486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */,
 				48F569F21D37CE30007849A8 /* BaseUINavigationItem.swift in Sources */,
 				48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */,
+				48EB0AE11D7FEF4B00BD93BC /* CustomImageView.swift in Sources */,
 				489530781D12AD4100DFD38B /* UITableView+Utility.swift in Sources */,
-				489530701D12AD4100DFD38B /* CustomUIButton.swift in Sources */,
 				4895305C1D12AD4100DFD38B /* BaseUIDesignableButton.swift in Sources */,
 				489530591D12AD4100DFD38B /* BaseUIButton.swift in Sources */,
 				489530761D12AD4100DFD38B /* UIColor+Hex.swift in Sources */,
@@ -365,11 +382,10 @@
 				4895306B1D12AD4100DFD38B /* BaseUITextView.swift in Sources */,
 				4895306C1D12AD4100DFD38B /* BaseUIView.swift in Sources */,
 				4895307C1D12AD4100DFD38B /* SyncedConstants.swift in Sources */,
+				48EB0AE51D7FEF4B00BD93BC /* PopoverController.swift in Sources */,
 				4895307D1D12AD4100DFD38B /* SyncedFontStyles.swift in Sources */,
 				4895306A1D12AD4100DFD38B /* BaseUITextField.swift in Sources */,
 				4895305E1D12AD4100DFD38B /* BaseUIImageView.swift in Sources */,
-				489530711D12AD4100DFD38B /* CustomUIButtonDetailed.swift in Sources */,
-				4895306F1D12AD4100DFD38B /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

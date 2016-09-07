@@ -64,7 +64,7 @@ public class BaseUISearchBar: UISearchBar, BaseView {
     
     @IBInspectable public var cornerRadius:Int = 0 {
         didSet {
-            self.addRoundedCorners(UIView.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
+            self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     

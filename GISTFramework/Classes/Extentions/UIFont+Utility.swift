@@ -16,6 +16,6 @@ public extension UIFont {
     } //F.E.
     
     public class func font(fontNameKey:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont! {
-        return UIFont(name: SyncedConstants.constant(forKey: fontNameKey) ?? "Helvetica Neue", size: UIView.convertFontSizeToRatio(22, fontStyle: fontStyle ?? "medium", sizedForIPad:sizedForIPad));
+        return UIFont(name: SyncedConstants.constant(forKey: fontNameKey) ?? "Helvetica Neue", size: GISTUtility.convertFontSizeToRatio(22, fontStyle: fontStyle ?? "medium", sizedForIPad:sizedForIPad));
     } //F.E.
 } //CLS END

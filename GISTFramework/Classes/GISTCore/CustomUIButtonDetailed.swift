@@ -45,7 +45,7 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
         
         get {
-            return UIView.convertPointToRatio(_detailOffSet);
+            return GISTUtility.convertPointToRatio(_detailOffSet);
         }
     } //P.E.
     
