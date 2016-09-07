@@ -96,6 +96,10 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = "GISTFramework/**/*.h"
 
+  s.subspec 'GISTCore' do |sp|
+    sp.source_files = 'GISTFramework/Classes/GISTCore/**/*.{swift}'
+  end
+
   s.subspec 'BaseClasses' do |sp|
     sp.source_files = 'GISTFramework/Classes/BaseClasses/**/*.{swift}'
   end
