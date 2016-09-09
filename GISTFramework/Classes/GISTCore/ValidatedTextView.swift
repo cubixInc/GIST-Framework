@@ -41,7 +41,7 @@ public class ValidatedTextView: BaseUITextView {
     
     private lazy var invalidSignBtn:BaseUIButton =  {
         let cBtn:BaseUIButton = BaseUIButton(type: UIButtonType.Custom);
-        cBtn.backgroundColor = UIColor.redColor();
+        cBtn.backgroundColor = UIColor.clearColor();
         cBtn.hidden = true;
         cBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
         cBtn.contentMode = UIViewContentMode.ScaleAspectFit;
