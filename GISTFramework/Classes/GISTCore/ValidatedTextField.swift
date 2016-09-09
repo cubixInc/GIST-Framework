@@ -17,6 +17,7 @@ public class ValidatedTextField: BaseUITextField {
     @IBInspectable var validateEmpty:Bool = false;
     
     @IBInspectable var validateEmail:Bool = false;
+    @IBInspectable var validatePhone:Bool = false;
     @IBInspectable var validateURL:Bool = false;
     @IBInspectable var validateNumeric:Bool = false;
     @IBInspectable var validateAlphabetic:Bool = false;
@@ -40,15 +41,15 @@ public class ValidatedTextField: BaseUITextField {
         set {
             _validityMsg = SyncedText.text(forKey: newValue);
         }
-    } //P.E.
+        
+    }
     
-    private lazy var invalidSignBtn:BaseUIButton =  {
-        let cBtn:BaseUIButton = BaseUIButton(type: UIButtonType.Custom);
-        cBtn.backgroundColor = UIColor.clearColor();
+    private lazy var invalidSignBtn:CustomUIButton =  {
+        let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.Custom);
         cBtn.hidden = true;
         cBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
-        cBtn.contentMode = UIViewContentMode.ScaleAspectFit;
-        //??cBtn.containtOffSet = GISTUtility.convertPointToRatio(CGPoint(x: 10, y: 0));
+        cBtn.contentMode = UIViewContentMode.Right;
+        cBtn.containtOffSet = GISTUtility.convertPointToRatio(CGPoint(x: 10, y: 0));
         
         cBtn.addTarget(self, action: #selector(invalidSignBtnHandler(_:)), forControlEvents: UIControlEvents.TouchUpInside);
         
@@ -56,7 +57,7 @@ public class ValidatedTextField: BaseUITextField {
         return cBtn;
     } ();
     
-    private var _isEmpty:Bool = true;
+    private var _isEmpty:Bool = false;
     
     private var _isValid:Bool = false;
     public var isValid:Bool {
@@ -73,36 +74,17 @@ public class ValidatedTextField: BaseUITextField {
         _isEmpty = self.isEmpty();
         
         _isValid =
-            (!validateEmail || self.isValidEmail()) &&
-            (!validateURL || self.isValidUrl()) &&
-            (!validateNumeric || self.isNumeric()) &&
-            (!validateAlphabetic || self.isAlphabetic()) &&
-            ((minChar == nil) || self.isValidForMinChar(minChar!)) &&
-            ((maxChar == nil) || self.isValidForMaxChar(maxChar!)) &&
+            (!validateEmail || self.isValidEmail()) ||
+            (!validatePhone || self.isValidPhoneNo()) ||
+            (!validateURL || self.isValidUrl()) ||
+            (!validateNumeric || self.isNumeric()) ||
+            (!validateAlphabetic || self.isAlphabetic()) ||
+            ((minChar == nil) || self.isValidForMinChar(minChar!)) ||
+            ((maxChar == nil) || self.isValidForMaxChar(maxChar!)) ||
             ((validateRegex == nil) || self.isValidForRegex(validateRegex!));
         
         
         self.invalidSignBtn.hidden = (_isValid || _isEmpty);
-    } //F.E.
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame);
-        //--
-        self.commonInit();
-    } //F.E.
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
-    } //F.E.
-    
-    public override func awakeFromNib() {
-        super.awakeFromNib();
-        //--
-        self.commonInit();
-    } //F.E.
-    
-    private func commonInit() {
-        self.validateText();
     } //F.E.
     
     public override func textFieldDidEndEditing(textField: UITextField) {
@@ -136,6 +118,17 @@ public class ValidatedTextField: BaseUITextField {
         }
         
         let regexURL: String = "(http://|https://)?((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
+        return predicate.evaluateWithObject(self.text)
+    } //F.E.
+    
+    
+    private func isValidPhoneNo() -> Bool {
+        guard (self.text != nil) else {
+            return false;
+        }
+        
+        let regexURL: String = "^\\d{3}-\\d{3}-\\d{4}$"
         let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
         return predicate.evaluateWithObject(self.text)
     } //F.E.
