@@ -31,7 +31,17 @@ public class ValidatedTextField: BaseUITextField {
         }
     } //P.E.
     
-    @IBInspectable var validityMsg:String?
+    private var _validityMsg:String?
+    @IBInspectable public var validityMsg:String {
+        get {
+            return _validityMsg ?? "Invalid";
+        }
+        
+        set {
+            _validityMsg = SyncedText.text(forKey: newValue);
+        }
+        
+    }
     
     private lazy var invalidSignBtn:CustomUIButton =  {
         let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.Custom);
