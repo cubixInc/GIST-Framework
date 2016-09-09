@@ -39,12 +39,13 @@ public class ValidatedTextView: BaseUITextView {
         
     } //P.E.
     
-    private lazy var invalidSignBtn:CustomUIButton =  {
-        let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.Custom);
+    private lazy var invalidSignBtn:BaseUIButton =  {
+        let cBtn:BaseUIButton = BaseUIButton(type: UIButtonType.Custom);
+        cBtn.backgroundColor = UIColor.redColor();
         cBtn.hidden = true;
         cBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
-        cBtn.contentMode = UIViewContentMode.Right;
-        cBtn.containtOffSet = GISTUtility.convertPointToRatio(CGPoint(x: 10, y: 0));
+        cBtn.contentMode = UIViewContentMode.ScaleAspectFit;
+        //??cBtn.containtOffSet = GISTUtility.convertPointToRatio(CGPoint(x: 10, y: 0));
         
         cBtn.addTarget(self, action: #selector(invalidSignBtnHandler(_:)), forControlEvents: UIControlEvents.TouchUpInside);
         
@@ -52,7 +53,7 @@ public class ValidatedTextView: BaseUITextView {
         return cBtn;
     } ();
     
-    private var _isEmpty:Bool = false;
+    private var _isEmpty:Bool = true;
     
     private var _isValid:Bool = false;
     public var isValid:Bool {
@@ -74,6 +75,26 @@ public class ValidatedTextView: BaseUITextView {
             ((validateRegex == nil) || self.isValidForRegex(validateRegex!));
         
         self.invalidSignBtn.hidden = (_isValid || _isEmpty);
+    } //F.E.
+    
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer);
+        //--
+        self.commonInit();
+    } //F.E.
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+    } //F.E.
+    
+    public override func awakeFromNib() {
+        super.awakeFromNib();
+        //--
+        self.commonInit();
+    } //F.E.
+    
+    private func commonInit() {
+        self.validateText();
     } //F.E.
     
     public func isEmpty()->Bool {
