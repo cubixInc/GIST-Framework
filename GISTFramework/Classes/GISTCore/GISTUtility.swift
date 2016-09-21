@@ -73,5 +73,92 @@ public class GISTUtility: NSObject {
     public class func convertSizeToRatio(value:CGSize, sizedForIPad:Bool = false) ->CGSize {
         return CGSize(width:self.convertToRatio(value.width, sizedForIPad: sizedForIPad), height:self.convertToRatio(value.height, sizedForIPad: sizedForIPad));
     } //F.E.
+    
+    public class func isEmpty(text:String?)->Bool {
+        guard (text != nil) else {
+            return true;
+        }
+        
+        return (text! == "");
+    } //F.E.
+    
+    public class func isValidEmail(text:String?)->Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        let emailRegex:String = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        
+        return predicate.evaluateWithObject(text!);
+    } //F.E.
+    
+    public class func isValidUrl(text:String?) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        let regexURL: String = "(http://|https://)?((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
+        return predicate.evaluateWithObject(text)
+    } //F.E.
+    
+    
+    public class func isValidPhoneNo(text:String?) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        let regexURL: String = "^\\d{3}-\\d{3}-\\d{4}$"
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
+        return predicate.evaluateWithObject(text)
+    } //F.E.
+    
+    public class func isNumeric(text:String?) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        return Double(text!) != nil;
+    } //F.E.
+    
+    public class func isAlphabetic(text:String?) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        for chr in text!.characters {
+            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
+                return false
+            }
+        }
+        return true;
+    } //F.E.
+    
+    public class func isValidForMinChar(text:String?, noOfChar:Int) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        return (text!.utf16.count >= noOfChar);
+    } //F.E.
+    
+    public class func isValidForMaxChar(text:String?, noOfChar:Int) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        return (text!.utf16.count <= noOfChar);
+    } //F.E.
+    
+    public class func isValidForRegex(text:String?, regex:String)->Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        
+        return predicate.evaluateWithObject(text!);
+    } //F.E.
 
 } //CLS END

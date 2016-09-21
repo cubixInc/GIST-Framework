@@ -16,7 +16,7 @@ private class WeakRef<T: AnyObject> {
     }
 } //CLS END
 
-public class UIRadioButton: BaseUIButton {
+public class UIRadioButton: CustomUIButton {
 
     var _groupId:Int?
     
@@ -30,8 +30,14 @@ public class UIRadioButton: BaseUIButton {
         }
     } //P.E.
     
+    @IBInspectable public var initiallySelected:Bool = false {
+        didSet {
+            self.selected = initiallySelected;
+        }
+    } //P.E.
+    
     override public init(frame: CGRect) {
-        fatalError("init(frame:) has not been implemented")
+        fatalError("init(frame:) has not been implemented, call init(frame: radioGroupId:)")
     } //F.E.
 
     public init(frame: CGRect, radioGroupId:Int) {
@@ -59,7 +65,7 @@ public class UIRadioButton: BaseUIButton {
     } //F.E.
     
     class public func getSelectedButton(radioGroupId:Int) -> UIRadioButton? {
-        return nil;//UIRadioButtonManager.sharedInstance.getSelectedButton(radioGroupId);
+        return UIRadioButtonManager.sharedInstance.getSelectedButton(radioGroupId);
     }//F.E.
     
     deinit {

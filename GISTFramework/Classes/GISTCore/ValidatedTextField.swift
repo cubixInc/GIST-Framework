@@ -94,90 +94,39 @@ public class ValidatedTextField: BaseUITextField {
     } //F.E.
     
     public func isEmpty()->Bool {
-        guard (self.text != nil) else {
-            return true;
-        }
-        
-        return (self.text! == "");
+        return GISTUtility.isEmpty(self.text);
     } //F.E.
     
     private func isValidEmail()->Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        let emailRegex:String = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        
-        return predicate.evaluateWithObject(self.text!);
+        return GISTUtility.isValidEmail(self.text);
     } //F.E.
     
     private func isValidUrl() -> Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        let regexURL: String = "(http://|https://)?((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
-        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
-        return predicate.evaluateWithObject(self.text)
+        return GISTUtility.isValidUrl(self.text);
     } //F.E.
     
-    
     private func isValidPhoneNo() -> Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        let regexURL: String = "^\\d{3}-\\d{3}-\\d{4}$"
-        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
-        return predicate.evaluateWithObject(self.text)
+        return GISTUtility.isValidPhoneNo(self.text);
     } //F.E.
     
     private func isNumeric() -> Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        return Double(self.text!) != nil;
+        return GISTUtility.isNumeric(self.text);
     } //F.E.
     
     private func isAlphabetic() -> Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        for chr in self.text!.characters {
-            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
-                return false
-            }
-        }
-        return true;
+        return GISTUtility.isAlphabetic(self.text);
     } //F.E.
     
     private func isValidForMinChar(noOfChar:Int) -> Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        return (self.text!.utf16.count >= noOfChar);
+        return GISTUtility.isValidForMinChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
     private func isValidForMaxChar(noOfChar:Int) -> Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        return (self.text!.utf16.count <= noOfChar);
+        return GISTUtility.isValidForMaxChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
     private func isValidForRegex(regex:String)->Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
-        
-        return predicate.evaluateWithObject(self.text!);
+        return GISTUtility.isValidForRegex(self.text, regex: regex);
     } //F.E.
     
     public override func layoutSubviews() {
@@ -185,7 +134,6 @@ public class ValidatedTextField: BaseUITextField {
         //--
         self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
     } //F.E.
-    
     
     func invalidSignBtnHandler(sender:UIButton) {
         (self.delegate as? ValidatedTextFieldDelegate)?.validatedTextFieldInvalidSignDidTap?(self, sender: sender)

@@ -40,12 +40,12 @@ public class ValidatedTextView: BaseUITextView {
     } //P.E.
     
     private lazy var invalidSignBtn:BaseUIButton =  {
-        let cBtn:BaseUIButton = BaseUIButton(type: UIButtonType.Custom);
-        cBtn.backgroundColor = UIColor.clearColor();
+        let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.Custom);
         cBtn.hidden = true;
-        cBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
-        cBtn.contentMode = UIViewContentMode.ScaleAspectFit;
-        //??cBtn.containtOffSet = GISTUtility.convertPointToRatio(CGPoint(x: 10, y: 0));
+        let sizeWH:CGFloat = GISTUtility.convertToRatio(60);
+        cBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
+        cBtn.contentMode = UIViewContentMode.Right;
+        cBtn.containtOffSet = GISTUtility.convertPointToRatio(CGPoint(x: 10, y: 0));
         
         cBtn.addTarget(self, action: #selector(invalidSignBtnHandler(_:)), forControlEvents: UIControlEvents.TouchUpInside);
         
@@ -98,37 +98,19 @@ public class ValidatedTextView: BaseUITextView {
     } //F.E.
     
     public func isEmpty()->Bool {
-        guard (self.text != nil) else {
-            return true;
-        }
-        
-        return (self.text! == "");
+        return GISTUtility.isEmpty(self.text);
     } //F.E.
     
     private func isValidForMinChar(noOfChar:Int) -> Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        return (self.text!.utf16.count >= noOfChar);
+        return GISTUtility.isValidForMinChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
     private func isValidForMaxChar(noOfChar:Int) -> Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        return (self.text!.utf16.count <= noOfChar);
+        return GISTUtility.isValidForMaxChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
     private func isValidForRegex(regex:String)->Bool {
-        guard (self.text != nil) else {
-            return false;
-        }
-        
-        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
-        
-        return predicate.evaluateWithObject(self.text!);
+        return GISTUtility.isValidForRegex(self.text, regex: regex);
     } //F.E.
     
     public override func layoutSubviews() {
