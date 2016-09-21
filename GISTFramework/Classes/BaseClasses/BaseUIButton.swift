@@ -14,7 +14,7 @@ public class BaseUIButton: UIButton, BaseView {
     
     @IBInspectable public var bgColorStyle:String? = nil {
         didSet {
-            self.backgroundColor = SyncedColors.color(forKey: (self.selected == true) ? bgSelectedColorStyle:bgColorStyle);
+            self.backgroundColor = SyncedColors.color(forKey: ((self.selected == true) && (bgSelectedColorStyle != nil)) ? bgSelectedColorStyle:bgColorStyle);
         }
     }
     
@@ -96,9 +96,10 @@ public class BaseUIButton: UIButton, BaseView {
         set {
             super.selected = newValue;
             //--
-            self.backgroundColor = SyncedColors.color(forKey: (newValue == true) ? bgSelectedColorStyle:bgColorStyle);
+            if (bgColorStyle != nil && bgSelectedColorStyle != nil) {
+                self.backgroundColor = SyncedColors.color(forKey: (newValue == true) ? bgSelectedColorStyle:bgColorStyle);
+            }
         }
-        
     } //P.E.
     
     public override init(frame: CGRect) {
