@@ -79,7 +79,7 @@ public class GISTUtility: NSObject {
             return true;
         }
         
-        return (text! == "");
+        return (text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "");
     } //F.E.
     
     public class func isValidEmail(text:String?)->Bool {
