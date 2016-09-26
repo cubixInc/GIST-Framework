@@ -41,6 +41,7 @@ public class ValidatedTextView: BaseUITextView {
     
     private lazy var invalidSignBtn:BaseUIButton =  {
         let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.Custom);
+        cBtn.backgroundColor = UIColor.clearColor();
         cBtn.hidden = true;
         let sizeWH:CGFloat = GISTUtility.convertToRatio(60);
         cBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
@@ -116,7 +117,9 @@ public class ValidatedTextView: BaseUITextView {
     public override func layoutSubviews() {
         super.layoutSubviews();
         //--
-        self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
+        
+        let sizeWH:CGFloat = GISTUtility.convertToRatio(60);
+        self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
     } //F.E.
     
     func invalidSignBtnHandler(sender:UIButton) {
