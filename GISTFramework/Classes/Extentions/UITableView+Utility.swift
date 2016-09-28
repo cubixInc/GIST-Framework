@@ -26,9 +26,18 @@ public extension UITableView {
     } //F.E.
     
     public func scrollToBottom(animated: Bool = true) {
-        let sections = self.numberOfSections
-        let rows = self.numberOfRowsInSection(sections - 1)
-        self.scrollToRowAtIndexPath(NSIndexPath(forRow: rows - 1, inSection: sections - 1), atScrollPosition: .Bottom, animated: true)
+        
+        let numOfSections = self.numberOfSections;
+        guard (self.numberOfSections != 0) else {
+            return;
+        }
+        
+        let numOfRows = self.numberOfRowsInSection(self.numberOfSections - 1);
+        guard (numOfRows != 0) else {
+            return;
+        }
+        
+        self.scrollToRowAtIndexPath(NSIndexPath(forRow: numOfRows - 1, inSection: numOfSections - 1), atScrollPosition: .Bottom, animated: true)
     } //F.E.
     
     public func scrollToTop(animated: Bool = true) {
