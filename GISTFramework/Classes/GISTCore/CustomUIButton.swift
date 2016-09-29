@@ -60,6 +60,8 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
+    @IBInspectable public var imageFixedSize:CGSize = CGSize.zero;
+    
     internal var offSetFix:CGPoint {
         get {
             let offSetV:CGPoint = self.titleOffSet;
@@ -69,7 +71,7 @@ public class CustomUIButton: BaseUIButton {
             return offSetFixV;
         }
     } //P.E.
-
+    
     public var imageViewFrame:CGRect {
         get {
             
@@ -78,13 +80,29 @@ public class CustomUIButton: BaseUIButton {
             if (self.imageView!.image != nil)
             {
                 let imgSize:CGSize = self.imageView!.image!.size;
-                //--
-                let imgRatio:CGFloat = (imgSize.height / imgSize.width);
-                //--
                 
-                rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
-                rFrame.size.height =  imgRatio * rFrame.width;
-                //--
+                if (self.imageFixedSize.height > 0 && self.imageFixedSize.width > 0) {
+                    //Height and Width both are fixed
+                    rFrame.size = self.imageFixedSize;
+                } else if (self.imageFixedSize.width > 0) {
+                    //Width is fixed
+                    let imgRatio:CGFloat = (imgSize.height / imgSize.width);
+                    
+                    rFrame.size.width =  GISTUtility.convertToRatio(self.imageFixedSize.width);
+                    rFrame.size.height =  imgRatio * rFrame.size.width;
+                } else if (self.imageFixedSize.height > 0) {
+                    //Height is fixed
+                    let imgRatio:CGFloat = (imgSize.width / imgSize.height);
+                    
+                    rFrame.size.height = GISTUtility.convertToRatio(self.imageFixedSize.height);
+                    rFrame.size.width = imgRatio * rFrame.size.height;
+                } else {
+                    //Aspect Ratio
+                    let imgRatio:CGFloat = (imgSize.height / imgSize.width);
+                    
+                    rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
+                    rFrame.size.height =  imgRatio * rFrame.size.width;
+                }
                 
                 let offSetFix:CGPoint = self.offSetFix;
                 

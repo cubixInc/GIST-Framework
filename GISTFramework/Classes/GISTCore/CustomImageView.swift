@@ -13,6 +13,8 @@ import UIKit
 
 public class CustomImageView: BaseUIView {
 
+    @IBInspectable public var imageFixedSize:CGSize = CGSize.zero;
+    
     private var _imageView:UIImageView?;
     public var imageView:UIImageView? {
         get {
@@ -45,8 +47,25 @@ public class CustomImageView: BaseUIView {
                 let imgRatio:CGFloat = (imgSize.height / imgSize.width);
                 //--
                 if ((self.contentMode != UIViewContentMode.ScaleAspectFit) && (self.contentMode != UIViewContentMode.ScaleAspectFill)  && (self.contentMode != UIViewContentMode.ScaleToFill)) {
-                    rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
-                    rFrame.size.height =  imgRatio * rFrame.width;
+                    
+                    if (self.imageFixedSize.height > 0 && self.imageFixedSize.width > 0) {
+                        //Height and Width both are fixed
+                        rFrame.size = self.imageFixedSize;
+                    } else if (self.imageFixedSize.width > 0) {
+                        //Width is fixed
+                        rFrame.size.width =  GISTUtility.convertToRatio(self.imageFixedSize.width);
+                        rFrame.size.height =  imgRatio * rFrame.size.width;
+                    } else if (self.imageFixedSize.height > 0) {
+                        //Height is fixed
+                        let imgRatioH:CGFloat = (imgSize.width / imgSize.height);
+                        
+                        rFrame.size.height = GISTUtility.convertToRatio(self.imageFixedSize.height);
+                        rFrame.size.width = imgRatioH * rFrame.size.height;
+                    } else {
+                        //Aspect Ratio
+                        rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
+                        rFrame.size.height =  imgRatio * rFrame.size.width;
+                    }
                 }
                 //--
                 switch (self.contentMode) {
