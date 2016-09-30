@@ -125,11 +125,11 @@ public class BaseUISearchController: UISearchController {
         }
     } //P.E.
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //C.E.
     
-    override init(searchResultsController: UIViewController?) {
+    override public init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController);
         //--
         self.commontInit();
