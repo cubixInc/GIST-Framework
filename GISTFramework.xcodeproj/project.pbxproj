@@ -49,6 +49,8 @@
 		489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */; };
 		48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */; };
 		48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */; };
+		48DA7E7D1D9E666200464066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */; };
+		48DA7E7F1D9E674F00464066 /* BaseUISearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */; };
 		48EA5C521D0FD35B003FDDAF /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 48EA5C511D0FD35B003FDDAF /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48EB0AE11D7FEF4B00BD93BC /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AD91D7FEF4B00BD93BC /* CustomImageView.swift */; };
 		48EB0AE21D7FEF4B00BD93BC /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADA1D7FEF4B00BD93BC /* CustomUIButton.swift */; };
@@ -106,6 +108,8 @@
 		489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
 		48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
 		48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
+		48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
+		48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISearchController.swift; sourceTree = "<group>"; };
 		48EA5C4E1D0FD35B003FDDAF /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EA5C511D0FD35B003FDDAF /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
 		48EA5C531D0FD35B003FDDAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */,
 				48F569F11D37CE30007849A8 /* BaseUINavigationItem.swift */,
 				486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */,
+				48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */,
+				48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */,
 			);
 			path = BaseClasses;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 				4895305A1D12AD4100DFD38B /* BaseUICollectionView.swift in Sources */,
 				489530631D12AD4100DFD38B /* BaseUISearchBar.swift in Sources */,
 				48EB0AE41D7FEF4B00BD93BC /* CustomUIImageView.swift in Sources */,
+				48DA7E7F1D9E674F00464066 /* BaseUISearchController.swift in Sources */,
 				489530791D12AD4100DFD38B /* UIView+Sync.swift in Sources */,
 				4895306D1D12AD4100DFD38B /* BaseUIViewController.swift in Sources */,
 				4895305F1D12AD4100DFD38B /* BaseUILabel.swift in Sources */,
@@ -375,6 +382,7 @@
 				489530771D12AD4100DFD38B /* UIImage+Utility.swift in Sources */,
 				48EB0AE21D7FEF4B00BD93BC /* CustomUIButton.swift in Sources */,
 				486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */,
+				48DA7E7D1D9E666200464066 /* BaseUITableViewController.swift in Sources */,
 				48F569F21D37CE30007849A8 /* BaseUINavigationItem.swift in Sources */,
 				48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */,
 				48EB0AE11D7FEF4B00BD93BC /* CustomImageView.swift in Sources */,
