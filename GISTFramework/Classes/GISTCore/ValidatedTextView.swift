@@ -67,6 +67,18 @@ public class ValidatedTextView: BaseUITextView {
         }
     } //F.E.
     
+    public override var text: String? {
+        get {
+            return super.text;
+        }
+        
+        set {
+            super.text = newValue;
+            //--
+            self.validateText();
+        }
+    } //P.E.
+    
     private func validateText() {
         _isEmpty = self.isEmpty();
         
