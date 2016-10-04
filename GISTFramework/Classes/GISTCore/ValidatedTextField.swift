@@ -23,8 +23,8 @@ public class ValidatedTextField: BaseUITextField {
     @IBInspectable var validateAlphabetic:Bool = false;
     @IBInspectable var validateRegex:String?;
     
-    @IBInspectable var minChar:Int?;
-    @IBInspectable var maxChar:Int?;
+    @IBInspectable var minChar:Int = 0;
+    @IBInspectable var maxChar:Int = 0;
     
     @IBInspectable var invalidSign:UIImage? = nil {
         didSet {
@@ -71,13 +71,7 @@ public class ValidatedTextField: BaseUITextField {
     } //F.E.
     
     public override var text: String? {
-        get {
-            return super.text;
-        }
-        
-        set {
-            super.text = newValue;
-            //--
+        didSet {
             self.validateText();
         }
     } //P.E.
@@ -91,8 +85,8 @@ public class ValidatedTextField: BaseUITextField {
             (!validateURL || self.isValidUrl()) ||
             (!validateNumeric || self.isNumeric()) ||
             (!validateAlphabetic || self.isAlphabetic()) ||
-            ((minChar == nil) || self.isValidForMinChar(minChar!)) ||
-            ((maxChar == nil) || self.isValidForMaxChar(maxChar!)) ||
+            ((minChar == 0) || self.isValidForMinChar(minChar)) ||
+            ((maxChar == 0) || self.isValidForMaxChar(maxChar)) ||
             ((validateRegex == nil) || self.isValidForRegex(validateRegex!));
         
         

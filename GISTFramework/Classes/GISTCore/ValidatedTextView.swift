@@ -18,8 +18,8 @@ public class ValidatedTextView: BaseUITextView {
     
     @IBInspectable var validateRegex:String?;
     
-    @IBInspectable var minChar:Int?;
-    @IBInspectable var maxChar:Int?;
+    @IBInspectable var minChar:Int = 0;
+    @IBInspectable var maxChar:Int = 0;
     
     @IBInspectable var invalidSign:UIImage? = nil {
         didSet {
@@ -68,13 +68,7 @@ public class ValidatedTextView: BaseUITextView {
     } //F.E.
     
     public override var text: String? {
-        get {
-            return super.text;
-        }
-        
-        set {
-            super.text = newValue;
-            //--
+        didSet {
             self.validateText();
         }
     } //P.E.
@@ -83,8 +77,8 @@ public class ValidatedTextView: BaseUITextView {
         _isEmpty = self.isEmpty();
         
         _isValid =
-            ((minChar == nil) || self.isValidForMinChar(minChar!)) &&
-            ((maxChar == nil) || self.isValidForMaxChar(maxChar!)) &&
+            ((minChar == 0) || self.isValidForMinChar(minChar)) &&
+            ((maxChar == 0) || self.isValidForMaxChar(maxChar)) &&
             ((validateRegex == nil) || self.isValidForRegex(validateRegex!));
         
         self.invalidSignBtn.hidden = (_isValid || _isEmpty);
