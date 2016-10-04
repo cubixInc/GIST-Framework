@@ -21,7 +21,7 @@ public class ValidatedTextField: BaseUITextField {
     @IBInspectable var validateURL:Bool = false;
     @IBInspectable var validateNumeric:Bool = false;
     @IBInspectable var validateAlphabetic:Bool = false;
-    @IBInspectable var validateRegex:String?;
+    @IBInspectable var validateRegex:String = "";
     
     @IBInspectable var minChar:Int = 0;
     @IBInspectable var maxChar:Int = 0;
@@ -80,14 +80,14 @@ public class ValidatedTextField: BaseUITextField {
         _isEmpty = self.isEmpty();
         
         _isValid =
-            (!validateEmail || self.isValidEmail()) ||
-            (!validatePhone || self.isValidPhoneNo()) ||
-            (!validateURL || self.isValidUrl()) ||
-            (!validateNumeric || self.isNumeric()) ||
-            (!validateAlphabetic || self.isAlphabetic()) ||
-            ((minChar == 0) || self.isValidForMinChar(minChar)) ||
-            ((maxChar == 0) || self.isValidForMaxChar(maxChar)) ||
-            ((validateRegex == nil) || self.isValidForRegex(validateRegex!));
+            (!validateEmail || self.isValidEmail()) &&
+            (!validatePhone || self.isValidPhoneNo()) &&
+            (!validateURL || self.isValidUrl()) &&
+            (!validateNumeric || self.isNumeric()) &&
+            (!validateAlphabetic || self.isAlphabetic()) &&
+            ((minChar == 0) || self.isValidForMinChar(minChar)) &&
+            ((maxChar == 0) || self.isValidForMaxChar(maxChar)) &&
+            ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
         
         self.invalidSignBtn.hidden = (_isValid || _isEmpty);

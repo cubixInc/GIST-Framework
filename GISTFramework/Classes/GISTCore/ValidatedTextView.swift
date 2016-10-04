@@ -16,7 +16,7 @@ public class ValidatedTextView: BaseUITextView {
 
     @IBInspectable var validateEmpty:Bool = false;
     
-    @IBInspectable var validateRegex:String?;
+    @IBInspectable var validateRegex:String = "";
     
     @IBInspectable var minChar:Int = 0;
     @IBInspectable var maxChar:Int = 0;
@@ -79,7 +79,7 @@ public class ValidatedTextView: BaseUITextView {
         _isValid =
             ((minChar == 0) || self.isValidForMinChar(minChar)) &&
             ((maxChar == 0) || self.isValidForMaxChar(maxChar)) &&
-            ((validateRegex == nil) || self.isValidForRegex(validateRegex!));
+            ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
         self.invalidSignBtn.hidden = (_isValid || _isEmpty);
     } //F.E.
