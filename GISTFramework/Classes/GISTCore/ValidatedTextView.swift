@@ -67,7 +67,7 @@ public class ValidatedTextView: BaseUITextView {
         }
     } //F.E.
     
-    public override var text: String? {
+    public override var text: String! {
         didSet {
             self.validateText();
         }
