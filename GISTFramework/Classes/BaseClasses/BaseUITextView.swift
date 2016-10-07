@@ -89,6 +89,8 @@ public class BaseUITextView: UITextView, BaseView {
                 self.lblPlaceholder.sizeToFit();
                 //--
                 self.addTextDidChangeObserver();
+                //-
+                self.updatePlaceholderState();
             } else {
                 if (_lblPlaceholder != nil) {
                     _lblPlaceholder!.removeFromSuperview();
@@ -103,6 +105,12 @@ public class BaseUITextView: UITextView, BaseView {
             return _lblPlaceholder?.text;
         }
     } //P.E.
+    
+    public override var text: String! {
+        didSet {
+            self.updatePlaceholderState();
+        }
+    }
     
     private var _lblPlaceholder:BaseUILabel?
     private var lblPlaceholder:BaseUILabel {
@@ -120,6 +128,8 @@ public class BaseUITextView: UITextView, BaseView {
                 _lblPlaceholder!.backgroundColor = UIColor.clearColor();
                 //--
                 self.addSubview(_lblPlaceholder!);
+                //--
+                self.updatePlaceholderState();
             }
             
             return _lblPlaceholder!
@@ -144,6 +154,8 @@ public class BaseUITextView: UITextView, BaseView {
     
     private func commonInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        //-
+        self.updatePlaceholderState();
     }
     
     public func updateView()  {
@@ -164,6 +176,13 @@ public class BaseUITextView: UITextView, BaseView {
         
         //Updating Placeholder
         _lblPlaceholder?.updateView();
+    } //F.E.
+    
+    private func updatePlaceholderState() {
+        //Checking if _lblPlaceholder is initialized or not
+        if (_lblPlaceholder != nil) {
+            self.lblPlaceholder.hidden = (self.text.characters.count > 0);
+        }
     } //F.E.
     
     override public func layoutSubviews() {
@@ -189,11 +208,7 @@ public class BaseUITextView: UITextView, BaseView {
             return;
         }
         //--
-        if (self.text.characters.count == 0) {
-            self.lblPlaceholder.alpha = 1;
-        } else {
-            self.lblPlaceholder.alpha = 0;
-        }
+        self.updatePlaceholderState();
     } //F.E.
     
     deinit {
