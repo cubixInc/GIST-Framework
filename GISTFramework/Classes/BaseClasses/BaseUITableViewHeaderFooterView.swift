@@ -9,6 +9,12 @@
 import UIKit
 
 public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseView {
+    private var _data:AnyObject?
+    public var data:AnyObject? {
+        get {
+            return _data;
+        }
+    } //P.E.
     
     @IBInspectable public var sizeForIPad:Bool = false;
     
@@ -137,6 +143,8 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
     } //F.E.
     
     public func updateData(data:AnyObject?) {
+        _data = data;
+        //--
         self.updateSyncedData();
     } //F.E.
     

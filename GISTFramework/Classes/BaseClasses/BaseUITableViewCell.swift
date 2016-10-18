@@ -15,10 +15,6 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
         get {
             return _data;
         }
-        
-        set {
-            _data = newValue;
-        }
     } //P.E.
     
     public lazy var seperatorView:UIView = {
