@@ -3,7 +3,7 @@
 //  FoodParcel
 //
 //  Created by Shoaib Abdul on 18/10/2016.
-//  Copyright © 2016 Uzair. All rights reserved.
+//  Copyright © 2016 Social Cubix. All rights reserved.
 //
 
 import UIKit
