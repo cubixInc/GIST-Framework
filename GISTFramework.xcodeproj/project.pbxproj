@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
+		487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */; };
 		4888C0081D82DF0D00D85967 /* ValidatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888C0071D82DF0D00D85967 /* ValidatedTextView.swift */; };
 		489421C81D48954400310089 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489421C71D48954400310089 /* UIColor+Utility.swift */; };
 		489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */; };
@@ -69,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Utility.swift"; sourceTree = "<group>"; };
 		4888C0071D82DF0D00D85967 /* ValidatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextView.swift; sourceTree = "<group>"; };
 		489421C71D48954400310089 /* UIColor+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
 		4895302B1D12AD4100DFD38B /* BaseLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLayoutConstraint.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */,
 				48991B0B1D460C60007467A4 /* Array+Utility.swift */,
 				48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */,
+				487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				48EB0AE11D7FEF4B00BD93BC /* CustomImageView.swift in Sources */,
 				48D59DCD1DB4081400B65A2E /* JSON+Utility.swift in Sources */,
 				489530781D12AD4100DFD38B /* UITableView+Utility.swift in Sources */,
+				487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */,
 				4895305C1D12AD4100DFD38B /* BaseUIDesignableButton.swift in Sources */,
 				489530591D12AD4100DFD38B /* BaseUIButton.swift in Sources */,
 				489530761D12AD4100DFD38B /* UIColor+Hex.swift in Sources */,
