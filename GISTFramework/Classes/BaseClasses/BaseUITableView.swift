@@ -36,10 +36,10 @@ public class BaseUITableView: UITableView, BaseView {
         if let bgCStyle = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
-        
     } //F.E.
     
     override public func layoutSubviews() {
         super.layoutSubviews();
     } //F.E.
+    
 } //CLS END

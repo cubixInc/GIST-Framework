@@ -10,6 +10,7 @@ import UIKit
 
 public class BaseUIViewController: UIViewController {
 
+    //Default back button image is 'NavBackButton', which can be changed from inspector
     @IBInspectable public var backBtnImageName:String = "NavBackButton";
     
     private var _hasBackButton:Bool = true;
@@ -34,6 +35,11 @@ public class BaseUIViewController: UIViewController {
         }
     } //P.E.
     
+    public override func isMovingToParentViewController() -> Bool {
+        let rtnBool = super.isMovingToParentViewController();
+        //DOING NOTHING FOR NOW
+        return rtnBool;
+    } //F.E.
     
     public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, backButton:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
@@ -60,25 +66,26 @@ public class BaseUIViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad();
         //--
-        self.navigationItem.hidesBackButton = true;
-       //--
-       
         _lastSyncedDate = SyncEngine.lastSyncedServerDate;
-        
-       //--
-        if (_hasBackButton) {
-            if (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1)) {
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.Plain, target: self, action: #selector(backButtonTapped));
-            }
-        }
-        
     } //F.E.
     
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
         //--
+        self.setupBackBtn();
         self.updateSyncedData();
     }//F.E.
+    
+    //Setting up custom back button
+    private func setupBackBtn() {
+        if (_hasBackButton) {
+             if (self.navigationItem.leftBarButtonItem == nil && (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1))) {
+                self.navigationItem.hidesBackButton = true;
+                //--
+                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.Plain, target: self, action: #selector(backButtonTapped));
+             }
+        }
+    } //F.E.
     
     public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)

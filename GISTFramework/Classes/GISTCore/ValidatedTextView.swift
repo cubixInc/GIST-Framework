@@ -1,6 +1,6 @@
 //
 //  ValidatedTextView.swift
-//  Pods
+//  GISTFramework
 //
 //  Created by Shoaib Abdul on 09/09/2016.
 //
@@ -123,7 +123,6 @@ public class ValidatedTextView: BaseUITextView {
     public override func layoutSubviews() {
         super.layoutSubviews();
         //--
-        
         let sizeWH:CGFloat = GISTUtility.convertToRatio(60);
         self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
     } //F.E.

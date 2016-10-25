@@ -77,7 +77,7 @@ public class BaseUINavigationController: UINavigationController {
     } //F.E.
     
     private func updateAppearance() {
-        //Reassing if there are changes from server
+        //Re-assigning if there are changes from server
         
         if let newBgColor = bgColor {
             self.bgColor = newBgColor;

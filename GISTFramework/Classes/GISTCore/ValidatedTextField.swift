@@ -1,6 +1,6 @@
 //
 //  ValidatedTextField.swift
-//  Tst1
+//  GISTFramework
 //
 //  Created by Shoaib Abdul on 06/09/2016.
 //  Copyright © 2016 Social Cubix. All rights reserved.

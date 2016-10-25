@@ -12,9 +12,9 @@ import UIKit
 extension UICollectionViewController: UIViewControllerPreviewingDelegate {
     public func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         return nil;
-    }
+    } //F.E.
     
     public func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
         
-    }
-}
+    } //F.E.
+} //CLS END

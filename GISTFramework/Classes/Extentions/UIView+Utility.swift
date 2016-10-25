@@ -44,7 +44,7 @@ public extension UIView {
         let shadowPath:UIBezierPath=UIBezierPath(rect: self.bounds)
         let layer:CALayer = self.layer;
         
-        layer.shadowColor = UIColor.blackColor().CGColor;//GLOBAL.BLACK_COLOR.CGColor
+        layer.shadowColor = UIColor.blackColor().CGColor;
         layer.shadowOffset = CGSizeMake(1, 1);
         layer.shadowOpacity = 0.21
         layer.shadowRadius = 2.0

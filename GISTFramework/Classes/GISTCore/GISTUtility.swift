@@ -34,7 +34,7 @@ public class GISTUtility: NSObject {
         return self.convertToRatio(value, sizedForIPad: false, sizedForNavi:true); // Explicit true for Sized For Navi
     } //F.E.
     
-    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool = false, sizedForNavi:Bool = false) ->CGFloat {
+    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool = false, sizedForNavi:Bool = false) -> CGFloat {
         /*
          iPhone6 Hight:667   =====  0.90625
          iPhone5 Hight:568  ====== 0.77173913043478
@@ -43,8 +43,6 @@ public class GISTUtility: NSObject {
          //--
          (height/736.0)
          */
-        //--
-        //??let rRatio = UIScreen.mainScreen().bounds.height / 736.0;
         
         if (GISTUtility.isIPad && !sizedForIPad) {
             return value;

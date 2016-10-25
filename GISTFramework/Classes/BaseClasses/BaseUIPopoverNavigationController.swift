@@ -17,7 +17,7 @@ public class BaseUIPopoverNavigationController: BaseUINavigationController {
         }
     } //P.E.
     
-    private var _popoverController:PopoverController?;//UIPopoverController?
+    private var _popoverController:PopoverController?;
     public var popoverController:PopoverController? {
         get {
             return _popoverController;

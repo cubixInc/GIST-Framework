@@ -317,7 +317,7 @@ public class SyncEngine: NSObject {
             params.appendString("&updated_at=\(lastUpdatedAt)");
         }
         
-        let request = NSMutableURLRequest(URL: _urlToSync);//NSURLRequest(URL: url!)
+        let request = NSMutableURLRequest(URL: _urlToSync);
         
         request.HTTPMethod = "POST";
         

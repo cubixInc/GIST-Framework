@@ -44,5 +44,4 @@ public extension UITableView {
         self.setContentOffset(CGPoint.zero, animated: true);
     } //F.E.
     
-    
 } //E.E.

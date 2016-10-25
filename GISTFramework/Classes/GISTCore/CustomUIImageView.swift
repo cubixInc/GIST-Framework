@@ -8,7 +8,7 @@
 
 import UIKit
 
-//THIS CLASS WAS TO REPLACE CustomImageView(inharited from UIView) but there are some unknown implementations of UIImageView (of UIKit) that are causing the bugs so keeping this class private for future use after some fixes
+//THIS CLASS WAS TO REPLACE CustomImageView(inharited from UIView) but there were some unknown implementations of UIImageView (of UIKit) that are causing the bugs so keeping this class private to use in future after some fixes
 private class CustomUIImageView: BaseUIImageView {
     
     override func awakeFromNib() {
@@ -27,7 +27,7 @@ private class CustomUIImageView: BaseUIImageView {
         get {
             if (_imageView == nil) {
                 _imageView = UIImageView();
-                _imageView!.backgroundColor = UIColor.clearColor();//GLOBAL.CLEAR_COLOR;
+                _imageView!.backgroundColor = UIColor.clearColor();
                 self.addSubview(_imageView!);
                 //--
                 //??self.clipsToBounds = true;
@@ -135,7 +135,7 @@ private class CustomUIImageView: BaseUIImageView {
                     break;
                 }
             } else {
-                rFrame.size =  self.frame.size;// CGSize(width: 50, height: 50); //self.imageView!.frame.size;//
+                rFrame.size =  self.frame.size;
                 //--
                 rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width)/2.0,y: (self.frame.size.height - rFrame.size.height)/2.0);
             }

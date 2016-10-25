@@ -14,4 +14,4 @@ public class BaseSeperatorLayoutConstraint: NSLayoutConstraint {
         //--
         self.constant = 0.5;
     } //F.E.
-} //F.E.
+} //CLS END

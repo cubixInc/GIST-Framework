@@ -10,22 +10,20 @@ import UIKit
 
 public class BaseUIDesignableButton: BaseUIButton {
    
-    private var _view: UIView! // NOT USING BASE CLASS HERE SO THAT THERE MAY NOT BE DEPENDENCY ISSUE
+    private var _view: UIView! // NOT USING BASE CLASS HERE SO THAT THERE SHOULD NOT BE DEPENDENCY ISSUE
     //--
     override init(frame: CGRect) {
         super.init(frame: frame);
-        xibSetup();
+        
+        //Setting up custom xib
+        self.xibSetup();
     } //F.E.
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
-        xibSetup();
-    } //F.E.
-    
-    override public var selected: Bool {
-        didSet(newValue) {
-            //super.selected = newValue;
-        }
+        
+        //Setting up custom xib
+        self.xibSetup();
     } //F.E.
     
     override public func updateView() {
@@ -34,6 +32,7 @@ public class BaseUIDesignableButton: BaseUIButton {
         (_view as? BaseView)?.updateView();
     } //F.E.
     
+    //MARK: - Setup Custom View
     private func xibSetup() {
         let nib = getNib();
         //--
@@ -42,13 +41,13 @@ public class BaseUIDesignableButton: BaseUIButton {
         //Disabling the interaction for subview
         _view.userInteractionEnabled = false;
         
-        // use bounds not frame
+        // use bounds, Not frame
         _view.frame = bounds;
         
         // Make the view stretch with containing view
         _view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight];
         
-        // Adding custom subview on top of our view (over any custom drawing > see note below)
+        // Adding custom subview on top of our view
         self.addSubview(_view);
     }//F.E.
     

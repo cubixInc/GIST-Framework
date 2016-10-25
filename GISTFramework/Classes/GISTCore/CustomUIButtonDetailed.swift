@@ -20,24 +20,28 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
+    //Detail text font style - 'medium' is default
     @IBInspectable public var dFontStyle:String = "medium" {
         didSet {
             self.detailLabel.fontStyle = self.dFontStyle;
         }
     }
     
+    //Detail text font color style
     @IBInspectable public var dFontColorStyle:String? {
         didSet {
             self.detailLabel.fontColorStyle = (self.selected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
     }
     
+    //Detail text selected state font color style
     @IBInspectable public var dSelectedFontColorStyle:String? {
         didSet {
             self.detailLabel.fontColorStyle = (self.selected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
     }
     
+    //Padding between the title and detail text
     private var _detailOffSet:CGPoint = CGPoint.zero;
     @IBInspectable public var detailOffSet:CGPoint {
         set {
@@ -64,6 +68,7 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
+    //Off set for internal calculation
     internal override var offSetFix:CGPoint {
         get {
             let offSetV1:CGPoint = self.titleOffSet;
@@ -75,6 +80,7 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
+    //Updated calculation of frame for detail text label
     private var detailLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.detailOffSet;
@@ -128,9 +134,11 @@ public class CustomUIButtonDetailed: CustomUIButton {
     
     override public func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
+        //Reseting the frame to get proper height and width of text
         self.detailLabel.sizeToFit();
-        //--
+        
+        //Setting calculated frame
         self.detailLabel.frame = self.detailLabelFrame;
     } //F.E.
 } //CLS END

@@ -9,7 +9,7 @@
 import UIKit
 
 //??@available(*, deprecated, message="use CustomUIImageView class instead")
-//Now this class is available again after the bugs found in the CustomUIImageView
+//Now this class is available again, due to some bugs found in the CustomUIImageView
 
 public class CustomImageView: BaseUIView {
 
@@ -20,7 +20,7 @@ public class CustomImageView: BaseUIView {
         get {
             if (_imageView == nil) {
                 _imageView = UIImageView();
-                _imageView!.backgroundColor = UIColor.clearColor();//GLOBAL.CLEAR_COLOR;
+                _imageView!.backgroundColor = UIColor.clearColor();
                 self.addSubview(_imageView!);
                 //--
                 //??self.clipsToBounds = true;
@@ -145,7 +145,7 @@ public class CustomImageView: BaseUIView {
                     break;
                 }
             } else {
-                rFrame.size =  self.frame.size;// CGSize(width: 50, height: 50); //self.imageView!.frame.size;//
+                rFrame.size =  self.frame.size;
                 //--
                 rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width)/2.0,y: (self.frame.size.height - rFrame.size.height)/2.0);
             }

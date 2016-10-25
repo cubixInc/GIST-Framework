@@ -106,7 +106,7 @@ public class BaseUISearchController: UISearchController {
         didSet {
             self.searchBar.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal);
         }
-    } //P.E.
+    }
     
     private var _placeholderKey:String?
     public var placeholder: String? {
@@ -123,7 +123,7 @@ public class BaseUISearchController: UISearchController {
                 self.searchBar.placeholder = newValue;
             }
         }
-    } //P.E.
+    }
     
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);

@@ -32,7 +32,6 @@ public extension Array {
 
 } //E.E.
 
-
 public extension String {
     //Returns Object from JSON String
     public func toJSONObject() -> AnyObject? {
@@ -44,7 +43,6 @@ public extension String {
     }
 
 } //E.E.
-
 
 public extension NSData {
     

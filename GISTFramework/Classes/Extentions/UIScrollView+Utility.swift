@@ -19,7 +19,6 @@ public extension UIScrollView {
         set {
             self.contentOffset = CGPoint(x: self.bounds.size.width * CGFloat(newValue),y: 0);
         }
-        
     } //P.E.
     
 } //E.E.

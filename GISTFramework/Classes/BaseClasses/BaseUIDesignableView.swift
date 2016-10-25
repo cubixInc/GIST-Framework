@@ -14,13 +14,16 @@ public class BaseUIDesignableView: BaseUIView {
     //--
     override public init(frame: CGRect) {
         super.init(frame: frame);
-        //--
-        xibSetup();
+        
+        //Setting up custom xib
+        self.xibSetup();
     } //F.E.
     
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        xibSetup();
+        super.init(coder: aDecoder);
+        
+        //Setting up custom xib
+        self.xibSetup();
     } //F.E.
     
     override public func updateView() {
@@ -29,18 +32,19 @@ public class BaseUIDesignableView: BaseUIView {
         (_view as? BaseView)?.updateView();
     } //F.E.
     
+    //MARK: - Setup Custom View
     public func xibSetup() {
         let nib = getNib();
         //--
         _view = UIView.loadDynamicViewWithNib(nib.nibName, viewIndex: nib.viewIndex, owner: self) as! UIView;
         
-        // use bounds not frame
+        // use bounds, Not frame
         _view.frame = bounds;
         
         // Make the view stretch with containing view
         _view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight];
         
-        // Adding custom subview on top of our view (over any custom drawing > see note below)
+        // Adding custom subview on top of our view
         self.addSubview(_view);
     }//F.E.
     

@@ -116,20 +116,6 @@ public class BaseUIButton: UIButton, BaseView {
         super.awakeFromNib()
         //--
         self.commontInit()
-        //--
-//        self.contentMode = UIViewContentMode.ScaleAspectFit;  //this is needed for some reason, won't work without it.
-        
-        
-        //--
-        /*
-         THIS WAS BREAKING THE CONSTRAINTS
-         
-        self.imageView?.contentMode = UIViewContentMode.ScaleAspectFit;
-        
-        for view:UIView in self.subviews {
-            view.contentMode = UIViewContentMode.ScaleAspectFit;
-        }
-        */
     } //F.E.
     
     func commontInit() {

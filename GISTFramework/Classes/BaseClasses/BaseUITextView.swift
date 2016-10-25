@@ -193,7 +193,7 @@ public class BaseUITextView: UITextView, BaseView {
         }
     } //F.E.
     
-    //MARK: - TEXT DID CHANGE OBSERVER HANDLING
+    //MARK: - Text change Observer Handling
     private func addTextDidChangeObserver() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(textDidChangeObserver), name: UITextViewTextDidChangeNotification, object: nil);
     } //F.E.

@@ -166,6 +166,8 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     
     public func updateView() {
         
+        // Assigning all again to see if there is update from server
+        
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         if let bgCStyle:String = self.bgColorStyle {
@@ -183,12 +185,6 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         if let placeHolderKey:String = _placeholderKey {
             self.placeholder = placeHolderKey;
         }
-        
-        /*
-        if let txt:String = self.text where txt.hasPrefix("#") == true {
-            self.text = txt; // Assigning again to set value from synced data
-        }
-        */
     } //F.E.
     
     override public func layoutSubviews() {

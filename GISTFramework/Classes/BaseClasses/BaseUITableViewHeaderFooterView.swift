@@ -111,8 +111,6 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
     } //F.E.
     
     private func commonInitializer() {
-        //??self.contentView.backgroundColor  = UIColor.clearColor();
-        
         self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
         
         self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);

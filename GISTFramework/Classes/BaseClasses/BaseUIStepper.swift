@@ -25,4 +25,5 @@ public class BaseUIStepper: UIStepper, BaseView {
             self.tintColorStyle = tintCStyle;
         }
     } //F.E.
+    
 } //CLS END

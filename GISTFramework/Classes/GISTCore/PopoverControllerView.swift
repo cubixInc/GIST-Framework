@@ -10,7 +10,7 @@ import UIKit
 
 public class PopoverControllerView: UIView {
 
-    //Defining here so that the class be independent
+    //Defining here in the class privately, so that the class be independent - It may be improved
     private func afterDelay(delay:Double, closure:()->()) {
         dispatch_after(
             dispatch_time(
@@ -169,7 +169,7 @@ public class PopoverControllerView: UIView {
     public func presentPopoverFromRect(rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection, animated:Bool) {
         updatePopoverFrame(fromRect:rect, permittedArrowDirection:permittedArrowDirection);
         //--
-//        (UIApplication.sharedApplication().delegate as! AppDelegate).window!.addSubview(self);
+//        (UIApplication.sharedApplication().delegate as! AppDelegate).window!.addSubview(self); // THIS IS NOT WORKING IN THE FRAMEWORK
         UIApplication.sharedApplication().keyWindow?.addSubview(self);
         //--
         if (animated)
@@ -202,7 +202,7 @@ public class PopoverControllerView: UIView {
         }
         else
         {
-            cleanup();
+            self.cleanup();
             //--
             if (completion != nil)
             {completion!(true);}
@@ -309,7 +309,7 @@ private class ArrowView:UIView {
         CGContextSetFillColorWithColor(currentContext, _arrowColor.CGColor);
         
         let arrowLocation:CGPoint =  CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(self.bounds));
-        let arrowSize:CGSize = self.frame.size;//CGSizeMake(self.frame.size.width / 1, self.frame.size.height / 1);
+        let arrowSize:CGSize = self.frame.size;
         
         let arrowTip:CGPoint = CGPointMake(arrowLocation.x, arrowLocation.y + (arrowSize.height / 2));
         let arrowLeftFoot:CGPoint = CGPointMake(arrowLocation.x - (arrowSize.width / 2), arrowLocation.y - (arrowSize.height / 2));

@@ -15,14 +15,13 @@ public class BaseUISwitch: UISwitch, BaseView {
             self.onTintColor = SyncedColors.color(forKey: onColorStyle);
         }
     }
-    //--
+
     @IBInspectable public var thumbColorStyle:String? = nil {
         didSet {
             self.thumbTintColor = SyncedColors.color(forKey: thumbColorStyle);
         }
     }
     
-    //--
     override public func awakeFromNib() {
         super.awakeFromNib()
         //--

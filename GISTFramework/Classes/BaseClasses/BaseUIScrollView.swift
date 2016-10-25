@@ -10,16 +10,8 @@ import UIKit
 
 public class BaseUIScrollView: UIScrollView, BaseView {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
     public func updateView() {
         //DOING NOTHING FOR NOW
-    }
+    } //F.E.
 
 } //F.E.
