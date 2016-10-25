@@ -60,25 +60,26 @@ public class BaseUITableViewController: UITableViewController {
     override public func viewDidLoad() {
         super.viewDidLoad();
         //--
-        self.navigationItem.hidesBackButton = true;
-        //--
-        
         _lastSyncedDate = SyncEngine.lastSyncedServerDate;
-        
-        //--
-        if (_hasBackButton) {
-            if (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1)) {
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.Plain, target: self, action: #selector(backButtonTapped));
-            }
-        }
-        
     } //F.E.
     
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
         //--
+        self.setupBackBtn();
         self.updateSyncedData();
     }//F.E.
+    
+    //Setting up custom back button
+    private func setupBackBtn() {
+        if (_hasBackButton) {
+            if (self.navigationItem.leftBarButtonItem == nil && (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1))) {
+                self.navigationItem.hidesBackButton = true;
+                //--
+                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.Plain, target: self, action: #selector(backButtonTapped));
+            }
+        }
+    } //F.E.
     
     public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
