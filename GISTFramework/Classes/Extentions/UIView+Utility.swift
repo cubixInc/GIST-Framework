@@ -11,7 +11,7 @@ import UIKit
 public extension UIView {
     
     public class func loadWithNib(nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject {
-        return (NSBundle.mainBundle().loadNibNamed(nibName, owner: owner, options: nil) as NSArray).objectAtIndex(viewIndex);
+        return NSBundle.mainBundle().loadNibNamed(nibName, owner: owner, options: nil)![viewIndex];
     } //F.E.
     
     public class func loadDynamicViewWithNib(nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject {

@@ -14,7 +14,7 @@ public extension UIImage {
     
     public func scaleAndRotateImage(maxSize: CGFloat) -> UIImage {
         
-        let imgRef = self.CGImage
+        let imgRef = self.CGImage!
         
         let width = CGFloat(CGImageGetWidth(imgRef))
         let height = CGFloat(CGImageGetHeight(imgRef))
@@ -97,17 +97,17 @@ public extension UIImage {
         let context = UIGraphicsGetCurrentContext()
         
         if ori == UIImageOrientation.Right || ori == UIImageOrientation.Left {
-            CGContextScaleCTM(context, -scaleRatio, scaleRatio)
-            CGContextTranslateCTM(context, -height, 0.0)
+            CGContextScaleCTM(context!, -scaleRatio, scaleRatio)
+            CGContextTranslateCTM(context!, -height, 0.0)
         } else {
-            CGContextScaleCTM(context, scaleRatio, -scaleRatio)
-            CGContextTranslateCTM(context, 0.0, -height)
+            CGContextScaleCTM(context!, scaleRatio, -scaleRatio)
+            CGContextTranslateCTM(context!, 0.0, -height)
         }
         
-        CGContextConcatCTM(context, transform)
-        CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef)
+        CGContextConcatCTM(context!, transform)
+        CGContextDrawImage(UIGraphicsGetCurrentContext()!, CGRectMake(0, 0, width, height), imgRef)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image!
     } //F.E.
 } //CLS END

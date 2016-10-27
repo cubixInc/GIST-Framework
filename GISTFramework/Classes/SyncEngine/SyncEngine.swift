@@ -42,7 +42,7 @@ public class SyncEngine: NSObject {
     }();
     
     private lazy var syncedFileUrl: NSURL = {
-        return self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.syncedFile + self._languageCode).plist");
+        return self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.syncedFile + self._languageCode).plist")!;
     }();
     
     //Flag if dict date is updated
@@ -434,7 +434,7 @@ public class SyncEngine: NSObject {
                     languageCode = "-" + NSBundle.mainBundle().preferredLocalizations[0]
                 }
                 
-                let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(aKey+languageCode).plist");
+                let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(aKey+languageCode).plist")!;
                 //--
                 var isFileExist:Bool = NSFileManager.defaultManager().fileExistsAtPath(url.path!);
                 
@@ -504,7 +504,7 @@ public class SyncEngine: NSObject {
                 languageCode = "-" + NSBundle.mainBundle().preferredLocalizations[0];
             }
             //-
-            let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(key+languageCode).plist");
+            let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(key+languageCode).plist")!;
             nValue.writeToURL(url, atomically: true);
         }
         
