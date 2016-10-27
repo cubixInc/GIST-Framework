@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
-    private var _data:AnyObject?
-    public var data:AnyObject? {
+open class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
+    fileprivate var _data:AnyObject?
+    open var data:AnyObject? {
         get {
             return _data;
         }
@@ -20,21 +20,21 @@ public class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
         }
     } //P.E.
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
     } //F.E.
     
-    public func updateData(data:AnyObject?) {
+    open func updateData(_ data:AnyObject?) {
         _data = data;
         //--
         self.updateSyncedData();
     } //F.E.
     
-    public func updateView() {
+    open func updateView() {
         //DOING NOTHING FOR NOW
     } //F.E.
     
-    override public func updateSyncedData() {
+    override open func updateSyncedData() {
         super.updateSyncedData();
         //--
         self.contentView.updateSyncedData();

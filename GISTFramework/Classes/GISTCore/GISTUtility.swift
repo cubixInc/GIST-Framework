@@ -8,33 +8,29 @@
 
 import UIKit
 
-public func delay(delay:Double, closure:()->()) {
-    dispatch_after(
-        dispatch_time(
-            DISPATCH_TIME_NOW,
-            Int64(delay * Double(NSEC_PER_SEC))
-        ),
-        dispatch_get_main_queue(), closure)
+public func delay(_ delay:Double, closure:@escaping ()->()) {
+    DispatchQueue.main.asyncAfter(
+        deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
 } //F.E.
 
-public class Weak<T: AnyObject> {
+open class Weak<T: AnyObject> {
     weak var value : T?
     init (value: T) {
         self.value = value
     }
 } //CLS END
 
-public class GISTUtility: NSObject {
-    @nonobjc static let deviceRatio:CGFloat = UIScreen.mainScreen().bounds.height / 736.0;
-    @nonobjc static let deviceRatioWN:CGFloat = (UIScreen.mainScreen().bounds.height - 64.0) / (736.0 - 64.0); // Ratio with Navigation
+open class GISTUtility: NSObject {
+    @nonobjc static let deviceRatio:CGFloat = UIScreen.main.bounds.height / 736.0;
+    @nonobjc static let deviceRatioWN:CGFloat = (UIScreen.main.bounds.height - 64.0) / (736.0 - 64.0); // Ratio with Navigation
     
-    @nonobjc public static let isIPad:Bool = UIDevice.currentDevice().userInterfaceIdiom == .Pad;
+    @nonobjc open static let isIPad:Bool = UIDevice.current.userInterfaceIdiom == .pad;
     
-    public class func convertToRatioSizedForNavi(value:CGFloat) ->CGFloat {
+    open class func convertToRatioSizedForNavi(_ value:CGFloat) ->CGFloat {
         return self.convertToRatio(value, sizedForIPad: false, sizedForNavi:true); // Explicit true for Sized For Navi
     } //F.E.
     
-    public class func convertToRatio(value:CGFloat, sizedForIPad:Bool = false, sizedForNavi:Bool = false) -> CGFloat {
+    open class func convertToRatio(_ value:CGFloat, sizedForIPad:Bool = false, sizedForNavi:Bool = false) -> CGFloat {
         /*
          iPhone6 Hight:667   =====  0.90625
          iPhone5 Hight:568  ====== 0.77173913043478
@@ -55,7 +51,7 @@ public class GISTUtility: NSObject {
         return value * GISTUtility.deviceRatio;
     } //F.E.
     
-    public class func convertFontSizeToRatio(value:CGFloat, fontStyle:String?, sizedForIPad:Bool = false) ->CGFloat {
+    open class func convertFontSizeToRatio(_ value:CGFloat, fontStyle:String?, sizedForIPad:Bool = false) ->CGFloat {
         if (fontStyle == nil)
         {return GISTUtility.convertToRatio(value, sizedForIPad: sizedForIPad);}
         //--
@@ -64,23 +60,23 @@ public class GISTUtility: NSObject {
         return GISTUtility.convertToRatio(newValue, sizedForIPad: sizedForIPad);
     } //F.E.
     
-    public class func convertPointToRatio(value:CGPoint, sizedForIPad:Bool = false) ->CGPoint {
+    open class func convertPointToRatio(_ value:CGPoint, sizedForIPad:Bool = false) ->CGPoint {
         return CGPoint(x:self.convertToRatio(value.x, sizedForIPad: sizedForIPad), y:self.convertToRatio(value.y, sizedForIPad: sizedForIPad));
     } //F.E.
     
-    public class func convertSizeToRatio(value:CGSize, sizedForIPad:Bool = false) ->CGSize {
+    open class func convertSizeToRatio(_ value:CGSize, sizedForIPad:Bool = false) ->CGSize {
         return CGSize(width:self.convertToRatio(value.width, sizedForIPad: sizedForIPad), height:self.convertToRatio(value.height, sizedForIPad: sizedForIPad));
     } //F.E.
     
-    public class func isEmpty(text:String?)->Bool {
+    open class func isEmpty(_ text:String?)->Bool {
         guard (text != nil) else {
             return true;
         }
         
-        return (text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "");
+        return (text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "");
     } //F.E.
     
-    public class func isValidEmail(text:String?)->Bool {
+    open class func isValidEmail(_ text:String?)->Bool {
         guard (text != nil) else {
             return false;
         }
@@ -88,31 +84,31 @@ public class GISTUtility: NSObject {
         let emailRegex:String = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         
-        return predicate.evaluateWithObject(text!);
+        return predicate.evaluate(with: text!);
     } //F.E.
     
-    public class func isValidUrl(text:String?) -> Bool {
+    open class func isValidUrl(_ text:String?) -> Bool {
         guard (text != nil) else {
             return false;
         }
         
         let regexURL: String = "(http://|https://)?((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
         let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
-        return predicate.evaluateWithObject(text)
+        return predicate.evaluate(with: text)
     } //F.E.
     
     
-    public class func isValidPhoneNo(text:String?) -> Bool {
+    open class func isValidPhoneNo(_ text:String?) -> Bool {
         guard (text != nil) else {
             return false;
         }
         
         let regexURL: String = "^\\d{3}-\\d{3}-\\d{4}$"
         let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
-        return predicate.evaluateWithObject(text)
+        return predicate.evaluate(with: text)
     } //F.E.
     
-    public class func isNumeric(text:String?) -> Bool {
+    open class func isNumeric(_ text:String?) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -120,7 +116,7 @@ public class GISTUtility: NSObject {
         return Double(text!) != nil;
     } //F.E.
     
-    public class func isAlphabetic(text:String?) -> Bool {
+    open class func isAlphabetic(_ text:String?) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -133,7 +129,7 @@ public class GISTUtility: NSObject {
         return true;
     } //F.E.
     
-    public class func isValidForMinChar(text:String?, noOfChar:Int) -> Bool {
+    open class func isValidForMinChar(_ text:String?, noOfChar:Int) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -141,7 +137,7 @@ public class GISTUtility: NSObject {
         return (text!.utf16.count >= noOfChar);
     } //F.E.
     
-    public class func isValidForMaxChar(text:String?, noOfChar:Int) -> Bool {
+    open class func isValidForMaxChar(_ text:String?, noOfChar:Int) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -149,14 +145,14 @@ public class GISTUtility: NSObject {
         return (text!.utf16.count <= noOfChar);
     } //F.E.
     
-    public class func isValidForRegex(text:String?, regex:String)->Bool {
+    open class func isValidForRegex(_ text:String?, regex:String)->Bool {
         guard (text != nil) else {
             return false;
         }
         
         let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
         
-        return predicate.evaluateWithObject(text!);
+        return predicate.evaluate(with: text!);
     } //F.E.
 
 } //CLS END

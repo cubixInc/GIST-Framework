@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class BaseUICollectionView: UICollectionView, BaseView {
+open class BaseUICollectionView: UICollectionView, BaseView {
 
-    public func updateView() {
+    open func updateView() {
         //DOING NOTHING FOR NOW
     } //F.E.
 

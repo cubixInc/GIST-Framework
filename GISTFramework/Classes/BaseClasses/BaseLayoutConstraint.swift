@@ -8,11 +8,11 @@
 
 import UIKit
 
-public class BaseLayoutConstraint: NSLayoutConstraint {
-    @IBInspectable public var sizeForIPad:Bool = false;
-    @IBInspectable public var sizeForNavi:Bool = false;
+open class BaseLayoutConstraint: NSLayoutConstraint {
+    @IBInspectable open var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForNavi:Bool = false;
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.constant = GISTUtility.convertToRatio(constant, sizedForIPad: sizeForIPad, sizedForNavi:sizeForNavi);

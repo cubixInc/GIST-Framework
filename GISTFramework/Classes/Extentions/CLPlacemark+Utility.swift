@@ -13,7 +13,7 @@ public extension CLPlacemark {
     public var formatedAddress:String? {
         get {
             if let addrList = self.addressDictionary?["FormattedAddressLines"] as? [String] {
-                return addrList.joinWithSeparator(", ")
+                return addrList.joined(separator: ", ")
             } else {
                 return nil;
             }

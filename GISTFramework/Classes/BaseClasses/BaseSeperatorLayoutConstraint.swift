@@ -8,8 +8,8 @@
 
 import UIKit
 
-public class BaseSeperatorLayoutConstraint: NSLayoutConstraint {
-    override public func awakeFromNib() {
+open class BaseSeperatorLayoutConstraint: NSLayoutConstraint {
+    override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.constant = 0.5;

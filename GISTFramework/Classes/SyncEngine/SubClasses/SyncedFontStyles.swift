@@ -8,33 +8,28 @@
 
 import UIKit
 
-public class SyncedFontStyles: SyncEngine {
+open class SyncedFontStyles: SyncEngine {
+    
+    fileprivate static var _sharedInstance: SyncedFontStyles = SyncedFontStyles();
     class override var sharedInstance: SyncedFontStyles {
-        struct Static {
-            static var instance: SyncedFontStyles?
-            static var token: dispatch_once_t = 0
+        get {
+            return self._sharedInstance;
         }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = SyncedFontStyles();
-        }
-        
-        return Static.instance!
     } //P.E.
     
-    public class func syncForData(dict:NSDictionary) -> Bool {
+    @discardableResult open class func syncForData(_ dict:NSDictionary) -> Bool {
         return SyncedFontStyles.sharedInstance.syncForData(dict);
     } //F.E.
     
-    public class func style(forKey key: String) -> Float {
+    open class func style(forKey key: String) -> Float {
         return SyncedFontStyles.sharedInstance.style(forKey: key);
     } //F.E.
     
-    public func style(forKey key: String) -> Float {
+    open func style(forKey key: String) -> Float {
         return super.objectForKey(key) ?? 22;
     } //F.E.
     
-    public override class func objectForKey<T>(aKey: String?) -> T? {
+    open override class func objectForKey<T>(_ aKey: String?) -> T? {
         return SyncedFontStyles.sharedInstance.objectForKey(aKey);
     } //F.E.
     

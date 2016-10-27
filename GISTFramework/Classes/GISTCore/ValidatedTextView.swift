@@ -9,10 +9,10 @@
 import UIKit
 
 @objc public protocol ValidatedTextViewDelegate {
-    optional func validatedTextViewInvalidSignDidTap(validatedTextField:ValidatedTextView, sender:UIButton);
+    @objc optional func validatedTextViewInvalidSignDidTap(_ validatedTextField:ValidatedTextView, sender:UIButton);
 } //P.E.
 
-public class ValidatedTextView: BaseUITextView {
+open class ValidatedTextView: BaseUITextView {
 
     @IBInspectable var validateEmpty:Bool = false;
     
@@ -23,12 +23,12 @@ public class ValidatedTextView: BaseUITextView {
     
     @IBInspectable var invalidSign:UIImage? = nil {
         didSet {
-            invalidSignBtn.setImage(invalidSign, forState: UIControlState.Normal);
+            invalidSignBtn.setImage(invalidSign, for: UIControlState());
         }
     } //P.E.
     
-    private var _validityMsg:String?
-    @IBInspectable public var validityMsg:String {
+    fileprivate var _validityMsg:String?
+    @IBInspectable open var validityMsg:String {
         get {
             return _validityMsg ?? "Invalid";
         }
@@ -39,41 +39,41 @@ public class ValidatedTextView: BaseUITextView {
         
     } //P.E.
     
-    private lazy var invalidSignBtn:BaseUIButton =  {
-        let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.Custom);
-        cBtn.backgroundColor = UIColor.clearColor();
-        cBtn.hidden = true;
+    fileprivate lazy var invalidSignBtn:BaseUIButton =  {
+        let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.custom);
+        cBtn.backgroundColor = UIColor.clear;
+        cBtn.isHidden = true;
         let sizeWH:CGFloat = GISTUtility.convertToRatio(60);
         cBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
-        cBtn.contentMode = UIViewContentMode.Right;
+        cBtn.contentMode = UIViewContentMode.right;
         cBtn.containtOffSet = GISTUtility.convertPointToRatio(CGPoint(x: 10, y: 0));
         
-        cBtn.addTarget(self, action: #selector(invalidSignBtnHandler(_:)), forControlEvents: UIControlEvents.TouchUpInside);
+        cBtn.addTarget(self, action: #selector(invalidSignBtnHandler(_:)), for: UIControlEvents.touchUpInside);
         
         self.addSubview(cBtn);
         return cBtn;
     } ();
     
-    private var _isEmpty:Bool = true;
+    fileprivate var _isEmpty:Bool = true;
     
-    private var _isValid:Bool = false;
-    public var isValid:Bool {
+    fileprivate var _isValid:Bool = false;
+    open var isValid:Bool {
         get {
             let cValid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
             
-            self.invalidSignBtn.hidden = cValid;
+            self.invalidSignBtn.isHidden = cValid;
             
             return cValid;
         }
     } //F.E.
     
-    public override var text: String! {
+    open override var text: String! {
         didSet {
             self.validateText();
         }
     } //P.E.
     
-    private func validateText() {
+    fileprivate func validateText() {
         _isEmpty = self.isEmpty();
         
         _isValid =
@@ -81,7 +81,7 @@ public class ValidatedTextView: BaseUITextView {
             ((maxChar == 0) || self.isValidForMaxChar(maxChar)) &&
             ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
-        self.invalidSignBtn.hidden = (_isValid || _isEmpty);
+        self.invalidSignBtn.isHidden = (_isValid || _isEmpty);
     } //F.E.
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -94,44 +94,44 @@ public class ValidatedTextView: BaseUITextView {
         super.init(coder: aDecoder);
     } //F.E.
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commonInit();
     } //F.E.
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         self.validateText();
     } //F.E.
     
-    public func isEmpty()->Bool {
+    open func isEmpty()->Bool {
         return GISTUtility.isEmpty(self.text);
     } //F.E.
     
-    private func isValidForMinChar(noOfChar:Int) -> Bool {
+    fileprivate func isValidForMinChar(_ noOfChar:Int) -> Bool {
         return GISTUtility.isValidForMinChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
-    private func isValidForMaxChar(noOfChar:Int) -> Bool {
+    fileprivate func isValidForMaxChar(_ noOfChar:Int) -> Bool {
         return GISTUtility.isValidForMaxChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
-    private func isValidForRegex(regex:String)->Bool {
+    fileprivate func isValidForRegex(_ regex:String)->Bool {
         return GISTUtility.isValidForRegex(self.text, regex: regex);
     } //F.E.
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews();
         //--
         let sizeWH:CGFloat = GISTUtility.convertToRatio(60);
         self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
     } //F.E.
     
-    func invalidSignBtnHandler(sender:UIButton) {
+    func invalidSignBtnHandler(_ sender:UIButton) {
         (self.delegate as? ValidatedTextViewDelegate)?.validatedTextViewInvalidSignDidTap?(self, sender: sender)
     } //F.E.
     
-    override func textDidChangeObserver(notification:NSNotification) {
+    override func textDidChangeObserver(_ notification:Notification) {
         super.textDidChangeObserver(notification);
         //--
         self.validateText();

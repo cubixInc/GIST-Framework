@@ -9,38 +9,32 @@
 import UIKit
 
 
-public class SyncedColors: SyncEngine {
+open class SyncedColors: SyncEngine {
     
+    fileprivate static var _sharedInstance: SyncedColors = SyncedColors();
     class override var sharedInstance: SyncedColors {
-        struct Static {
-            static var instance: SyncedColors?
-            static var token: dispatch_once_t = 0
+        get {
+            return self._sharedInstance;
         }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = SyncedColors();
-        }
-        
-        return Static.instance!
-    } //P.E.
+    }
     
-    public class func syncForData(dict:NSDictionary) -> Bool {
+    @discardableResult open class func syncForData(_ dict:NSDictionary) -> Bool {
         return SyncedColors.sharedInstance.syncForData(dict);
     } //F.E.
     
-    public class func color(forKey key: String?) -> UIColor? {
+    open class func color(forKey key: String?) -> UIColor? {
         return SyncedColors.sharedInstance.color(forKey: key);
     } //F.E.
     
-    public func color(forKey key: String?) -> UIColor? {
+    open func color(forKey key: String?) -> UIColor? {
         if let haxColor:String = super.objectForKey(key) {
-            return UIColor(rgba: haxColor);
+            return UIColor(haxColor);
         } else {
             return nil;
         }
     } //F.E.
     
-    public override class func objectForKey<T>(aKey: String?) -> T? {
+    open override class func objectForKey<T>(_ aKey: String?) -> T? {
         return SyncedColors.sharedInstance.objectForKey(aKey);
     } //F.E.
     

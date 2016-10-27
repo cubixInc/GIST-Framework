@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseView {
-    private var _data:AnyObject?
-    public var data:AnyObject? {
+open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseView {
+    fileprivate var _data:AnyObject?
+    open var data:AnyObject? {
         get {
             return _data;
         }
     } //P.E.
     
-    @IBInspectable public var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = false;
     
-    @IBInspectable public var bgColorStyle:String? = nil {
+    @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             guard (self.bgColorStyle != oldValue) else {
                 return;
@@ -32,7 +32,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
         }
     }
     
-    @IBInspectable public var tintColorStyle:String? = nil {
+    @IBInspectable open var tintColorStyle:String? = nil {
         didSet {
             guard (self.tintColorStyle != oldValue) else {
                 return;
@@ -42,7 +42,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
         }
     }
     
-    @IBInspectable public var fontName:String? = "fontRegular" {
+    @IBInspectable open var fontName:String? = "fontRegular" {
         didSet {
             guard (self.fontName != oldValue) else {
                 return;
@@ -54,7 +54,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
         }
     }
     
-    @IBInspectable public var fontTitleStyle:String? = "medium" {
+    @IBInspectable open var fontTitleStyle:String? = "medium" {
         didSet {
             guard (self.fontTitleStyle != oldValue) else {
                 return;
@@ -64,7 +64,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
         }
     }
     
-    @IBInspectable public var fontDetailStyle:String? = "fontRegular" {
+    @IBInspectable open var fontDetailStyle:String? = "fontRegular" {
         didSet {
             guard (self.fontDetailStyle != oldValue) else {
                 return;
@@ -74,7 +74,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
         }
     }
     
-    @IBInspectable public var fontColor:String? = nil {
+    @IBInspectable open var fontColor:String? = nil {
         didSet {
             guard (self.fontColor != oldValue) else {
                 return;
@@ -84,7 +84,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
         }
     }
     
-    @IBInspectable public var detailColor:String? = nil {
+    @IBInspectable open var detailColor:String? = nil {
         didSet {
             guard (self.detailColor != oldValue) else {
                 return;
@@ -104,19 +104,19 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
         super.init(coder:aDecoder);
     } //F.E.
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commonInitializer();
     } //F.E.
     
-    private func commonInitializer() {
+    fileprivate func commonInitializer() {
         self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
         
         self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
     } //F.E.
     
-    public func updateView() {
+    open func updateView() {
         if let bgCStyle = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -134,13 +134,13 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
         }
     } //F.E.
     
-    override public func updateSyncedData() {
+    override open func updateSyncedData() {
         super.updateSyncedData();
         //--
         self.contentView.updateSyncedData();
     } //F.E.
     
-    public func updateData(data:AnyObject?) {
+    open func updateData(_ data:AnyObject?) {
         _data = data;
         //--
         self.updateSyncedData();

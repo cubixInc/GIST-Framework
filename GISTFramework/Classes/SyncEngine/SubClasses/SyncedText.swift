@@ -8,34 +8,28 @@
 
 import UIKit
 
-public class SyncedText: SyncEngine {
+open class SyncedText: SyncEngine {
     
+    fileprivate static var _sharedInstance: SyncedText = SyncedText();
     class override var sharedInstance: SyncedText {
-        struct Static {
-            static var instance: SyncedText?
-            static var token: dispatch_once_t = 0
+        get {
+            return self._sharedInstance;
         }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = SyncedText();
-        }
-        
-        return Static.instance!
     } //P.E.
     
-    public class func syncForData(dict:NSDictionary) -> Bool {
+    @discardableResult open class func syncForData(_ dict:NSDictionary) -> Bool {
         return SyncedText.sharedInstance.syncForData(dict);
     } //F.E.
     
-    public class func text(forKey key: String) -> String {
+    open class func text(forKey key: String) -> String {
         return SyncedText.sharedInstance.text(forKey: key);
     } //F.E.
     
-    public func text(forKey key: String) -> String {
-        return (super.objectForKey(key.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "#")))) ?? key
+    open func text(forKey key: String) -> String {
+        return (super.objectForKey(key.trimmingCharacters(in: CharacterSet(charactersIn: "#")))) ?? key
     } //F.E.
     
-    public override class func objectForKey<T>(aKey: String?) -> T? {
+    open override class func objectForKey<T>(_ aKey: String?) -> T? {
         return SyncedText.sharedInstance.objectForKey(aKey);
     } //F.E.
     

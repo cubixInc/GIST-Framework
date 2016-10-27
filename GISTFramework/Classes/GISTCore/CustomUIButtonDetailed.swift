@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class CustomUIButtonDetailed: CustomUIButton {
+open class CustomUIButtonDetailed: CustomUIButton {
     
-    @IBInspectable public var detailText:String? {
+    @IBInspectable open var detailText:String? {
         get {
             return self.detailLabel.text;
         }
@@ -21,29 +21,29 @@ public class CustomUIButtonDetailed: CustomUIButton {
     } //P.E.
     
     //Detail text font style - 'medium' is default
-    @IBInspectable public var dFontStyle:String = "medium" {
+    @IBInspectable open var dFontStyle:String = "medium" {
         didSet {
             self.detailLabel.fontStyle = self.dFontStyle;
         }
     }
     
     //Detail text font color style
-    @IBInspectable public var dFontColorStyle:String? {
+    @IBInspectable open var dFontColorStyle:String? {
         didSet {
-            self.detailLabel.fontColorStyle = (self.selected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
+            self.detailLabel.fontColorStyle = (self.isSelected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
     }
     
     //Detail text selected state font color style
-    @IBInspectable public var dSelectedFontColorStyle:String? {
+    @IBInspectable open var dSelectedFontColorStyle:String? {
         didSet {
-            self.detailLabel.fontColorStyle = (self.selected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
+            self.detailLabel.fontColorStyle = (self.isSelected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
     }
     
     //Padding between the title and detail text
-    private var _detailOffSet:CGPoint = CGPoint.zero;
-    @IBInspectable public var detailOffSet:CGPoint {
+    fileprivate var _detailOffSet:CGPoint = CGPoint.zero;
+    @IBInspectable open var detailOffSet:CGPoint {
         set {
             _detailOffSet = newValue;
         }
@@ -53,14 +53,14 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
-    private var _detailLabel: BaseUILabel?;
+    fileprivate var _detailLabel: BaseUILabel?;
     var detailLabel: BaseUILabel {
         get {
             if (_detailLabel == nil) {
                 _detailLabel = BaseUILabel();
                 _detailLabel?.sizeForIPad = self.sizeForIPad;
-                _detailLabel!.textAlignment = NSTextAlignment.Center;
-                _detailLabel!.backgroundColor = UIColor.clearColor();
+                _detailLabel!.textAlignment = NSTextAlignment.center;
+                _detailLabel!.backgroundColor = UIColor.clear;
                 self.addSubview(_detailLabel!);
             }
             
@@ -81,7 +81,7 @@ public class CustomUIButtonDetailed: CustomUIButton {
     } //P.E.
     
     //Updated calculation of frame for detail text label
-    private var detailLabelFrame:CGRect {
+    fileprivate var detailLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.detailOffSet;
             //--
@@ -108,13 +108,13 @@ public class CustomUIButtonDetailed: CustomUIButton {
         }
     } //F.E.
     
-    override public var selected:Bool {
+    override open var isSelected:Bool {
         get  {
-            return super.selected;
+            return super.isSelected;
         }
         
         set {
-            super.selected = newValue;
+            super.isSelected = newValue;
             //--
             self.detailLabel.fontColorStyle = (newValue == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
@@ -126,13 +126,13 @@ public class CustomUIButtonDetailed: CustomUIButton {
         self.detailLabel.font = self.titleLabel!.font;
     } //F.E.
     
-    override public func updateView()  {
+    override open func updateView()  {
         super.updateView();
         //--
         self.detailLabel.updateView();
     } //F.E.
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews();
         
         //Reseting the frame to get proper height and width of text

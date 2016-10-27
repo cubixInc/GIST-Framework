@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class BaseUIScrollView: UIScrollView, BaseView {
+open class BaseUIScrollView: UIScrollView, BaseView {
 
-    public func updateView() {
+    open func updateView() {
         //DOING NOTHING FOR NOW
     } //F.E.
 

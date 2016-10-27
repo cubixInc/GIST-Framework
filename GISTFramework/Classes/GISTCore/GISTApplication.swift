@@ -9,17 +9,17 @@
 import UIKit
 
 @objc public protocol GISTApplicationDelegate {
-    optional func applicationWillTerminate(application: UIApplication);
-    optional func applicationDidBecomeActive(application: UIApplication);
-    optional func applicationWillResignActive(application: UIApplication);
-    optional func applicationDidEnterBackground(application: UIApplication);
-    optional func applicationDidFinishLaunching(application: UIApplication)
+    @objc optional func applicationWillTerminate(_ application: UIApplication);
+    @objc optional func applicationDidBecomeActive(_ application: UIApplication);
+    @objc optional func applicationWillResignActive(_ application: UIApplication);
+    @objc optional func applicationDidEnterBackground(_ application: UIApplication);
+    @objc optional func applicationDidFinishLaunching(_ application: UIApplication)
 } //F.E.
 
-public class GISTApplication: NSObject, UIApplicationDelegate {
-    public static var sharedInstance:GISTApplication = GISTApplication();
+open class GISTApplication: NSObject, UIApplicationDelegate {
+    open static var sharedInstance:GISTApplication = GISTApplication();
     
-    public var delegate:GISTApplicationDelegate? {
+    open var delegate:GISTApplicationDelegate? {
         set {
             guard (newValue != nil) else {
                 return;
@@ -34,33 +34,33 @@ public class GISTApplication: NSObject, UIApplicationDelegate {
         }
     } //P.E.
     
-    private var _delegates:NSHashTable = NSHashTable();
+    fileprivate var _delegates:NSHashTable<Weak<GISTApplicationDelegate>> = NSHashTable();
     
-    private override init() {
+    fileprivate override init() {
         super.init();
     } //F.E.
     
     //MARK: - Delegate Handling
-    public func registerDelegate(target:GISTApplicationDelegate) {
+    open func registerDelegate(_ target:GISTApplicationDelegate) {
         if self.weakDelegateForTarget(target) == nil {
             //Adding if not added
-            _delegates.addObject(Weak<GISTApplicationDelegate>(value: target))
+            _delegates.add(Weak<GISTApplicationDelegate>(value: target))
         }
     } //F.E.
     
-    func unregisterDelegate(target:GISTApplicationDelegate) {
+    func unregisterDelegate(_ target:GISTApplicationDelegate) {
         if let wTarget:Weak<GISTApplicationDelegate> = self.weakDelegateForTarget(target) {
-            _delegates.removeObject(wTarget);
+            _delegates.remove(wTarget);
         }
     } //F.E.
     
-    private func weakDelegateForTarget(target:GISTApplicationDelegate) -> Weak<GISTApplicationDelegate>?{
+    fileprivate func weakDelegateForTarget(_ target:GISTApplicationDelegate) -> Weak<GISTApplicationDelegate>?{
         let enumerator:NSEnumerator = _delegates.objectEnumerator();
         
         while let wTarget:Weak<GISTApplicationDelegate> = enumerator.nextObject() as? Weak<GISTApplicationDelegate> {
             if (wTarget.value == nil) {
                 //Removing if lost target already
-                _delegates.removeObject(wTarget);
+                _delegates.remove(wTarget);
             } else if ((target as AnyObject).isEqual(wTarget.value)) {
                 return wTarget;
             }
@@ -70,7 +70,7 @@ public class GISTApplication: NSObject, UIApplicationDelegate {
     } //F.E.
     
     //MARK: - Application Delegate Methods calling
-    public func applicationWillTerminate(application: UIApplication) {
+    open func applicationWillTerminate(_ application: UIApplication) {
         //Calling Delegate Methods
         let enumerator:NSEnumerator = self._delegates.objectEnumerator();
         
@@ -79,7 +79,7 @@ public class GISTApplication: NSObject, UIApplicationDelegate {
         }
     } //F.E.
     
-    public func applicationDidBecomeActive(application: UIApplication) {
+    open func applicationDidBecomeActive(_ application: UIApplication) {
         //Calling Delegate Methods
         let enumerator:NSEnumerator = self._delegates.objectEnumerator();
         
@@ -88,7 +88,7 @@ public class GISTApplication: NSObject, UIApplicationDelegate {
         }
     } //F.E.
     
-    public func applicationWillResignActive(application: UIApplication) {
+    open func applicationWillResignActive(_ application: UIApplication) {
         //Calling Delegate Methods
         let enumerator:NSEnumerator = self._delegates.objectEnumerator();
         
@@ -97,7 +97,7 @@ public class GISTApplication: NSObject, UIApplicationDelegate {
         }
     } //F.E.
     
-    public func applicationDidEnterBackground(application: UIApplication) {
+    open func applicationDidEnterBackground(_ application: UIApplication) {
         //Calling Delegate Methods
         let enumerator:NSEnumerator = self._delegates.objectEnumerator();
         
@@ -106,7 +106,7 @@ public class GISTApplication: NSObject, UIApplicationDelegate {
         }
     } //F.E.
     
-    public func applicationDidFinishLaunching(application: UIApplication) {
+    open func applicationDidFinishLaunching(_ application: UIApplication) {
         //Calling Delegate Methods
         let enumerator:NSEnumerator = self._delegates.objectEnumerator();
         

@@ -8,24 +8,24 @@
 
 import UIKit
 
-public class BaseUIViewController: UIViewController {
+open class BaseUIViewController: UIViewController {
 
     //Default back button image is 'NavBackButton', which can be changed from inspector
-    @IBInspectable public var backBtnImageName:String = "NavBackButton";
+    @IBInspectable open var backBtnImageName:String = "NavBackButton";
     
-    private var _hasBackButton:Bool = true;
-    private var _hasForcedBackButton = false;
+    fileprivate var _hasBackButton:Bool = true;
+    fileprivate var _hasForcedBackButton = false;
     
-    private var _lastSyncedDate:String?
+    fileprivate var _lastSyncedDate:String?
     
-    private var _titleKey:String?;
-    override public var title: String? {
+    fileprivate var _titleKey:String?;
+    override open var title: String? {
         get {
             return super.title;
         }
         
         set {
-            if let key:String = newValue where key.hasPrefix("#") == true {
+            if let key:String = newValue , key.hasPrefix("#") == true {
                 _titleKey = key;  // holding key for using later
                 
                 super.title = SyncedText.text(forKey: key);
@@ -35,19 +35,19 @@ public class BaseUIViewController: UIViewController {
         }
     } //P.E.
     
-    public override func isMovingToParentViewController() -> Bool {
-        let rtnBool = super.isMovingToParentViewController();
+    open override var isMovingToParentViewController : Bool {
+        let rtnBool = super.isMovingToParentViewController;
         //DOING NOTHING FOR NOW
         return rtnBool;
     } //F.E.
     
-    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, backButton:Bool) {
+    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButton:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         //--
         _hasBackButton = backButton;
     } //F.E.
     
-    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, backButtonForced:Bool)
+    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButtonForced:Bool)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         //--
@@ -55,7 +55,7 @@ public class BaseUIViewController: UIViewController {
         _hasForcedBackButton = backButtonForced;
     } //F.E.
     
-    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
 
@@ -63,13 +63,13 @@ public class BaseUIViewController: UIViewController {
         super.init(coder: aDecoder);
     } //F.E.
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad();
         //--
         _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
     
-    override public func viewWillAppear(animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         //--
         self.setupBackBtn();
@@ -77,40 +77,40 @@ public class BaseUIViewController: UIViewController {
     }//F.E.
     
     //Setting up custom back button
-    private func setupBackBtn() {
+    fileprivate func setupBackBtn() {
         if (_hasBackButton) {
              if (self.navigationItem.leftBarButtonItem == nil && (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1))) {
                 self.navigationItem.hidesBackButton = true;
                 //--
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.Plain, target: self, action: #selector(backButtonTapped));
+                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonTapped));
              }
         }
     } //F.E.
     
-    public override func viewDidDisappear(animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
 
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
     } //F.E.
     
-    public override func viewWillDisappear(animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated);
     } //F.E.
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     } //F.E.
     
-    public func backButtonTapped() {
+    open func backButtonTapped() {
         self.view.endEditing(true);
-        self.navigationController?.popViewControllerAnimated(true)
+        _ = self.navigationController?.popViewController(animated: true)
     } //F.E.
     
-    public func updateSyncedData() -> Bool {
-        if let syncedDate:String = SyncEngine.lastSyncedServerDate where syncedDate != _lastSyncedDate {
+    @discardableResult open func updateSyncedData() -> Bool {
+        if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
             _lastSyncedDate = syncedDate;
             //--
             if _titleKey != nil {

@@ -8,47 +8,41 @@
 
 import UIKit
 
-public class SyncEngine: NSObject {
+open class SyncEngine: NSObject {
     
+    fileprivate static var _sharedInstance: SyncEngine = SyncEngine();
     class var sharedInstance: SyncEngine {
-        struct Static {
-            static var instance: SyncEngine?
-            static var token: dispatch_once_t = 0
+        get {
+            return self._sharedInstance;
         }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = SyncEngine(customData: true);
-        }
-        
-        return Static.instance!
-    } //P.E.
+    }
     
-    private var _urlToSync:NSURL!
-    private var _authentication:[String:String]?;
+    fileprivate var _urlToSync:URL!
+    fileprivate var _authentication:[String:String]?;
     
-    private var _languageCode:String = "";
+    fileprivate var _languageCode:String = "";
     
-    private var _isCustomData = false;
+    fileprivate var _isCustomData = false;
     
-    private lazy var syncedFile: String = {
-        return "\(self.dynamicType)";
+    fileprivate lazy var syncedFile: String = {
+        return "\(type(of: self))";
     }()
     
-    private lazy var applicationDocumentsDirectory: NSURL = {
+    fileprivate lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.cubix.GIST" in the application's documents Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1]
         //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString;
     }();
     
-    private lazy var syncedFileUrl: NSURL = {
-        return self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.syncedFile + self._languageCode).plist")!;
+    fileprivate lazy var syncedFileUrl: URL = {
+        return self.applicationDocumentsDirectory.appendingPathComponent("\(self.syncedFile + self._languageCode).plist");
     }();
     
     //Flag if dict date is updated
-    private var _hasUpdate:Bool = false;
+    fileprivate var _hasUpdate:Bool = false;
     
-    private var _dictData:NSMutableDictionary?
+    fileprivate var _dictData:NSMutableDictionary?
     internal var dictData:NSDictionary? {
         get {
             return _dictData;
@@ -56,39 +50,39 @@ public class SyncEngine: NSObject {
     } //P.E.
     
     //Server date
-    public static var lastSyncedServerDate:String? {
+    open static var lastSyncedServerDate:String? {
         get {
             return SyncEngine.sharedInstance.lastSyncedServerDate;
         }
     } //P.E.
     
-    private var lastSyncedServerDate:String? {
+    fileprivate var lastSyncedServerDate:String? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("LAST_SYNCED_SERVER_DATE" + _languageCode) as? String;
+            return UserDefaults.standard.object(forKey: "LAST_SYNCED_SERVER_DATE" + _languageCode) as? String;
         }
         
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "LAST_SYNCED_SERVER_DATE" + _languageCode);
-            NSUserDefaults.standardUserDefaults().synchronize();
+            UserDefaults.standard.set(newValue, forKey: "LAST_SYNCED_SERVER_DATE" + _languageCode);
+            UserDefaults.standard.synchronize();
         }
     } //P.E.
     
-    private var lastSyncedResponseDate:NSDate? {
+    fileprivate var lastSyncedResponseDate:Date? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("LAST_SYNCED_RESPONSE_DATE" + _languageCode) as? NSDate;
+            return UserDefaults.standard.object(forKey: "LAST_SYNCED_RESPONSE_DATE" + _languageCode) as? Date;
         }
         
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "LAST_SYNCED_RESPONSE_DATE" + _languageCode);
-            NSUserDefaults.standardUserDefaults().synchronize();
+            UserDefaults.standard.set(newValue, forKey: "LAST_SYNCED_RESPONSE_DATE" + _languageCode);
+            UserDefaults.standard.synchronize();
         }
     } //P.E.
     
-    public class func initialize(urlToSync:String, authentication:[String:String]? = nil) {
+    open class func initialize(_ urlToSync:String, authentication:[String:String]? = nil) {
         SyncEngine.sharedInstance.initialize(urlToSync, authentication: authentication);
     } //F.E.
     
-    private func initialize(urlToSync:String, authentication:[String:String]? = nil) {
+    fileprivate func initialize(_ urlToSync:String, authentication:[String:String]? = nil) {
         /*
         #if !DEBUG && !RELEASE
             UIAlertView(title: "Sync Engine Error", message: "Add '-DDEBUG' and -DRELEASE in their respective sections of Project Build Settings ('Swift Compiler – Custom Flags' -> 'Other Swift Flags')", delegate: nil, cancelButtonTitle: "OK").show();
@@ -96,7 +90,7 @@ public class SyncEngine: NSObject {
         */
         
         //--
-        _urlToSync = NSURL(string: urlToSync);
+        _urlToSync = URL(string: urlToSync);
         _authentication = authentication;
     } //F.E.
     
@@ -106,21 +100,21 @@ public class SyncEngine: NSObject {
         self.setupSyncedFile();
     } //P.E.
     
-    private func setupSyncedFile() {
+    fileprivate func setupSyncedFile() {
         var hasToSync:Bool = true;
         
-        if let syncedFileUrlRes:String = NSBundle.mainBundle().pathForResource(self.syncedFile, ofType: "plist") {
+        if let syncedFileUrlRes:String = Bundle.main.path(forResource: self.syncedFile, ofType: "plist") {
             
             //Localization
-            if (syncedFileUrlRes.rangeOfString("lproj") != nil && syncedFileUrlRes.rangeOfString("Base.lproj") == nil) {
-                _languageCode = "-" + NSBundle.mainBundle().preferredLocalizations[0]
+            if (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
+                _languageCode = "-" + Bundle.main.preferredLocalizations[0]
             }
             
             //--
             //If File does not exist
-            if (NSFileManager.defaultManager().fileExistsAtPath(self.syncedFileUrl.path!) == false) {
+            if (FileManager.default.fileExists(atPath: self.syncedFileUrl.path) == false) {
                 do {
-                    try NSFileManager.defaultManager().copyItemAtURL(NSURL(fileURLWithPath: syncedFileUrlRes), toURL: syncedFileUrl);
+                    try FileManager.default.copyItem(at: URL(fileURLWithPath: syncedFileUrlRes), to: syncedFileUrl);
                     //--
                     hasToSync = false; // NO Sync required, if new file created
                 } catch  {
@@ -137,7 +131,7 @@ public class SyncEngine: NSObject {
         
         
         //Fetching Data
-        _dictData = NSMutableDictionary(contentsOfURL: self.syncedFileUrl);//NSDictionary(contentsOfURL: self.syncedFileUrl);
+        _dictData = NSMutableDictionary(contentsOf: self.syncedFileUrl);//NSDictionary(contentsOfURL: self.syncedFileUrl);
         
         if (hasToSync) {
             #if DEBUG
@@ -177,11 +171,11 @@ public class SyncEngine: NSObject {
     } //F.E.
     */
     
-    public class func objectForKey<T>(aKey: String?) -> T? {
+    open class func objectForKey<T>(_ aKey: String?) -> T? {
         return SyncEngine.sharedInstance.objectForKey(aKey);
     } //F.E.
     
-    internal func objectForKey<T>(aKey: String?) -> T? {
+    internal func objectForKey<T>(_ aKey: String?) -> T? {
         guard (aKey != nil) else {
             return nil;
         }
@@ -189,15 +183,15 @@ public class SyncEngine: NSObject {
         if (_isCustomData) {
             return self.customObjectForKey(aKey!);
         } else {
-            return _dictData?.objectForKey(aKey!) as? T;
+            return _dictData?.object(forKey: aKey!) as? T;
         }
     } //F.E.
     
-    public class func syncObject(anObject: AnyObject, forKey aKey: String) {
+    open class func syncObject(_ anObject: AnyObject, forKey aKey: String) {
         return SyncEngine.sharedInstance.syncObject(anObject, forKey:aKey);
     } //F.E.
     
-    internal func syncObject(anObject: AnyObject, forKey aKey: String) {
+    internal func syncObject(_ anObject: AnyObject, forKey aKey: String) {
         if (_isCustomData) {
             self.syncForCustomData([aKey:anObject]);
         } else {
@@ -205,8 +199,8 @@ public class SyncEngine: NSObject {
         }
     } //F.E.
     
-    private func syncFromResource(hasToOverride override:Bool = false) {
-        let syncedFileUrlRes:String = NSBundle.mainBundle().pathForResource(self.syncedFile, ofType: "plist")!
+    fileprivate func syncFromResource(hasToOverride override:Bool = false) {
+        let syncedFileUrlRes:String = Bundle.main.path(forResource: self.syncedFile, ofType: "plist")!
         
         //Sync file from Resource folder
         let resDictData:NSDictionary = NSDictionary(contentsOfFile: syncedFileUrlRes)!;
@@ -235,7 +229,7 @@ public class SyncEngine: NSObject {
                 if (resDictData[key] == nil) {
                     
                     //Removing extra key
-                    _dictData!.removeObjectForKey(key);
+                    _dictData!.removeObject(forKey: key);
                     
                     //Flagging on for hasUpdate so that it can be synchronized
                     _hasUpdate = true;
@@ -247,7 +241,7 @@ public class SyncEngine: NSObject {
         self.synchronize();
     } //F.E.
     
-    internal func syncForData(dict:NSDictionary) -> Bool {
+    @discardableResult internal func syncForData(_ dict:NSDictionary) -> Bool {
         if (dict.count == 0) {
             return false;
         }
@@ -256,7 +250,7 @@ public class SyncEngine: NSObject {
         
         for key:String in allKeys {
             //??if _dictData!.objectForKey(key) != nil {
-                let nValue:AnyObject = dict.objectForKey(key)!;
+                let nValue:AnyObject = dict.object(forKey: key)! as AnyObject;
                 //--
                 _dictData![key] = nValue;
             //??}
@@ -267,24 +261,24 @@ public class SyncEngine: NSObject {
         return true;
     } //F.E.
     
-    private func synchronize(forced:Bool = false) {
+    fileprivate func synchronize(_ forced:Bool = false) {
         if (_hasUpdate || forced) {
             
             //Flagging off
             _hasUpdate = false;
             
             //Updating files
-            _dictData?.writeToURL(self.syncedFileUrl, atomically: true);
+            _dictData?.write(to: self.syncedFileUrl, atomically: true);
         }
     } //F.E.
     
-    private var hasSyncThresholdTimePassed:Bool {
+    fileprivate var hasSyncThresholdTimePassed:Bool {
         get {
-            let currDate:NSDate = NSDate();
+            let currDate:Date = Date();
             //--
-            if let lastResponseDate:NSDate = self.lastSyncedResponseDate {
+            if let lastResponseDate:Date = self.lastSyncedResponseDate {
                 //60 * 60 * 2 - two hours
-                return (currDate.timeIntervalSinceDate(lastResponseDate) >=  Double(7200));
+                return (currDate.timeIntervalSince(lastResponseDate) >=  Double(7200));
                 
             } else {
                 return true;
@@ -292,11 +286,11 @@ public class SyncEngine: NSObject {
         }
     } //F.E.
     
-    public class func syncData() {
+    open class func syncData() {
         SyncEngine.sharedInstance.syncData();
     } //F.E.
     
-    private func syncData() {
+    fileprivate func syncData() {
         guard _urlToSync != nil else {
             
             print("Not initialized or invalid url path is provided; Call/Check SyncEngine.initialize(:) in application(didFinishLaunchingWithOptions:)");
@@ -309,17 +303,17 @@ public class SyncEngine: NSObject {
         }
     } //F.E.
     
-    private func syncDataRequest() {
-        let langSuff:String = NSBundle.mainBundle().preferredLocalizations[0];
+    fileprivate func syncDataRequest() {
+        let langSuff:String = Bundle.main.preferredLocalizations[0];
         let params:NSMutableString = NSMutableString(string: "language=\(langSuff)");
         
         if let lastUpdatedAt:String = self.lastSyncedServerDate {
-            params.appendString("&updated_at=\(lastUpdatedAt)");
+            params.append("&updated_at=\(lastUpdatedAt)");
         }
         
-        let request = NSMutableURLRequest(URL: _urlToSync);
+        var request = URLRequest(url: _urlToSync);
         
-        request.HTTPMethod = "POST";
+        request.httpMethod = "POST";
         
         //Content Type
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type");
@@ -331,25 +325,21 @@ public class SyncEngine: NSObject {
         }
         
         //HTTP Body
-        request.HTTPBody = params.dataUsingEncoding(NSUTF8StringEncoding);
+        request.httpBody = params.data(using: String.Encoding.utf8.rawValue);
         
         //Request Time Out
         request.timeoutInterval = 30;
         
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration();
-        let session = NSURLSession(configuration: config)
-        
-        let task = session.dataTaskWithRequest(request, completionHandler: {(data:NSData?, response:NSURLResponse?, error:NSError?) in
+        URLSession.shared.dataTask(with: request) {data, response, error in
             if (error == nil) {
-                
                 do {
-                    if let dictData:NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary {
+                    if let dictData:NSDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary {
                         
                         let error:Int = dictData["error"] as? Int ?? 0;
                         let message:String? = dictData["message"] as? String;
                         
                         //If Has data and no error ... !
-                        if let resData:NSDictionary = dictData["data"] as? NSDictionary where error == 0{
+                        if let resData:NSDictionary = dictData["data"] as? NSDictionary , error == 0{
                             self.syncForServerData(resData);
                         } else {
                             print("message : \(message)");
@@ -360,20 +350,17 @@ public class SyncEngine: NSObject {
                     print("INVALID JSON");
                 }
             } else {
-                print("Error : \(error?.localizedDescription)"); //
-                error?.description
+                print("Error : \(error?.localizedDescription)");
             }
-        });
-        
-        task.resume();
+        }.resume();
     } //F.E.
     
-    private func syncForServerData(dict:NSDictionary) {
+    fileprivate func syncForServerData(_ dict:NSDictionary) {
        //Updating server updated date
         self.lastSyncedServerDate = dict["updated_at"] as? String;
         
         //Updating server response date - local
-        self.lastSyncedResponseDate = NSDate();
+        self.lastSyncedResponseDate = Date();
         
         
         if let syncData:NSDictionary =  dict["sync_data"] as? NSDictionary {
@@ -416,32 +403,32 @@ public class SyncEngine: NSObject {
         }
     } //P.E.
  
-    private func setupCustomSyncedFile() {
+    fileprivate func setupCustomSyncedFile() {
         _dictData = NSMutableDictionary();
     } //F.E.
     
-    private func customObjectForKey<T>(aKey: String) -> T? {
-        let rtnData:T? = _dictData?.objectForKey(aKey) as? T;
+    fileprivate func customObjectForKey<T>(_ aKey: String) -> T? {
+        let rtnData:T? = _dictData?.object(forKey: aKey) as? T;
         
         if (rtnData == nil) {
             
-            if let syncedFileUrlRes = NSBundle.mainBundle().pathForResource(aKey, ofType: "plist") {
+            if let syncedFileUrlRes = Bundle.main.path(forResource: aKey, ofType: "plist") {
                 
                 var languageCode:String = "";
                 
                 //Localization
-                if (syncedFileUrlRes.rangeOfString("lproj") != nil && syncedFileUrlRes.rangeOfString("Base.lproj") == nil) {
-                    languageCode = "-" + NSBundle.mainBundle().preferredLocalizations[0]
+                if (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
+                    languageCode = "-" + Bundle.main.preferredLocalizations[0]
                 }
                 
-                let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(aKey+languageCode).plist")!;
+                let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(aKey+languageCode).plist");
                 //--
-                var isFileExist:Bool = NSFileManager.defaultManager().fileExistsAtPath(url.path!);
+                var isFileExist:Bool = FileManager.default.fileExists(atPath: url.path);
                 
                 #if DEBUG
                     if (isFileExist) {
                         do {
-                            try NSFileManager.defaultManager().removeItemAtURL(url);
+                            try FileManager.default.removeItem(at: url);
                         } catch  {
                             let nserror = error as NSError
                             NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
@@ -455,7 +442,7 @@ public class SyncEngine: NSObject {
                 //If File does not exist
                 if (isFileExist == false) {
                     do {
-                        try NSFileManager.defaultManager().copyItemAtURL(NSURL(fileURLWithPath: syncedFileUrlRes), toURL: url);
+                        try FileManager.default.copyItem(at: URL(fileURLWithPath: syncedFileUrlRes), to: url);
                     } catch  {
                         let nserror = error as NSError
                         NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
@@ -464,12 +451,12 @@ public class SyncEngine: NSObject {
                 }
                 
                 //Fetching Data
-                if let arr = NSMutableArray(contentsOfURL: url) {
-                    _dictData?.setObject(arr, forKey: aKey);
+                if let arr = NSMutableArray(contentsOf: url) {
+                    _dictData?.setObject(arr, forKey: aKey as NSCopying);
                     //--
                     return arr as? T;
-                } else if let dict = NSMutableDictionary(contentsOfURL: url) {
-                    _dictData?.setObject(dict, forKey: aKey);
+                } else if let dict = NSMutableDictionary(contentsOf: url) {
+                    _dictData?.setObject(dict, forKey: aKey as NSCopying);
                     //--
                     return dict as? T;
                 }
@@ -483,7 +470,7 @@ public class SyncEngine: NSObject {
         return rtnData;
     } //F.E.
     
-    private func syncForCustomData(dict:NSDictionary) -> Bool {
+    @discardableResult fileprivate func syncForCustomData(_ dict:NSDictionary) -> Bool {
         if (dict.count == 0) {
             return false;
         }
@@ -491,21 +478,21 @@ public class SyncEngine: NSObject {
         let allKeys:[String] = dict.allKeys as! [String];
         
         for key:String in allKeys {
-            let nValue:AnyObject = dict.objectForKey(key)!;
+            let nValue:AnyObject = dict.object(forKey: key)! as AnyObject;
             
-            if _dictData?.objectForKey(key) != nil {
+            if _dictData?.object(forKey: key) != nil {
                 _dictData![key] = nValue;
             }
             
             //Localization
             var languageCode:String = "";
-            if let syncedFileUrlRes = NSBundle.mainBundle().pathForResource(key, ofType: "plist") where (syncedFileUrlRes.rangeOfString("lproj") != nil && syncedFileUrlRes.rangeOfString("Base.lproj") == nil) {
+            if let syncedFileUrlRes = Bundle.main.path(forResource: key, ofType: "plist") , (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
                 //Localization
-                languageCode = "-" + NSBundle.mainBundle().preferredLocalizations[0];
+                languageCode = "-" + Bundle.main.preferredLocalizations[0];
             }
             //-
-            let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(key+languageCode).plist")!;
-            nValue.writeToURL(url, atomically: true);
+            let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(key+languageCode).plist");
+            _ = nValue.write(to: url, atomically: true);
         }
         
         return true;

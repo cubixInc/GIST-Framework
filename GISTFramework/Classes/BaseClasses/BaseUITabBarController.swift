@@ -9,15 +9,15 @@
 import UIKit
 
 //FOR NOW, DOING NOTHING IN THIS CLASS
-public class BaseUITabBarController: UITabBarController {
+open class BaseUITabBarController: UITabBarController {
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
     }
 
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

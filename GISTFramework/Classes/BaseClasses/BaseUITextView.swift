@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class BaseUITextView: UITextView, BaseView {
+open class BaseUITextView: UITextView, BaseView {
 
-    @IBInspectable public var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = false;
     
-    @IBInspectable public var bgColorStyle:String? = nil {
+    @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
-    @IBInspectable public var border:Int = 0 {
+    @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
@@ -26,7 +26,7 @@ public class BaseUITextView: UITextView, BaseView {
         }
     }
     
-    @IBInspectable public var borderColorStyle:String? = nil {
+    @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
@@ -34,13 +34,13 @@ public class BaseUITextView: UITextView, BaseView {
         }
     }
     
-    @IBInspectable public var cornerRadius:Int = 0 {
+    @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
-    @IBInspectable public var rounded:Bool = false {
+    @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
                 self.addRoundedCorners();
@@ -48,7 +48,7 @@ public class BaseUITextView: UITextView, BaseView {
         }
     }
     
-    @IBInspectable public var hasDropShadow:Bool = false {
+    @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
                 self.addDropShadow();
@@ -58,31 +58,31 @@ public class BaseUITextView: UITextView, BaseView {
         }
     }
     
-    @IBInspectable public var fontName:String = "fontRegular" {
+    @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
-    @IBInspectable public var fontStyle:String = "medium" {
+    @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
-    @IBInspectable public var fontColorStyle:String? = nil {
+    @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
             self.textColor = SyncedColors.color(forKey: fontColorStyle);
         }
     }
     
-    @IBInspectable public var placeholderColorStyle:String? = nil {
+    @IBInspectable open var placeholderColorStyle:String? = nil {
         didSet {
             self.lblPlaceholder.textColor = SyncedColors.color(forKey: placeholderColorStyle);
         }
     } //P.E.
     
-    @IBInspectable public var placeholder:String? {
+    @IBInspectable open var placeholder:String? {
         set {
             if (newValue != nil) {
                 self.lblPlaceholder.text = newValue;
@@ -106,14 +106,14 @@ public class BaseUITextView: UITextView, BaseView {
         }
     } //P.E.
     
-    public override var text: String! {
+    open override var text: String! {
         didSet {
             self.updatePlaceholderState();
         }
     }
     
-    private var _lblPlaceholder:BaseUILabel?
-    private var lblPlaceholder:BaseUILabel {
+    fileprivate var _lblPlaceholder:BaseUILabel?
+    fileprivate var lblPlaceholder:BaseUILabel {
         get {
             
             if (_lblPlaceholder == nil) {
@@ -125,7 +125,7 @@ public class BaseUITextView: UITextView, BaseView {
                 _lblPlaceholder!.fontStyle = self.fontStyle;
                 
                 _lblPlaceholder!.textColor = UIColor(white: 0.80, alpha: 1);
-                _lblPlaceholder!.backgroundColor = UIColor.clearColor();
+                _lblPlaceholder!.backgroundColor = UIColor.clear;
                 //--
                 self.addSubview(_lblPlaceholder!);
                 //--
@@ -146,19 +146,19 @@ public class BaseUITextView: UITextView, BaseView {
         super.init(coder: aDecoder);
     }
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.commonInit()
     } //F.E.
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         //-
         self.updatePlaceholderState();
     }
     
-    public func updateView()  {
+    open func updateView()  {
         
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
@@ -178,14 +178,14 @@ public class BaseUITextView: UITextView, BaseView {
         _lblPlaceholder?.updateView();
     } //F.E.
     
-    private func updatePlaceholderState() {
+    fileprivate func updatePlaceholderState() {
         //Checking if _lblPlaceholder is initialized or not
         if (_lblPlaceholder != nil) {
-            self.lblPlaceholder.hidden = (self.text.characters.count > 0);
+            self.lblPlaceholder.isHidden = (self.text.characters.count > 0);
         }
     } //F.E.
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews();
         //--
         if rounded {
@@ -194,16 +194,16 @@ public class BaseUITextView: UITextView, BaseView {
     } //F.E.
     
     //MARK: - Text change Observer Handling
-    private func addTextDidChangeObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(textDidChangeObserver), name: UITextViewTextDidChangeNotification, object: nil);
+    fileprivate func addTextDidChangeObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeObserver), name: NSNotification.Name.UITextViewTextDidChange, object: nil);
     } //F.E.
     
-    private func removeTextDidChangeObserver() {
-        NSNotificationCenter.defaultCenter().removeObserver(self);
+    fileprivate func removeTextDidChangeObserver() {
+        NotificationCenter.default.removeObserver(self);
     } //F.E.
 
     //MARK: - Observer
-    internal func textDidChangeObserver(notification:NSNotification) {
+    internal func textDidChangeObserver(_ notification:Notification) {
         if (self.placeholder == nil) {
             return;
         }

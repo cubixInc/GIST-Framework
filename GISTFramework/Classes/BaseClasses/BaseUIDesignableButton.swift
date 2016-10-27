@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class BaseUIDesignableButton: BaseUIButton {
+open class BaseUIDesignableButton: BaseUIButton {
    
-    private var _view: UIView! // NOT USING BASE CLASS HERE SO THAT THERE SHOULD NOT BE DEPENDENCY ISSUE
+    fileprivate var _view: UIView! // NOT USING BASE CLASS HERE SO THAT THERE SHOULD NOT BE DEPENDENCY ISSUE
     //--
     override init(frame: CGRect) {
         super.init(frame: frame);
@@ -26,32 +26,32 @@ public class BaseUIDesignableButton: BaseUIButton {
         self.xibSetup();
     } //F.E.
     
-    override public func updateView() {
+    override open func updateView() {
         super.updateView();
         //--
         (_view as? BaseView)?.updateView();
     } //F.E.
     
     //MARK: - Setup Custom View
-    private func xibSetup() {
+    fileprivate func xibSetup() {
         let nib = getNib();
         //--
         _view = UIView.loadDynamicViewWithNib(nib.nibName, viewIndex: nib.viewIndex, owner: self) as! UIView;
         
         //Disabling the interaction for subview
-        _view.userInteractionEnabled = false;
+        _view.isUserInteractionEnabled = false;
         
         // use bounds, Not frame
         _view.frame = bounds;
         
         // Make the view stretch with containing view
-        _view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight];
+        _view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight];
         
         // Adding custom subview on top of our view
         self.addSubview(_view);
     }//F.E.
     
-    public func getNib() -> (nibName:String, viewIndex:Int) {
+    open func getNib() -> (nibName:String, viewIndex:Int) {
         assert(false, "Override this method in your class");
         return ("", 0);
     }//F.E.

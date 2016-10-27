@@ -18,21 +18,21 @@ private class CustomUIImageView: BaseUIImageView {
             //Cleaning Up
             super.image = UIImage();
             //--
-            self.image = UIImage(CGImage:cImg.CGImage!, scale: cImg.scale, orientation:cImg.imageOrientation);
+            self.image = UIImage(cgImage:cImg.cgImage!, scale: cImg.scale, orientation:cImg.imageOrientation);
         }
     } //F.E.
     
-    private var _imageView:UIImageView?;
+    fileprivate var _imageView:UIImageView?;
     var imageView:UIImageView? {
         get {
             if (_imageView == nil) {
                 _imageView = UIImageView();
-                _imageView!.backgroundColor = UIColor.clearColor();
+                _imageView!.backgroundColor = UIColor.clear;
                 self.addSubview(_imageView!);
                 //--
                 //??self.clipsToBounds = true;
                 //--
-                self.sendSubviewToBack(_imageView!);
+                self.sendSubview(toBack: _imageView!);
             }
             //--
             return _imageView!;
@@ -43,7 +43,7 @@ private class CustomUIImageView: BaseUIImageView {
         }
     } //P.E.
     
-    private var imageViewFrame:CGRect {
+    fileprivate var imageViewFrame:CGRect {
         get {
             
             var rFrame:CGRect = CGRect();
@@ -53,59 +53,59 @@ private class CustomUIImageView: BaseUIImageView {
                 //--
                 let imgRatio:CGFloat = (imgSize.height / imgSize.width);
                 //--
-                if ((self.contentMode != UIViewContentMode.ScaleAspectFit) && (self.contentMode != UIViewContentMode.ScaleAspectFill)  && (self.contentMode != UIViewContentMode.ScaleToFill)) {
+                if ((self.contentMode != UIViewContentMode.scaleAspectFit) && (self.contentMode != UIViewContentMode.scaleAspectFill)  && (self.contentMode != UIViewContentMode.scaleToFill)) {
                     rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
                     rFrame.size.height =  imgRatio * rFrame.width;
                 }
                 //--
                 switch (self.contentMode) {
                     
-                case .Top:
+                case .top:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width)/2.0;
                     rFrame.origin.y = 0;
                     break;
                     
-                case .TopLeft:
+                case .topLeft:
                     rFrame.origin.x = 0;
                     rFrame.origin.y = 0;
                     break;
                     
-                case .TopRight:
+                case .topRight:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width);
                     rFrame.origin.y = 0;
                     break;
                     
-                case .Bottom:
+                case .bottom:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width)/2.0;
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height);
                     break;
                     
-                case .BottomLeft:
+                case .bottomLeft:
                     rFrame.origin.x = 0;
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height);
                     break;
                     
-                case .BottomRight:
+                case .bottomRight:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width);
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height);
                     break;
                     
-                case .Left:
+                case .left:
                     rFrame.origin.x = 0;
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height)/2.0;
                     break;
                     
-                case .Right:
+                case .right:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width);
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height)/2.0;
                     break;
                     
-                case .ScaleToFill:
+                case .scaleToFill:
                     rFrame.origin = CGPoint.zero;
                     rFrame.size = self.frame.size;
                     break;
                     
-                case .ScaleAspectFit:
+                case .scaleAspectFit:
                     if (imgSize.width > imgSize.height) {
                         rFrame.size.width = self.frame.size.width;
                         rFrame.size.height =  imgRatio * rFrame.width;
@@ -117,7 +117,7 @@ private class CustomUIImageView: BaseUIImageView {
                     rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width)/2.0,y: (self.frame.size.height - rFrame.size.height)/2.0);
                     break;
                     
-                case .ScaleAspectFill:
+                case .scaleAspectFill:
                     if (imgSize.width < imgSize.height) {
                         rFrame.size.width = self.frame.size.width;
                         rFrame.size.height =  imgRatio * rFrame.size.width;

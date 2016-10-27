@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class BaseUILabel: UILabel, BaseView {
+open class BaseUILabel: UILabel, BaseView {
     
-    @IBInspectable public var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = false;
     
-    @IBInspectable public var bgColorStyle:String? = nil {
+    @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
-    @IBInspectable public var border:Int = 0 {
+    @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
@@ -26,7 +26,7 @@ public class BaseUILabel: UILabel, BaseView {
         }
     }
     
-    @IBInspectable public var borderColorStyle:String? = nil {
+    @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
@@ -34,13 +34,13 @@ public class BaseUILabel: UILabel, BaseView {
         }
     }
     
-    @IBInspectable public var cornerRadius:Int = 0 {
+    @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
-    @IBInspectable public var rounded:Bool = false {
+    @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
                 self.addRoundedCorners();
@@ -48,7 +48,7 @@ public class BaseUILabel: UILabel, BaseView {
         }
     }
     
-    @IBInspectable public var hasDropShadow:Bool = false {
+    @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
                 self.addDropShadow();
@@ -58,11 +58,11 @@ public class BaseUILabel: UILabel, BaseView {
         }
     }
     
-    @IBInspectable public var underlinedText:Bool = false {
+    @IBInspectable open var underlinedText:Bool = false {
         didSet {
             if (underlinedText) {
-                let attString:NSMutableAttributedString=NSMutableAttributedString(string: (self.text?.capitalizedString)! as String)
-                attString.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue , range: NSRange(location: 0, length: attString.length))
+                let attString:NSMutableAttributedString=NSMutableAttributedString(string: (self.text?.capitalized)! as String)
+                attString.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue , range: NSRange(location: 0, length: attString.length))
                 self.attributedText = attString
             } else {
                 // TO HANDLER
@@ -70,32 +70,32 @@ public class BaseUILabel: UILabel, BaseView {
         }
     }
     
-    @IBInspectable public var fontName:String = "fontRegular" {
+    @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
-    @IBInspectable public var fontStyle:String = "medium" {
+    @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
-    @IBInspectable public var fontColorStyle:String? = nil {
+    @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
             self.textColor = SyncedColors.color(forKey: fontColorStyle);
         }
     }
     
-    private var _textKey: String?
-    override public var text: String? {
+    fileprivate var _textKey: String?
+    override open var text: String? {
         get {
             return super.text;
         }
         
         set {
-            if let key:String = newValue where key.hasPrefix("#") == true {
+            if let key:String = newValue , key.hasPrefix("#") == true {
                 _textKey = key; // holding key for using later
                 
                 super.text = SyncedText.text(forKey: key);
@@ -115,24 +115,24 @@ public class BaseUILabel: UILabel, BaseView {
         super.init(coder: aDecoder);
     } //C.E.
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commontInit();
     } //F.E.
     
-    private func commontInit() {
+    fileprivate func commontInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         //Updating text with synced data
-        if let txt:String = self.text where txt.hasPrefix("#") == true {
+        if let txt:String = self.text , txt.hasPrefix("#") == true {
             self.text = txt; // Assigning again to set value from synced data
         } else if _textKey != nil {
             self.text = _textKey;
         }
     } //F.E.
     
-    public func updateView() {
+    open func updateView() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         if let bgCStyle:String = self.bgColorStyle {
@@ -152,7 +152,7 @@ public class BaseUILabel: UILabel, BaseView {
         }
     } //F.E.
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews();
         //--
         //Referesh on update layout

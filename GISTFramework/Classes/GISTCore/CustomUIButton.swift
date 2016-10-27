@@ -8,16 +8,16 @@
 
 import UIKit
 
-public class CustomUIButton: BaseUIButton {
+open class CustomUIButton: BaseUIButton {
     
-    @IBInspectable public var imgBgColorStyle:String? = nil {
+    @IBInspectable open var imgBgColorStyle:String? = nil {
         didSet {
             self.imageView?.backgroundColor = SyncedColors.color(forKey: imgBgColorStyle);
         }
     }
     
-    private var _titleOffSet:CGPoint = CGPoint.zero;
-    @IBInspectable public var titleOffSet:CGPoint {
+    fileprivate var _titleOffSet:CGPoint = CGPoint.zero;
+    @IBInspectable open var titleOffSet:CGPoint {
         set {
             _titleOffSet = newValue;
         }
@@ -27,8 +27,8 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    private var _containtOffSet:CGPoint = CGPoint.zero;
-    @IBInspectable public var containtOffSet:CGPoint {
+    fileprivate var _containtOffSet:CGPoint = CGPoint.zero;
+    @IBInspectable open var containtOffSet:CGPoint {
         set {
             _containtOffSet = newValue;
         }
@@ -38,8 +38,8 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    private var _containtCenter:Bool = true;
-    @IBInspectable public var containtCenter:Bool {
+    fileprivate var _containtCenter:Bool = true;
+    @IBInspectable open var containtCenter:Bool {
         set {
             _containtCenter = newValue;
         }
@@ -49,8 +49,8 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    private var _reversedOrder:Bool = false;
-    @IBInspectable public var reversedOrder:Bool {
+    fileprivate var _reversedOrder:Bool = false;
+    @IBInspectable open var reversedOrder:Bool {
         set {
             _reversedOrder = newValue;
         }
@@ -60,7 +60,7 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    @IBInspectable public var imageFixedSize:CGSize = CGSize.zero;
+    @IBInspectable open var imageFixedSize:CGSize = CGSize.zero;
     
     internal var offSetFix:CGPoint {
         get {
@@ -72,7 +72,7 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    public var imageViewFrame:CGRect {
+    open var imageViewFrame:CGRect {
         get {
             
             var rFrame:CGRect = CGRect();
@@ -109,7 +109,7 @@ public class CustomUIButton: BaseUIButton {
                 switch (self.contentMode)
                 {
                     
-                case .Top:
+                case .top:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0;
                     
                     if (_reversedOrder) {
@@ -119,7 +119,7 @@ public class CustomUIButton: BaseUIButton {
                     }
                     break;
                     
-                case .TopLeft:
+                case .topLeft:
                     if (_reversedOrder) {
                         rFrame.origin.x = _containtOffSet.x + offSetFix.x;
                         rFrame.origin.y = _containtOffSet.y + offSetFix.y;
@@ -129,7 +129,7 @@ public class CustomUIButton: BaseUIButton {
                     }
                     break;
                     
-                case .TopRight:
+                case .topRight:
                     if (_reversedOrder) {
                         rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
                         rFrame.origin.y = _containtOffSet.y + offSetFix.y;
@@ -139,7 +139,7 @@ public class CustomUIButton: BaseUIButton {
                     }
                     break;
                     
-                case .Bottom:
+                case .bottom:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0;
                     
                     if (_reversedOrder) {
@@ -149,7 +149,7 @@ public class CustomUIButton: BaseUIButton {
                     }
                     break;
                     
-                case .BottomLeft:
+                case .bottomLeft:
                     if (_reversedOrder) {
                         rFrame.origin.x = _containtOffSet.x + offSetFix.x;
                         rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
@@ -159,7 +159,7 @@ public class CustomUIButton: BaseUIButton {
                     }
                     break;
                     
-                case .BottomRight:
+                case .bottomRight:
                     if (_reversedOrder) {
                         rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
                         rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
@@ -169,7 +169,7 @@ public class CustomUIButton: BaseUIButton {
                     }
                     break;
                     
-                case .Left:
+                case .left:
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0;
                     
                     if (_reversedOrder) {
@@ -179,7 +179,7 @@ public class CustomUIButton: BaseUIButton {
                     }
                     break;
                     
-                case .Right:
+                case .right:
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0;
                     
                     if (_reversedOrder) {
@@ -207,7 +207,7 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    public var titleLabelFrame:CGRect {
+    open var titleLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.titleOffSet;
             //--
@@ -234,7 +234,7 @@ public class CustomUIButton: BaseUIButton {
         }
     } //F.E.
     
-    override public var contentMode:UIViewContentMode {
+    override open var contentMode:UIViewContentMode {
         get {
             return super.contentMode;
         }
@@ -244,7 +244,7 @@ public class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews();
         //--
         self.titleLabel!.sizeToFit();

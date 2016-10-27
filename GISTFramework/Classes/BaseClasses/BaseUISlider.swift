@@ -8,31 +8,31 @@
 
 import UIKit
 
-public class BaseUISlider: UISlider, BaseView {
+open class BaseUISlider: UISlider, BaseView {
 
-    @IBInspectable public var minColorStyle:String? = nil {
+    @IBInspectable open var minColorStyle:String? = nil {
         didSet {
             self.minimumTrackTintColor = SyncedColors.color(forKey: minColorStyle);
         }
     }
     
-    @IBInspectable public var maxColorStyle:String? = nil {
+    @IBInspectable open var maxColorStyle:String? = nil {
         didSet {
             self.maximumTrackTintColor = SyncedColors.color(forKey: maxColorStyle);
         }
     }
     
-    @IBInspectable public var thumbColorStyle:String? = nil {
+    @IBInspectable open var thumbColorStyle:String? = nil {
         didSet {
             self.thumbTintColor = SyncedColors.color(forKey: thumbColorStyle);
         }
     }
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib();
     } //F.E.
     
-    public func updateView() {
+    open func updateView() {
         if let minCStyle = self.minColorStyle {
             self.minColorStyle = minCStyle;
         }

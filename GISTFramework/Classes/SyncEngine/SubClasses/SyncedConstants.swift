@@ -8,29 +8,24 @@
 
 import UIKit
 
-public class SyncedConstants: SyncEngine {
+open class SyncedConstants: SyncEngine {
+    
+    fileprivate static var _sharedInstance: SyncedConstants = SyncedConstants();
     class override var sharedInstance: SyncedConstants {
-        struct Static {
-            static var instance: SyncedConstants?
-            static var token: dispatch_once_t = 0
+        get {
+            return self._sharedInstance;
         }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = SyncedConstants();
-        }
-        
-        return Static.instance!
     } //P.E.
     
-    public class func syncForData(dict:NSDictionary) -> Bool {
+    @discardableResult open class func syncForData(_ dict:NSDictionary) -> Bool {
         return SyncedConstants.sharedInstance.syncForData(dict);
     } //F.E.
     
-    public class func constant<T>(forKey key: String?) -> T? {
+    open class func constant<T>(forKey key: String?) -> T? {
         return SyncedConstants.sharedInstance.objectForKey(key);
     } //F.E.
     
-    public override class func objectForKey<T>(aKey: String?) -> T? {
+    open override class func objectForKey<T>(_ aKey: String?) -> T? {
         return SyncedConstants.sharedInstance.objectForKey(aKey);
     } //F.E.
     

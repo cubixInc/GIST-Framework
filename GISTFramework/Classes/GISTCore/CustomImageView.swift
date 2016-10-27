@@ -11,21 +11,21 @@ import UIKit
 //??@available(*, deprecated, message="use CustomUIImageView class instead")
 //Now this class is available again, due to some bugs found in the CustomUIImageView
 
-public class CustomImageView: BaseUIView {
+open class CustomImageView: BaseUIView {
 
-    @IBInspectable public var imageFixedSize:CGSize = CGSize.zero;
+    @IBInspectable open var imageFixedSize:CGSize = CGSize.zero;
     
-    private var _imageView:UIImageView?;
-    public var imageView:UIImageView? {
+    fileprivate var _imageView:UIImageView?;
+    open var imageView:UIImageView? {
         get {
             if (_imageView == nil) {
                 _imageView = UIImageView();
-                _imageView!.backgroundColor = UIColor.clearColor();
+                _imageView!.backgroundColor = UIColor.clear;
                 self.addSubview(_imageView!);
                 //--
                 //??self.clipsToBounds = true;
                 //--
-                self.sendSubviewToBack(_imageView!);
+                self.sendSubview(toBack: _imageView!);
             }
             //--
             return _imageView!;
@@ -36,7 +36,7 @@ public class CustomImageView: BaseUIView {
         }
     } //P.E.
 
-    private var imageViewFrame:CGRect {
+    fileprivate var imageViewFrame:CGRect {
         get {
             
             var rFrame:CGRect = CGRect();
@@ -46,7 +46,7 @@ public class CustomImageView: BaseUIView {
                 //--
                 let imgRatio:CGFloat = (imgSize.height / imgSize.width);
                 //--
-                if ((self.contentMode != UIViewContentMode.ScaleAspectFit) && (self.contentMode != UIViewContentMode.ScaleAspectFill)  && (self.contentMode != UIViewContentMode.ScaleToFill)) {
+                if ((self.contentMode != UIViewContentMode.scaleAspectFit) && (self.contentMode != UIViewContentMode.scaleAspectFill)  && (self.contentMode != UIViewContentMode.scaleToFill)) {
                     
                     if (self.imageFixedSize.height > 0 && self.imageFixedSize.width > 0) {
                         //Height and Width both are fixed
@@ -70,52 +70,52 @@ public class CustomImageView: BaseUIView {
                 //--
                 switch (self.contentMode) {
                     
-                case .Top:
+                case .top:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width)/2.0;
                     rFrame.origin.y = 0;
                     break;
                     
-                case .TopLeft:
+                case .topLeft:
                     rFrame.origin.x = 0;
                     rFrame.origin.y = 0;
                     break;
                     
-                case .TopRight:
+                case .topRight:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width);
                     rFrame.origin.y = 0;
                     break;
                     
-                case .Bottom:
+                case .bottom:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width)/2.0;
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height);
                     break;
                     
-                case .BottomLeft:
+                case .bottomLeft:
                     rFrame.origin.x = 0;
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height);
                     break;
                     
-                case .BottomRight:
+                case .bottomRight:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width);
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height);
                     break;
                     
-                case .Left:
+                case .left:
                     rFrame.origin.x = 0;
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height)/2.0;
                     break;
                     
-                case .Right:
+                case .right:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width);
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height)/2.0;
                     break;
                     
-                case .ScaleToFill:
+                case .scaleToFill:
                     rFrame.origin = CGPoint.zero;
                     rFrame.size = self.frame.size;
                     break;
                     
-                case .ScaleAspectFit:
+                case .scaleAspectFit:
                     if (imgSize.width > imgSize.height) {
                         rFrame.size.width = self.frame.size.width;
                         rFrame.size.height =  imgRatio * rFrame.width;
@@ -127,7 +127,7 @@ public class CustomImageView: BaseUIView {
                     rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width)/2.0,y: (self.frame.size.height - rFrame.size.height)/2.0);
                     break;
                 
-                case .ScaleAspectFill:
+                case .scaleAspectFill:
                     if (imgSize.width < imgSize.height) {
                         rFrame.size.width = self.frame.size.width;
                         rFrame.size.height =  imgRatio * rFrame.size.width;
@@ -154,7 +154,7 @@ public class CustomImageView: BaseUIView {
         }
     } //P.E.
     
-    override public var contentMode:UIViewContentMode {
+    override open var contentMode:UIViewContentMode {
         get {
             return super.contentMode;
         }
@@ -164,7 +164,7 @@ public class CustomImageView: BaseUIView {
         }
     } //P.E.
     
-    @IBInspectable public var image: UIImage? {
+    @IBInspectable open var image: UIImage? {
         get {
             return self.imageView!.image;
         }
@@ -175,7 +175,7 @@ public class CustomImageView: BaseUIView {
         }
     } //F.E.
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews();
         //--
         self.imageView!.frame = self.imageViewFrame;

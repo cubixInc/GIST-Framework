@@ -16,11 +16,11 @@ private class WeakRef<T: AnyObject> {
     }
 } //CLS END
 
-public class UIRadioButton: CustomUIButton {
+open class UIRadioButton: CustomUIButton {
 
     var _groupId:Int?
     
-    @IBInspectable public var groupId:Int {
+    @IBInspectable open var groupId:Int {
         get {
             return _groupId!;
         }
@@ -30,9 +30,9 @@ public class UIRadioButton: CustomUIButton {
         }
     } //P.E.
     
-    @IBInspectable public var initiallySelected:Bool = false {
+    @IBInspectable open var initiallySelected:Bool = false {
         didSet {
-            self.selected = initiallySelected;
+            self.isSelected = initiallySelected;
         }
     } //P.E.
     
@@ -52,19 +52,19 @@ public class UIRadioButton: CustomUIButton {
         super.init(coder: aDecoder);
     } //F.E.
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commonInitialization();
     } //F.E.
     
-    private func commonInitialization() {
+    fileprivate func commonInitialization() {
         assert((_groupId != nil), "Group Id must be defined");
         //--
         UIRadioButtonManager.sharedInstance.addButton(self);
     } //F.E.
     
-    class public func getSelectedButton(radioGroupId:Int) -> UIRadioButton? {
+    class open func getSelectedButton(_ radioGroupId:Int) -> UIRadioButton? {
         return UIRadioButtonManager.sharedInstance.getSelectedButton(radioGroupId);
     }//F.E.
     
@@ -76,53 +76,40 @@ public class UIRadioButton: CustomUIButton {
 
 internal class UIRadioButtonManager:NSObject {
     
-    class var sharedInstance: UIRadioButtonManager {
-        struct Static {
-            static var instance: UIRadioButtonManager?
-            static var token: dispatch_once_t = 0
-        }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = UIRadioButtonManager()
-        }
-        
-        return Static.instance!
-    } //P.E.
+    static var sharedInstance: UIRadioButtonManager = UIRadioButtonManager();
     
-    private var _mainBtnsDict:NSMutableDictionary = NSMutableDictionary();
-    
-    private var _mayHasmap:NSHashTable = NSHashTable();
+    fileprivate var _mainBtnsDict:NSMutableDictionary = NSMutableDictionary();
     
     //MARK - Adding Radio Buttons
-    func addButton(radioButton:UIRadioButton) {
+    func addButton(_ radioButton:UIRadioButton) {
         
-        radioButton.addTarget(self, action: #selector(buttonsTapHandler), forControlEvents: UIControlEvents.TouchUpInside);
+        radioButton.addTarget(self, action: #selector(buttonsTapHandler), for: UIControlEvents.touchUpInside);
         //--
-        var hashTable:NSHashTable? = _mainBtnsDict[radioButton.groupId] as? NSHashTable
+        var hashTable:NSHashTable<WeakRef<UIRadioButton>>? = _mainBtnsDict[radioButton.groupId] as? NSHashTable
         
         if (hashTable == nil) {
             hashTable = NSHashTable();
             //--
-            _mainBtnsDict[radioButton.groupId] = hashTable!;
+            _mainBtnsDict[radioButton.groupId] = hashTable! as Any?;
         }
         
-        hashTable!.addObject(WeakRef<UIRadioButton>(value: radioButton));
+        hashTable!.add(WeakRef<UIRadioButton>(value: radioButton));
     } //F.E.
     
-    func removeButton(radioButton:UIRadioButton) {
+    func removeButton(_ radioButton:UIRadioButton) {
         
-        radioButton.removeTarget(self, action: #selector(buttonsTapHandler), forControlEvents: UIControlEvents.TouchUpInside);
+        radioButton.removeTarget(self, action: #selector(buttonsTapHandler), for: UIControlEvents.touchUpInside);
         
-        if let hashTable:NSHashTable = _mainBtnsDict[radioButton.groupId] as? NSHashTable {
+        if let hashTable:NSHashTable<WeakRef<UIRadioButton>> = _mainBtnsDict[radioButton.groupId] as? NSHashTable<WeakRef<UIRadioButton>> {
             let enumerator:NSEnumerator = hashTable.objectEnumerator();
             
             while let iRadioButtonWeak:WeakRef<UIRadioButton> = enumerator.nextObject() as? WeakRef<UIRadioButton> {
                 
                 if iRadioButtonWeak.value == nil || iRadioButtonWeak.value == radioButton {
-                        hashTable.removeObject(iRadioButtonWeak);
+                        hashTable.remove(iRadioButtonWeak);
                         //--
                         if (hashTable.count == 0) {
-                            _mainBtnsDict.removeObjectForKey(radioButton.groupId);
+                            _mainBtnsDict.removeObject(forKey: radioButton.groupId);
                         }
                         //--
                         break;
@@ -131,25 +118,25 @@ internal class UIRadioButtonManager:NSObject {
         }
     } //F.E.
     
-    func buttonsTapHandler(radioButton:UIRadioButton) {
-        if let hashTable:NSHashTable = _mainBtnsDict[radioButton.groupId] as? NSHashTable {
+    func buttonsTapHandler(_ radioButton:UIRadioButton) {
+        if let hashTable:NSHashTable<WeakRef<UIRadioButton>> = _mainBtnsDict[radioButton.groupId] as? NSHashTable<WeakRef<UIRadioButton>> {
             let enumerator:NSEnumerator = hashTable.objectEnumerator();
             
             while let iRadioButtonWeak:WeakRef<UIRadioButton> = enumerator.nextObject() as? WeakRef<UIRadioButton> {
                 if let iRadioButton:UIRadioButton = iRadioButtonWeak.value {
-                    iRadioButton.selected = (iRadioButton == radioButton);
+                    iRadioButton.isSelected = (iRadioButton == radioButton);
                 }
             }
         }
     }//F.E.
     
-    func getSelectedButton(radioGroupId:Int) -> UIRadioButton? {
-        if let hashTable:NSHashTable = _mainBtnsDict[radioGroupId] as? NSHashTable {
+    func getSelectedButton(_ radioGroupId:Int) -> UIRadioButton? {
+        if let hashTable:NSHashTable<WeakRef<UIRadioButton>> = _mainBtnsDict[radioGroupId] as? NSHashTable<WeakRef<UIRadioButton>> {
             let enumerator:NSEnumerator = hashTable.objectEnumerator();
             
             while let iRadioButtonWeak:WeakRef<UIRadioButton> = enumerator.nextObject() as? WeakRef<UIRadioButton> {
                 if let iRadioButton:UIRadioButton = iRadioButtonWeak.value {
-                    if (iRadioButton.selected == true) {
+                    if (iRadioButton.isSelected == true) {
                         return iRadioButton;
                     }
                 }

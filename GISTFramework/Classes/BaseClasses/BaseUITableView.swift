@@ -8,27 +8,27 @@
 
 import UIKit
 
-public class BaseUITableView: UITableView, BaseView {
+open class BaseUITableView: UITableView, BaseView {
     
-    @IBInspectable public var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = false;
     
-    @IBInspectable public var bgColorStyle:String? = nil {
+    @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
-    @IBInspectable public var tintColorStyle:String? = nil {
+    @IBInspectable open var tintColorStyle:String? = nil {
         didSet {
             self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
     }
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
     } //F.E.
     
-    public func updateView(){
+    open func updateView(){
         if let tintCStyle = tintColorStyle {
             self.tintColorStyle = tintCStyle;
         }
@@ -38,7 +38,7 @@ public class BaseUITableView: UITableView, BaseView {
         }
     } //F.E.
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews();
     } //F.E.
     

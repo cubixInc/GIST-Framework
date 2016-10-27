@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class BaseUISearchController: UISearchController {
+open class BaseUISearchController: UISearchController {
 
-    @IBInspectable public var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = false;
     
-    @IBInspectable public var bgColorStyle:String? = nil {
+    @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.searchBar.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
-    @IBInspectable public var fontBgColorStyle:String? = nil {
+    @IBInspectable open var fontBgColorStyle:String? = nil {
         didSet {
             if let txtField:UITextField = self.searchBar.textField {
                 txtField.backgroundColor =  SyncedColors.color(forKey: fontBgColorStyle);
@@ -26,19 +26,19 @@ public class BaseUISearchController: UISearchController {
         }
     }
     
-    @IBInspectable public var tintColorStyle:String? = nil {
+    @IBInspectable open var tintColorStyle:String? = nil {
         didSet {
             self.searchBar.tintColor =  SyncedColors.color(forKey: tintColorStyle);
         }
     }
     
-    @IBInspectable public var barTintColorStyle:String? = nil {
+    @IBInspectable open var barTintColorStyle:String? = nil {
         didSet {
             self.searchBar.barTintColor =  SyncedColors.color(forKey: barTintColorStyle);
         }
     }
     
-    @IBInspectable public var border:Int = 0 {
+    @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
                 self.searchBar.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
@@ -46,7 +46,7 @@ public class BaseUISearchController: UISearchController {
         }
     }
     
-    @IBInspectable public var borderColorStyle:String? = nil {
+    @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
                 self.searchBar.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
@@ -54,13 +54,13 @@ public class BaseUISearchController: UISearchController {
         }
     }
     
-    @IBInspectable public var cornerRadius:Int = 0 {
+    @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.searchBar.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
-    @IBInspectable public var rounded:Bool = false {
+    @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
                 self.searchBar.addRoundedCorners();
@@ -68,7 +68,7 @@ public class BaseUISearchController: UISearchController {
         }
     }
     
-    @IBInspectable public var hasDropShadow:Bool = false {
+    @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
                 self.searchBar.addDropShadow();
@@ -78,7 +78,7 @@ public class BaseUISearchController: UISearchController {
         }
     }
     
-    @IBInspectable public var fontName:String = "fontRegular" {
+    @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             if let txtField:UITextField = self.searchBar.textField {
                 txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
@@ -86,7 +86,7 @@ public class BaseUISearchController: UISearchController {
         }
     }
     
-    @IBInspectable public var fontStyle:String = "medium" {
+    @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             if let txtField:UITextField = self.searchBar.textField {
                 txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
@@ -94,7 +94,7 @@ public class BaseUISearchController: UISearchController {
         }
     }
     
-    @IBInspectable public var fontColorStyle:String? = nil {
+    @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
             if let txtField:UITextField = self.searchBar.textField {
                 txtField.textColor = SyncedColors.color(forKey: fontColorStyle);
@@ -102,20 +102,20 @@ public class BaseUISearchController: UISearchController {
         }
     }
     
-    @IBInspectable public var searchBarIcon:UIImage? = nil {
+    @IBInspectable open var searchBarIcon:UIImage? = nil {
         didSet {
-            self.searchBar.setImage(searchBarIcon, forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal);
+            self.searchBar.setImage(searchBarIcon, for: UISearchBarIcon.search, state: UIControlState());
         }
     }
     
-    private var _placeholderKey:String?
-    public var placeholder: String? {
+    fileprivate var _placeholderKey:String?
+    open var placeholder: String? {
         get {
             return self.searchBar.placeholder;
         }
         
         set {
-            if let key:String = newValue where key.hasPrefix("#") == true{
+            if let key:String = newValue , key.hasPrefix("#") == true{
                 _placeholderKey = key; // holding key for using later
                 //--
                 self.searchBar.placeholder = SyncedText.text(forKey: key);
@@ -125,7 +125,7 @@ public class BaseUISearchController: UISearchController {
         }
     }
     
-    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //C.E.
     
@@ -139,28 +139,28 @@ public class BaseUISearchController: UISearchController {
         super.init(coder: aDecoder);
     } //F.E.
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commontInit();
     } //F.E.
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
     } //F.E.
 
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    private func commontInit() {
-        if let placeHoldertxt:String = self.placeholder where placeHoldertxt.hasPrefix("#") == true{
+    fileprivate func commontInit() {
+        if let placeHoldertxt:String = self.placeholder , placeHoldertxt.hasPrefix("#") == true{
             self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
         }
     } //F.E.
     
-    public func updateView() {
+    open func updateView() {
         if let plcHKey:String = _placeholderKey {
             self.placeholder = plcHKey;
         }

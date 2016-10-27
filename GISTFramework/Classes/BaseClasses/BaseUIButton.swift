@@ -8,23 +8,23 @@
 
 import UIKit
 
-public class BaseUIButton: UIButton, BaseView {
+open class BaseUIButton: UIButton, BaseView {
     
-    @IBInspectable public var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = false;
     
-    @IBInspectable public var bgColorStyle:String? = nil {
+    @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
-            self.backgroundColor = SyncedColors.color(forKey: ((self.selected == true) && (bgSelectedColorStyle != nil)) ? bgSelectedColorStyle:bgColorStyle);
+            self.backgroundColor = SyncedColors.color(forKey: ((self.isSelected == true) && (bgSelectedColorStyle != nil)) ? bgSelectedColorStyle:bgColorStyle);
         }
     }
     
-    @IBInspectable public var bgSelectedColorStyle:String? = nil {
+    @IBInspectable open var bgSelectedColorStyle:String? = nil {
         didSet {
-            self.backgroundColor = SyncedColors.color(forKey: (self.selected == true) ? bgSelectedColorStyle:bgColorStyle);
+            self.backgroundColor = SyncedColors.color(forKey: (self.isSelected == true) ? bgSelectedColorStyle:bgColorStyle);
         }
     }
 
-    @IBInspectable public var border:Int = 0 {
+    @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
@@ -32,7 +32,7 @@ public class BaseUIButton: UIButton, BaseView {
         }
     }
     
-    @IBInspectable public var borderColorStyle:String? = nil {
+    @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
@@ -40,13 +40,13 @@ public class BaseUIButton: UIButton, BaseView {
         }
     }
     
-    @IBInspectable public var cornerRadius:Int = 0 {
+    @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
-    @IBInspectable public var rounded:Bool = false {
+    @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
                 self.addRoundedCorners();
@@ -54,7 +54,7 @@ public class BaseUIButton: UIButton, BaseView {
         }
     }
     
-    @IBInspectable public var hasDropShadow:Bool = false {
+    @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
                 self.addDropShadow();
@@ -64,37 +64,37 @@ public class BaseUIButton: UIButton, BaseView {
         }
     }
     
-    @IBInspectable public var fontName:String = "fontRegular" {
+    @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
-    @IBInspectable public var fontStyle:String = "medium" {
+    @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
-    @IBInspectable public var fontColorStyle:String? = nil {
+    @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
-            self.setTitleColor(SyncedColors.color(forKey: fontColorStyle), forState: UIControlState.Normal);
+            self.setTitleColor(SyncedColors.color(forKey: fontColorStyle), for: UIControlState());
         }
     }
     
-    @IBInspectable public var fontSelectedColorStyle:String? = nil {
+    @IBInspectable open var fontSelectedColorStyle:String? = nil {
         didSet {
-            self.setTitleColor(SyncedColors.color(forKey: fontSelectedColorStyle), forState: UIControlState.Selected);
+            self.setTitleColor(SyncedColors.color(forKey: fontSelectedColorStyle), for: UIControlState.selected);
         }
     }
     
-    override public var selected:Bool {
+    override open var isSelected:Bool {
         get  {
-            return super.selected;
+            return super.isSelected;
         }
         
         set {
-            super.selected = newValue;
+            super.isSelected = newValue;
             //--
             if (bgColorStyle != nil && bgSelectedColorStyle != nil) {
                 self.backgroundColor = SyncedColors.color(forKey: (newValue == true) ? bgSelectedColorStyle:bgColorStyle);
@@ -112,26 +112,26 @@ public class BaseUIButton: UIButton, BaseView {
         super.init(coder: aDecoder);
     }
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.commontInit()
     } //F.E.
     
     func commontInit() {
-        self.exclusiveTouch = true;
+        self.isExclusiveTouch = true;
         
         self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         //Updating text with synced data
-        if let txt:String = self.titleLabel?.text where txt.hasPrefix("#") == true {
-            self.setTitle(txt, forState: state); // Assigning again to set value from synced data
+        if let txt:String = self.titleLabel?.text , txt.hasPrefix("#") == true {
+            self.setTitle(txt, for: state); // Assigning again to set value from synced data
         } else if _titleKey != nil {
-            self.setTitle(_titleKey, forState: state);
+            self.setTitle(_titleKey, for: state);
         }
     } //F.E.
     
-    public func updateView() {
+    open func updateView() {
         self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         if let bgCStyle:String = self.bgColorStyle {
@@ -151,11 +151,11 @@ public class BaseUIButton: UIButton, BaseView {
         }
         
         if let txtKey:String = _titleKey {
-            self.setTitle(txtKey, forState: state);
+            self.setTitle(txtKey, for: state);
         }
     } //F.E.
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews();
         //--
         if rounded {
@@ -163,15 +163,15 @@ public class BaseUIButton: UIButton, BaseView {
         }
     } //F.E.
     
-    private var _titleKey:String?;
+    fileprivate var _titleKey:String?;
     
-    override public func setTitle(title: String?, forState state: UIControlState) {
-        if let key:String = title where key.hasPrefix("#") == true{
+    override open func setTitle(_ title: String?, for state: UIControlState) {
+        if let key:String = title , key.hasPrefix("#") == true{
             //--
             _titleKey = key;  // holding key for using later
-            super.setTitle(SyncedText.text(forKey: key), forState: state);
+            super.setTitle(SyncedText.text(forKey: key), for: state);
         } else {
-            super.setTitle(title, forState: state);
+            super.setTitle(title, for: state);
         }
     } //F.E.
     

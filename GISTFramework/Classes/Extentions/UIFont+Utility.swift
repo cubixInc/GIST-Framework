@@ -11,11 +11,11 @@ import UIKit
 public extension UIFont {
 // public class func 
     
-    public class func font(fontStyle:String? = nil, sizedForIPad:Bool = false) ->UIFont! {
+    public class func font(_ fontStyle:String? = nil, sizedForIPad:Bool = false) ->UIFont! {
         return self.font("fontRegular", fontStyle: fontStyle, sizedForIPad:sizedForIPad);
     } //F.E.
     
-    public class func font(fontNameKey:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont! {
+    public class func font(_ fontNameKey:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont! {
         return UIFont(name: SyncedConstants.constant(forKey: fontNameKey) ?? "Helvetica Neue", size: GISTUtility.convertFontSizeToRatio(22, fontStyle: fontStyle ?? "medium", sizedForIPad:sizedForIPad));
     } //F.E.
     

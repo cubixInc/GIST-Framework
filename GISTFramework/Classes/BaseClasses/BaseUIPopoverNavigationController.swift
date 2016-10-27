@@ -8,26 +8,26 @@
 
 import UIKit
 
-public class BaseUIPopoverNavigationController: BaseUINavigationController {
+open class BaseUIPopoverNavigationController: BaseUINavigationController {
 
-    private var _mainNavigationController:UINavigationController?
-    public var mainNavigationController:UINavigationController? {
+    fileprivate var _mainNavigationController:UINavigationController?
+    open var mainNavigationController:UINavigationController? {
         get {
             return _mainNavigationController;
         }
     } //P.E.
     
-    private var _popoverController:PopoverController?;
-    public var popoverController:PopoverController? {
+    fileprivate var _popoverController:PopoverController?;
+    open var popoverController:PopoverController? {
         get {
             return _popoverController;
         }
     } //P.E.
     
-    private var _parentViewController:UIViewController!
+    fileprivate var _parentViewController:UIViewController!
     
-    private var _popoverContentSize:CGSize = CGSize(width: 414, height: 736);
-    public var popoverContentSize:CGSize {
+    fileprivate var _popoverContentSize:CGSize = CGSize(width: 414, height: 736);
+    open var popoverContentSize:CGSize {
         set {
             _popoverContentSize = newValue;
         }
@@ -37,8 +37,8 @@ public class BaseUIPopoverNavigationController: BaseUINavigationController {
         }
     } //P.E.
     
-    private var _popoverContentPosition:CGPoint?;
-    public var popoverContentPosition:CGPoint?
+    fileprivate var _popoverContentPosition:CGPoint?;
+    open var popoverContentPosition:CGPoint?
         {
         set {
             _popoverContentPosition = newValue;
@@ -49,8 +49,8 @@ public class BaseUIPopoverNavigationController: BaseUINavigationController {
         }
     } //P.E.
     
-    private var _popoverContentRoundedCorner:Bool = true;
-    public var popoverContentRoundedCorner:Bool
+    fileprivate var _popoverContentRoundedCorner:Bool = true;
+    open var popoverContentRoundedCorner:Bool
         {
         set {
             _popoverContentRoundedCorner = newValue;
@@ -61,8 +61,8 @@ public class BaseUIPopoverNavigationController: BaseUINavigationController {
         }
     } //P.E.
     
-    private var _arrowColor:UIColor = UIColor.blackColor();
-    public var arrowColor:UIColor {
+    fileprivate var _arrowColor:UIColor = UIColor.black;
+    open var arrowColor:UIColor {
         set {
             _arrowColor = newValue;
         }
@@ -76,7 +76,7 @@ public class BaseUIPopoverNavigationController: BaseUINavigationController {
         super.init(rootViewController: rootViewController);
     } //F.E.
 
-    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
     
@@ -84,16 +84,16 @@ public class BaseUIPopoverNavigationController: BaseUINavigationController {
         fatalError("init(coder:) has not been implemented")
     } //F.E.
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
     } //F.E.
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     } //F.E.
     
-    public func show(inViewController viewController:UIViewController, fromRect rect:CGRect = CGRect.zero, permittedArrowDirection:UIPopoverArrowDirection = UIPopoverArrowDirection()) {
+    open func show(inViewController viewController:UIViewController, fromRect rect:CGRect = CGRect.zero, permittedArrowDirection:UIPopoverArrowDirection = UIPopoverArrowDirection()) {
         _parentViewController = viewController;
         _mainNavigationController = _parentViewController.navigationController;
         //--
@@ -109,7 +109,7 @@ public class BaseUIPopoverNavigationController: BaseUINavigationController {
         self._popoverController!.presentPopoverFromRect(rect, inViewController: _parentViewController, permittedArrowDirection: permittedArrowDirection, animated: true);
     } //F.E.
     
-    public func dismissPopover(animated:Bool = true) {
+    open func dismissPopover(_ animated:Bool = true) {
         _popoverController!.dismissPopoverAnimated(animated);
     } //F.E.
 } //CLS END

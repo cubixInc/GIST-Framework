@@ -8,27 +8,27 @@
 
 import UIKit
 
-public class BaseUINavigationController: UINavigationController {
+open class BaseUINavigationController: UINavigationController {
 
-    private var _lastSyncedDate:String?
+    fileprivate var _lastSyncedDate:String?
     
-    @IBInspectable public var bgColor:String? = nil {
+    @IBInspectable open var bgColor:String? = nil {
         didSet {
             self.navigationBar.barTintColor = SyncedColors.color(forKey:bgColor);
         }
     }
     
-    @IBInspectable public var tintColor:String? = nil {
+    @IBInspectable open var tintColor:String? = nil {
         didSet {
             self.navigationBar.tintColor = SyncedColors.color(forKey:tintColor);
         }
     }
     
-    @IBInspectable public var fontKey:String? = nil;
+    @IBInspectable open var fontKey:String? = nil;
     
-    @IBInspectable public var fontStyle:String? = nil {
+    @IBInspectable open var fontStyle:String? = nil {
         didSet {
-            var attrDict:[String : AnyObject] = self.navigationBar.titleTextAttributes ?? [String : AnyObject]()
+            var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
             //--
             attrDict[NSFontAttributeName] = UIFont.font(fontKey, fontStyle: fontStyle);
             
@@ -36,9 +36,9 @@ public class BaseUINavigationController: UINavigationController {
         }
     }
     
-    @IBInspectable public var fontColor:String? = nil {
+    @IBInspectable open var fontColor:String? = nil {
         didSet {
-            var attrDict:[String : AnyObject] = self.navigationBar.titleTextAttributes ?? [String : AnyObject]();
+            var attrDict:[String : Any] = self.navigationBar.titleTextAttributes ?? [String : Any]();
             //--
             attrDict[NSForegroundColorAttributeName] = SyncedColors.color(forKey: fontColor);
             
@@ -46,7 +46,7 @@ public class BaseUINavigationController: UINavigationController {
         }
     }
     
-    @IBInspectable public var hasShadow:Bool = true {
+    @IBInspectable open var hasShadow:Bool = true {
         didSet {
             if (hasShadow == false) {
                 self.navigationBar.shadowImage = UIImage();
@@ -58,7 +58,7 @@ public class BaseUINavigationController: UINavigationController {
         super.init(rootViewController: rootViewController);
     } //F.E.
     
-    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
     
@@ -66,17 +66,17 @@ public class BaseUINavigationController: UINavigationController {
         super.init(coder: aDecoder)!;
     } //F.E.
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad();
         //--
          _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
 
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning();
     } //F.E.
     
-    private func updateAppearance() {
+    fileprivate func updateAppearance() {
         //Re-assigning if there are changes from server
         
         if let newBgColor = bgColor {
@@ -97,14 +97,14 @@ public class BaseUINavigationController: UINavigationController {
         
     } //F.E.
     
-    override public func pushViewController(viewController: UIViewController, animated: Bool) {
+    override open func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if (self.topViewController == nil || !self.topViewController!.isEqual(viewController)) {
             super.pushViewController(viewController, animated: animated);
         }
     } //F.E.
     
-    public func updateSyncedData() -> Bool {
-        if let syncedDate:String = SyncEngine.lastSyncedServerDate where syncedDate != _lastSyncedDate {
+    @discardableResult open func updateSyncedData() -> Bool {
+        if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
             _lastSyncedDate = syncedDate;
             //--
             

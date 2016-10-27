@@ -8,43 +8,43 @@
 
 import UIKit
 
-public class BaseUISegmentedControl: UISegmentedControl, BaseView {
+open class BaseUISegmentedControl: UISegmentedControl, BaseView {
 
-    @IBInspectable public var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = false;
     
-    @IBInspectable public var bgColorStyle:String? = nil {
+    @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
-    @IBInspectable public var tintColorStyle:String? {
+    @IBInspectable open var tintColorStyle:String? {
         didSet {
             self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
     }
     
-    @IBInspectable public var fontName:String = "fontRegular" {
+    @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
-    @IBInspectable public var fontStyle:String = "medium" {
+    @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
-    public var font:UIFont? = nil {
+    open var font:UIFont? = nil {
         didSet {
-            self.setTitleTextAttributes([NSFontAttributeName:self.font!], forState: UIControlState.Normal);
+            self.setTitleTextAttributes([NSFontAttributeName:self.font!], for: UIControlState());
         }
     };
 
-    private var _titleKeys:[Int:String] = [Int:String]();
+    fileprivate var _titleKeys:[Int:String] = [Int:String]();
     
-    public override init(items: [AnyObject]?) {
+    public override init(items: [Any]?) {
         super.init(items: items);
         //--
         self.commontInit();
@@ -60,23 +60,23 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
         super.init(coder: aDecoder);
     }
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commontInit();
     } //F.E.
     
-    private func commontInit() {
+    fileprivate func commontInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         for i:Int in 0..<numberOfSegments {
-            if let txt:String = titleForSegmentAtIndex(i) where txt.hasPrefix("#") == true {
-                self.setTitle(txt, forSegmentAtIndex: i); // Assigning again to set value from synced data
+            if let txt:String = titleForSegment(at: i) , txt.hasPrefix("#") == true {
+                self.setTitle(txt, forSegmentAt: i); // Assigning again to set value from synced data
             }
         }
     } //F.E.
     
-    public func updateView(){
+    open func updateView(){
         if let bColorStyle = self.bgColorStyle {
             self.bgColorStyle = bColorStyle;
         }
@@ -87,18 +87,18 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
         
         for i:Int in 0..<numberOfSegments {
             if let key:String = _titleKeys[i] {
-                self.setTitle(key, forSegmentAtIndex: i);
+                self.setTitle(key, forSegmentAt: i);
             }
         }
     } //F.E.
     
-    override public func setTitle(title: String?, forSegmentAtIndex segment: Int) {
-        if let key:String = title where key.hasPrefix("#") == true {
+    override open func setTitle(_ title: String?, forSegmentAt segment: Int) {
+        if let key:String = title , key.hasPrefix("#") == true {
             //--
             _titleKeys[segment] = key;  // holding key for using later
-            super.setTitle(SyncedText.text(forKey: key), forSegmentAtIndex: segment);
+            super.setTitle(SyncedText.text(forKey: key), forSegmentAt: segment);
         } else {
-            super.setTitle(title, forSegmentAtIndex: segment);
+            super.setTitle(title, forSegmentAt: segment);
         }
     } //P.E.
     

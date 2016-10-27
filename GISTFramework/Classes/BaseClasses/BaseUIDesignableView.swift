@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class BaseUIDesignableView: BaseUIView {
+open class BaseUIDesignableView: BaseUIView {
     
-    private var _view: UIView!
+    fileprivate var _view: UIView!
     //--
     override public init(frame: CGRect) {
         super.init(frame: frame);
@@ -26,14 +26,14 @@ public class BaseUIDesignableView: BaseUIView {
         self.xibSetup();
     } //F.E.
     
-    override public func updateView() {
+    override open func updateView() {
         super.updateView();
         //--
         (_view as? BaseView)?.updateView();
     } //F.E.
     
     //MARK: - Setup Custom View
-    public func xibSetup() {
+    open func xibSetup() {
         let nib = getNib();
         //--
         _view = UIView.loadDynamicViewWithNib(nib.nibName, viewIndex: nib.viewIndex, owner: self) as! UIView;
@@ -42,14 +42,14 @@ public class BaseUIDesignableView: BaseUIView {
         _view.frame = bounds;
         
         // Make the view stretch with containing view
-        _view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight];
+        _view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight];
         
         // Adding custom subview on top of our view
         self.addSubview(_view);
     }//F.E.
     
 
-    public func getNib() -> (nibName:String, viewIndex:Int) {
+    open func getNib() -> (nibName:String, viewIndex:Int) {
         assert(false, "Override this method in your class");
         return ("", 0);
     }//F.E.
