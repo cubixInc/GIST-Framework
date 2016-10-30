@@ -11,7 +11,7 @@ import UIKit
 open class PopoverControllerView: UIView {
 
     //Defining here in the class privately, so that the class be independent - It may be improved
-    fileprivate func afterDelay(_ delay:Double, closure:@escaping ()->()) {
+    fileprivate func afterDelay(_ delay:Double, closure:@escaping () -> Void) {
         DispatchQueue.main.asyncAfter(
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     } //F.E.
@@ -172,7 +172,7 @@ open class PopoverControllerView: UIView {
         {
             self.alpha = 0.0;
             //--
-            afterDelay(0.1, closure: { () -> () in
+            afterDelay(0.1, closure: { () -> Void in
                 UIView.animate(withDuration: 0.5, animations: { () -> Void in
                     self.alpha=1.0
                 })
