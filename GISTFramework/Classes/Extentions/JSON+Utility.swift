@@ -14,7 +14,7 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
     
     //Returns JSON Data
     public func toJSONData() -> Data? {
-        return try? JSONSerialization.data(withJSONObject: self as AnyObject, options: []);
+        return try? JSONSerialization.data(withJSONObject: self, options: []);
     } //F.E.
     
 } //E.E.
@@ -27,7 +27,7 @@ public extension Array {
     
     //Returns JSON Data
     public func toJSONData() -> Data? {
-        return try? JSONSerialization.data(withJSONObject: self as AnyObject, options: []);
+        return try? JSONSerialization.data(withJSONObject: self, options: []);
     } //F.E.
 
 } //E.E.

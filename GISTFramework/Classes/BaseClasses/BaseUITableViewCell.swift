@@ -10,8 +10,8 @@ import UIKit
 
 open class BaseUITableViewCell: UITableViewCell, BaseView {
 
-    fileprivate var _data:AnyObject?
-    open var data:AnyObject? {
+    fileprivate var _data:Any?
+    open var data:Any? {
         get {
             return _data;
         }
@@ -191,7 +191,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         self.seperatorView.frame = self.seperatorFrame;
     } //F.E.
     
-    open func updateData(_ data:AnyObject?) {
+    open func updateData(_ data:Any?) {
         _data = data;
         //--
         self.updateSyncedData();

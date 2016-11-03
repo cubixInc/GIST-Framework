@@ -250,7 +250,7 @@ open class SyncEngine: NSObject {
         
         for key:String in allKeys {
             //??if _dictData!.objectForKey(key) != nil {
-                let nValue:AnyObject = dict.object(forKey: key)! as AnyObject;
+                let nValue:Any = dict.object(forKey: key)!;
                 //--
                 _dictData![key] = nValue;
             //??}
@@ -478,7 +478,7 @@ open class SyncEngine: NSObject {
         let allKeys:[String] = dict.allKeys as! [String];
         
         for key:String in allKeys {
-            let nValue:AnyObject = dict.object(forKey: key)! as AnyObject;
+            let nValue:AnyObject = dict.object(forKey: key) as AnyObject;
             
             if _dictData?.object(forKey: key) != nil {
                 _dictData![key] = nValue;

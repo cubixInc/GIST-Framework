@@ -9,8 +9,8 @@
 import UIKit
 
 open class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
-    fileprivate var _data:AnyObject?
-    open var data:AnyObject? {
+    fileprivate var _data:Any?
+    open var data:Any? {
         get {
             return _data;
         }
@@ -24,7 +24,7 @@ open class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
         super.awakeFromNib()
     } //F.E.
     
-    open func updateData(_ data:AnyObject?) {
+    open func updateData(_ data:Any?) {
         _data = data;
         //--
         self.updateSyncedData();

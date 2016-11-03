@@ -9,8 +9,8 @@
 import UIKit
 
 open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseView {
-    fileprivate var _data:AnyObject?
-    open var data:AnyObject? {
+    fileprivate var _data:Any?
+    open var data:Any? {
         get {
             return _data;
         }
@@ -140,7 +140,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
         self.contentView.updateSyncedData();
     } //F.E.
     
-    open func updateData(_ data:AnyObject?) {
+    open func updateData(_ data:Any?) {
         _data = data;
         //--
         self.updateSyncedData();

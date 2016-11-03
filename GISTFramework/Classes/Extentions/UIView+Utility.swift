@@ -10,17 +10,17 @@ import UIKit
 
 public extension UIView {
     
-    public class func loadWithNib(_ nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject {
-        return Bundle.main.loadNibNamed(nibName, owner: owner, options: nil)![viewIndex] as AnyObject;
+    public class func loadWithNib(_ nibName:String, viewIndex:Int, owner: AnyObject) -> Any {
+        return Bundle.main.loadNibNamed(nibName, owner: owner, options: nil)![viewIndex];
     } //F.E.
     
-    public class func loadDynamicViewWithNib(_ nibName:String, viewIndex:Int, owner: AnyObject) -> AnyObject {
+    public class func loadDynamicViewWithNib(_ nibName:String, viewIndex:Int, owner: AnyObject) -> Any {
         
         let bundle = Bundle(for: type(of: owner));
         let nib = UINib(nibName: nibName, bundle: bundle);
         
         // Assumes UIView is top level and only object in CustomView.xib file
-        let rView: AnyObject = nib.instantiate(withOwner: owner, options: nil)[viewIndex] as AnyObject;
+        let rView: Any = nib.instantiate(withOwner: owner, options: nil)[viewIndex];
         return rView;
     } //F.E.
     
