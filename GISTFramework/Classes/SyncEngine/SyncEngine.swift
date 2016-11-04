@@ -9,8 +9,7 @@
 import UIKit
 
 open class SyncEngine: NSObject {
-    
-    fileprivate static var _sharedInstance: SyncEngine = SyncEngine();
+    fileprivate static var _sharedInstance: SyncEngine = SyncEngine(customData: true);
     class var sharedInstance: SyncEngine {
         get {
             return self._sharedInstance;
