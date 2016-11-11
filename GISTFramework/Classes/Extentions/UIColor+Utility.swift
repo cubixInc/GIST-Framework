@@ -14,20 +14,28 @@ public extension UIColor {
     * All colors are explicitly unwrapped assuming keys will always be correct
     */
     
-    public class func theme() -> UIColor! {
-        return SyncedColors.sharedInstance.color(forKey: "theme");
+    public static var theme:UIColor! {
+        get {
+            return SyncedColors.sharedInstance.color(forKey: "theme");
+        }
     } //F.E.
     
-    public class func accent() -> UIColor! {
-        return SyncedColors.sharedInstance.color(forKey: "accent");
+    public static var accent:UIColor! {
+        get {
+            return SyncedColors.sharedInstance.color(forKey: "accent");
+        }
     } //F.E.
     
-    public class func primary() -> UIColor! {
-        return SyncedColors.sharedInstance.color(forKey: "primary");
+    public static var primary:UIColor! {
+        get {
+            return SyncedColors.sharedInstance.color(forKey: "primary");
+        }
     } //F.E.
     
-    public class func secondary() -> UIColor! {
-        return SyncedColors.sharedInstance.color(forKey: "secondary");
+    public static var secondary:UIColor! {
+        get {
+            return SyncedColors.sharedInstance.color(forKey: "secondary");
+        }
     } //F.E.
     
     public class func color(forKey key: String?) -> UIColor! {

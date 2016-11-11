@@ -77,130 +77,123 @@ open class CustomUIButton: BaseUIButton {
             
             var rFrame:CGRect = CGRect();
             //--
-            if (self.imageView!.image != nil)
-            {
-                let imgSize:CGSize = self.imageView!.image!.size;
+            let imgSize:CGSize = self.imageView!.image?.size ?? CGSize(width: 0.1, height: 0.1);
+            
+            if (self.imageFixedSize.height > 0 && self.imageFixedSize.width > 0) {
+                //Height and Width both are fixed
+                rFrame.size = self.imageFixedSize;
+            } else if (self.imageFixedSize.width > 0) {
+                //Width is fixed
+                let imgRatio:CGFloat = (imgSize.height / imgSize.width);
                 
-                if (self.imageFixedSize.height > 0 && self.imageFixedSize.width > 0) {
-                    //Height and Width both are fixed
-                    rFrame.size = self.imageFixedSize;
-                } else if (self.imageFixedSize.width > 0) {
-                    //Width is fixed
-                    let imgRatio:CGFloat = (imgSize.height / imgSize.width);
-                    
-                    rFrame.size.width =  GISTUtility.convertToRatio(self.imageFixedSize.width);
-                    rFrame.size.height =  imgRatio * rFrame.size.width;
-                } else if (self.imageFixedSize.height > 0) {
-                    //Height is fixed
-                    let imgRatio:CGFloat = (imgSize.width / imgSize.height);
-                    
-                    rFrame.size.height = GISTUtility.convertToRatio(self.imageFixedSize.height);
-                    rFrame.size.width = imgRatio * rFrame.size.height;
-                } else {
-                    //Aspect Ratio
-                    let imgRatio:CGFloat = (imgSize.height / imgSize.width);
-                    
-                    rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
-                    rFrame.size.height =  imgRatio * rFrame.size.width;
-                }
+                rFrame.size.width =  GISTUtility.convertToRatio(self.imageFixedSize.width);
+                rFrame.size.height =  imgRatio * rFrame.size.width;
+            } else if (self.imageFixedSize.height > 0) {
+                //Height is fixed
+                let imgRatio:CGFloat = (imgSize.width / imgSize.height);
                 
-                let offSetFix:CGPoint = self.offSetFix;
+                rFrame.size.height = GISTUtility.convertToRatio(self.imageFixedSize.height);
+                rFrame.size.width = imgRatio * rFrame.size.height;
+            } else {
+                //Aspect Ratio
+                let imgRatio:CGFloat = (imgSize.height / imgSize.width);
                 
-                switch (self.contentMode)
-                {
-                    
-                case .top:
-                    rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0;
-                    
-                    if (_reversedOrder) {
-                        rFrame.origin.y = _containtOffSet.y + offSetFix.y;
-                    } else {
-                        rFrame.origin.y = _containtOffSet.y;
-                    }
-                    break;
-                    
-                case .topLeft:
-                    if (_reversedOrder) {
-                        rFrame.origin.x = _containtOffSet.x + offSetFix.x;
-                        rFrame.origin.y = _containtOffSet.y + offSetFix.y;
-                    } else {
-                        rFrame.origin.x = _containtOffSet.x;
-                        rFrame.origin.y = _containtOffSet.y;
-                    }
-                    break;
-                    
-                case .topRight:
-                    if (_reversedOrder) {
-                        rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
-                        rFrame.origin.y = _containtOffSet.y + offSetFix.y;
-                    } else {
-                        rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x) - _containtOffSet.x;
-                        rFrame.origin.y = _containtOffSet.y;
-                    }
-                    break;
-                    
-                case .bottom:
-                    rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0;
-                    
-                    if (_reversedOrder) {
-                        rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
-                    } else {
-                        rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y) - _containtOffSet.y;
-                    }
-                    break;
-                    
-                case .bottomLeft:
-                    if (_reversedOrder) {
-                        rFrame.origin.x = _containtOffSet.x + offSetFix.x;
-                        rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
-                    } else {
-                        rFrame.origin.x = _containtOffSet.x;
-                        rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y) - _containtOffSet.y;
-                    }
-                    break;
-                    
-                case .bottomRight:
-                    if (_reversedOrder) {
-                        rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
-                        rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
-                    } else {
-                        rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x) - _containtOffSet.x;
-                        rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y) - _containtOffSet.y;
-                    }
-                    break;
-                    
-                case .left:
-                    rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0;
-                    
-                    if (_reversedOrder) {
-                        rFrame.origin.x = _containtOffSet.x + offSetFix.x;
-                    } else {
-                        rFrame.origin.x = _containtOffSet.x;
-                    }
-                    break;
-                    
-                case .right:
-                    rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0;
-                    
-                    if (_reversedOrder) {
-                        rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
-                    } else {
-                        rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x) - _containtOffSet.x;
-                    }
-                    break;
-                    
-                default:
-                    if (_reversedOrder) {
-                        rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width + offSetFix.x)/2.0, y: (self.frame.size.height - rFrame.size.height + offSetFix.y)/2.0);
-                    } else {
-                        rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0, y: (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0);
-                    }
-                    break;
-                }
+                rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
+                rFrame.size.height =  imgRatio * rFrame.size.width;
             }
-            else
+            
+            let offSetFix:CGPoint = self.offSetFix;
+            
+            switch (self.contentMode)
             {
-                rFrame = self.imageView!.frame;
+                
+            case .top:
+                rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0;
+                
+                if (_reversedOrder) {
+                    rFrame.origin.y = _containtOffSet.y + offSetFix.y;
+                } else {
+                    rFrame.origin.y = _containtOffSet.y;
+                }
+                break;
+                
+            case .topLeft:
+                if (_reversedOrder) {
+                    rFrame.origin.x = _containtOffSet.x + offSetFix.x;
+                    rFrame.origin.y = _containtOffSet.y + offSetFix.y;
+                } else {
+                    rFrame.origin.x = _containtOffSet.x;
+                    rFrame.origin.y = _containtOffSet.y;
+                }
+                break;
+                
+            case .topRight:
+                if (_reversedOrder) {
+                    rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
+                    rFrame.origin.y = _containtOffSet.y + offSetFix.y;
+                } else {
+                    rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x) - _containtOffSet.x;
+                    rFrame.origin.y = _containtOffSet.y;
+                }
+                break;
+                
+            case .bottom:
+                rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0;
+                
+                if (_reversedOrder) {
+                    rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
+                } else {
+                    rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y) - _containtOffSet.y;
+                }
+                break;
+                
+            case .bottomLeft:
+                if (_reversedOrder) {
+                    rFrame.origin.x = _containtOffSet.x + offSetFix.x;
+                    rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
+                } else {
+                    rFrame.origin.x = _containtOffSet.x;
+                    rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y) - _containtOffSet.y;
+                }
+                break;
+                
+            case .bottomRight:
+                if (_reversedOrder) {
+                    rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
+                    rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
+                } else {
+                    rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x) - _containtOffSet.x;
+                    rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y) - _containtOffSet.y;
+                }
+                break;
+                
+            case .left:
+                rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0;
+                
+                if (_reversedOrder) {
+                    rFrame.origin.x = _containtOffSet.x + offSetFix.x;
+                } else {
+                    rFrame.origin.x = _containtOffSet.x;
+                }
+                break;
+                
+            case .right:
+                rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0;
+                
+                if (_reversedOrder) {
+                    rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
+                } else {
+                    rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x) - _containtOffSet.x;
+                }
+                break;
+                
+            default:
+                if (_reversedOrder) {
+                    rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width + offSetFix.x)/2.0, y: (self.frame.size.height - rFrame.size.height + offSetFix.y)/2.0);
+                } else {
+                    rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0, y: (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0);
+                }
+                break;
             }
             
             return rFrame;

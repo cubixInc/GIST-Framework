@@ -14,7 +14,30 @@ open class BaseUIViewController: UIViewController {
     @IBInspectable open var backBtnImageName:String = "NavBackButton";
     
     fileprivate var _hasBackButton:Bool = true;
+    open var hasBackButton:Bool {
+        get {
+            return _hasBackButton;
+        }
+        
+        set {
+            _hasBackButton = newValue;
+        }
+    } //P.E.
+    
     fileprivate var _hasForcedBackButton = false;
+    open var hasForcedBackButton:Bool {
+        get {
+            return _hasForcedBackButton;
+        }
+        
+        set {
+            _hasForcedBackButton = newValue;
+            //--
+            if (_hasForcedBackButton) {
+                _hasBackButton = true;
+            }
+        }
+    } //P.E.
     
     fileprivate var _lastSyncedDate:String?
     
