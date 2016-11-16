@@ -8,18 +8,22 @@
 
 import UIKit
 
-//FOR NOW, DOING NOTHING IN THIS CLASS
+/// BaseUITabBarController is a subclass of UITabBarController. It is made for future use. it is not anything for now
 open class BaseUITabBarController: UITabBarController {
 
+    //MARK: - Overridden Methods
+    
+    /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-    }
+    } //F.E.
 
+    /// Overridden method to reveive memory warnings
     override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+    } //F.E.
 
 } //CLS END

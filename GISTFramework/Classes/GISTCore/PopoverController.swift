@@ -173,8 +173,9 @@ open class PopoverController: UIViewController {
         setupPopoverController(contentViewController);
     } //F.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented");
+        super.init(coder: aDecoder)
     } //F.E
     
     override open func viewDidLoad() {

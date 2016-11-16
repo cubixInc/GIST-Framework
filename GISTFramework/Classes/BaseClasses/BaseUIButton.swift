@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// BaseUIButton is subclass of UIButton and implements BaseView. It extents UIButton with some extra proporties to support SyncEngine
+/// BaseUIButton is a subclass of UIButton and implements BaseView. It extents UIButton with some extra proporties and supports SyncEngine.
 open class BaseUIButton: UIButton, BaseView {
     
     //MARK: - Properties
@@ -16,18 +16,21 @@ open class BaseUIButton: UIButton, BaseView {
     /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = false;
     
+    /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: ((self.isSelected == true) && (bgSelectedColorStyle != nil)) ? bgSelectedColorStyle:bgColorStyle);
         }
     }
     
+    /// Selected state background color key from Sync Engine.
     @IBInspectable open var bgSelectedColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: (self.isSelected == true) ? bgSelectedColorStyle:bgColorStyle);
         }
     }
-
+    
+    /// Width of View Border.
     @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -36,6 +39,7 @@ open class BaseUIButton: UIButton, BaseView {
         }
     }
     
+    /// Border color key from Sync Engine.
     @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -44,12 +48,14 @@ open class BaseUIButton: UIButton, BaseView {
         }
     }
     
+    /// Corner Radius for View.
     @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
+    /// Flag for making circle/rounded view.
     @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
@@ -58,6 +64,7 @@ open class BaseUIButton: UIButton, BaseView {
         }
     }
     
+    /// Flag for Drop Shadow.
     @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
@@ -68,30 +75,35 @@ open class BaseUIButton: UIButton, BaseView {
         }
     }
     
+    /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
+    /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
+    /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
             self.setTitleColor(SyncedColors.color(forKey: fontColorStyle), for: UIControlState());
         }
     }
     
+    /// Selected state font color key from Sync Engine.
     @IBInspectable open var fontSelectedColorStyle:String? = nil {
         didSet {
             self.setTitleColor(SyncedColors.color(forKey: fontSelectedColorStyle), for: UIControlState.selected);
         }
     }
     
+    /// Overridden property to handle layouts for different status.
     override open var isSelected:Bool {
         get  {
             return super.isSelected;
@@ -119,11 +131,12 @@ open class BaseUIButton: UIButton, BaseView {
         self.commontInit();
     } //C.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     }
     
-    //MARK: - Methods
+    //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
@@ -131,6 +144,34 @@ open class BaseUIButton: UIButton, BaseView {
         //--
         self.commontInit()
     } //F.E.
+    
+    /// Overridden methed to update layout.
+    override open func layoutSubviews() {
+        super.layoutSubviews();
+        //--
+        if rounded {
+            self.addRoundedCorners();
+        }
+    } //F.E.
+    
+    
+    /// Overridden method to set title using Sync Engine key (Hint '#').
+    ///
+    /// - Parameters:
+    ///   - title: Button Title
+    ///   - state: Button State
+    override open func setTitle(_ title: String?, for state: UIControlState) {
+        if let key:String = title , key.hasPrefix("#") == true{
+            //--
+            _titleKey = key;  // holding key for using later
+            super.setTitle(SyncedText.text(forKey: key), for: state);
+        } else {
+            super.setTitle(title, for: state);
+        }
+    } //F.E.
+    
+    
+    //MARK: - Methods
     
     /// Common initazier for setting up items.
     func commontInit() {
@@ -147,9 +188,11 @@ open class BaseUIButton: UIButton, BaseView {
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView() {
+    func updateView() {
+        //Setting font
         self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
+        //Re-assigning if there are any changes from server
         if let bgCStyle:String = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -168,32 +211,6 @@ open class BaseUIButton: UIButton, BaseView {
         
         if let txtKey:String = _titleKey {
             self.setTitle(txtKey, for: state);
-        }
-    } //F.E.
-    
-    
-    /// Overridden methed to update layout.
-    override open func layoutSubviews() {
-        super.layoutSubviews();
-        //--
-        if rounded {
-            self.addRoundedCorners();
-        }
-    } //F.E.
-    
-    
-    /// Overridden method to set title using Sync Engine key (#)
-    ///
-    /// - Parameters:
-    ///   - title: Button Title
-    ///   - state: Button State
-    override open func setTitle(_ title: String?, for state: UIControlState) {
-        if let key:String = title , key.hasPrefix("#") == true{
-            //--
-            _titleKey = key;  // holding key for using later
-            super.setTitle(SyncedText.text(forKey: key), for: state);
-        } else {
-            super.setTitle(title, for: state);
         }
     } //F.E.
     

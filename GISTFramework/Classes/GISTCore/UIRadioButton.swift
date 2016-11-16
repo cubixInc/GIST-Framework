@@ -51,6 +51,7 @@ open class UIRadioButton: CustomUIButton {
         self.commonInit();
     } //F.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //F.E.
@@ -62,7 +63,7 @@ open class UIRadioButton: CustomUIButton {
         self.commonInit();
     } //F.E.
     
-    /// A common initializer for sub components.
+    /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         assert((_groupId != nil), "Group Id must be defined");
         //--

@@ -8,9 +8,14 @@
 
 import UIKit
 
+/// BaseUIPopoverNavigationController is a subclass of BaseUINavigationController. It has some extra proporties for the Popover Controller.
 open class BaseUIPopoverNavigationController: BaseUINavigationController {
 
+    //MARK: - Properties
+    
     private var _mainNavigationController:UINavigationController?
+    
+    /// Main Navigation Controller Instance.
     open var mainNavigationController:UINavigationController? {
         get {
             return _mainNavigationController;
@@ -18,6 +23,8 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
     } //P.E.
     
     private var _popoverController:PopoverController?;
+    
+    /// Popover Controller Instance.
     open var popoverController:PopoverController? {
         get {
             return _popoverController;
@@ -27,6 +34,8 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
     private var _parentViewController:UIViewController!
     
     private var _popoverContentSize:CGSize = CGSize(width: 414, height: 736);
+    
+    /// Popover Contrnet Size - Default value CGSize(width: 414, height: 736).
     open var popoverContentSize:CGSize {
         set {
             _popoverContentSize = newValue;
@@ -38,6 +47,8 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
     } //P.E.
     
     private var _popoverContentPosition:CGPoint?;
+    
+    /// Popover Content Position
     open var popoverContentPosition:CGPoint?
         {
         set {
@@ -50,6 +61,8 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
     } //P.E.
     
     private var _popoverContentRoundedCorner:Bool = true;
+    
+    /// Flag for popover view rounded corner.
     open var popoverContentRoundedCorner:Bool
         {
         set {
@@ -62,6 +75,8 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
     } //P.E.
     
     private var _arrowColor:UIColor = UIColor.black;
+    
+    /// Popover arrow color
     open var arrowColor:UIColor {
         set {
             _arrowColor = newValue;
@@ -72,27 +87,37 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
         }
     } //P.E.
     
+    //MARK: - Constructors
+    
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameter rootViewController: Root View Controller of Navigation
     override public init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController);
     } //F.E.
 
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameters:
+    ///   - nibNameOrNil: Nib Name
+    ///   - nibBundleOrNil: Nib Bundle Name
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     } //F.E.
     
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-    } //F.E.
+    //MARK: - Methods
     
-    override open func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    } //F.E.
-    
+    /// Show
+    ///
+    /// - Parameters:
+    ///   - viewController: Container View Controller
+    ///   - rect: Start point rect of popover view - Default value is CGRect.zero
+    ///   - permittedArrowDirection: Arrow Direction
     open func show(inViewController viewController:UIViewController, fromRect rect:CGRect = CGRect.zero, permittedArrowDirection:UIPopoverArrowDirection = UIPopoverArrowDirection()) {
         _parentViewController = viewController;
         _mainNavigationController = _parentViewController.navigationController;
@@ -108,6 +133,7 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
         //--
         self._popoverController!.presentPopoverFromRect(rect, inViewController: _parentViewController, permittedArrowDirection: permittedArrowDirection, animated: true);
     } //F.E.
+    
     
     open func dismissPopover(_ animated:Bool = true) {
         _popoverController!.dismissPopoverAnimated(animated);

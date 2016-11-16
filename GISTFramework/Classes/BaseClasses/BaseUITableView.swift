@@ -8,10 +8,15 @@
 
 import UIKit
 
+/// BaseUITableView is a subclass of UITableView and implements BaseView. It has some extra proporties and support for SyncEngine.
 open class BaseUITableView: UITableView, BaseView {
     
+    //MARK: - Properties
+    
+    /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = false;
     
+    /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
@@ -24,13 +29,22 @@ open class BaseUITableView: UITableView, BaseView {
         }
     }
     
+    //MARK: - Overridden Methods
+    
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
     } //F.E.
     
+    /// Overridden methed to update layout.
+    override open func layoutSubviews() {
+        super.layoutSubviews();
+    } //F.E.
+    
+    //MARK: - Methods
+    
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView(){
+    func updateView(){
         if let tintCStyle = tintColorStyle {
             self.tintColorStyle = tintCStyle;
         }
@@ -38,11 +52,6 @@ open class BaseUITableView: UITableView, BaseView {
         if let bgCStyle = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
-    } //F.E.
-    
-    /// Overridden methed to update layout.
-    override open func layoutSubviews() {
-        super.layoutSubviews();
     } //F.E.
     
 } //CLS END

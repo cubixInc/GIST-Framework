@@ -8,12 +8,15 @@
 
 import UIKit
 
+/// BaseUIViewController is a subclass of UIViewController. It has some extra proporties and support for SyncEngine.
 open class BaseUIViewController: UIViewController {
 
-    //Default back button image is 'NavBackButton', which can be changed from inspector
+    /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
     @IBInspectable open var backBtnImageName:String = "NavBackButton";
     
     private var _hasBackButton:Bool = true;
+    
+    /// Flag for back button visibility.
     open var hasBackButton:Bool {
         get {
             return _hasBackButton;
@@ -25,6 +28,8 @@ open class BaseUIViewController: UIViewController {
     } //P.E.
     
     private var _hasForcedBackButton = false;
+    
+    /// Flag for back button visibility by force.
     open var hasForcedBackButton:Bool {
         get {
             return _hasForcedBackButton;
@@ -42,6 +47,8 @@ open class BaseUIViewController: UIViewController {
     private var _lastSyncedDate:String?
     
     private var _titleKey:String?;
+    
+    /// Overriden title property to set title from SyncEngine (Hint '#' prefix).
     override open var title: String? {
         get {
             return super.title;
@@ -58,18 +65,27 @@ open class BaseUIViewController: UIViewController {
         }
     } //P.E.
     
-    open override var isMovingToParentViewController : Bool {
-        let rtnBool = super.isMovingToParentViewController;
-        //DOING NOTHING FOR NOW
-        return rtnBool;
-    } //F.E.
+    //MARK: - Constructors
     
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameters:
+    ///   - nibNameOrNil: Nib Name
+    ///   - nibBundleOrNil: Nib Bundle Name
+    ///   - backButton: Flag for back button
     public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButton:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         //--
         _hasBackButton = backButton;
     } //F.E.
     
+    
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameters:
+    ///   - nibNameOrNil: Nib Name
+    ///   - nibBundleOrNil: Nib Bundle Name
+    ///   - backButtonForced: Flag to show back button by force
     public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButtonForced:Bool)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
@@ -78,20 +94,26 @@ open class BaseUIViewController: UIViewController {
         _hasForcedBackButton = backButtonForced;
     } //F.E.
     
+    /// Required constructor implemented.
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
 
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //F.E.
     
+    //MARK: - Overridden Methods
+    
+    /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
         //--
         _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
     
+    /// Overridden method to setup/ initialize components.
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         //--
@@ -99,7 +121,9 @@ open class BaseUIViewController: UIViewController {
         self.updateSyncedData();
     }//F.E.
     
-    //Setting up custom back button
+    //MARK: - Methods
+    
+    ///Setting up custom back button.
     private func setupBackBtn() {
         if (_hasBackButton) {
              if (self.navigationItem.leftBarButtonItem == nil && (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1))) {
@@ -110,23 +134,7 @@ open class BaseUIViewController: UIViewController {
         }
     } //F.E.
     
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated);
-    } //F.E.
-    
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated);
-    } //F.E.
-    
-    override open func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    } //F.E.
-    
+    ///Navigation back button tap handler.
     open func backButtonTapped() {
         self.view.endEditing(true);
         _ = self.navigationController?.popViewController(animated: true)

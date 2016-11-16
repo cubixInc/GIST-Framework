@@ -8,16 +8,22 @@
 
 import UIKit
 
+/// BaseUITextField is a subclass of UITextField and implements UITextFieldDelegate, BaseView. It has some extra proporties and support for SyncEngine.
 open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
    
+    //MARK: - Properties
+    
+    /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = false;
     
+    /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
+    /// Width of View Border.
     @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -26,6 +32,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     }
     
+    /// Border color key from Sync Engine.
     @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -34,12 +41,14 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     }
     
+    /// Corner Radius for View.
     @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
+    /// Flag for making circle/rounded view.
     @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
@@ -48,6 +57,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     }
     
+    /// Flag for Drop Shadow.
     @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
@@ -58,24 +68,28 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     }
     
+    /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
+    /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
+    /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
             self.textColor = SyncedColors.color(forKey: fontColorStyle);
         }
     }
     
+    /// Placeholder Text Font color key from SyncEngine.
     @IBInspectable open var placeholderColor:String? = nil {
         didSet {
             if let colorStyl:String = placeholderColor {
@@ -86,10 +100,16 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //P.E.
     
+    
+    /// Text Vertical Padding - Default Value is Zero
     @IBInspectable open var verticalPadding:CGFloat=0
+    
+    /// Text Horizontal Padding - Default Value is Zero
     @IBInspectable open var horizontalPadding:CGFloat=0
     
     private var _maxCharLimit: Int = 50;
+    
+    /// Max Character Count Limit for the text field.
     @IBInspectable open var maxCharLimit: Int {
         get {
             return _maxCharLimit;
@@ -101,8 +121,10 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //P.E.
     
-    //Maintainig Own delegate
+    
     private weak var _delegate:UITextFieldDelegate?;
+    
+    ///Maintainig Own delegate.
     open override weak var delegate: UITextFieldDelegate? {
         get {
             return _delegate;
@@ -114,6 +136,8 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     } //P.E.
     
     private var _placeholderKey:String?
+    
+    /// Overridden property to set placeholder text from SyncEngine (Hint '#' prefix).
     override open var placeholder: String? {
         get {
             return super.placeholder;
@@ -137,16 +161,23 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //P.E.
     
+    //MARK: - Constructors
+    
     /// Overridden method to setup/ initialize components.
+    ///
+    /// - Parameter frame: View Frame
     override public init(frame: CGRect) {
         super.init(frame: frame);
         //--
         self.commonInit();
     } //C.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //C.E.
+    
+    //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
@@ -155,7 +186,42 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         self.commonInit();
     } //F.E.
     
-    /// A common initializer for sub components.
+    /// Overridden methed to update layout.
+    override open func layoutSubviews() {
+        super.layoutSubviews();
+        //--
+        if rounded {
+            self.addRoundedCorners();
+        }
+    } //F.E.
+    
+    /// Overridden method to handle text paddings
+    ///
+    /// - Parameter bounds: Text Bounds
+    /// - Returns: Calculated bounds with paddings.
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
+        //??super.textRectForBounds(bounds)
+        
+        let x:CGFloat = bounds.origin.x + horizontalPadding
+        let y:CGFloat = bounds.origin.y + verticalPadding
+        let widht:CGFloat = bounds.size.width - (horizontalPadding * 2)
+        let height:CGFloat = bounds.size.height - (verticalPadding * 2)
+        
+        return CGRect(x: x,y: y,width: widht,height: height)
+    } //F.E.
+    
+    /// Overridden method to handle text paddings when editing.
+    ///
+    /// - Parameter bounds: Text Bounds
+    /// - Returns: Calculated bounds with paddings.
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
+        super.editingRect(forBounds: bounds)
+        return self.textRect(forBounds: bounds)
+    } //F.E.
+    
+    //MARK: - Methods
+    
+    /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         super.delegate = self;
         //--
@@ -167,11 +233,11 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView() {
-        // Assigning all again to see if there is update from server
-        
+    func updateView() {
+        //Setting font
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
+        //Re-assigning if there are any changes from server
         if let bgCStyle:String = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -189,47 +255,47 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //F.E.
     
-    /// Overridden methed to update layout.
-    override open func layoutSubviews() {
-        super.layoutSubviews();
-        //--
-        if rounded {
-            self.addRoundedCorners();
-        }
-    } //F.E.
+    //Mark: - UITextField Delegate Methods
     
-    override open func textRect(forBounds bounds: CGRect) -> CGRect {
-        //??super.textRectForBounds(bounds)
-       
-        let x:CGFloat = bounds.origin.x + horizontalPadding
-        let y:CGFloat = bounds.origin.y + verticalPadding
-        let widht:CGFloat = bounds.size.width - (horizontalPadding * 2)
-        let height:CGFloat = bounds.size.height - (verticalPadding * 2)
-        
-        return CGRect(x: x,y: y,width: widht,height: height)
-    } //F.E.
-    
-    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
-        super.editingRect(forBounds: bounds)
-        return self.textRect(forBounds: bounds)
-    } //F.E.
-    
+    /// Protocol method of textFieldShouldBeginEditing.
+    ///
+    /// - Parameter textField: Text Field
+    /// - Returns: Bool flag for should begin edititng
     open func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return _delegate?.textFieldShouldBeginEditing?(textField) ?? true;
     } //F.E.
     
+    /// Protocol method of textFieldDidBeginEditing.
+    ///
+    /// - Parameter textField: Text Field
     open func textFieldDidBeginEditing(_ textField: UITextField) {
         _delegate?.textFieldDidBeginEditing?(textField);
     } //F.E.
     
+    
+    /// Protocol method of textFieldShouldEndEditing. - Default value is true
+    ///
+    /// - Parameter textField: Text Field
+    /// - Returns: Bool flag for should end edititng
     open func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return _delegate?.textFieldShouldEndEditing?(textField) ?? true;
     } //F.E.
     
+    /// Protocol method of textFieldDidEndEditing
+    ///
+    /// - Parameter textField: Text Field
     open func textFieldDidEndEditing(_ textField: UITextField) {
         _delegate?.textFieldDidEndEditing?(textField);
     } //F.E.
     
+    
+    /// Protocol method of shouldChangeCharactersIn for limiting the character limit. - Default value is true
+    ///
+    /// - Parameters:
+    ///   - textField: Text Field
+    ///   - range: Change Characters Range
+    ///   - string: Replacement String
+    /// - Returns: Bool flag for should change characters in range
     open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let rtn = _delegate?.textField?(textField, shouldChangeCharactersIn:range, replacementString:string) ?? true;
@@ -245,10 +311,19 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         return (newLength <= self.maxCharLimit) && rtn // Bool
     } //F.E.
     
+    /// Protocol method of textFieldShouldClear. - Default value is true
+    ///
+    /// - Parameter textField: Text Field
+    /// - Returns: Bool flag for should clear text field
     open func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return _delegate?.textFieldShouldClear?(textField) ?? true;
     } //F.E.
     
+    
+    /// Protocol method of textFieldShouldReturn. - Default value is true
+    ///
+    /// - Parameter textField: Text Field
+    /// - Returns: Bool flag for text field should return.
     open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return _delegate?.textFieldShouldReturn?(textField) ?? true;
     } //F.E.

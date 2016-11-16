@@ -8,21 +8,27 @@
 
 import UIKit
 
+/// BaseUIStepper is a subclass of UIStepper and implements BaseView. It has some extra proporties and support for SyncEngine.
 open class BaseUIStepper: UIStepper, BaseView {
    
+    //MARK: - Properties
     @IBInspectable open var tintColorStyle:String? = nil {
         didSet {
             self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
     }
     
+    //MARK: - Overridden Methods
+    
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
     } //F.E.
     
+    //MARK: - Methods
+    
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView(){
+    func updateView(){
         if let tintCStyle = self.tintColorStyle {
             self.tintColorStyle = tintCStyle;
         }

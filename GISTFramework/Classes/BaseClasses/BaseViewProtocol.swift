@@ -8,7 +8,7 @@
 
 import UIKit
 
-//Protocol for all views that are using SyncEngine
+///Protocol for all views that are using SyncEngine.
 protocol BaseView {
     func updateView();
 } //P.E.

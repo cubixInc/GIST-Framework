@@ -8,16 +8,22 @@
 
 import UIKit
 
+/// BaseUISearchController is a subclass of UISearchController. It has some extra proporties and support for SyncEngine.
 open class BaseUISearchController: UISearchController {
 
+    //MARK: - Properties
+    
+    /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = false;
     
+    /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.searchBar.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
+    /// Search text field background color key from Sync Engine.
     @IBInspectable open var fontBgColorStyle:String? = nil {
         didSet {
             if let txtField:UITextField = self.searchBar.textField {
@@ -26,18 +32,21 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    /// Search tint color key from Sync Engine.
     @IBInspectable open var tintColorStyle:String? = nil {
         didSet {
             self.searchBar.tintColor =  SyncedColors.color(forKey: tintColorStyle);
         }
     }
     
+    /// Search bar tint color key from Sync Engine.
     @IBInspectable open var barTintColorStyle:String? = nil {
         didSet {
             self.searchBar.barTintColor =  SyncedColors.color(forKey: barTintColorStyle);
         }
     }
     
+    /// Width of View Border.
     @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -46,6 +55,7 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    /// Border color key from Sync Engine.
     @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -54,12 +64,14 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    /// Corner Radius for View.
     @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.searchBar.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
+    /// Flag for making circle/rounded view.
     @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
@@ -68,6 +80,7 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    /// Flag for Drop Shadow.
     @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
@@ -78,6 +91,7 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             if let txtField:UITextField = self.searchBar.textField {
@@ -86,6 +100,7 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             if let txtField:UITextField = self.searchBar.textField {
@@ -94,6 +109,7 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
             if let txtField:UITextField = self.searchBar.textField {
@@ -102,6 +118,7 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    /// Inspectable property for search bar icon image.
     @IBInspectable open var searchBarIcon:UIImage? = nil {
         didSet {
             self.searchBar.setImage(searchBarIcon, for: UISearchBarIcon.search, state: UIControlState());
@@ -109,6 +126,8 @@ open class BaseUISearchController: UISearchController {
     }
     
     private var _placeholderKey:String?
+    
+    /// placeholder text propery to set text from SyncEngine (Hint '#' prefix).
     open var placeholder: String? {
         get {
             return self.searchBar.placeholder;
@@ -125,19 +144,33 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    //MARK: - Constructors
+    
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameters:
+    ///   - nibNameOrNil: Nib Name
+    ///   - nibBundleOrNil: Nib Bundle Name
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //C.E.
     
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameters:
+    ///   - searchResultsController: Search Results View Controller
     override public init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController);
         //--
         self.commontInit();
     } //F.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //F.E.
+    
+    //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
@@ -146,24 +179,27 @@ open class BaseUISearchController: UISearchController {
         self.commontInit();
     } //F.E.
     
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-    } //F.E.
-
-    override open func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    //MARK: - Methods
     
     /// Common initazier for setting up items.
     private func commontInit() {
         if let placeHoldertxt:String = self.placeholder , placeHoldertxt.hasPrefix("#") == true{
             self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
         }
+        
+        if let txtField:UITextField = self.searchBar.textField {
+            txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        }
     } //F.E.
 
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView() {
+    func updateView() {
+        //Update Font
+        if let txtField:UITextField = self.searchBar.textField {
+            txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        }
+        
+        //Re-assigning if there are any changes from server
         if let plcHKey:String = _placeholderKey {
             self.placeholder = plcHKey;
         }

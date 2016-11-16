@@ -8,16 +8,22 @@
 
 import UIKit
 
+/// BaseUIView is a subclass of UIView and implements BaseView. It has some extra proporties and support for SyncEngine.
 open class BaseUIView: UIView, BaseView {
     
+    //MARK: - Properties
+    
+    /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = false;
 
+    /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
+    /// Width of View Border.
     @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -26,6 +32,7 @@ open class BaseUIView: UIView, BaseView {
         }
     }
     
+    /// Border color key from Sync Engine.
     @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -34,12 +41,14 @@ open class BaseUIView: UIView, BaseView {
         }
     }
     
+    /// Corner Radius for View.
     @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
+    /// Flag for making circle/rounded view.
     @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
@@ -48,6 +57,7 @@ open class BaseUIView: UIView, BaseView {
         }
     }
     
+    /// Flag for Drop Shadow.
     @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
@@ -58,20 +68,11 @@ open class BaseUIView: UIView, BaseView {
         }
     }
     
+    //MARK: - Overridden Methods
+    
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
-    } //F.E.
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView(){
-        if let bgCStyle:String = self.bgColorStyle {
-            self.bgColorStyle = bgCStyle;
-        }
-        
-        if let borderCStyle:String = self.borderColorStyle {
-            self.borderColorStyle = borderCStyle;
-        }
     } //F.E.
     
     /// Overridden methed to update layout.
@@ -80,6 +81,20 @@ open class BaseUIView: UIView, BaseView {
         //--
         if rounded {
             self.addRoundedCorners();
+        }
+    } //F.E.
+
+    
+    //MARK: - Methods
+    
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    func updateView(){
+        if let bgCStyle:String = self.bgColorStyle {
+            self.bgColorStyle = bgCStyle;
+        }
+        
+        if let borderCStyle:String = self.borderColorStyle {
+            self.borderColorStyle = borderCStyle;
         }
     } //F.E.
     

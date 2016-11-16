@@ -8,37 +8,45 @@
 
 import UIKit
 
-/// BaseUIDesignableButton is subclass of BaseUIButton. It draws custom view xib on the button and has all the features of a BaseUIButton.
+/// BaseUIDesignableButton is a subclass of BaseUIButton. It draws custom view xib on the button and has all the features of a BaseUIButton.
 open class BaseUIDesignableButton: BaseUIButton {
    
+    //MARK: - Properties
+    
     /// Holding containt view
     private var _view: UIView!
     
-    @IBInspectable open var nibName:String?; //Default value is nil
+    /// Inspectable property for custom xib name.
+    @IBInspectable open var xibName:String?; //Default value is nil
     
-    @IBInspectable open var nibViewIndex:Int = 0; //Default value is Zero
+    /// Inspectable property for custom xib view index.
+    @IBInspectable open var xibViewIndex:Int = 0; //Default value is Zero
     
-    /// Used when creating the underlying layer for the view with a custom xib
+    //MARK: - Constructors
+    
+    /// Used when creating the underlying layer for the view with a custom xib.
     ///
     /// - Parameters:
     ///   - frame:  View frame
     ///   - nibName: Xib file name
     ///   - viewIndex: Xib file view index
-    public init(frame: CGRect, nibName:String, viewIndex:Int = 0) {
+    public init(frame: CGRect, xibName:String, viewIndex:Int = 0) {
         super.init(frame: frame);
         
         //Holding Params
-        self.nibName = nibName;
-        self.nibViewIndex = viewIndex;
+        self.xibName = xibName;
+        self.xibViewIndex = viewIndex;
         
         //Setting up custom xib
         self.xibSetup();
     } //F.E.
     
-    
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //F.E.
+    
+    //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
@@ -49,19 +57,21 @@ open class BaseUIDesignableButton: BaseUIButton {
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    override public func updateView() {
+    override func updateView() {
         super.updateView();
         //--
         (_view as? BaseView)?.updateView();
     } //F.E.
     
+    //MARK: - Methods
+    
     /// Setup Custom View
     private func xibSetup() {
-        guard self.nibName != nil else {
+        guard self.xibName != nil else {
             return;
         }
         
-        _view = UIView.loadDynamicViewWithNib(self.nibName!, viewIndex: self.nibViewIndex, owner: self) as! UIView;
+        _view = UIView.loadDynamicViewWithNib(self.xibName!, viewIndex: self.xibViewIndex, owner: self) as! UIView;
         
         //Disabling the interaction for subview
         _view.isUserInteractionEnabled = false;

@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// BaseUISwitch is a subclass of UISwitch and implements BaseView. It has some extra proporties and support for SyncEngine.
 open class BaseUISwitch: UISwitch, BaseView {
     
+    //MARK: - Properties
     @IBInspectable open var onColorStyle:String? = nil {
         didSet {
             self.onTintColor = SyncedColors.color(forKey: onColorStyle);
@@ -22,6 +24,8 @@ open class BaseUISwitch: UISwitch, BaseView {
         }
     }
     
+    //MARK: - Overridden Methods
+    
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +33,10 @@ open class BaseUISwitch: UISwitch, BaseView {
         self.updateView()
     } //F.E.
     
+    //MARK: - Methods
+    
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView(){
+    func updateView(){
         if let onCStyle = self.onColorStyle {
             self.onColorStyle = onCStyle;
         }

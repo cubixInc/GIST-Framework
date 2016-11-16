@@ -90,6 +90,7 @@ open class ValidatedTextView: BaseUITextView {
         self.commonInit();
     } //F.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //F.E.
@@ -101,7 +102,7 @@ open class ValidatedTextView: BaseUITextView {
         self.commonInit();
     } //F.E.
     
-    /// A common initializer for sub components.
+    /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         self.validateText();
     } //F.E.

@@ -8,16 +8,15 @@
 
 import UIKit
 
+/// BaseUITableViewHeaderFooterView is a subclass of UITableViewHeaderFooterView and implements BaseView. It has some extra proporties and support for SyncEngine.
 open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseView {
-    private var _data:Any?
-    open var data:Any? {
-        get {
-            return _data;
-        }
-    } //P.E.
     
+    //MARK: - Properties
+    
+    /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = false;
     
+    /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             guard (self.bgColorStyle != oldValue) else {
@@ -32,6 +31,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
         }
     }
     
+    /// Tint color key from SyncEngine.
     @IBInspectable open var tintColorStyle:String? = nil {
         didSet {
             guard (self.tintColorStyle != oldValue) else {
@@ -42,38 +42,31 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
         }
     }
     
+    /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String? = "fontRegular" {
         didSet {
             guard (self.fontName != oldValue) else {
                 return;
             }
             //--
-            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
+            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
             
-            self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
+            self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.detailFontStyle, sizedForIPad: sizeForIPad);
         }
     }
     
-    @IBInspectable open var fontTitleStyle:String? = "medium" {
+    /// Font size/ style key from Sync Engine.
+    @IBInspectable open var fontStyle:String? = "medium" {
         didSet {
-            guard (self.fontTitleStyle != oldValue) else {
+            guard (self.fontStyle != oldValue) else {
                 return;
             }
             //--
-            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
+            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
         }
     }
     
-    @IBInspectable open var fontDetailStyle:String? = "fontRegular" {
-        didSet {
-            guard (self.fontDetailStyle != oldValue) else {
-                return;
-            }
-            //--
-            self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
-        }
-    }
-    
+    /// Font Color key from SyncEngine.
     @IBInspectable open var fontColor:String? = nil {
         didSet {
             guard (self.fontColor != oldValue) else {
@@ -84,41 +77,80 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
         }
     }
     
-    @IBInspectable open var detailColor:String? = nil {
+    /// Detail Text Font size/ style key from Sync Engine.
+    @IBInspectable open var detailFontStyle:String? = "medium" {
         didSet {
-            guard (self.detailColor != oldValue) else {
+            guard (self.detailFontStyle != oldValue) else {
                 return;
             }
             //--
-            self.detailTextLabel?.textColor = UIColor.color(forKey: detailColor);
+            self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.detailFontStyle, sizedForIPad: sizeForIPad);
         }
     }
     
+    /// Detail Text Font Color key from SyncEngine.
+    @IBInspectable open var detailFontColor:String? = nil {
+        didSet {
+            guard (self.detailFontColor != oldValue) else {
+                return;
+            }
+            //--
+            self.detailTextLabel?.textColor = UIColor.color(forKey: detailFontColor);
+        }
+    }
+    
+    private var _data:Any?
+    
+    /// Holds Table View Header/Footer View Data.
+    open var data:Any? {
+        get {
+            return _data;
+        }
+    } //P.E.
+    
+    //MARK: - Constructors
+    
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameter reuseIdentifier: Reuse identifier
     public override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier);
         //--
-        self.commonInitializer();
+        self.commonInit();
     } //F.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder);
     } //F.E.
+    
+    //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
         //--
-        self.commonInitializer();
+        self.commonInit();
     } //F.E.
     
-    private func commonInitializer() {
-        self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
+    /// Recursive update of layout and content from Sync Engine.
+    override func updateSyncedData() {
+        super.updateSyncedData();
+        //--
+        self.contentView.updateSyncedData();
+    } //F.E.
+    
+    //MARK: - Methods
+    
+    /// A common initializer to setup/initialize sub components.
+    private func commonInit() {
+        self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
         
-        self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
+        self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.detailFontStyle, sizedForIPad: sizeForIPad);
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView() {
+    func updateView() {
         if let bgCStyle = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -131,18 +163,14 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
             self.fontColor = fColor;
         }
         
-        if let dColor = self.detailColor {
-            self.detailColor = dColor;
+        if let dColor = self.detailFontColor {
+            self.detailFontColor = dColor;
         }
     } //F.E.
     
-    /// Recursive update of layout and content from Sync Engine.
-    override func updateSyncedData() {
-        super.updateSyncedData();
-        //--
-        self.contentView.updateSyncedData();
-    } //F.E.
-    
+    /// This method should be called in cellForRowAt:indexPath. it also must be overriden in all sub classes of BaseUITableViewHeaderFooterView to update the table view header/Footer view content.
+    ///
+    /// - Parameter data: Header View Data
     open func updateData(_ data:Any?) {
         _data = data;
         //--

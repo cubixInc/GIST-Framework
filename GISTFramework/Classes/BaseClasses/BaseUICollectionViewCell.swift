@@ -11,9 +11,11 @@ import UIKit
 /// BaseUICollectionViewCell is a subclass of UICollectionViewCell and implements BaseView. This class should be used for the collection view cells throughout the project.
 open class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
     
+    //MARK: - Properties
+    
     private var _data:Any?
     
-    /// Holds data of the Cell.
+    /// Holds data of the Collection View Cell.
     open var data:Any? {
         get {
             return _data;
@@ -24,23 +26,11 @@ open class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
         }
     } //P.E.
     
+    //MARK: - Overridden Methods
+    
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
-    } //F.E.
-    
-    /// This method should be called in cellForRowAt:indexPath. it also must be overriden in all sub classes of BaseUICollectionViewCell to update the collection view cell's content.
-    ///
-    /// - Parameter data: takes the collection view cell's data. It holds data to use later.
-    open func updateData(_ data:Any?) {
-        _data = data;
-        //--
-        self.updateSyncedData();
-    } //F.E.
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView() {
-        //DOING NOTHING FOR NOW
     } //F.E.
     
     /// Recursive update of layout and content from Sync Engine.
@@ -49,4 +39,22 @@ open class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
         //--
         self.contentView.updateSyncedData();
     } //F.E.
+    
+    //MARK: - Methods
+    
+    /// This method should be called in cellForRowAt:indexPath. it also must be overriden in all sub classes of BaseUICollectionViewCell to update the collection view cell's content.
+    ///
+    /// - Parameter data: Cell Data
+    open func updateData(_ data:Any?) {
+        _data = data;
+        //--
+        self.updateSyncedData();
+    } //F.E.
+    
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    func updateView() {
+        //DOING NOTHING FOR NOW
+    } //F.E.
+    
+    
 } //CLS END

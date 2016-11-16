@@ -8,23 +8,15 @@
 
 import UIKit
 
+/// BaseUITableViewCell is a subclass of UITableViewCell and implements BaseView. It has some extra proporties and support for SyncEngine.
 open class BaseUITableViewCell: UITableViewCell, BaseView {
 
-    private var _data:Any?
-    open var data:Any? {
-        get {
-            return _data;
-        }
-    } //P.E.
+    //MARK: - Properties
     
-    open lazy var seperatorView:UIView = {
-        let sView = UIView(frame: self.seperatorFrame);
-        sView.isHidden = true;
-        sView.backgroundColor = UIColor.lightGray;
-        self.addSubview(sView);
-        return sView;
-    }()
+    /// Flag for whether to resize the values for iPad.
+    @IBInspectable open var sizeForIPad:Bool = false;
     
+    /// Background color key from SyncEngine.
     @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             guard (self.bgColorStyle != oldValue) else {
@@ -35,12 +27,14 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     }
     
+    // Calculated seperator frame Rect - Overridable
     open var seperatorFrame:CGRect {
         get  {
             return CGRect(x: 0, y: (seperatorOnTop ? 0:self.frame.size.height - 0.5), width: self.frame.size.width, height: 0.5);
         }
     } //P.E.
     
+    /// Flag for showing seperator
     @IBInspectable open var hasSeperator:Bool {
         get {
             return !self.seperatorView.isHidden;
@@ -51,6 +45,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     } //P.E.
     
+    /// Seperator Color key from SyncEngine.
     @IBInspectable open var seperatorColorStyle:String? = nil {
         didSet {
             guard (self.seperatorColorStyle != oldValue) else {
@@ -61,34 +56,38 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     } //P.E.
     
+    /// Flag for showing seperator on the top.
     @IBInspectable open var seperatorOnTop:Bool = false {
         didSet {
             self.seperatorView.frame = self.seperatorFrame;
         }
     }
     
+    /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String? = "fontRegular" {
         didSet {
             guard (self.fontName != oldValue) else {
                 return;
             }
             //--
-            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
+            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
             
             self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
         }
     }
     
-    @IBInspectable open var fontTitleStyle:String? = "medium" {
+    /// Font size/ style key from Sync Engine.
+    @IBInspectable open var fontStyle:String? = "medium" {
         didSet {
-            guard (self.fontTitleStyle != oldValue) else {
+            guard (self.fontStyle != oldValue) else {
                 return;
             }
             //--
-            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
+            self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
         }
     }
     
+    /// Detail text font name key from SyncEngine.
     @IBInspectable open var fontDetailStyle:String? = "fontRegular" {
         didSet {
             guard (self.fontDetailStyle != oldValue) else {
@@ -99,6 +98,8 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     }
     
+    
+    /// Font Color key from SyncEngine.
     @IBInspectable open var fontColor:String? = nil {
         didSet {
             guard (self.fontColor != oldValue) else {
@@ -109,6 +110,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     }
     
+    /// Detail text font color key from SyncEngine.
     @IBInspectable open var detailColor:String? = nil {
         didSet {
             guard (self.detailColor != oldValue) else {
@@ -119,12 +121,37 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     }
     
-    @IBInspectable open var sizeForIPad:Bool = false;
+    private var _data:Any?
     
+    /// Holds Table View Cell Data.
+    open var data:Any? {
+        get {
+            return _data;
+        }
+    } //P.E.
+    
+    //Lazy instance for table view seperator view.
+    open lazy var seperatorView:UIView = {
+        let sView = UIView(frame: self.seperatorFrame);
+        sView.isHidden = true;
+        sView.backgroundColor = UIColor.lightGray;
+        self.addSubview(sView);
+        return sView;
+    }()
+    
+    
+    /// Convenience constructor with cell reuseIdentifier - by default style = UITableViewCellStyle.default.
+    ///
+    /// - Parameter reuseIdentifier: Reuse identifier
     public convenience init(reuseIdentifier: String?) {
         self.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier);
     } //F.E.
     
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameters:
+    ///   - style: Table View Cell Style
+    ///   - reuseIdentifier: Reuse identifier
     override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
         //--
@@ -133,9 +160,12 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         self.commonInit();
     } //F.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder);
     } //F.E.
+    
+    //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
@@ -144,23 +174,45 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         self.commonInit();
     } //F.E.
     
+    
+    /// Overridden method to receive selected states of table view cell
+    ///
+    /// - Parameters:
+    ///   - selected: Flag for Selected State
+    ///   - animated: Flag for Animation
     override open func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated);
     } //F.E.
     
-    /// A common initializer for sub components.
+    /// Recursive update of layout and content from Sync Engine.
+    override func updateSyncedData() {
+        super.updateSyncedData();
+        //--
+        self.contentView.updateSyncedData();
+    } //F.E.
+    
+    /// Overridden methed to update layout.
+    override open func layoutSubviews() {
+        super.layoutSubviews();
+        //--
+        self.seperatorView.frame = self.seperatorFrame;
+    } //F.E.
+    
+    //MARK: - Methods
+    
+    /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         self.selectionStyle = UITableViewCellSelectionStyle.none;
         //--
         self.contentView.backgroundColor  = UIColor.clear;
         
-        self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
+        self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
         
         self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView() {
+    func updateView() {
         if let bgCStyle = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -182,20 +234,9 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     } //F.E.
     
-    /// Recursive update of layout and content from Sync Engine.
-    override func updateSyncedData() {
-        super.updateSyncedData();
-        //--
-        self.contentView.updateSyncedData();
-    } //F.E.
-    
-    /// Overridden methed to update layout.
-    override open func layoutSubviews() {
-        super.layoutSubviews();
-        //--
-        self.seperatorView.frame = self.seperatorFrame;
-    } //F.E.
-    
+    /// This method should be called in cellForRowAt:indexPath. it also must be overriden in all sub classes of BaseUITableViewCell to update the table view cell's content.
+    ///
+    /// - Parameter data: Cell Data
     open func updateData(_ data:Any?) {
         _data = data;
         //--

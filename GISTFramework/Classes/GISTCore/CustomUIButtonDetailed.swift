@@ -10,6 +10,7 @@ import UIKit
 
 open class CustomUIButtonDetailed: CustomUIButton {
     
+    ///Inspectable property for Button Detail text.
     @IBInspectable open var detailText:String? {
         get {
             return self.detailLabel.text;
@@ -20,28 +21,28 @@ open class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
-    //Detail text font style - 'medium' is default
+    ///Detail text font style - 'medium' is default.
     @IBInspectable open var dFontStyle:String = "medium" {
         didSet {
             self.detailLabel.fontStyle = self.dFontStyle;
         }
     }
     
-    //Detail text font color style
+    /// Detail text Font color key from Sync Engine.
     @IBInspectable open var dFontColorStyle:String? {
         didSet {
             self.detailLabel.fontColorStyle = (self.isSelected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
     }
     
-    //Detail text selected state font color style
+    /// Selected Detail text Font color key from Sync Engine.
     @IBInspectable open var dSelectedFontColorStyle:String? {
         didSet {
             self.detailLabel.fontColorStyle = (self.isSelected == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
     }
     
-    //Padding between the title and detail text
+    ///Padding between the title and detail text.
     private var _detailOffSet:CGPoint = CGPoint.zero;
     @IBInspectable open var detailOffSet:CGPoint {
         set {
@@ -54,7 +55,9 @@ open class CustomUIButtonDetailed: CustomUIButton {
     } //P.E.
     
     private var _detailLabel: BaseUILabel?;
-    var detailLabel: BaseUILabel {
+    
+    ///Instance UILable for Detail Text.
+    public var detailLabel: BaseUILabel {
         get {
             if (_detailLabel == nil) {
                 _detailLabel = BaseUILabel();
@@ -68,7 +71,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
-    //Off set for internal calculation
+    ///Off set for internal calculation
     internal override var offSetFix:CGPoint {
         get {
             let offSetV1:CGPoint = self.titleOffSet;
@@ -80,7 +83,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
-    //Updated calculation of frame for detail text label
+    ///Updated calculation of frame for detail text label
     private var detailLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.detailOffSet;
@@ -108,6 +111,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
         }
     } //F.E.
     
+    /// Overridden property to handle layouts for different status.
     override open var isSelected:Bool {
         get  {
             return super.isSelected;
@@ -128,7 +132,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    override public func updateView()  {
+    override func updateView()  {
         super.updateView();
         //--
         self.detailLabel.updateView();

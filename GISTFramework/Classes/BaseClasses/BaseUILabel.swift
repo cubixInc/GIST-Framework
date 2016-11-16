@@ -8,16 +8,22 @@
 
 import UIKit
 
+/// BaseUILabel is a subclass of UILabel and implements BaseView. It extents UILabel with some extra proporties and supports SyncEngine.
 open class BaseUILabel: UILabel, BaseView {
     
+    //MARK: - Properties
+    
+    /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = false;
     
+    /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
+    /// Width of View Border.
     @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -26,6 +32,7 @@ open class BaseUILabel: UILabel, BaseView {
         }
     }
     
+    /// Border color key from Sync Engine.
     @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -34,12 +41,14 @@ open class BaseUILabel: UILabel, BaseView {
         }
     }
     
+    /// Corner Radius for View.
     @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
+    /// Flag for making circle/rounded view.
     @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
@@ -48,6 +57,7 @@ open class BaseUILabel: UILabel, BaseView {
         }
     }
     
+    /// Flag for Drop Shadow.
     @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
@@ -70,18 +80,21 @@ open class BaseUILabel: UILabel, BaseView {
         }
     }
     
+    /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
+    /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
+    /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
             self.textColor = SyncedColors.color(forKey: fontColorStyle);
@@ -105,6 +118,8 @@ open class BaseUILabel: UILabel, BaseView {
         }
     } //P.E.
     
+    //MARK: - Constructors
+    
     /// Overridden constructor to setup/ initialize components.
     ///
     /// - Parameter frame: View frame
@@ -114,9 +129,12 @@ open class BaseUILabel: UILabel, BaseView {
         self.commontInit();
     } //C.E.
     
+    /// Required method implemented
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //C.E.
+    
+    //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
@@ -124,6 +142,18 @@ open class BaseUILabel: UILabel, BaseView {
         //--
         self.commontInit();
     } //F.E.
+    
+    /// Overridden methed to update layout.
+    override open func layoutSubviews() {
+        super.layoutSubviews();
+        //--
+        //Referesh on update layout
+        if rounded {
+            self.rounded = true;
+        }
+    } //F.E.
+    
+    //MARK: - Methods
     
     /// Common initazier for setting up items.
     private func commontInit() {
@@ -137,10 +167,13 @@ open class BaseUILabel: UILabel, BaseView {
         }
     } //F.E.
     
+    
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView() {
+    func updateView() {
+        //Setting font
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
+        //Re-assigning if there are any changes from server
         if let bgCStyle:String = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -155,16 +188,6 @@ open class BaseUILabel: UILabel, BaseView {
         
         if let txtKey:String = _textKey {
             self.text = txtKey;
-        }
-    } //F.E.
-    
-    /// Overridden methed to update layout.
-    override open func layoutSubviews() {
-        super.layoutSubviews();
-        //--
-        //Referesh on update layout
-        if rounded {
-            self.rounded = true;
         }
     } //F.E.
     

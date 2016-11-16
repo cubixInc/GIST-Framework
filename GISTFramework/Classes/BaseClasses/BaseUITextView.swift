@@ -8,16 +8,22 @@
 
 import UIKit
 
+/// BaseUITextView is a subclass of UITextView and implements BaseView. It has some extra proporties and support for SyncEngine.
 open class BaseUITextView: UITextView, BaseView {
 
+    //MARK: - Properties
+    
+    /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = false;
     
+    /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
     
+    /// Width of View Border.
     @IBInspectable open var border:Int = 0 {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -26,6 +32,7 @@ open class BaseUITextView: UITextView, BaseView {
         }
     }
     
+    /// Border color key from Sync Engine.
     @IBInspectable open var borderColorStyle:String? = nil {
         didSet {
             if let borderCStyle:String = borderColorStyle {
@@ -34,12 +41,14 @@ open class BaseUITextView: UITextView, BaseView {
         }
     }
     
+    /// Corner Radius for View.
     @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
     }
     
+    /// Flag for making circle/rounded view.
     @IBInspectable open var rounded:Bool = false {
         didSet {
             if rounded {
@@ -48,6 +57,7 @@ open class BaseUITextView: UITextView, BaseView {
         }
     }
     
+    /// Flag for Drop Shadow.
     @IBInspectable open var hasDropShadow:Bool = false {
         didSet {
             if (hasDropShadow) {
@@ -58,30 +68,35 @@ open class BaseUITextView: UITextView, BaseView {
         }
     }
     
+    /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = "fontRegular" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
+    /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = "medium" {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
+    /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
             self.textColor = SyncedColors.color(forKey: fontColorStyle);
         }
     }
     
+    /// Placeholder text font color key from Sync Engine.
     @IBInspectable open var placeholderColorStyle:String? = nil {
         didSet {
             self.lblPlaceholder.textColor = SyncedColors.color(forKey: placeholderColorStyle);
         }
     } //P.E.
     
+    /// Sete placeholder text from SyncEngine (Hint '#' prefix).
     @IBInspectable open var placeholder:String? {
         set {
             if (newValue != nil) {
@@ -106,6 +121,7 @@ open class BaseUITextView: UITextView, BaseView {
         }
     } //P.E.
     
+    //Overridden property to handle placeholder visiblility.
     open override var text: String! {
         didSet {
             self.updatePlaceholderState();
@@ -113,6 +129,8 @@ open class BaseUITextView: UITextView, BaseView {
     }
     
     private var _lblPlaceholder:BaseUILabel?
+
+    /// UILable instance for text view placeholder text.
     private var lblPlaceholder:BaseUILabel {
         get {
             
@@ -136,15 +154,31 @@ open class BaseUITextView: UITextView, BaseView {
         }
     } //P.E.
     
+    //MARK: - Constructors
+    
+    /// Overridden method to setup/ initialize components.
+    ///
+    /// - Parameters:
+    ///   - frame: View Frame
+    ///   - textContainer: Text Container
     override public init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer);
         //--
         self.commonInit()
-    } //F.E.
+    } //C.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
+    } //C.E.
+    
+    //MARK: - Distructor
+    
+    deinit {
+        self.removeTextDidChangeObserver();
     }
+    
+    //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
@@ -153,7 +187,17 @@ open class BaseUITextView: UITextView, BaseView {
         self.commonInit()
     } //F.E.
     
-    /// A common initializer for sub components.
+    override open func layoutSubviews() {
+        super.layoutSubviews();
+        //--
+        if rounded {
+            self.addRoundedCorners();
+        }
+    } //F.E.
+    
+    //MARK: - Methods
+    
+    /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         //-
@@ -161,11 +205,11 @@ open class BaseUITextView: UITextView, BaseView {
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    public func updateView()  {
-        // Assigning all again to see if there is update from server
-        
+    func updateView()  {
+        //Setting font
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
+        //Re-assigning if there are any changes from server
         if let bgCStyle:String = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -182,6 +226,8 @@ open class BaseUITextView: UITextView, BaseView {
         _lblPlaceholder?.updateView();
     } //F.E.
     
+    
+    /// Updatating visiblity of placeholder text.
     private func updatePlaceholderState() {
         //Checking if _lblPlaceholder is initialized or not
         if (_lblPlaceholder != nil) {
@@ -189,24 +235,19 @@ open class BaseUITextView: UITextView, BaseView {
         }
     } //F.E.
     
-    override open func layoutSubviews() {
-        super.layoutSubviews();
-        //--
-        if rounded {
-            self.addRoundedCorners();
-        }
-    } //F.E.
+    //MARK: - Text change observer handling
     
-    //MARK: - Text change Observer Handling
+    /// Adding observer for UITextView Text Change.
     private func addTextDidChangeObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeObserver), name: NSNotification.Name.UITextViewTextDidChange, object: nil);
     } //F.E.
     
+    /// Removing observer for UITextView.
     private func removeTextDidChangeObserver() {
         NotificationCenter.default.removeObserver(self);
     } //F.E.
 
-    //MARK: - Observer
+    /// Observer for text changes.
     internal func textDidChangeObserver(_ notification:Notification) {
         if (self.placeholder == nil) {
             return;
@@ -215,8 +256,4 @@ open class BaseUITextView: UITextView, BaseView {
         self.updatePlaceholderState();
     } //F.E.
     
-    deinit {
-        self.removeTextDidChangeObserver();
-    }
-
 } //CLS END

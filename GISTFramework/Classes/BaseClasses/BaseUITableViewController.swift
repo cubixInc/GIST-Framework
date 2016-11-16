@@ -8,8 +8,12 @@
 
 import UIKit
 
+/// BaseUITableViewController is a subclass of UITableViewController. It has some extra proporties and support for SyncEngine.
 open class BaseUITableViewController: UITableViewController {
 
+    //MARK: - Properties
+    
+    /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
     @IBInspectable open var backBtnImageName:String = "NavBackButton";
     
     private var _hasBackButton:Bool = true;
@@ -18,6 +22,8 @@ open class BaseUITableViewController: UITableViewController {
     private var _lastSyncedDate:String?
     
     private var _titleKey:String?;
+    
+    /// Overriden title property to set title from SyncEngine (Hint '#' prefix).
     override open var title: String? {
         get {
             return super.title;
@@ -34,41 +40,61 @@ open class BaseUITableViewController: UITableViewController {
         }
     } //P.E.
     
+    //MARK: - Constructors
     
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameters:
+    ///   - nibNameOrNil: Nib Name
+    ///   - nibBundleOrNil: Nib Bundle Name
+    ///   - backButton: Flag for back button
     public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButton:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         //--
         _hasBackButton = backButton;
     } //F.E.
     
-    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButtonForced:Bool)
-    {
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameters:
+    ///   - nibNameOrNil: Nib Name
+    ///   - nibBundleOrNil: Nib Bundle Name
+    ///   - backButtonForced: Flag to show back button by force
+    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButtonForced:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         //--
         _hasBackButton = backButtonForced;
         _hasForcedBackButton = backButtonForced;
     } //F.E.
     
+    /// Required constructor implemented.
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     } //F.E.
     
+    /// Required constructor implemented.
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //F.E.
     
+    //MARK: - Overridden Methods
+    
+    /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
         //--
         _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
     
+    /// Overridden method to setup/ initialize components.
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         //--
         self.setupBackBtn();
         self.updateSyncedData();
     }//F.E.
+    
+    //MARK: - Methods
     
     //Setting up custom back button
     private func setupBackBtn() {
@@ -81,23 +107,10 @@ open class BaseUITableViewController: UITableViewController {
         }
     } //F.E.
     
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated);
-    } //F.E.
+    //MARK: - Methods
     
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated);
-    } //F.E.
-    
-    override open func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    } //F.E.
-    
+    ///Setting up custom back button.
     open func backButtonTapped() {
         self.view.endEditing(true);
         _ = self.navigationController?.popViewController(animated: true)
