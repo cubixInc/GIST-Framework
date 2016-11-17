@@ -21,7 +21,6 @@
 		4895305E1D12AD4100DFD38B /* BaseUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530321D12AD4100DFD38B /* BaseUIImageView.swift */; };
 		4895305F1D12AD4100DFD38B /* BaseUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530331D12AD4100DFD38B /* BaseUILabel.swift */; };
 		489530601D12AD4100DFD38B /* BaseUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530341D12AD4100DFD38B /* BaseUINavigationController.swift */; };
-		489530611D12AD4100DFD38B /* BaseUIPopoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530351D12AD4100DFD38B /* BaseUIPopoverNavigationController.swift */; };
 		489530621D12AD4100DFD38B /* BaseUIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530361D12AD4100DFD38B /* BaseUIScrollView.swift */; };
 		489530631D12AD4100DFD38B /* BaseUISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530371D12AD4100DFD38B /* BaseUISearchBar.swift */; };
 		489530641D12AD4100DFD38B /* BaseUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530381D12AD4100DFD38B /* BaseUISegmentedControl.swift */; };
@@ -81,7 +80,6 @@
 		489530321D12AD4100DFD38B /* BaseUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIImageView.swift; sourceTree = "<group>"; };
 		489530331D12AD4100DFD38B /* BaseUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUILabel.swift; sourceTree = "<group>"; };
 		489530341D12AD4100DFD38B /* BaseUINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUINavigationController.swift; sourceTree = "<group>"; };
-		489530351D12AD4100DFD38B /* BaseUIPopoverNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPopoverNavigationController.swift; sourceTree = "<group>"; };
 		489530361D12AD4100DFD38B /* BaseUIScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIScrollView.swift; sourceTree = "<group>"; };
 		489530371D12AD4100DFD38B /* BaseUISearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISearchBar.swift; sourceTree = "<group>"; };
 		489530381D12AD4100DFD38B /* BaseUISegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISegmentedControl.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				489530321D12AD4100DFD38B /* BaseUIImageView.swift */,
 				489530331D12AD4100DFD38B /* BaseUILabel.swift */,
 				489530341D12AD4100DFD38B /* BaseUINavigationController.swift */,
-				489530351D12AD4100DFD38B /* BaseUIPopoverNavigationController.swift */,
 				489530361D12AD4100DFD38B /* BaseUIScrollView.swift */,
 				489530371D12AD4100DFD38B /* BaseUISearchBar.swift */,
 				489530381D12AD4100DFD38B /* BaseUISegmentedControl.swift */,
@@ -347,7 +344,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				489530611D12AD4100DFD38B /* BaseUIPopoverNavigationController.swift in Sources */,
 				489530601D12AD4100DFD38B /* BaseUINavigationController.swift in Sources */,
 				489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */,
 				4895305A1D12AD4100DFD38B /* BaseUICollectionView.swift in Sources */,
