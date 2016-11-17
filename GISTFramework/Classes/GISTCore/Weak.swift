@@ -8,9 +8,20 @@
 
 import UIKit
 
+/// Class to hold generic weak objects
 open class Weak<T: AnyObject> {
-    weak var value : T?
-    init (value: T) {
+    
+    //MARK: - Properties
+    
+    /// Holds weak object
+    weak open var value : T?
+    
+    //MARK: - Constructor
+    
+    /// Constructor for weak generic value
+    ///
+    /// - Parameter value: Weak Value to hold
+    public init (value: T) {
         self.value = value
-    }
+    } //C.E.
 } //CLS END

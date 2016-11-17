@@ -10,8 +10,13 @@
 import Foundation
 import UIKit
 
+// MARK: - UIImage extention for Utility methods and property
 public extension UIImage {
     
+    /// Scaling image with image size and ratating image to identity if orientation is other than UIImageOrientation.up
+    ///
+    /// - Parameter maxSize: Maximum Image Size
+    /// - Returns: Resized and Ratated UIImage
     public func scaleAndRotateImage(_ maxSize: CGFloat) -> UIImage {
         
         let imgRef = self.cgImage!

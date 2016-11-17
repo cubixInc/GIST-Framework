@@ -9,7 +9,10 @@
 import UIKit
 import CoreLocation
 
+// MARK: - CLPlacemark Utility Extension
 public extension CLPlacemark {
+    
+    /// Returns formated Address from 'FormattedAddressLines' array
     public var formatedAddress:String? {
         get {
             if let addrList = self.addressDictionary?["FormattedAddressLines"] as? [String] {

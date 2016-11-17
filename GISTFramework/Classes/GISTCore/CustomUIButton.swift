@@ -8,8 +8,12 @@
 
 import UIKit
 
+/// CustomUIButton is a subclass of BaseUIButton having all the properties of a UIButton. it resizes the images according to device resolution.
 open class CustomUIButton: BaseUIButton {
     
+    //MARK: - Properties
+    
+    /// Button image background color key from SyncEngine.
     @IBInspectable open var imgBgColorStyle:String? = nil {
         didSet {
             self.imageView?.backgroundColor = SyncedColors.color(forKey: imgBgColorStyle);
@@ -17,6 +21,8 @@ open class CustomUIButton: BaseUIButton {
     }
     
     private var _titleOffSet:CGPoint = CGPoint.zero;
+    
+    /// Padding between image and title.
     @IBInspectable open var titleOffSet:CGPoint {
         set {
             _titleOffSet = newValue;
@@ -28,6 +34,8 @@ open class CustomUIButton: BaseUIButton {
     } //P.E.
     
     private var _containtOffSet:CGPoint = CGPoint.zero;
+    
+    /// Title and Image container pedding from the main container.
     @IBInspectable open var containtOffSet:CGPoint {
         set {
             _containtOffSet = newValue;
@@ -39,6 +47,8 @@ open class CustomUIButton: BaseUIButton {
     } //P.E.
     
     private var _containtCenter:Bool = true;
+    
+    /// Flag for whether to draw containt in the center.
     @IBInspectable open var containtCenter:Bool {
         set {
             _containtCenter = newValue;
@@ -50,6 +60,11 @@ open class CustomUIButton: BaseUIButton {
     } //P.E.
     
     private var _reversedOrder:Bool = false;
+    
+    /**
+     Flag for whether to draw containt in the reverse order. (e.g. title and then Image.)
+     The native behavior of UIButton is, image first and then title text.
+    */
     @IBInspectable open var reversedOrder:Bool {
         set {
             _reversedOrder = newValue;
@@ -62,6 +77,7 @@ open class CustomUIButton: BaseUIButton {
     
     @IBInspectable open var imageFixedSize:CGSize = CGSize.zero;
     
+    /// Fixing offset of internal calculations use.
     internal var offSetFix:CGPoint {
         get {
             let offSetV:CGPoint = self.titleOffSet;
@@ -72,6 +88,10 @@ open class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
+    /**
+     Calculated frame of button image view.
+     It uses UIButton native UIViewContentMode to calculate frames.
+     */
     open var imageViewFrame:CGRect {
         get {
             
@@ -200,6 +220,10 @@ open class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
+    /**
+     Calculated frame of title text lable.
+     It uses image frame as a reference to calculate frames.
+     */
     open var titleLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.titleOffSet;
@@ -227,6 +251,7 @@ open class CustomUIButton: BaseUIButton {
         }
     } //F.E.
     
+    /// Overriden propert to get content mode changes.
     override open var contentMode:UIViewContentMode {
         get {
             return super.contentMode;
@@ -236,6 +261,8 @@ open class CustomUIButton: BaseUIButton {
             super.contentMode = newValue;
         }
     } //P.E.
+    
+    //MARK: - Overridden Methods
     
     /// Overridden methed to update layout.
     override open func layoutSubviews() {

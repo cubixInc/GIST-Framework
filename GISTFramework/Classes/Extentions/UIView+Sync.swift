@@ -10,6 +10,7 @@ import UIKit
 
 // MARK: - UIView Extension for Sync Engine to update layout at runtime.
 extension UIView {
+    
     /// Recursive update of layout and content from Sync Engine.
     func updateSyncedData() {
         (self as? BaseView)?.updateView();

@@ -9,6 +9,8 @@
 import UIKit
 
 /**
+ Enum for UIColor Input Error
+ 
  MissingHashMarkAsPrefix:   "Invalid RGB string, missing '#' as prefix"
  UnableToScanHexValue:      "Scan hex error"
  MismatchedHexStringLength: "Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8"
@@ -22,7 +24,7 @@ enum UIColorInputError : Error {
 extension UIColor {
     /**
      The shorthand three-digit hexadecimal representation of color.
-     #RGB defines to the color #RRGGBB.
+     Color #RGB defines to the color #RRGGBB.
      
      - parameter hex3: Three-digit hexadecimal value.
      - parameter alpha: 0.0 - 1.0. The default is 1.0.
@@ -37,7 +39,7 @@ extension UIColor {
     
     /**
      The shorthand four-digit hexadecimal representation of color with alpha.
-     #RGBA defines to the color #RRGGBBAA.
+     Color #RGBA defines to the color #RRGGBBAA.
      
      - parameter hex4: Four-digit hexadecimal value.
      */
@@ -143,7 +145,7 @@ extension UIColor {
 
 extension String {
     /**
-     Convert argb string to rgba string.
+     Converts argb string to rgba string.
      */
     public func argb2rgba() -> String? {
         guard self.hasPrefix("#") else {

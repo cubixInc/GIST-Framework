@@ -35,7 +35,6 @@
 		4895306C1D12AD4100DFD38B /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530401D12AD4100DFD38B /* BaseUIView.swift */; };
 		4895306D1D12AD4100DFD38B /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530411D12AD4100DFD38B /* BaseUIViewController.swift */; };
 		4895306E1D12AD4100DFD38B /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489530421D12AD4100DFD38B /* BaseViewProtocol.swift */; };
-		489530751D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895304A1D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift */; };
 		489530761D12AD4100DFD38B /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895304B1D12AD4100DFD38B /* UIColor+Hex.swift */; };
 		489530771D12AD4100DFD38B /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895304C1D12AD4100DFD38B /* UIImage+Utility.swift */; };
 		489530781D12AD4100DFD38B /* UITableView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895304D1D12AD4100DFD38B /* UITableView+Utility.swift */; };
@@ -98,7 +97,6 @@
 		489530401D12AD4100DFD38B /* BaseUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		489530411D12AD4100DFD38B /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
 		489530421D12AD4100DFD38B /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
-		4895304A1D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+3DTouchFix.swift"; sourceTree = "<group>"; };
 		4895304B1D12AD4100DFD38B /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		4895304C1D12AD4100DFD38B /* UIImage+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
 		4895304D1D12AD4100DFD38B /* UITableView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Utility.swift"; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 			children = (
 				48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */,
 				48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */,
-				4895304A1D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift */,
 				4895304B1D12AD4100DFD38B /* UIColor+Hex.swift */,
 				489421C71D48954400310089 /* UIColor+Utility.swift */,
 				4895304C1D12AD4100DFD38B /* UIImage+Utility.swift */,
@@ -372,7 +369,6 @@
 				48EB0AEC1D7FF45B00BD93BC /* GISTUtility.swift in Sources */,
 				4895305B1D12AD4100DFD38B /* BaseUICollectionViewCell.swift in Sources */,
 				489530641D12AD4100DFD38B /* BaseUISegmentedControl.swift in Sources */,
-				489530751D12AD4100DFD38B /* UICollectionView+3DTouchFix.swift in Sources */,
 				48991B0C1D460C60007467A4 /* Array+Utility.swift in Sources */,
 				489530671D12AD4100DFD38B /* BaseUISwitch.swift in Sources */,
 				4895305D1D12AD4100DFD38B /* BaseUIDesignableView.swift in Sources */,

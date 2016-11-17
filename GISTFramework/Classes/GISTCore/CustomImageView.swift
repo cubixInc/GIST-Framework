@@ -8,14 +8,20 @@
 
 import UIKit
 
-//??@available(*, deprecated, message="use CustomUIImageView class instead")
-//Now this class is available again, due to some bugs found in the CustomUIImageView
-
+/// CustomImageView is a subclass of BaseUIView. it has all the properties of a UIImageView and it resizes image according to device resolution
 open class CustomImageView: BaseUIView {
 
+    //MARK: - Properties
+    
+    /**
+     Inspectable property for drawing a fixed size image - Default value is CGSize.zero.
+     This propert is not considerd when width and height both are zero.
+     */
     @IBInspectable open var imageFixedSize:CGSize = CGSize.zero;
     
     private var _imageView:UIImageView?;
+    
+    /// Image View Lazy instance for drawing image.
     open var imageView:UIImageView? {
         get {
             if (_imageView == nil) {
@@ -35,7 +41,11 @@ open class CustomImageView: BaseUIView {
             _imageView = newValue;
         }
     } //P.E.
-
+    
+    /**
+     Calculated frame of button image view.
+     It uses UIButton native UIViewContentMode to calculate frames.
+     */
     private var imageViewFrame:CGRect {
         get {
             
@@ -154,6 +164,7 @@ open class CustomImageView: BaseUIView {
         }
     } //P.E.
     
+    /// Overriden propert to get content mode changes.
     override open var contentMode:UIViewContentMode {
         get {
             return super.contentMode;
@@ -164,6 +175,7 @@ open class CustomImageView: BaseUIView {
         }
     } //P.E.
     
+    /// Inspectable property for setting image.
     @IBInspectable open var image: UIImage? {
         get {
             return self.imageView!.image;
@@ -174,6 +186,8 @@ open class CustomImageView: BaseUIView {
             self.imageView!.frame = self.imageViewFrame;
         }
     } //F.E.
+    
+    //MARK: - Overridden Methods
     
     /// Overridden methed to update layout.
     override open func layoutSubviews() {

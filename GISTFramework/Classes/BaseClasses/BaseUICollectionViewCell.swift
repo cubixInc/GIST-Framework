@@ -8,8 +8,8 @@
 
 import UIKit
 
-/// BaseUICollectionViewCell is a subclass of UICollectionViewCell and implements BaseView. This class should be used for the collection view cells throughout the project.
-open class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
+/// BaseUICollectionViewCell is a subclass of UICollectionViewCell and implements BaseView and UIViewControllerPreviewingDelegate. This class should be used for the collection view cells throughout the project.
+open class BaseUICollectionViewCell: UICollectionViewCell, UIViewControllerPreviewingDelegate, BaseView {
     
     //MARK: - Properties
     
@@ -56,5 +56,26 @@ open class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
         //DOING NOTHING FOR NOW
     } //F.E.
     
+    //MARK: - UIViewControllerPreviewingDelegate protocol methods
+    
+    /// Protocol method for viewControllerForLocation (CGPoint)
+    ///
+    /// - Parameters:
+    ///   - previewingContext: UIViewControllerPreviewing
+    ///   - location: Location for view controller
+    /// - Returns: returns view controller for location - nil by default
+    open func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        return nil;
+    } //F.E.
+    
+    
+    /// Protocol method for viewControllerToCommit
+    ///
+    /// - Parameters:
+    ///   - previewingContext: UIViewControllerPreviewing
+    ///   - viewControllerToCommit: ViewController to commit
+    open func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        
+    } //F.E.
     
 } //CLS END

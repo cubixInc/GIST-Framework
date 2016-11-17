@@ -11,19 +11,11 @@ import UIKit
 ///THIS CLASS WAS TO REPLACE CustomImageView(inharited from UIView) but there were some unknown implementations of UIImageView (of UIKit) that are causing the bugs so keeping this class private to use in future after some fixes
 private class CustomUIImageView: BaseUIImageView {
     
-    /// Overridden method to setup/ initialize components.
-    override open func awakeFromNib() {
-        super.awakeFromNib();
-        //--
-        if let cImg:UIImage = super.image {
-            //Cleaning Up
-            super.image = UIImage();
-            //--
-            self.image = UIImage(cgImage:cImg.cgImage!, scale: cImg.scale, orientation:cImg.imageOrientation);
-        }
-    } //F.E.
+    //MARK: - Properties
     
     private var _imageView:UIImageView?;
+    
+    /// Image View Lazy instance for drawing custom image.
     var imageView:UIImageView? {
         get {
             if (_imageView == nil) {
@@ -44,6 +36,10 @@ private class CustomUIImageView: BaseUIImageView {
         }
     } //P.E.
     
+    /**
+     Calculated frame of button image view.
+     It uses UIButton native UIViewContentMode to calculate frames.
+     */
     private var imageViewFrame:CGRect {
         get {
             
@@ -145,6 +141,7 @@ private class CustomUIImageView: BaseUIImageView {
         }
     } //P.E.
     
+    /// Overriden propert to get content mode changes.
     override var contentMode:UIViewContentMode {
         get {
             return super.contentMode;
@@ -155,6 +152,10 @@ private class CustomUIImageView: BaseUIImageView {
         }
     } //P.E.
     
+    /**
+     Overriden property for image.
+     It overrides the native behavior of UIImageView and sets image in the custom image view.
+    */
     override var image: UIImage? {
         get {
             return self.imageView!.image;
@@ -166,11 +167,25 @@ private class CustomUIImageView: BaseUIImageView {
         }
     } //F.E.
     
+    //MARK: - Overridden Methods
+    
+    /// Overridden method to setup/ initialize components.
+    override open func awakeFromNib() {
+        super.awakeFromNib();
+        //--
+        if let cImg:UIImage = super.image {
+            //Cleaning Up
+            super.image = UIImage();
+            //--
+            self.image = UIImage(cgImage:cImg.cgImage!, scale: cImg.scale, orientation:cImg.imageOrientation);
+        }
+    } //F.E.
+    
+    /// Overridden methed to update layout.
     override func layoutSubviews() {
         super.layoutSubviews();
         //--
         self.imageView!.frame = self.imageViewFrame;
     } //F.E
 
-
-}
+} //CLS END

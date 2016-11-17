@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ CustomUIButton is a subclass of CustomUIButton.
+ 
+ it adds an extra label for detail with title on the UIButton.
+*/
 open class CustomUIButtonDetailed: CustomUIButton {
     
     ///Inspectable property for Button Detail text.
