@@ -8,29 +8,35 @@
 
 import UIKit
 
+/**
+ SyncedText is a subclass of SyncEngine.
+ It handles syncing of application texts.
+ */
 open class SyncedText: SyncEngine {
     
+    //MARK: - Properties
+    
     private static var _sharedInstance: SyncedText = SyncedText();
+    
+    /// A singleton overridden sharedInstance for SyncedText.
     class override var sharedInstance: SyncedText {
         get {
             return self._sharedInstance;
         }
     } //P.E.
     
-    @discardableResult open class func syncForData(_ dict:NSDictionary) -> Bool {
-        return SyncedText.sharedInstance.syncForData(dict);
-    } //F.E.
+    //MARK: - Methods
     
-    open class func text(forKey key: String) -> String {
+    /// Retrieves text for a key from SyncEngine.
+    ///
+    /// - Parameter key: A Key
+    /// - Returns: A text from SyncEngine
+    public class func text(forKey key: String) -> String {
         return SyncedText.sharedInstance.text(forKey: key);
     } //F.E.
     
-    open func text(forKey key: String) -> String {
+    func text(forKey key: String) -> String {
         return (super.objectForKey(key.trimmingCharacters(in: CharacterSet(charactersIn: "#")))) ?? key
-    } //F.E.
-    
-    open override class func objectForKey<T>(_ aKey: String?) -> T? {
-        return SyncedText.sharedInstance.objectForKey(aKey);
     } //F.E.
     
 } //CLS END

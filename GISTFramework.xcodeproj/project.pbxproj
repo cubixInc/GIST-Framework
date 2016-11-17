@@ -59,8 +59,6 @@
 		48EB0AE21D7FEF4B00BD93BC /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADA1D7FEF4B00BD93BC /* CustomUIButton.swift */; };
 		48EB0AE31D7FEF4B00BD93BC /* CustomUIButtonDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADB1D7FEF4B00BD93BC /* CustomUIButtonDetailed.swift */; };
 		48EB0AE41D7FEF4B00BD93BC /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADC1D7FEF4B00BD93BC /* CustomUIImageView.swift */; };
-		48EB0AE51D7FEF4B00BD93BC /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADD1D7FEF4B00BD93BC /* PopoverController.swift */; };
-		48EB0AE61D7FEF4B00BD93BC /* PopoverControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADE1D7FEF4B00BD93BC /* PopoverControllerView.swift */; };
 		48EB0AE71D7FEF4B00BD93BC /* UIRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0ADF1D7FEF4B00BD93BC /* UIRadioButton.swift */; };
 		48EB0AE81D7FEF4B00BD93BC /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AE01D7FEF4B00BD93BC /* ValidatedTextField.swift */; };
 		48EB0AEA1D7FEFD700BD93BC /* GISTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */; };
@@ -123,8 +121,6 @@
 		48EB0ADA1D7FEF4B00BD93BC /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 		48EB0ADB1D7FEF4B00BD93BC /* CustomUIButtonDetailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButtonDetailed.swift; sourceTree = "<group>"; };
 		48EB0ADC1D7FEF4B00BD93BC /* CustomUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
-		48EB0ADD1D7FEF4B00BD93BC /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
-		48EB0ADE1D7FEF4B00BD93BC /* PopoverControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverControllerView.swift; sourceTree = "<group>"; };
 		48EB0ADF1D7FEF4B00BD93BC /* UIRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadioButton.swift; sourceTree = "<group>"; };
 		48EB0AE01D7FEF4B00BD93BC /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
 		48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTApplication.swift; sourceTree = "<group>"; };
@@ -262,8 +258,6 @@
 				48EB0ADA1D7FEF4B00BD93BC /* CustomUIButton.swift */,
 				48EB0ADB1D7FEF4B00BD93BC /* CustomUIButtonDetailed.swift */,
 				48EB0ADC1D7FEF4B00BD93BC /* CustomUIImageView.swift */,
-				48EB0ADD1D7FEF4B00BD93BC /* PopoverController.swift */,
-				48EB0ADE1D7FEF4B00BD93BC /* PopoverControllerView.swift */,
 				48EB0ADF1D7FEF4B00BD93BC /* UIRadioButton.swift */,
 				48EB0AE01D7FEF4B00BD93BC /* ValidatedTextField.swift */,
 				4888C0071D82DF0D00D85967 /* ValidatedTextView.swift */,
@@ -353,7 +347,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48EB0AE61D7FEF4B00BD93BC /* PopoverControllerView.swift in Sources */,
 				489530611D12AD4100DFD38B /* BaseUIPopoverNavigationController.swift in Sources */,
 				489530601D12AD4100DFD38B /* BaseUINavigationController.swift in Sources */,
 				489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */,
@@ -407,7 +400,6 @@
 				4895306B1D12AD4100DFD38B /* BaseUITextView.swift in Sources */,
 				4895306C1D12AD4100DFD38B /* BaseUIView.swift in Sources */,
 				4895307C1D12AD4100DFD38B /* SyncedConstants.swift in Sources */,
-				48EB0AE51D7FEF4B00BD93BC /* PopoverController.swift in Sources */,
 				4895307D1D12AD4100DFD38B /* SyncedFontStyles.swift in Sources */,
 				4895306A1D12AD4100DFD38B /* BaseUITextField.swift in Sources */,
 				4895305E1D12AD4100DFD38B /* BaseUIImageView.swift in Sources */,

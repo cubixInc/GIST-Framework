@@ -8,29 +8,36 @@
 
 import UIKit
 
+/**
+ SyncedFontStyles is a subclass of SyncEngine.
+ It handles syncing of application font sizes/ styles.
+ */
 open class SyncedFontStyles: SyncEngine {
     
+    //MARK: - Properties
+    
     private static var _sharedInstance: SyncedFontStyles = SyncedFontStyles();
+    
+    /// A singleton overridden sharedInstance for SyncedFontStyles.
     class override var sharedInstance: SyncedFontStyles {
         get {
             return self._sharedInstance;
         }
     } //P.E.
     
-    @discardableResult open class func syncForData(_ dict:NSDictionary) -> Bool {
-        return SyncedFontStyles.sharedInstance.syncForData(dict);
-    } //F.E.
+    //MARK: - Methods
     
-    open class func style(forKey key: String) -> Float {
+    /// Retrieves a font size for a key from SyncEngine.
+    ///
+    /// - Parameter key: A Key
+    /// - Returns: A font size value from SyncEngine.
+    public class func style(forKey key: String) -> Float {
         return SyncedFontStyles.sharedInstance.style(forKey: key);
     } //F.E.
     
-    open func style(forKey key: String) -> Float {
+    func style(forKey key: String) -> Float {
         return super.objectForKey(key) ?? 22;
     } //F.E.
     
-    open override class func objectForKey<T>(_ aKey: String?) -> T? {
-        return SyncedFontStyles.sharedInstance.objectForKey(aKey);
-    } //F.E.
     
 } //CLS END

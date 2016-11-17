@@ -8,25 +8,31 @@
 
 import UIKit
 
+/**
+ SyncedConstants is a subclass of SyncEngine.
+ It handles syncing of application constants.
+ */
 open class SyncedConstants: SyncEngine {
     
+    //MARK: - Properties
+    
     private static var _sharedInstance: SyncedConstants = SyncedConstants();
+    
+    /// A singleton overridden sharedInstance for SyncedConstants
     class override var sharedInstance: SyncedConstants {
         get {
             return self._sharedInstance;
         }
     } //P.E.
     
-    @discardableResult open class func syncForData(_ dict:NSDictionary) -> Bool {
-        return SyncedConstants.sharedInstance.syncForData(dict);
-    } //F.E.
+    //MARK: - Methods
     
-    open class func constant<T>(forKey key: String?) -> T? {
+    /// Retrieves a constant for a key from SyncEngine.
+    ///
+    /// - Parameter key: A Key
+    /// - Returns: A constant text or value from SyncEngine.
+    class func constant<T>(forKey key: String?) -> T? {
         return SyncedConstants.sharedInstance.objectForKey(key);
-    } //F.E.
-    
-    open override class func objectForKey<T>(_ aKey: String?) -> T? {
-        return SyncedConstants.sharedInstance.objectForKey(aKey);
     } //F.E.
     
 } //CLS END

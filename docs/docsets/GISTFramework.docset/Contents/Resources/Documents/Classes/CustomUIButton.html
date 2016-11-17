@@ -14,7 +14,7 @@
     <a title="CustomUIButton Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GISTFramework Docs</a> (76% documented)</p>
+        <p><a href="../index.html">GISTFramework Docs</a> (91% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -142,7 +142,7 @@
                 <a href="../Classes/SyncedColors.html">SyncedColors</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/SyncedConstants.html">SyncedConstants</a>
+                <a href="../Classes.html#/s:C13GISTFramework15SyncedConstants">SyncedConstants</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/SyncedFontStyles.html">SyncedFontStyles</a>
@@ -225,11 +225,24 @@
         <section>
           <section class="section">
             <h1>CustomUIButton</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">CustomUIButton</span><span class="p">:</span> <span class="kt"><a href="../Classes/BaseUIButton.html">BaseUIButton</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>CustomUIButton is a subclass of BaseUIButton having all the properties of a UIButton. it resizes the images according to device resolution.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -244,8 +257,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Button image background color key from SyncEngine.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">imgBgColorStyle</span><span class="p">:</span><span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -263,8 +284,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Padding between image and title.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">titleOffSet</span><span class="p">:</span><span class="kt">CGPoint</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -282,8 +311,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Title and Image container pedding from the main container.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">containtOffSet</span><span class="p">:</span><span class="kt">CGPoint</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -301,8 +338,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Flag for whether to draw containt in the center.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">containtCenter</span><span class="p">:</span><span class="kt">Bool</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -320,8 +365,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Flag for whether to draw containt in the reverse order. (e.g. title and then Image.)
+The native behavior of UIButton is, image first and then title text.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">reversedOrder</span><span class="p">:</span><span class="kt">Bool</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -342,6 +396,14 @@
                         <p>Undocumented</p>
 
                       </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">CustomUIButton</span><span class="p">:</span> <span class="kt"><a href="../Classes/BaseUIButton.html">BaseUIButton</a></span></code></pre>
+
+                        </div>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -358,8 +420,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Calculated frame of button image view.
+It uses UIButton native UIViewContentMode to calculate frames.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">imageViewFrame</span><span class="p">:</span><span class="kt">CGRect</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -377,8 +448,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Calculated frame of title text lable.
+It uses image frame as a reference to calculate frames.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">titleLabelFrame</span><span class="p">:</span><span class="kt">CGRect</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -396,12 +476,31 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Overriden propert to get content mode changes.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">contentMode</span><span class="p">:</span><span class="kt">UIViewContentMode</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Overridden%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Overridden Methods" class="dashAnchor"></a>
+                <a href="#/Overridden%20Methods">
+                  <h3 class="section-name">Overridden Methods</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>

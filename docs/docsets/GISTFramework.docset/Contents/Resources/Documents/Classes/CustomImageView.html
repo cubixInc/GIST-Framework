@@ -14,7 +14,7 @@
     <a title="CustomImageView Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GISTFramework Docs</a> (76% documented)</p>
+        <p><a href="../index.html">GISTFramework Docs</a> (91% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -142,7 +142,7 @@
                 <a href="../Classes/SyncedColors.html">SyncedColors</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/SyncedConstants.html">SyncedConstants</a>
+                <a href="../Classes.html#/s:C13GISTFramework15SyncedConstants">SyncedConstants</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/SyncedFontStyles.html">SyncedFontStyles</a>
@@ -236,6 +236,13 @@
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -250,14 +257,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Inspectable property for drawing a fixed size image - Default value is CGSize.zero.
+This propert is not considerd when width and height both are zero.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">CustomImageView</span><span class="p">:</span> <span class="kt"><a href="../Classes/BaseUIView.html">BaseUIView</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">imageFixedSize</span><span class="p">:</span><span class="kt">CGSize</span> <span class="o">=</span> <span class="kt">CGSize</span><span class="o">.</span><span class="n">zero</span><span class="p">;</span></code></pre>
 
                         </div>
                       </div>
@@ -277,14 +285,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Image View Lazy instance for drawing image.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">CustomImageView</span><span class="p">:</span> <span class="kt"><a href="../Classes/BaseUIView.html">BaseUIView</a></span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">imageView</span><span class="p">:</span><span class="kt">UIImageView</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -304,14 +312,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Overriden propert to get content mode changes.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">CustomImageView</span><span class="p">:</span> <span class="kt"><a href="../Classes/BaseUIView.html">BaseUIView</a></span></code></pre>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">contentMode</span><span class="p">:</span><span class="kt">UIViewContentMode</span></code></pre>
 
                         </div>
                       </div>
@@ -331,20 +339,31 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Inspectable property for setting image.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">CustomImageView</span><span class="p">:</span> <span class="kt"><a href="../Classes/BaseUIView.html">BaseUIView</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Overridden%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Overridden Methods" class="dashAnchor"></a>
+                <a href="#/Overridden%20Methods">
+                  <h3 class="section-name">Overridden Methods</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>

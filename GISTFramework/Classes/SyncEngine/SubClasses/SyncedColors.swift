@@ -8,34 +8,39 @@
 
 import UIKit
 
-
+/**
+ SyncedColors is a subclass of SyncEngine.
+ It handles syncing of application colors.
+ */
 open class SyncedColors: SyncEngine {
     
+    //MARK: - Properties
+    
     private static var _sharedInstance: SyncedColors = SyncedColors();
+    
+    /// A singleton overridden sharedInstance for SyncedColors
     class override var sharedInstance: SyncedColors {
         get {
             return self._sharedInstance;
         }
     }
     
-    @discardableResult open class func syncForData(_ dict:NSDictionary) -> Bool {
-        return SyncedColors.sharedInstance.syncForData(dict);
-    } //F.E.
+    //MARK: - Methods
     
-    open class func color(forKey key: String?) -> UIColor? {
+    /// Retrieves a color for a key from SyncEngine.
+    ///
+    /// - Parameter key: A Key
+    /// - Returns: A color from SyncEngine.
+    public class func color(forKey key: String?) -> UIColor? {
         return SyncedColors.sharedInstance.color(forKey: key);
     } //F.E.
     
-    open func color(forKey key: String?) -> UIColor? {
+    func color(forKey key: String?) -> UIColor? {
         if let haxColor:String = super.objectForKey(key) {
             return UIColor(haxColor);
         } else {
             return nil;
         }
-    } //F.E.
-    
-    open override class func objectForKey<T>(_ aKey: String?) -> T? {
-        return SyncedColors.sharedInstance.objectForKey(aKey);
     } //F.E.
     
 } //CLS END

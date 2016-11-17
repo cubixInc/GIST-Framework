@@ -8,8 +8,17 @@
 
 import UIKit
 
+/**
+ SyncEngine is framework to Sync Data from Server.
+ It syncs application's Colors, Constants, Font Sizes/Styles and Texts/ Strings.
+ */
 open class SyncEngine: NSObject {
+    
+    //MARK: - Properties
+    
     private static var _sharedInstance: SyncEngine = SyncEngine(customData: true);
+    
+    /// A singleton sharedInstance for SyncEngine
     class var sharedInstance: SyncEngine {
         get {
             return self._sharedInstance;
@@ -28,10 +37,8 @@ open class SyncEngine: NSObject {
     }()
     
     private lazy var applicationDocumentsDirectory: URL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "com.cubix.GIST" in the application's documents Application Support directory.
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1]
-        //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString;
     }();
     
     private lazy var syncedFileUrl: URL = {
@@ -48,7 +55,7 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
-    //Server date
+    /// Holds Last Synced Server Data
     open static var lastSyncedServerDate:String? {
         get {
             return SyncEngine.sharedInstance.lastSyncedServerDate;
@@ -77,10 +84,30 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
-    open class func initialize(_ urlToSync:String, authentication:[String:String]? = nil) {
+    //MARK: - Constructors
+    
+    override init() {
+        super.init();
+        //--
+        self.setupSyncedFile();
+    } //P.E.
+    
+    //MARK: - Methods
+    
+    /// Static Initializer for Sync Engine.
+    ///
+    /// - Parameters:
+    ///   - urlToSync: Http request url for Sync data
+    ///   - authentication: Authentication Header if any
+    public static func initialize(_ urlToSync:String, authentication:[String:String]? = nil) {
         SyncEngine.sharedInstance.initialize(urlToSync, authentication: authentication);
     } //F.E.
     
+    /// Initializer for Sync Engine.
+    ///
+    /// - Parameters:
+    ///   - urlToSync: Http request url for Sync data
+    ///   - authentication: Authentication Header if any
     private func initialize(_ urlToSync:String, authentication:[String:String]? = nil) {
         /*
         #if !DEBUG && !RELEASE
@@ -92,12 +119,6 @@ open class SyncEngine: NSObject {
         _urlToSync = URL(string: urlToSync);
         _authentication = authentication;
     } //F.E.
-    
-    override init() {
-        super.init();
-        //--
-        self.setupSyncedFile();
-    } //P.E.
     
     private func setupSyncedFile() {
         var hasToSync:Bool = true;
@@ -170,8 +191,12 @@ open class SyncEngine: NSObject {
     } //F.E.
     */
     
-    open class func objectForKey<T>(_ aKey: String?) -> T? {
-        return SyncEngine.sharedInstance.objectForKey(aKey);
+    /// Method to retrieve value for a given key of SyncEngine.
+    ///
+    /// - Parameter aKey: key from SyncEngine
+    /// - Returns: A generic value for a given key.
+    public class func objectForKey<T>(_ aKey: String?) -> T? {
+        return self.sharedInstance.objectForKey(aKey);
     } //F.E.
     
     internal func objectForKey<T>(_ aKey: String?) -> T? {
@@ -186,8 +211,13 @@ open class SyncEngine: NSObject {
         }
     } //F.E.
     
-    open class func syncObject(_ anObject: AnyObject, forKey aKey: String) {
-        return SyncEngine.sharedInstance.syncObject(anObject, forKey:aKey);
+    /// This method is used to sync an object with SyncEngine.
+    ///
+    /// - Parameters:
+    ///   - anObject: A SyncEngine object
+    ///   - aKey: A key of SyncEngine
+    public class func syncObject(_ anObject: AnyObject, forKey aKey: String) {
+        return self.sharedInstance.syncObject(anObject, forKey:aKey);
     } //F.E.
     
     internal func syncObject(_ anObject: AnyObject, forKey aKey: String) {
@@ -240,6 +270,14 @@ open class SyncEngine: NSObject {
         self.synchronize();
     } //F.E.
     
+    /// Sync Data from a Key value pair.
+    ///
+    /// - Parameter dict: NSDictionary
+    /// - Returns: Flag for success or failure.
+    @discardableResult public class func syncForData(_ dict:NSDictionary) -> Bool {
+        return self.sharedInstance.syncForData(dict);
+    } //F.E.
+    
     @discardableResult internal func syncForData(_ dict:NSDictionary) -> Bool {
         if (dict.count == 0) {
             return false;
@@ -285,7 +323,10 @@ open class SyncEngine: NSObject {
         }
     } //F.E.
     
-    open class func syncData() {
+    /**
+     This static method should be called in applicationDidBecomeActive method of AppDelegate to sync data from Server.
+     */
+    public static func syncData() {
         SyncEngine.sharedInstance.syncData();
     } //F.E.
     
@@ -406,6 +447,10 @@ open class SyncEngine: NSObject {
         _dictData = NSMutableDictionary();
     } //F.E.
     
+    /// Method to retrieve a custom object for a given key of SyncEngine.
+    ///
+    /// - Parameter aKey: key from SyncEngine
+    /// - Returns: A generic object for a given key
     private func customObjectForKey<T>(_ aKey: String) -> T? {
         let rtnData:T? = _dictData?.object(forKey: aKey) as? T;
         

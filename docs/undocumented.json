@@ -127,219 +127,51 @@
       "warning": "undocumented"
     },
     {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomImageView.swift",
-      "line": 14,
-      "symbol": "CustomImageView.imageFixedSize",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomImageView.swift",
-      "line": 17,
-      "symbol": "CustomImageView.imageView",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomImageView.swift",
-      "line": 155,
-      "symbol": "CustomImageView.contentMode",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomImageView.swift",
-      "line": 165,
-      "symbol": "CustomImageView.image",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 11,
-      "symbol": "CustomUIButton",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 13,
-      "symbol": "CustomUIButton.imgBgColorStyle",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 20,
-      "symbol": "CustomUIButton.titleOffSet",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 31,
-      "symbol": "CustomUIButton.containtOffSet",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 42,
-      "symbol": "CustomUIButton.containtCenter",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 53,
-      "symbol": "CustomUIButton.reversedOrder",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 63,
+      "line": 78,
       "symbol": "CustomUIButton.imageFixedSize",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 75,
-      "symbol": "CustomUIButton.imageViewFrame",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 203,
-      "symbol": "CustomUIButton.titleLabelFrame",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButton.swift",
-      "line": 230,
-      "symbol": "CustomUIButton.contentMode",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButtonDetailed.swift",
-      "line": 11,
-      "symbol": "CustomUIButtonDetailed",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/CustomUIButtonDetailed.swift",
-      "line": 47,
+      "line": 52,
       "symbol": "CustomUIButtonDetailed.detailOffSet",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 11,
-      "symbol": "GISTApplicationDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 12,
+      "line": 13,
       "symbol": "GISTApplicationDelegate.applicationWillTerminate(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 13,
+      "line": 14,
       "symbol": "GISTApplicationDelegate.applicationDidBecomeActive(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 14,
+      "line": 15,
       "symbol": "GISTApplicationDelegate.applicationWillResignActive(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 15,
+      "line": 16,
       "symbol": "GISTApplicationDelegate.applicationDidEnterBackground(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 16,
+      "line": 17,
       "symbol": "GISTApplicationDelegate.applicationDidFinishLaunching(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 19,
-      "symbol": "GISTApplication",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 20,
-      "symbol": "GISTApplication.sharedInstance",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 22,
-      "symbol": "GISTApplication.delegate",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 44,
-      "symbol": "GISTApplication.registerDelegate(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 73,
-      "symbol": "GISTApplication.applicationWillTerminate(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 82,
-      "symbol": "GISTApplication.applicationDidBecomeActive(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 91,
-      "symbol": "GISTApplication.applicationWillResignActive(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 100,
-      "symbol": "GISTApplication.applicationDidEnterBackground(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/GISTApplication.swift",
-      "line": 109,
-      "symbol": "GISTApplication.applicationDidFinishLaunching(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -435,318 +267,17 @@
       "warning": "undocumented"
     },
     {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/UIRadioButton.swift",
-      "line": 19,
-      "symbol": "UIRadioButton",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/UIRadioButton.swift",
-      "line": 23,
-      "symbol": "UIRadioButton.groupId",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/UIRadioButton.swift",
-      "line": 33,
-      "symbol": "UIRadioButton.initiallySelected",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/UIRadioButton.swift",
-      "line": 46,
-      "symbol": "UIRadioButton.init(frame:radioGroupId:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/UIRadioButton.swift",
-      "line": 73,
-      "symbol": "UIRadioButton.getSelectedButton(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
       "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextField.swift",
-      "line": 11,
-      "symbol": "ValidatedTextFieldDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextField.swift",
-      "line": 12,
+      "line": 13,
       "symbol": "ValidatedTextFieldDelegate.validatedTextFieldInvalidSignDidTap(_:sender:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextField.swift",
-      "line": 15,
-      "symbol": "ValidatedTextField",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextField.swift",
-      "line": 36,
-      "symbol": "ValidatedTextField.validityMsg",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextField.swift",
-      "line": 63,
-      "symbol": "ValidatedTextField.isValid",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextField.swift",
-      "line": 73,
-      "symbol": "ValidatedTextField.text",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextField.swift",
-      "line": 102,
-      "symbol": "ValidatedTextField.isEmpty()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextView.swift",
-      "line": 11,
-      "symbol": "ValidatedTextViewDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextView.swift",
-      "line": 12,
+      "line": 13,
       "symbol": "ValidatedTextViewDelegate.validatedTextViewInvalidSignDidTap(_:sender:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextView.swift",
-      "line": 15,
-      "symbol": "ValidatedTextView",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextView.swift",
-      "line": 31,
-      "symbol": "ValidatedTextView.validityMsg",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextView.swift",
-      "line": 60,
-      "symbol": "ValidatedTextView.isValid",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextView.swift",
-      "line": 70,
-      "symbol": "ValidatedTextView.text",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextView.swift",
-      "line": 110,
-      "symbol": "ValidatedTextView.isEmpty()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/GISTCore/ValidatedTextView.swift",
-      "line": 126,
-      "symbol": "ValidatedTextView.layoutSubviews()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedColors.swift",
-      "line": 12,
-      "symbol": "SyncedColors",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedColors.swift",
-      "line": 21,
-      "symbol": "SyncedColors.syncForData(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedColors.swift",
-      "line": 25,
-      "symbol": "SyncedColors.color(forKey:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedColors.swift",
-      "line": 29,
-      "symbol": "SyncedColors.color(forKey:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedColors.swift",
-      "line": 37,
-      "symbol": "SyncedColors.objectForKey(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedConstants.swift",
-      "line": 11,
-      "symbol": "SyncedConstants",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedConstants.swift",
-      "line": 20,
-      "symbol": "SyncedConstants.syncForData(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedConstants.swift",
-      "line": 24,
-      "symbol": "SyncedConstants.constant(forKey:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedConstants.swift",
-      "line": 28,
-      "symbol": "SyncedConstants.objectForKey(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedFontStyles.swift",
-      "line": 11,
-      "symbol": "SyncedFontStyles",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedFontStyles.swift",
-      "line": 20,
-      "symbol": "SyncedFontStyles.syncForData(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedFontStyles.swift",
-      "line": 24,
-      "symbol": "SyncedFontStyles.style(forKey:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedFontStyles.swift",
-      "line": 28,
-      "symbol": "SyncedFontStyles.style(forKey:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedFontStyles.swift",
-      "line": 32,
-      "symbol": "SyncedFontStyles.objectForKey(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedText.swift",
-      "line": 11,
-      "symbol": "SyncedText",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedText.swift",
-      "line": 20,
-      "symbol": "SyncedText.syncForData(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedText.swift",
-      "line": 24,
-      "symbol": "SyncedText.text(forKey:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedText.swift",
-      "line": 28,
-      "symbol": "SyncedText.text(forKey:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SubClasses/SyncedText.swift",
-      "line": 32,
-      "symbol": "SyncedText.objectForKey(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SyncEngine.swift",
-      "line": 11,
-      "symbol": "SyncEngine",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SyncEngine.swift",
-      "line": 52,
-      "symbol": "SyncEngine.lastSyncedServerDate",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SyncEngine.swift",
-      "line": 80,
-      "symbol": "SyncEngine.initialize(_:authentication:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SyncEngine.swift",
-      "line": 173,
-      "symbol": "SyncEngine.objectForKey(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SyncEngine.swift",
-      "line": 189,
-      "symbol": "SyncEngine.syncObject(_:forKey:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/iOSProjects/RAD/GIST-Framework/GISTFramework/Classes/SyncEngine/SyncEngine.swift",
-      "line": 288,
-      "symbol": "SyncEngine.syncData()",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     }
   ],

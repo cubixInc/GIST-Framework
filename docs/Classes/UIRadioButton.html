@@ -14,7 +14,7 @@
     <a title="UIRadioButton Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GISTFramework Docs</a> (76% documented)</p>
+        <p><a href="../index.html">GISTFramework Docs</a> (91% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -142,7 +142,7 @@
                 <a href="../Classes/SyncedColors.html">SyncedColors</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/SyncedConstants.html">SyncedConstants</a>
+                <a href="../Classes.html#/s:C13GISTFramework15SyncedConstants">SyncedConstants</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/SyncedFontStyles.html">SyncedFontStyles</a>
@@ -225,11 +225,26 @@
         <section>
           <section class="section">
             <h1>UIRadioButton</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">UIRadioButton</span><span class="p">:</span> <span class="kt"><a href="../Classes/CustomUIButton.html">CustomUIButton</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>UIRadioButton is a subclass of CustomUIButton.</p>
+
+<p>It implemets single selection between a group of buttons with a single group id.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -244,8 +259,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Inspectable propert to holds a group id.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">groupId</span><span class="p">:</span><span class="kt">Int</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -263,12 +286,31 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Inspectable propert to flag a button to be initially selected. - Default value is false.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">initiallySelected</span><span class="p">:</span><span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Constructors"></a>
+                <a name="//apple_ref/swift/Section/Constructors" class="dashAnchor"></a>
+                <a href="#/Constructors">
+                  <h3 class="section-name">Constructors</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -282,8 +324,58 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Constructor to setup/ initialize components with a radio group id.</p>
 
+<ul>
+<li>Parameters:
+
+<ul>
+<li>frame: View Frame</li>
+<li>radioGroupId: Group Id</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">,</span> <span class="nv">radioGroupId</span><span class="p">:</span><span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>frame</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>View Frame</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>radioGroupId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Group Id</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -315,6 +407,17 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Overridden%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Overridden Methods" class="dashAnchor"></a>
+                <a href="#/Overridden%20Methods">
+                  <h3 class="section-name">Overridden Methods</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -342,6 +445,17 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Methods"></a>
+                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
+                <a href="#/Methods">
+                  <h3 class="section-name">Methods</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -355,8 +469,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>It returns selected radio button for a given radio group id</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">class</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">getSelectedButton</span><span class="p">(</span><span class="n">_</span> <span class="nv">radioGroupId</span><span class="p">:</span><span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIRadioButton</span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
