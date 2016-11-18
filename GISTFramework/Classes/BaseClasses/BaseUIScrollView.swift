@@ -10,7 +10,8 @@ import UIKit
 
 open class BaseUIScrollView: UIScrollView, BaseView {
 
-    open func updateView() {
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView() {
         //DOING NOTHING FOR NOW
     } //F.E.
 

@@ -9,39 +9,39 @@
 import UIKit
 
 open class SyncEngine: NSObject {
-    fileprivate static var _sharedInstance: SyncEngine = SyncEngine(customData: true);
+    private static var _sharedInstance: SyncEngine = SyncEngine(customData: true);
     class var sharedInstance: SyncEngine {
         get {
             return self._sharedInstance;
         }
     }
     
-    fileprivate var _urlToSync:URL!
-    fileprivate var _authentication:[String:String]?;
+    private var _urlToSync:URL!
+    private var _authentication:[String:String]?;
     
-    fileprivate var _languageCode:String = "";
+    private var _languageCode:String = "";
     
-    fileprivate var _isCustomData = false;
+    private var _isCustomData = false;
     
-    fileprivate lazy var syncedFile: String = {
+    private lazy var syncedFile: String = {
         return "\(type(of: self))";
     }()
     
-    fileprivate lazy var applicationDocumentsDirectory: URL = {
+    private lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.cubix.GIST" in the application's documents Application Support directory.
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1]
         //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString;
     }();
     
-    fileprivate lazy var syncedFileUrl: URL = {
+    private lazy var syncedFileUrl: URL = {
         return self.applicationDocumentsDirectory.appendingPathComponent("\(self.syncedFile + self._languageCode).plist");
     }();
     
     //Flag if dict date is updated
-    fileprivate var _hasUpdate:Bool = false;
+    private var _hasUpdate:Bool = false;
     
-    fileprivate var _dictData:NSMutableDictionary?
+    private var _dictData:NSMutableDictionary?
     internal var dictData:NSDictionary? {
         get {
             return _dictData;
@@ -55,7 +55,7 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
-    fileprivate var lastSyncedServerDate:String? {
+    private var lastSyncedServerDate:String? {
         get {
             return UserDefaults.standard.object(forKey: "LAST_SYNCED_SERVER_DATE" + _languageCode) as? String;
         }
@@ -66,7 +66,7 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
-    fileprivate var lastSyncedResponseDate:Date? {
+    private var lastSyncedResponseDate:Date? {
         get {
             return UserDefaults.standard.object(forKey: "LAST_SYNCED_RESPONSE_DATE" + _languageCode) as? Date;
         }
@@ -81,7 +81,7 @@ open class SyncEngine: NSObject {
         SyncEngine.sharedInstance.initialize(urlToSync, authentication: authentication);
     } //F.E.
     
-    fileprivate func initialize(_ urlToSync:String, authentication:[String:String]? = nil) {
+    private func initialize(_ urlToSync:String, authentication:[String:String]? = nil) {
         /*
         #if !DEBUG && !RELEASE
             UIAlertView(title: "Sync Engine Error", message: "Add '-DDEBUG' and -DRELEASE in their respective sections of Project Build Settings ('Swift Compiler – Custom Flags' -> 'Other Swift Flags')", delegate: nil, cancelButtonTitle: "OK").show();
@@ -99,7 +99,7 @@ open class SyncEngine: NSObject {
         self.setupSyncedFile();
     } //P.E.
     
-    fileprivate func setupSyncedFile() {
+    private func setupSyncedFile() {
         var hasToSync:Bool = true;
         
         if let syncedFileUrlRes:String = Bundle.main.path(forResource: self.syncedFile, ofType: "plist") {
@@ -198,7 +198,7 @@ open class SyncEngine: NSObject {
         }
     } //F.E.
     
-    fileprivate func syncFromResource(hasToOverride override:Bool = false) {
+    private func syncFromResource(hasToOverride override:Bool = false) {
         let syncedFileUrlRes:String = Bundle.main.path(forResource: self.syncedFile, ofType: "plist")!
         
         //Sync file from Resource folder
@@ -260,7 +260,7 @@ open class SyncEngine: NSObject {
         return true;
     } //F.E.
     
-    fileprivate func synchronize(_ forced:Bool = false) {
+    private func synchronize(_ forced:Bool = false) {
         if (_hasUpdate || forced) {
             
             //Flagging off
@@ -271,7 +271,7 @@ open class SyncEngine: NSObject {
         }
     } //F.E.
     
-    fileprivate var hasSyncThresholdTimePassed:Bool {
+    private var hasSyncThresholdTimePassed:Bool {
         get {
             let currDate:Date = Date();
             //--
@@ -289,7 +289,7 @@ open class SyncEngine: NSObject {
         SyncEngine.sharedInstance.syncData();
     } //F.E.
     
-    fileprivate func syncData() {
+    private func syncData() {
         guard _urlToSync != nil else {
             
             print("Not initialized or invalid url path is provided; Call/Check SyncEngine.initialize(:) in application(didFinishLaunchingWithOptions:)");
@@ -302,7 +302,7 @@ open class SyncEngine: NSObject {
         }
     } //F.E.
     
-    fileprivate func syncDataRequest() {
+    private func syncDataRequest() {
         let langSuff:String = Bundle.main.preferredLocalizations[0];
         let params:NSMutableString = NSMutableString(string: "language=\(langSuff)");
         
@@ -354,7 +354,7 @@ open class SyncEngine: NSObject {
         }.resume();
     } //F.E.
     
-    fileprivate func syncForServerData(_ dict:NSDictionary) {
+    private func syncForServerData(_ dict:NSDictionary) {
        //Updating server updated date
         self.lastSyncedServerDate = dict["updated_at"] as? String;
         
@@ -402,11 +402,11 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
  
-    fileprivate func setupCustomSyncedFile() {
+    private func setupCustomSyncedFile() {
         _dictData = NSMutableDictionary();
     } //F.E.
     
-    fileprivate func customObjectForKey<T>(_ aKey: String) -> T? {
+    private func customObjectForKey<T>(_ aKey: String) -> T? {
         let rtnData:T? = _dictData?.object(forKey: aKey) as? T;
         
         if (rtnData == nil) {
@@ -469,7 +469,7 @@ open class SyncEngine: NSObject {
         return rtnData;
     } //F.E.
     
-    @discardableResult fileprivate func syncForCustomData(_ dict:NSDictionary) -> Bool {
+    @discardableResult private func syncForCustomData(_ dict:NSDictionary) -> Bool {
         if (dict.count == 0) {
             return false;
         }

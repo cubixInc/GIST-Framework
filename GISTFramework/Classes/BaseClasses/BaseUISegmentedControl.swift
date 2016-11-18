@@ -42,14 +42,21 @@ open class BaseUISegmentedControl: UISegmentedControl, BaseView {
         }
     };
 
-    fileprivate var _titleKeys:[Int:String] = [Int:String]();
+    private var _titleKeys:[Int:String] = [Int:String]();
     
+    
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameter items: Segment Items
     public override init(items: [Any]?) {
         super.init(items: items);
         //--
         self.commontInit();
     }
     
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameter frame: View frame
     public override init(frame: CGRect) {
         super.init(frame: frame);
         //--
@@ -60,13 +67,15 @@ open class BaseUISegmentedControl: UISegmentedControl, BaseView {
         super.init(coder: aDecoder);
     }
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commontInit();
     } //F.E.
     
-    fileprivate func commontInit() {
+    /// Common initazier for setting up items.
+    private func commontInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         for i:Int in 0..<numberOfSegments {
@@ -76,7 +85,8 @@ open class BaseUISegmentedControl: UISegmentedControl, BaseView {
         }
     } //F.E.
     
-    open func updateView(){
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView(){
         if let bColorStyle = self.bgColorStyle {
             self.bgColorStyle = bColorStyle;
         }

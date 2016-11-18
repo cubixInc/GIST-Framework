@@ -10,7 +10,7 @@ import UIKit
 
 open class SyncedFontStyles: SyncEngine {
     
-    fileprivate static var _sharedInstance: SyncedFontStyles = SyncedFontStyles();
+    private static var _sharedInstance: SyncedFontStyles = SyncedFontStyles();
     class override var sharedInstance: SyncedFontStyles {
         get {
             return self._sharedInstance;

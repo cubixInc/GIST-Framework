@@ -9,7 +9,7 @@
 import UIKit
 
 open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseView {
-    fileprivate var _data:Any?
+    private var _data:Any?
     open var data:Any? {
         get {
             return _data;
@@ -104,19 +104,21 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
         super.init(coder:aDecoder);
     } //F.E.
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commonInitializer();
     } //F.E.
     
-    fileprivate func commonInitializer() {
+    private func commonInitializer() {
         self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
         
         self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
     } //F.E.
     
-    open func updateView() {
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView() {
         if let bgCStyle = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -134,7 +136,8 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
         }
     } //F.E.
     
-    override open func updateSyncedData() {
+    /// Recursive update of layout and content from Sync Engine.
+    override func updateSyncedData() {
         super.updateSyncedData();
         //--
         self.contentView.updateSyncedData();

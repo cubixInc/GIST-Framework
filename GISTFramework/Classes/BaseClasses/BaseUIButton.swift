@@ -8,8 +8,12 @@
 
 import UIKit
 
+/// BaseUIButton is subclass of UIButton and implements BaseView. It extents UIButton with some extra proporties to support SyncEngine
 open class BaseUIButton: UIButton, BaseView {
     
+    //MARK: - Properties
+    
+    /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = false;
     
     @IBInspectable open var bgColorStyle:String? = nil {
@@ -102,6 +106,13 @@ open class BaseUIButton: UIButton, BaseView {
         }
     } //P.E.
     
+    private var _titleKey:String?;
+    
+    //MARK: - Constructors
+    
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameter frame: View frame
     public override init(frame: CGRect) {
         super.init(frame: frame);
         //--
@@ -112,12 +123,16 @@ open class BaseUIButton: UIButton, BaseView {
         super.init(coder: aDecoder);
     }
     
+    //MARK: - Methods
+    
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.commontInit()
     } //F.E.
     
+    /// Common initazier for setting up items.
     func commontInit() {
         self.isExclusiveTouch = true;
         
@@ -131,7 +146,8 @@ open class BaseUIButton: UIButton, BaseView {
         }
     } //F.E.
     
-    open func updateView() {
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView() {
         self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         if let bgCStyle:String = self.bgColorStyle {
@@ -155,6 +171,8 @@ open class BaseUIButton: UIButton, BaseView {
         }
     } //F.E.
     
+    
+    /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
         //--
@@ -163,8 +181,12 @@ open class BaseUIButton: UIButton, BaseView {
         }
     } //F.E.
     
-    fileprivate var _titleKey:String?;
     
+    /// Overridden method to set title using Sync Engine key (#)
+    ///
+    /// - Parameters:
+    ///   - title: Button Title
+    ///   - state: Button State
     override open func setTitle(_ title: String?, for state: UIControlState) {
         if let key:String = title , key.hasPrefix("#") == true{
             //--

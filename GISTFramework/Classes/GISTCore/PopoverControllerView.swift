@@ -11,23 +11,23 @@ import UIKit
 open class PopoverControllerView: UIView {
 
     //Defining here in the class privately, so that the class be independent - It may be improved
-    fileprivate func afterDelay(_ delay:Double, closure:@escaping () -> Void) {
+    private func afterDelay(_ delay:Double, closure:@escaping () -> Void) {
         DispatchQueue.main.asyncAfter(
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     } //F.E.
     
-    fileprivate var _fromRect:CGRect = CGRect.zero;
+    private var _fromRect:CGRect = CGRect.zero;
     
-    fileprivate var _containerView:UIView!
+    private var _containerView:UIView!
     
-    fileprivate var _contentView:UIView?;
+    private var _contentView:UIView?;
     open var contentView:UIView? {
         get {
             return _contentView;
         }
     } //P.E.
     
-    fileprivate var _popoverContentSize:CGSize = CGSize(width: 320, height: 480);
+    private var _popoverContentSize:CGSize = CGSize(width: 320, height: 480);
     
     open var popoverContentSize:CGSize {
         set {
@@ -39,7 +39,7 @@ open class PopoverControllerView: UIView {
         }
     } //P.E.
     
-    fileprivate var popoverContentRect:CGRect {
+    private var popoverContentRect:CGRect {
         get {
             
             var rect:CGRect!
@@ -75,9 +75,9 @@ open class PopoverControllerView: UIView {
         }
     } //F.E.
     
-    fileprivate var _backgroundView:UIView!;
+    private var _backgroundView:UIView!;
     
-    fileprivate var _backgroundColor:UIColor? = UIColor.black.withAlphaComponent(0.5);
+    private var _backgroundColor:UIColor? = UIColor.black.withAlphaComponent(0.5);
     override open var backgroundColor:UIColor? {
         get {
             return _backgroundColor;
@@ -93,8 +93,8 @@ open class PopoverControllerView: UIView {
         }
     } //F.E.
     
-    fileprivate var _arrowView:ArrowView?;
-    fileprivate var arrowView:ArrowView {
+    private var _arrowView:ArrowView?;
+    private var arrowView:ArrowView {
         get {
             if (_arrowView == nil)
             {
@@ -107,9 +107,9 @@ open class PopoverControllerView: UIView {
         }
     } //P.E.
     
-    fileprivate var _arrowDirection:UIPopoverArrowDirection = UIPopoverArrowDirection.unknown;
+    private var _arrowDirection:UIPopoverArrowDirection = UIPopoverArrowDirection.unknown;
     //--
-    fileprivate var arrowDirection:UIPopoverArrowDirection {
+    private var arrowDirection:UIPopoverArrowDirection {
         get {
             return _arrowDirection;
         }
@@ -131,7 +131,7 @@ open class PopoverControllerView: UIView {
         fatalError("init(coder:) has not been implemented");
     } //F.E
     
-    fileprivate func setupPopoverController(_ contentView:UIView) {
+    private func setupPopoverController(_ contentView:UIView) {
         _contentView = contentView;
         //Background View
         _backgroundView = UIView(frame: UIScreen.main.bounds);
@@ -205,7 +205,7 @@ open class PopoverControllerView: UIView {
         }
     } //F.E.
     
-    fileprivate func cleanup() {
+    private func cleanup() {
         if (_contentView != nil)
         {_contentView!.removeFromSuperview();}
         //--
@@ -215,7 +215,7 @@ open class PopoverControllerView: UIView {
         self.removeFromSuperview();
     } //F.E.
     
-    fileprivate func updatePopoverFrame(fromRect rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection) {
+    private func updatePopoverFrame(fromRect rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection) {
         _fromRect = rect;
         _arrowDirection = permittedArrowDirection;
         //--
@@ -229,7 +229,7 @@ open class PopoverControllerView: UIView {
     } //F.E.
     
     //MARK: - ArrowView
-    fileprivate func updateArrow() {
+    private func updateArrow() {
         switch (_arrowDirection) {
         case UIPopoverArrowDirection.up:
             self.arrowView.isHidden = false;
@@ -265,7 +265,7 @@ open class PopoverControllerView: UIView {
         }
     } //F.E.
     
-    fileprivate func degreestoradians(_ a:Double) -> CGFloat
+    private func degreestoradians(_ a:Double) -> CGFloat
     {
         return CGFloat(M_PI * a / 180.0);
     } //F.E.
@@ -274,7 +274,7 @@ open class PopoverControllerView: UIView {
 
 private class ArrowView:UIView {
     
-    fileprivate var _arrowColor:UIColor = UIColor.black;
+    private var _arrowColor:UIColor = UIColor.black;
     
     var arrowColor:UIColor {
         set {
@@ -286,6 +286,9 @@ private class ArrowView:UIView {
         }
     } //P.E.
     
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameter frame: View frame
     override init(frame: CGRect) {
         super.init(frame: frame);
         //--

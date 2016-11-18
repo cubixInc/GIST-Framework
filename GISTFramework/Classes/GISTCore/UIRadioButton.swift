@@ -36,7 +36,10 @@ open class UIRadioButton: CustomUIButton {
         }
     } //P.E.
     
-    override public init(frame: CGRect) {
+    /// Unimplemented method. Should not be called.
+    ///
+    /// - Parameter frame: View Frame
+    override private init(frame: CGRect) {
         fatalError("init(frame:) has not been implemented, call init(frame: radioGroupId:)")
     } //F.E.
 
@@ -45,20 +48,22 @@ open class UIRadioButton: CustomUIButton {
         //--
         self.groupId = radioGroupId;
         //--
-        self.commonInitialization();
+        self.commonInit();
     } //F.E.
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     } //F.E.
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
         //--
-        self.commonInitialization();
+        self.commonInit();
     } //F.E.
     
-    fileprivate func commonInitialization() {
+    /// A common initializer for sub components.
+    private func commonInit() {
         assert((_groupId != nil), "Group Id must be defined");
         //--
         UIRadioButtonManager.sharedInstance.addButton(self);
@@ -78,7 +83,7 @@ internal class UIRadioButtonManager:NSObject {
     
     static var sharedInstance: UIRadioButtonManager = UIRadioButtonManager();
     
-    fileprivate var _mainBtnsDict:NSMutableDictionary = NSMutableDictionary();
+    private var _mainBtnsDict:NSMutableDictionary = NSMutableDictionary();
     
     //MARK - Adding Radio Buttons
     func addButton(_ radioButton:UIRadioButton) {

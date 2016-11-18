@@ -27,7 +27,7 @@ open class ValidatedTextView: BaseUITextView {
         }
     } //P.E.
     
-    fileprivate var _validityMsg:String?
+    private var _validityMsg:String?
     @IBInspectable open var validityMsg:String {
         get {
             return _validityMsg ?? "Invalid";
@@ -39,7 +39,7 @@ open class ValidatedTextView: BaseUITextView {
         
     } //P.E.
     
-    fileprivate lazy var invalidSignBtn:BaseUIButton =  {
+    private lazy var invalidSignBtn:BaseUIButton =  {
         let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.custom);
         cBtn.backgroundColor = UIColor.clear;
         cBtn.isHidden = true;
@@ -54,9 +54,9 @@ open class ValidatedTextView: BaseUITextView {
         return cBtn;
     } ();
     
-    fileprivate var _isEmpty:Bool = true;
+    private var _isEmpty:Bool = true;
     
-    fileprivate var _isValid:Bool = false;
+    private var _isValid:Bool = false;
     open var isValid:Bool {
         get {
             let cValid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
@@ -73,7 +73,7 @@ open class ValidatedTextView: BaseUITextView {
         }
     } //P.E.
     
-    fileprivate func validateText() {
+    private func validateText() {
         _isEmpty = self.isEmpty();
         
         _isValid =
@@ -94,13 +94,15 @@ open class ValidatedTextView: BaseUITextView {
         super.init(coder: aDecoder);
     } //F.E.
     
+    /// Overridden method to setup/ initialize components.
     open override func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commonInit();
     } //F.E.
     
-    fileprivate func commonInit() {
+    /// A common initializer for sub components.
+    private func commonInit() {
         self.validateText();
     } //F.E.
     
@@ -108,15 +110,15 @@ open class ValidatedTextView: BaseUITextView {
         return GISTUtility.isEmpty(self.text);
     } //F.E.
     
-    fileprivate func isValidForMinChar(_ noOfChar:Int) -> Bool {
+    private func isValidForMinChar(_ noOfChar:Int) -> Bool {
         return GISTUtility.isValidForMinChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
-    fileprivate func isValidForMaxChar(_ noOfChar:Int) -> Bool {
+    private func isValidForMaxChar(_ noOfChar:Int) -> Bool {
         return GISTUtility.isValidForMaxChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
-    fileprivate func isValidForRegex(_ regex:String)->Bool {
+    private func isValidForRegex(_ regex:String)->Bool {
         return GISTUtility.isValidForRegex(self.text, regex: regex);
     } //F.E.
     

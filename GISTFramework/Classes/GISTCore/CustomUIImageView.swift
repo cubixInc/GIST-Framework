@@ -8,10 +8,11 @@
 
 import UIKit
 
-//THIS CLASS WAS TO REPLACE CustomImageView(inharited from UIView) but there were some unknown implementations of UIImageView (of UIKit) that are causing the bugs so keeping this class private to use in future after some fixes
+///THIS CLASS WAS TO REPLACE CustomImageView(inharited from UIView) but there were some unknown implementations of UIImageView (of UIKit) that are causing the bugs so keeping this class private to use in future after some fixes
 private class CustomUIImageView: BaseUIImageView {
     
-    override func awakeFromNib() {
+    /// Overridden method to setup/ initialize components.
+    override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         if let cImg:UIImage = super.image {
@@ -22,7 +23,7 @@ private class CustomUIImageView: BaseUIImageView {
         }
     } //F.E.
     
-    fileprivate var _imageView:UIImageView?;
+    private var _imageView:UIImageView?;
     var imageView:UIImageView? {
         get {
             if (_imageView == nil) {
@@ -43,7 +44,7 @@ private class CustomUIImageView: BaseUIImageView {
         }
     } //P.E.
     
-    fileprivate var imageViewFrame:CGRect {
+    private var imageViewFrame:CGRect {
         get {
             
             var rFrame:CGRect = CGRect();

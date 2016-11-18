@@ -22,13 +22,15 @@ open class BaseUISwitch: UISwitch, BaseView {
         }
     }
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.updateView()
     } //F.E.
     
-    open func updateView(){
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView(){
         if let onCStyle = self.onColorStyle {
             self.onColorStyle = onCStyle;
         }

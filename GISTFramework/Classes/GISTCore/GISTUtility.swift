@@ -8,23 +8,16 @@
 
 import UIKit
 
-public func delay(_ delay:Double, closure:@escaping () -> Void) {
-    DispatchQueue.main.asyncAfter(
-        deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
-} //F.E.
-
-open class Weak<T: AnyObject> {
-    weak var value : T?
-    init (value: T) {
-        self.value = value
-    }
-} //CLS END
-
 open class GISTUtility: NSObject {
     @nonobjc static let deviceRatio:CGFloat = UIScreen.main.bounds.height / 736.0;
     @nonobjc static let deviceRatioWN:CGFloat = (UIScreen.main.bounds.height - 64.0) / (736.0 - 64.0); // Ratio with Navigation
     
     @nonobjc open static let isIPad:Bool = UIDevice.current.userInterfaceIdiom == .pad;
+    
+    public class func delay(_ delay:Double, closure:@escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+    } //F.E.
     
     open class func convertToRatioSizedForNavi(_ value:CGFloat) ->CGFloat {
         return self.convertToRatio(value, sizedForIPad: false, sizedForNavi:true); // Explicit true for Sized For Navi

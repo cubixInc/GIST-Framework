@@ -10,7 +10,7 @@ import UIKit
 
 open class BaseUITableViewCell: UITableViewCell, BaseView {
 
-    fileprivate var _data:Any?
+    private var _data:Any?
     open var data:Any? {
         get {
             return _data;
@@ -130,24 +130,26 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         //--
         self.selectionStyle = UITableViewCellSelectionStyle.none;
         //--
-        self.commonInitializer();
+        self.commonInit();
     } //F.E.
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder);
     } //F.E.
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
         //--
-        self.commonInitializer();
+        self.commonInit();
     } //F.E.
     
     override open func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated);
     } //F.E.
     
-    fileprivate func commonInitializer() {
+    /// A common initializer for sub components.
+    private func commonInit() {
         self.selectionStyle = UITableViewCellSelectionStyle.none;
         //--
         self.contentView.backgroundColor  = UIColor.clear;
@@ -157,7 +159,8 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
     } //F.E.
     
-    open func updateView() {
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView() {
         if let bgCStyle = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -179,12 +182,14 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         }
     } //F.E.
     
-    override open func updateSyncedData() {
+    /// Recursive update of layout and content from Sync Engine.
+    override func updateSyncedData() {
         super.updateSyncedData();
         //--
         self.contentView.updateSyncedData();
     } //F.E.
     
+    /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
         //--

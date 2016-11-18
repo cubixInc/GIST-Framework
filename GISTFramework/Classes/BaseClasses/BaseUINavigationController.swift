@@ -10,7 +10,7 @@ import UIKit
 
 open class BaseUINavigationController: UINavigationController {
 
-    fileprivate var _lastSyncedDate:String?
+    private var _lastSyncedDate:String?
     
     @IBInspectable open var bgColor:String? = nil {
         didSet {
@@ -76,7 +76,7 @@ open class BaseUINavigationController: UINavigationController {
         super.didReceiveMemoryWarning();
     } //F.E.
     
-    fileprivate func updateAppearance() {
+    private func updateAppearance() {
         //Re-assigning if there are changes from server
         
         if let newBgColor = bgColor {
@@ -97,13 +97,8 @@ open class BaseUINavigationController: UINavigationController {
         
     } //F.E.
     
-    override open func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        if (self.topViewController == nil || !self.topViewController!.isEqual(viewController)) {
-            super.pushViewController(viewController, animated: animated);
-        }
-    } //F.E.
-    
-    @discardableResult open func updateSyncedData() -> Bool {
+    /// Recursive update of layout and content from Sync Engine.
+    @discardableResult func updateSyncedData() -> Bool {
         if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
             _lastSyncedDate = syncedDate;
             //--

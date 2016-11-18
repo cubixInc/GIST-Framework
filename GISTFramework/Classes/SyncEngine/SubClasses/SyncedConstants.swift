@@ -10,7 +10,7 @@ import UIKit
 
 open class SyncedConstants: SyncEngine {
     
-    fileprivate static var _sharedInstance: SyncedConstants = SyncedConstants();
+    private static var _sharedInstance: SyncedConstants = SyncedConstants();
     class override var sharedInstance: SyncedConstants {
         get {
             return self._sharedInstance;

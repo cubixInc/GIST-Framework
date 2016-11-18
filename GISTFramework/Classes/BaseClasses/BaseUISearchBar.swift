@@ -116,7 +116,7 @@ open class BaseUISearchBar: UISearchBar, BaseView {
         }
     } //P.E.
     
-    fileprivate var _placeholderKey:String?
+    private var _placeholderKey:String?
     override open var placeholder: String? {
         get {
             return super.placeholder;
@@ -143,20 +143,22 @@ open class BaseUISearchBar: UISearchBar, BaseView {
         super.init(coder: aDecoder);
     }
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commontInit();
     } //F.E.
     
-    fileprivate func commontInit() {
+    /// Common initazier for setting up items.
+    private func commontInit() {
         if let placeHoldertxt:String = self.placeholder , placeHoldertxt.hasPrefix("#") == true{
             self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
         }
     } //F.E.
 
-    
-    open func updateView() {
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView() {
         if let plcHKey:String = _placeholderKey {
             self.placeholder = plcHKey;
         }

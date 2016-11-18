@@ -24,11 +24,13 @@ open class BaseUITableView: UITableView, BaseView {
         }
     }
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
     } //F.E.
     
-    open func updateView(){
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView(){
         if let tintCStyle = tintColorStyle {
             self.tintColorStyle = tintCStyle;
         }
@@ -38,6 +40,7 @@ open class BaseUITableView: UITableView, BaseView {
         }
     } //F.E.
     
+    /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
     } //F.E.

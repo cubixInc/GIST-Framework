@@ -11,7 +11,7 @@ import UIKit
 
 open class SyncedColors: SyncEngine {
     
-    fileprivate static var _sharedInstance: SyncedColors = SyncedColors();
+    private static var _sharedInstance: SyncedColors = SyncedColors();
     class override var sharedInstance: SyncedColors {
         get {
             return self._sharedInstance;

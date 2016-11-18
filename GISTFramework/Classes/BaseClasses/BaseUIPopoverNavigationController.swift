@@ -10,23 +10,23 @@ import UIKit
 
 open class BaseUIPopoverNavigationController: BaseUINavigationController {
 
-    fileprivate var _mainNavigationController:UINavigationController?
+    private var _mainNavigationController:UINavigationController?
     open var mainNavigationController:UINavigationController? {
         get {
             return _mainNavigationController;
         }
     } //P.E.
     
-    fileprivate var _popoverController:PopoverController?;
+    private var _popoverController:PopoverController?;
     open var popoverController:PopoverController? {
         get {
             return _popoverController;
         }
     } //P.E.
     
-    fileprivate var _parentViewController:UIViewController!
+    private var _parentViewController:UIViewController!
     
-    fileprivate var _popoverContentSize:CGSize = CGSize(width: 414, height: 736);
+    private var _popoverContentSize:CGSize = CGSize(width: 414, height: 736);
     open var popoverContentSize:CGSize {
         set {
             _popoverContentSize = newValue;
@@ -37,7 +37,7 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
         }
     } //P.E.
     
-    fileprivate var _popoverContentPosition:CGPoint?;
+    private var _popoverContentPosition:CGPoint?;
     open var popoverContentPosition:CGPoint?
         {
         set {
@@ -49,7 +49,7 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
         }
     } //P.E.
     
-    fileprivate var _popoverContentRoundedCorner:Bool = true;
+    private var _popoverContentRoundedCorner:Bool = true;
     open var popoverContentRoundedCorner:Bool
         {
         set {
@@ -61,7 +61,7 @@ open class BaseUIPopoverNavigationController: BaseUINavigationController {
         }
     } //P.E.
     
-    fileprivate var _arrowColor:UIColor = UIColor.black;
+    private var _arrowColor:UIColor = UIColor.black;
     open var arrowColor:UIColor {
         set {
             _arrowColor = newValue;

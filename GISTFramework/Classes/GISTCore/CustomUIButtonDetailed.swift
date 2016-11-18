@@ -42,7 +42,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
     }
     
     //Padding between the title and detail text
-    fileprivate var _detailOffSet:CGPoint = CGPoint.zero;
+    private var _detailOffSet:CGPoint = CGPoint.zero;
     @IBInspectable open var detailOffSet:CGPoint {
         set {
             _detailOffSet = newValue;
@@ -53,7 +53,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
-    fileprivate var _detailLabel: BaseUILabel?;
+    private var _detailLabel: BaseUILabel?;
     var detailLabel: BaseUILabel {
         get {
             if (_detailLabel == nil) {
@@ -81,7 +81,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
     } //P.E.
     
     //Updated calculation of frame for detail text label
-    fileprivate var detailLabelFrame:CGRect {
+    private var detailLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.detailOffSet;
             //--
@@ -120,18 +120,21 @@ open class CustomUIButtonDetailed: CustomUIButton {
         }
     } //P.E.
     
+    /// Common initazier for setting up items.
     override func commontInit() {
         super.commontInit();
         //--
         self.detailLabel.font = self.titleLabel!.font;
     } //F.E.
     
-    override open func updateView()  {
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    override public func updateView()  {
         super.updateView();
         //--
         self.detailLabel.updateView();
     } //F.E.
     
+    /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
         

@@ -16,7 +16,7 @@ open class CustomUIButton: BaseUIButton {
         }
     }
     
-    fileprivate var _titleOffSet:CGPoint = CGPoint.zero;
+    private var _titleOffSet:CGPoint = CGPoint.zero;
     @IBInspectable open var titleOffSet:CGPoint {
         set {
             _titleOffSet = newValue;
@@ -27,7 +27,7 @@ open class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    fileprivate var _containtOffSet:CGPoint = CGPoint.zero;
+    private var _containtOffSet:CGPoint = CGPoint.zero;
     @IBInspectable open var containtOffSet:CGPoint {
         set {
             _containtOffSet = newValue;
@@ -38,7 +38,7 @@ open class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    fileprivate var _containtCenter:Bool = true;
+    private var _containtCenter:Bool = true;
     @IBInspectable open var containtCenter:Bool {
         set {
             _containtCenter = newValue;
@@ -49,7 +49,7 @@ open class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    fileprivate var _reversedOrder:Bool = false;
+    private var _reversedOrder:Bool = false;
     @IBInspectable open var reversedOrder:Bool {
         set {
             _reversedOrder = newValue;
@@ -237,6 +237,7 @@ open class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
+    /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
         //--

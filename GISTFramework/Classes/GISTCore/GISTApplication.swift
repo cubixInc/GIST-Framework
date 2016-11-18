@@ -34,9 +34,9 @@ open class GISTApplication: NSObject, UIApplicationDelegate {
         }
     } //P.E.
     
-    fileprivate var _delegates:NSHashTable<Weak<GISTApplicationDelegate>> = NSHashTable();
+    private var _delegates:NSHashTable<Weak<GISTApplicationDelegate>> = NSHashTable();
     
-    fileprivate override init() {
+    private override init() {
         super.init();
     } //F.E.
     
@@ -54,7 +54,7 @@ open class GISTApplication: NSObject, UIApplicationDelegate {
         }
     } //F.E.
     
-    fileprivate func weakDelegateForTarget(_ target:GISTApplicationDelegate) -> Weak<GISTApplicationDelegate>?{
+    private func weakDelegateForTarget(_ target:GISTApplicationDelegate) -> Weak<GISTApplicationDelegate>?{
         let enumerator:NSEnumerator = _delegates.objectEnumerator();
         
         while let wTarget:Weak<GISTApplicationDelegate> = enumerator.nextObject() as? Weak<GISTApplicationDelegate> {

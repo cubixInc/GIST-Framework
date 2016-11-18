@@ -12,12 +12,12 @@ open class BaseUITableViewController: UITableViewController {
 
     @IBInspectable open var backBtnImageName:String = "NavBackButton";
     
-    fileprivate var _hasBackButton:Bool = true;
-    fileprivate var _hasForcedBackButton = false;
+    private var _hasBackButton:Bool = true;
+    private var _hasForcedBackButton = false;
     
-    fileprivate var _lastSyncedDate:String?
+    private var _lastSyncedDate:String?
     
-    fileprivate var _titleKey:String?;
+    private var _titleKey:String?;
     override open var title: String? {
         get {
             return super.title;
@@ -71,7 +71,7 @@ open class BaseUITableViewController: UITableViewController {
     }//F.E.
     
     //Setting up custom back button
-    fileprivate func setupBackBtn() {
+    private func setupBackBtn() {
         if (_hasBackButton) {
             if (self.navigationItem.leftBarButtonItem == nil && (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1))) {
                 self.navigationItem.hidesBackButton = true;
@@ -103,7 +103,8 @@ open class BaseUITableViewController: UITableViewController {
         _ = self.navigationController?.popViewController(animated: true)
     } //F.E.
     
-    @discardableResult open func updateSyncedData() -> Bool {
+    /// Recursive update of layout and content from Sync Engine.
+    @discardableResult func updateSyncedData() -> Bool {
         if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
             _lastSyncedDate = syncedDate;
             //--

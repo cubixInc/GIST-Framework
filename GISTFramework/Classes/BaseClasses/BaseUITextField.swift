@@ -89,7 +89,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     @IBInspectable open var verticalPadding:CGFloat=0
     @IBInspectable open var horizontalPadding:CGFloat=0
     
-    fileprivate var _maxCharLimit: Int = 50;
+    private var _maxCharLimit: Int = 50;
     @IBInspectable open var maxCharLimit: Int {
         get {
             return _maxCharLimit;
@@ -102,7 +102,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     } //P.E.
     
     //Maintainig Own delegate
-    fileprivate weak var _delegate:UITextFieldDelegate?;
+    private weak var _delegate:UITextFieldDelegate?;
     open override weak var delegate: UITextFieldDelegate? {
         get {
             return _delegate;
@@ -113,7 +113,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //P.E.
     
-    fileprivate var _placeholderKey:String?
+    private var _placeholderKey:String?
     override open var placeholder: String? {
         get {
             return super.placeholder;
@@ -137,6 +137,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //P.E.
     
+    /// Overridden method to setup/ initialize components.
     override public init(frame: CGRect) {
         super.init(frame: frame);
         //--
@@ -147,13 +148,15 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         super.init(coder: aDecoder);
     } //C.E.
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
         //--
-        commonInit();
+        self.commonInit();
     } //F.E.
     
-    fileprivate func commonInit() {
+    /// A common initializer for sub components.
+    private func commonInit() {
         super.delegate = self;
         //--
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
@@ -163,8 +166,8 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //F.E.
     
-    open func updateView() {
-        
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView() {
         // Assigning all again to see if there is update from server
         
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
@@ -186,6 +189,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //F.E.
     
+    /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
         //--

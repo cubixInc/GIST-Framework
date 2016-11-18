@@ -8,7 +8,10 @@
 
 import UIKit
 
+/// BaseSeperatorLayoutConstraint is a subclass of NSLayoutConstraint for seperators' height constraint to make a consistent height of seperators throughout the app.
 open class BaseSeperatorLayoutConstraint: NSLayoutConstraint {
+    
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
         //--

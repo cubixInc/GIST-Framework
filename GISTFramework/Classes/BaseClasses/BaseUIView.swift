@@ -58,11 +58,13 @@ open class BaseUIView: UIView, BaseView {
         }
     }
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
     } //F.E.
     
-    open func updateView(){
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView(){
         if let bgCStyle:String = self.bgColorStyle {
             self.bgColorStyle = bgCStyle;
         }
@@ -72,6 +74,7 @@ open class BaseUIView: UIView, BaseView {
         }
     } //F.E.
     
+    /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
         //--

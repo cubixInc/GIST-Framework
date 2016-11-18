@@ -15,7 +15,7 @@ open class CustomImageView: BaseUIView {
 
     @IBInspectable open var imageFixedSize:CGSize = CGSize.zero;
     
-    fileprivate var _imageView:UIImageView?;
+    private var _imageView:UIImageView?;
     open var imageView:UIImageView? {
         get {
             if (_imageView == nil) {
@@ -36,7 +36,7 @@ open class CustomImageView: BaseUIView {
         }
     } //P.E.
 
-    fileprivate var imageViewFrame:CGRect {
+    private var imageViewFrame:CGRect {
         get {
             
             var rFrame:CGRect = CGRect();
@@ -175,6 +175,7 @@ open class CustomImageView: BaseUIView {
         }
     } //F.E.
     
+    /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
         //--

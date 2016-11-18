@@ -8,35 +8,60 @@
 
 import UIKit
 
+/// BaseUIDesignableButton is subclass of BaseUIButton. It draws custom view xib on the button and has all the features of a BaseUIButton.
 open class BaseUIDesignableButton: BaseUIButton {
    
-    fileprivate var _view: UIView! // NOT USING BASE CLASS HERE SO THAT THERE SHOULD NOT BE DEPENDENCY ISSUE
-    //--
-    override init(frame: CGRect) {
+    /// Holding containt view
+    private var _view: UIView!
+    
+    @IBInspectable open var nibName:String?; //Default value is nil
+    
+    @IBInspectable open var nibViewIndex:Int = 0; //Default value is Zero
+    
+    /// Used when creating the underlying layer for the view with a custom xib
+    ///
+    /// - Parameters:
+    ///   - frame:  View frame
+    ///   - nibName: Xib file name
+    ///   - viewIndex: Xib file view index
+    public init(frame: CGRect, nibName:String, viewIndex:Int = 0) {
         super.init(frame: frame);
+        
+        //Holding Params
+        self.nibName = nibName;
+        self.nibViewIndex = viewIndex;
         
         //Setting up custom xib
         self.xibSetup();
     } //F.E.
+    
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
+    } //F.E.
+    
+    /// Overridden method to setup/ initialize components.
+    override open func awakeFromNib() {
+        super.awakeFromNib();
         
         //Setting up custom xib
         self.xibSetup();
     } //F.E.
     
-    override open func updateView() {
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    override public func updateView() {
         super.updateView();
         //--
         (_view as? BaseView)?.updateView();
     } //F.E.
     
-    //MARK: - Setup Custom View
-    fileprivate func xibSetup() {
-        let nib = getNib();
-        //--
-        _view = UIView.loadDynamicViewWithNib(nib.nibName, viewIndex: nib.viewIndex, owner: self) as! UIView;
+    /// Setup Custom View
+    private func xibSetup() {
+        guard self.nibName != nil else {
+            return;
+        }
+        
+        _view = UIView.loadDynamicViewWithNib(self.nibName!, viewIndex: self.nibViewIndex, owner: self) as! UIView;
         
         //Disabling the interaction for subview
         _view.isUserInteractionEnabled = false;
@@ -49,11 +74,6 @@ open class BaseUIDesignableButton: BaseUIButton {
         
         // Adding custom subview on top of our view
         self.addSubview(_view);
-    }//F.E.
-    
-    open func getNib() -> (nibName:String, viewIndex:Int) {
-        assert(false, "Override this method in your class");
-        return ("", 0);
     }//F.E.
 
 } //CLS END

@@ -112,8 +112,8 @@ open class BaseUITextView: UITextView, BaseView {
         }
     }
     
-    fileprivate var _lblPlaceholder:BaseUILabel?
-    fileprivate var lblPlaceholder:BaseUILabel {
+    private var _lblPlaceholder:BaseUILabel?
+    private var lblPlaceholder:BaseUILabel {
         get {
             
             if (_lblPlaceholder == nil) {
@@ -146,19 +146,23 @@ open class BaseUITextView: UITextView, BaseView {
         super.init(coder: aDecoder);
     }
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
         //--
         self.commonInit()
     } //F.E.
     
-    fileprivate func commonInit() {
+    /// A common initializer for sub components.
+    private func commonInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         //-
         self.updatePlaceholderState();
-    }
+    } //F.E.
     
-    open func updateView()  {
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView()  {
+        // Assigning all again to see if there is update from server
         
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
@@ -178,7 +182,7 @@ open class BaseUITextView: UITextView, BaseView {
         _lblPlaceholder?.updateView();
     } //F.E.
     
-    fileprivate func updatePlaceholderState() {
+    private func updatePlaceholderState() {
         //Checking if _lblPlaceholder is initialized or not
         if (_lblPlaceholder != nil) {
             self.lblPlaceholder.isHidden = (self.text.characters.count > 0);
@@ -194,11 +198,11 @@ open class BaseUITextView: UITextView, BaseView {
     } //F.E.
     
     //MARK: - Text change Observer Handling
-    fileprivate func addTextDidChangeObserver() {
+    private func addTextDidChangeObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeObserver), name: NSNotification.Name.UITextViewTextDidChange, object: nil);
     } //F.E.
     
-    fileprivate func removeTextDidChangeObserver() {
+    private func removeTextDidChangeObserver() {
         NotificationCenter.default.removeObserver(self);
     } //F.E.
 

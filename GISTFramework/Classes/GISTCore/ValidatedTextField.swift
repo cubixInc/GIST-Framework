@@ -32,7 +32,7 @@ open class ValidatedTextField: BaseUITextField {
         }
     } //P.E.
     
-    fileprivate var _validityMsg:String?
+    private var _validityMsg:String?
     @IBInspectable open var validityMsg:String {
         get {
             return _validityMsg ?? "Invalid";
@@ -44,7 +44,7 @@ open class ValidatedTextField: BaseUITextField {
         
     }
     
-    fileprivate lazy var invalidSignBtn:CustomUIButton =  {
+    private lazy var invalidSignBtn:CustomUIButton =  {
         let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.custom);
         cBtn.isHidden = true;
         cBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
@@ -57,9 +57,9 @@ open class ValidatedTextField: BaseUITextField {
         return cBtn;
     } ();
     
-    fileprivate var _isEmpty:Bool = false;
+    private var _isEmpty:Bool = false;
     
-    fileprivate var _isValid:Bool = false;
+    private var _isValid:Bool = false;
     open var isValid:Bool {
         get {
             let cValid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
@@ -76,7 +76,7 @@ open class ValidatedTextField: BaseUITextField {
         }
     } //P.E.
     
-    fileprivate func validateText() {
+    private func validateText() {
         _isEmpty = self.isEmpty();
         
         _isValid =
@@ -103,35 +103,35 @@ open class ValidatedTextField: BaseUITextField {
         return GISTUtility.isEmpty(self.text);
     } //F.E.
     
-    fileprivate func isValidEmail()->Bool {
+    private func isValidEmail()->Bool {
         return GISTUtility.isValidEmail(self.text);
     } //F.E.
     
-    fileprivate func isValidUrl() -> Bool {
+    private func isValidUrl() -> Bool {
         return GISTUtility.isValidUrl(self.text);
     } //F.E.
     
-    fileprivate func isValidPhoneNo() -> Bool {
+    private func isValidPhoneNo() -> Bool {
         return GISTUtility.isValidPhoneNo(self.text);
     } //F.E.
     
-    fileprivate func isNumeric() -> Bool {
+    private func isNumeric() -> Bool {
         return GISTUtility.isNumeric(self.text);
     } //F.E.
     
-    fileprivate func isAlphabetic() -> Bool {
+    private func isAlphabetic() -> Bool {
         return GISTUtility.isAlphabetic(self.text);
     } //F.E.
     
-    fileprivate func isValidForMinChar(_ noOfChar:Int) -> Bool {
+    private func isValidForMinChar(_ noOfChar:Int) -> Bool {
         return GISTUtility.isValidForMinChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
-    fileprivate func isValidForMaxChar(_ noOfChar:Int) -> Bool {
+    private func isValidForMaxChar(_ noOfChar:Int) -> Bool {
         return GISTUtility.isValidForMaxChar(self.text, noOfChar: noOfChar);
     } //F.E.
     
-    fileprivate func isValidForRegex(_ regex:String)->Bool {
+    private func isValidForRegex(_ regex:String)->Bool {
         return GISTUtility.isValidForRegex(self.text, regex: regex);
     } //F.E.
     

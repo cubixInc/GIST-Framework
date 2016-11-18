@@ -10,7 +10,7 @@ import UIKit
 
 open class SyncedText: SyncEngine {
     
-    fileprivate static var _sharedInstance: SyncedText = SyncedText();
+    private static var _sharedInstance: SyncedText = SyncedText();
     class override var sharedInstance: SyncedText {
         get {
             return self._sharedInstance;

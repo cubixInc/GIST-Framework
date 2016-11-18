@@ -88,7 +88,7 @@ open class BaseUILabel: UILabel, BaseView {
         }
     }
     
-    fileprivate var _textKey: String?
+    private var _textKey: String?
     override open var text: String? {
         get {
             return super.text;
@@ -105,6 +105,9 @@ open class BaseUILabel: UILabel, BaseView {
         }
     } //P.E.
     
+    /// Overridden constructor to setup/ initialize components.
+    ///
+    /// - Parameter frame: View frame
     public override init(frame: CGRect) {
         super.init(frame: frame);
         //--
@@ -115,13 +118,15 @@ open class BaseUILabel: UILabel, BaseView {
         super.init(coder: aDecoder);
     } //C.E.
     
+    /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
         //--
         self.commontInit();
     } //F.E.
     
-    fileprivate func commontInit() {
+    /// Common initazier for setting up items.
+    private func commontInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         //Updating text with synced data
@@ -132,7 +137,8 @@ open class BaseUILabel: UILabel, BaseView {
         }
     } //F.E.
     
-    open func updateView() {
+    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
+    public func updateView() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         if let bgCStyle:String = self.bgColorStyle {
@@ -152,6 +158,7 @@ open class BaseUILabel: UILabel, BaseView {
         }
     } //F.E.
     
+    /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
         //--

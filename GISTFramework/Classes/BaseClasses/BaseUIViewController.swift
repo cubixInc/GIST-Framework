@@ -13,7 +13,7 @@ open class BaseUIViewController: UIViewController {
     //Default back button image is 'NavBackButton', which can be changed from inspector
     @IBInspectable open var backBtnImageName:String = "NavBackButton";
     
-    fileprivate var _hasBackButton:Bool = true;
+    private var _hasBackButton:Bool = true;
     open var hasBackButton:Bool {
         get {
             return _hasBackButton;
@@ -24,7 +24,7 @@ open class BaseUIViewController: UIViewController {
         }
     } //P.E.
     
-    fileprivate var _hasForcedBackButton = false;
+    private var _hasForcedBackButton = false;
     open var hasForcedBackButton:Bool {
         get {
             return _hasForcedBackButton;
@@ -39,9 +39,9 @@ open class BaseUIViewController: UIViewController {
         }
     } //P.E.
     
-    fileprivate var _lastSyncedDate:String?
+    private var _lastSyncedDate:String?
     
-    fileprivate var _titleKey:String?;
+    private var _titleKey:String?;
     override open var title: String? {
         get {
             return super.title;
@@ -100,7 +100,7 @@ open class BaseUIViewController: UIViewController {
     }//F.E.
     
     //Setting up custom back button
-    fileprivate func setupBackBtn() {
+    private func setupBackBtn() {
         if (_hasBackButton) {
              if (self.navigationItem.leftBarButtonItem == nil && (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1))) {
                 self.navigationItem.hidesBackButton = true;
@@ -132,7 +132,8 @@ open class BaseUIViewController: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     } //F.E.
     
-    @discardableResult open func updateSyncedData() -> Bool {
+    /// Recursive update of layout and content from Sync Engine.
+    @discardableResult func updateSyncedData() -> Bool {
         if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
             _lastSyncedDate = syncedDate;
             //--
