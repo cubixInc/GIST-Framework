@@ -2,13 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>key2</key>
-	<string>test2</string>
-	<key>label</key>
-	<string>SyncLabel new</string>
-	<key>mainViewConrollerTitle</key>
-	<string>This My VIew</string>
-	<key>appName</key>
-	<string>SampleName</string>
+	<key>key</key>
+	<string>value</string>
 </dict>
 </plist>
