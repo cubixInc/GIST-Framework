@@ -92,7 +92,7 @@ open class BaseUIButton: UIButton, BaseView {
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
-            self.setTitleColor(SyncedColors.color(forKey: fontColorStyle), for: UIControlState());
+            self.setTitleColor(SyncedColors.color(forKey: fontColorStyle), for: UIControlState.normal);
         }
     }
     
@@ -181,9 +181,9 @@ open class BaseUIButton: UIButton, BaseView {
         
         //Updating text with synced data
         if let txt:String = self.titleLabel?.text , txt.hasPrefix("#") == true {
-            self.setTitle(txt, for: state); // Assigning again to set value from synced data
+            self.setTitle(txt, for: UIControlState.normal); // Assigning again to set value from synced data
         } else if _titleKey != nil {
-            self.setTitle(_titleKey, for: state);
+            self.setTitle(_titleKey, for: UIControlState.normal);
         }
     } //F.E.
     
@@ -210,7 +210,7 @@ open class BaseUIButton: UIButton, BaseView {
         }
         
         if let txtKey:String = _titleKey {
-            self.setTitle(txtKey, for: state);
+            self.setTitle(txtKey, for: UIControlState.normal);
         }
     } //F.E.
     
