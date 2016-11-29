@@ -454,64 +454,69 @@ open class SyncEngine: NSObject {
     private func customObjectForKey<T>(_ aKey: String) -> T? {
         let rtnData:T? = _dictData?.object(forKey: aKey) as? T;
         
-        if (rtnData == nil) {
-            
-            if let syncedFileUrlRes = Bundle.main.path(forResource: aKey, ofType: "plist") {
-                
-                var languageCode:String = "";
-                
-                //Localization
-                if (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
-                    languageCode = "-" + Bundle.main.preferredLocalizations[0]
-                }
-                
-                let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(aKey+languageCode).plist");
-                //--
-                var isFileExist:Bool = FileManager.default.fileExists(atPath: url.path);
-                
-                #if DEBUG
-                    if (isFileExist) {
-                        do {
-                            try FileManager.default.removeItem(at: url);
-                        } catch  {
-                            let nserror = error as NSError
-                            NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
-                            abort();
-                        }
-                        //--
-                        isFileExist = false;
-                    }
-                #endif
-                
-                //If File does not exist
-                if (isFileExist == false) {
-                    do {
-                        try FileManager.default.copyItem(at: URL(fileURLWithPath: syncedFileUrlRes), to: url);
-                    } catch  {
-                        let nserror = error as NSError
-                        NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
-                        abort()
-                    }
-                }
-                
-                //Fetching Data
-                if let arr = NSMutableArray(contentsOf: url) {
-                    _dictData?.setObject(arr, forKey: aKey as NSCopying);
-                    //--
-                    return arr as? T;
-                } else if let dict = NSMutableDictionary(contentsOf: url) {
-                    _dictData?.setObject(dict, forKey: aKey as NSCopying);
-                    //--
-                    return dict as? T;
-                }
-                
+        if (rtnData != nil) {
+            if let instance =  rtnData as? NSMutableCopying  {
+                return instance.mutableCopy() as? T;
             } else {
-                NSLog("Unresolved error : \(self.syncedFile).plist file not found in the resource folder");
-                abort();
+                return rtnData;
             }
         }
         
-        return rtnData;
+        if let syncedFileUrlRes = Bundle.main.path(forResource: aKey, ofType: "plist") {
+            
+            var languageCode:String = "";
+            
+            //Localization
+            if (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
+                languageCode = "-" + Bundle.main.preferredLocalizations[0]
+            }
+            
+            let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(aKey+languageCode).plist");
+            //--
+            var isFileExist:Bool = FileManager.default.fileExists(atPath: url.path);
+            
+            #if DEBUG
+                if (isFileExist) {
+                    do {
+                        try FileManager.default.removeItem(at: url);
+                    } catch  {
+                        let nserror = error as NSError
+                        NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
+                        abort();
+                    }
+                    //--
+                    isFileExist = false;
+                }
+            #endif
+            
+            //If File does not exist
+            if (isFileExist == false) {
+                do {
+                    try FileManager.default.copyItem(at: URL(fileURLWithPath: syncedFileUrlRes), to: url);
+                } catch  {
+                    let nserror = error as NSError
+                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
+                    abort()
+                }
+            }
+            
+            //Fetching Data
+            if let arr = NSMutableArray(contentsOf: url) {
+                _dictData?.setObject(arr, forKey: aKey as NSCopying);
+                //--
+                return arr.mutableCopy() as? T;
+            } else if let dict = NSMutableDictionary(contentsOf: url) {
+                _dictData?.setObject(dict, forKey: aKey as NSCopying);
+                //--
+                return dict.mutableCopy() as? T;
+            }
+            
+        } else {
+            NSLog("Unresolved error : \(aKey).plist file not found in the resource folder");
+            abort();
+        }
+        
+        return nil;
     } //F.E.
     
     @discardableResult private func syncForCustomData(_ dict:NSDictionary) -> Bool {
