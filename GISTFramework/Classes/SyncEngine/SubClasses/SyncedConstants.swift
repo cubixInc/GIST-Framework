@@ -31,7 +31,7 @@ open class SyncedConstants: SyncEngine {
     ///
     /// - Parameter key: A Key
     /// - Returns: A constant text or value from SyncEngine.
-    class func constant<T>(forKey key: String?) -> T? {
+    public class func constant<T>(forKey key: String?) -> T? {
         return SyncedConstants.sharedInstance.objectForKey(key);
     } //F.E.
     
