@@ -15,10 +15,10 @@ open class BaseLayoutConstraint: NSLayoutConstraint {
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
     
     /// Flag for whether to resize the values considering UINavigationbar fixed height(64).
-    @IBInspectable open var sizeForNavi:Bool = false;
+    @IBInspectable open var sizeForNavi:Bool = GIST_GLOBAL.sizeForIPad;
     
     //MARK: - Overridden Methods
     

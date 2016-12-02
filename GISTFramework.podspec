@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "2.0"
+  s.version      = "2.1"
   s.summary      = "GISTFramework short desc to be written here."
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => "2.0" }
+  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => "2.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

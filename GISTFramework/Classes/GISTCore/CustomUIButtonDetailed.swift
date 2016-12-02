@@ -27,7 +27,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
     } //P.E.
     
     ///Detail text font style - 'medium' is default.
-    @IBInspectable open var dFontStyle:String = "medium" {
+    @IBInspectable open var dFontStyle:String = GIST_GLOBAL.fontStyle {
         didSet {
             self.detailLabel.fontStyle = self.dFontStyle;
         }

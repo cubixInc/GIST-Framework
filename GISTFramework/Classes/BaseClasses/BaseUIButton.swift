@@ -14,7 +14,7 @@ open class BaseUIButton: UIButton, BaseView {
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
     
     /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
@@ -76,14 +76,14 @@ open class BaseUIButton: UIButton, BaseView {
     }
     
     /// Font name key from Sync Engine.
-    @IBInspectable open var fontName:String = "fontRegular" {
+    @IBInspectable open var fontName:String = GIST_GLOBAL.fontName {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
     /// Font size/style key from Sync Engine.
-    @IBInspectable open var fontStyle:String = "medium" {
+    @IBInspectable open var fontStyle:String = GIST_GLOBAL.fontStyle {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }

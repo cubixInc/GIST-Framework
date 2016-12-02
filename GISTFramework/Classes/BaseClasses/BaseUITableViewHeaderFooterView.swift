@@ -14,7 +14,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = false;
+    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
     
     /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
@@ -43,7 +43,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
     }
     
     /// Font name key from Sync Engine.
-    @IBInspectable open var fontName:String? = "fontRegular" {
+    @IBInspectable open var fontName:String? = GIST_GLOBAL.fontName {
         didSet {
             guard (self.fontName != oldValue) else {
                 return;
@@ -56,7 +56,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
     }
     
     /// Font size/ style key from Sync Engine.
-    @IBInspectable open var fontStyle:String? = "medium" {
+    @IBInspectable open var fontStyle:String? = GIST_GLOBAL.fontStyle {
         didSet {
             guard (self.fontStyle != oldValue) else {
                 return;
@@ -78,7 +78,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
     }
     
     /// Detail Text Font size/ style key from Sync Engine.
-    @IBInspectable open var detailFontStyle:String? = "medium" {
+    @IBInspectable open var detailFontStyle:String? = GIST_GLOBAL.fontStyle {
         didSet {
             guard (self.detailFontStyle != oldValue) else {
                 return;

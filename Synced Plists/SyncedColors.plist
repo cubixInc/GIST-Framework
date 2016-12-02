@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>navigationTextColor</key>
-	<string>#ce0d10</string>
-	<key>navigationBgColor</key>
-	<string>#ffffff</string>
-	<key>navigationTintColor</key>
-	<string>#999999</string>
 	<key>theme</key>
 	<string>#ce0d10</string>
 	<key>accent</key>
