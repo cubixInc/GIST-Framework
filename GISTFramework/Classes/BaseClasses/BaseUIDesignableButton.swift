@@ -16,11 +16,11 @@ open class BaseUIDesignableButton: BaseUIButton {
     /// Holding containt view
     private var _view: UIView!
     
-    /// Inspectable property for custom xib name.
-    @IBInspectable open var xibName:String = "\(type(of: self))"; //Default value is class name itself
+    /// Custom xib name.
+    private lazy var _xibName:String = "\(type(of: self))"; //Default value is class name itself
     
-    /// Inspectable property for custom xib view index.
-    @IBInspectable open var xibViewIndex:Int = 0; //Default value is Zero
+    /// Custom xib view index.
+    private var _xibViewIndex:Int = 0; //Default value is Zero
     
     //MARK: - Constructors
     
@@ -34,11 +34,11 @@ open class BaseUIDesignableButton: BaseUIButton {
         super.init(frame: frame);
         
         //Holding Params
-        self.xibName = xibName;
-        self.xibViewIndex = viewIndex;
+        _xibName = xibName;
+        _xibViewIndex = viewIndex;
         
         //Setting up custom xib
-        self.xibSetup();
+        self.xibSetup(xibName: _xibName, viewIndex: _xibViewIndex);
     } //F.E.
     
     /// Required constructor implemented.
@@ -53,7 +53,7 @@ open class BaseUIDesignableButton: BaseUIButton {
         super.awakeFromNib();
         
         //Setting up custom xib
-        self.xibSetup();
+        self.xibSetup(xibName: _xibName, viewIndex: _xibViewIndex);
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
@@ -66,8 +66,8 @@ open class BaseUIDesignableButton: BaseUIButton {
     //MARK: - Methods
     
     /// Setup Custom View
-    private func xibSetup() {
-        _view = UIView.loadDynamicViewWithNib(self.xibName, viewIndex: self.xibViewIndex, owner: self) as! UIView;
+    open func xibSetup(xibName:String, viewIndex:Int) {
+        _view = UIView.loadDynamicViewWithNib(xibName, viewIndex: viewIndex, owner: self) as! UIView;
         
         //Disabling the interaction for subview
         _view.isUserInteractionEnabled = false;
