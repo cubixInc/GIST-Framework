@@ -17,7 +17,7 @@ open class BaseUIDesignableView: BaseUIView {
     private var _view: UIView!
     
     /// Inspectable property for custom xib name.
-    @IBInspectable open var xibName:String?; //Default value is nil
+    @IBInspectable open var xibName:String = "\(type(of: self))"; //Default value is class name itself
     
     /// Inspectable property for custom xib view index.
     @IBInspectable open var xibViewIndex:Int = 0; //Default value is Zero
@@ -67,11 +67,7 @@ open class BaseUIDesignableView: BaseUIView {
     
     /// Setup Custom View
     private func xibSetup() {
-        guard self.xibName != nil else {
-            return;
-        }
-        
-        _view = UIView.loadDynamicViewWithNib(self.xibName!, viewIndex: self.xibViewIndex, owner: self) as! UIView;
+        _view = UIView.loadDynamicViewWithNib(self.xibName, viewIndex: self.xibViewIndex, owner: self) as! UIView;
         
         // use bounds, Not frame
         _view.frame = bounds;

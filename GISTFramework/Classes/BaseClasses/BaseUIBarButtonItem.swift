@@ -1,12 +1,13 @@
 //
 //  BaseUIBarButtonItem.swift
-//  FoodParcel
+//  GISTFramework
 //
 //  Created by Shoaib Abdul on 04/12/2016.
-//  Copyright © 2016 Cubix Labs. All rights reserved.
+//  Copyright © 2016 Social Cubix. All rights reserved.
 //
 
 import UIKit
+
 
 open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
     //MARK: - Properties
