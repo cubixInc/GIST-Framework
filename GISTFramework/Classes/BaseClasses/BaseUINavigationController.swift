@@ -20,6 +20,12 @@ open class BaseUINavigationController: UINavigationController {
     @IBInspectable open var bgColor:String? = nil {
         didSet {
             self.navigationBar.barTintColor = SyncedColors.color(forKey:bgColor);
+            
+            //Fixing black line issue when the navigation is transparent
+            if self.navigationBar.barTintColor?.cgColor.alpha == 0 {
+                self.navigationBar.setBackgroundImage(UIImage(), for: .default);
+                self.navigationBar.shadowImage = UIImage();
+            }
         }
     }
     
