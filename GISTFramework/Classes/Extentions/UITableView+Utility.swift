@@ -37,11 +37,11 @@ public extension UITableView {
             return;
         }
         
-        self.scrollToRowAtIndexPath(NSIndexPath(forRow: numOfRows - 1, inSection: numOfSections - 1), atScrollPosition: .Bottom, animated: true)
+        self.scrollToRowAtIndexPath(NSIndexPath(forRow: numOfRows - 1, inSection: numOfSections - 1), atScrollPosition: .Bottom, animated: animated)
     } //F.E.
     
     public func scrollToTop(animated: Bool = true) {
-        self.setContentOffset(CGPoint.zero, animated: true);
+        self.setContentOffset(CGPoint.zero, animated: animated);
     } //F.E.
     
 } //E.E.
