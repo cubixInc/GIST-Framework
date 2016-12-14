@@ -46,13 +46,13 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
     
     public override init(items: [AnyObject]?) {
         super.init(items: items);
-        //--
+        
         self.commontInit();
     }
     
     public override init(frame: CGRect) {
         super.init(frame: frame);
-        //--
+        
         self.commontInit();
     }
     
@@ -62,7 +62,7 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.commontInit();
     } //F.E.
     
@@ -94,7 +94,7 @@ public class BaseUISegmentedControl: UISegmentedControl, BaseView {
     
     override public func setTitle(title: String?, forSegmentAtIndex segment: Int) {
         if let key:String = title where key.hasPrefix("#") == true {
-            //--
+            
             _titleKeys[segment] = key;  // holding key for using later
             super.setTitle(SyncedText.text(forKey: key), forSegmentAtIndex: segment);
         } else {

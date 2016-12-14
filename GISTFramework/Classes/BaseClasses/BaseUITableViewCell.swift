@@ -30,7 +30,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.bgColorStyle != oldValue) else {
                 return;
             }
-            //--
+            
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
@@ -56,7 +56,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.seperatorColorStyle != oldValue) else {
                 return;
             }
-            //--
+            
             self.seperatorView.backgroundColor = SyncedColors.color(forKey: seperatorColorStyle);
         }
     } //P.E.
@@ -72,7 +72,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.fontName != oldValue) else {
                 return;
             }
-            //--
+            
             self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
             
             self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
@@ -84,7 +84,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.fontTitleStyle != oldValue) else {
                 return;
             }
-            //--
+            
             self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
         }
     }
@@ -94,7 +94,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.fontDetailStyle != oldValue) else {
                 return;
             }
-            //--
+            
             self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
         }
     }
@@ -104,7 +104,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.fontColor != oldValue) else {
                 return;
             }
-            //--
+            
             self.textLabel?.textColor = UIColor.color(forKey: fontColor);
         }
     }
@@ -114,7 +114,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.detailColor != oldValue) else {
                 return;
             }
-            //--
+            
             self.detailTextLabel?.textColor = UIColor.color(forKey: detailColor);
         }
     }
@@ -127,9 +127,9 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     
     override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
-        //--
+        
         self.selectionStyle = UITableViewCellSelectionStyle.None;
-        //--
+        
         self.commonInitializer();
     } //F.E.
     
@@ -139,7 +139,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.commonInitializer();
     } //F.E.
     
@@ -149,7 +149,7 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     
     private func commonInitializer() {
         self.selectionStyle = UITableViewCellSelectionStyle.None;
-        //--
+        
         self.contentView.backgroundColor  = UIColor.clearColor();
         
         self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
@@ -181,19 +181,19 @@ public class BaseUITableViewCell: UITableViewCell, BaseView {
     
     override public func updateSyncedData() {
         super.updateSyncedData();
-        //--
+        
         self.contentView.updateSyncedData();
     } //F.E.
     
     override public func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         self.seperatorView.frame = self.seperatorFrame;
     } //F.E.
     
     public func updateData(data:AnyObject?) {
         _data = data;
-        //--
+        
         self.updateSyncedData();
     } //F.E.
 

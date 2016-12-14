@@ -45,7 +45,7 @@ public class PopoverController: UIViewController {
         set {
             if (_roundedCorner != newValue) {
                 _roundedCorner = newValue;
-                //--
+                
                 _containerView.addRoundedCorners(_roundedCorner ?6:0);
             }
         }
@@ -84,9 +84,9 @@ public class PopoverController: UIViewController {
             {return CGRect(origin: _position!, size: _popoverContentSize);}
             
             var rect:CGRect!
-            //--
+            
             let offSet:CGFloat = 20;
-            //--
+            
             switch (_arrowDirection) {
             case UIPopoverArrowDirection.Up:
                 rect = CGRect(x: _fromRect.origin.x + ((_fromRect.size.width - _popoverContentSize.width) / 2.0), y: _fromRect.origin.y + _fromRect.height + offSet, width: _popoverContentSize.width, height: _popoverContentSize.height);
@@ -111,7 +111,7 @@ public class PopoverController: UIViewController {
             
             rect.origin.x = min(max(offSet, rect.origin.x), UIScreen.mainScreen().bounds.width - rect.size.width - 15);
             rect.origin.y = min(max(offSet, rect.origin.y), UIScreen.mainScreen().bounds.height - rect.size.height - 15);
-            //--
+            
             return rect;
         }
     } //F.E.
@@ -127,7 +127,7 @@ public class PopoverController: UIViewController {
         set {
             if (_backgroundColor != newValue) {
                 _backgroundColor = newValue;
-                //--
+                
                 _backgroundView.backgroundColor = _backgroundColor;
             }
         }
@@ -148,16 +148,16 @@ public class PopoverController: UIViewController {
         get {
             if (_arrowView == nil) {
                 _arrowView = ArrowView(frame: CGRect(x: 0, y: 0, width: 20, height: 20));
-                //--
-                self.view.addSubview(_arrowView!);
+                
+    self.view.addSubview(_arrowView!);
             }
-            //--
+            
             return _arrowView!;
         }
     } //P.E.
     
     private var _arrowDirection:UIPopoverArrowDirection = UIPopoverArrowDirection.Unknown;
-    //--
+    
     private var arrowDirection:UIPopoverArrowDirection {
         get {
             return _arrowDirection;
@@ -170,10 +170,10 @@ public class PopoverController: UIViewController {
     
     init(contentViewController:UIViewController) {
         super.init(nibName: nil, bundle: nil);
-        //--
+        
         self.modalPresentationStyle = UIModalPresentationStyle.Custom;
         self.view.backgroundColor = UIColor.clearColor();
-        //--
+        
         setupPopoverController(contentViewController);
     } //F.E.
     
@@ -192,7 +192,7 @@ public class PopoverController: UIViewController {
     private func setupPopoverController(contentViewController:UIViewController) {
         _contentViewController = contentViewController;
         self.addChildViewController(_contentViewController!);
-        //--
+        
         setupPopoverController(_contentViewController!.view);
     } //F.E.
     
@@ -227,15 +227,15 @@ public class PopoverController: UIViewController {
     
     public func presentPopoverFromRect(rect:CGRect, inViewController viewController:UIViewController, permittedArrowDirection:UIPopoverArrowDirection, animated:Bool) {
         updatePopoverFrame(fromRect:rect, permittedArrowDirection:permittedArrowDirection);
-        //--
+        
         _parentViewController = viewController;
-        //--
+        
         _parentViewController.presentViewController(self, animated: false, completion: nil);
-        //--
+        
         if (animated)
         {
             self.view.alpha = 0.0;
-            //--
+            
             afterDelay(0.1, closure: { () -> () in
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     self.view.alpha=1.0
@@ -254,13 +254,13 @@ public class PopoverController: UIViewController {
                 self.view.alpha = 0.0;
             }, completion: { (Bool) -> Void in
                 self.cleanup();
-                //--
-                if (completion != nil)
+                
+            if (completion != nil)
                 {completion!(true);}
             })
         } else {
             cleanup();
-            //--
+            
             if (completion != nil)
             {completion!(true);}
         }
@@ -269,13 +269,13 @@ public class PopoverController: UIViewController {
     private func cleanup() {
         if (_contentView != nil)
         {_contentView!.removeFromSuperview();}
-        //--
+        
         if (_contentViewController != nil)
         {_contentViewController!.removeFromParentViewController();}
-        //--
+        
         _containerView.removeFromSuperview();
         _backgroundView.removeFromSuperview();
-        //--
+        
         _parentViewController.dismissViewControllerAnimated(false, completion: nil);
     } //F.E.
     
@@ -283,10 +283,10 @@ public class PopoverController: UIViewController {
     private func updatePopoverFrame(fromRect rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection) {
         _fromRect = rect;
         _arrowDirection = permittedArrowDirection;
-        //--
+        
         let containtViewRect = self.popoverContentRect;
         _containerView.frame = containtViewRect;
-        //--
+        
         _contentView!.frame = CGRect(x: 0, y: 0, width: containtViewRect.width, height: containtViewRect.height);
         
         //Arrow Update
@@ -298,14 +298,14 @@ public class PopoverController: UIViewController {
         switch (_arrowDirection) {
         case UIPopoverArrowDirection.Up:
             self.arrowView.hidden = false;
-            //--
+            
             self.arrowView.frame = CGRectMake(_fromRect.origin.x + (_fromRect.width - self.arrowView.frame.width)/2.0, _containerView.frame.origin.y - self.arrowView.frame.size.height, self.arrowView.frame.size.width, self.arrowView.frame.size.height);
             self.arrowView.transform = CGAffineTransformMakeRotation(degreestoradians(180));
             break;
             
         case UIPopoverArrowDirection.Left:
             self.arrowView.hidden = false;
-            //--
+            
             self.arrowView.frame = CGRectMake(_containerView.frame.origin.x - self.arrowView.frame.size.width, _fromRect.origin.y + (_fromRect.height - self.arrowView.frame.height)/2.0, self.arrowView.frame.size.width, self.arrowView.frame.size.height);
             
             self.arrowView.transform = CGAffineTransformMakeRotation(degreestoradians(90));
@@ -313,14 +313,14 @@ public class PopoverController: UIViewController {
             
         case UIPopoverArrowDirection.Right:
             self.arrowView.hidden = false;
-            //--
+            
             self.arrowView.frame = CGRectMake(_containerView.frame.origin.x + _containerView.frame.size.width, _fromRect.origin.y + (_fromRect.height - self.arrowView.frame.height)/2.0, self.arrowView.frame.size.width, self.arrowView.frame.size.height);
             self.arrowView.transform = CGAffineTransformMakeRotation(degreestoradians(-90));
             break;
             
         case UIPopoverArrowDirection.Down:
             self.arrowView.hidden = false;
-            //--
+            
             self.arrowView.frame = CGRectMake(_fromRect.origin.x + (_fromRect.width - self.arrowView.frame.width)/2.0, _containerView.frame.origin.y + _containerView.frame.size.height, self.arrowView.frame.size.width, self.arrowView.frame.size.height);
             break;
             
@@ -353,7 +353,7 @@ private class ArrowView:UIView {
     override init(frame: CGRect) {
         super.init(frame: frame);
         
-        //--
+        
         self.opaque = false;
     } //C.E.
 
@@ -364,7 +364,7 @@ private class ArrowView:UIView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect);
      
-        //--
+        
         // Drawing code
         let currentContext:CGContextRef = UIGraphicsGetCurrentContext()!;
         

@@ -107,7 +107,7 @@ public class BaseUILabel: UILabel, BaseView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame);
-        //--
+        
         self.commontInit();
     } //C.E.
     
@@ -117,7 +117,7 @@ public class BaseUILabel: UILabel, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.commontInit();
     } //F.E.
     
@@ -154,7 +154,7 @@ public class BaseUILabel: UILabel, BaseView {
     
     override public func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         //Referesh on update layout
         if rounded {
             self.rounded = true;

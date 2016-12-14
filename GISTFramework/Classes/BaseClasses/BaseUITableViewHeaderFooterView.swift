@@ -23,11 +23,11 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
             guard (self.bgColorStyle != oldValue) else {
                 return;
             }
-            //--
+            
             if (self.backgroundView == nil) {
                 self.backgroundView = UIView();
             }
-            //--
+            
             self.backgroundView!.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
@@ -37,7 +37,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
             guard (self.tintColorStyle != oldValue) else {
                 return;
             }
-            //--
+            
             self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
     }
@@ -47,7 +47,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
             guard (self.fontName != oldValue) else {
                 return;
             }
-            //--
+            
             self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
             
             self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
@@ -59,7 +59,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
             guard (self.fontTitleStyle != oldValue) else {
                 return;
             }
-            //--
+            
             self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontTitleStyle, sizedForIPad: sizeForIPad);
         }
     }
@@ -69,7 +69,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
             guard (self.fontDetailStyle != oldValue) else {
                 return;
             }
-            //--
+            
             self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
         }
     }
@@ -79,7 +79,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
             guard (self.fontColor != oldValue) else {
                 return;
             }
-            //--
+            
             self.textLabel?.textColor = UIColor.color(forKey: fontColor);
         }
     }
@@ -89,14 +89,14 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
             guard (self.detailColor != oldValue) else {
                 return;
             }
-            //--
+            
             self.detailTextLabel?.textColor = UIColor.color(forKey: detailColor);
         }
     }
     
     public override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier);
-        //--
+        
         self.commonInitializer();
     } //F.E.
     
@@ -106,7 +106,7 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
     
     override public func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.commonInitializer();
     } //F.E.
     
@@ -136,13 +136,13 @@ public class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseV
     
     override public func updateSyncedData() {
         super.updateSyncedData();
-        //--
+        
         self.contentView.updateSyncedData();
     } //F.E.
     
     public func updateData(data:AnyObject?) {
         _data = data;
-        //--
+        
         self.updateSyncedData();
     } //F.E.
     

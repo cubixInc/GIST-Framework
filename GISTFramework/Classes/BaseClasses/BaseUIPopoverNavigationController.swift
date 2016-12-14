@@ -96,16 +96,16 @@ public class BaseUIPopoverNavigationController: BaseUINavigationController {
     public func show(inViewController viewController:UIViewController, fromRect rect:CGRect = CGRect.zero, permittedArrowDirection:UIPopoverArrowDirection = UIPopoverArrowDirection()) {
         _parentViewController = viewController;
         _mainNavigationController = _parentViewController.navigationController;
-        //--
+        
         _popoverController = PopoverController(contentViewController: self);
-        //--
+        
         _popoverController!.popoverContentSize = _popoverContentSize;
         _popoverController!.popoverContentPosition = _popoverContentPosition;
-        //--
+        
         _popoverController!.popoverContentRoundedCorner = _popoverContentRoundedCorner;
-        //--
+        
         _popoverController!.arrowColor = self.topViewController!.view.backgroundColor!;
-        //--
+        
         self._popoverController!.presentPopoverFromRect(rect, inViewController: _parentViewController, permittedArrowDirection: permittedArrowDirection, animated: true);
     } //F.E.
     

@@ -24,7 +24,7 @@ public class BaseUISwitch: UISwitch, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        //--
+        
         self.updateView()
     } //F.E.
     

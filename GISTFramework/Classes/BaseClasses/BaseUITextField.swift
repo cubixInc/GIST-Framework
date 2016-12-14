@@ -140,7 +140,7 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     
     override public init(frame: CGRect) {
         super.init(frame: frame);
-        //--
+        
         self.commonInit();
     } //C.E.
     
@@ -150,13 +150,13 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        //--
+        
         commonInit();
     } //F.E.
     
     private func commonInit() {
         super.delegate = self;
-        //--
+        
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         if let placeHoldertxt:String = self.placeholder where placeHoldertxt.hasPrefix("#") == true{
@@ -189,7 +189,7 @@ public class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     
     override public func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         if rounded {
             self.addRoundedCorners();
         }

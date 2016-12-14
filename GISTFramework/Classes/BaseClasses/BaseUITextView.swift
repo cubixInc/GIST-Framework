@@ -87,7 +87,7 @@ public class BaseUITextView: UITextView, BaseView {
             if (newValue != nil) {
                 self.lblPlaceholder.text = newValue;
                 self.lblPlaceholder.sizeToFit();
-                //--
+                
                 self.addTextDidChangeObserver();
                 //-
                 self.updatePlaceholderState();
@@ -95,12 +95,11 @@ public class BaseUITextView: UITextView, BaseView {
                 if (_lblPlaceholder != nil) {
                     _lblPlaceholder!.removeFromSuperview();
                     _lblPlaceholder = nil;
-                    //--
                     self.removeTextDidChangeObserver();
                 }
             }
         }
-        //--
+        
         get {
             return _lblPlaceholder?.text;
         }
@@ -126,9 +125,9 @@ public class BaseUITextView: UITextView, BaseView {
                 
                 _lblPlaceholder!.textColor = UIColor(white: 0.80, alpha: 1);
                 _lblPlaceholder!.backgroundColor = UIColor.clearColor();
-                //--
+                
                 self.addSubview(_lblPlaceholder!);
-                //--
+                
                 self.updatePlaceholderState();
             }
             
@@ -138,7 +137,7 @@ public class BaseUITextView: UITextView, BaseView {
     
     override public init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer);
-        //--
+        
         self.commonInit()
     } //F.E.
     
@@ -148,7 +147,7 @@ public class BaseUITextView: UITextView, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        //--
+        
         self.commonInit()
     } //F.E.
     
@@ -187,7 +186,7 @@ public class BaseUITextView: UITextView, BaseView {
     
     override public func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         if rounded {
             self.addRoundedCorners();
         }
@@ -207,7 +206,7 @@ public class BaseUITextView: UITextView, BaseView {
         if (self.placeholder == nil) {
             return;
         }
-        //--
+        
         self.updatePlaceholderState();
     } //F.E.
     

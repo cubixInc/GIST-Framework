@@ -95,7 +95,7 @@ public class BaseUIButton: UIButton, BaseView {
         
         set {
             super.selected = newValue;
-            //--
+            
             if (bgColorStyle != nil && bgSelectedColorStyle != nil) {
                 self.backgroundColor = SyncedColors.color(forKey: (newValue == true) ? bgSelectedColorStyle:bgColorStyle);
             }
@@ -104,7 +104,7 @@ public class BaseUIButton: UIButton, BaseView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame);
-        //--
+        
         self.commontInit();
     } //C.E.
     
@@ -114,7 +114,7 @@ public class BaseUIButton: UIButton, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        //--
+        
         self.commontInit()
     } //F.E.
     
@@ -157,7 +157,7 @@ public class BaseUIButton: UIButton, BaseView {
     
     override public func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         if rounded {
             self.addRoundedCorners();
         }
@@ -167,7 +167,7 @@ public class BaseUIButton: UIButton, BaseView {
     
     override public func setTitle(title: String?, forState state: UIControlState) {
         if let key:String = title where key.hasPrefix("#") == true{
-            //--
+            
             _titleKey = key;  // holding key for using later
             super.setTitle(SyncedText.text(forKey: key), forState: state);
         } else {

@@ -26,7 +26,7 @@ public class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
     
     public func updateData(data:AnyObject?) {
         _data = data;
-        //--
+        
         self.updateSyncedData();
     } //F.E.
     
@@ -36,7 +36,7 @@ public class BaseUICollectionViewCell: UICollectionViewCell, BaseView {
     
     override public func updateSyncedData() {
         super.updateSyncedData();
-        //--
+        
         self.contentView.updateSyncedData();
     } //F.E.
 } //CLS END

@@ -40,7 +40,7 @@ public class GISTUtility: NSObject {
          iPhone5 Hight:568  ====== 0.77173913043478
          iPhone4S Hight:480
          iPAd Hight:1024 ===== 1.39130434782609
-         //--
+         
          (height/736.0)
          */
         
@@ -58,9 +58,9 @@ public class GISTUtility: NSObject {
     public class func convertFontSizeToRatio(value:CGFloat, fontStyle:String?, sizedForIPad:Bool = false) ->CGFloat {
         if (fontStyle == nil)
         {return GISTUtility.convertToRatio(value, sizedForIPad: sizedForIPad);}
-        //--
+        
         let newValue:CGFloat = CGFloat(SyncedFontStyles.style(forKey: fontStyle!));
-        //--
+        
         return GISTUtility.convertToRatio(newValue, sizedForIPad: sizedForIPad);
     } //F.E.
     

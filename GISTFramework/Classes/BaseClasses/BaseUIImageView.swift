@@ -60,7 +60,7 @@ public class BaseUIImageView: UIImageView, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.clipsToBounds = true;
     } //F.E.
     
@@ -76,7 +76,7 @@ public class BaseUIImageView: UIImageView, BaseView {
     
     override public func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         if rounded {
             self.addRoundedCorners();
         }

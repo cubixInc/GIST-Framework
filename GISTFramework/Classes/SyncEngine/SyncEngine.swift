@@ -95,14 +95,14 @@ public class SyncEngine: NSObject {
         #endif
         */
         
-        //--
+        
         _urlToSync = NSURL(string: urlToSync);
         _authentication = authentication;
     } //F.E.
     
     override init() {
         super.init();
-        //--
+        
         self.setupSyncedFile();
     } //P.E.
     
@@ -116,12 +116,12 @@ public class SyncEngine: NSObject {
                 _languageCode = "-" + NSBundle.mainBundle().preferredLocalizations[0]
             }
             
-            //--
+            
             //If File does not exist
             if (NSFileManager.defaultManager().fileExistsAtPath(self.syncedFileUrl.path!) == false) {
                 do {
                     try NSFileManager.defaultManager().copyItemAtURL(NSURL(fileURLWithPath: syncedFileUrlRes), toURL: syncedFileUrl);
-                    //--
+                    
                     hasToSync = false; // NO Sync required, if new file created
                 } catch  {
                     let nserror = error as NSError
@@ -257,7 +257,7 @@ public class SyncEngine: NSObject {
         for key:String in allKeys {
             //??if _dictData!.objectForKey(key) != nil {
                 let nValue:AnyObject = dict.objectForKey(key)!;
-                //--
+                
                 _dictData![key] = nValue;
             //??}
         }
@@ -281,7 +281,7 @@ public class SyncEngine: NSObject {
     private var hasSyncThresholdTimePassed:Bool {
         get {
             let currDate:NSDate = NSDate();
-            //--
+            
             if let lastResponseDate:NSDate = self.lastSyncedResponseDate {
                 //60 * 60 * 2 - two hours
                 return (currDate.timeIntervalSinceDate(lastResponseDate) >=  Double(7200));
@@ -408,7 +408,7 @@ public class SyncEngine: NSObject {
     //MARK: - Custom Data
     init(customData:Bool) {
         super.init();
-        //--
+        
         _isCustomData = customData;
         
         if (_isCustomData) {
@@ -435,7 +435,7 @@ public class SyncEngine: NSObject {
                 }
                 
                 let url:NSURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(aKey+languageCode).plist")!;
-                //--
+                
                 var isFileExist:Bool = NSFileManager.defaultManager().fileExistsAtPath(url.path!);
                 
                 #if DEBUG
@@ -447,7 +447,7 @@ public class SyncEngine: NSObject {
                             NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
                             abort();
                         }
-                        //--
+                        
                         isFileExist = false;
                     }
                 #endif
@@ -466,11 +466,11 @@ public class SyncEngine: NSObject {
                 //Fetching Data
                 if let arr = NSMutableArray(contentsOfURL: url) {
                     _dictData?.setObject(arr, forKey: aKey);
-                    //--
+                    
                     return arr as? T;
                 } else if let dict = NSMutableDictionary(contentsOfURL: url) {
                     _dictData?.setObject(dict, forKey: aKey);
-                    //--
+                    
                     return dict as? T;
                 }
                 

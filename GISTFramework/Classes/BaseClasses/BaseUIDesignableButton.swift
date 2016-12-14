@@ -11,7 +11,7 @@ import UIKit
 public class BaseUIDesignableButton: BaseUIButton {
    
     private var _view: UIView! // NOT USING BASE CLASS HERE SO THAT THERE SHOULD NOT BE DEPENDENCY ISSUE
-    //--
+    
     override init(frame: CGRect) {
         super.init(frame: frame);
         
@@ -28,14 +28,14 @@ public class BaseUIDesignableButton: BaseUIButton {
     
     override public func updateView() {
         super.updateView();
-        //--
+        
         (_view as? BaseView)?.updateView();
     } //F.E.
     
     //MARK: - Setup Custom View
     private func xibSetup() {
         let nib = getNib();
-        //--
+        
         _view = UIView.loadDynamicViewWithNib(nib.nibName, viewIndex: nib.viewIndex, owner: self) as! UIView;
         
         //Disabling the interaction for subview

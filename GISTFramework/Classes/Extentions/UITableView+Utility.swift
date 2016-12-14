@@ -13,14 +13,14 @@ public extension UITableView {
         if (animated) {
             self.fadeOut({ (finished) -> () in
                 self.reloadData();
-                //--
+                
                 self.fadeIn();
-                //--
+                
                 completion?();
             })
         } else {
             self.reloadData();
-            //--
+            
             completion?();
         }
     } //F.E.

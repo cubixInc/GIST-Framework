@@ -86,7 +86,7 @@ public class ValidatedTextView: BaseUITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer);
-        //--
+        
         self.commonInit();
     } //F.E.
     
@@ -96,7 +96,7 @@ public class ValidatedTextView: BaseUITextView {
     
     public override func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.commonInit();
     } //F.E.
     
@@ -122,7 +122,7 @@ public class ValidatedTextView: BaseUITextView {
     
     public override func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         let sizeWH:CGFloat = GISTUtility.convertToRatio(60);
         self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
     } //F.E.
@@ -133,7 +133,7 @@ public class ValidatedTextView: BaseUITextView {
     
     override func textDidChangeObserver(notification:NSNotification) {
         super.textDidChangeObserver(notification);
-        //--
+        
         self.validateText();
     } //F.E.
 } //CLS END

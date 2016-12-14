@@ -38,7 +38,7 @@ public class BaseUINavigationItem: UINavigationItem, BaseView {
     
     public override func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.updateView();
     }
     

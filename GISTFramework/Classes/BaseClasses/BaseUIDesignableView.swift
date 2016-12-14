@@ -11,7 +11,7 @@ import UIKit
 public class BaseUIDesignableView: BaseUIView {
     
     private var _view: UIView!
-    //--
+    
     override public init(frame: CGRect) {
         super.init(frame: frame);
         
@@ -28,14 +28,14 @@ public class BaseUIDesignableView: BaseUIView {
     
     override public func updateView() {
         super.updateView();
-        //--
+        
         (_view as? BaseView)?.updateView();
     } //F.E.
     
     //MARK: - Setup Custom View
     public func xibSetup() {
         let nib = getNib();
-        //--
+        
         _view = UIView.loadDynamicViewWithNib(nib.nibName, viewIndex: nib.viewIndex, owner: self) as! UIView;
         
         // use bounds, Not frame

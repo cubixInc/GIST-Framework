@@ -73,7 +73,7 @@ public class CustomUIButtonDetailed: CustomUIButton {
         get {
             let offSetV1:CGPoint = self.titleOffSet;
             let offSetV2:CGPoint = self.detailOffSet;
-            //--
+            
             let offSetFixV:CGPoint = CGPoint(x: (offSetV1.x == 0 || !self.containtCenter) ?0:self.titleLabel!.frame.size.width + self.detailLabel.frame.size.width + offSetV1.x + offSetV2.x, y: (offSetV1.y == 0 || !self.containtCenter) ?0:self.titleLabel!.frame.size.height + self.detailLabel.frame.size.height + offSetV1.y + offSetV1.y);
             
             return offSetFixV;
@@ -84,7 +84,7 @@ public class CustomUIButtonDetailed: CustomUIButton {
     private var detailLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.detailOffSet;
-            //--
+            
             var rFrame:CGRect = self.detailLabel.frame;
             
             if (offSet.x == 0) {
@@ -115,20 +115,20 @@ public class CustomUIButtonDetailed: CustomUIButton {
         
         set {
             super.selected = newValue;
-            //--
+            
             self.detailLabel.fontColorStyle = (newValue == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
     } //P.E.
     
     override func commontInit() {
         super.commontInit();
-        //--
+        
         self.detailLabel.font = self.titleLabel!.font;
     } //F.E.
     
     override public func updateView()  {
         super.updateView();
-        //--
+        
         self.detailLabel.updateView();
     } //F.E.
     

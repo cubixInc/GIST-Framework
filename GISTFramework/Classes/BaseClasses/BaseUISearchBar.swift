@@ -125,7 +125,7 @@ public class BaseUISearchBar: UISearchBar, BaseView {
         set {
             if let key:String = newValue where key.hasPrefix("#") == true{
                 _placeholderKey = key; // holding key for using later
-                //--
+                
                 super.placeholder = SyncedText.text(forKey: key);
             } else {
                 super.placeholder = newValue;
@@ -145,7 +145,7 @@ public class BaseUISearchBar: UISearchBar, BaseView {
     
     override public func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.commontInit();
     } //F.E.
     

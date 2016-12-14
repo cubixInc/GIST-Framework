@@ -95,7 +95,7 @@ public class ValidatedTextField: BaseUITextField {
     
     public override func textFieldDidEndEditing(textField: UITextField) {
         super.textFieldDidEndEditing(textField);
-        //--
+        
         self.validateText();
     } //F.E.
     
@@ -137,7 +137,7 @@ public class ValidatedTextField: BaseUITextField {
     
     public override func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
     } //F.E.
     

@@ -42,9 +42,9 @@ public class UIRadioButton: CustomUIButton {
 
     public init(frame: CGRect, radioGroupId:Int) {
         super.init(frame: frame);
-        //--
+        
         self.groupId = radioGroupId;
-        //--
+        
         self.commonInitialization();
     } //F.E.
     
@@ -54,13 +54,13 @@ public class UIRadioButton: CustomUIButton {
     
     override public func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.commonInitialization();
     } //F.E.
     
     private func commonInitialization() {
         assert((_groupId != nil), "Group Id must be defined");
-        //--
+        
         UIRadioButtonManager.sharedInstance.addButton(self);
     } //F.E.
     
@@ -97,12 +97,12 @@ internal class UIRadioButtonManager:NSObject {
     func addButton(radioButton:UIRadioButton) {
         
         radioButton.addTarget(self, action: #selector(buttonsTapHandler), forControlEvents: UIControlEvents.TouchUpInside);
-        //--
+        
         var hashTable:NSHashTable? = _mainBtnsDict[radioButton.groupId] as? NSHashTable
         
         if (hashTable == nil) {
             hashTable = NSHashTable();
-            //--
+            
             _mainBtnsDict[radioButton.groupId] = hashTable!;
         }
         
@@ -120,12 +120,12 @@ internal class UIRadioButtonManager:NSObject {
                 
                 if iRadioButtonWeak.value == nil || iRadioButtonWeak.value == radioButton {
                         hashTable.removeObject(iRadioButtonWeak);
-                        //--
-                        if (hashTable.count == 0) {
-                            _mainBtnsDict.removeObjectForKey(radioButton.groupId);
-                        }
-                        //--
-                        break;
+                        
+                    if (hashTable.count == 0) {
+                        _mainBtnsDict.removeObjectForKey(radioButton.groupId);
+                    }
+                        
+                    break;
                 }
             }
         }

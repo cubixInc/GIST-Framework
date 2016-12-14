@@ -29,7 +29,7 @@ public class BaseUINavigationController: UINavigationController {
     @IBInspectable public var fontStyle:String? = nil {
         didSet {
             var attrDict:[String : AnyObject] = self.navigationBar.titleTextAttributes ?? [String : AnyObject]()
-            //--
+            
             attrDict[NSFontAttributeName] = UIFont.font(fontKey, fontStyle: fontStyle);
             
             self.navigationBar.titleTextAttributes = attrDict;
@@ -39,7 +39,7 @@ public class BaseUINavigationController: UINavigationController {
     @IBInspectable public var fontColor:String? = nil {
         didSet {
             var attrDict:[String : AnyObject] = self.navigationBar.titleTextAttributes ?? [String : AnyObject]();
-            //--
+            
             attrDict[NSForegroundColorAttributeName] = SyncedColors.color(forKey: fontColor);
             
             self.navigationBar.titleTextAttributes = attrDict;
@@ -68,7 +68,7 @@ public class BaseUINavigationController: UINavigationController {
     
     override public func viewDidLoad() {
         super.viewDidLoad();
-        //--
+        
          _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
 
@@ -106,7 +106,7 @@ public class BaseUINavigationController: UINavigationController {
     public func updateSyncedData() -> Bool {
         if let syncedDate:String = SyncEngine.lastSyncedServerDate where syncedDate != _lastSyncedDate {
             _lastSyncedDate = syncedDate;
-            //--
+            
             
             //Update preference
             self.updateAppearance();
