@@ -38,11 +38,11 @@ public extension UITableView {
             return;
         }
         
-        self.scrollToRow(at: IndexPath(row: numOfRows - 1, section: numOfSections - 1), at: .bottom, animated: true)
+        self.scrollToRow(at: IndexPath(row: numOfRows - 1, section: numOfSections - 1), at: .bottom, animated: animated)
     } //F.E.
     
     public func scrollToTop(_ animated: Bool = true) {
-        self.setContentOffset(CGPoint.zero, animated: true);
+        self.setContentOffset(CGPoint.zero, animated: animated);
     } //F.E.
     
 } //E.E.
