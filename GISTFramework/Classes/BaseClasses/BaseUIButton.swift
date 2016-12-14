@@ -125,9 +125,9 @@ public class BaseUIButton: UIButton, BaseView {
         
         //Updating text with synced data
         if let txt:String = self.titleLabel?.text where txt.hasPrefix("#") == true {
-            self.setTitle(txt, forState: state); // Assigning again to set value from synced data
+            self.setTitle(txt, forState: UIControlState.Normal); // Assigning again to set value from synced data
         } else if _titleKey != nil {
-            self.setTitle(_titleKey, forState: state);
+            self.setTitle(_titleKey, forState: UIControlState.Normal);
         }
     } //F.E.
     
@@ -151,7 +151,7 @@ public class BaseUIButton: UIButton, BaseView {
         }
         
         if let txtKey:String = _titleKey {
-            self.setTitle(txtKey, forState: state);
+            self.setTitle(txtKey, forState: UIControlState.Normal);
         }
     } //F.E.
     
