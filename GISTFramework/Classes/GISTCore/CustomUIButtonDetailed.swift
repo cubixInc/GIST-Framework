@@ -23,6 +23,8 @@ open class CustomUIButtonDetailed: CustomUIButton {
         
         set {
             self.detailLabel.text = newValue;
+            
+            self.layoutSubviews();
         }
     } //P.E.
     
