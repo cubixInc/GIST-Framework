@@ -14,7 +14,8 @@ import UIKit
     @objc optional func applicationDidBecomeActive(_ application: UIApplication);
     @objc optional func applicationWillResignActive(_ application: UIApplication);
     @objc optional func applicationDidEnterBackground(_ application: UIApplication);
-    @objc optional func applicationDidFinishLaunching(_ application: UIApplication)
+    @objc optional func applicationDidFinishLaunching(_ application: UIApplication);
+    @objc optional func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void);
 } //F.E.
 
 
@@ -155,5 +156,21 @@ open class GISTApplication: NSObject, UIApplicationDelegate {
             wTarget.value?.applicationDidFinishLaunching?(application);
         }
     } //F.E.
+    
+    /// Protocol method for didReceiveRemoteNotification
+    ///
+    /// - Parameters:
+    ///   - application: UIApplication
+    ///   - userInfo: User Info
+    ///   - completionHandler: Completion block
+    open func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        //Calling Delegate Methods
+        let enumerator:NSEnumerator = self._delegates.objectEnumerator();
+        
+        while let wTarget:Weak<GISTApplicationDelegate> = enumerator.nextObject() as? Weak<GISTApplicationDelegate> {
+            wTarget.value?.application?(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler);
+        }
+    } //F.E.
+    
     
 } //CLS END

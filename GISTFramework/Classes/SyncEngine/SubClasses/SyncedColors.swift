@@ -39,6 +39,10 @@ open class SyncedColors: SyncEngine {
         if let haxColor:String = super.objectForKey(key) {
             return UIColor(haxColor);
         } else {
+            #if DEBUG
+                assert(key == nil, "color key : \(key!) not found");
+            #endif
+            
             return nil;
         }
     } //F.E.
