@@ -40,12 +40,12 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
     
     open override var title: String? {
         set {
-            if let key:String = title , key.hasPrefix("#") == true{
+            if let key:String = newValue , key.hasPrefix("#") == true{
                 //--
                 _titleKey = key;  // holding key for using later
                 super.title = SyncedText.text(forKey: key);
             } else {
-                super.title = title;
+                super.title = newValue;
             }
         }
         

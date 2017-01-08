@@ -11,6 +11,21 @@ import UIKit
 // MARK: - UIView Utility Extension
 public extension UIView {
     
+    /// Rotate a view by specified degrees in CGFloat
+    public var rotation:CGFloat {
+        get {
+            let radians:CGFloat = atan2(self.transform.b, self.transform.a)
+            let degrees:CGFloat = radians * (180.0 / CGFloat(M_PI))
+            return degrees;
+        }
+        
+        set {
+            let radians = newValue / 180.0 * CGFloat(M_PI)
+            let rotation = self.transform.rotated(by: radians);
+            self.transform = rotation
+        }
+    } //P.E.
+    
     /// Loads nib from Bundle
     ///
     /// - Parameters:
