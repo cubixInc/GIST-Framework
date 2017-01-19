@@ -71,6 +71,9 @@ open class BaseUITextView: UITextView, BaseView {
     /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = GIST_GLOBAL.fontName {
         didSet {
+            //There should be same font name for the placeholder text
+            _lblPlaceholder?.fontName = fontName;
+            
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
@@ -78,6 +81,9 @@ open class BaseUITextView: UITextView, BaseView {
     /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = GIST_GLOBAL.fontStyle {
         didSet {
+            //There should be same font style for the placeholder text
+            _lblPlaceholder?.fontStyle = fontStyle;
+            
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
