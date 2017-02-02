@@ -93,11 +93,14 @@ public extension UIView {
     } //F.E.
     
     /// Shows view with fadeIn animation
-    public func fadeIn() {
+    public func fadeIn(_ completion:((_ finished:Bool)->())? = nil) {
         self.alpha=0.0;
         self.isHidden = false;
+        
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.alpha=1.0;
+            self.alpha = 1.0;
+        }, completion: { (finish:Bool) -> Void in
+            completion?(finish)
         })
     } //F.E.
     
