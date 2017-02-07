@@ -105,7 +105,7 @@ public extension UIView {
     } //F.E.
     
     // Hides view with fadeOut animation
-    public func fadeOut(_ completion:((_ finished:Bool)->())?) {
+    public func fadeOut(_ completion:((_ finished:Bool)->())? = nil) {
         self.alpha = 1.0
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.alpha=0.0;
