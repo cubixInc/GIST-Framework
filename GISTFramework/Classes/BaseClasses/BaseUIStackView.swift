@@ -9,9 +9,22 @@
 import UIKit
 
 /// BaseUIStackView is a subclass of UIStackView and implements BaseView. It has some extra proporties and support for SyncEngine.
+@available(iOS 9.0, *)
 class BaseUIStackView: UIStackView, BaseView {
-
+    
     //MARK: - Properties
+    
+    
+    /// Overriden property to update spacing with ratio.
+    open override var spacing:CGFloat {
+        get {
+            return super.spacing;
+        }
+        
+        set {
+            super.spacing = GISTUtility.convertToRatio(newValue, sizedForIPad: sizeForIPad);
+        }
+    }
     
     /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
@@ -72,20 +85,18 @@ class BaseUIStackView: UIStackView, BaseView {
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
-        super.awakeFromNib()
+        super.awakeFromNib();
+        
     } //F.E.
     
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
         
-        self.spacing = GISTUtility.convertToRatio(spacing, sizedForIPad: sizeForIPad);
-        
         if rounded {
             self.addRoundedCorners();
         }
     } //F.E.
-    
     
     //MARK: - Methods
     
@@ -99,5 +110,5 @@ class BaseUIStackView: UIStackView, BaseView {
             self.borderColorStyle = borderCStyle;
         }
     } //F.E.
-
+    
 } //CLS END
