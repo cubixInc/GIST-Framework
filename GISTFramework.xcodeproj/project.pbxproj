@@ -50,6 +50,8 @@
 		489691E91DDE46E6001DDCE5 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489691E81DDE46E6001DDCE5 /* Weak.swift */; };
 		48991B0C1D460C60007467A4 /* Array+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48991B0B1D460C60007467A4 /* Array+Utility.swift */; };
 		489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */; };
+		48A518801E5199FB006AE30A /* BaseUIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A5187F1E5199FB006AE30A /* BaseUIStackView.swift */; };
+		48A518821E519CA1006AE30A /* UnderlinedUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A518811E519CA1006AE30A /* UnderlinedUITextField.swift */; };
 		48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */; };
 		48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */; };
 		48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */; };
@@ -115,6 +117,8 @@
 		489691E81DDE46E6001DDCE5 /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		48991B0B1D460C60007467A4 /* Array+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utility.swift"; sourceTree = "<group>"; };
 		489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
+		48A5187F1E5199FB006AE30A /* BaseUIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIStackView.swift; sourceTree = "<group>"; };
+		48A518811E519CA1006AE30A /* UnderlinedUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedUITextField.swift; sourceTree = "<group>"; };
 		48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIBarButtonItem.swift; sourceTree = "<group>"; };
 		48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
 		48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPageControl.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */,
 				48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */,
 				48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */,
+				48A5187F1E5199FB006AE30A /* BaseUIStackView.swift */,
 			);
 			path = BaseClasses;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				48EB0AEB1D7FF45B00BD93BC /* GISTUtility.swift */,
 				489691E81DDE46E6001DDCE5 /* Weak.swift */,
 				48CF84F81DF1564E008C7D85 /* GISTGlobal.swift */,
+				48A518811E519CA1006AE30A /* UnderlinedUITextField.swift */,
 			);
 			path = GISTCore;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				4895305B1D12AD4100DFD38B /* BaseUICollectionViewCell.swift in Sources */,
 				489530641D12AD4100DFD38B /* BaseUISegmentedControl.swift in Sources */,
 				48991B0C1D460C60007467A4 /* Array+Utility.swift in Sources */,
+				48A518801E5199FB006AE30A /* BaseUIStackView.swift in Sources */,
 				488307031E3B256D00F308C5 /* BaseUIPopoverNavigationController.swift in Sources */,
 				48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */,
 				489530671D12AD4100DFD38B /* BaseUISwitch.swift in Sources */,
@@ -390,6 +397,7 @@
 				488307011E3B256100F308C5 /* PopoverControllerView.swift in Sources */,
 				48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
+				48A518821E519CA1006AE30A /* UnderlinedUITextField.swift in Sources */,
 				489530691D12AD4100DFD38B /* BaseUITableViewCell.swift in Sources */,
 				489530651D12AD4100DFD38B /* BaseUISlider.swift in Sources */,
 				489530621D12AD4100DFD38B /* BaseUIScrollView.swift in Sources */,

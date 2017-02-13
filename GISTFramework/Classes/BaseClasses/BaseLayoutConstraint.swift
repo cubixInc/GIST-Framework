@@ -25,7 +25,7 @@ open class BaseLayoutConstraint: NSLayoutConstraint {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.constant = GISTUtility.convertToRatio(constant, sizedForIPad: sizeForIPad, sizedForNavi:sizeForNavi);
     } //F.E.
 } //CLS END

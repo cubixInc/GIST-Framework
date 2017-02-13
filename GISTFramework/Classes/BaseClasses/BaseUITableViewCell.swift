@@ -194,7 +194,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         self.seperatorView.frame = self.seperatorFrame;
     } //F.E.
     
