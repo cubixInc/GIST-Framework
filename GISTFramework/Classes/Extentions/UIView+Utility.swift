@@ -93,11 +93,15 @@ public extension UIView {
     } //F.E.
     
     /// Shows view with fadeIn animation
-    public func fadeIn(_ completion:((_ finished:Bool)->())? = nil) {
-        self.alpha=0.0;
+    ///
+    /// - Parameters:
+    ///   - duration: Fade duration - Default Value is 0.25
+    ///   - completion: Completion block
+    public func fadeIn(withDuration duration:Double = 0.25, _ completion:((_ finished:Bool)->())? = nil) {
+        self.alpha = 0.0;
         self.isHidden = false;
         
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
+        UIView.animate(withDuration: duration, animations: { () -> Void in
             self.alpha = 1.0;
         }, completion: { (finish:Bool) -> Void in
             completion?(finish)
@@ -105,9 +109,13 @@ public extension UIView {
     } //F.E.
     
     // Hides view with fadeOut animation
-    public func fadeOut(_ completion:((_ finished:Bool)->())? = nil) {
+    ///
+    /// - Parameters:
+    ///   - duration: Fade duration - Default Value is 0.25
+    ///   - completion: Completion block
+    public func fadeOut(withDuration duration:Double = 0.25, _ completion:((_ finished:Bool)->())? = nil) {
         self.alpha = 1.0
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
+        UIView.animate(withDuration: duration, animations: { () -> Void in
             self.alpha=0.0;
             }, completion: { (finish:Bool) -> Void in
                 self.isHidden = true;
