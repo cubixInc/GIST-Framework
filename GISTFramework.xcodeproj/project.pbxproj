@@ -55,6 +55,7 @@
 		48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */; };
 		48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */; };
 		48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */; };
+		48CD65271E54A74A00E3BC84 /* ProgressUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD65261E54A74A00E3BC84 /* ProgressUIButton.swift */; };
 		48CF84F91DF1564E008C7D85 /* GISTGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF84F81DF1564E008C7D85 /* GISTGlobal.swift */; };
 		48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */; };
 		48D59DCC1DB4081400B65A2E /* UIScrollView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */; };
@@ -122,6 +123,7 @@
 		48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIBarButtonItem.swift; sourceTree = "<group>"; };
 		48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
 		48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPageControl.swift; sourceTree = "<group>"; };
+		48CD65261E54A74A00E3BC84 /* ProgressUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressUIButton.swift; sourceTree = "<group>"; };
 		48CF84F81DF1564E008C7D85 /* GISTGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTGlobal.swift; sourceTree = "<group>"; };
 		48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
 		48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utility.swift"; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 		48EB0AD71D7FEE7900BD93BC /* GISTCore */ = {
 			isa = PBXGroup;
 			children = (
+				48CD65261E54A74A00E3BC84 /* ProgressUIButton.swift */,
 				488306FE1E3B256100F308C5 /* PopoverController.swift */,
 				488306FF1E3B256100F308C5 /* PopoverControllerView.swift */,
 				48EB0AD91D7FEF4B00BD93BC /* CustomImageView.swift */,
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48CD65271E54A74A00E3BC84 /* ProgressUIButton.swift in Sources */,
 				489530601D12AD4100DFD38B /* BaseUINavigationController.swift in Sources */,
 				489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */,
 				4895305A1D12AD4100DFD38B /* BaseUICollectionView.swift in Sources */,
