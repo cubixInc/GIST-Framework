@@ -14,17 +14,10 @@ open class ProgressUIButton: BaseUIButton {
     //MARK: - Properties
     
     /// Max time in seconde to fill the bar
-    @IBInspectable open var timeMax:Double = 3;
+    @IBInspectable open var progressTime:Double = 2;
     
     /// Bar Height
     @IBInspectable open var barHeight:CGFloat = 10;
-    
-    /// Bar background color style with sync engine
-    @IBInspectable open var barBgColor:String? {
-        didSet {
-            _progressView?.bgColorStyle = self.barBgColor;
-        }
-    } //P.E.
     
     /// Bar Color style with sync engine
     @IBInspectable open var barColor:String? {
@@ -32,6 +25,13 @@ open class ProgressUIButton: BaseUIButton {
             _progressBarView?.bgColorStyle = self.barColor;
         }
     }
+    
+    /// Bar background color style with sync engine
+    @IBInspectable open var barBgColor:String? {
+        didSet {
+            _progressView?.bgColorStyle = self.barBgColor;
+        }
+    } //P.E.
     
     /// Flag for bar position
     @IBInspectable var barOnBottom:Bool = false {
@@ -65,7 +65,7 @@ open class ProgressUIButton: BaseUIButton {
     
     private var progressBarViewFrame:CGRect {
         get {
-            let width:CGFloat = self.autoTrigger ? self.frame.size.width * (1.0 - CGFloat(_timePassed / self.timeMax)):self.frame.size.width * CGFloat(_timePassed / self.timeMax);
+            let width:CGFloat = self.autoTrigger ? self.frame.size.width * (1.0 - CGFloat(_timePassed / self.progressTime)):self.frame.size.width * CGFloat(_timePassed / self.progressTime);
             return CGRect(x: 0, y: 0, width: width, height: GISTUtility.convertToRatio(self.barHeight));
         }
     } //F.E.
@@ -127,7 +127,7 @@ open class ProgressUIButton: BaseUIButton {
             return;
         }
         
-        if (_timePassed >= self.timeMax) {
+        if (_timePassed >= self.progressTime) {
             self.fadeOut { (Bool) in
                 super.sendAction(action, to: target, for: event);
                 self.fadeIn();
@@ -145,7 +145,7 @@ open class ProgressUIButton: BaseUIButton {
         
         //Progress Bar View
         _progressBarView = BaseUIView(frame: self.progressBarViewFrame);
-        _progressBarView.bgColorStyle = self.barBgColor ?? "accent";
+        _progressBarView.bgColorStyle = self.barColor ?? "accent";
         _progressView.addSubview(_progressBarView);
     } //F.E.
     
@@ -178,7 +178,7 @@ open class ProgressUIButton: BaseUIButton {
     
     /// Update methed called instantaneously when the bar is filling
     func update() {
-        guard _timePassed < self.timeMax else {
+        guard _timePassed < self.progressTime else {
             self.triggerEvent();
             return;
         }
