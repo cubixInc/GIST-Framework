@@ -115,4 +115,12 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return image!
     } //F.E.
+    
+    
+    /// Mirroring the Image
+    ///
+    /// - Returns: mirrored image
+    public func mirrored() -> UIImage {
+        return UIImage(cgImage: self.cgImage!, scale:self.scale , orientation: UIImageOrientation.upMirrored)
+    } //F.E.
 } //CLS END

@@ -234,5 +234,13 @@ open class GISTUtility: NSObject {
         
         return predicate.evaluate(with: text!);
     } //F.E.
+    
+    
+    /// Flag to check user interfce layout direction
+    ///
+    /// - Returns: True; if user interface layout direction is right to left
+    open class func isRTL () -> Bool {
+        return Locale.characterDirection(forLanguage: Locale.current.languageCode ?? "en") == .rightToLeft;
+    } //F.E.
 
 } //CLS END

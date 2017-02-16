@@ -21,14 +21,14 @@ open class BaseUIButton: UIButton, BaseView {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: ((self.isSelected == true) && (bgSelectedColorStyle != nil)) ? bgSelectedColorStyle:bgColorStyle);
         }
-    }
+    } //P.E.
     
     /// Selected state background color key from Sync Engine.
     @IBInspectable open var bgSelectedColorStyle:String? = nil {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: (self.isSelected == true) ? bgSelectedColorStyle:bgColorStyle);
         }
-    }
+    } //P.E.
     
     /// Width of View Border.
     @IBInspectable open var border:Int = 0 {
@@ -37,7 +37,7 @@ open class BaseUIButton: UIButton, BaseView {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
             }
         }
-    }
+    } //P.E.
     
     /// Border color key from Sync Engine.
     @IBInspectable open var borderColorStyle:String? = nil {
@@ -46,14 +46,14 @@ open class BaseUIButton: UIButton, BaseView {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
             }
         }
-    }
+    } //P.E.
     
     /// Corner Radius for View.
     @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
-    }
+    } //P.E.
     
     /// Flag for making circle/rounded view.
     @IBInspectable open var rounded:Bool = false {
@@ -62,7 +62,7 @@ open class BaseUIButton: UIButton, BaseView {
                 self.addRoundedCorners();
             }
         }
-    }
+    } //P.E.
     
     /// Flag for Drop Shadow.
     @IBInspectable open var hasDropShadow:Bool = false {
@@ -73,35 +73,50 @@ open class BaseUIButton: UIButton, BaseView {
                 // TO HANDLER
             }
         }
-    }
+    } //P.E.
     
     /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = GIST_GLOBAL.fontName {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
-    }
+    } //P.E.
     
     /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = GIST_GLOBAL.fontStyle {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
-    }
+    } //P.E.
     
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
             self.setTitleColor(SyncedColors.color(forKey: fontColorStyle), for: UIControlState.normal);
         }
-    }
+    } //P.E.
     
     /// Selected state font color key from Sync Engine.
     @IBInspectable open var fontSelectedColorStyle:String? = nil {
         didSet {
             self.setTitleColor(SyncedColors.color(forKey: fontSelectedColorStyle), for: UIControlState.selected);
         }
-    }
+    } //P.E.
+    
+    @IBInspectable open var RTLMirrored:Bool = false {
+        didSet {
+            if (self.RTLMirrored && GISTUtility.isRTL()) {
+                
+                let states:[UIControlState] = [.normal, .selected, .highlighted, .disabled]
+                
+                for state in states {
+                    if let img = self.image(for: state) {
+                        super.setImage(img.mirrored(), for: state);
+                    }
+                }
+            }
+        }
+    } //P.E.
     
     /// Overridden property to handle layouts for different status.
     override open var isSelected:Bool {
@@ -111,14 +126,15 @@ open class BaseUIButton: UIButton, BaseView {
         
         set {
             super.isSelected = newValue;
-            //--
+            
             if (bgColorStyle != nil && bgSelectedColorStyle != nil) {
                 self.backgroundColor = SyncedColors.color(forKey: (newValue == true) ? bgSelectedColorStyle:bgColorStyle);
             }
         }
     } //P.E.
     
-    private var _titleKey:String?;
+//    private var _titleKey:String?;
+    private var _titleKeys:[UInt:String] = [UInt:String]();
     
     //MARK: - Constructors
     
@@ -127,7 +143,7 @@ open class BaseUIButton: UIButton, BaseView {
     /// - Parameter frame: View frame
     public override init(frame: CGRect) {
         super.init(frame: frame);
-        //--
+        
         self.commontInit();
     } //C.E.
     
@@ -141,7 +157,7 @@ open class BaseUIButton: UIButton, BaseView {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
-        //--
+        
         self.commontInit()
     } //F.E.
     
@@ -162,14 +178,16 @@ open class BaseUIButton: UIButton, BaseView {
     ///   - state: Button State
     override open func setTitle(_ title: String?, for state: UIControlState) {
         if let key:String = title , key.hasPrefix("#") == true{
-            //--
-            _titleKey = key;  // holding key for using later
+            _titleKeys[state.rawValue] = key;  // holding key for using later
             super.setTitle(SyncedText.text(forKey: key), for: state);
         } else {
             super.setTitle(title, for: state);
         }
     } //F.E.
     
+    open override func setImage(_ image: UIImage?, for state: UIControlState) {
+        super.setImage( (self.RTLMirrored && GISTUtility.isRTL()) ? image?.mirrored() : image, for: state)
+    } //F.E.
     
     //MARK: - Methods
     
@@ -180,10 +198,14 @@ open class BaseUIButton: UIButton, BaseView {
         self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         //Updating text with synced data
-        if let txt:String = self.titleLabel?.text , txt.hasPrefix("#") == true {
-            self.setTitle(txt, for: UIControlState.normal); // Assigning again to set value from synced data
-        } else if _titleKey != nil {
-            self.setTitle(_titleKey, for: UIControlState.normal);
+        let states:[UIControlState] = [.normal, .selected, .highlighted, .disabled]
+        
+        for state in states {
+            if let normalTxt:String = self.title(for: state), normalTxt.hasPrefix("#") == true {
+                self.setTitle(normalTxt, for: state); // Assigning again to set value from synced data
+            } else if let normalTxtKey:String = _titleKeys[state.rawValue] {
+                self.setTitle(normalTxtKey, for: state);
+            }
         }
     } //F.E.
     
@@ -209,8 +231,10 @@ open class BaseUIButton: UIButton, BaseView {
             self.fontSelectedColorStyle = fntSelClrStyle;
         }
         
-        if let txtKey:String = _titleKey {
-            self.setTitle(txtKey, for: UIControlState.normal);
+        for i:UInt in _titleKeys.keys {
+            if let key:String = _titleKeys[i] {
+              self.setTitle(key, for: UIControlState(rawValue: i));
+            }
         }
     } //F.E.
     

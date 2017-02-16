@@ -29,12 +29,20 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
         }
     }
     
+    @IBInspectable open var RTLMirrored:Bool = false {
+        didSet {
+            if (self.RTLMirrored && GISTUtility.isRTL()) {
+                super.image = self.image?.mirrored();
+            }
+        }
+    } //P.E.
+    
     /// Extended proprty font for Segmented Controler Items
     open var font:UIFont? = nil {
         didSet {
             self.setTitleTextAttributes([NSFontAttributeName:self.font!], for: UIControlState());
         }
-    };
+    }
     
     private var _titleKey:String?;
     
@@ -51,6 +59,20 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
         
         get {
             return super.title;
+        }
+    }
+    
+    open override var image: UIImage? {
+        set {
+            if (self.RTLMirrored && GISTUtility.isRTL()) {
+                super.image = newValue?.mirrored();
+            } else {
+                super.image = newValue;
+            }
+        }
+        
+        get {
+            return super.image;
         }
     }
     

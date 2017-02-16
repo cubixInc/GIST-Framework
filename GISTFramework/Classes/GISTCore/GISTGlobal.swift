@@ -27,7 +27,5 @@ public class GISTGlobal: NSObject {
     public var sizeForNavi:Bool = false;
     
     public var seperatorWidth:CGFloat = 0.5;
-    
-    
 
 } //CLS END

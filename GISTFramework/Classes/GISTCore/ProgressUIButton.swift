@@ -87,8 +87,8 @@ open class ProgressUIButton: BaseUIButton {
     override open func layoutSubviews() {
         super.layoutSubviews();
         
-        _progressView.frame = self.progressViewFrame;
-        _progressBarView.frame = self.progressBarViewFrame;
+        _progressView?.frame = self.progressViewFrame;
+        _progressBarView?.frame = self.progressBarViewFrame;
     } //F.E.
     
     /// Overridden methed to handle touches

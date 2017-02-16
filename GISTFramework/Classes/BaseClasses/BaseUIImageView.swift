@@ -21,7 +21,7 @@ open class BaseUIImageView: UIImageView, BaseView {
         didSet {
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
-    }
+    } //P.E.
     
     /// Width of View Border.
     @IBInspectable open var border:Int = 0 {
@@ -30,7 +30,7 @@ open class BaseUIImageView: UIImageView, BaseView {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
             }
         }
-    }
+    } //P.E.
     
     /// Border color key from Sync Engine.
     @IBInspectable open var borderColorStyle:String? = nil {
@@ -39,14 +39,14 @@ open class BaseUIImageView: UIImageView, BaseView {
                 self.addBorder(SyncedColors.color(forKey: borderCStyle), width: border)
             }
         }
-    }
+    } //P.E.
     
     /// Corner Radius for View.
     @IBInspectable open var cornerRadius:Int = 0 {
         didSet {
             self.addRoundedCorners(GISTUtility.convertToRatio(CGFloat(cornerRadius), sizedForIPad: sizeForIPad));
         }
-    }
+    } //P.E.
     
     /// Flag for making circle/rounded view.
     @IBInspectable open var rounded:Bool = false {
@@ -55,7 +55,7 @@ open class BaseUIImageView: UIImageView, BaseView {
                 self.addRoundedCorners();
             }
         }
-    }
+    } //P.E.
     
     /// Flag for Drop Shadow.
     @IBInspectable open var hasDropShadow:Bool = false {
@@ -66,7 +66,30 @@ open class BaseUIImageView: UIImageView, BaseView {
                 // TO HANDLER
             }
         }
-    }
+    } //P.E.
+    
+    @IBInspectable open var RTLMirrored:Bool = false {
+        didSet {
+            if (self.RTLMirrored && GISTUtility.isRTL()) {
+                super.image = self.image?.mirrored();
+            }
+        }
+    } //P.E.
+    
+    open override var image: UIImage? {
+        get {
+            return super.image;
+        }
+        
+        set {
+            if (self.RTLMirrored && GISTUtility.isRTL()) {
+                super.image = newValue?.mirrored();
+            } else {
+                super.image = newValue;
+            }
+            
+        }
+    } //P.E.
     
     //MARK: - Overridden Methods
     
