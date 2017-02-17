@@ -81,7 +81,7 @@ open class CustomUIButton: BaseUIButton {
     internal var offSetFix:CGPoint {
         get {
             let offSetV:CGPoint = self.titleOffSet;
-            //--
+             
             let offSetFixV:CGPoint = CGPoint(x: (offSetV.x == 0 || !_containtCenter) ?0:self.titleLabel!.frame.size.width + offSetV.x, y: (offSetV.y == 0 || !_containtCenter) ?0:self.titleLabel!.frame.size.height + offSetV.y);
             
             return offSetFixV;
@@ -96,7 +96,7 @@ open class CustomUIButton: BaseUIButton {
         get {
             
             var rFrame:CGRect = CGRect();
-            //--
+             
             let imgSize:CGSize = self.imageView!.image?.size ?? CGSize(width: 0.1, height: 0.1);
             
             if (self.imageFixedSize.height > 0 && self.imageFixedSize.width > 0) {
@@ -227,7 +227,7 @@ open class CustomUIButton: BaseUIButton {
     open var titleLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.titleOffSet;
-            //--
+             
             var rFrame:CGRect = self.titleLabel!.frame;
             
             if (offSet.x == 0) {
@@ -267,9 +267,9 @@ open class CustomUIButton: BaseUIButton {
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
-        //--
+         
         self.titleLabel!.sizeToFit();
-        //--
+         
         self.imageView!.frame = self.imageViewFrame;
         self.titleLabel!.frame = self.titleLabelFrame;
     } //F.E.

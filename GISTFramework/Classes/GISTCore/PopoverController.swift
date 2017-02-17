@@ -83,9 +83,9 @@ open class PopoverController: BaseUIViewController {
             {return CGRect(origin: _position!, size: _popoverContentSize);}
             
             var rect:CGRect!
-            //--
+             
             let offSet:CGFloat = 20;
-            //--
+             
             switch (_arrowDirection) {
             case UIPopoverArrowDirection.up:
                 rect = CGRect(x: _fromRect.origin.x + ((_fromRect.size.width - _popoverContentSize.width) / 2.0), y: _fromRect.origin.y + _fromRect.height + offSet, width: _popoverContentSize.width, height: _popoverContentSize.height);
@@ -110,7 +110,7 @@ open class PopoverController: BaseUIViewController {
             
             rect.origin.x = min(max(offSet, rect.origin.x), UIScreen.main.bounds.width - rect.size.width - 15);
             rect.origin.y = min(max(offSet, rect.origin.y), UIScreen.main.bounds.height - rect.size.height - 15);
-            //--
+             
             return rect;
         }
     } //F.E.
@@ -168,7 +168,7 @@ open class PopoverController: BaseUIViewController {
     
     public init(contentViewController:UIViewController) {
         super.init(nibName: nil, bundle: nil);
-        //--
+         
         self.modalPresentationStyle = UIModalPresentationStyle.custom;
         self.view.backgroundColor = UIColor.clear;
         
@@ -191,7 +191,7 @@ open class PopoverController: BaseUIViewController {
     private func setupPopoverController(_ contentViewController:UIViewController) {
         _contentViewController = contentViewController;
         self.addChildViewController(_contentViewController!);
-        //--
+         
         setupPopoverController(_contentViewController!.view);
     } //F.E.
     
@@ -226,15 +226,15 @@ open class PopoverController: BaseUIViewController {
     
     open func presentPopoverFromRect(_ rect:CGRect, inViewController viewController:UIViewController, permittedArrowDirection:UIPopoverArrowDirection, animated:Bool) {
         updatePopoverFrame(fromRect:rect, permittedArrowDirection:permittedArrowDirection);
-        //--
+         
         _parentViewController = viewController;
-        //--
+         
         _parentViewController.present(self, animated: false, completion: nil);
-        //--
+         
         if (animated)
         {
             self.view.alpha = 0.0;
-            //--
+             
             afterDelay(0.1, closure: { () -> Void in
                 UIView.animate(withDuration: 0.5, animations: { () -> Void in
                     self.view.alpha=1.0
@@ -253,13 +253,13 @@ open class PopoverController: BaseUIViewController {
                 self.view.alpha = 0.0;
             }, completion: { (Bool) -> Void in
                 self.cleanup();
-                //--
+                 
                 if (completion != nil)
                 {completion!(true);}
             })
         } else {
             cleanup();
-            //--
+             
             if (completion != nil)
             {completion!(true);}
         }
@@ -268,13 +268,13 @@ open class PopoverController: BaseUIViewController {
     private func cleanup() {
         if (_contentView != nil)
         {_contentView!.removeFromSuperview();}
-        //--
+         
         if (_contentViewController != nil)
         {_contentViewController!.removeFromParentViewController();}
-        //--
+         
         _containerView.removeFromSuperview();
         _backgroundView.removeFromSuperview();
-        //--
+         
         _parentViewController.dismiss(animated: false, completion: nil);
     } //F.E.
     
@@ -282,10 +282,10 @@ open class PopoverController: BaseUIViewController {
     private func updatePopoverFrame(fromRect rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection) {
         _fromRect = rect;
         _arrowDirection = permittedArrowDirection;
-        //--
+         
         let containtViewRect = self.popoverContentRect;
         _containerView.frame = containtViewRect;
-        //--
+         
         _contentView!.frame = CGRect(x: 0, y: 0, width: containtViewRect.width, height: containtViewRect.height);
         
         //Arrow Update
@@ -297,14 +297,14 @@ open class PopoverController: BaseUIViewController {
         switch (_arrowDirection) {
         case UIPopoverArrowDirection.up:
             self.arrowView.isHidden = false;
-            //--
+             
             self.arrowView.frame = CGRect(x: _fromRect.origin.x + (_fromRect.width - self.arrowView.frame.width)/2.0, y: _containerView.frame.origin.y - self.arrowView.frame.size.height, width: self.arrowView.frame.size.width, height: self.arrowView.frame.size.height);
             self.arrowView.transform = CGAffineTransform(rotationAngle: radianFromDegree(180));
             break;
             
         case UIPopoverArrowDirection.left:
             self.arrowView.isHidden = false;
-            //--
+             
             self.arrowView.frame = CGRect(x: _containerView.frame.origin.x - self.arrowView.frame.size.width, y: _fromRect.origin.y + (_fromRect.height - self.arrowView.frame.height)/2.0, width: self.arrowView.frame.size.width, height: self.arrowView.frame.size.height);
             
             self.arrowView.transform = CGAffineTransform(rotationAngle: radianFromDegree(90));
@@ -312,14 +312,14 @@ open class PopoverController: BaseUIViewController {
             
         case UIPopoverArrowDirection.right:
             self.arrowView.isHidden = false;
-            //--
+             
             self.arrowView.frame = CGRect(x: _containerView.frame.origin.x + _containerView.frame.size.width, y: _fromRect.origin.y + (_fromRect.height - self.arrowView.frame.height)/2.0, width: self.arrowView.frame.size.width, height: self.arrowView.frame.size.height);
             self.arrowView.transform = CGAffineTransform(rotationAngle: radianFromDegree(-90));
             break;
             
         case UIPopoverArrowDirection.down:
             self.arrowView.isHidden = false;
-            //--
+             
             self.arrowView.frame = CGRect(x: _fromRect.origin.x + (_fromRect.width - self.arrowView.frame.width)/2.0, y: _containerView.frame.origin.y + _containerView.frame.size.height, width: self.arrowView.frame.size.width, height: self.arrowView.frame.size.height);
             break;
             
@@ -361,7 +361,7 @@ private class ArrowView:BaseUIView {
     override init(frame: CGRect) {
         super.init(frame: frame);
         
-        //--
+         
         self.isOpaque = false;
     } //C.E.
 
@@ -372,7 +372,7 @@ private class ArrowView:BaseUIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect);
      
-        //--
+         
         // Drawing code
         let currentContext:CGContext = UIGraphicsGetCurrentContext()!;
         

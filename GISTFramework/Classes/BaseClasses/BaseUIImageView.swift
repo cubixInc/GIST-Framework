@@ -68,9 +68,9 @@ open class BaseUIImageView: UIImageView, BaseView {
         }
     } //P.E.
     
-    @IBInspectable open var RTLMirrored:Bool = false {
+    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
         didSet {
-            if (self.RTLMirrored && GISTUtility.isRTL()) {
+            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
                 super.image = self.image?.mirrored();
             }
         }
@@ -82,7 +82,7 @@ open class BaseUIImageView: UIImageView, BaseView {
         }
         
         set {
-            if (self.RTLMirrored && GISTUtility.isRTL()) {
+            if (self.respectRTL && GIST_GLOBAL.isRTL) {
                 super.image = newValue?.mirrored();
             } else {
                 super.image = newValue;
@@ -96,14 +96,18 @@ open class BaseUIImageView: UIImageView, BaseView {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.clipsToBounds = true;
+        
+        if (self.respectRTL && GIST_GLOBAL.isRTL) {
+            super.image = self.image?.mirrored();
+        }
     } //F.E.
     
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         if rounded {
             self.addRoundedCorners();
         }

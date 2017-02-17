@@ -22,11 +22,11 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
             guard (self.bgColorStyle != oldValue) else {
                 return;
             }
-            //--
+             
             if (self.backgroundView == nil) {
                 self.backgroundView = UIView();
             }
-            //--
+             
             self.backgroundView!.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
@@ -37,7 +37,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
             guard (self.tintColorStyle != oldValue) else {
                 return;
             }
-            //--
+             
             self.tintColor = SyncedColors.color(forKey: tintColorStyle);
         }
     }
@@ -48,7 +48,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
             guard (self.fontName != oldValue) else {
                 return;
             }
-            //--
+             
             self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
             
             self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.detailFontStyle, sizedForIPad: sizeForIPad);
@@ -61,7 +61,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
             guard (self.fontStyle != oldValue) else {
                 return;
             }
-            //--
+             
             self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
         }
     }
@@ -72,7 +72,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
             guard (self.fontColor != oldValue) else {
                 return;
             }
-            //--
+             
             self.textLabel?.textColor = UIColor.color(forKey: fontColor);
         }
     }
@@ -83,7 +83,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
             guard (self.detailFontStyle != oldValue) else {
                 return;
             }
-            //--
+             
             self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.detailFontStyle, sizedForIPad: sizeForIPad);
         }
     }
@@ -94,7 +94,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
             guard (self.detailFontColor != oldValue) else {
                 return;
             }
-            //--
+             
             self.detailTextLabel?.textColor = UIColor.color(forKey: detailFontColor);
         }
     }
@@ -115,7 +115,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
     /// - Parameter reuseIdentifier: Reuse identifier
     public override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier);
-        //--
+         
         self.commonInit();
     } //F.E.
     
@@ -129,14 +129,14 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+         
         self.commonInit();
     } //F.E.
     
     /// Recursive update of layout and content from Sync Engine.
     override func updateSyncedData() {
         super.updateSyncedData();
-        //--
+         
         self.contentView.updateSyncedData();
     } //F.E.
     
@@ -173,7 +173,7 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
     /// - Parameter data: Header View Data
     open func updateData(_ data:Any?) {
         _data = data;
-        //--
+         
         self.updateSyncedData();
     } //F.E.
     

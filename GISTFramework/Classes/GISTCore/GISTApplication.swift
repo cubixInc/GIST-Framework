@@ -91,7 +91,7 @@ open class GISTApplication: NSObject, UIApplicationDelegate {
                 return wTarget;
             }
         }
-        //--
+         
         return nil;
     } //F.E.
     

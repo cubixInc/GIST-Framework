@@ -37,7 +37,7 @@ open class BaseUIViewController: UIViewController {
         
         set {
             _hasForcedBackButton = newValue;
-            //--
+             
             if (_hasForcedBackButton) {
                 _hasBackButton = true;
             }
@@ -75,7 +75,7 @@ open class BaseUIViewController: UIViewController {
     ///   - backButton: Flag for back button
     public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButton:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
-        //--
+         
         _hasBackButton = backButton;
     } //F.E.
     
@@ -109,14 +109,14 @@ open class BaseUIViewController: UIViewController {
     /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
-        //--
+         
         _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
     
     /// Overridden method to setup/ initialize components.
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        //--
+         
         self.setupBackBtn();
         self.updateSyncedData();
     }//F.E.
@@ -131,7 +131,7 @@ open class BaseUIViewController: UIViewController {
                 
                 self.navigationItem.leftBarButtonItem = BaseUIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonTapped));
                 
-                (self.navigationItem.leftBarButtonItem as? BaseUIBarButtonItem)?.RTLMirrored = true;
+                (self.navigationItem.leftBarButtonItem as? BaseUIBarButtonItem)?.respectRTL = true;
              }
         }
     } //F.E.
@@ -146,11 +146,11 @@ open class BaseUIViewController: UIViewController {
     @discardableResult func updateSyncedData() -> Bool {
         if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
             _lastSyncedDate = syncedDate;
-            //--
+             
             if _titleKey != nil {
                 self.title = _titleKey;
             }
-            //--
+             
             self.view.updateSyncedData();
             
             (self.navigationController as? BaseUINavigationController)?.updateSyncedData();

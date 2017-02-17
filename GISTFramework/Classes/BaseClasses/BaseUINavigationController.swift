@@ -40,7 +40,7 @@ open class BaseUINavigationController: UINavigationController {
     @IBInspectable open var fontName:String = GIST_GLOBAL.fontName {
         didSet {
             var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
-            //--
+             
             attrDict[NSFontAttributeName] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             
             self.navigationBar.titleTextAttributes = attrDict;
@@ -51,7 +51,7 @@ open class BaseUINavigationController: UINavigationController {
     @IBInspectable open var fontStyle:String = GIST_GLOBAL.fontStyle {
         didSet {
             var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
-            //--
+             
             attrDict[NSFontAttributeName] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             
             self.navigationBar.titleTextAttributes = attrDict;
@@ -62,7 +62,7 @@ open class BaseUINavigationController: UINavigationController {
     @IBInspectable open var fontColor:String? = nil {
         didSet {
             var attrDict:[String : Any] = self.navigationBar.titleTextAttributes ?? [String : Any]();
-            //--
+             
             attrDict[NSForegroundColorAttributeName] = SyncedColors.color(forKey: fontColor);
             
             self.navigationBar.titleTextAttributes = attrDict;
@@ -109,7 +109,7 @@ open class BaseUINavigationController: UINavigationController {
     /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
-        //--
+         
          _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
 
@@ -148,7 +148,7 @@ open class BaseUINavigationController: UINavigationController {
     @discardableResult func updateSyncedData() -> Bool {
         if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
             _lastSyncedDate = syncedDate;
-            //--
+             
             
             //Update preference
             self.updateAppearance();

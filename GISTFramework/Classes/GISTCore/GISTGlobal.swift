@@ -23,9 +23,23 @@ public class GISTGlobal: NSObject {
     public var fontStyle:String = "medium";
     public var navigationBackButtonImgName:String = "NavBackButton";
     
+    public var seperatorWidth:CGFloat = 0.5;
+    
     public var sizeForIPad:Bool = true;
     public var sizeForNavi:Bool = false;
     
-    public var seperatorWidth:CGFloat = 0.5;
+    public var respectRTL:Bool = false;
+    
+    private var _isRTL:Bool?
+    
+    /// Flag to check user interfce layout direction
+    public var isRTL:Bool {
+        get {
+            if (_isRTL == nil) {
+                _isRTL = Locale.characterDirection(forLanguage: Locale.current.languageCode ?? "en") == .rightToLeft;
+            }
+            return _isRTL!;
+        }
+    }
 
 } //CLS END

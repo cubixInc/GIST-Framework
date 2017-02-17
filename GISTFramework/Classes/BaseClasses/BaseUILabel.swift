@@ -101,6 +101,14 @@ open class BaseUILabel: UILabel, BaseView {
         }
     }
     
+    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
+        didSet {
+            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
+                self.textAlignment = .natural;
+            }
+        }
+    } //P.E.
+    
     private var _textKey: String?
     override open var text: String? {
         get {
@@ -125,7 +133,7 @@ open class BaseUILabel: UILabel, BaseView {
     /// - Parameter frame: View frame
     public override init(frame: CGRect) {
         super.init(frame: frame);
-        //--
+        
         self.commontInit();
     } //C.E.
     
@@ -139,17 +147,21 @@ open class BaseUILabel: UILabel, BaseView {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.commontInit();
     } //F.E.
     
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         //Referesh on update layout
         if rounded {
             self.rounded = true;
+        }
+        
+        if (self.respectRTL && GIST_GLOBAL.isRTL) {
+            self.textAlignment = .natural;
         }
     } //F.E.
     
@@ -165,8 +177,11 @@ open class BaseUILabel: UILabel, BaseView {
         } else if _textKey != nil {
             self.text = _textKey;
         }
+        
+        if (self.respectRTL && GIST_GLOBAL.isRTL) {
+            self.textAlignment = .natural;
+        }
     } //F.E.
-    
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
     func updateView() {

@@ -103,9 +103,9 @@ open class BaseUIButton: UIButton, BaseView {
         }
     } //P.E.
     
-    @IBInspectable open var RTLMirrored:Bool = false {
+    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
         didSet {
-            if (self.RTLMirrored && GISTUtility.isRTL()) {
+            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
                 
                 let states:[UIControlState] = [.normal, .selected, .highlighted, .disabled]
                 
@@ -164,7 +164,7 @@ open class BaseUIButton: UIButton, BaseView {
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
-        //--
+         
         if rounded {
             self.addRoundedCorners();
         }
@@ -186,7 +186,7 @@ open class BaseUIButton: UIButton, BaseView {
     } //F.E.
     
     open override func setImage(_ image: UIImage?, for state: UIControlState) {
-        super.setImage( (self.RTLMirrored && GISTUtility.isRTL()) ? image?.mirrored() : image, for: state)
+        super.setImage( (self.respectRTL && GIST_GLOBAL.isRTL) ? image?.mirrored() : image, for: state)
     } //F.E.
     
     //MARK: - Methods
@@ -201,12 +201,18 @@ open class BaseUIButton: UIButton, BaseView {
         let states:[UIControlState] = [.normal, .selected, .highlighted, .disabled]
         
         for state in states {
-            if let normalTxt:String = self.title(for: state), normalTxt.hasPrefix("#") == true {
-                self.setTitle(normalTxt, for: state); // Assigning again to set value from synced data
-            } else if let normalTxtKey:String = _titleKeys[state.rawValue] {
-                self.setTitle(normalTxtKey, for: state);
+            // Assigning again to set value from synced data
+            if let txt:String = self.title(for: state), txt.hasPrefix("#") == true {
+                self.setTitle(txt, for: state);
+            } else if let txtKey:String = _titleKeys[state.rawValue] {
+                self.setTitle(txtKey, for: state);
+            }
+            
+            if self.respectRTL, GIST_GLOBAL.isRTL, let img:UIImage = self.image(for: state) {
+                super.setImage(img.mirrored(), for: state);
             }
         }
+        
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.

@@ -142,7 +142,7 @@ open class BaseUISearchBar: UISearchBar, BaseView {
         set {
             if let key:String = newValue , key.hasPrefix("#") == true{
                 _placeholderKey = key; // holding key for using later
-                //--
+                 
                 super.placeholder = SyncedText.text(forKey: key);
             } else {
                 super.placeholder = newValue;
@@ -171,7 +171,7 @@ open class BaseUISearchBar: UISearchBar, BaseView {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+         
         self.commontInit();
     } //F.E.
     

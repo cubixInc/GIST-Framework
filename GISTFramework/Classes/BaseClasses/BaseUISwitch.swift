@@ -29,7 +29,7 @@ open class BaseUISwitch: UISwitch, BaseView {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
-        //--
+         
         self.updateView()
     } //F.E.
     

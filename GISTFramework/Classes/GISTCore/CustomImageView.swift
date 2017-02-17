@@ -28,12 +28,12 @@ open class CustomImageView: BaseUIView {
                 _imageView = UIImageView();
                 _imageView!.backgroundColor = UIColor.clear;
                 self.addSubview(_imageView!);
-                //--
+                 
                 //??self.clipsToBounds = true;
-                //--
+                 
                 self.sendSubview(toBack: _imageView!);
             }
-            //--
+             
             return _imageView!;
         }
         
@@ -50,12 +50,12 @@ open class CustomImageView: BaseUIView {
         get {
             
             var rFrame:CGRect = CGRect();
-            //--
+             
             if (self.imageView!.image != nil) {
                 let imgSize:CGSize = self.imageView!.image!.size;
-                //--
+                 
                 let imgRatio:CGFloat = (imgSize.height / imgSize.width);
-                //--
+                 
                 if ((self.contentMode != UIViewContentMode.scaleAspectFit) && (self.contentMode != UIViewContentMode.scaleAspectFill)  && (self.contentMode != UIViewContentMode.scaleToFill)) {
                     
                     if (self.imageFixedSize.height > 0 && self.imageFixedSize.width > 0) {
@@ -77,7 +77,7 @@ open class CustomImageView: BaseUIView {
                         rFrame.size.height =  imgRatio * rFrame.size.width;
                     }
                 }
-                //--
+                 
                 switch (self.contentMode) {
                     
                 case .top:
@@ -133,7 +133,7 @@ open class CustomImageView: BaseUIView {
                         rFrame.size.height = self.frame.size.height;
                         rFrame.size.width =  rFrame.height / imgRatio;
                     }
-                    //--
+                     
                     rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width)/2.0,y: (self.frame.size.height - rFrame.size.height)/2.0);
                     break;
                 
@@ -145,7 +145,7 @@ open class CustomImageView: BaseUIView {
                         rFrame.size.height = self.frame.size.height;
                         rFrame.size.width =  rFrame.size.height / imgRatio;
                     }
-                    //--
+                     
                     rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width)/2.0,y: (self.frame.size.height - rFrame.size.height)/2.0);
                     break;
                     
@@ -156,10 +156,10 @@ open class CustomImageView: BaseUIView {
                 }
             } else {
                 rFrame.size =  self.frame.size;
-                //--
+                 
                 rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width)/2.0,y: (self.frame.size.height - rFrame.size.height)/2.0);
             }
-            //--
+             
             return rFrame;
         }
     } //P.E.
@@ -182,7 +182,7 @@ open class CustomImageView: BaseUIView {
         }
         set {
             self.imageView!.image = newValue
-            //--
+             
             self.imageView!.frame = self.imageViewFrame;
         }
     } //F.E.
@@ -192,7 +192,7 @@ open class CustomImageView: BaseUIView {
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
-        //--
+         
         self.imageView!.frame = self.imageViewFrame;
     } //F.E
     

@@ -65,7 +65,7 @@ open class ProgressUIButton: BaseUIButton {
     
     private var progressBarViewFrame:CGRect {
         get {
-            let width:CGFloat = self.autoTrigger ? self.frame.size.width * (1.0 - CGFloat(_timePassed / self.progressTime)):self.frame.size.width * CGFloat(_timePassed / self.progressTime);
+            let width:CGFloat = ((self.respectRTL && GIST_GLOBAL.isRTL) != self.autoTrigger) ? self.frame.size.width * (1.0 - CGFloat(_timePassed / self.progressTime)):self.frame.size.width * CGFloat(_timePassed / self.progressTime);
             return CGRect(x: 0, y: 0, width: width, height: GISTUtility.convertToRatio(self.barHeight));
         }
     } //F.E.

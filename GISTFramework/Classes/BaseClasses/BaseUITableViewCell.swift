@@ -22,7 +22,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.bgColorStyle != oldValue) else {
                 return;
             }
-            //--
+             
             self.backgroundColor = SyncedColors.color(forKey: bgColorStyle);
         }
     }
@@ -51,7 +51,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.seperatorColorStyle != oldValue) else {
                 return;
             }
-            //--
+             
             self.seperatorView.backgroundColor = SyncedColors.color(forKey: seperatorColorStyle);
         }
     } //P.E.
@@ -69,7 +69,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.fontName != oldValue) else {
                 return;
             }
-            //--
+             
             self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
             
             self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
@@ -82,7 +82,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.fontStyle != oldValue) else {
                 return;
             }
-            //--
+             
             self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
         }
     }
@@ -93,7 +93,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.fontDetailStyle != oldValue) else {
                 return;
             }
-            //--
+             
             self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
         }
     }
@@ -105,7 +105,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.fontColor != oldValue) else {
                 return;
             }
-            //--
+             
             self.textLabel?.textColor = UIColor.color(forKey: fontColor);
         }
     }
@@ -116,7 +116,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
             guard (self.detailColor != oldValue) else {
                 return;
             }
-            //--
+             
             self.detailTextLabel?.textColor = UIColor.color(forKey: detailColor);
         }
     }
@@ -154,9 +154,9 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     ///   - reuseIdentifier: Reuse identifier
     override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
-        //--
+         
         self.selectionStyle = UITableViewCellSelectionStyle.none;
-        //--
+         
         self.commonInit();
     } //F.E.
     
@@ -170,7 +170,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+         
         self.commonInit();
     } //F.E.
     
@@ -187,7 +187,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     /// Recursive update of layout and content from Sync Engine.
     override func updateSyncedData() {
         super.updateSyncedData();
-        //--
+         
         self.contentView.updateSyncedData();
     } //F.E.
     
@@ -203,7 +203,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         self.selectionStyle = UITableViewCellSelectionStyle.none;
-        //--
+         
         self.contentView.backgroundColor  = UIColor.clear;
         
         self.textLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontStyle, sizedForIPad: sizeForIPad);
@@ -239,7 +239,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     /// - Parameter data: Cell Data
     open func updateData(_ data:Any?) {
         _data = data;
-        //--
+         
         self.updateSyncedData();
     } //F.E.
 

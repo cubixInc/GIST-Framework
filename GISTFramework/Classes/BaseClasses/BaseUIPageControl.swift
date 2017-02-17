@@ -24,13 +24,26 @@ class BaseUIPageControl: UIPageControl, BaseView {
         }
     } //P.E.
     
+    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL;
+    
+    //MARK: - Overridden Properties
+    override var currentPage: Int {
+        get {
+            return (respectRTL && GIST_GLOBAL.isRTL) ? ((self.numberOfPages - 1) - super.currentPage):super.currentPage;
+        }
+        
+        set {
+            super.currentPage = (respectRTL && GIST_GLOBAL.isRTL) ? ((self.numberOfPages - 1) - newValue):newValue;
+        }
+    } //F.E.
+    
     //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
-        //--
-        self.updateView()
+        
+        self.updateView();
     } //F.E.
     
     //MARK: - Methods

@@ -29,9 +29,9 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
         }
     }
     
-    @IBInspectable open var RTLMirrored:Bool = false {
+    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
         didSet {
-            if (self.RTLMirrored && GISTUtility.isRTL()) {
+            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
                 super.image = self.image?.mirrored();
             }
         }
@@ -49,7 +49,7 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
     open override var title: String? {
         set {
             if let key:String = newValue , key.hasPrefix("#") == true{
-                //--
+                 
                 _titleKey = key;  // holding key for using later
                 super.title = SyncedText.text(forKey: key);
             } else {
@@ -64,7 +64,7 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
     
     open override var image: UIImage? {
         set {
-            if (self.RTLMirrored && GISTUtility.isRTL()) {
+            if (self.respectRTL && GIST_GLOBAL.isRTL) {
                 super.image = newValue?.mirrored();
             } else {
                 super.image = newValue;
@@ -79,7 +79,7 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+        
         self.commontInit();
     } //F.E.
     
@@ -92,6 +92,10 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
             self.title = txt; // Assigning again to set value from synced data
         } else if _titleKey != nil {
             self.title = _titleKey
+        }
+        
+        if (self.respectRTL && GIST_GLOBAL.isRTL) {
+            super.image = self.image?.mirrored();
         }
     } //F.E.
     

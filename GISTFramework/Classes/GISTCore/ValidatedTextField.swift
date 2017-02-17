@@ -110,7 +110,7 @@ open class ValidatedTextField: BaseUITextField {
     /// Overridden methed to update layout.
     open override func layoutSubviews() {
         super.layoutSubviews();
-        //--
+         
         self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
     } //F.E.
     
@@ -119,7 +119,7 @@ open class ValidatedTextField: BaseUITextField {
     /// - Parameter textField: UITextField
     open override func textFieldDidEndEditing(_ textField: UITextField) {
         super.textFieldDidEndEditing(textField);
-        //--
+         
         self.validateText();
     } //F.E.
     

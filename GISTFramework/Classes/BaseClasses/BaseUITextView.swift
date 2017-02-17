@@ -108,7 +108,7 @@ open class BaseUITextView: UITextView, BaseView {
             if (newValue != nil) {
                 self.lblPlaceholder.text = newValue;
                 self.lblPlaceholder.sizeToFit();
-                //--
+                 
                 self.addTextDidChangeObserver();
                 //-
                 self.updatePlaceholderState();
@@ -116,14 +116,24 @@ open class BaseUITextView: UITextView, BaseView {
                 if (_lblPlaceholder != nil) {
                     _lblPlaceholder!.removeFromSuperview();
                     _lblPlaceholder = nil;
-                    //--
+                     
                     self.removeTextDidChangeObserver();
                 }
             }
         }
-        //--
+         
         get {
             return _lblPlaceholder?.text;
+        }
+    } //P.E.
+    
+    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
+        didSet {
+            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
+                self.textAlignment = .natural;
+            }
+            
+            self.lblPlaceholder.respectRTL = self.respectRTL;
         }
     } //P.E.
     
@@ -150,9 +160,11 @@ open class BaseUITextView: UITextView, BaseView {
                 
                 _lblPlaceholder!.textColor = UIColor(white: 0.80, alpha: 1);
                 _lblPlaceholder!.backgroundColor = UIColor.clear;
-                //--
+                
+                _lblPlaceholder!.respectRTL = self.respectRTL;
+                
                 self.addSubview(_lblPlaceholder!);
-                //--
+                 
                 self.updatePlaceholderState();
             }
             
@@ -169,7 +181,7 @@ open class BaseUITextView: UITextView, BaseView {
     ///   - textContainer: Text Container
     override public init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer);
-        //--
+        
         self.commonInit()
     } //C.E.
     
@@ -189,13 +201,13 @@ open class BaseUITextView: UITextView, BaseView {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
-        //--
+         
         self.commonInit()
     } //F.E.
     
     override open func layoutSubviews() {
         super.layoutSubviews();
-        //--
+        
         if rounded {
             self.addRoundedCorners();
         }
@@ -206,7 +218,11 @@ open class BaseUITextView: UITextView, BaseView {
     /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-        //-
+        
+        if (self.respectRTL && GIST_GLOBAL.isRTL) {
+            self.textAlignment = .natural;
+        }
+        
         self.updatePlaceholderState();
     } //F.E.
     
@@ -258,7 +274,7 @@ open class BaseUITextView: UITextView, BaseView {
         if (self.placeholder == nil) {
             return;
         }
-        //--
+         
         self.updatePlaceholderState();
     } //F.E.
     

@@ -83,7 +83,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
         get {
             let offSetV1:CGPoint = self.titleOffSet;
             let offSetV2:CGPoint = self.detailOffSet;
-            //--
+             
             let offSetFixV:CGPoint = CGPoint(x: (offSetV1.x == 0 || !self.containtCenter) ?0:self.titleLabel!.frame.size.width + self.detailLabel.frame.size.width + offSetV1.x + offSetV2.x, y: (offSetV1.y == 0 || !self.containtCenter) ?0:self.titleLabel!.frame.size.height + self.detailLabel.frame.size.height + offSetV1.y + offSetV1.y);
             
             return offSetFixV;
@@ -94,7 +94,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
     private var detailLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.detailOffSet;
-            //--
+             
             var rFrame:CGRect = self.detailLabel.frame;
             
             if (offSet.x == 0) {
@@ -126,7 +126,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
         
         set {
             super.isSelected = newValue;
-            //--
+             
             self.detailLabel.fontColorStyle = (newValue == true) ? dSelectedFontColorStyle ?? self.dFontColorStyle:self.dFontColorStyle;
         }
     } //P.E.
@@ -134,14 +134,14 @@ open class CustomUIButtonDetailed: CustomUIButton {
     /// Common initazier for setting up items.
     override func commontInit() {
         super.commontInit();
-        //--
+         
         self.detailLabel.font = self.titleLabel!.font;
     } //F.E.
     
     /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
     override func updateView()  {
         super.updateView();
-        //--
+         
         self.detailLabel.updateView();
     } //F.E.
     

@@ -36,7 +36,7 @@ open class BaseUICollectionViewCell: UICollectionViewCell, UIViewControllerPrevi
     /// Recursive update of layout and content from Sync Engine.
     override func updateSyncedData() {
         super.updateSyncedData();
-        //--
+         
         self.contentView.updateSyncedData();
     } //F.E.
     
@@ -47,7 +47,7 @@ open class BaseUICollectionViewCell: UICollectionViewCell, UIViewControllerPrevi
     /// - Parameter data: Cell Data
     open func updateData(_ data:Any?) {
         _data = data;
-        //--
+         
         self.updateSyncedData();
     } //F.E.
     

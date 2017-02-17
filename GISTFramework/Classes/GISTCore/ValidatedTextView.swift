@@ -102,7 +102,7 @@ open class ValidatedTextView: BaseUITextView {
     ///   - textContainer: NSTextContainer
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer);
-        //--
+         
         self.commonInit();
     } //F.E.
     
@@ -116,14 +116,14 @@ open class ValidatedTextView: BaseUITextView {
     /// Overridden method to setup/ initialize components.
     open override func awakeFromNib() {
         super.awakeFromNib();
-        //--
+         
         self.commonInit();
     } //F.E.
     
     /// Overridden methed to update layout.
     open override func layoutSubviews() {
         super.layoutSubviews();
-        //--
+         
         let sizeWH:CGFloat = GISTUtility.convertToRatio(60);
         self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
     } //F.E.
@@ -133,7 +133,7 @@ open class ValidatedTextView: BaseUITextView {
     /// - Parameter notification: Notification instance
     override func textDidChangeObserver(_ notification:Notification) {
         super.textDidChangeObserver(notification);
-        //--
+         
         self.validateText();
     } //F.E.
     

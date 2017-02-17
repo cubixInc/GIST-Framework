@@ -102,10 +102,10 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     
     
     /// Text Vertical Padding - Default Value is Zero
-    @IBInspectable open var verticalPadding:CGFloat=0
+    @IBInspectable open var verticalPadding:CGFloat = 0
     
     /// Text Horizontal Padding - Default Value is Zero
-    @IBInspectable open var horizontalPadding:CGFloat=0
+    @IBInspectable open var horizontalPadding:CGFloat = 0
     
     private var _maxCharLimit: Int = 50;
     
@@ -121,6 +121,13 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //P.E.
     
+    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
+        didSet {
+            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
+                self.textAlignment = .natural;
+            }
+        }
+    } //P.E.
     
     private weak var _delegate:UITextFieldDelegate?;
     
@@ -168,7 +175,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     /// - Parameter frame: View Frame
     override public init(frame: CGRect) {
         super.init(frame: frame);
-        //--
+        
         self.commonInit();
     } //C.E.
     
@@ -182,14 +189,14 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib()
-        //--
+        
         self.commonInit();
     } //F.E.
     
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
-        //--
+         
         if rounded {
             self.addRoundedCorners();
         }
@@ -224,11 +231,15 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         super.delegate = self;
-        //--
+         
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         if let placeHoldertxt:String = self.placeholder , placeHoldertxt.hasPrefix("#") == true{
             self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
+        }
+        
+        if (self.respectRTL && GIST_GLOBAL.isRTL) {
+            self.textAlignment = .natural;
         }
     } //F.E.
     

@@ -16,7 +16,7 @@ open class BaseSeperatorLayoutConstraint: NSLayoutConstraint {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+         
         self.constant = GIST_GLOBAL.seperatorWidth;
     } //F.E.
 } //CLS END

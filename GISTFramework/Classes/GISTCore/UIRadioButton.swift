@@ -62,9 +62,9 @@ open class UIRadioButton: CustomUIButton {
     ///   - radioGroupId: Group Id
     public init(frame: CGRect, radioGroupId:Int) {
         super.init(frame: frame);
-        //--
+         
         self.groupId = radioGroupId;
-        //--
+         
         self.commonInit();
     } //F.E.
     
@@ -78,7 +78,7 @@ open class UIRadioButton: CustomUIButton {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+         
         self.commonInit();
     } //F.E.
     
@@ -87,7 +87,7 @@ open class UIRadioButton: CustomUIButton {
     /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         assert((_groupId != nil), "Group Id must be defined");
-        //--
+         
         UIRadioButtonManager.sharedInstance.addButton(self);
     } //F.E.
     
@@ -124,12 +124,12 @@ internal class UIRadioButtonManager:NSObject {
     func addButton(_ radioButton:UIRadioButton) {
         
         radioButton.addTarget(self, action: #selector(buttonsTapHandler), for: UIControlEvents.touchUpInside);
-        //--
+         
         var hashTable:NSHashTable<WeakRef<UIRadioButton>>? = _mainBtnsDict[radioButton.groupId] as? NSHashTable
         
         if (hashTable == nil) {
             hashTable = NSHashTable();
-            //--
+             
             _mainBtnsDict[radioButton.groupId] = hashTable! as Any?;
         }
         
@@ -150,11 +150,11 @@ internal class UIRadioButtonManager:NSObject {
                 
                 if iRadioButtonWeak.value == nil || iRadioButtonWeak.value == radioButton {
                         hashTable.remove(iRadioButtonWeak);
-                        //--
+                         
                         if (hashTable.count == 0) {
                             _mainBtnsDict.removeObject(forKey: radioButton.groupId);
                         }
-                        //--
+                         
                         break;
                 }
             }

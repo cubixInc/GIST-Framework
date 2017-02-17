@@ -37,7 +37,7 @@ class UnderlinedUITextField: BaseUITextField {
             guard (self.underlineColorStyle != oldValue) else {
                 return;
             }
-            //--
+             
             self.underlineView.backgroundColor = SyncedColors.color(forKey: underlineColorStyle);
         }
     } //P.E.

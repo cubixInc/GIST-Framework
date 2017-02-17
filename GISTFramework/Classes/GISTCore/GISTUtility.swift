@@ -53,7 +53,7 @@ open class GISTUtility: NSObject {
          iPhone5 Hight:568  ====== 0.77173913043478
          iPhone4S Hight:480
          iPAd Hight:1024 ===== 1.39130434782609
-         //--
+          
          (height/736.0)
          */
         
@@ -78,9 +78,9 @@ open class GISTUtility: NSObject {
     open class func convertFontSizeToRatio(_ value:CGFloat, fontStyle:String?, sizedForIPad:Bool = false) ->CGFloat {
         if (fontStyle == nil)
         {return GISTUtility.convertToRatio(value, sizedForIPad: sizedForIPad);}
-        //--
+         
         let newValue:CGFloat = CGFloat(SyncedFontStyles.style(forKey: fontStyle!));
-        //--
+         
         return GISTUtility.convertToRatio(newValue, sizedForIPad: sizedForIPad);
     } //F.E.
     
@@ -235,12 +235,5 @@ open class GISTUtility: NSObject {
         return predicate.evaluate(with: text!);
     } //F.E.
     
-    
-    /// Flag to check user interfce layout direction
-    ///
-    /// - Returns: True; if user interface layout direction is right to left
-    open class func isRTL () -> Bool {
-        return Locale.characterDirection(forLanguage: Locale.current.languageCode ?? "en") == .rightToLeft;
-    } //F.E.
 
 } //CLS END

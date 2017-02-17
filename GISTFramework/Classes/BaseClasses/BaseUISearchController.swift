@@ -136,7 +136,7 @@ open class BaseUISearchController: UISearchController {
         set {
             if let key:String = newValue , key.hasPrefix("#") == true{
                 _placeholderKey = key; // holding key for using later
-                //--
+                 
                 self.searchBar.placeholder = SyncedText.text(forKey: key);
             } else {
                 self.searchBar.placeholder = newValue;
@@ -161,7 +161,7 @@ open class BaseUISearchController: UISearchController {
     ///   - searchResultsController: Search Results View Controller
     override public init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController);
-        //--
+         
         self.commontInit();
     } //F.E.
     
@@ -175,7 +175,7 @@ open class BaseUISearchController: UISearchController {
     /// Overridden method to setup/ initialize components.
     override open func awakeFromNib() {
         super.awakeFromNib();
-        //--
+         
         self.commontInit();
     } //F.E.
     

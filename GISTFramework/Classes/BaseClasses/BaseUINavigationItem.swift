@@ -51,7 +51,7 @@ open class BaseUINavigationItem: UINavigationItem, BaseView {
     /// Overridden method to setup/ initialize components.
     open override func awakeFromNib() {
         super.awakeFromNib();
-        //--
+         
         self.updateView();
     }
     

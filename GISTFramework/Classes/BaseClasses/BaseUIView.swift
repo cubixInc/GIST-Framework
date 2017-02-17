@@ -78,7 +78,7 @@ open class BaseUIView: UIView, BaseView {
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
-        //--
+         
         if rounded {
             self.addRoundedCorners();
         }

@@ -14,10 +14,10 @@ extension UIView {
     /// Recursive update of layout and content from Sync Engine.
     func updateSyncedData() {
         (self as? BaseView)?.updateView();
-        //--
+         
         for viw in self.subviews{
             (viw as? BaseView)?.updateView();
-            //--
+             
             if let tblViw:UITableView =  viw as? UITableView {
                 tblViw.reloadData();
             }
