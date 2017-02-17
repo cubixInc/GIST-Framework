@@ -9,7 +9,7 @@
 import UIKit
 
 /// BaseUIPageControl is a subclass of UIPageControl and implements BaseView. It has some extra proporties and support for SyncEngine.
-class BaseUIPageControl: UIPageControl, BaseView {
+open class BaseUIPageControl: UIPageControl, BaseView {
 
     //MARK: - Properties
     @IBInspectable open var pageIndicatorTintColorStyle:String? = nil {
@@ -23,21 +23,6 @@ class BaseUIPageControl: UIPageControl, BaseView {
             self.currentPageIndicatorTintColor = SyncedColors.color(forKey: currentPageIndicatorTintColorStyle);
         }
     } //P.E.
-    
-    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL;
-    
-    /*
-    //MARK: - Overridden Properties
-    override var currentPage: Int {
-        get {
-            return (respectRTL && GIST_GLOBAL.isRTL) ? ((self.numberOfPages - 1) - super.currentPage):super.currentPage;
-        }
-        
-        set {
-            super.currentPage = (respectRTL && GIST_GLOBAL.isRTL) ? ((self.numberOfPages - 1) - newValue):newValue;
-        }
-    } //F.E.
-    */
     
     //MARK: - Overridden Methods
     
