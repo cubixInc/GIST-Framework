@@ -26,6 +26,7 @@ class BaseUIPageControl: UIPageControl, BaseView {
     
     @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL;
     
+    /*
     //MARK: - Overridden Properties
     override var currentPage: Int {
         get {
@@ -36,6 +37,7 @@ class BaseUIPageControl: UIPageControl, BaseView {
             super.currentPage = (respectRTL && GIST_GLOBAL.isRTL) ? ((self.numberOfPages - 1) - newValue):newValue;
         }
     } //F.E.
+    */
     
     //MARK: - Overridden Methods
     
