@@ -8,8 +8,8 @@
 
 import UIKit
 
-//Internal Property
-let GIST_GLOBAL = GISTGlobal.sharedInstance;
+
+public let GIST_GLOBAL = GISTGlobal.sharedInstance;
 
 /// GISTGlobal is a singleton instance class to hold default properties for the framework.
 public class GISTGlobal: NSObject {
