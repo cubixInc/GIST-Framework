@@ -79,7 +79,7 @@ open class CustomUIButtonDetailed: CustomUIButton {
     } //P.E.
     
     ///Off set for internal calculation
-    internal override var offSetFix:CGPoint {
+    internal override var offSetFixPoint:CGPoint {
         get {
             let offSetV1:CGPoint = self.titleOffSet;
             let offSetV2:CGPoint = self.detailOffSet;
