@@ -11,7 +11,13 @@ import UIKit
 ///THIS CLASS WAS TO REPLACE CustomImageView(inharited from UIView) but there were some unknown implementations of UIImageView (of UIKit) that are causing the bugs so keeping this class private to use in future after some fixes
 private class CustomUIImageView: BaseUIImageView {
     
+    
     //MARK: - Properties
+    @IBInspectable open var respectContentRTL:Bool = GIST_GLOBAL.respectRTL {
+        didSet {
+            self.imageView!.frame = self.imageViewFrame;
+        }
+    } //P.E.
     
     private var _imageView:UIImageView?;
     
@@ -53,6 +59,34 @@ private class CustomUIImageView: BaseUIImageView {
                 if ((self.contentMode != UIViewContentMode.scaleAspectFit) && (self.contentMode != UIViewContentMode.scaleAspectFill)  && (self.contentMode != UIViewContentMode.scaleToFill)) {
                     rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
                     rFrame.size.height =  imgRatio * rFrame.width;
+                }
+                
+                var cContentMode:UIViewContentMode = self.contentMode;
+                
+                //Respect for Right to left Handling
+                if ((self.respectContentRTL || self.respectRTL) && GIST_GLOBAL.isRTL) {
+                    switch cContentMode {
+                    case .left:
+                        cContentMode = .right;
+                        break;
+                    case .right:
+                        cContentMode = .left;
+                        break;
+                    case .topLeft:
+                        cContentMode = .topRight;
+                        break;
+                    case .topRight:
+                        cContentMode = .topLeft;
+                        break;
+                    case .bottomLeft:
+                        cContentMode = .bottomRight;
+                        break;
+                    case .bottomRight:
+                        cContentMode = .bottomLeft;
+                        break;
+                    default:
+                        break;
+                    }
                 }
                  
                 switch (self.contentMode) {
@@ -161,7 +195,11 @@ private class CustomUIImageView: BaseUIImageView {
             return self.imageView!.image;
         }
         set {
-            self.imageView!.image = newValue
+            if (self.respectRTL && GIST_GLOBAL.isRTL) {
+                self.imageView!.image = newValue?.mirrored();
+            } else {
+                self.imageView!.image = newValue;
+            }
              
             self.imageView!.frame = self.imageViewFrame;
         }

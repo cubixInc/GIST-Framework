@@ -78,13 +78,20 @@ open class CustomUIButton: BaseUIButton {
     @IBInspectable open var imageFixedSize:CGSize = CGSize.zero;
     
     /// Fixing offset of internal calculations use.
-    internal var offSetFix:CGPoint {
+    internal var offSetFixPoint:CGPoint {
         get {
             let offSetV:CGPoint = self.titleOffSet;
              
             let offSetFixV:CGPoint = CGPoint(x: (offSetV.x == 0 || !_containtCenter) ?0:self.titleLabel!.frame.size.width + offSetV.x, y: (offSetV.y == 0 || !_containtCenter) ?0:self.titleLabel!.frame.size.height + offSetV.y);
             
             return offSetFixV;
+        }
+    } //P.E.
+    
+    @IBInspectable open var respectContentRTL:Bool = GIST_GLOBAL.respectRTL {
+        didSet {
+            self.imageView!.frame = self.imageViewFrame;
+            self.titleLabel!.frame = self.titleLabelFrame;
         }
     } //P.E.
     
@@ -122,10 +129,37 @@ open class CustomUIButton: BaseUIButton {
                 rFrame.size.height =  imgRatio * rFrame.size.width;
             }
             
-            let offSetFix:CGPoint = self.offSetFix;
+            let offSetFix:CGPoint = self.offSetFixPoint;
             
-            switch (self.contentMode)
-            {
+            var cContentMode:UIViewContentMode = self.contentMode;
+            
+            //Respect for Right to left Handling
+            if ((self.respectContentRTL || self.respectRTL) && GIST_GLOBAL.isRTL) {
+                switch cContentMode {
+                case .left:
+                    cContentMode = .right;
+                    break;
+                case .right:
+                    cContentMode = .left;
+                    break;
+                case .topLeft:
+                    cContentMode = .topRight;
+                    break;
+                case .topRight:
+                    cContentMode = .topLeft;
+                    break;
+                case .bottomLeft:
+                    cContentMode = .bottomRight;
+                    break;
+                case .bottomRight:
+                    cContentMode = .bottomLeft;
+                    break;
+                default:
+                    break;
+                }
+            }
+            
+            switch (cContentMode) {
                 
             case .top:
                 rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0;

@@ -13,11 +13,41 @@ open class CustomImageView: BaseUIView {
 
     //MARK: - Properties
     
+    /// Inspectable property for setting image.
+    @IBInspectable open var image: UIImage? {
+        get {
+            return self.imageView!.image;
+        }
+        set {
+            if (self.respectRTL && GIST_GLOBAL.isRTL) {
+                self.imageView!.image = newValue?.mirrored();
+            } else {
+                self.imageView!.image = newValue;
+            }
+            
+            self.imageView!.frame = self.imageViewFrame;
+        }
+    } //F.E.
+    
     /**
      Inspectable property for drawing a fixed size image - Default value is CGSize.zero.
      This propert is not considerd when width and height both are zero.
      */
     @IBInspectable open var imageFixedSize:CGSize = CGSize.zero;
+    
+    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
+        didSet {
+            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
+                self.imageView?.image = self.imageView?.image?.mirrored();
+            }
+        }
+    } //P.E.
+    
+    @IBInspectable open var respectContentRTL:Bool = GIST_GLOBAL.respectRTL {
+        didSet {
+            self.imageView!.frame = self.imageViewFrame;
+        }
+    } //P.E.
     
     private var _imageView:UIImageView?;
     
@@ -77,8 +107,36 @@ open class CustomImageView: BaseUIView {
                         rFrame.size.height =  imgRatio * rFrame.size.width;
                     }
                 }
+                
+                var cContentMode:UIViewContentMode = self.contentMode;
+                
+                //Respect for Right to left Handling
+                if ((self.respectContentRTL || self.respectRTL) && GIST_GLOBAL.isRTL) {
+                    switch cContentMode {
+                    case .left:
+                        cContentMode = .right;
+                        break;
+                    case .right:
+                        cContentMode = .left;
+                        break;
+                    case .topLeft:
+                        cContentMode = .topRight;
+                        break;
+                    case .topRight:
+                        cContentMode = .topLeft;
+                        break;
+                    case .bottomLeft:
+                        cContentMode = .bottomRight;
+                        break;
+                    case .bottomRight:
+                        cContentMode = .bottomLeft;
+                        break;
+                    default:
+                        break;
+                    }
+                }
                  
-                switch (self.contentMode) {
+                switch (cContentMode) {
                     
                 case .top:
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width)/2.0;
@@ -174,18 +232,6 @@ open class CustomImageView: BaseUIView {
             super.contentMode = newValue;
         }
     } //P.E.
-    
-    /// Inspectable property for setting image.
-    @IBInspectable open var image: UIImage? {
-        get {
-            return self.imageView!.image;
-        }
-        set {
-            self.imageView!.image = newValue
-             
-            self.imageView!.frame = self.imageViewFrame;
-        }
-    } //F.E.
     
     //MARK: - Overridden Methods
     
