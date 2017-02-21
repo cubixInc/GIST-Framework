@@ -121,14 +121,6 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //P.E.
     
-    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
-        didSet {
-            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
-                self.textAlignment = .natural;
-            }
-        }
-    } //P.E.
-    
     private weak var _delegate:UITextFieldDelegate?;
     
     ///Maintainig Own delegate.
@@ -236,10 +228,6 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         
         if let placeHoldertxt:String = self.placeholder , placeHoldertxt.hasPrefix("#") == true{
             self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
-        }
-        
-        if (self.respectRTL && GIST_GLOBAL.isRTL) {
-            self.textAlignment = .natural;
         }
     } //F.E.
     

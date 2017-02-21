@@ -101,14 +101,6 @@ open class BaseUILabel: UILabel, BaseView {
         }
     }
     
-    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
-        didSet {
-            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
-                self.textAlignment = .natural;
-            }
-        }
-    } //P.E.
-    
     private var _textKey: String?
     override open var text: String? {
         get {
@@ -159,10 +151,6 @@ open class BaseUILabel: UILabel, BaseView {
         if rounded {
             self.rounded = true;
         }
-        
-        if (self.respectRTL && GIST_GLOBAL.isRTL) {
-            self.textAlignment = .natural;
-        }
     } //F.E.
     
     //MARK: - Methods
@@ -176,10 +164,6 @@ open class BaseUILabel: UILabel, BaseView {
             self.text = txt; // Assigning again to set value from synced data
         } else if _textKey != nil {
             self.text = _textKey;
-        }
-        
-        if (self.respectRTL && GIST_GLOBAL.isRTL) {
-            self.textAlignment = .natural;
         }
     } //F.E.
     

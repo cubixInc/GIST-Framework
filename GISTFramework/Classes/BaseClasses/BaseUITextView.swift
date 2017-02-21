@@ -127,22 +127,24 @@ open class BaseUITextView: UITextView, BaseView {
         }
     } //P.E.
     
-    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
-        didSet {
-            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
-                self.textAlignment = .natural;
-            }
-            
-            self.lblPlaceholder.respectRTL = self.respectRTL;
-        }
-    } //P.E.
-    
-    //Overridden property to handle placeholder visiblility.
+    ///Overridden property to handle placeholder visiblility.
     open override var text: String! {
         didSet {
             self.updatePlaceholderState();
         }
-    }
+    } //P.E.
+    
+    ///Overridden property to handle placeholder Text Alignment
+    open override var textAlignment: NSTextAlignment {
+        get {
+            return super.textAlignment;
+        }
+        
+        set {
+            _lblPlaceholder?.textAlignment = newValue;
+            super.textAlignment = newValue;
+        }
+    } //P.E.
     
     private var _lblPlaceholder:BaseUILabel?
 
@@ -161,7 +163,7 @@ open class BaseUITextView: UITextView, BaseView {
                 _lblPlaceholder!.textColor = UIColor(white: 0.80, alpha: 1);
                 _lblPlaceholder!.backgroundColor = UIColor.clear;
                 
-                _lblPlaceholder!.respectRTL = self.respectRTL;
+                _lblPlaceholder!.textAlignment = self.textAlignment;
                 
                 self.addSubview(_lblPlaceholder!);
                  
@@ -218,10 +220,6 @@ open class BaseUITextView: UITextView, BaseView {
     /// A common initializer to setup/initialize sub components.
     private func commonInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-        
-        if (self.respectRTL && GIST_GLOBAL.isRTL) {
-            self.textAlignment = .natural;
-        }
         
         self.updatePlaceholderState();
     } //F.E.
