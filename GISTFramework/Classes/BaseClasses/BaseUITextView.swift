@@ -152,7 +152,7 @@ open class BaseUITextView: UITextView, BaseView {
         get {
             
             if (_lblPlaceholder == nil) {
-                _lblPlaceholder = BaseUILabel(frame: CGRect(x: 3, y: 6, width: self.frame.size.width - 6, height: self.frame.size.height - 6));
+                _lblPlaceholder = BaseUILabel(frame: self.lblPlaceholderFrame);
                 _lblPlaceholder!.numberOfLines = 0;
                 
                 _lblPlaceholder!.sizeForIPad = self.sizeForIPad;
@@ -173,6 +173,13 @@ open class BaseUITextView: UITextView, BaseView {
             }
             
             return _lblPlaceholder!
+        }
+    } //P.E.
+    
+    // Calculated placeholder frame Rect
+    private var lblPlaceholderFrame:CGRect {
+        get  {
+            return CGRect(x: 3, y: 6, width: self.frame.size.width - 6, height: self.frame.size.height - 6);
         }
     } //P.E.
     
@@ -209,12 +216,16 @@ open class BaseUITextView: UITextView, BaseView {
         self.commonInit()
     } //F.E.
     
+    /// Overridden method to update frames
     override open func layoutSubviews() {
         super.layoutSubviews();
         
         if rounded {
             self.addRoundedCorners();
         }
+        
+        //Resizing Placeholder
+        _lblPlaceholder?.frame = self.lblPlaceholderFrame;
     } //F.E.
     
     //MARK: - Methods
