@@ -178,7 +178,7 @@ open class BaseUITextView: UITextView, BaseView {
     
     // Calculated placeholder frame Rect
     private var lblPlaceholderFrame:CGRect {
-        get  {
+        get {
             return CGRect(x: 3, y: 6, width: self.frame.size.width - 6, height: self.frame.size.height - 6);
         }
     } //P.E.

@@ -143,19 +143,28 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
         
         set {
-            if let key:String = newValue , key.hasPrefix("#") == true {
+            guard let key:String = newValue else {
+                _placeholderKey = nil;
+                super.placeholder = newValue;
+                return;
+            }
+            
+            let newPlaceHolder:String;
+            
+            if (key.hasPrefix("#") == true) {
                 _placeholderKey = key; // holding key for using later
                 
-                let plcHolder:String = SyncedText.text(forKey: key);
-                
-                if let colorStyl:String = placeholderColor {
-                    self.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSForegroundColorAttributeName: SyncedColors.color(forKey: colorStyl)!]);
-                } else {
-                    super.placeholder = plcHolder;
-                }
-                
+                newPlaceHolder = SyncedText.text(forKey: key);
             } else {
-                super.placeholder = newValue;
+                _placeholderKey = nil;
+                
+                newPlaceHolder = key;
+            }
+            
+            if let colorStyl:String = placeholderColor {
+                self.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSForegroundColorAttributeName: SyncedColors.color(forKey: colorStyl)!]);
+            } else {
+                super.placeholder = newPlaceHolder;
             }
         }
     } //P.E.
