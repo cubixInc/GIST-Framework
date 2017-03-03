@@ -152,7 +152,7 @@ open class BaseUITextView: UITextView, BaseView {
         get {
             
             if (_lblPlaceholder == nil) {
-                _lblPlaceholder = BaseUILabel(frame: self.lblPlaceholderFrame);
+                _lblPlaceholder = VerticalTopAlignLabel(frame: self.lblPlaceholderFrame);
                 _lblPlaceholder!.numberOfLines = 0;
                 
                 _lblPlaceholder!.sizeForIPad = self.sizeForIPad;
@@ -179,7 +179,7 @@ open class BaseUITextView: UITextView, BaseView {
     // Calculated placeholder frame Rect
     private var lblPlaceholderFrame:CGRect {
         get {
-            return CGRect(x: 3, y: 6, width: self.frame.size.width - 6, height: self.frame.size.height - 6);
+            return CGRect(x: 3, y: 7, width: self.frame.size.width - 6, height: self.frame.size.height - 7);
         }
     } //P.E.
     
@@ -290,3 +290,5 @@ open class BaseUITextView: UITextView, BaseView {
     } //F.E.
     
 } //CLS END
+
+

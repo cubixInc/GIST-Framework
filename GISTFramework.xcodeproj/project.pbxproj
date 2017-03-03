@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480169A51E6957C700540111 /* VerticalTopAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480169A41E6957C700540111 /* VerticalTopAlignLabel.swift */; };
 		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
 		487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */; };
 		488307001E3B256100F308C5 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488306FE1E3B256100F308C5 /* PopoverController.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480169A41E6957C700540111 /* VerticalTopAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTopAlignLabel.swift; sourceTree = "<group>"; };
 		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Utility.swift"; sourceTree = "<group>"; };
 		488306FE1E3B256100F308C5 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				489691E81DDE46E6001DDCE5 /* Weak.swift */,
 				48CF84F81DF1564E008C7D85 /* GISTGlobal.swift */,
 				48A518811E519CA1006AE30A /* UnderlinedUITextField.swift */,
+				480169A41E6957C700540111 /* VerticalTopAlignLabel.swift */,
 			);
 			path = GISTCore;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */,
 				4895305C1D12AD4100DFD38B /* BaseUIDesignableButton.swift in Sources */,
 				489530591D12AD4100DFD38B /* BaseUIButton.swift in Sources */,
+				480169A51E6957C700540111 /* VerticalTopAlignLabel.swift in Sources */,
 				489530761D12AD4100DFD38B /* UIColor+Hex.swift in Sources */,
 				4895307B1D12AD4100DFD38B /* SyncedColors.swift in Sources */,
 				48CF84F91DF1564E008C7D85 /* GISTGlobal.swift in Sources */,
