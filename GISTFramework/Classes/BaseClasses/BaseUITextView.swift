@@ -107,8 +107,7 @@ open class BaseUITextView: UITextView, BaseView {
         set {
             if (newValue != nil) {
                 self.lblPlaceholder.text = newValue;
-                self.lblPlaceholder.sizeToFit();
-                 
+                
                 self.addTextDidChangeObserver();
                 //-
                 self.updatePlaceholderState();
@@ -153,8 +152,8 @@ open class BaseUITextView: UITextView, BaseView {
         get {
             
             if (_lblPlaceholder == nil) {
-                _lblPlaceholder = BaseUILabel(frame: CGRect(x: 3, y: 6, width: 0, height: 0)); //sizeToFit method to reset its frame
-                _lblPlaceholder!.numberOfLines = 1;
+                _lblPlaceholder = BaseUILabel(frame: CGRect(x: 3, y: 6, width: self.frame.size.width - 6, height: self.frame.size.height - 6));
+                _lblPlaceholder!.numberOfLines = 0;
                 
                 _lblPlaceholder!.sizeForIPad = self.sizeForIPad;
                 _lblPlaceholder!.fontName = self.fontName;
@@ -165,7 +164,10 @@ open class BaseUITextView: UITextView, BaseView {
                 
                 _lblPlaceholder!.textAlignment = self.textAlignment;
                 
+                _lblPlaceholder!.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight];
+                
                 self.addSubview(_lblPlaceholder!);
+                
                  
                 self.updatePlaceholderState();
             }
