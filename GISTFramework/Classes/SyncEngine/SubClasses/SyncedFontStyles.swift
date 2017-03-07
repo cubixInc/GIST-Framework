@@ -36,7 +36,15 @@ open class SyncedFontStyles: SyncEngine {
     } //F.E.
     
     func style(forKey key: String) -> Float {
-        return super.objectForKey(key) ?? 22;
+        if let fontStyle:Float = super.objectForKey(key) {
+            return fontStyle;
+        } else {
+            #if DEBUG
+                assertionFailure("font style key : \(key) not found")
+            #endif
+            
+            return 22;
+        }
     } //F.E.
     
     

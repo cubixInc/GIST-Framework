@@ -32,7 +32,15 @@ open class SyncedConstants: SyncEngine {
     /// - Parameter key: A Key
     /// - Returns: A constant text or value from SyncEngine.
     public class func constant<T>(forKey key: String?) -> T? {
-        return SyncedConstants.sharedInstance.objectForKey(key);
+        if let constantV:T = super.objectForKey(key) {
+            return constantV;
+        } else {
+            #if DEBUG
+                assert(key == nil, "constant key : \(key!) not found");
+            #endif
+            
+            return nil;
+        }
     } //F.E.
     
 } //CLS END
