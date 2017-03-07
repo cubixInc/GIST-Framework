@@ -36,7 +36,7 @@ open class SyncedConstants: SyncEngine {
             return constantV;
         } else {
             #if DEBUG
-                assert(key == nil, "constant key : \(key!) not found");
+                assert(key == nil, "constant key : \(key!) not found\n");
             #endif
             
             return nil;

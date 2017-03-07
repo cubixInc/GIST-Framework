@@ -40,7 +40,7 @@ open class SyncedFontStyles: SyncEngine {
             return fontStyle;
         } else {
             #if DEBUG
-                assertionFailure("font style key : \(key) not found")
+                assertionFailure("font style key : \(key) not found\n")
             #endif
             
             return 22;

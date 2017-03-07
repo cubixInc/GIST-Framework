@@ -40,7 +40,7 @@ open class SyncedColors: SyncEngine {
             return UIColor(haxColor);
         } else {
             #if DEBUG
-                assert(key == nil, "color key : \(key!) not found");
+                assert(key == nil, "color key : \(key!) not found\n");
             #endif
             
             return nil;
