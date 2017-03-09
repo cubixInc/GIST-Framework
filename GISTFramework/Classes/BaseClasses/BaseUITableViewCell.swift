@@ -139,6 +139,11 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         return sView;
     }()
     
+    class var cellID : String {
+        return "\(self)ID"
+    } //P.E.
+    
+    //MARK: - Constructor
     
     /// Convenience constructor with cell reuseIdentifier - by default style = UITableViewCellStyle.default.
     ///

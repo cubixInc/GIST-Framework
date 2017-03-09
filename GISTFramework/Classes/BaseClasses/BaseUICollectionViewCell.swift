@@ -26,6 +26,10 @@ open class BaseUICollectionViewCell: UICollectionViewCell, UIViewControllerPrevi
         }
     } //P.E.
     
+    class var cellID : String {
+        return "\(self)ID"
+    } //P.E.
+    
     //MARK: - Overridden Methods
     
     /// Overridden method to setup/ initialize components.

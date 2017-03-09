@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		480169A51E6957C700540111 /* VerticalTopAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480169A41E6957C700540111 /* VerticalTopAlignLabel.swift */; };
+		483640F71E717774007FD8AC /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483640F61E717774007FD8AC /* String+Utility.swift */; };
 		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
 		487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */; };
 		488307001E3B256100F308C5 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488306FE1E3B256100F308C5 /* PopoverController.swift */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		480169A41E6957C700540111 /* VerticalTopAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTopAlignLabel.swift; sourceTree = "<group>"; };
+		483640F61E717774007FD8AC /* String+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Utility.swift"; sourceTree = "<group>"; };
 		488306FE1E3B256100F308C5 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */,
 				48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */,
+				483640F61E717774007FD8AC /* String+Utility.swift */,
 				4895304B1D12AD4100DFD38B /* UIColor+Hex.swift */,
 				489421C71D48954400310089 /* UIColor+Utility.swift */,
 				4895304C1D12AD4100DFD38B /* UIImage+Utility.swift */,
@@ -437,6 +440,7 @@
 				4895306C1D12AD4100DFD38B /* BaseUIView.swift in Sources */,
 				4895307C1D12AD4100DFD38B /* SyncedConstants.swift in Sources */,
 				4895307D1D12AD4100DFD38B /* SyncedFontStyles.swift in Sources */,
+				483640F71E717774007FD8AC /* String+Utility.swift in Sources */,
 				4895306A1D12AD4100DFD38B /* BaseUITextField.swift in Sources */,
 				4895305E1D12AD4100DFD38B /* BaseUIImageView.swift in Sources */,
 			);
