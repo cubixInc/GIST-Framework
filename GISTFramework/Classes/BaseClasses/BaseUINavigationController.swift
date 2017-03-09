@@ -26,15 +26,16 @@ open class BaseUINavigationController: UINavigationController {
                 self.navigationBar.setBackgroundImage(UIImage(), for: .default);
                 self.navigationBar.shadowImage = UIImage();
             }
+            
         }
-    }
+    } //P.E.
     
     /// Navigation tint Color key from SyncEngine.
     @IBInspectable open var tintColor:String? = nil {
         didSet {
             self.navigationBar.tintColor = SyncedColors.color(forKey:tintColor);
         }
-    }
+    } //P.E.
     
      /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = GIST_GLOBAL.fontName {
@@ -45,7 +46,7 @@ open class BaseUINavigationController: UINavigationController {
             
             self.navigationBar.titleTextAttributes = attrDict;
         }
-    }
+    } //P.E.
     
     /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = GIST_GLOBAL.fontStyle {
@@ -56,7 +57,7 @@ open class BaseUINavigationController: UINavigationController {
             
             self.navigationBar.titleTextAttributes = attrDict;
         }
-    }
+    } //P.E.
     
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColor:String? = nil {
@@ -67,16 +68,23 @@ open class BaseUINavigationController: UINavigationController {
             
             self.navigationBar.titleTextAttributes = attrDict;
         }
-    }
+    } //P.E.
     
-     /// Flag for Navigation bar Shadow - default value is true
-    @IBInspectable open var hasShadow:Bool = true {
+     /// Flag for Navigation bar Shadow - default value is false
+    @IBInspectable open var shadow:Bool = false {
         didSet {
-            if (hasShadow == false) {
-                self.navigationBar.shadowImage = UIImage();
+            if (shadow != oldValue) {
+                if (shadow) {
+                    self.navigationBar.layer.shadowColor = UIColor.black.cgColor;
+                    self.navigationBar.layer.shadowOffset = CGSize(width:2.0, height:2.0);
+                    self.navigationBar.layer.shadowRadius = 3.0; //Default is 3.0
+                    self.navigationBar.layer.shadowOpacity = 1.0;
+                } else {
+                    self.navigationBar.layer.shadowOpacity = 0.0;
+                }
             }
         }
-    }
+    } //P.E.
     
     private var _lastSyncedDate:String?
     
