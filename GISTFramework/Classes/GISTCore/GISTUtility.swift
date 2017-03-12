@@ -68,22 +68,6 @@ open class GISTUtility: NSObject {
         return value * GISTUtility.deviceRatio;
     } //F.E.
     
-    /// Converts value with font size/style to (value * device ratio).
-    ///
-    /// - Parameters:
-    ///   - value: Value
-    ///   - fontStyle: SyncEngine Font Size/ Style
-    ///   - sizedForIPad: Bool flag for sizedForIPad
-    /// - Returns: Device specific ratio * value
-    open class func convertFontSizeToRatio(_ value:CGFloat, fontStyle:String?, sizedForIPad:Bool = false) ->CGFloat {
-        if (fontStyle == nil)
-        {return GISTUtility.convertToRatio(value, sizedForIPad: sizedForIPad);}
-         
-        let newValue:CGFloat = CGFloat(SyncedFontStyles.style(forKey: fontStyle!));
-         
-        return GISTUtility.convertToRatio(newValue, sizedForIPad: sizedForIPad);
-    } //F.E.
-    
     /// Converts CGPoint to (point * device ratio).
     ///
     /// - Parameters:

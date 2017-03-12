@@ -152,8 +152,10 @@ open class BaseUITextView: UITextView, BaseView {
         get {
             
             if (_lblPlaceholder == nil) {
-                _lblPlaceholder = VerticalTopAlignLabel(frame: self.lblPlaceholderFrame);
+                _lblPlaceholder = BaseUILabel(frame: self.lblPlaceholderFrame);
                 _lblPlaceholder!.numberOfLines = 0;
+                
+                _lblPlaceholder!.topAligned = true;
                 
                 _lblPlaceholder!.sizeForIPad = self.sizeForIPad;
                 _lblPlaceholder!.fontName = self.fontName;

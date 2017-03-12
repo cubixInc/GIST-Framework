@@ -4,18 +4,16 @@
 //
 //  Created by R0CKSTAR on 6/13/14.
 //  Copyright (c) 2014 P.D.Q. All rights reserved.
-//  https://github.com/yeahdongcn/UIColor-Hex-Swift
+//
 
 import UIKit
 
 /**
- Enum for UIColor Input Error
- 
  MissingHashMarkAsPrefix:   "Invalid RGB string, missing '#' as prefix"
  UnableToScanHexValue:      "Scan hex error"
  MismatchedHexStringLength: "Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8"
  */
-enum UIColorInputError : Error {
+public enum UIColorInputError : Error {
     case missingHashMarkAsPrefix,
     unableToScanHexValue,
     mismatchedHexStringLength
@@ -24,7 +22,7 @@ enum UIColorInputError : Error {
 extension UIColor {
     /**
      The shorthand three-digit hexadecimal representation of color.
-     Color #RGB defines to the color #RRGGBB.
+     #RGB defines to the color #RRGGBB.
      
      - parameter hex3: Three-digit hexadecimal value.
      - parameter alpha: 0.0 - 1.0. The default is 1.0.
@@ -39,7 +37,7 @@ extension UIColor {
     
     /**
      The shorthand four-digit hexadecimal representation of color with alpha.
-     Color #RGBA defines to the color #RRGGBBAA.
+     #RGBA defines to the color #RRGGBBAA.
      
      - parameter hex4: Four-digit hexadecimal value.
      */
@@ -145,7 +143,7 @@ extension UIColor {
 
 extension String {
     /**
-     Converts argb string to rgba string.
+     Convert argb string to rgba string.
      */
     public func argb2rgba() -> String? {
         guard self.hasPrefix("#") else {

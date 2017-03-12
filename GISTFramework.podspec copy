@@ -91,10 +91,10 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  #s.source_files  = "GISTFramework", "GISTFramework/Classes/**/*.{swift}"
+  #s.source_files  = "GISTFramework", "GISTFramework/Classes/*.{swift}"
   #s.exclude_files = "GISTFramework/Exclude"
 
-  #s.public_header_files = "GISTFramework/**/*.h"
+  # s.public_header_files = "GISTFramework/**/*.h"
 
   s.subspec 'GISTCore' do |sp|
     sp.source_files = 'GISTFramework/Classes/GISTCore/**/*.{swift}'
@@ -102,28 +102,14 @@ Pod::Spec.new do |s|
 
   s.subspec 'BaseClasses' do |sp|
     sp.source_files = 'GISTFramework/Classes/BaseClasses/**/*.{swift}'
-    sp.dependency 'GISTFramework/GISTCore'
-    sp.dependency 'GISTFramework/Extentions'
-    sp.dependency 'GISTFramework/SyncEngine'
-  end
-
-  s.subspec 'Controls' do |sp|
-    sp.source_files = 'GISTFramework/Classes/Controls/**/*.{swift}'
-    sp.dependency 'GISTFramework/GISTCore'
-    sp.dependency 'GISTFramework/BaseClasses'
-    sp.dependency 'GISTFramework/Extentions'
-    sp.dependency 'GISTFramework/SyncEngine'
   end
 
   s.subspec 'Extentions' do |sp|
     sp.source_files = 'GISTFramework/Classes/Extentions/**/*.{swift}'
-    sp.dependency 'GISTFramework/GISTCore'
-    sp.dependency 'GISTFramework/SyncEngine'
   end
 
   s.subspec 'SyncEngine' do |sp|
     sp.source_files = 'GISTFramework/Classes/SyncEngine/**/*.{swift}'
-    sp.dependency 'UIColor_Hex_Swift', '~> 3.0.2'
   end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

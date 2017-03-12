@@ -18,7 +18,7 @@ public extension UIFont {
     ///   - fontStyle: Font Style/Size key from SyncEngine
     ///   - sizedForIPad: Flag for font sized for iPad
     /// - Returns: UIFont instance using SyncEngine params
-    public class func font(_ fontStyle:String? = nil, sizedForIPad:Bool = false) ->UIFont! {
+    public class func font(_ fontStyle:String?, sizedForIPad:Bool = false) ->UIFont! {
         return self.font(GIST_GLOBAL.fontName, fontStyle: fontStyle, sizedForIPad:sizedForIPad);
     } //F.E.
     
@@ -30,7 +30,9 @@ public extension UIFont {
     ///   - sizedForIPad: Flag for font sized for iPad
     /// - Returns: UIFont instance using SyncEngine params
     public class func font(_ fontNameKey:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont! {
-        return UIFont(name: SyncedConstants.constant(forKey: fontNameKey) ?? "Helvetica Neue", size: GISTUtility.convertFontSizeToRatio(22, fontStyle: fontStyle ?? GIST_GLOBAL.fontStyle, sizedForIPad:sizedForIPad));
+        let newValue:CGFloat = CGFloat(SyncedFontStyles.style(forKey: fontStyle ?? GIST_GLOBAL.fontStyle));
+        
+        return UIFont(name: SyncedConstants.constant(forKey: fontNameKey) ?? "Helvetica Neue", size: GISTUtility.convertToRatio(newValue, sizedForIPad:sizedForIPad));
     } //F.E.
     
 } //CLS END

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIColor_Hex_Swift
 
 /**
  SyncedColors is a subclass of SyncEngine.

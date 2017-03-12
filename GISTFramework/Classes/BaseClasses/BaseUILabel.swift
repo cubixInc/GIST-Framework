@@ -101,6 +101,8 @@ open class BaseUILabel: UILabel, BaseView {
         }
     }
     
+    @IBInspectable open var topAligned:Bool = false;
+    
     private var _textKey: String?
     override open var text: String? {
         get {
@@ -153,6 +155,21 @@ open class BaseUILabel: UILabel, BaseView {
         }
     } //F.E.
     
+    override open func drawText(in rect:CGRect) {
+        guard self.topAligned, let lblText = self.text else {  return super.drawText(in: rect) }
+        
+        let attributedText = NSAttributedString(string: lblText, attributes: [NSFontAttributeName: font])
+        
+        var newRect = rect;
+        newRect.size.height = attributedText.boundingRect(with: rect.size, options: .usesLineFragmentOrigin, context: nil).size.height
+        
+        if numberOfLines != 0 {
+            newRect.size.height = min(newRect.size.height, CGFloat(numberOfLines) * font.lineHeight)
+        }
+        
+        super.drawText(in: newRect)
+    } //F.E.
+    
     //MARK: - Methods
     
     /// Common initazier for setting up items.
@@ -189,5 +206,6 @@ open class BaseUILabel: UILabel, BaseView {
             self.text = txtKey;
         }
     } //F.E.
+    
     
 } //CLS END
