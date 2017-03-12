@@ -126,6 +126,10 @@ Pod::Spec.new do |s|
     sp.dependency 'UIColor_Hex_Swift', '~> 3.0.2'
   end
 
+  s.pod_target_xcconfig = {
+    'OTHER_SWIFT_FLAGS[config=Debug]' => '-DDEBUG',
+  }
+
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the
