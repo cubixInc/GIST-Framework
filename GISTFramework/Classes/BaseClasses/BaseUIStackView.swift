@@ -27,7 +27,7 @@ class BaseUIStackView: UIStackView, BaseView {
     }
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
+    @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
     
     /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {

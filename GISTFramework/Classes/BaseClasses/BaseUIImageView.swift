@@ -14,7 +14,7 @@ open class BaseUIImageView: UIImageView, BaseView {
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
+    @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
     
     /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
@@ -68,9 +68,9 @@ open class BaseUIImageView: UIImageView, BaseView {
         }
     } //P.E.
     
-    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
+    @IBInspectable open var respectRTL:Bool = GIST_CONFIG.respectRTL {
         didSet {
-            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
+            if (respectRTL != oldValue && self.respectRTL && GISTUtility.isRTL) {
                 super.image = self.image?.mirrored();
             }
         }
@@ -82,7 +82,7 @@ open class BaseUIImageView: UIImageView, BaseView {
         }
         
         set {
-            if (self.respectRTL && GIST_GLOBAL.isRTL) {
+            if (self.respectRTL && GISTUtility.isRTL) {
                 super.image = newValue?.mirrored();
             } else {
                 super.image = newValue;
@@ -99,7 +99,7 @@ open class BaseUIImageView: UIImageView, BaseView {
         
         self.clipsToBounds = true;
         
-        if (self.respectRTL && GIST_GLOBAL.isRTL) {
+        if (self.respectRTL && GISTUtility.isRTL) {
             super.image = self.image?.mirrored();
         }
     } //F.E.

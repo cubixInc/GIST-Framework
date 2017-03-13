@@ -13,25 +13,25 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
+    @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
     
     /// Font name key from Sync Engine.
-    @IBInspectable open var fontName:String = GIST_GLOBAL.fontName {
+    @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
     /// Font size/style key from Sync Engine.
-    @IBInspectable open var fontStyle:String = GIST_GLOBAL.fontStyle {
+    @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
             self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
-    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
+    @IBInspectable open var respectRTL:Bool = GIST_CONFIG.respectRTL {
         didSet {
-            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
+            if (respectRTL != oldValue && self.respectRTL && GISTUtility.isRTL) {
                 super.image = self.image?.mirrored();
             }
         }
@@ -64,7 +64,7 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
     
     open override var image: UIImage? {
         set {
-            if (self.respectRTL && GIST_GLOBAL.isRTL) {
+            if (self.respectRTL && GISTUtility.isRTL) {
                 super.image = newValue?.mirrored();
             } else {
                 super.image = newValue;
@@ -94,7 +94,7 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
             self.title = _titleKey
         }
         
-        if (self.respectRTL && GIST_GLOBAL.isRTL) {
+        if (self.respectRTL && GISTUtility.isRTL) {
             super.image = self.image?.mirrored();
         }
     } //F.E.

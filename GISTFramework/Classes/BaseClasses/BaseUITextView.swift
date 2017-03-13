@@ -14,7 +14,7 @@ open class BaseUITextView: UITextView, BaseView {
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
+    @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
     
     /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
@@ -69,7 +69,7 @@ open class BaseUITextView: UITextView, BaseView {
     }
     
     /// Font name key from Sync Engine.
-    @IBInspectable open var fontName:String = GIST_GLOBAL.fontName {
+    @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
             //There should be same font name for the placeholder text
             _lblPlaceholder?.fontName = fontName;
@@ -79,7 +79,7 @@ open class BaseUITextView: UITextView, BaseView {
     }
     
     /// Font size/style key from Sync Engine.
-    @IBInspectable open var fontStyle:String = GIST_GLOBAL.fontStyle {
+    @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
             //There should be same font style for the placeholder text
             _lblPlaceholder?.fontStyle = fontStyle;

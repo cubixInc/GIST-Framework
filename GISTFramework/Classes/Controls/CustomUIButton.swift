@@ -88,7 +88,7 @@ open class CustomUIButton: BaseUIButton {
         }
     } //P.E.
     
-    @IBInspectable open var respectContentRTL:Bool = GIST_GLOBAL.respectRTL {
+    @IBInspectable open var respectContentRTL:Bool = GIST_CONFIG.respectRTL {
         didSet {
             self.imageView!.frame = self.imageViewFrame;
             self.titleLabel!.frame = self.titleLabelFrame;
@@ -134,7 +134,7 @@ open class CustomUIButton: BaseUIButton {
             var cContentMode:UIViewContentMode = self.contentMode;
             
             //Respect for Right to left Handling
-            if ((self.respectContentRTL || self.respectRTL) && GIST_GLOBAL.isRTL) {
+            if ((self.respectContentRTL || self.respectRTL) && GISTUtility.isRTL) {
                 switch cContentMode {
                 case .left:
                     cContentMode = .right;

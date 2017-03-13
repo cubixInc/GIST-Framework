@@ -62,7 +62,7 @@
 		48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */; };
 		48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */; };
 		48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */; };
-		48CF84F91DF1564E008C7D85 /* GISTGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF84F81DF1564E008C7D85 /* GISTGlobal.swift */; };
+		48CF84F91DF1564E008C7D85 /* GISTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF84F81DF1564E008C7D85 /* GISTConfig.swift */; };
 		48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */; };
 		48D59DCC1DB4081400B65A2E /* UIScrollView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */; };
 		48D59DCD1DB4081400B65A2E /* JSON+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */; };
@@ -132,7 +132,7 @@
 		48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIBarButtonItem.swift; sourceTree = "<group>"; };
 		48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
 		48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPageControl.swift; sourceTree = "<group>"; };
-		48CF84F81DF1564E008C7D85 /* GISTGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTGlobal.swift; sourceTree = "<group>"; };
+		48CF84F81DF1564E008C7D85 /* GISTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTConfig.swift; sourceTree = "<group>"; };
 		48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
 		48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utility.swift"; sourceTree = "<group>"; };
 		48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Utility.swift"; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 				48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */,
 				48EB0AEB1D7FF45B00BD93BC /* GISTUtility.swift */,
 				489691E81DDE46E6001DDCE5 /* Weak.swift */,
-				48CF84F81DF1564E008C7D85 /* GISTGlobal.swift */,
+				48CF84F81DF1564E008C7D85 /* GISTConfig.swift */,
 				484942D21E733576004F4A9B /* BaseViewProtocol.swift */,
 			);
 			path = GISTCore;
@@ -492,7 +492,7 @@
 				4895305C1D12AD4100DFD38B /* BaseUIDesignableButton.swift in Sources */,
 				489530591D12AD4100DFD38B /* BaseUIButton.swift in Sources */,
 				4895307B1D12AD4100DFD38B /* SyncedColors.swift in Sources */,
-				48CF84F91DF1564E008C7D85 /* GISTGlobal.swift in Sources */,
+				48CF84F91DF1564E008C7D85 /* GISTConfig.swift in Sources */,
 				489691E91DDE46E6001DDCE5 /* Weak.swift in Sources */,
 				4895306B1D12AD4100DFD38B /* BaseUITextView.swift in Sources */,
 				4895306C1D12AD4100DFD38B /* BaseUIView.swift in Sources */,

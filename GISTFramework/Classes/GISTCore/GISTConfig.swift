@@ -9,12 +9,12 @@
 import UIKit
 
 
-public let GIST_GLOBAL = GISTGlobal.sharedInstance;
+public let GIST_CONFIG = GISTConfig.shared;
 
 /// GISTGlobal is a singleton instance class to hold default properties for the framework.
-public class GISTGlobal: NSObject {
+public class GISTConfig: NSObject {
     
-    static let sharedInstance = GISTGlobal()
+    static let shared = GISTConfig()
     
     //PRIVATE init so that singleton class should not be reinitialized from anyother class
     fileprivate override init() {} //C.E.
@@ -29,17 +29,5 @@ public class GISTGlobal: NSObject {
     public var sizeForNavi:Bool = false;
     
     public var respectRTL:Bool = false;
-    
-    private var _isRTL:Bool?
-    
-    /// Flag to check user interfce layout direction
-    public var isRTL:Bool {
-        get {
-            if (_isRTL == nil) {
-                _isRTL = Locale.characterDirection(forLanguage: Locale.current.languageCode ?? "en") == .rightToLeft;
-            }
-            return _isRTL!;
-        }
-    }
 
 } //CLS END

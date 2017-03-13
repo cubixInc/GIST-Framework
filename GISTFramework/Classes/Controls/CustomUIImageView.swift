@@ -13,7 +13,7 @@ private class CustomUIImageView: BaseUIImageView {
     
     
     //MARK: - Properties
-    @IBInspectable open var respectContentRTL:Bool = GIST_GLOBAL.respectRTL {
+    @IBInspectable open var respectContentRTL:Bool = GIST_CONFIG.respectRTL {
         didSet {
             self.imageView!.frame = self.imageViewFrame;
         }
@@ -64,7 +64,7 @@ private class CustomUIImageView: BaseUIImageView {
                 var cContentMode:UIViewContentMode = self.contentMode;
                 
                 //Respect for Right to left Handling
-                if ((self.respectContentRTL || self.respectRTL) && GIST_GLOBAL.isRTL) {
+                if ((self.respectContentRTL || self.respectRTL) && GISTUtility.isRTL) {
                     switch cContentMode {
                     case .left:
                         cContentMode = .right;
@@ -195,7 +195,7 @@ private class CustomUIImageView: BaseUIImageView {
             return self.imageView!.image;
         }
         set {
-            if (self.respectRTL && GIST_GLOBAL.isRTL) {
+            if (self.respectRTL && GISTUtility.isRTL) {
                 self.imageView!.image = newValue?.mirrored();
             } else {
                 self.imageView!.image = newValue;

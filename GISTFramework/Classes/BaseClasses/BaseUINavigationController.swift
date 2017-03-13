@@ -14,7 +14,7 @@ open class BaseUINavigationController: UINavigationController {
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
+    @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
     
     /// Navigation background Color key from SyncEngine.
     @IBInspectable open var bgColor:String? = nil {
@@ -38,7 +38,7 @@ open class BaseUINavigationController: UINavigationController {
     } //P.E.
     
      /// Font name key from Sync Engine.
-    @IBInspectable open var fontName:String = GIST_GLOBAL.fontName {
+    @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
             var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
              
@@ -49,7 +49,7 @@ open class BaseUINavigationController: UINavigationController {
     } //P.E.
     
     /// Font size/style key from Sync Engine.
-    @IBInspectable open var fontStyle:String = GIST_GLOBAL.fontStyle {
+    @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
             var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
              

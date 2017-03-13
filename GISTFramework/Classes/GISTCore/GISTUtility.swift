@@ -17,7 +17,10 @@ open class GISTUtility: NSObject {
     @nonobjc static let deviceRatioWN:CGFloat = (UIScreen.main.bounds.height - 64.0) / (736.0 - 64.0); // Ratio with Navigation
     
     /// Bool flag for device type.
-    @nonobjc open static let isIPad:Bool = UIDevice.current.userInterfaceIdiom == .pad;
+    @nonobjc public static let isIPad:Bool = UIDevice.current.userInterfaceIdiom == .pad;
+    
+    /// Flag to check user interfce layout direction
+    @nonobjc public static let isRTL = Locale.characterDirection(forLanguage: Locale.current.languageCode ?? "en") == .rightToLeft;
     
     //MARK: - Methods
     

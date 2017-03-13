@@ -12,7 +12,7 @@ import UIKit
 open class BaseUIViewController: UIViewController {
 
     /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
-    @IBInspectable open var backBtnImageName:String = GIST_GLOBAL.navigationBackButtonImgName;
+    @IBInspectable open var backBtnImageName:String = GIST_CONFIG.navigationBackButtonImgName;
     
     private var _hasBackButton:Bool = true;
     

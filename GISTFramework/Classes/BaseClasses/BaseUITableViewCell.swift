@@ -14,7 +14,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
+    @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
     
     /// Background color key from SyncEngine.
     @IBInspectable open var bgColorStyle:String? = nil {
@@ -64,7 +64,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     }
     
     /// Font name key from Sync Engine.
-    @IBInspectable open var fontName:String? = GIST_GLOBAL.fontName {
+    @IBInspectable open var fontName:String? = GIST_CONFIG.fontName {
         didSet {
             guard (self.fontName != oldValue) else {
                 return;
@@ -77,7 +77,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     }
     
     /// Font size/ style key from Sync Engine.
-    @IBInspectable open var fontStyle:String? = GIST_GLOBAL.fontStyle {
+    @IBInspectable open var fontStyle:String? = GIST_CONFIG.fontStyle {
         didSet {
             guard (self.fontStyle != oldValue) else {
                 return;
@@ -88,7 +88,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     }
     
     /// Detail text font name key from SyncEngine.
-    @IBInspectable open var fontDetailStyle:String? = GIST_GLOBAL.fontStyle {
+    @IBInspectable open var fontDetailStyle:String? = GIST_CONFIG.fontStyle {
         didSet {
             guard (self.fontDetailStyle != oldValue) else {
                 return;

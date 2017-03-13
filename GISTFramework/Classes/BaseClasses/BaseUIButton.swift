@@ -14,7 +14,7 @@ open class BaseUIButton: UIButton, BaseView {
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
-    @IBInspectable open var sizeForIPad:Bool = GIST_GLOBAL.sizeForIPad;
+    @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
     
     /// Background color key from Sync Engine.
     @IBInspectable open var bgColorStyle:String? = nil {
@@ -76,14 +76,14 @@ open class BaseUIButton: UIButton, BaseView {
     } //P.E.
     
     /// Font name key from Sync Engine.
-    @IBInspectable open var fontName:String = GIST_GLOBAL.fontName {
+    @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     } //P.E.
     
     /// Font size/style key from Sync Engine.
-    @IBInspectable open var fontStyle:String = GIST_GLOBAL.fontStyle {
+    @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
             self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
@@ -103,9 +103,9 @@ open class BaseUIButton: UIButton, BaseView {
         }
     } //P.E.
     
-    @IBInspectable open var respectRTL:Bool = GIST_GLOBAL.respectRTL {
+    @IBInspectable open var respectRTL:Bool = GIST_CONFIG.respectRTL {
         didSet {
-            if (respectRTL != oldValue && self.respectRTL && GIST_GLOBAL.isRTL) {
+            if (respectRTL != oldValue && self.respectRTL && GISTUtility.isRTL) {
                 
                 let states:[UIControlState] = [.normal, .selected, .highlighted, .disabled]
                 
@@ -186,7 +186,7 @@ open class BaseUIButton: UIButton, BaseView {
     } //F.E.
     
     open override func setImage(_ image: UIImage?, for state: UIControlState) {
-        super.setImage( (self.respectRTL && GIST_GLOBAL.isRTL) ? image?.mirrored() : image, for: state)
+        super.setImage( (self.respectRTL && GISTUtility.isRTL) ? image?.mirrored() : image, for: state)
     } //F.E.
     
     //MARK: - Methods
@@ -208,7 +208,7 @@ open class BaseUIButton: UIButton, BaseView {
                 self.setTitle(txtKey, for: state);
             }
             
-            if self.respectRTL, GIST_GLOBAL.isRTL, let img:UIImage = self.image(for: state) {
+            if self.respectRTL, GISTUtility.isRTL, let img:UIImage = self.image(for: state) {
                 super.setImage(img.mirrored(), for: state);
             }
         }
