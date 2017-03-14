@@ -62,6 +62,8 @@
 		48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */; };
 		48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */; };
 		48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */; };
+		48BE3B3A1E77D8BF003C3198 /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */; };
+		48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */; };
 		48CF84F91DF1564E008C7D85 /* GISTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF84F81DF1564E008C7D85 /* GISTConfig.swift */; };
 		48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */; };
 		48D59DCC1DB4081400B65A2E /* UIScrollView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */; };
@@ -132,6 +134,8 @@
 		48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIBarButtonItem.swift; sourceTree = "<group>"; };
 		48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
 		48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPageControl.swift; sourceTree = "<group>"; };
+		48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
+		48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Utility.swift"; sourceTree = "<group>"; };
 		48CF84F81DF1564E008C7D85 /* GISTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTConfig.swift; sourceTree = "<group>"; };
 		48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
 		48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utility.swift"; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				484942B81E73050E004F4A9B /* CustomImageView.swift */,
+				48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */,
 				484942B91E73050E004F4A9B /* CustomUIButton.swift */,
 				484942BA1E73050E004F4A9B /* CustomUIButtonDetailed.swift */,
 				484942BB1E73050E004F4A9B /* CustomUIImageView.swift */,
@@ -240,6 +245,7 @@
 		489530491D12AD4100DFD38B /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */,
 				48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */,
 				48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */,
 				483640F61E717774007FD8AC /* String+Utility.swift */,
@@ -470,6 +476,7 @@
 				48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */,
 				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
 				484942CC1E73050E004F4A9B /* UnderlinedUITextField.swift in Sources */,
+				48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */,
 				48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
 				489530691D12AD4100DFD38B /* BaseUITableViewCell.swift in Sources */,
@@ -477,6 +484,7 @@
 				489530651D12AD4100DFD38B /* BaseUISlider.swift in Sources */,
 				489530621D12AD4100DFD38B /* BaseUIScrollView.swift in Sources */,
 				484942C41E73050E004F4A9B /* CustomImageView.swift in Sources */,
+				48BE3B3A1E77D8BF003C3198 /* FloatingLabelTextField.swift in Sources */,
 				4895307E1D12AD4100DFD38B /* SyncedText.swift in Sources */,
 				4895307F1D12AD4100DFD38B /* SyncEngine.swift in Sources */,
 				4895307A1D12AD4100DFD38B /* UIView+Utility.swift in Sources */,
