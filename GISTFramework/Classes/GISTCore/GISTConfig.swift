@@ -11,7 +11,7 @@ import UIKit
 
 public let GIST_CONFIG = GISTConfig.shared;
 
-/// GISTGlobal is a singleton instance class to hold default properties for the framework.
+/// GISTConfig is a singleton instance class to hold default properties for the framework.
 public class GISTConfig: NSObject {
     
     static let shared = GISTConfig()
