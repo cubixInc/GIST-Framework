@@ -9,7 +9,7 @@
 import UIKit
 
 /// UnderlinedUITextField is a subclass of BaseUITextField. It has adds an extra line in the text field
-class UnderlinedUITextField: BaseUITextField {
+open class UnderlinedUITextField: BaseUITextField {
 
     //MARK: - Properties
     
