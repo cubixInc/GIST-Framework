@@ -260,7 +260,7 @@ open class FloatingLabelTextField: ValidatedTextField {
     private func titleFormatter(_ txt:String) -> String {
         let rtnTxt:String = SyncedText.text(forKey: txt);
         
-        return (self.hasUppercaseTitle == true) ? rtnTxt :rtnTxt.uppercased();
+        return (self.hasUppercaseTitle == true) ? rtnTxt.uppercased():rtnTxt;
     } //F.E.
     
     // MARK: create components
