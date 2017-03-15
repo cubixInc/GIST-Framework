@@ -82,9 +82,9 @@ open class ValidatedTextField: BaseUITextField {
         return cBtn;
     } ();
     
-    var _isEmpty:Bool = false;
+    private var _isEmpty:Bool = false;
     
-    var _isValid:Bool = false;
+    private var _isValid:Bool = false;
     
     /// Flag for whether the input is valid or not.
     open var isValid:Bool {

@@ -129,14 +129,12 @@ open class FloatingLabelTextField: ValidatedTextField {
         }
     }
     
-/*
     /// A String value for the error message to display.
-    open var errorMessage:String? {
+    private var errorMessage:String? {
         didSet {
             self.updateControl(true);
         }
     }
- */
     /// The backing property for the highlighted property
     fileprivate var _highlighted = false;
     
@@ -162,9 +160,9 @@ open class FloatingLabelTextField: ValidatedTextField {
     /// A Boolean value that determines whether the receiver has an error message.
     open var hasErrorMessage:Bool {
         get {
-            return _isValid == false && self.validityMsg != nil && self.validityMsg != "" && self.isValid;
+            return self.errorMessage != nil && self.errorMessage != "";
         }
-    }
+    } //P.E.
     
     fileprivate var _renderingInInterfaceBuilder:Bool = false
     
@@ -221,6 +219,19 @@ open class FloatingLabelTextField: ValidatedTextField {
         
         self.setupFloatingLabel();
     }
+    
+    // MARK: - Overridden Methods
+    
+    /// Overridden property to get text changes.
+    ///
+    /// - Parameter textField: UITextField
+    open override func textFieldDidEndEditing(_ textField: UITextField) {
+        super.textFieldDidEndEditing(textField);
+        
+        self.errorMessage = (self.isValid == false) ? self.validityMsg:nil;
+    } //F.E.
+    
+    // MARK: - Methods
     
     fileprivate final func setupFloatingLabel() {
         self.borderStyle = .none;
