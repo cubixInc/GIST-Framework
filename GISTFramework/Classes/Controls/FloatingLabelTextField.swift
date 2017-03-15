@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import GISTFramework
 
-open class FloatingLabelTextField: BaseUITextField {
+open class FloatingLabelTextField: ValidatedTextField {
     
     // MARK: Animation timing
     
@@ -23,14 +22,14 @@ open class FloatingLabelTextField: BaseUITextField {
     /// The String to display when the textfield is not editing and the input is not empty.
     @IBInspectable open var title:String? {
         didSet {
-            self.updateControl()
+            self.updateControl();
         }
     } //P.E.
     
     /// The String to display when the textfield is editing and the input is not empty.
     @IBInspectable open var titleSelected:String? {
         didSet {
-            self.updateControl()
+            self.updateControl();
         }
     } //P.E.
     
@@ -48,53 +47,62 @@ open class FloatingLabelTextField: BaseUITextField {
     /// A UIColor value that determines the text color of the title label when in the normal state
     @IBInspectable open var titleColor:String? {
         didSet {
-            self.updateTitleColor()
+            self.updateTitleColor();
         }
     }
     
     /// A UIColor value that determines the text color of the title label when editing
     @IBInspectable open var titleColorSelected:String? {
         didSet {
-            self.updateTitleColor()
+            self.updateTitleColor();
         }
     }
     
     /// A UIColor value that determines the color of the bottom line when in the normal state
     @IBInspectable open var lineColor:String? {
         didSet {
-            self.updateLineView()
+            self.updateLineView();
         }
     }
     
     /// A UIColor value that determines the color of the line in a selected state
     @IBInspectable open var lineColorSelected:String? {
         didSet {
-            self.updateLineView()
+            self.updateLineView();
         }
     } //P.E.
     
     /// A UIColor value that determines the color used for the title label and the line when the error message is not `nil`
     @IBInspectable open var errorColor:String? {
         didSet {
-            self.updateColors()
+            self.updateColors();
         }
     } //P.E.
+    
+    // MARK: Title Case
+    
+    /// Flag for upper case formatting
+    @IBInspectable open var hasUppercaseTitle:Bool = false {
+        didSet {
+            self.updateControl();
+        }
+    }
     
     // MARK: Line height
     
     /// A CGFloat value that determines the height for the bottom line when the control is in the normal state
     @IBInspectable open var lineHeight:CGFloat = 0.5 {
         didSet {
-            self.updateLineView()
-            self.setNeedsDisplay()
+            self.updateLineView();
+            self.setNeedsDisplay();
         }
     } //P.E.
     
     /// A CGFloat value that determines the height for the bottom line when the control is in a selected state
     @IBInspectable open var lineHeightSelected:CGFloat = 1.0 {
         didSet {
-            self.updateLineView()
-            self.setNeedsDisplay()
+            self.updateLineView();
+            self.setNeedsDisplay();
         }
     }
     
@@ -109,35 +117,28 @@ open class FloatingLabelTextField: BaseUITextField {
     // MARK: Properties
     
     /**
-     The formatter to use before displaying content in the title label. This can be the `title`, `selectedTitle` or the `errorMessage`.
-     The default implementation converts the text to uppercase.
-     */
-    open var titleFormatter:((String) -> String) = { (text:String) -> String in
-        return SyncedText.text(forKey: text).uppercased()
-    }
-    
-    /**
      Identifies whether the text object should hide the text being entered.
      */
     override open var isSecureTextEntry:Bool {
         set {
-            super.isSecureTextEntry = newValue
-            self.fixCaretPosition()
+            super.isSecureTextEntry = newValue;
+            self.fixCaretPosition();
         }
         get {
-            return super.isSecureTextEntry
+            return super.isSecureTextEntry;
         }
     }
     
+/*
     /// A String value for the error message to display.
     open var errorMessage:String? {
         didSet {
-            self.updateControl(true)
+            self.updateControl(true);
         }
     }
-    
+ */
     /// The backing property for the highlighted property
-    fileprivate var _highlighted = false
+    fileprivate var _highlighted = false;
     
     /// A Boolean value that determines whether the receiver is highlighted. When changing this value, highlighting will be done with animation
     override open var isHighlighted:Bool {
@@ -145,9 +146,9 @@ open class FloatingLabelTextField: BaseUITextField {
             return _highlighted
         }
         set {
-            _highlighted = newValue
-            self.updateTitleColor()
-            self.updateLineView()
+            _highlighted = newValue;
+            self.updateTitleColor();
+            self.updateLineView();
         }
     }
     
@@ -161,7 +162,7 @@ open class FloatingLabelTextField: BaseUITextField {
     /// A Boolean value that determines whether the receiver has an error message.
     open var hasErrorMessage:Bool {
         get {
-            return self.errorMessage != nil && self.errorMessage != ""
+            return _isValid == false && self.validityMsg != nil && self.validityMsg != "" && self.isValid;
         }
     }
     
@@ -170,7 +171,7 @@ open class FloatingLabelTextField: BaseUITextField {
     /// The text content of the textfield
     override open var text:String? {
         didSet {
-            self.updateControl(false)
+            self.updateControl(false);
         }
     }
     
@@ -180,17 +181,15 @@ open class FloatingLabelTextField: BaseUITextField {
      */
     override open var placeholder:String? {
         didSet {
-            self.setNeedsDisplay()
-            self.updateTitleLabel()
+            self.setNeedsDisplay();
+            self.updateTitleLabel();
         }
     }
-    
-    
     
     // Determines whether the field is selected. When selected, the title floats above the textbox.
     open override var isSelected:Bool {
         didSet {
-            self.updateControl(true)
+            self.updateControl(true);
         }
     }
     
@@ -210,7 +209,7 @@ open class FloatingLabelTextField: BaseUITextField {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.setupFloatingLabel()
+        self.setupFloatingLabel();
     }
     
     /**
@@ -218,17 +217,17 @@ open class FloatingLabelTextField: BaseUITextField {
      - parameter coder the object to deserialize the control from
      */
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder);
         
         self.setupFloatingLabel();
     }
     
     fileprivate final func setupFloatingLabel() {
-        self.borderStyle = .none
-        self.createTitleLabel()
-        self.createLineView()
-        self.updateColors()
-        self.addEditingChangedObserver()
+        self.borderStyle = .none;
+        self.createTitleLabel();
+        self.createLineView();
+        self.updateColors();
+        self.addEditingChangedObserver();
     }
     
     fileprivate func addEditingChangedObserver() {
@@ -239,13 +238,23 @@ open class FloatingLabelTextField: BaseUITextField {
      Invoked when the editing state of the textfield changes. Override to respond to this change.
      */
     open func editingChanged() {
-        updateControl(true)
-        updateTitleLabel(true)
+        self.updateControl(true);
+        self.updateTitleLabel(true);
     }
+    
+    /**
+     The formatter to use before displaying content in the title label. This can be the `title`, `selectedTitle` or the `errorMessage`.
+     The default implementation converts the text to uppercase.
+     */
+    private func titleFormatter(_ txt:String) -> String {
+        let rtnTxt:String = SyncedText.text(forKey: txt);
+        
+        return (self.hasUppercaseTitle == true) ? rtnTxt :rtnTxt.uppercased();
+    } //F.E.
     
     // MARK: create components
     
-    fileprivate func createTitleLabel() {
+    private func createTitleLabel() {
         let titleLabel = BaseUILabel()
         titleLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         titleLabel.fontName = self.fontName;
@@ -254,7 +263,7 @@ open class FloatingLabelTextField: BaseUITextField {
         self.titleLabel = titleLabel
     }
     
-    fileprivate func createLineView() {
+    private func createLineView() {
         
         if self.lineView == nil {
             let lineView = UIView()
@@ -266,7 +275,7 @@ open class FloatingLabelTextField: BaseUITextField {
         self.addSubview(lineView)
     }
     
-    fileprivate func configureDefaultLineHeight() {
+    private func configureDefaultLineHeight() {
         let onePixel:CGFloat = 1.0 / UIScreen.main.scale
         self.lineHeight = 2.0 * onePixel
         self.lineHeightSelected = 2.0 * self.lineHeight
@@ -298,13 +307,13 @@ open class FloatingLabelTextField: BaseUITextField {
     
     // MARK: - View updates
     
-    fileprivate func updateControl(_ animated:Bool = false) {
+    private func updateControl(_ animated:Bool = false) {
         self.updateColors()
         self.updateLineView()
         self.updateTitleLabel(animated)
     }
     
-    fileprivate func updateLineView() {
+    private func updateLineView() {
         if let lineView = self.lineView {
             lineView.frame = self.lineViewRectForBounds(self.bounds, editing: self.editingOrSelected)
         }
@@ -320,19 +329,19 @@ open class FloatingLabelTextField: BaseUITextField {
         self.updateTextColor()
     }
     
-    fileprivate func updateLineColor() {
+    private func updateLineColor() {
         if self.hasErrorMessage {
-            self.lineView.backgroundColor = UIColor.color(forKey: self.errorColor);
+            self.lineView.backgroundColor = UIColor.color(forKey: self.errorColor) ?? UIColor.red;
         } else {
-            self.lineView.backgroundColor = UIColor.color(forKey: self.editingOrSelected ? self.lineColorSelected : self.lineColor);
+            self.lineView.backgroundColor = UIColor.color(forKey: (self.editingOrSelected && self.lineColorSelected != nil) ? (self.lineColorSelected) : self.lineColor);
         }
     }
     
-    fileprivate func updateTitleColor() {
+    private func updateTitleColor() {
         if self.hasErrorMessage {
-            self.titleLabel.textColor = UIColor.color(forKey: self.errorColor);
+            self.titleLabel.textColor = UIColor.color(forKey: self.errorColor) ?? UIColor.red;
         } else {
-            if self.editingOrSelected || self.isHighlighted {
+            if ((self.editingOrSelected || self.isHighlighted) && self.titleColorSelected != nil) {
                 self.titleLabel.textColor = UIColor.color(forKey: self.titleColorSelected);
             } else {
                 self.titleLabel.textColor = UIColor.color(forKey: self.titleColor);
@@ -340,7 +349,7 @@ open class FloatingLabelTextField: BaseUITextField {
         }
     }
     
-    fileprivate func updateTextColor() {
+    private func updateTextColor() {
         if self.hasErrorMessage {
             super.textColor = UIColor.color(forKey: self.errorColor);
         } else {
@@ -350,11 +359,11 @@ open class FloatingLabelTextField: BaseUITextField {
     
     // MARK: - Title handling
     
-    fileprivate func updateTitleLabel(_ animated:Bool = false) {
+    private func updateTitleLabel(_ animated:Bool = false) {
         
         var titleText:String? = nil
         if self.hasErrorMessage {
-            titleText = self.titleFormatter(errorMessage!)
+            titleText = self.titleFormatter(self.validityMsg!)
         } else {
             if self.editingOrSelected {
                 titleText = self.selectedTitleOrTitlePlaceholder()
@@ -370,7 +379,7 @@ open class FloatingLabelTextField: BaseUITextField {
         self.updateTitleVisibility(animated)
     }
     
-    fileprivate var _titleVisible = false
+    private var _titleVisible = false
     
     /*
      *   Set this value to make the title visible
