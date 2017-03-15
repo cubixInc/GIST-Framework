@@ -82,7 +82,7 @@ open class FloatingLabelTextField: ValidatedTextField {
     // MARK: Title Case
     
     /// Flag for upper case formatting
-    @IBInspectable open var hasUppercaseTitle:Bool = false {
+    @IBInspectable open var uppercaseTitle:Bool = false {
         didSet {
             self.updateControl();
         }
@@ -260,7 +260,7 @@ open class FloatingLabelTextField: ValidatedTextField {
     private func titleFormatter(_ txt:String) -> String {
         let rtnTxt:String = SyncedText.text(forKey: txt);
         
-        return (self.hasUppercaseTitle == true) ? rtnTxt.uppercased():rtnTxt;
+        return (self.uppercaseTitle == true) ? rtnTxt.uppercased():rtnTxt;
     } //F.E.
     
     // MARK: create components
