@@ -98,6 +98,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'GISTCore' do |sp|
     sp.source_files = 'GISTFramework/Classes/GISTCore/**/*.{swift}'
+
+    sp.dependency 'PhoneNumberKit', '~> 1.2.2'
   end
 
   s.subspec 'BaseClasses' do |sp|
