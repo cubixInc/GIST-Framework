@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhoneNumberKit
 
 /// ValidatedTextField Protocol to receive events.
 @objc public protocol ValidatedTextFieldDelegate {
@@ -85,6 +86,8 @@ open class ValidatedTextField: BaseUITextField {
     private var _isEmpty:Bool = false;
     
     private var _isValid:Bool = false;
+    
+    public var phoneNumber:PhoneNumber?;
     
     /// Flag for whether the input is valid or not.
     open var isValid:Bool {
@@ -167,7 +170,8 @@ open class ValidatedTextField: BaseUITextField {
     ///
     /// - Returns: Bool flag for a valid input.
     private func isValidPhoneNo() -> Bool {
-        return GISTUtility.isValidPhoneNo(self.text);
+        self.phoneNumber = GISTUtility.validatePhoneNumber(self.text);
+        return self.phoneNumber != nil;
     } //F.E.
     
     /// Validats for a valid numeric text

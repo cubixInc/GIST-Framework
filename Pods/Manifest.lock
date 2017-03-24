@@ -1,12 +1,20 @@
 PODS:
+  - PhoneNumberKit (1.2.2):
+    - PhoneNumberKit/PhoneNumberKitCore (= 1.2.2)
+    - PhoneNumberKit/UIKit (= 1.2.2)
+  - PhoneNumberKit/PhoneNumberKitCore (1.2.2)
+  - PhoneNumberKit/UIKit (1.2.2):
+    - PhoneNumberKit/PhoneNumberKitCore
   - UIColor_Hex_Swift (3.0.2)
 
 DEPENDENCIES:
+  - PhoneNumberKit (~> 1.2.2)
   - UIColor_Hex_Swift (~> 3.0.2)
 
 SPEC CHECKSUMS:
+  PhoneNumberKit: ffae8f18fb78c1425c7af973711b0b0fd4f4104f
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: abbb8e11b170cdbe09a407439281f718a1d57630
+PODFILE CHECKSUM: f2b378aecce5caf6862b43ad6cebdfb9c338d97f
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.2.0

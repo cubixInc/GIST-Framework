@@ -7,4 +7,5 @@ target 'GISTFramework' do
 
   # Pods for GISTFramework
   pod 'UIColor_Hex_Swift', '~> 3.0.2'
+  pod 'PhoneNumberKit', '~> 1.2.2'
 end

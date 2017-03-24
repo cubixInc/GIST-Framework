@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhoneNumberKit
 
 /// Class for Utility methods.
 open class GISTUtility: NSObject {
@@ -33,6 +34,40 @@ open class GISTUtility: NSObject {
         DispatchQueue.main.asyncAfter(
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     } //F.E.
+    
+    /// Native Phone Call
+    ///
+    /// - Parameter number: a valid phone number
+    public class func nativePhoneCall(at number:String) {
+        let phoneNumber: String = "tel://\(number.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))";
+        
+        if let phoneURL:URL = URL(string: phoneNumber), UIApplication.shared.canOpenURL(phoneURL) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(phoneURL);
+            }
+        }
+    } //F.E.
+    
+    /// Calculate Age
+    ///
+    /// - Parameter birthday: Date of birth
+    /// - Returns: age
+    class func calculateAge (_ dateOfBirth: Date) -> Int {
+        let calendar : Calendar = Calendar.current
+        let unitFlags : NSCalendar.Unit = [NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day]
+        let dateComponentNow : DateComponents = (calendar as NSCalendar).components(unitFlags, from: Date())
+        let dateComponentBirth : DateComponents = (calendar as NSCalendar).components(unitFlags, from: dateOfBirth)
+        
+        if ((dateComponentNow.month! < dateComponentBirth.month!) ||
+            ((dateComponentNow.month! == dateComponentBirth.month!) && (dateComponentNow.day! < dateComponentBirth.day!))
+            ) {
+            return dateComponentNow.year! - dateComponentBirth.year! - 1
+        } else {
+            return dateComponentNow.year! - dateComponentBirth.year!
+        }
+    }//F.E.
     
     /// Converts value to (value * device ratio) considering navigtion bar fixed height.
     ///
@@ -138,13 +173,28 @@ open class GISTUtility: NSObject {
     /// - Parameter text: Sting
     /// - Returns: Bool whether the string is a valid phone number or not.
     open class func isValidPhoneNo(_ text:String?) -> Bool {
+        return self.validatePhoneNumber(text) != nil;
+    } //F.E.
+    
+    open class func validatePhoneNumber(_ text:String?) -> PhoneNumber? {
         guard (text != nil) else {
-            return false;
+            return nil;
         }
         
-        let regexURL: String = "^\\d{3}-\\d{3}-\\d{4}$"
-        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
-        return predicate.evaluate(with: text)
+        let kit = PhoneNumberKit()
+        
+        do {
+            let phoneNumber:PhoneNumber = try kit.parse(text!);
+            
+            print("numberString: \(phoneNumber.numberString) countryCode: \(phoneNumber.countryCode) leadingZero: \(phoneNumber.leadingZero) nationalNumber: \(phoneNumber.nationalNumber) numberExtension: \(phoneNumber.numberExtension) type: \(phoneNumber.type)")
+            
+            return phoneNumber;
+        }
+        catch {
+            
+        }
+        
+        return nil;
     } //F.E.
     
     /// Validate String for number.
