@@ -169,6 +169,9 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         }
     } //P.E.
     
+    /// Parameter key for service - Default Value is nil
+    @IBInspectable open var paramKey:String?;
+    
     //MARK: - Constructors
     
     /// Overridden method to setup/ initialize components.

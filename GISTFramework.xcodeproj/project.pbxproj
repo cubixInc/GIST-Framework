@@ -64,6 +64,15 @@
 		48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */; };
 		48BE3B3A1E77D8BF003C3198 /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */; };
 		48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */; };
+		48C4936D1E88F73900F14CF4 /* GISTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4935C1E88F73900F14CF4 /* GISTAppDelegate.swift */; };
+		48C4936E1E88F73900F14CF4 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4935E1E88F73900F14CF4 /* AppInfo.swift */; };
+		48C4936F1E88F73900F14CF4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C493601E88F73900F14CF4 /* User.swift */; };
+		48C493701E88F73900F14CF4 /* GISTGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C493621E88F73900F14CF4 /* GISTGlobal.swift */; };
+		48C493711E88F73900F14CF4 /* HTTPServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C493641E88F73900F14CF4 /* HTTPServiceManager.swift */; };
+		48C493721E88F73900F14CF4 /* Mappable+ToDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C493661E88F73900F14CF4 /* Mappable+ToDictionary.swift */; };
+		48C493731E88F73900F14CF4 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C493681E88F73900F14CF4 /* ReachabilityHelper.swift */; };
+		48C493741E88F73900F14CF4 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4936A1E88F73900F14CF4 /* TutorialView.swift */; };
+		48C493751E88F73900F14CF4 /* GISTUserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4936C1E88F73900F14CF4 /* GISTUserPreferences.swift */; };
 		48CF84F91DF1564E008C7D85 /* GISTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF84F81DF1564E008C7D85 /* GISTConfig.swift */; };
 		48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */; };
 		48D59DCC1DB4081400B65A2E /* UIScrollView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */; };
@@ -136,6 +145,15 @@
 		48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPageControl.swift; sourceTree = "<group>"; };
 		48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
 		48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Utility.swift"; sourceTree = "<group>"; };
+		48C4935C1E88F73900F14CF4 /* GISTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAppDelegate.swift; sourceTree = "<group>"; };
+		48C4935E1E88F73900F14CF4 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		48C493601E88F73900F14CF4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		48C493621E88F73900F14CF4 /* GISTGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTGlobal.swift; sourceTree = "<group>"; };
+		48C493641E88F73900F14CF4 /* HTTPServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPServiceManager.swift; sourceTree = "<group>"; };
+		48C493661E88F73900F14CF4 /* Mappable+ToDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mappable+ToDictionary.swift"; sourceTree = "<group>"; };
+		48C493681E88F73900F14CF4 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
+		48C4936A1E88F73900F14CF4 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		48C4936C1E88F73900F14CF4 /* GISTUserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUserPreferences.swift; sourceTree = "<group>"; };
 		48CF84F81DF1564E008C7D85 /* GISTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTConfig.swift; sourceTree = "<group>"; };
 		48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
 		48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utility.swift"; sourceTree = "<group>"; };
@@ -196,6 +214,7 @@
 		489530291D12AD4100DFD38B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				48C4935A1E88F73900F14CF4 /* GISTSocial */,
 				48EB0AD71D7FEE7900BD93BC /* GISTCore */,
 				484942B71E730425004F4A9B /* Controls */,
 				4895302A1D12AD4100DFD38B /* BaseClasses */,
@@ -280,6 +299,94 @@
 				489530551D12AD4100DFD38B /* SyncedText.swift */,
 			);
 			path = SubClasses;
+			sourceTree = "<group>";
+		};
+		48C4935A1E88F73900F14CF4 /* GISTSocial */ = {
+			isa = PBXGroup;
+			children = (
+				48C4935B1E88F73900F14CF4 /* AppDelegate */,
+				48C4935D1E88F73900F14CF4 /* AppInfo */,
+				48C4935F1E88F73900F14CF4 /* Entities */,
+				48C493611E88F73900F14CF4 /* Global */,
+				48C493631E88F73900F14CF4 /* HTTPServiceManager */,
+				48C493651E88F73900F14CF4 /* Protocols */,
+				48C493671E88F73900F14CF4 /* Reachability */,
+				48C493691E88F73900F14CF4 /* TutorialView */,
+				48C4936B1E88F73900F14CF4 /* UserPreferences */,
+			);
+			path = GISTSocial;
+			sourceTree = "<group>";
+		};
+		48C4935B1E88F73900F14CF4 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				48C4935C1E88F73900F14CF4 /* GISTAppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		48C4935D1E88F73900F14CF4 /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				48C4935E1E88F73900F14CF4 /* AppInfo.swift */,
+			);
+			path = AppInfo;
+			sourceTree = "<group>";
+		};
+		48C4935F1E88F73900F14CF4 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				48C493601E88F73900F14CF4 /* User.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		48C493611E88F73900F14CF4 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				48C493621E88F73900F14CF4 /* GISTGlobal.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		48C493631E88F73900F14CF4 /* HTTPServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				48C493641E88F73900F14CF4 /* HTTPServiceManager.swift */,
+			);
+			path = HTTPServiceManager;
+			sourceTree = "<group>";
+		};
+		48C493651E88F73900F14CF4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				48C493661E88F73900F14CF4 /* Mappable+ToDictionary.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		48C493671E88F73900F14CF4 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				48C493681E88F73900F14CF4 /* ReachabilityHelper.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		48C493691E88F73900F14CF4 /* TutorialView */ = {
+			isa = PBXGroup;
+			children = (
+				48C4936A1E88F73900F14CF4 /* TutorialView.swift */,
+			);
+			path = TutorialView;
+			sourceTree = "<group>";
+		};
+		48C4936B1E88F73900F14CF4 /* UserPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				48C4936C1E88F73900F14CF4 /* GISTUserPreferences.swift */,
+			);
+			path = UserPreferences;
 			sourceTree = "<group>";
 		};
 		48EA5C441D0FD35B003FDDAF = {
@@ -448,6 +555,7 @@
 				489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */,
 				4895305A1D12AD4100DFD38B /* BaseUICollectionView.swift in Sources */,
 				489530631D12AD4100DFD38B /* BaseUISearchBar.swift in Sources */,
+				48C493711E88F73900F14CF4 /* HTTPServiceManager.swift in Sources */,
 				48DA7E7F1D9E674F00464066 /* BaseUISearchController.swift in Sources */,
 				484942CB1E73050E004F4A9B /* UIRadioButton.swift in Sources */,
 				489530791D12AD4100DFD38B /* UIView+Sync.swift in Sources */,
@@ -457,6 +565,7 @@
 				484942CD1E73050E004F4A9B /* ValidatedTextField.swift in Sources */,
 				4895305F1D12AD4100DFD38B /* BaseUILabel.swift in Sources */,
 				489530681D12AD4100DFD38B /* BaseUITableView.swift in Sources */,
+				48C4936E1E88F73900F14CF4 /* AppInfo.swift in Sources */,
 				48D59DCC1DB4081400B65A2E /* UIScrollView+Utility.swift in Sources */,
 				48EB0AEC1D7FF45B00BD93BC /* GISTUtility.swift in Sources */,
 				4895305B1D12AD4100DFD38B /* BaseUICollectionViewCell.swift in Sources */,
@@ -468,7 +577,9 @@
 				489530671D12AD4100DFD38B /* BaseUISwitch.swift in Sources */,
 				484942D11E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift in Sources */,
 				4895305D1D12AD4100DFD38B /* BaseUIDesignableView.swift in Sources */,
+				48C493741E88F73900F14CF4 /* TutorialView.swift in Sources */,
 				489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */,
+				48C4936D1E88F73900F14CF4 /* GISTAppDelegate.swift in Sources */,
 				484942CE1E73050E004F4A9B /* ValidatedTextView.swift in Sources */,
 				489421C81D48954400310089 /* UIColor+Utility.swift in Sources */,
 				48EB0AEA1D7FEFD700BD93BC /* GISTApplication.swift in Sources */,
@@ -477,6 +588,7 @@
 				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
 				484942CC1E73050E004F4A9B /* UnderlinedUITextField.swift in Sources */,
 				48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */,
+				48C493721E88F73900F14CF4 /* Mappable+ToDictionary.swift in Sources */,
 				48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
 				489530691D12AD4100DFD38B /* BaseUITableViewCell.swift in Sources */,
@@ -499,6 +611,7 @@
 				487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */,
 				4895305C1D12AD4100DFD38B /* BaseUIDesignableButton.swift in Sources */,
 				489530591D12AD4100DFD38B /* BaseUIButton.swift in Sources */,
+				48C493731E88F73900F14CF4 /* ReachabilityHelper.swift in Sources */,
 				4895307B1D12AD4100DFD38B /* SyncedColors.swift in Sources */,
 				48CF84F91DF1564E008C7D85 /* GISTConfig.swift in Sources */,
 				489691E91DDE46E6001DDCE5 /* Weak.swift in Sources */,
@@ -510,6 +623,9 @@
 				484942C71E73050E004F4A9B /* CustomUIImageView.swift in Sources */,
 				4895306A1D12AD4100DFD38B /* BaseUITextField.swift in Sources */,
 				4895305E1D12AD4100DFD38B /* BaseUIImageView.swift in Sources */,
+				48C4936F1E88F73900F14CF4 /* User.swift in Sources */,
+				48C493751E88F73900F14CF4 /* GISTUserPreferences.swift in Sources */,
+				48C493701E88F73900F14CF4 /* GISTGlobal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

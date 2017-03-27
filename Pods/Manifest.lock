@@ -1,4 +1,10 @@
 PODS:
+  - Alamofire (4.4.0)
+  - AlamofireObjectMapper (4.1.0):
+    - Alamofire (~> 4.1)
+    - ObjectMapper (~> 2.0)
+  - IQKeyboardManagerSwift (4.0.8)
+  - ObjectMapper (2.2.5)
   - PhoneNumberKit (1.2.2):
     - PhoneNumberKit/PhoneNumberKitCore (= 1.2.2)
     - PhoneNumberKit/UIKit (= 1.2.2)
@@ -8,13 +14,19 @@ PODS:
   - UIColor_Hex_Swift (3.0.2)
 
 DEPENDENCIES:
+  - AlamofireObjectMapper (~> 4.1.0)
+  - IQKeyboardManagerSwift (~> 4.0.8)
   - PhoneNumberKit (~> 1.2.2)
   - UIColor_Hex_Swift (~> 3.0.2)
 
 SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
+  IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
+  ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
   PhoneNumberKit: ffae8f18fb78c1425c7af973711b0b0fd4f4104f
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: f2b378aecce5caf6862b43ad6cebdfb9c338d97f
+PODFILE CHECKSUM: 30fb0324655736081a4c0aab626b9b4706408235
 
 COCOAPODS: 1.2.0

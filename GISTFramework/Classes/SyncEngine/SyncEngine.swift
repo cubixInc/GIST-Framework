@@ -26,7 +26,7 @@ open class SyncEngine: NSObject {
     }
     
     private var _urlToSync:URL!
-    private var _authentication:[String:String]?;
+    private var _headers:[String:String] = [:];
     
     private var _languageCode:String = "";
     
@@ -99,8 +99,8 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    public static func initialize(_ urlToSync:String, authentication:[String:String]? = nil) {
-        SyncEngine.sharedInstance.initialize(urlToSync, authentication: authentication);
+    public static func initialize(_ urlToSync:String, authorizationHandler: @autoclosure @escaping ()->(name:String, password:String)) {
+        SyncEngine.sharedInstance.initialize(urlToSync, authorizationHandler: authorizationHandler);
     } //F.E.
     
     /// Initializer for Sync Engine.
@@ -108,16 +108,19 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    private func initialize(_ urlToSync:String, authentication:[String:String]? = nil) {
-        /*
-        #if !DEBUG && !RELEASE
-            UIAlertView(title: "Sync Engine Error", message: "Add '-DDEBUG' and -DRELEASE in their respective sections of Project Build Settings ('Swift Compiler – Custom Flags' -> 'Other Swift Flags')", delegate: nil, cancelButtonTitle: "OK").show();
-        #endif
-        */
-        
-         
+    private func initialize(_ urlToSync:String, authorizationHandler:(()->(name:String, password:String))?) {
         _urlToSync = URL(string: urlToSync);
-        _authentication = authentication;
+        
+        //Adding Language Key
+        _headers["language"] = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as? String ?? "en";
+        
+        //Security Headers
+        if let authHeader = authorizationHandler?(), let data = "\(authHeader.name):\(authHeader.password)".data(using: .utf8) {
+            
+            let credential = data.base64EncodedString(options: [])
+            
+            _headers["Authorization"] = "Basic \(credential)";
+        }
     } //F.E.
     
     private func setupSyncedFile() {
@@ -358,10 +361,8 @@ open class SyncEngine: NSObject {
         //Content Type
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type");
         
-        if let authentication:[String:String] = _authentication {
-            for keyValue:(String, String) in authentication {
-                request.addValue(keyValue.1, forHTTPHeaderField: keyValue.0);
-            }
+        for keyValue:(String, String) in _headers {
+            request.addValue(keyValue.1, forHTTPHeaderField: keyValue.0);
         }
         
         //HTTP Body
@@ -401,7 +402,6 @@ open class SyncEngine: NSObject {
         
         //Updating server response date - local
         self.lastSyncedResponseDate = Date();
-        
         
         if let syncData:NSDictionary =  dict["sync_data"] as? NSDictionary {
             
