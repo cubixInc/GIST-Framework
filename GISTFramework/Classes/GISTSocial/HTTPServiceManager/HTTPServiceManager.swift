@@ -55,10 +55,17 @@ open class HTTPServiceManager: NSObject {
         //Adding Language Key
         _headers["language"] = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as? String ?? "en";
         
-        //Security Headers
-        if let authHeader = authorizationHandler?() {
-            self.authorizationHeader(user: authHeader.name, password: authHeader.password);
+        let urlToSync:String = _serverBaseURL.appendingPathComponent("se/get_all").absoluteString;
+        
+        guard let authHeader = authorizationHandler?() else {
+            return;
         }
+        
+        //Security Headers
+        self.authorizationHeader(user: authHeader.name, password: authHeader.password);
+        
+        //Initializing Sync Engine
+        SyncEngine.initialize(urlToSync, authorizationHandler: (name: authHeader.name, password: authHeader.password));
         
     } //F.E.
     
