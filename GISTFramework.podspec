@@ -153,9 +153,9 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  s.resources = "Synced\ Plists/*.plist"
+  # s.resources = "Synced\ Plists/*.plist"
 
-  s.preserve_paths = "Synced\ Plists"
+  # s.preserve_paths = "Synced\ Plists"
 
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
