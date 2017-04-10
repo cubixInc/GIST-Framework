@@ -165,7 +165,7 @@ open class HTTPServiceManager: NSObject {
     
     fileprivate func request(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
         
-        assert(_serverBaseURL == nil, "HTTPServiceManager.initialize(serverBaseURL: authorizationHandler:) not called.");
+        assert(_serverBaseURL != nil, "HTTPServiceManager.initialize(serverBaseURL: authorizationHandler:) not called.");
         
         let httpRequest:HTTPRequest = HTTPRequest(requestName: requestName, parameters: parameters, method: method, headers: _headers);
         
