@@ -28,6 +28,9 @@ open class ValidatedTextField: BaseUITextField {
     /// Bool flag for validating a valid phone number text.
     @IBInspectable open var validatePhone:Bool = false;
     
+    /// Bool flag for validating a valid email or phone number text.
+    @IBInspectable open var validateEmailOrPhone:Bool = false;
+    
     /// Bool flag for validating a valid url text.
     @IBInspectable open var validateURL:Bool = false;
     
@@ -134,6 +137,7 @@ open class ValidatedTextField: BaseUITextField {
         _isValid =
             (!validateEmail || self.isValidEmail()) &&
             (!validatePhone || self.isValidPhoneNo()) &&
+            (!validateEmailOrPhone || (self.isValidEmail() || self.isValidPhoneNo())) &&
             (!validateURL || self.isValidUrl()) &&
             (!validateNumeric || self.isNumeric()) &&
             (!validateAlphabetic || self.isAlphabetic()) &&

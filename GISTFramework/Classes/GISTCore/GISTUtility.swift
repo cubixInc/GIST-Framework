@@ -262,7 +262,7 @@ open class GISTUtility: NSObject {
     ///   - text: String
     ///   - regex: Ragex String
     /// - Returns: Bool whether the string is a valid regex string.
-    open class func isValidForRegex(_ text:String?, regex:String)->Bool {
+    open class func isValidForRegex(_ text:String?, regex:String) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -272,5 +272,38 @@ open class GISTUtility: NSObject {
         return predicate.evaluate(with: text!);
     } //F.E.
     
+    open class func validate(fields:ValidatedTextField ...) -> Bool {
+        return self.validate(fields: fields);
+    } //F.E.
+    
+    open class func validate(fields:[ValidatedTextField]) -> Bool {
+        var isValid:Bool = true;
+        
+        for field in fields {
+            if (!field.isValid) {
+                isValid = false;
+            }
+        }
+        
+        return isValid;
+        
+    } //F.E.
+    
+    
+    open class func formate(fields:BaseUITextField ...) -> [String:String] {
+        return self.formate(fields: fields);
+    } //F.E.
+    
+    open class func formate(fields:[BaseUITextField]) -> [String:String] {
+        var params:[String:String] = [:];
+        
+        for field in fields {
+            if let paramKey:String = field.paramKey {
+                params[paramKey] = field.text ?? "";
+            }
+        }
+        
+        return params;
+    } //F.E.
 
 } //CLS END

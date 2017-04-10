@@ -24,4 +24,26 @@ public class GISTGlobal: NSObject {
     public var baseURL:URL!
     public var apiURL:URL!
     
+    private var _user:User?
+    public var user:User? {
+        get {
+            
+            if _user == nil, let data: Data = UserDefaults.standard.object(forKey: "APP_USER") as? Data {
+                _user = NSKeyedUnarchiver.unarchiveObject(with: data) as? User;
+            }
+            
+            return _user;
+        }
+        
+        set {
+            _user = newValue;
+            
+            if let usr:User = _user {
+                let data = NSKeyedArchiver.archivedData(withRootObject: usr);
+                UserDefaults.standard.set(data, forKey: "APP_USER");
+                UserDefaults.standard.synchronize();
+            }
+        }
+    } //P.E.
+    
 } //F.E.

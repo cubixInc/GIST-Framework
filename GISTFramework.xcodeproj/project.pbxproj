@@ -21,6 +21,7 @@
 		484942CE1E73050E004F4A9B /* ValidatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942C21E73050E004F4A9B /* ValidatedTextView.swift */; };
 		484942D11E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942D01E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift */; };
 		484942D31E733576004F4A9B /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942D21E733576004F4A9B /* BaseViewProtocol.swift */; };
+		484D762B1E97D9F30095E71C /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484D762A1E97D9F30095E71C /* GISTAuth.swift */; };
 		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
 		487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */; };
 		489421C81D48954400310089 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489421C71D48954400310089 /* UIColor+Utility.swift */; };
@@ -79,6 +80,7 @@
 		48D59DCD1DB4081400B65A2E /* JSON+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */; };
 		48DA7E7D1D9E666200464066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */; };
 		48DA7E7F1D9E674F00464066 /* BaseUISearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */; };
+		48E192891E8BC1C600638528 /* GISTEnumNConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E192881E8BC1C600638528 /* GISTEnumNConstants.swift */; };
 		48EA5C521D0FD35B003FDDAF /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 48EA5C511D0FD35B003FDDAF /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48EB0AEA1D7FEFD700BD93BC /* GISTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */; };
 		48EB0AEC1D7FF45B00BD93BC /* GISTUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AEB1D7FF45B00BD93BC /* GISTUtility.swift */; };
@@ -102,6 +104,7 @@
 		484942C21E73050E004F4A9B /* ValidatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextView.swift; sourceTree = "<group>"; };
 		484942D01E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPopoverNavigationController.swift; sourceTree = "<group>"; };
 		484942D21E733576004F4A9B /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
+		484D762A1E97D9F30095E71C /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
 		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Utility.swift"; sourceTree = "<group>"; };
 		489421C71D48954400310089 /* UIColor+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 		48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Utility.swift"; sourceTree = "<group>"; };
 		48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
 		48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISearchController.swift; sourceTree = "<group>"; };
+		48E192881E8BC1C600638528 /* GISTEnumNConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTEnumNConstants.swift; sourceTree = "<group>"; };
 		48EA5C4E1D0FD35B003FDDAF /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EA5C511D0FD35B003FDDAF /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
 		48EA5C531D0FD35B003FDDAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 		48C4935A1E88F73900F14CF4 /* GISTSocial */ = {
 			isa = PBXGroup;
 			children = (
+				484D762A1E97D9F30095E71C /* GISTAuth.swift */,
 				48C4935B1E88F73900F14CF4 /* AppDelegate */,
 				48C4935D1E88F73900F14CF4 /* AppInfo */,
 				48C4935F1E88F73900F14CF4 /* Entities */,
@@ -345,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				48C493621E88F73900F14CF4 /* GISTGlobal.swift */,
+				48E192881E8BC1C600638528 /* GISTEnumNConstants.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -588,6 +594,7 @@
 				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
 				484942CC1E73050E004F4A9B /* UnderlinedUITextField.swift in Sources */,
 				48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */,
+				484D762B1E97D9F30095E71C /* GISTAuth.swift in Sources */,
 				48C493721E88F73900F14CF4 /* Mappable+ToDictionary.swift in Sources */,
 				48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
@@ -612,6 +619,7 @@
 				4895305C1D12AD4100DFD38B /* BaseUIDesignableButton.swift in Sources */,
 				489530591D12AD4100DFD38B /* BaseUIButton.swift in Sources */,
 				48C493731E88F73900F14CF4 /* ReachabilityHelper.swift in Sources */,
+				48E192891E8BC1C600638528 /* GISTEnumNConstants.swift in Sources */,
 				4895307B1D12AD4100DFD38B /* SyncedColors.swift in Sources */,
 				48CF84F91DF1564E008C7D85 /* GISTConfig.swift in Sources */,
 				489691E91DDE46E6001DDCE5 /* Weak.swift in Sources */,
