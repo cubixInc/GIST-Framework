@@ -25,7 +25,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         self.setupKeyboardManager();
         
         //Register For Push Notification
-        if (GIST_GLOBAL.user != nil) {
+        if (GIST_GLOBAL.user != nil ) {
             self.registerForPushNotifications();
         }
         

@@ -23,7 +23,7 @@ public var MANAGED_CONTEXT:NSManagedObjectContext {
 
 public class DataManager: NSObject {
     
-    private let DATA_BASE_NAME:String = "CoreData_\(AppInfo.versionNBuildNumber).sqlite";
+    private let DATA_BASE_NAME:String = "CoreData_V1.0.sqlite";
     private let DATA_BASE_MODEL:String = "CoreData"; // momd file
     
     public static var sharedManager: DataManager = DataManager();
@@ -192,7 +192,11 @@ public class DataManager: NSObject {
         let entities:[NSEntityDescription] = self.managedObjectModel.entities;
         
         for entity in entities {
-            self.deleteAllObjectsForEntityName(entity.name!);
+            if #available(iOS 9.0, *) {
+                self.deleteAllObjectsForEntityName(entity.name!)
+            } else {
+                // Fallback on earlier versions
+            };
         }
     } //F.E.
 
@@ -241,6 +245,10 @@ extension ManagedProtocol {
     } //F.E.
     
     static func cleanup() {
-        DATA_MANAGER.deleteAllObjectsForEntityName(self.entityName);
+        if #available(iOS 9.0, *) {
+            DATA_MANAGER.deleteAllObjectsForEntityName(self.entityName)
+        } else {
+            // Fallback on earlier versions
+        };
     }
 }
