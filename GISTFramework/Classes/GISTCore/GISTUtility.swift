@@ -280,7 +280,7 @@ open class GISTUtility: NSObject {
         var isValid:Bool = true;
         
         for field in fields {
-            if (!field.isValid) {
+            if (field.isValid == false) {
                 isValid = false;
             }
         }

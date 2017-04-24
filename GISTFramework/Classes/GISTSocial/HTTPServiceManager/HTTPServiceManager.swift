@@ -180,7 +180,10 @@ open class HTTPServiceManager: NSObject {
     public func request(httpRequest:HTTPRequest) {
         //Validation for internet connection
         guard (REACHABILITY_HELPER.isInternetConnected) else {
-            self.requestDidFailWithNoInternetConnection(httpRequest: httpRequest);
+            //Calling after delay so that block may initialize
+            GISTUtility.delay(0.01, closure: {
+                self.requestDidFailWithNoInternetConnection(httpRequest: httpRequest);
+            });
             return;
         }
         
@@ -224,7 +227,10 @@ open class HTTPServiceManager: NSObject {
         
         //Validation for internet connection
         guard (REACHABILITY_HELPER.isInternetConnected) else {
-            self.requestDidFailWithNoInternetConnection(httpRequest: httpRequest);
+            //Calling after delay so that block may initialize
+            GISTUtility.delay(0.01, closure: {
+                self.requestDidFailWithNoInternetConnection(httpRequest: httpRequest);
+            });
             return;
         }
         
@@ -276,6 +282,7 @@ open class HTTPServiceManager: NSObject {
                         NSLocalizedDescriptionKey: errorMessage,
                         "data":dictData["data"]
                     ]
+                    
                     let error = NSError(domain: "com.cubix.gist", code: errorCode, userInfo: userInfo);
                     
                     if (invalidSession == 0) {

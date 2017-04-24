@@ -52,8 +52,8 @@ import ObjectMapper
 
 open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 	public var additionalNote: String?;
-	public var cityId: NSNumber?;
-	public var countryId: NSNumber?;
+	public var cityId: Int?;
+	public var countryId: Int?;
 	public var createdAt: String?;
 	public var deviceToken: String?;
 	public var deviceType: String?;
@@ -64,9 +64,9 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 	public var forgotPasswordTokenCreatedAt: String?;
 	public var gender: String?;
 	public var image: String?;
-	public var isGuest: NSNumber?;
-	public var isMobileVerified: NSNumber?;
-	public var isVerified: NSNumber?;
+	public var isGuest: Bool?;
+	public var isMobileVerified: Bool?;
+	public var isVerified: Bool?;
 	public var lastLoginAt: String?;
 	public var lastName: String?;
 	public var lastSeenAt: String?;
@@ -75,11 +75,11 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 	public var otherData: String?;
 	public var platformType: String?;
 	public var rememberLoginTokenCreatedAt: String?;
-	public var stateId: NSNumber?;
-	public var status: NSNumber?;
+	public var stateId: Int?;
+	public var status: Int?;
 	public var thumb: String?;
 	public var updatedAt: String?;
-	public var userId: NSNumber?;
+	public var userId: Int?;
 	public var userName: String?;
 	public var zipCode: String?;
     
@@ -128,8 +128,8 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 
 	required public init(coder aDecoder: NSCoder) {
 		additionalNote = aDecoder.decodeObject(forKey: "additional_note") as? String;
-		cityId = aDecoder.decodeObject(forKey: "city_id") as? NSNumber;
-		countryId = aDecoder.decodeObject(forKey: "country_id") as? NSNumber;
+		cityId = aDecoder.decodeObject(forKey: "city_id") as? Int;
+		countryId = aDecoder.decodeObject(forKey: "country_id") as? Int;
 		createdAt = aDecoder.decodeObject(forKey: "created_at") as? String;
 		deviceToken = aDecoder.decodeObject(forKey: "device_token") as? String;
 		deviceType = aDecoder.decodeObject(forKey: "device_type") as? String;
@@ -140,9 +140,9 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		forgotPasswordTokenCreatedAt = aDecoder.decodeObject(forKey: "forgot_password_token_created_at") as? String;
 		gender = aDecoder.decodeObject(forKey: "gender") as? String;
 		image = aDecoder.decodeObject(forKey: "image") as? String;
-		isGuest = aDecoder.decodeObject(forKey: "is_guest") as? NSNumber;
-		isMobileVerified = aDecoder.decodeObject(forKey: "is_mobile_verified") as? NSNumber;
-		isVerified = aDecoder.decodeObject(forKey: "is_verified") as? NSNumber;
+		isGuest = aDecoder.decodeObject(forKey: "is_guest") as? Bool;
+		isMobileVerified = aDecoder.decodeObject(forKey: "is_mobile_verified") as? Bool;
+		isVerified = aDecoder.decodeObject(forKey: "is_verified") as? Bool;
 		lastLoginAt = aDecoder.decodeObject(forKey: "last_login_at") as? String;
 		lastName = aDecoder.decodeObject(forKey: "last_name") as? String;
 		lastSeenAt = aDecoder.decodeObject(forKey: "last_seen_at") as? String;
@@ -151,11 +151,11 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		otherData = aDecoder.decodeObject(forKey: "other_data") as? String;
 		platformType = aDecoder.decodeObject(forKey: "platform_type") as? String;
 		rememberLoginTokenCreatedAt = aDecoder.decodeObject(forKey: "remember_login_token_created_at") as? String;
-		stateId = aDecoder.decodeObject(forKey: "state_id") as? NSNumber;
-		status = aDecoder.decodeObject(forKey: "status") as? NSNumber;
+		stateId = aDecoder.decodeObject(forKey: "state_id") as? Int;
+		status = aDecoder.decodeObject(forKey: "status") as? Int;
 		thumb = aDecoder.decodeObject(forKey: "thumb") as? String;
 		updatedAt = aDecoder.decodeObject(forKey: "updated_at") as? String;
-		userId = aDecoder.decodeObject(forKey: "user_id") as? NSNumber;
+		userId = aDecoder.decodeObject(forKey: "user_id") as? Int;
 		userName = aDecoder.decodeObject(forKey: "user_name") as? String;
 		zipCode = aDecoder.decodeObject(forKey: "zip_code") as? String;
 	}

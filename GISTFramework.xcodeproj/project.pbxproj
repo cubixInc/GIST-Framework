@@ -65,6 +65,8 @@
 		48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */; };
 		48BE3B3A1E77D8BF003C3198 /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */; };
 		48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */; };
+		48C017071EADE6D2008FB1B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C017051EADE6D2008FB1B9 /* DataManager.swift */; };
+		48C017081EADE6D2008FB1B9 /* ManagedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C017061EADE6D2008FB1B9 /* ManagedParser.swift */; };
 		48C4936D1E88F73900F14CF4 /* GISTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4935C1E88F73900F14CF4 /* GISTAppDelegate.swift */; };
 		48C4936E1E88F73900F14CF4 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4935E1E88F73900F14CF4 /* AppInfo.swift */; };
 		48C4936F1E88F73900F14CF4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C493601E88F73900F14CF4 /* User.swift */; };
@@ -148,6 +150,8 @@
 		48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPageControl.swift; sourceTree = "<group>"; };
 		48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
 		48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Utility.swift"; sourceTree = "<group>"; };
+		48C017051EADE6D2008FB1B9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		48C017061EADE6D2008FB1B9 /* ManagedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedParser.swift; sourceTree = "<group>"; };
 		48C4935C1E88F73900F14CF4 /* GISTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAppDelegate.swift; sourceTree = "<group>"; };
 		48C4935E1E88F73900F14CF4 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		48C493601E88F73900F14CF4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -305,10 +309,20 @@
 			path = SubClasses;
 			sourceTree = "<group>";
 		};
+		48C017041EADE6D2008FB1B9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				48C017051EADE6D2008FB1B9 /* DataManager.swift */,
+				48C017061EADE6D2008FB1B9 /* ManagedParser.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		48C4935A1E88F73900F14CF4 /* GISTSocial */ = {
 			isa = PBXGroup;
 			children = (
 				484D762A1E97D9F30095E71C /* GISTAuth.swift */,
+				48C017041EADE6D2008FB1B9 /* CoreData */,
 				48C4935B1E88F73900F14CF4 /* AppDelegate */,
 				48C4935D1E88F73900F14CF4 /* AppInfo */,
 				48C4935F1E88F73900F14CF4 /* Entities */,
@@ -589,11 +603,13 @@
 				484942CE1E73050E004F4A9B /* ValidatedTextView.swift in Sources */,
 				489421C81D48954400310089 /* UIColor+Utility.swift in Sources */,
 				48EB0AEA1D7FEFD700BD93BC /* GISTApplication.swift in Sources */,
+				48C017081EADE6D2008FB1B9 /* ManagedParser.swift in Sources */,
 				484942C91E73050E004F4A9B /* PopoverControllerView.swift in Sources */,
 				48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */,
 				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
 				484942CC1E73050E004F4A9B /* UnderlinedUITextField.swift in Sources */,
 				48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */,
+				48C017071EADE6D2008FB1B9 /* DataManager.swift in Sources */,
 				484D762B1E97D9F30095E71C /* GISTAuth.swift in Sources */,
 				48C493721E88F73900F14CF4 /* Mappable+ToDictionary.swift in Sources */,
 				48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */,

@@ -47,6 +47,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         print("APNs device token: \(deviceTokenString)")
 
         GIST_GLOBAL.deviceToken = deviceTokenString;
+        GISTAuth.savePushToken();
     } //F.E.
     
     open func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -73,6 +74,8 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     } //F.E.
 
     open func applicationWillTerminate(_ application: UIApplication) {
+        DATA_MANAGER.saveContext();
+        
         GISTApplication.sharedInstance.applicationWillTerminate(application);
     } //F.E.
     

@@ -15,54 +15,66 @@ private let SOCIAL_SIGN_IN_REQUEST = "users/social_login";
 
 private let EDIT_PROFILE_REQUEST = "users/edit_profile";
 
+private let SAVE_TOKEN_REQUEST = "users/save_token";
+
 public class GISTAuth: NSObject {
     
     static let shared = GISTAuth();
     
     public typealias GISTAuthCompletion = (_ user:User, _ rawData:Any?) -> Void
+    public typealias GISTAuthFailure = (_ error:NSError) -> Void
     
     //PRIVATE init so that singleton class should not be reinitialized from anyother class
     fileprivate override init() {} //C.E.
     
-    @discardableResult
-    public static func signUp(fields:ValidatedTextField ..., completion:@escaping GISTAuthCompletion) -> HTTPRequest? {
-        return self.shared.request(service: SIGN_IN_REQUEST, fields: fields, completion:completion);
+    public static func signUp(fields:ValidatedTextField ..., completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure? = nil) {
+        self.shared.request(service: SIGN_UP_REQUEST, fields: fields, completion:completion, failure:failure);
     } //F.E.
     
-    @discardableResult
-    public static func signUp(params:[String:Any], completion:@escaping GISTAuthCompletion) -> HTTPRequest? {
-        return self.shared.request(service: SIGN_IN_REQUEST, params: params, completion:completion);
+    public static func signUp(params:[String:Any], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure? = nil) {
+        self.shared.request(service: SIGN_UP_REQUEST, params: params, completion:completion, failure:failure);
     } //F.E.
     
-    @discardableResult
-    public static func signIn(fields:ValidatedTextField ..., completion:@escaping GISTAuthCompletion) -> HTTPRequest? {
-        return self.shared.request(service: SIGN_UP_REQUEST, fields: fields, completion:completion);
+    public static func signIn(fields:ValidatedTextField ..., completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure? = nil) {
+        self.shared.request(service: SIGN_IN_REQUEST, fields: fields, completion:completion, failure:failure);
     } //F.E.
     
-    @discardableResult
-    public static func signIn(params:[String:Any], completion:@escaping GISTAuthCompletion) -> HTTPRequest? {
-        return self.shared.request(service: SIGN_UP_REQUEST, params: params, completion:completion);
+    public static func signIn(params:[String:Any], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure? = nil) {
+        self.shared.request(service: SIGN_IN_REQUEST, params: params, completion:completion, failure:failure);
     } //F.E.
     
-    @discardableResult
-    public static func socialSignIn(user:User, completion:@escaping GISTAuthCompletion) -> HTTPRequest? {
-        return self.shared.request(service: SOCIAL_SIGN_IN_REQUEST, params: user.toDictionary() as! [String : Any], completion:completion);
+    public static func socialSignIn(user:User, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure? = nil) {
+        self.shared.request(service: SOCIAL_SIGN_IN_REQUEST, params: user.toDictionary() as! [String : Any], completion:completion, failure:failure);
     } //F.E.
     
-    @discardableResult
-    public static func editProfile(user:User, completion:@escaping GISTAuthCompletion) -> HTTPRequest? {
-        return self.shared.request(service: EDIT_PROFILE_REQUEST, params: user.toDictionary() as! [String : Any], completion:completion);
+    public static func editProfile(user:User, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure? = nil) {
+        self.shared.request(service: EDIT_PROFILE_REQUEST, params: user.toDictionary() as! [String : Any], completion:completion, failure:failure);
     } //F.E.
     
-    func request(service:String, fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion) -> HTTPRequest? {
-        guard GISTUtility.validate(fields: fields) else {
-            return nil;
+    public static func savePushToken() {
+        guard let user:User = GIST_GLOBAL.user, GIST_GLOBAL.deviceToken != nil else {
+            return;
         }
         
-        return self.request(service: service, params: GISTUtility.formate(fields: fields), completion:completion);
+        let params:[String:Any] = ["user_id":user.userId!];
+        
+        self.shared.request(service: SAVE_TOKEN_REQUEST, params: params, completion:nil, failure:nil);
     } //F.E.
     
-    func request(service:String, params:[String:Any], completion:@escaping GISTAuthCompletion) -> HTTPRequest  {
+    func request(service:String, fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure? = nil) {
+        
+        guard GISTUtility.validate(fields: fields) else {
+            if (failure != nil) {
+                let error = NSError(domain: "com.cubix.gist", code: -1, userInfo: nil);
+                failure!(error);
+            }
+            return;
+        }
+        
+        self.request(service: service, params: GISTUtility.formate(fields: fields), completion:completion, failure:failure);
+    } //F.E.
+    
+    func request(service:String, params:[String:Any], completion:GISTAuthCompletion?, failure:GISTAuthFailure? = nil)  {
         
         var uParams:[String:Any] = params;
         uParams["device_type"] = "ios";
@@ -80,11 +92,13 @@ public class GISTAuth: NSObject {
                 
                 GIST_GLOBAL.user = user;
                 
-                completion(user, data);
+                completion?(user, data);
             }
         }
         
-        return httpRequest;
+        if (failure != nil) {
+            httpRequest.onFailure(response: failure!);
+        }
     } //F.E.
 
 } //CLS END

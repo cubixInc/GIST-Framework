@@ -137,7 +137,7 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/SyncEngine'
 
     sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
-    sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.8'
+    sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.9'
   end
 
   s.pod_target_xcconfig = {
