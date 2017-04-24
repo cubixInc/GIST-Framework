@@ -46,4 +46,23 @@ public class GISTGlobal: NSObject {
         }
     } //P.E.
     
+    private var _hasAskedForApnsPermission:Bool?
+    public var hasAskedForApnsPermission:Bool {
+        get {
+            
+            if _hasAskedForApnsPermission == nil {
+                _hasAskedForApnsPermission = UserDefaults.standard.bool(forKey: "ASKED_APNS_PERMISSION");
+            }
+            
+            return _hasAskedForApnsPermission!;
+        }
+        
+        set {
+            _hasAskedForApnsPermission = newValue;
+            
+            UserDefaults.standard.set(_hasAskedForApnsPermission, forKey: "ASKED_APNS_PERMISSION");
+            UserDefaults.standard.synchronize();
+        }
+    } //P.E.
+    
 } //F.E.

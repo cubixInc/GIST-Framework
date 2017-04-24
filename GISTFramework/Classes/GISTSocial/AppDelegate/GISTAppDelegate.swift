@@ -25,7 +25,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         self.setupKeyboardManager();
         
         //Register For Push Notification
-        if (GIST_GLOBAL.user != nil ) {
+        if (GIST_GLOBAL.user != nil && GIST_GLOBAL.hasAskedForApnsPermission) {
             self.registerForPushNotifications();
         }
         
@@ -106,6 +106,9 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     
     //MARK: - Notification Settings
     open func registerForPushNotifications() {
+        //Flagging on
+        GIST_GLOBAL.hasAskedForApnsPermission = true;
+        
         //Registe for Notifications
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()

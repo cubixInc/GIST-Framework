@@ -70,7 +70,7 @@ public class DataManager: NSObject {
     
     
     // MARK: - Core Data Saving support
-    func saveContext () {
+    public func saveContext () {
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
@@ -84,19 +84,19 @@ public class DataManager: NSObject {
         }
     } // F.E.
     
-    func checkIfObjectExists(_ entityName:String, key:String, value:String)-> Bool {
+    public func checkIfObjectExists(_ entityName:String, key:String, value:String)-> Bool {
         let count:Int = self.fetchObjectsCountForEntity(entityName, queryString: "\(key)==\(value)");
         //--
         return (count>0);
     } //F.E
     
-    func fetchObjectsCountForEntity(_ entityName:String, queryString:String?)-> Int {
+    public func fetchObjectsCountForEntity(_ entityName:String, queryString:String?)-> Int {
         let predicate:NSPredicate? = (queryString == nil) ? nil: NSPredicate(format: queryString!, argumentArray: nil);
         //--
         return self.fetchObjectsCountForEntity(entityName, predicate:predicate);
     } //F.E.
     
-    func fetchObjectsCountForEntity(_ entityName:String, predicate:NSPredicate?)-> Int {
+    public func fetchObjectsCountForEntity(_ entityName:String, predicate:NSPredicate?)-> Int {
         
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>();
         
@@ -122,11 +122,11 @@ public class DataManager: NSObject {
         return count
     } //F.E.
     
-    func fetchObjectsForEntityName<T:NSFetchRequestResult>(_ entityName:String, predicate:NSPredicate?, descriptor:NSSortDescriptor?)->[T] {
+    public func fetchObjectsForEntityName<T:NSFetchRequestResult>(_ entityName:String, predicate:NSPredicate?, descriptor:NSSortDescriptor?)->[T] {
         return fetchObjectsForEntityName(entityName, predicate:predicate, descriptors: (descriptor == nil) ?nil:[descriptor!]);
     } //F.E.
     
-    func fetchObjectsForEntityName<T:NSFetchRequestResult>(_ entityName:String, predicate:NSPredicate?, descriptors:[NSSortDescriptor]?)->[T] {
+    public func fetchObjectsForEntityName<T:NSFetchRequestResult>(_ entityName:String, predicate:NSPredicate?, descriptors:[NSSortDescriptor]?)->[T] {
         
         var rtnArr:[T]?
         
@@ -148,7 +148,7 @@ public class DataManager: NSObject {
         return rtnArr!;
     } //F.E.
     
-    func insertSingleObjectForEntityName<T:NSManagedObject>(_ entityName: String, uniquekey key:String, uniquekeyValue value:Any) -> T {
+    public func insertSingleObjectForEntityName<T:NSManagedObject>(_ entityName: String, uniquekey key:String, uniquekeyValue value:Any) -> T {
         
         var managedObj:NSManagedObject?;
         
@@ -165,7 +165,7 @@ public class DataManager: NSObject {
         return managedObj as! T;
     } //F.E.
     
-    func deleteObjectsForEntityName(_ entityName:String, predicate:NSPredicate?){
+    public func deleteObjectsForEntityName(_ entityName:String, predicate:NSPredicate?){
         let arr:[NSManagedObject] = self.fetchObjectsForEntityName(entityName, predicate: predicate, descriptor: nil);
         
         for item in arr {
@@ -176,7 +176,7 @@ public class DataManager: NSObject {
     } //F.E.
     
     @available(iOS 9.0, *)
-    func deleteAllObjectsForEntityName(_ entityName:String) {
+    public func deleteAllObjectsForEntityName(_ entityName:String) {
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName:entityName);
        
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -188,7 +188,7 @@ public class DataManager: NSObject {
         }
     } //F.E.
     
-    func deleteAllData() {
+    public func deleteAllData() {
         let entities:[NSEntityDescription] = self.managedObjectModel.entities;
         
         for entity in entities {
@@ -202,15 +202,15 @@ public class DataManager: NSObject {
 
 } //CLS END
 
-@objc protocol ManagedProtocol {
+@objc public protocol ManagedProtocol {
     static var entityName:String {get};
     static var uniqueKey:String {get};
     
     static func addEntry(_ data:[String:Any], saveContext:Bool) -> ManagedProtocol;
 }
 
-extension ManagedProtocol {
-    static func addEntries<T:ManagedProtocol>(_ objectArray: NSArray, cleanup:Bool = false) -> [T]? {
+public extension ManagedProtocol {
+    static public func addEntries<T:ManagedProtocol>(_ objectArray: NSArray, cleanup:Bool = false) -> [T]? {
         
         guard objectArray.count > 0 else {
             
@@ -244,7 +244,7 @@ extension ManagedProtocol {
         return (rtnArr as? [T])
     } //F.E.
     
-    static func cleanup() {
+    public static func cleanup() {
         if #available(iOS 9.0, *) {
             DATA_MANAGER.deleteAllObjectsForEntityName(self.entityName)
         } else {
