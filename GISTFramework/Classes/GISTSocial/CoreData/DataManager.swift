@@ -175,6 +175,7 @@ public class DataManager: NSObject {
         self.saveContext();
     } //F.E.
     
+    @available(iOS 9.0, *)
     func deleteAllObjectsForEntityName(_ entityName:String) {
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName:entityName);
        
