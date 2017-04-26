@@ -97,7 +97,7 @@ open class ValidatedTextField: BaseUITextField {
         get {
             let cValid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
             
-            self.invalidSignBtn.isHidden = cValid;
+            self.isInvalidSignHidden = cValid;
             
             return cValid;
         }
@@ -107,6 +107,12 @@ open class ValidatedTextField: BaseUITextField {
     open override var text: String? {
         didSet {
             self.validateText();
+        }
+    } //P.E.
+    
+    open var isInvalidSignHidden:Bool = true {
+        didSet {
+            self.invalidSignBtn.isHidden = isInvalidSignHidden;
         }
     } //P.E.
     
@@ -146,7 +152,7 @@ open class ValidatedTextField: BaseUITextField {
             ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
         
-        self.invalidSignBtn.isHidden = (_isValid || _isEmpty);
+        self.isInvalidSignHidden = (_isValid || _isEmpty);
     } //F.E.
     
     /// Validats for an empty text

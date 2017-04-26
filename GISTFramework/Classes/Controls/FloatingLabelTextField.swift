@@ -197,6 +197,18 @@ open class FloatingLabelTextField: ValidatedTextField {
         }
     } // P.E.
     
+    open override var isInvalidSignHidden: Bool {
+        set {
+            super.isInvalidSignHidden = newValue;
+            
+            self.errorMessage = (isInvalidSignHidden == false) ? self.validityMsg:nil;
+        }
+        
+        get {
+            return super.isInvalidSignHidden
+        }
+    } //P.E.
+    
     
     // MARK: - Initializers
     
@@ -219,17 +231,6 @@ open class FloatingLabelTextField: ValidatedTextField {
         
         self.setupFloatingLabel();
     }
-    
-    // MARK: - Overridden Methods
-    
-    /// Overridden property to get text changes.
-    ///
-    /// - Parameter textField: UITextField
-    open override func textFieldDidEndEditing(_ textField: UITextField) {
-        super.textFieldDidEndEditing(textField);
-        
-        self.errorMessage = (self.isValid == false) ? self.validityMsg:nil;
-    } //F.E.
     
     // MARK: - Methods
     

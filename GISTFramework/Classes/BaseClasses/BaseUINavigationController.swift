@@ -23,10 +23,8 @@ open class BaseUINavigationController: UINavigationController {
             
             //Fixing black line issue when the navigation is transparent
             if self.navigationBar.barTintColor?.cgColor.alpha == 0 {
-                self.navigationBar.setBackgroundImage(UIImage(), for: .default);
-                self.navigationBar.shadowImage = UIImage();
+                self.hasSeparator = false;
             }
-            
         }
     } //P.E.
     
@@ -67,6 +65,19 @@ open class BaseUINavigationController: UINavigationController {
             attrDict[NSForegroundColorAttributeName] = SyncedColors.color(forKey: fontColor);
             
             self.navigationBar.titleTextAttributes = attrDict;
+        }
+    } //P.E.
+    
+    /// Flag for Navigation Separator Line - default value is true
+    @IBInspectable open var hasSeparator:Bool = true {
+        didSet {
+            if (!hasSeparator) {
+                self.navigationBar.setBackgroundImage(UIImage(), for: .default);
+                self.navigationBar.shadowImage = UIImage();
+            } else {
+                self.navigationBar.setBackgroundImage(nil, for: .default);
+                self.navigationBar.shadowImage = nil;
+            }
         }
     } //P.E.
     

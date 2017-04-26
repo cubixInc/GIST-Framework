@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol TutorialViewLayout {
-    func updateLayout(_ data:AnyObject);
+    func updateLayout(_ data:Any);
 } //P.E.
 
 public protocol TutorialViewDelegate {
@@ -75,6 +75,8 @@ open class TutorialView: BaseUIView, UIScrollViewDelegate {
             if (_scrollView == nil) {
                 _scrollView = UIScrollView();
                 _scrollView!.isPagingEnabled = true;
+                _scrollView!.showsHorizontalScrollIndicator = false;
+                _scrollView!.showsVerticalScrollIndicator = false;
                 _scrollView!.delegate = self;
                 self.addSubview(_scrollView!);
             }
