@@ -92,6 +92,15 @@ open class ValidatedTextField: BaseUITextField {
     
     public var phoneNumber:PhoneNumber?;
     
+    private var _data:Any?
+    
+    /// Holds Data.
+    open var data:Any? {
+        get {
+            return _data;
+        }
+    } //P.E.
+    
     /// Flag for whether the input is valid or not.
     open var isValid:Bool {
         get {
@@ -130,11 +139,48 @@ open class ValidatedTextField: BaseUITextField {
     /// - Parameter textField: UITextField
     open override func textFieldDidEndEditing(_ textField: UITextField) {
         super.textFieldDidEndEditing(textField);
-         
+        
+        //Updating text in the holding dictionary
+        let dicData:NSMutableDictionary? = data as? NSMutableDictionary;
+        dicData?["text"] = textField.text;
+        
+        //Validating the input
         self.validateText();
     } //F.E.
-    
+
     //MARK: - Methods
+    
+    open func updateData(_ data: Any?) {
+        _data = data;
+        
+        let dicData:NSMutableDictionary? = data as? NSMutableDictionary;
+        
+        //First set the validations
+        self.validateEmpty = dicData?["validateEmpty"] as? Bool ?? false;
+        self.validateEmail = dicData?["validateEmail"] as? Bool ?? false;
+        self.validatePhone = dicData?["validatePhone"] as? Bool ?? false;
+        self.validateEmailOrPhone = dicData?["validateEmailOrPhone"] as? Bool ?? false;
+        self.validateURL = dicData?["validateURL"] as? Bool ?? false;
+        self.validateRegex = dicData?["validateRegex"] as? String ?? "";
+        self.minChar = dicData?["minChar"] as? Int ?? 0;
+        self.maxChar = dicData?["maxChar"] as? Int ?? 0;
+        
+        self.validityMsg = dicData?["validityMsg"] as? String;
+        
+        //Set the text and placeholder
+        self.text = dicData?["text"] as? String;
+        self.placeholder = dicData?["placeholder"] as? String;
+        
+        //Set the character Limit
+        self.maxCharLimit = dicData?["maxCharLimit"] as? Int ?? 50;
+        
+        //Set the is password check
+        self.isSecureTextEntry = dicData?["isSecureTextEntry"] as? Bool ?? false;
+        
+        if let validated:Bool = dicData?["validated"] as? Bool, validated == true {
+            self.isInvalidSignHidden = (_isValid && (!validateEmpty || !_isEmpty));
+        }
+    } //F.E.
     
     /// Validating in input and updating the flags of isValid and isEmpty.
     private func validateText() {
@@ -151,8 +197,12 @@ open class ValidatedTextField: BaseUITextField {
             ((maxChar == 0) || self.isValidForMaxChar(maxChar)) &&
             ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
-        
         self.isInvalidSignHidden = (_isValid || _isEmpty);
+        
+        if let dicData:NSMutableDictionary = self.data as? NSMutableDictionary {
+            dicData["isValid"] = (_isValid && (!validateEmpty || !_isEmpty));
+        }
+        
     } //F.E.
     
     /// Validats for an empty text

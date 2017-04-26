@@ -36,6 +36,14 @@ open class FloatingLabelTextField: ValidatedTextField {
     // MARK: Font Style
     
     /// Font size/style key from Sync Engine.
+    
+    /// Font name key from Sync Engine.
+    @IBInspectable open var titleFontName:String = GIST_CONFIG.fontName {
+        didSet {
+            self.titleLabel.fontName = self.titleFontName;
+        }
+    }
+    
     @IBInspectable open var titleFontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
             self.titleLabel.fontStyle = self.titleFontStyle;
@@ -269,7 +277,8 @@ open class FloatingLabelTextField: ValidatedTextField {
     private func createTitleLabel() {
         let titleLabel = BaseUILabel()
         titleLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        titleLabel.fontName = self.fontName;
+        titleLabel.fontName = self.titleFontName;
+        titleLabel.fontStyle = self.titleFontStyle;
         titleLabel.alpha = 0.0
         self.addSubview(titleLabel)
         self.titleLabel = titleLabel
@@ -294,6 +303,14 @@ open class FloatingLabelTextField: ValidatedTextField {
     }
     
     // MARK: Responder handling
+    
+    open override func updateData(_ data: Any?) {
+        super.updateData(data);
+        
+        let dicData:NSMutableDictionary? = data as? NSMutableDictionary;
+        
+        self.title = dicData?["title"] as? String;
+    } //F.E.
     
     /**
      Attempt the control to become the first responder
@@ -508,7 +525,7 @@ open class FloatingLabelTextField: ValidatedTextField {
             let font = titleLabel.font {
             return font.lineHeight
         }
-        return 15.0
+        return GISTUtility.convertToRatio(15.0, sizedForIPad: self.sizeForIPad);
     }
     
     /**
@@ -516,7 +533,7 @@ open class FloatingLabelTextField: ValidatedTextField {
      -returns: the calculated height of the textfield. Override to size the textfield with a different height
      */
     open func textHeight() -> CGFloat {
-        return self.font!.lineHeight + 7.0
+        return self.font!.lineHeight + GISTUtility.convertToRatio(7.0, sizedForIPad: self.sizeForIPad);
     }
     
     // MARK: - Layout

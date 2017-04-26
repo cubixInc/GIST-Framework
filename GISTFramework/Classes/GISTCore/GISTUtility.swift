@@ -280,8 +280,8 @@ open class GISTUtility: NSObject {
         var isValid:Bool = true;
         
         for field in fields {
-            if (field.isValid == false) {
-                isValid = false;
+            if (field.isValid == false && isValid == true) {
+                isValid = false; // The reason on not breaking loop here is that each field should call its isValid propert to update view
             }
         }
         
@@ -289,6 +289,24 @@ open class GISTUtility: NSObject {
         
     } //F.E.
     
+    open class func validate(array:NSMutableArray) -> Bool {
+        var isValid:Bool = true;
+        
+        for i in 0 ..< array.count {
+            let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
+            
+            dict?["validated"] = true;
+            
+            let isFieldValid:Bool = dict?["isValid"] as? Bool ?? false;
+            
+            if (isFieldValid == false && isValid == true) {
+                isValid = false; // The reason on not breaking loop here is that each field should call its isValid propert to update view
+            }
+        }
+        
+        return isValid;
+        
+    } //F.E.
     
     open class func formate(fields:BaseUITextField ...) -> [String:String] {
         return self.formate(fields: fields);
@@ -298,8 +316,22 @@ open class GISTUtility: NSObject {
         var params:[String:String] = [:];
         
         for field in fields {
-            if let paramKey:String = field.paramKey {
-                params[paramKey] = field.text ?? "";
+            if let paramKey:String = field.paramKey, let text:String = field.text {
+                params[paramKey] = text;
+            }
+        }
+        
+        return params;
+    } //F.E.
+    
+    open class func formate(array:NSMutableArray) -> [String:String] {
+        var params:[String:String] = [:];
+        
+        for i in 0 ..< array.count {
+            let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
+            
+            if let paramKey:String = dict?["paramKey"] as? String, let text:String = dict?["text"] as? String {
+                params[paramKey] = text;
             }
         }
         
