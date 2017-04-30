@@ -102,7 +102,7 @@ open class BaseUITextView: UITextView, BaseView {
         }
     } //P.E.
     
-    /// Sete placeholder text from SyncEngine (Hint '#' prefix).
+    /// Sets placeholder text from SyncEngine (Hint '#' prefix).
     @IBInspectable open var placeholder:String? {
         set {
             if (newValue != nil) {

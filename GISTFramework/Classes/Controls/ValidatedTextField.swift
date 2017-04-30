@@ -147,7 +147,7 @@ open class ValidatedTextField: BaseUITextField {
         //Validating the input
         self.validateText();
     } //F.E.
-
+    
     //MARK: - Methods
     
     open func updateData(_ data: Any?) {
@@ -160,11 +160,6 @@ open class ValidatedTextField: BaseUITextField {
         self.validateEmail = dicData?["validateEmail"] as? Bool ?? false;
         self.validatePhone = dicData?["validatePhone"] as? Bool ?? false;
         self.validateEmailOrPhone = dicData?["validateEmailOrPhone"] as? Bool ?? false;
-        self.validateURL = dicData?["validateURL"] as? Bool ?? false;
-        self.validateRegex = dicData?["validateRegex"] as? String ?? "";
-        self.minChar = dicData?["minChar"] as? Int ?? 0;
-        self.maxChar = dicData?["maxChar"] as? Int ?? 0;
-        
         self.validityMsg = dicData?["validityMsg"] as? String;
         
         //Set the text and placeholder
@@ -172,10 +167,14 @@ open class ValidatedTextField: BaseUITextField {
         self.placeholder = dicData?["placeholder"] as? String;
         
         //Set the character Limit
+        self.minChar = dicData?["minChar"] as? Int ?? 0;
+        self.maxChar = dicData?["maxChar"] as? Int ?? 0;
+        
         self.maxCharLimit = dicData?["maxCharLimit"] as? Int ?? 50;
         
         //Set the is password check
         self.isSecureTextEntry = dicData?["isSecureTextEntry"] as? Bool ?? false;
+        self.isUserInteractionEnabled = dicData?["isUserInteractionEnabled"] as? Bool ?? true;
         
         if let validated:Bool = dicData?["validated"] as? Bool, validated == true {
             self.isInvalidSignHidden = (_isValid && (!validateEmpty || !_isEmpty));

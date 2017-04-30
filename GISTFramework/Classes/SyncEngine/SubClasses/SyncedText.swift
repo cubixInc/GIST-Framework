@@ -36,7 +36,11 @@ open class SyncedText: SyncEngine {
     } //F.E.
     
     func text(forKey key: String) -> String {
-        return (super.objectForKey(key.trimmingCharacters(in: CharacterSet(charactersIn: "#")))) ?? key
+        if let rtnTxt:String = (super.objectForKey(key.trimmingCharacters(in: CharacterSet(charactersIn: "#")))) {
+            return rtnTxt.replacingOccurrences(of: "\\n", with: "\n");
+        } else {
+            return  key;
+        }
     } //F.E.
     
 } //CLS END

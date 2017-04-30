@@ -62,6 +62,8 @@
 		48A518801E5199FB006AE30A /* BaseUIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A5187F1E5199FB006AE30A /* BaseUIStackView.swift */; };
 		48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */; };
 		48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */; };
+		48B698311EB316C100E1DC9E /* PinCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B698301EB316C100E1DC9E /* PinCodeTextField.swift */; };
+		48B698331EB3219500E1DC9E /* Int+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B698321EB3219500E1DC9E /* Int+Utility.swift */; };
 		48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */; };
 		48BE3B3A1E77D8BF003C3198 /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */; };
 		48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */; };
@@ -147,6 +149,8 @@
 		48A5187F1E5199FB006AE30A /* BaseUIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIStackView.swift; sourceTree = "<group>"; };
 		48B1371B1DF5400500842204 /* BaseUIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIBarButtonItem.swift; sourceTree = "<group>"; };
 		48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
+		48B698301EB316C100E1DC9E /* PinCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextField.swift; sourceTree = "<group>"; };
+		48B698321EB3219500E1DC9E /* Int+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Utility.swift"; sourceTree = "<group>"; };
 		48BD58A81DF948D400E4274D /* BaseUIPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPageControl.swift; sourceTree = "<group>"; };
 		48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
 		48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Utility.swift"; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				484942C01E73050E004F4A9B /* UnderlinedUITextField.swift */,
 				484942C11E73050E004F4A9B /* ValidatedTextField.swift */,
 				484942C21E73050E004F4A9B /* ValidatedTextView.swift */,
+				48B698301EB316C100E1DC9E /* PinCodeTextField.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				4895304D1D12AD4100DFD38B /* UITableView+Utility.swift */,
 				4895304E1D12AD4100DFD38B /* UIView+Sync.swift */,
 				4895304F1D12AD4100DFD38B /* UIView+Utility.swift */,
+				48B698321EB3219500E1DC9E /* Int+Utility.swift */,
 				489D8CA21D23A6AE0020515D /* UIApplication+Utility.swift */,
 				48991B0B1D460C60007467A4 /* Array+Utility.swift */,
 				48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */,
@@ -572,6 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				489530601D12AD4100DFD38B /* BaseUINavigationController.swift in Sources */,
+				48B698331EB3219500E1DC9E /* Int+Utility.swift in Sources */,
 				489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */,
 				4895305A1D12AD4100DFD38B /* BaseUICollectionView.swift in Sources */,
 				489530631D12AD4100DFD38B /* BaseUISearchBar.swift in Sources */,
@@ -615,6 +622,7 @@
 				48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
 				489530691D12AD4100DFD38B /* BaseUITableViewCell.swift in Sources */,
+				48B698311EB316C100E1DC9E /* PinCodeTextField.swift in Sources */,
 				484942D31E733576004F4A9B /* BaseViewProtocol.swift in Sources */,
 				489530651D12AD4100DFD38B /* BaseUISlider.swift in Sources */,
 				489530621D12AD4100DFD38B /* BaseUIScrollView.swift in Sources */,

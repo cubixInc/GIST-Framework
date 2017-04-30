@@ -7,8 +7,8 @@
 //
 
 
-extension String {
-    func fromBase64() -> String? {
+public extension String {
+    public func fromBase64() -> String? {
         guard let data = Data(base64Encoded: self) else {
             return nil
         }
@@ -16,8 +16,11 @@ extension String {
         return String(data: data, encoding: .utf8)
     } //F.E
     
-    func toBase64() -> String {
+    public func toBase64() -> String {
         return Data(self.utf8).base64EncodedString()
     } //F.E.
     
+    public var hasOnlyNewlineSymbols: Bool {
+        return trimmingCharacters(in: CharacterSet.newlines).isEmpty
+    }
 } //E.E.
