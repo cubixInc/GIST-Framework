@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "2.1.2"
+  s.version      = "2.1.3"
   s.summary      = "GISTFramework is bottom architecture layour of iOS apps."
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => "2.1.2" }
+  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => "2.1.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -126,18 +126,6 @@ Pod::Spec.new do |s|
   s.subspec 'SyncEngine' do |sp|
     sp.source_files = 'GISTFramework/Classes/SyncEngine/**/*.{swift}'
     sp.dependency 'UIColor_Hex_Swift', '~> 3.0.2'
-  end
-
-  s.subspec 'GISTSocial' do |sp|
-    sp.source_files = 'GISTFramework/Classes/GISTSocial/**/*.{swift}'
-
-    sp.dependency 'GISTFramework/GISTCore'
-    sp.dependency 'GISTFramework/BaseClasses'
-    sp.dependency 'GISTFramework/Extentions'
-    sp.dependency 'GISTFramework/SyncEngine'
-
-    sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
-    sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.9'
   end
 
   s.pod_target_xcconfig = {
