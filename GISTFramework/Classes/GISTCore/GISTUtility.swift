@@ -10,7 +10,7 @@ import UIKit
 import PhoneNumberKit
 
 /// Class for Utility methods.
-open class GISTUtility: NSObject {
+public class GISTUtility: NSObject {
     
     //MARK: - Properties
     
@@ -54,7 +54,7 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter birthday: Date of birth
     /// - Returns: age
-    class func calculateAge (_ dateOfBirth: Date) -> Int {
+    public class func calculateAge (_ dateOfBirth: Date) -> Int {
         let calendar : Calendar = Calendar.current
         let unitFlags : NSCalendar.Unit = [NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day]
         let dateComponentNow : DateComponents = (calendar as NSCalendar).components(unitFlags, from: Date())
@@ -73,7 +73,7 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter value: Value
     /// - Returns: Device specific ratio * value
-    open class func convertToRatioSizedForNavi(_ value:CGFloat) ->CGFloat {
+    public class func convertToRatioSizedForNavi(_ value:CGFloat) ->CGFloat {
         return self.convertToRatio(value, sizedForIPad: false, sizedForNavi:true); // Explicit true for Sized For Navi
     } //F.E.
     
@@ -85,7 +85,7 @@ open class GISTUtility: NSObject {
     ///   - sizedForIPad: Bool flag for sizedForIPad
     ///   - sizedForNavi: Bool flag for sizedForNavi
     /// - Returns: Device specific ratio * value
-    open class func convertToRatio(_ value:CGFloat, sizedForIPad:Bool = false, sizedForNavi:Bool = false) -> CGFloat {
+    public class func convertToRatio(_ value:CGFloat, sizedForIPad:Bool = false, sizedForNavi:Bool = false) -> CGFloat {
         /*
          iPhone6 Hight:667   =====  0.90625
          iPhone5 Hight:568  ====== 0.77173913043478
@@ -112,7 +112,7 @@ open class GISTUtility: NSObject {
     ///   - value: CGPoint value
     ///   - sizedForIPad: Bool flag for sizedForIPad
     /// - Returns: Device specific ratio * point
-    open class func convertPointToRatio(_ value:CGPoint, sizedForIPad:Bool = false) ->CGPoint {
+    public class func convertPointToRatio(_ value:CGPoint, sizedForIPad:Bool = false) ->CGPoint {
         return CGPoint(x:self.convertToRatio(value.x, sizedForIPad: sizedForIPad), y:self.convertToRatio(value.y, sizedForIPad: sizedForIPad));
     } //F.E.
     
@@ -122,7 +122,7 @@ open class GISTUtility: NSObject {
     ///   - value: CGSize value
     ///   - sizedForIPad: Bool flag for sizedForIPad
     /// - Returns: Device specific ratio * size
-    open class func convertSizeToRatio(_ value:CGSize, sizedForIPad:Bool = false) ->CGSize {
+    public class func convertSizeToRatio(_ value:CGSize, sizedForIPad:Bool = false) ->CGSize {
         return CGSize(width:self.convertToRatio(value.width, sizedForIPad: sizedForIPad), height:self.convertToRatio(value.height, sizedForIPad: sizedForIPad));
     } //F.E.
     
@@ -130,7 +130,7 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter text: String
     /// - Returns: Bool whether the string is empty or not.
-    open class func isEmpty(_ text:String?)->Bool {
+    public class func isEmpty(_ text:String?)->Bool {
         guard (text != nil) else {
             return true;
         }
@@ -142,7 +142,7 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter text: Sting
     /// - Returns: Bool whether the string is a valid email or not.
-    open class func isValidEmail(_ text:String?)->Bool {
+    public class func isValidEmail(_ text:String?)->Bool {
         guard (text != nil) else {
             return false;
         }
@@ -157,7 +157,7 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter text: Sting
     /// - Returns: Bool whether the string is a valid URL or not.
-    open class func isValidUrl(_ text:String?) -> Bool {
+    public class func isValidUrl(_ text:String?) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -172,11 +172,11 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter text: Sting
     /// - Returns: Bool whether the string is a valid phone number or not.
-    open class func isValidPhoneNo(_ text:String?) -> Bool {
+    public class func isValidPhoneNo(_ text:String?) -> Bool {
         return self.validatePhoneNumber(text) != nil;
     } //F.E.
     
-    open class func validatePhoneNumber(_ text:String?) -> PhoneNumber? {
+    public class func validatePhoneNumber(_ text:String?) -> PhoneNumber? {
         guard (text != nil) else {
             return nil;
         }
@@ -201,7 +201,7 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter text: Sting
     /// - Returns: Bool whether the string is a valid number or not.
-    open class func isNumeric(_ text:String?) -> Bool {
+    public class func isNumeric(_ text:String?) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -213,7 +213,7 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter text: Sting
     /// - Returns: Bool whether the string is a valid alphabetic string or not.
-    open class func isAlphabetic(_ text:String?) -> Bool {
+    public class func isAlphabetic(_ text:String?) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -230,7 +230,7 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter text: Sting
     /// - Returns: Bool whether the string is a valid number of characters.
-    open class func isValidForMinChar(_ text:String?, noOfChar:Int) -> Bool {
+    public class func isValidForMinChar(_ text:String?, noOfChar:Int) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -242,7 +242,7 @@ open class GISTUtility: NSObject {
     ///
     /// - Parameter text: Sting
     /// - Returns: Bool whether the string is a valid number of characters.
-    open class func isValidForMaxChar(_ text:String?, noOfChar:Int) -> Bool {
+    public class func isValidForMaxChar(_ text:String?, noOfChar:Int) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -262,7 +262,7 @@ open class GISTUtility: NSObject {
     ///   - text: String
     ///   - regex: Ragex String
     /// - Returns: Bool whether the string is a valid regex string.
-    open class func isValidForRegex(_ text:String?, regex:String) -> Bool {
+    public class func isValidForRegex(_ text:String?, regex:String) -> Bool {
         guard (text != nil) else {
             return false;
         }
@@ -272,70 +272,4 @@ open class GISTUtility: NSObject {
         return predicate.evaluate(with: text!);
     } //F.E.
     
-    open class func validate(fields:ValidatedTextField ...) -> Bool {
-        return self.validate(fields: fields);
-    } //F.E.
-    
-    open class func validate(fields:[ValidatedTextField]) -> Bool {
-        var isValid:Bool = true;
-        
-        for field in fields {
-            if (field.isValid == false && isValid == true) {
-                isValid = false; // The reason on not breaking loop here is that each field should call its isValid propert to update view
-            }
-        }
-        
-        return isValid;
-        
-    } //F.E.
-    
-    open class func validate(array:NSMutableArray) -> Bool {
-        var isValid:Bool = true;
-        
-        for i in 0 ..< array.count {
-            let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
-            
-            dict?["validated"] = true;
-            
-            let isFieldValid:Bool = dict?["isValid"] as? Bool ?? false;
-            
-            if (isFieldValid == false && isValid == true) {
-                isValid = false; // The reason on not breaking loop here is that each field should call its isValid propert to update view
-            }
-        }
-        
-        return isValid;
-        
-    } //F.E.
-    
-    open class func formate(fields:BaseUITextField ...) -> [String:String] {
-        return self.formate(fields: fields);
-    } //F.E.
-    
-    open class func formate(fields:[BaseUITextField]) -> [String:String] {
-        var params:[String:String] = [:];
-        
-        for field in fields {
-            if let paramKey:String = field.paramKey, let text:String = field.text {
-                params[paramKey] = text;
-            }
-        }
-        
-        return params;
-    } //F.E.
-    
-    open class func formate(array:NSMutableArray) -> [String:String] {
-        var params:[String:String] = [:];
-        
-        for i in 0 ..< array.count {
-            let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
-            
-            if let paramKey:String = dict?["paramKey"] as? String, let text:String = dict?["text"] as? String {
-                params[paramKey] = text;
-            }
-        }
-        
-        return params;
-    } //F.E.
-
 } //CLS END

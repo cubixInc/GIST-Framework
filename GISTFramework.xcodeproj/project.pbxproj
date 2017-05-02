@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4809C7351EB8AE480060F64E /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7341EB8AE480060F64E /* GISTAuth.swift */; };
+		4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */; };
 		483640F71E717774007FD8AC /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483640F61E717774007FD8AC /* String+Utility.swift */; };
 		484942C41E73050E004F4A9B /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942B81E73050E004F4A9B /* CustomImageView.swift */; };
 		484942C51E73050E004F4A9B /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942B91E73050E004F4A9B /* CustomUIButton.swift */; };
@@ -21,7 +23,6 @@
 		484942CE1E73050E004F4A9B /* ValidatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942C21E73050E004F4A9B /* ValidatedTextView.swift */; };
 		484942D11E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942D01E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift */; };
 		484942D31E733576004F4A9B /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942D21E733576004F4A9B /* BaseViewProtocol.swift */; };
-		484D762B1E97D9F30095E71C /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484D762A1E97D9F30095E71C /* GISTAuth.swift */; };
 		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
 		487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */; };
 		489421C81D48954400310089 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489421C71D48954400310089 /* UIColor+Utility.swift */; };
@@ -94,6 +95,8 @@
 
 /* Begin PBXFileReference section */
 		47A752A77860274A822EC83C /* Pods-GISTFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISTFramework/Pods-GISTFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		4809C7341EB8AE480060F64E /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
+		4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GISTUtility+Social.swift"; sourceTree = "<group>"; };
 		483640F61E717774007FD8AC /* String+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		484942B81E73050E004F4A9B /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		484942B91E73050E004F4A9B /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
@@ -108,7 +111,6 @@
 		484942C21E73050E004F4A9B /* ValidatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextView.swift; sourceTree = "<group>"; };
 		484942D01E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPopoverNavigationController.swift; sourceTree = "<group>"; };
 		484942D21E733576004F4A9B /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
-		484D762A1E97D9F30095E71C /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
 		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Utility.swift"; sourceTree = "<group>"; };
 		489421C71D48954400310089 /* UIColor+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
@@ -201,6 +203,22 @@
 				601E2723144B35C12AB95A07 /* Pods-GISTFramework.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		4809C7331EB8AE480060F64E /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				4809C7341EB8AE480060F64E /* GISTAuth.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		4809C7361EB8AE910060F64E /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		484942B71E730425004F4A9B /* Controls */ = {
@@ -327,7 +345,8 @@
 		48C4935A1E88F73900F14CF4 /* GISTSocial */ = {
 			isa = PBXGroup;
 			children = (
-				484D762A1E97D9F30095E71C /* GISTAuth.swift */,
+				4809C7361EB8AE910060F64E /* Extentions */,
+				4809C7331EB8AE480060F64E /* Authentication */,
 				48C017041EADE6D2008FB1B9 /* CoreData */,
 				48C4935B1E88F73900F14CF4 /* AppDelegate */,
 				48C4935D1E88F73900F14CF4 /* AppInfo */,
@@ -597,6 +616,7 @@
 				48EB0AEC1D7FF45B00BD93BC /* GISTUtility.swift in Sources */,
 				4895305B1D12AD4100DFD38B /* BaseUICollectionViewCell.swift in Sources */,
 				489530641D12AD4100DFD38B /* BaseUISegmentedControl.swift in Sources */,
+				4809C7351EB8AE480060F64E /* GISTAuth.swift in Sources */,
 				48991B0C1D460C60007467A4 /* Array+Utility.swift in Sources */,
 				48A518801E5199FB006AE30A /* BaseUIStackView.swift in Sources */,
 				48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */,
@@ -617,7 +637,6 @@
 				484942CC1E73050E004F4A9B /* UnderlinedUITextField.swift in Sources */,
 				48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */,
 				48C017071EADE6D2008FB1B9 /* DataManager.swift in Sources */,
-				484D762B1E97D9F30095E71C /* GISTAuth.swift in Sources */,
 				48C493721E88F73900F14CF4 /* Mappable+ToDictionary.swift in Sources */,
 				48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
@@ -633,6 +652,7 @@
 				4895307A1D12AD4100DFD38B /* UIView+Utility.swift in Sources */,
 				489530771D12AD4100DFD38B /* UIImage+Utility.swift in Sources */,
 				486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */,
+				4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */,
 				484942C51E73050E004F4A9B /* CustomUIButton.swift in Sources */,
 				48DA7E7D1D9E666200464066 /* BaseUITableViewController.swift in Sources */,
 				48F569F21D37CE30007849A8 /* BaseUINavigationItem.swift in Sources */,
