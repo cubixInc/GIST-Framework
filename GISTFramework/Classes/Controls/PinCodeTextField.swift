@@ -117,12 +117,12 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
     }
     
     override open func becomeFirstResponder() -> Bool {
-        _delegate?.textFieldDidBeginEditing(self)
+        _delegate?.textFieldDidBeginEditing?(self)
         return super.becomeFirstResponder()
     }
     
     override open func resignFirstResponder() -> Bool {
-        _delegate?.textFieldDidEndEditing(self)
+        _delegate?.textFieldDidEndEditing?(self)
         return super.resignFirstResponder()
     }
     
@@ -255,7 +255,7 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
         }
         let location = touch.location(in: self)
         if (bounds.contains(location)) {
-            if (_delegate?.textFieldShouldBeginEditing(self) ?? true) {
+            if (_delegate?.textFieldShouldBeginEditing?(self) ?? true) {
                 let _ = becomeFirstResponder()
             }
         }
@@ -294,16 +294,16 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
     public func insertText(_ charToInsert: String) {
         if charToInsert.hasOnlyNewlineSymbols {
             
-            if (_delegate?.textFieldShouldReturn(self) ?? true) {
+            if (_delegate?.textFieldShouldReturn?(self) ?? true) {
                 let _ = resignFirstResponder()
             }
         }
         else if canInsertCharacter(charToInsert) {
             let newText = text.map { $0 + charToInsert } ?? charToInsert
             text = newText
-            _delegate?.textFieldValueChanged(self)
+            _delegate?.textFieldValueChanged?(self)
             if (newText.characters.count == characterLimit) {
-                if (_delegate?.textFieldShouldEndEditing(self) ?? true) {
+                if (_delegate?.textFieldShouldEndEditing?(self) ?? true) {
                     let _ = resignFirstResponder()
                 }
             }
@@ -313,50 +313,21 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
     public func deleteBackward() {
         guard hasText else { return }
         text?.characters.removeLast()
-        _delegate?.textFieldValueChanged(self)
+        _delegate?.textFieldValueChanged?(self)
     }
     
 } //CLS END
 
-
-public protocol PinCodeTextFieldDelegate: class {
-    func textFieldShouldBeginEditing(_ textField: PinCodeTextField) -> Bool // return false to disallow editing.
+@objc public protocol PinCodeTextFieldDelegate: class {
+    @objc optional func textFieldShouldBeginEditing(_ textField: PinCodeTextField) -> Bool // return false to disallow editing.
     
-    func textFieldDidBeginEditing(_ textField: PinCodeTextField) // became first responder
+    @objc optional func textFieldDidBeginEditing(_ textField: PinCodeTextField) // became first responder
     
-    func textFieldValueChanged(_ textField: PinCodeTextField) // text value changed
+    @objc optional func textFieldValueChanged(_ textField: PinCodeTextField) // text value changed
     
-    func textFieldShouldEndEditing(_ textField: PinCodeTextField) -> Bool // return true to allow editing to stop and to resign first responder status at the last character entered event. NO to disallow the editing session to end
+    @objc optional func textFieldShouldEndEditing(_ textField: PinCodeTextField) -> Bool // return true to allow editing to stop and to resign first responder status at the last character entered event. NO to disallow the editing session to end
     
-    func textFieldDidEndEditing(_ textField: PinCodeTextField) // called when pinCodeTextField did end editing
+    @objc optional func textFieldDidEndEditing(_ textField: PinCodeTextField) // called when pinCodeTextField did end editing
     
-    func textFieldShouldReturn(_ textField: PinCodeTextField) -> Bool // called when 'return' key pressed. return false to ignore.
+    @objc optional func textFieldShouldReturn(_ textField: PinCodeTextField) -> Bool // called when 'return' key pressed. return false to ignore.
 } //P.E.
-
-/// default
-extension PinCodeTextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: PinCodeTextField) -> Bool {
-        return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: PinCodeTextField) {
-        
-    }
-    
-    func textFieldValueChanged(_ textField: PinCodeTextField) {
-        
-    }
-    
-    func textFieldShouldEndEditing(_ textField: PinCodeTextField) -> Bool {
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: PinCodeTextField) {
-        
-    }
-    
-    func textFieldShouldReturn(_ textField: PinCodeTextField) -> Bool {
-        return true
-    }
-    
-} //E.E.
