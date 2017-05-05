@@ -42,7 +42,7 @@ public class GISTConfig: NSObject {
         }
         
         set {
-            _isRTL = nil;
+            //??_isRTL = nil;
             _currentLanguageCode = newValue;
         }
     } //P.E.
@@ -56,6 +56,6 @@ public class GISTConfig: NSObject {
             
             return _isRTL!;
         }
-    }
+    } //P.E.
 
 } //CLS END

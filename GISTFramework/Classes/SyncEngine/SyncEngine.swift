@@ -41,9 +41,11 @@ open class SyncEngine: NSObject {
         return urls[urls.count-1]
     }();
     
-    private lazy var syncedFileUrl: URL = {
-        return self.applicationDocumentsDirectory.appendingPathComponent("\(self.syncedFile + self._languageCode).plist");
-    }();
+    private var syncedFileUrl: URL {
+        get {
+            return self.applicationDocumentsDirectory.appendingPathComponent("\(self.syncedFile + self._languageCode).plist");
+        }
+    }
     
     //Flag if dict date is updated
     private var _hasUpdate:Bool = false;
