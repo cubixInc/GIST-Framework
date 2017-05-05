@@ -21,7 +21,11 @@ public class GISTUtility: NSObject {
     @nonobjc public static let isIPad:Bool = UIDevice.current.userInterfaceIdiom == .pad;
     
     /// Flag to check user interfce layout direction
-    @nonobjc public static let isRTL = Locale.characterDirection(forLanguage: Locale.current.languageCode ?? "en") == .rightToLeft;
+    @nonobjc public static var isRTL:Bool  {
+        get {
+            return GIST_CONFIG.isRTL;
+        }
+    } //P.E.
     
     //MARK: - Methods
     

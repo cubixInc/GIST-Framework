@@ -112,7 +112,7 @@ open class SyncEngine: NSObject {
         _urlToSync = URL(string: urlToSync);
         
         //Adding Language Key
-        _headers["language"] = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as? String ?? "en";
+        _headers["language"] = GIST_CONFIG.currentLanguageCode;
         
         //Security Headers
         if let authHeader = authorizationHandler?(), let data = "\(authHeader.name):\(authHeader.password)".data(using: .utf8) {
@@ -130,7 +130,7 @@ open class SyncEngine: NSObject {
             
             //Localization
             if (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
-                _languageCode = "-" + Bundle.main.preferredLocalizations[0]
+                _languageCode = "-" + GIST_CONFIG.currentLanguageCode
             }
             
              
@@ -347,8 +347,7 @@ open class SyncEngine: NSObject {
     } //F.E.
     
     private func syncDataRequest() {
-        let langSuff:String = Bundle.main.preferredLocalizations[0];
-        let params:NSMutableString = NSMutableString(string: "language=\(langSuff)");
+        let params:NSMutableString = NSMutableString(string: "language=\(GIST_CONFIG.currentLanguageCode)");
         
         if let lastUpdatedAt:String = self.lastSyncedServerDate {
             params.append("&updated_at=\(lastUpdatedAt)");
@@ -458,7 +457,7 @@ open class SyncEngine: NSObject {
             
             //Localization
             if (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
-                languageCode = "-" + Bundle.main.preferredLocalizations[0]
+                languageCode = "-" + GIST_CONFIG.currentLanguageCode;
             }
             
             let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(aKey+languageCode).plist");
@@ -523,7 +522,7 @@ open class SyncEngine: NSObject {
             
             //Localization
             if (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
-                languageCode = "-" + Bundle.main.preferredLocalizations[0]
+                languageCode = "-" + GIST_CONFIG.currentLanguageCode
             }
             
             let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(aKey+languageCode).plist");
@@ -593,7 +592,7 @@ open class SyncEngine: NSObject {
             var languageCode:String = "";
             if let syncedFileUrlRes = Bundle.main.path(forResource: key, ofType: "plist") , (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
                 //Localization
-                languageCode = "-" + Bundle.main.preferredLocalizations[0];
+                languageCode = "-" + GIST_CONFIG.currentLanguageCode;
             }
             //-
             let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(key+languageCode).plist");

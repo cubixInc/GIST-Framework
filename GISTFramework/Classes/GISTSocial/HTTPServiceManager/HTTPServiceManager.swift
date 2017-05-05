@@ -53,7 +53,7 @@ open class HTTPServiceManager: NSObject {
         _serverBaseURL = URL(string: serverBaseURL)!;
         
         //Adding Language Key
-        _headers["language"] = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as? String ?? "en";
+        _headers["language"] = GIST_CONFIG.currentLanguageCode;
         
         let urlToSync:String = _serverBaseURL.appendingPathComponent("se/get_all").absoluteString;
         

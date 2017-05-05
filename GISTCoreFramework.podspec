@@ -126,6 +126,7 @@ Pod::Spec.new do |s|
   s.subspec 'SyncEngine' do |sp|
     sp.source_files = 'GISTFramework/Classes/SyncEngine/**/*.{swift}'
     sp.dependency 'UIColor_Hex_Swift', '~> 3.0.2'
+    sp.dependency 'GISTFramework/GISTCore'
   end
 
   s.pod_target_xcconfig = {

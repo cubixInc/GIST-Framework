@@ -29,5 +29,33 @@ public class GISTConfig: NSObject {
     public var sizeForNavi:Bool = false;
     
     public var respectRTL:Bool = false;
+    
+    private var _currentLanguageCode:String?
+    public var currentLanguageCode:String {
+        get {
+            if (_currentLanguageCode == nil) {
+                _currentLanguageCode = Bundle.main.preferredLocalizations[0];
+                //Locale.current.languageCode ?? "en";
+            }
+            
+            return _currentLanguageCode!;
+        }
+        
+        set {
+            _isRTL = nil;
+            _currentLanguageCode = newValue;
+        }
+    } //P.E.
+    
+    private var _isRTL:Bool?;
+    public var isRTL:Bool {
+        get {
+            if (_isRTL == nil) {
+                _isRTL = Locale.characterDirection(forLanguage: self.currentLanguageCode) == .rightToLeft;
+            }
+            
+            return _isRTL!;
+        }
+    }
 
 } //CLS END
