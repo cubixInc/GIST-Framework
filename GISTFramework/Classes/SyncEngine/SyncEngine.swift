@@ -602,4 +602,18 @@ open class SyncEngine: NSObject {
         return true;
     } //F.E.
     
+    public func reset() {
+        if (_isCustomData) {
+            self.setupCustomSyncedFile();
+            
+            SyncedColors.sharedInstance.reset();
+            SyncedConstants.sharedInstance.reset();
+            SyncedFontStyles.sharedInstance.reset();
+            SyncedText.sharedInstance.reset();
+            
+        } else {
+            self.setupSyncedFile();
+        }
+    } //F.E.
+    
 } //CLS END
