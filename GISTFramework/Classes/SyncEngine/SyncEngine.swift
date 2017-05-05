@@ -606,7 +606,7 @@ open class SyncEngine: NSObject {
         self.sharedInstance.reset();
     } //F.E.
     
-    public func reset() {
+    func reset() {
         if (_isCustomData) {
             self.setupCustomSyncedFile();
             
