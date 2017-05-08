@@ -129,18 +129,18 @@ Pod::Spec.new do |s|
     sp.dependency 'UIColor_Hex_Swift', '~> 3.0.2'
   end
 
-#  s.subspec 'GISTSocial' do |sp|
-#    sp.source_files = 'GISTFramework/Classes/GISTSocial/**/*.{swift}'
-#
-#    sp.dependency 'GISTFramework/GISTCore'
-#    sp.dependency 'GISTFramework/BaseClasses'
-#    sp.dependency 'GISTFramework/Extentions'
-#    sp.dependency 'GISTFramework/Controls'
-#    sp.dependency 'GISTFramework/SyncEngine'
+  s.subspec 'GISTSocial' do |sp|
+    sp.source_files = 'GISTFramework/Classes/GISTSocial/**/*.{swift}'
 
-#    sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
-#    sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.9'
-#  end
+    sp.dependency 'GISTFramework/GISTCore'
+    sp.dependency 'GISTFramework/BaseClasses'
+    sp.dependency 'GISTFramework/Extentions'
+    sp.dependency 'GISTFramework/Controls'
+    sp.dependency 'GISTFramework/SyncEngine'
+
+    sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
+    sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.9'
+  end
 
   s.pod_target_xcconfig = {
     'OTHER_SWIFT_FLAGS[config=Debug]' => '-DDEBUG',
