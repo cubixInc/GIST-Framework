@@ -99,7 +99,7 @@ public class GISTAuth: NSObject {
         self.shared.request(service: VERIFY_PHONE_REQUEST, params: params, completion:completion, failure:failure);
     } //F.E.
     
-    public static func resendCode(code:String, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func resendCode(completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard let mobileNo:String = GIST_GLOBAL.user?.mobileNo else {
             return;
@@ -138,6 +138,7 @@ public class GISTAuth: NSObject {
         self.shared.request(service: SAVE_TOKEN_REQUEST, params: params, completion:nil, failure:nil);
     } //F.E.
     
+    //MARK: - Sign Out
     public static func signOut() {
         GISTGlobal.shared.user = nil;
     } //F.E.
