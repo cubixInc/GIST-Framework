@@ -119,6 +119,8 @@ open class ValidatedTextField: BaseUITextField {
         }
     } //P.E.
     
+    open var validText: String?;
+    
     open var isInvalidSignHidden:Bool = true {
         didSet {
             self.invalidSignBtn.isHidden = isInvalidSignHidden;
@@ -198,8 +200,24 @@ open class ValidatedTextField: BaseUITextField {
         
         self.isInvalidSignHidden = (_isValid || _isEmpty);
         
+        
+        let valid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
+        
+        if valid {
+            if let pNumber:PhoneNumber = self.phoneNumber {
+                self.validText = "\(pNumber.countryCode)-\(pNumber.numberString)";
+            } else {
+                self.validText = self.text;
+            }
+        } else {
+            self.validText = nil;
+        }
+        
+        
         if let dicData:NSMutableDictionary = self.data as? NSMutableDictionary {
             dicData["isValid"] = (_isValid && (!validateEmpty || !_isEmpty));
+            
+            dicData["validText"] = self.validText;
         }
         
     } //F.E.

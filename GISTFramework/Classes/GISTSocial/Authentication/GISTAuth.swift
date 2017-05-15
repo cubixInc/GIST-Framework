@@ -181,7 +181,7 @@ public class GISTAuth: NSObject {
             uParams["device_token"] = token;
         }
         
-        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: params, delegate: nil);
+        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, delegate: nil);
         
         httpRequest.onSuccess { (rawData:Any?) in
             let dicData:[String:Any]? = rawData as? [String:Any];

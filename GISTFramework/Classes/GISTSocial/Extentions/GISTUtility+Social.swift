@@ -43,11 +43,11 @@ public extension GISTUtility {
         
     } //F.E.
     
-    public class func formate(fields:[BaseUITextField], additional params:[String:Any]? = nil) -> [String:Any] {
+    public class func formate(fields:[ValidatedTextField], additional params:[String:Any]? = nil) -> [String:Any] {
         var rParams:[String:Any] = [:];
         
         for field in fields {
-            if let pKey:String = field.paramKey, let text:String = field.text {
+            if let pKey:String = field.paramKey, let text:String = field.validText {
                 rParams[pKey] = text;
             }
         }
@@ -67,7 +67,7 @@ public extension GISTUtility {
         for i in 0 ..< array.count {
             let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
             
-            if let pKey:String = dict?["paramKey"] as? String, let text:String = dict?["text"] as? String {
+            if let pKey:String = dict?["paramKey"] as? String, let text:String = dict?["validText"] as? String {
                 rParams[pKey] = text;
             }
         }
