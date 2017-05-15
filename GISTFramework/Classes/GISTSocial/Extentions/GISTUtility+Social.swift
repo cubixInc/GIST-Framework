@@ -11,10 +11,6 @@ import UIKit
 /// Extension for Utility
 public extension GISTUtility {
     
-    public class func validate(fields:ValidatedTextField ...) -> Bool {
-        return self.validate(fields: fields);
-    } //F.E.
-    
     public class func validate(fields:[ValidatedTextField]) -> Bool {
         var isValid:Bool = true;
         
@@ -47,34 +43,54 @@ public extension GISTUtility {
         
     } //F.E.
     
-    public class func formate(fields:BaseUITextField ...) -> [String:String] {
-        return self.formate(fields: fields);
-    } //F.E.
-    
-    public class func formate(fields:[BaseUITextField]) -> [String:String] {
-        var params:[String:String] = [:];
+    public class func formate(fields:[BaseUITextField], additional params:[String:Any]? = nil) -> [String:Any] {
+        var rParams:[String:Any] = [:];
         
         for field in fields {
-            if let paramKey:String = field.paramKey, let text:String = field.text {
-                params[paramKey] = text;
+            if let pKey:String = field.paramKey, let text:String = field.text {
+                rParams[pKey] = text;
+            }
+        }
+
+        if let aParams:[String:Any] = params {
+            for (pKey, pValue) in aParams {
+                rParams[pKey] = pValue;
             }
         }
         
-        return params;
+        return rParams;
     } //F.E.
     
-    public class func formate(array:NSMutableArray) -> [String:String] {
-        var params:[String:String] = [:];
+    public class func formate(array:NSMutableArray, additional params:[String:Any]?) -> [String:Any] {
+        var rParams:[String:Any] = [:];
         
         for i in 0 ..< array.count {
             let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
             
-            if let paramKey:String = dict?["paramKey"] as? String, let text:String = dict?["text"] as? String {
-                params[paramKey] = text;
+            if let pKey:String = dict?["paramKey"] as? String, let text:String = dict?["text"] as? String {
+                rParams[pKey] = text;
             }
         }
         
-        return params;
+        if let aParams:[String:Any] = params {
+            for (pKey, pValue) in aParams {
+                rParams[pKey] = pValue;
+            }
+        }
+        
+        return rParams;
+    } //F.E.
+    
+    public class func formate(user:User, additional params:[String:Any]?) -> [String:Any] {
+        var rParams:[String:Any] = user.toDictionary() as? [String:Any] ?? [:];
+        
+        if let aParams:[String:Any] = params {
+            for (pKey, pValue) in aParams {
+                rParams[pKey] = pValue;
+            }
+        }
+        
+        return rParams;
     } //F.E.
 
 } //CLS END

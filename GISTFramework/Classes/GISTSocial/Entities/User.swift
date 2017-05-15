@@ -84,6 +84,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 	public var zipCode: String?;
     
     public var socialId: String?;
+    public var userType: String?;
     
     required public init?(map: Map) {
 	}
@@ -124,6 +125,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		userId <- map["user_id"];
 		userName <- map["user_name"];
 		zipCode <- map["zip_code"];
+        
 	}
 
 	required public init(coder aDecoder: NSCoder) {

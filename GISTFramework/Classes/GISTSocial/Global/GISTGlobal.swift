@@ -17,15 +17,14 @@ public class GISTGlobal: NSObject {
     //PRIVATE init so that singleton class should not be reinitialized from anyother class
     fileprivate override init() {} //C.E.
     
-    public var deviceToken:String?;
-    
-    public var apnsPermissionGranted:Bool?
-    
     public var baseURL:URL!
     public var apiURL:URL!
     
+    public var deviceToken:String?;
+    public var apnsPermissionGranted:Bool?
+    
     private var _user:User?
-    public var user:User? {
+    public internal(set) var user:User? {
         get {
             
             if _user == nil, let data: Data = UserDefaults.standard.object(forKey: "APP_USER") as? Data {
@@ -42,6 +41,8 @@ public class GISTGlobal: NSObject {
                 let data = NSKeyedArchiver.archivedData(withRootObject: usr);
                 UserDefaults.standard.set(data, forKey: "APP_USER");
                 UserDefaults.standard.synchronize();
+            } else {
+                UserDefaults.standard.removeObject(forKey: "APP_USER")
             }
         }
     } //P.E.
