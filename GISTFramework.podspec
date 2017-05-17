@@ -140,6 +140,7 @@ Pod::Spec.new do |s|
 
     sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
     sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.9'
+    sp.dependency 'InputMask', '~> 2.2.5'
   end
 
   s.pod_target_xcconfig = {
