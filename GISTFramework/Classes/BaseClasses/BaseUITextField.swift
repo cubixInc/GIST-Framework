@@ -107,32 +107,6 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     /// Text Horizontal Padding - Default Value is Zero
     @IBInspectable open var horizontalPadding:CGFloat = 0
     
-    private var _maxCharLimit: Int = 50;
-    
-    /// Max Character Count Limit for the text field.
-    @IBInspectable open var maxCharLimit: Int {
-        get {
-            return _maxCharLimit;
-        }
-        
-        set {
-            if (_maxCharLimit != newValue)
-            {_maxCharLimit = newValue;}
-        }
-    } //P.E.
-    
-    private weak var _delegate:UITextFieldDelegate?;
-    
-    ///Maintainig Own delegate.
-    open override weak var delegate: UITextFieldDelegate? {
-        get {
-            return _delegate;
-        }
-        
-        set {
-            _delegate = newValue;
-        }
-    } //P.E.
     
     private var _placeholderKey:String?
     
@@ -211,7 +185,10 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     /// - Parameter bounds: Text Bounds
     /// - Returns: Calculated bounds with paddings.
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
-        //??super.textRectForBounds(bounds)
+        
+        guard (self.horizontalPadding != 0 && self.verticalPadding != 0) else {
+            return super.textRect(forBounds: bounds);
+        }
         
         let x:CGFloat = bounds.origin.x + horizontalPadding
         let y:CGFloat = bounds.origin.y + verticalPadding
@@ -233,9 +210,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     //MARK: - Methods
     
     /// A common initializer to setup/initialize sub components.
-    private func commonInit() {
-        super.delegate = self;
-         
+    func commonInit() {
         self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         if let placeHoldertxt:String = self.placeholder , placeHoldertxt.hasPrefix("#") == true{
@@ -264,79 +239,6 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         if let placeHolderKey:String = _placeholderKey {
             self.placeholder = placeHolderKey;
         }
-    } //F.E.
-    
-    //Mark: - UITextField Delegate Methods
-    
-    /// Protocol method of textFieldShouldBeginEditing.
-    ///
-    /// - Parameter textField: Text Field
-    /// - Returns: Bool flag for should begin edititng
-    open func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return _delegate?.textFieldShouldBeginEditing?(textField) ?? true;
-    } //F.E.
-    
-    /// Protocol method of textFieldDidBeginEditing.
-    ///
-    /// - Parameter textField: Text Field
-    open func textFieldDidBeginEditing(_ textField: UITextField) {
-        _delegate?.textFieldDidBeginEditing?(textField);
-    } //F.E.
-    
-    
-    /// Protocol method of textFieldShouldEndEditing. - Default value is true
-    ///
-    /// - Parameter textField: Text Field
-    /// - Returns: Bool flag for should end edititng
-    open func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return _delegate?.textFieldShouldEndEditing?(textField) ?? true;
-    } //F.E.
-    
-    /// Protocol method of textFieldDidEndEditing
-    ///
-    /// - Parameter textField: Text Field
-    open func textFieldDidEndEditing(_ textField: UITextField) {
-        _delegate?.textFieldDidEndEditing?(textField);
-    } //F.E.
-    
-    
-    /// Protocol method of shouldChangeCharactersIn for limiting the character limit. - Default value is true
-    ///
-    /// - Parameters:
-    ///   - textField: Text Field
-    ///   - range: Change Characters Range
-    ///   - string: Replacement String
-    /// - Returns: Bool flag for should change characters in range
-    open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let rtn = _delegate?.textField?(textField, shouldChangeCharactersIn:range, replacementString:string) ?? true;
-        
-        //IF CHARACTERS-LIMIT <= ZERO, MEANS NO RESTRICTIONS ARE APPLIED
-        if (self.maxCharLimit <= 0) {
-            return rtn;
-        }
-        
-        guard let text = textField.text else { return true }
-        
-        let newLength = text.utf16.count + string.utf16.count - range.length
-        return (newLength <= self.maxCharLimit) && rtn // Bool
-    } //F.E.
-    
-    /// Protocol method of textFieldShouldClear. - Default value is true
-    ///
-    /// - Parameter textField: Text Field
-    /// - Returns: Bool flag for should clear text field
-    open func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        return _delegate?.textFieldShouldClear?(textField) ?? true;
-    } //F.E.
-    
-    
-    /// Protocol method of textFieldShouldReturn. - Default value is true
-    ///
-    /// - Parameter textField: Text Field
-    /// - Returns: Bool flag for text field should return.
-    open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return _delegate?.textFieldShouldReturn?(textField) ?? true;
     } //F.E.
     
 } //CLS END

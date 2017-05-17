@@ -14,8 +14,8 @@ import PhoneNumberKit
     @objc optional func validatedTextFieldInvalidSignDidTap(_ validatedTextField:ValidatedTextField, sender:UIButton);
 } //P.E.
 
-/// ValidatedTextField is subclass of BaseUITextField with extra proporties to validate text input.
-open class ValidatedTextField: BaseUITextField {
+/// ValidatedTextField is subclass of InputMaskTextField with extra proporties to validate text input.
+open class ValidatedTextField: InputMaskTextField {
     
     //MARK: - Properties
     
@@ -48,6 +48,9 @@ open class ValidatedTextField: BaseUITextField {
     
     /// Validats maximum character limit.
     @IBInspectable open var maxChar:Int = 0;
+    
+    /// Max Character Count Limit for the text field.
+    @IBInspectable open var maxCharLimit: Int = 50;
     
     /// Inspectable property for invalid sign image.
     @IBInspectable open var invalidSign:UIImage? = nil {
@@ -150,9 +153,33 @@ open class ValidatedTextField: BaseUITextField {
         self.validateText();
     } //F.E.
     
+    /// Protocol method of shouldChangeCharactersIn for limiting the character limit. - Default value is true
+    ///
+    /// - Parameters:
+    ///   - textField: Text Field
+    ///   - range: Change Characters Range
+    ///   - string: Replacement String
+    /// - Returns: Bool flag for should change characters in range
+    open override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let rtn = super.textField(textField, shouldChangeCharactersIn:range, replacementString:string);
+        
+        //IF CHARACTERS-LIMIT <= ZERO, MEANS NO RESTRICTIONS ARE APPLIED
+        if (self.maxCharLimit <= 0) {
+            return rtn;
+        }
+        
+        guard let text = textField.text else { return true }
+        
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        return (newLength <= self.maxCharLimit) && rtn // Bool
+    } //F.E.
+    
     //MARK: - Methods
     
-    open func updateData(_ data: Any?) {
+    open override func updateData(_ data: Any?) {
+        super.updateData(data);
+        
         _data = data;
         
         let dicData:NSMutableDictionary? = data as? NSMutableDictionary;

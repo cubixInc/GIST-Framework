@@ -10,6 +10,7 @@
 		4809C7351EB8AE480060F64E /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7341EB8AE480060F64E /* GISTAuth.swift */; };
 		4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */; };
 		483640F71E717774007FD8AC /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483640F61E717774007FD8AC /* String+Utility.swift */; };
+		48439F351ECC594F00836301 /* InputMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48439F341ECC594F00836301 /* InputMaskTextField.swift */; };
 		484942C41E73050E004F4A9B /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942B81E73050E004F4A9B /* CustomImageView.swift */; };
 		484942C51E73050E004F4A9B /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942B91E73050E004F4A9B /* CustomUIButton.swift */; };
 		484942C61E73050E004F4A9B /* CustomUIButtonDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942BA1E73050E004F4A9B /* CustomUIButtonDetailed.swift */; };
@@ -98,6 +99,7 @@
 		4809C7341EB8AE480060F64E /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
 		4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GISTUtility+Social.swift"; sourceTree = "<group>"; };
 		483640F61E717774007FD8AC /* String+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
+		48439F341ECC594F00836301 /* InputMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMaskTextField.swift; sourceTree = "<group>"; };
 		484942B81E73050E004F4A9B /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		484942B91E73050E004F4A9B /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 		484942BA1E73050E004F4A9B /* CustomUIButtonDetailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButtonDetailed.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				484942C11E73050E004F4A9B /* ValidatedTextField.swift */,
 				484942C21E73050E004F4A9B /* ValidatedTextView.swift */,
 				48B698301EB316C100E1DC9E /* PinCodeTextField.swift */,
+				48439F341ECC594F00836301 /* InputMaskTextField.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				489530601D12AD4100DFD38B /* BaseUINavigationController.swift in Sources */,
 				48B698331EB3219500E1DC9E /* Int+Utility.swift in Sources */,
 				489530571D12AD4100DFD38B /* BaseLayoutConstraint.swift in Sources */,
+				48439F351ECC594F00836301 /* InputMaskTextField.swift in Sources */,
 				4895305A1D12AD4100DFD38B /* BaseUICollectionView.swift in Sources */,
 				489530631D12AD4100DFD38B /* BaseUISearchBar.swift in Sources */,
 				48C493711E88F73900F14CF4 /* HTTPServiceManager.swift in Sources */,

@@ -11,4 +11,5 @@ target 'GISTFramework' do
 
     pod 'AlamofireObjectMapper', '~> 4.1.0'
     pod 'IQKeyboardManagerSwift', '~> 4.0.8'
+    pod 'InputMask', '~> 2.2.5'
 end
