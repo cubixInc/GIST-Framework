@@ -186,7 +186,7 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
     /// - Returns: Calculated bounds with paddings.
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
         
-        guard (self.horizontalPadding != 0 && self.verticalPadding != 0) else {
+        guard (self.horizontalPadding < 0 && self.verticalPadding < 0) else {
             return super.textRect(forBounds: bounds);
         }
         
