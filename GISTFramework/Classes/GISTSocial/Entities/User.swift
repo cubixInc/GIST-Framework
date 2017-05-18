@@ -61,7 +61,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 	public var dob: String?;
 	public var email: String?;
 	public var firstName: String?;
-	public var forgotPasswordTokenCreatedAt: String?;
+	public var forgotPasswordToken: String?;
 	public var gender: String?;
 	public var image: String?;
 	public var isGuest: Bool?;
@@ -74,7 +74,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 	public var name: String?;
 	public var otherData: String?;
 	public var platformType: String?;
-	public var rememberLoginTokenCreatedAt: String?;
+	public var verificationToken: String?;
 	public var stateId: Int?;
 	public var status: Int?;
 	public var thumb: String?;
@@ -104,7 +104,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		dob <- map["dob"];
 		email <- map["email"];
 		firstName <- map["first_name"];
-		forgotPasswordTokenCreatedAt <- map["forgot_password_token_created_at"];
+		forgotPasswordToken <- map["forgot_password_token"];
 		gender <- map["gender"];
 		image <- map["image"];
 		isGuest <- map["is_guest"];
@@ -117,7 +117,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		name <- map["name"];
 		otherData <- map["other_data"];
 		platformType <- map["platform_type"];
-		rememberLoginTokenCreatedAt <- map["remember_login_token_created_at"];
+		verificationToken <- map["verification_token"];
 		stateId <- map["state_id"];
 		status <- map["status"];
 		thumb <- map["thumb"];
@@ -139,7 +139,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		dob = aDecoder.decodeObject(forKey: "dob") as? String;
 		email = aDecoder.decodeObject(forKey: "email") as? String;
 		firstName = aDecoder.decodeObject(forKey: "first_name") as? String;
-		forgotPasswordTokenCreatedAt = aDecoder.decodeObject(forKey: "forgot_password_token_created_at") as? String;
+		forgotPasswordToken = aDecoder.decodeObject(forKey: "forgot_password_token") as? String;
 		gender = aDecoder.decodeObject(forKey: "gender") as? String;
 		image = aDecoder.decodeObject(forKey: "image") as? String;
 		isGuest = aDecoder.decodeObject(forKey: "is_guest") as? Bool;
@@ -152,7 +152,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		name = aDecoder.decodeObject(forKey: "name") as? String;
 		otherData = aDecoder.decodeObject(forKey: "other_data") as? String;
 		platformType = aDecoder.decodeObject(forKey: "platform_type") as? String;
-		rememberLoginTokenCreatedAt = aDecoder.decodeObject(forKey: "remember_login_token_created_at") as? String;
+		verificationToken = aDecoder.decodeObject(forKey: "verification_token") as? String;
 		stateId = aDecoder.decodeObject(forKey: "state_id") as? Int;
 		status = aDecoder.decodeObject(forKey: "status") as? Int;
 		thumb = aDecoder.decodeObject(forKey: "thumb") as? String;
@@ -173,7 +173,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		aCoder.encode(dob, forKey: "dob");
 		aCoder.encode(email, forKey: "email");
 		aCoder.encode(firstName, forKey: "first_name");
-		aCoder.encode(forgotPasswordTokenCreatedAt, forKey: "forgot_password_token_created_at");
+		aCoder.encode(forgotPasswordToken, forKey: "forgot_password_token");
 		aCoder.encode(gender, forKey: "gender");
 		aCoder.encode(image, forKey: "image");
 		aCoder.encode(isGuest, forKey: "is_guest");
@@ -186,7 +186,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		aCoder.encode(name, forKey: "name");
 		aCoder.encode(otherData, forKey: "other_data");
 		aCoder.encode(platformType, forKey: "platform_type");
-		aCoder.encode(rememberLoginTokenCreatedAt, forKey: "remember_login_token_created_at");
+		aCoder.encode(verificationToken, forKey: "verification_token");
 		aCoder.encode(stateId, forKey: "state_id");
 		aCoder.encode(status, forKey: "status");
 		aCoder.encode(thumb, forKey: "thumb");
@@ -213,7 +213,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		instance.dob = self.dob;
 		instance.email = self.email;
 		instance.firstName = self.firstName;
-		instance.forgotPasswordTokenCreatedAt = self.forgotPasswordTokenCreatedAt;
+		instance.forgotPasswordToken = self.forgotPasswordToken;
 		instance.gender = self.gender;
 		instance.image = self.image;
 		instance.isGuest = self.isGuest;
@@ -226,7 +226,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		instance.name = self.name;
 		instance.otherData = self.otherData;
 		instance.platformType = self.platformType;
-		instance.rememberLoginTokenCreatedAt = self.rememberLoginTokenCreatedAt;
+		instance.verificationToken = self.verificationToken;
 		instance.stateId = self.stateId;
 		instance.status = self.status;
 		instance.thumb = self.thumb;
@@ -251,7 +251,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		map["dob"] = self.reverseMap(dob);
 		map["email"] = self.reverseMap(email);
 		map["first_name"] = self.reverseMap(firstName);
-		map["forgot_password_token_created_at"] = self.reverseMap(forgotPasswordTokenCreatedAt);
+		map["forgot_password_token"] = self.reverseMap(forgotPasswordToken);
 		map["gender"] = self.reverseMap(gender);
 		map["image"] = self.reverseMap(image);
 		map["is_guest"] = self.reverseMap(isGuest);
@@ -264,7 +264,7 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		map["name"] = self.reverseMap(name);
 		map["other_data"] = self.reverseMap(otherData);
 		map["platform_type"] = self.reverseMap(platformType);
-		map["remember_login_token_created_at"] = self.reverseMap(rememberLoginTokenCreatedAt);
+		map["verification_token"] = self.reverseMap(verificationToken);
 		map["state_id"] = self.reverseMap(stateId);
 		map["status"] = self.reverseMap(status);
 		map["thumb"] = self.reverseMap(thumb);

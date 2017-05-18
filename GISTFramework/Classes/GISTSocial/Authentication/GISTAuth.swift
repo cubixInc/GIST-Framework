@@ -18,10 +18,14 @@ private let EDIT_PROFILE_REQUEST = "users/edit_profile";
 private let SAVE_TOKEN_REQUEST = "users/save_token";
 
 private let RESEND_CODE_REQUEST = "users/resend_code";
-private let VERIFY_PHONE_REQUEST = "users/verify_signup";
+private let VERIFY_PHONE_REQUEST = "users/verify_phone";
 
-private let FORGOT_PASSWORD_REQUEST = "users/forgot";
+private let FORGOT_PASSWORD_REQUEST = "users/forgot_request";
 private let CHANGE_PASSWORD_REQUEST = "users/change_password";
+
+private let RESET_PASSWORD_REQUEST = "users/reset_password";
+
+private let DELETE_ACCOUNT = "users/delete_account";
 
 
 public class GISTAuth: NSObject {
@@ -89,12 +93,15 @@ public class GISTAuth: NSObject {
     //MARK: - Verify Phone
     public static func verifyPhone(code:String, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let mobileNo:String = GIST_GLOBAL.user?.mobileNo else {
+        guard let mobileNo:String = GIST_GLOBAL.user?.mobileNo, let verificationToken:String = GIST_GLOBAL.user?.verificationToken else {
             return;
         }
         
-        var params:[String:Any] = ["mobile_no":mobileNo];
-        params["code"] = code;
+        let params:[String:Any] = [
+            "mobile_no":mobileNo,
+            "code":code,
+            "verification_token":verificationToken
+        ];
         
         self.shared.request(service: VERIFY_PHONE_REQUEST, params: params, completion:completion, failure:failure);
     } //F.E.
@@ -108,18 +115,6 @@ public class GISTAuth: NSObject {
         let params:[String:Any] = ["mobile_no":mobileNo];
         
         self.shared.request(service: RESEND_CODE_REQUEST, params: params, completion:completion, failure:failure);
-    } //F.E.
-    
-    //MARK: - Change Password
-    public static func changePassword(fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        
-        guard let userId:Int = GIST_GLOBAL.user?.userId else {
-            return;
-        }
-        
-        let aParams:[String:Any] = ["user_id":userId];
-        
-        self.shared.request(service: CHANGE_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
     } //F.E.
     
     //MARK: - Forgot Password
@@ -138,9 +133,50 @@ public class GISTAuth: NSObject {
         self.shared.request(service: SAVE_TOKEN_REQUEST, params: params, completion:nil, failure:nil);
     } //F.E.
     
+    //MARK: - Change Password
+    public static func changePassword(fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        
+        guard let userId:Int = GIST_GLOBAL.user?.userId else {
+            return;
+        }
+        
+        let aParams:[String:Any] = ["user_id":userId];
+        
+        self.shared.request(service: CHANGE_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
+    } //F.E.
+    
+    //MARK: - Reset Password
+    public static func resetPassword(fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        
+        guard let user:User = GIST_GLOBAL.user, let mobileNo:String = user.mobileNo, let forgotPasswordToken:String =  user.forgotPasswordToken else {
+            return;
+        }
+        
+        let aParams:[String:Any] = [
+            "mobile_no":mobileNo,
+            "forgot_password_token":forgotPasswordToken
+        ];
+        
+        self.shared.request(service: CHANGE_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
+    } //F.E.
+    
     //MARK: - Sign Out
     public static func signOut() {
         GISTGlobal.shared.user = nil;
+    } //F.E.
+    
+    //MARK: - Reset Password
+    public static func deleteUserAccount(completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        
+        guard let user:User = GIST_GLOBAL.user, let userId:Int = user.userId else {
+            return;
+        }
+        
+        let params:[String:Any] = [
+            "user_id":userId
+        ];
+        
+        self.shared.request(service: DELETE_ACCOUNT, params: params, completion: completion, failure: failure);
     } //F.E.
     
     //MARK: - Requests
@@ -175,6 +211,7 @@ public class GISTAuth: NSObject {
     func request(service:String, params:[String:Any], completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
         
         var uParams:[String:Any] = params;
+        
         uParams["device_type"] = "ios";
         
         if let token:String = GIST_GLOBAL.deviceToken {

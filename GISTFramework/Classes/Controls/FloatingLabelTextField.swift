@@ -137,12 +137,6 @@ open class FloatingLabelTextField: ValidatedTextField {
         }
     }
     
-    /// A String value for the error message to display.
-    private var errorMessage:String? {
-        didSet {
-            self.updateControl(true);
-        }
-    }
     /// The backing property for the highlighted property
     fileprivate var _highlighted = false;
     
@@ -166,11 +160,7 @@ open class FloatingLabelTextField: ValidatedTextField {
     }
     
     /// A Boolean value that determines whether the receiver has an error message.
-    open var hasErrorMessage:Bool {
-        get {
-            return self.errorMessage != nil && self.errorMessage != "";
-        }
-    } //P.E.
+    var hasErrorMessage:Bool = false;
     
     fileprivate var _renderingInInterfaceBuilder:Bool = false
     
@@ -209,7 +199,9 @@ open class FloatingLabelTextField: ValidatedTextField {
         set {
             super.isInvalidSignHidden = newValue;
             
-            self.errorMessage = (isInvalidSignHidden == false) ? self.validityMsg:nil;
+            let errorMsg:String = self.validityMsg ?? "";
+            
+            self.hasErrorMessage = (isInvalidSignHidden == false && errorMsg != "");
         }
         
         get {

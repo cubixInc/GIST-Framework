@@ -59,20 +59,24 @@ open class ValidatedTextField: InputMaskTextField {
         }
     } //P.E.
     
-    private var _validityMsg:String?
+    //private var _validityMsg:String?
     
     /**
      Validity msg for invalid input text. - Default text is 'Invalid'
      The msg can be a key of SyncEngine with a prefix '#'
      */
-    @IBInspectable open var validityMsg:String? {
+    @IBInspectable open var validityMsg:String? = nil {
+        didSet {
+            
+        }
+        /*
         get {
             return _validityMsg;
         }
         
         set {
-            _validityMsg = (newValue != nil) ?SyncedText.text(forKey: newValue!):nil;
-        }
+            _validityMsg = (newValue != nil) ? SyncedText.text(forKey: newValue!):nil;
+        } */
     } //P.E.
     
     /// Lazy Button instance for invalid sign.
