@@ -61,7 +61,6 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 	public var dob: String?;
 	public var email: String?;
 	public var firstName: String?;
-	public var forgotPasswordToken: String?;
 	public var gender: String?;
 	public var image: String?;
 	public var isGuest: Bool?;
@@ -86,6 +85,10 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
     public var socialId: String?;
     public var userType: String?;
     
+    public var sentEmailVerification: Int?;
+    public var sentSMSVerification: Int?;
+
+    
     required public init?(map: Map) {
 	}
 
@@ -104,7 +107,6 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		dob <- map["dob"];
 		email <- map["email"];
 		firstName <- map["first_name"];
-		forgotPasswordToken <- map["forgot_password_token"];
 		gender <- map["gender"];
 		image <- map["image"];
 		isGuest <- map["is_guest"];
@@ -126,6 +128,8 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		userName <- map["user_name"];
 		zipCode <- map["zip_code"];
         
+        sentEmailVerification <- map["sent_email_verification"];
+        sentSMSVerification <- map["sent_sms_verification"];
 	}
 
 	required public init(coder aDecoder: NSCoder) {
@@ -139,7 +143,6 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		dob = aDecoder.decodeObject(forKey: "dob") as? String;
 		email = aDecoder.decodeObject(forKey: "email") as? String;
 		firstName = aDecoder.decodeObject(forKey: "first_name") as? String;
-		forgotPasswordToken = aDecoder.decodeObject(forKey: "forgot_password_token") as? String;
 		gender = aDecoder.decodeObject(forKey: "gender") as? String;
 		image = aDecoder.decodeObject(forKey: "image") as? String;
 		isGuest = aDecoder.decodeObject(forKey: "is_guest") as? Bool;
@@ -160,6 +163,9 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		userId = aDecoder.decodeObject(forKey: "user_id") as? Int;
 		userName = aDecoder.decodeObject(forKey: "user_name") as? String;
 		zipCode = aDecoder.decodeObject(forKey: "zip_code") as? String;
+        
+        sentEmailVerification = aDecoder.decodeObject(forKey: "sent_email_verification") as? Int;
+        sentSMSVerification = aDecoder.decodeObject(forKey: "sent_sms_verification") as? Int;
 	}
 
 	public func encodeWithCoder(_ aCoder: NSCoder) {
@@ -173,7 +179,6 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		aCoder.encode(dob, forKey: "dob");
 		aCoder.encode(email, forKey: "email");
 		aCoder.encode(firstName, forKey: "first_name");
-		aCoder.encode(forgotPasswordToken, forKey: "forgot_password_token");
 		aCoder.encode(gender, forKey: "gender");
 		aCoder.encode(image, forKey: "image");
 		aCoder.encode(isGuest, forKey: "is_guest");
@@ -194,6 +199,9 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		aCoder.encode(userId, forKey: "user_id");
 		aCoder.encode(userName, forKey: "user_name");
 		aCoder.encode(zipCode, forKey: "zip_code");
+        
+        aCoder.encode(sentEmailVerification, forKey: "sent_email_verification");
+        aCoder.encode(sentSMSVerification, forKey: "sent_sms_verification");
 	}
 
 	public func copy(with zone: NSZone? = nil) -> Any {
@@ -213,7 +221,6 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		instance.dob = self.dob;
 		instance.email = self.email;
 		instance.firstName = self.firstName;
-		instance.forgotPasswordToken = self.forgotPasswordToken;
 		instance.gender = self.gender;
 		instance.image = self.image;
 		instance.isGuest = self.isGuest;
@@ -235,6 +242,8 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		instance.userName = self.userName;
 		instance.zipCode = self.zipCode;
 
+        instance.sentEmailVerification = self.sentEmailVerification;
+        instance.sentSMSVerification = self.sentSMSVerification;
 		return instance;
 	}
 
@@ -251,7 +260,6 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		map["dob"] = self.reverseMap(dob);
 		map["email"] = self.reverseMap(email);
 		map["first_name"] = self.reverseMap(firstName);
-		map["forgot_password_token"] = self.reverseMap(forgotPasswordToken);
 		map["gender"] = self.reverseMap(gender);
 		map["image"] = self.reverseMap(image);
 		map["is_guest"] = self.reverseMap(isGuest);
@@ -272,6 +280,9 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 		map["user_id"] = self.reverseMap(userId);
 		map["user_name"] = self.reverseMap(userName);
 		map["zip_code"] = self.reverseMap(zipCode);
+        
+        map["sent_email_verification"] = self.reverseMap(sentEmailVerification);
+        map["sent_sms_verification"] = self.reverseMap(sentSMSVerification);
 
 		return map;
 	}
