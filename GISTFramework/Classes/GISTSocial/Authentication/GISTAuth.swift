@@ -164,6 +164,47 @@ public class GISTAuth: NSObject {
         GISTGlobal.shared.user = nil;
     } //F.E.
     
+    public static func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        let host:String = url.host ?? "";
+        let params:[String:String] = url.params;
+        
+        let alr:UIAlertView = UIAlertView(title: host, message: params.toJSONString() ?? "", delegate: nil, cancelButtonTitle: "Cancel", otherButtonTitles: "Ok");
+        alr.show();
+        
+        switch host {
+        case "forgot_password":
+            //socialgist://forgot_password?verification_token={verification_token}
+            let user:User = GISTGlobal.shared.user ?? User();
+            user.verificationToken = params["verification_token"];
+            
+            GISTGlobal.shared.user = user;
+            
+            return true;
+        
+        case "signup_success":
+            //socialgist://signup_success?email={email}&user_id={user_id}
+            return true;
+            
+        case "change_email":
+            //socialgist://change_email?verification_token={verification_token}&new_email={new_email}
+            
+            let user:User = GISTGlobal.shared.user ?? User();
+            user.verificationToken = params["verification_token"];
+            user.email = params["new_email"];
+            
+            GISTGlobal.shared.user = user;
+            
+            return true;
+            
+        default:
+            break;
+        }
+        
+        
+        return false;
+    } //F.E.
+    
     //MARK: - Reset Password
     public static func deleteAccount(completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         

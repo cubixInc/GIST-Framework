@@ -462,14 +462,18 @@ open class HTTPRequest:NSObject {
         self.parameters = parameters;
         self.method = method;
         self.headers = headers;
+        
+        //User Token
+        if let userToken:String = GISTGlobal.shared.user?.userToken, self.headers != nil {
+            self.headers!["user_token"] = userToken;
+        }
     } //C.E.
     
     open func sendRequest() -> DataRequest {
-        
         #if DEBUG
-            print("---------------------------------------------------------------------------")
+            print("------------------------------------------------------------------");
             print("url: \(self.urlString) params: \(self.parameters) headers: \(self.headers)")
-            print("---------------------------------------------------------------------------")
+            print("------------------------------------------------------------------");
         #endif
         
         self.request = Alamofire.request(self.urlString, method:self.method, parameters: self.parameters, encoding: URLEncoding.default, headers: self.headers);

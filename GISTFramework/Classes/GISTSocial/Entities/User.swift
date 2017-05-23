@@ -82,12 +82,12 @@ open class User: NSObject, Mappable, ReverseMappable, NSCopying {
 	public var userName: String?;
 	public var zipCode: String?;
     
-    public var socialId: String?;
-    public var userType: String?;
-    
     public var sentEmailVerification: Int?;
     public var sentSMSVerification: Int?;
-
+    
+    public var platformId: String?;
+    public var userType: String?;
+    public var userToken: String?;
     
     required public init?(map: Map) {
 	}

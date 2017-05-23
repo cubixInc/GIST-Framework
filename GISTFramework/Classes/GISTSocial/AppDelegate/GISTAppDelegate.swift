@@ -80,7 +80,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     } //F.E.
     
     open func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        let handled:Bool = false;
+        var handled:Bool = false;
         
         /*
         if (url.scheme?.hasPrefix("fb"))! {
@@ -88,7 +88,12 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         } else if (url.scheme?.hasPrefix("com.googleusercontent.apps"))! {
             handled = GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation);
         }
-         */
+        */
+        
+        if let scheme:String = url.scheme, scheme.hasPrefix("socialgist") {
+            handled = GISTAuth.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation);
+        }
+        
 
         return handled;
     } //F.E.

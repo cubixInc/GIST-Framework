@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4809C7351EB8AE480060F64E /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7341EB8AE480060F64E /* GISTAuth.swift */; };
 		4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */; };
+		4820E7621ED2DF9400244DED /* URL+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E7611ED2DF9400244DED /* URL+Utility.swift */; };
 		483640F71E717774007FD8AC /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483640F61E717774007FD8AC /* String+Utility.swift */; };
 		48439F351ECC594F00836301 /* InputMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48439F341ECC594F00836301 /* InputMaskTextField.swift */; };
 		484942C41E73050E004F4A9B /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942B81E73050E004F4A9B /* CustomImageView.swift */; };
@@ -98,6 +99,7 @@
 		47A752A77860274A822EC83C /* Pods-GISTFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISTFramework/Pods-GISTFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		4809C7341EB8AE480060F64E /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
 		4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GISTUtility+Social.swift"; sourceTree = "<group>"; };
+		4820E7611ED2DF9400244DED /* URL+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Utility.swift"; sourceTree = "<group>"; };
 		483640F61E717774007FD8AC /* String+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		48439F341ECC594F00836301 /* InputMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMaskTextField.swift; sourceTree = "<group>"; };
 		484942B81E73050E004F4A9B /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				48991B0B1D460C60007467A4 /* Array+Utility.swift */,
 				48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */,
 				487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */,
+				4820E7611ED2DF9400244DED /* URL+Utility.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				489530781D12AD4100DFD38B /* UITableView+Utility.swift in Sources */,
 				487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */,
 				4895305C1D12AD4100DFD38B /* BaseUIDesignableButton.swift in Sources */,
+				4820E7621ED2DF9400244DED /* URL+Utility.swift in Sources */,
 				489530591D12AD4100DFD38B /* BaseUIButton.swift in Sources */,
 				48C493731E88F73900F14CF4 /* ReachabilityHelper.swift in Sources */,
 				48E192891E8BC1C600638528 /* GISTEnumNConstants.swift in Sources */,
