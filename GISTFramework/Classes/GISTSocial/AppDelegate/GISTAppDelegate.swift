@@ -10,6 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import UserNotifications
 
+private let SAVE_TOKEN_REQUEST = "users/save_token";
 
 open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
@@ -47,7 +48,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         print("APNs device token: \(deviceTokenString)")
 
         GIST_GLOBAL.deviceToken = deviceTokenString;
-        GISTAuth.savePushToken();
+        self.savePushToken();
     } //F.E.
     
     open func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -91,7 +92,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         */
         
         if let scheme:String = url.scheme, scheme.hasPrefix("socialgist") {
-            handled = GISTAuth.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation);
+            handled = self.handle(application, open: url, sourceApplication: sourceApplication, annotation: annotation);
         }
         
 
@@ -142,6 +143,68 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     @available(iOS 10.0, *)
     open func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
+    } //F.E.
+    
+    //MARK: - Save Token
+    private func savePushToken() {
+        guard let userId:Int = GIST_GLOBAL.user?.userId, let token:String = GIST_GLOBAL.deviceToken else {
+            return;
+        }
+        
+        let params:[String:Any] = [
+            "user_id":userId,
+            "device_token":token,
+            "device_type":"ios"
+        ]
+        
+        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: SAVE_TOKEN_REQUEST, parameters: params, delegate: nil);
+        
+        httpRequest.onSuccess { (rawData:Any?) in
+            print("Device Token Saved ...");
+        };
+        
+    } //F.E.
+    
+    //MARK: - Deep Linking
+    public func handle(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        let host:String = url.host ?? "";
+        let params:[String:String] = url.params;
+        
+        let alr:UIAlertView = UIAlertView(title: host, message: params.toJSONString() ?? "", delegate: nil, cancelButtonTitle: "Cancel", otherButtonTitles: "Ok");
+        alr.show();
+        
+        switch host {
+        case "forgot_password":
+            //socialgist://forgot_password?verification_token={verification_token}
+            let user:GISTUser = GISTGlobal.shared.user ?? ModelUser();
+            user.verificationToken = params["verification_token"];
+            
+            GISTGlobal.shared.user = user;
+            
+            return true;
+            
+        case "signup_success":
+            //socialgist://signup_success?email={email}&user_id={user_id}
+            return true;
+            
+        case "change_email":
+            //socialgist://change_email?verification_token={verification_token}&new_email={new_email}
+            
+            let user:GISTUser = GISTGlobal.shared.user ?? ModelUser();
+            user.verificationToken = params["verification_token"];
+            user.email = params["new_email"];
+            
+            GISTGlobal.shared.user = user;
+            
+            return true;
+            
+        default:
+            break;
+        }
+        
+        
+        return false;
     } //F.E.
     
 } //CLS END

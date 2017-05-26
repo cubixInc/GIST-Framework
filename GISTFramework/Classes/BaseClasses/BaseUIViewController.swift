@@ -86,8 +86,7 @@ open class BaseUIViewController: UIViewController {
     ///   - nibNameOrNil: Nib Name
     ///   - nibBundleOrNil: Nib Bundle Name
     ///   - backButtonForced: Flag to show back button by force
-    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButtonForced:Bool)
-    {
+    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, backButtonForced:Bool) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
         
         _hasBackButton = backButtonForced;
@@ -127,12 +126,15 @@ open class BaseUIViewController: UIViewController {
     private func setupBackBtn() {
         if (_hasBackButton) {
              if (self.navigationItem.leftBarButtonItem == nil && (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1))) {
+                
                 self.navigationItem.hidesBackButton = true;
                 
                 self.navigationItem.leftBarButtonItem = BaseUIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonTapped));
                 
                 (self.navigationItem.leftBarButtonItem as? BaseUIBarButtonItem)?.respectRTL = true;
              }
+        } else {
+            self.navigationItem.hidesBackButton = true;
         }
     } //F.E.
     

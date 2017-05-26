@@ -23,12 +23,12 @@ public class GISTGlobal: NSObject {
     public var deviceToken:String?;
     public var apnsPermissionGranted:Bool?
     
-    private var _user:User?
-    public internal(set) var user:User? {
+    private var _user:GISTUser?
+    public internal(set) var user:GISTUser? {
         get {
             
             if _user == nil, let data: Data = UserDefaults.standard.object(forKey: "APP_USER") as? Data {
-                _user = NSKeyedUnarchiver.unarchiveObject(with: data) as? User;
+                _user = NSKeyedUnarchiver.unarchiveObject(with: data) as? GISTUser;
             }
             
             return _user;
@@ -37,7 +37,7 @@ public class GISTGlobal: NSObject {
         set {
             _user = newValue;
             
-            if let usr:User = _user {
+            if let usr:GISTUser = _user {
                 let data = NSKeyedArchiver.archivedData(withRootObject: usr);
                 UserDefaults.standard.set(data, forKey: "APP_USER");
                 UserDefaults.standard.synchronize();

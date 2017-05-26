@@ -81,7 +81,7 @@ public extension GISTUtility {
         return rParams;
     } //F.E.
     
-    public class func formate(user:User, additional params:[String:Any]?) -> [String:Any] {
+    public class func formate(user:GISTUser, additional params:[String:Any]?) -> [String:Any] {
         var rParams:[String:Any] = user.toDictionary() as? [String:Any] ?? [:];
         
         if let aParams:[String:Any] = params {
