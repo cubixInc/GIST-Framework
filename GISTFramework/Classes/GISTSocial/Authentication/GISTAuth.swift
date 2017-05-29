@@ -217,6 +217,8 @@ public class GISTAuth<T:GISTUser>: NSObject {
             
             if let userData:[String:Any] = dicData?["user"] as? [String:Any], let user:T = Mapper<T>().map(JSON: userData) {
                 
+                user.clientToken = dicData?["client_token"] as? String ?? GIST_GLOBAL.user?.clientToken;
+                
                 GIST_GLOBAL.user = user;
                 
                 completion?(user, rawData);

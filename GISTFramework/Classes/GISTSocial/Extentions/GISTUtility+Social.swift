@@ -30,9 +30,14 @@ public extension GISTUtility {
         for i in 0 ..< array.count {
             let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
             
-            dict?["validated"] = true;
+            let isFieldValid:Bool;
             
-            let isFieldValid:Bool = dict?["isValid"] as? Bool ?? false;
+            if let dataArr:NSMutableArray = dict?["data"] as? NSMutableArray {
+                isFieldValid = self.validate(array: dataArr);
+            } else {
+                dict?["validated"] = true;
+                isFieldValid = dict?["isValid"] as? Bool ?? false;
+            }
             
             if (isFieldValid == false && isValid == true) {
                 isValid = false; // The reason on not breaking loop here is that each field should call its isValid propert to update view
@@ -67,7 +72,18 @@ public extension GISTUtility {
         for i in 0 ..< array.count {
             let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
             
-            if let pKey:String = dict?["paramKey"] as? String, let text:String = dict?["validText"] as? String {
+            if let dataArr:NSMutableArray = dict?["data"] as? NSMutableArray {
+                
+                for j in 0 ..< dataArr.count {
+                    let sDict:NSMutableDictionary? = array[j] as? NSMutableDictionary;
+                    
+                    if let pKey:String = sDict?["paramKey"] as? String, let text:String = sDict?["validText"] as? String {
+                        rParams[pKey] = text;
+                    }
+                }
+                
+                
+            } else if let pKey:String = dict?["paramKey"] as? String, let text:String = dict?["validText"] as? String {
                 rParams[pKey] = text;
             }
         }
