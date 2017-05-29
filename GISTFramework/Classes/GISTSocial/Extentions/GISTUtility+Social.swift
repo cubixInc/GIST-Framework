@@ -75,7 +75,7 @@ public extension GISTUtility {
             if let dataArr:NSMutableArray = dict?["data"] as? NSMutableArray {
                 
                 for j in 0 ..< dataArr.count {
-                    let sDict:NSMutableDictionary? = array[j] as? NSMutableDictionary;
+                    let sDict:NSMutableDictionary? = dataArr[j] as? NSMutableDictionary;
                     
                     if let pKey:String = sDict?["paramKey"] as? String, let text:String = sDict?["validText"] as? String {
                         rParams[pKey] = text;
