@@ -65,19 +65,7 @@ open class ValidatedTextField: InputMaskTextField {
      Validity msg for invalid input text. - Default text is 'Invalid'
      The msg can be a key of SyncEngine with a prefix '#'
      */
-    @IBInspectable open var validityMsg:String? = nil {
-        didSet {
-            
-        }
-        /*
-        get {
-            return _validityMsg;
-        }
-        
-        set {
-            _validityMsg = (newValue != nil) ? SyncedText.text(forKey: newValue!):nil;
-        } */
-    } //P.E.
+    @IBInspectable open var validityMsg:String? = nil;
     
     /// Lazy Button instance for invalid sign.
     private lazy var invalidSignBtn:CustomUIButton =  {
@@ -127,6 +115,12 @@ open class ValidatedTextField: InputMaskTextField {
     } //P.E.
     
     open var validText: String?;
+    
+    private var vText: String? {
+        get {
+            return self.text;
+        }
+    } //P.E.
     
     open var isInvalidSignHidden:Bool = true {
         didSet {

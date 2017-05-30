@@ -11,6 +11,9 @@ import InputMask
 
 open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener {
 
+    open var planText:String?
+    open var isValidMask:Bool = false;
+    
     @IBInspectable public var maskFormat: String? {
         didSet {
             guard maskFormat != oldValue else {
@@ -127,6 +130,11 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
     /// - Returns: Bool flag for text field should return.
     open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return _delegate?.textFieldShouldReturn?(textField) ?? true;
+    } //F.E.
+    
+    public func textField(_ textField: UITextField, didFillMandatoryCharacters complete: Bool, didExtractValue value: String) {
+        self.planText = value;
+        self.isValidMask = complete;
     } //F.E.
 
 } //CLS END

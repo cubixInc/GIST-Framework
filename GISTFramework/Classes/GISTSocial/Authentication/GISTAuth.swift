@@ -91,14 +91,17 @@ public class GISTAuth<T:GISTUser>: NSObject {
     //MARK: - Verify Phone
     public static func verifyPhone(code:String, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let mobileNo:String = GIST_GLOBAL.user?.mobileNo, let verificationToken:String = GIST_GLOBAL.user?.verificationToken else {
+        guard let user:GISTUser = GIST_GLOBAL.user, let mobileNo:String = user.mobileNo, let verificationToken:String = user.verificationToken else {
             return;
         }
         
+        let verificationMode:String = (user.userId == nil) ? "forgot":"signup";
+        
         let params:[String:Any] = [
             "mobile_no":mobileNo,
-            "code":code,
-            "verification_token":verificationToken
+            "authy_code":code,
+            "verification_token":verificationToken,
+            "verification_mode":verificationMode
         ];
         
         self.request(service: VERIFY_PHONE_REQUEST, params: params, completion:completion, failure:failure);
