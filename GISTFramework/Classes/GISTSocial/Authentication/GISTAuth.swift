@@ -210,8 +210,17 @@ public class GISTAuth<T:GISTUser>: NSObject {
             uParams["device_token"] = token;
         }
         
-        if let mobileNo:String = uParams["mobile_no"] as? String, mobileNo.contains("-"), let countryCode:String = uParams["country_code"] as? String{
-            uParams["mobile_no"] = "\(countryCode)-\(mobileNo.components(separatedBy: "-").last ?? "")";
+        if let mobileNo:String = uParams["mobile_no"] as? String, let countryCode:String = uParams["country_code"] as? String {
+            
+            var uMobileNo = mobileNo;
+            
+            if (mobileNo.contains("-")) {
+                uMobileNo = mobileNo.components(separatedBy: "-").last ?? "";
+            } else if (mobileNo.hasPrefix("0")) {
+                uMobileNo.remove(at: uMobileNo.startIndex);
+            }
+            
+            uParams["mobile_no"] = "\(countryCode)-\(uMobileNo)";
         }
         
         let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, delegate: nil);
