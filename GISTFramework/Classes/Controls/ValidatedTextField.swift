@@ -116,7 +116,7 @@ open class ValidatedTextField: InputMaskTextField {
     
     open var validText: String?;
     
-    private var vText: String? {
+    private var curText: String? {
         get {
             return self.text;
         }
@@ -230,7 +230,7 @@ open class ValidatedTextField: InputMaskTextField {
         
         if valid {
             if let pNumber:PhoneNumber = self.phoneNumber {
-                self.validText = "\(pNumber.countryCode)-\(pNumber.numberString)";
+                self.validText = "+\(pNumber.countryCode)-\(pNumber.nationalNumber)";
             } else {
                 self.validText = self.text;
             }
@@ -251,28 +251,28 @@ open class ValidatedTextField: InputMaskTextField {
     ///
     /// - Returns: Bool flag for a valid input.
     open func isEmpty()->Bool {
-        return GISTUtility.isEmpty(self.text);
+        return GISTUtility.isEmpty(self.curText);
     } //F.E.
     
     /// Validats for a valid email text
     ///
     /// - Returns: Bool flag for a valid input.
     private func isValidEmail()->Bool {
-        return GISTUtility.isValidEmail(self.text);
+        return GISTUtility.isValidEmail(self.curText);
     } //F.E.
     
     /// Validats for a valid url text
     ///
     /// - Returns: Bool flag for a valid input.
     private func isValidUrl() -> Bool {
-        return GISTUtility.isValidUrl(self.text);
+        return GISTUtility.isValidUrl(self.curText);
     } //F.E.
     
     /// Validats for a valid phone number text
     ///
     /// - Returns: Bool flag for a valid input.
     private func isValidPhoneNo() -> Bool {
-        self.phoneNumber = GISTUtility.validatePhoneNumber(self.text);
+        self.phoneNumber = GISTUtility.validatePhoneNumber(self.curText);
         return self.phoneNumber != nil;
     } //F.E.
     
@@ -280,14 +280,14 @@ open class ValidatedTextField: InputMaskTextField {
     ///
     /// - Returns: Bool flag for a valid input.
     private func isNumeric() -> Bool {
-        return GISTUtility.isNumeric(self.text);
+        return GISTUtility.isNumeric(self.curText);
     } //F.E.
     
     /// Validats for a valid alphabetic text
     ///
     /// - Returns: Bool flag for a valid input.
     private func isAlphabetic() -> Bool {
-        return GISTUtility.isAlphabetic(self.text);
+        return GISTUtility.isAlphabetic(self.curText);
     } //F.E.
     
     /// Validats for minimum chararacter limit
@@ -295,7 +295,7 @@ open class ValidatedTextField: InputMaskTextField {
     /// - Parameter noOfChar: No. of characters
     /// - Returns: Bool flag for a valid input.
     private func isValidForMinChar(_ noOfChar:Int) -> Bool {
-        return GISTUtility.isValidForMinChar(self.text, noOfChar: noOfChar);
+        return GISTUtility.isValidForMinChar(self.curText, noOfChar: noOfChar);
     } //F.E.
     
     /// Validats for maximum chararacter limit
@@ -303,7 +303,7 @@ open class ValidatedTextField: InputMaskTextField {
     /// - Parameter noOfChar: No. of characters
     /// - Returns: Bool flag for a valid input.
     private func isValidForMaxChar(_ noOfChar:Int) -> Bool {
-        return GISTUtility.isValidForMaxChar(self.text, noOfChar: noOfChar);
+        return GISTUtility.isValidForMaxChar(self.curText, noOfChar: noOfChar);
     } //F.E.
     
     /// Validats for a regex
@@ -311,7 +311,7 @@ open class ValidatedTextField: InputMaskTextField {
     /// - Parameter regex: Regex
     /// - Returns: Bool flag for a valid input.
     private func isValidForRegex(_ regex:String)->Bool {
-        return GISTUtility.isValidForRegex(self.text, regex: regex);
+        return GISTUtility.isValidForRegex(self.curText, regex: regex);
     } //F.E.
     
     /// Method to handle tap event for invalid sign button.
