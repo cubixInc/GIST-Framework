@@ -118,7 +118,7 @@ open class ValidatedTextField: InputMaskTextField {
     
     private var curText: String? {
         get {
-            return self.text;
+            return (self.maskFormat != nil) ? self.planText:self.text;
         }
     } //P.E.
     
@@ -213,6 +213,7 @@ open class ValidatedTextField: InputMaskTextField {
         _isEmpty = self.isEmpty();
         
         _isValid =
+            ((maskFormat == nil) || self.isValidMask) &&
             (!validateEmail || self.isValidEmail()) &&
             (!validatePhone || self.isValidPhoneNo()) &&
             (!validateEmailOrPhone || (self.isValidEmail() || self.isValidPhoneNo())) &&
@@ -225,14 +226,13 @@ open class ValidatedTextField: InputMaskTextField {
         
         self.isInvalidSignHidden = (_isValid || _isEmpty);
         
-        
         let valid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
         
         if valid {
             if let pNumber:PhoneNumber = self.phoneNumber {
                 self.validText = "+\(pNumber.countryCode)-\(pNumber.nationalNumber)";
             } else {
-                self.validText = self.text;
+                self.validText = self.curText;
             }
         } else {
             self.validText = nil;
@@ -313,6 +313,7 @@ open class ValidatedTextField: InputMaskTextField {
     private func isValidForRegex(_ regex:String)->Bool {
         return GISTUtility.isValidForRegex(self.curText, regex: regex);
     } //F.E.
+    
     
     /// Method to handle tap event for invalid sign button.
     ///
