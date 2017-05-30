@@ -210,6 +210,10 @@ public class GISTAuth<T:GISTUser>: NSObject {
             uParams["device_token"] = token;
         }
         
+        if let mobileNo:String = uParams["mobile_no"] as? String, mobileNo.contains("-"), let countryCode:String = uParams["country_code"] as? String{
+            uParams["mobile_no"] = "\(countryCode)-\(mobileNo.components(separatedBy: "-").last ?? "")";
+        }
+        
         let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, delegate: nil);
         
         httpRequest.onSuccess { (rawData:Any?) in

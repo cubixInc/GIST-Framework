@@ -187,8 +187,15 @@ public class GISTUtility: NSObject {
         
         let kit = PhoneNumberKit()
         
+        
+        var pNumber:String = text!
+        
+        if pNumber.hasPrefix("0") {
+            pNumber.remove(at: pNumber.startIndex);
+        }
+        
         do {
-            let phoneNumber:PhoneNumber = try kit.parse(text!);
+            let phoneNumber:PhoneNumber = try kit.parse(pNumber);
             
             print("numberString: \(phoneNumber.numberString) countryCode: \(phoneNumber.countryCode) leadingZero: \(phoneNumber.leadingZero) nationalNumber: \(phoneNumber.nationalNumber) numberExtension: \(phoneNumber.numberExtension) type: \(phoneNumber.type)")
             
