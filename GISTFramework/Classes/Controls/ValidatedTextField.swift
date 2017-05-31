@@ -116,12 +116,6 @@ open class ValidatedTextField: InputMaskTextField {
     
     open var validText: String?;
     
-    private var curText: String? {
-        get {
-            return (self.maskFormat != nil) ? self.planText:self.text;
-        }
-    } //P.E.
-    
     open var isInvalidSignHidden:Bool = true {
         didSet {
             self.invalidSignBtn.isHidden = isInvalidSignHidden;
@@ -232,7 +226,7 @@ open class ValidatedTextField: InputMaskTextField {
             if let pNumber:PhoneNumber = self.phoneNumber {
                 self.validText = "+\(pNumber.countryCode)-\(pNumber.nationalNumber)";
             } else {
-                self.validText = self.curText;
+                self.validText = (self.sendMaskedText) ? self.text : self.curText;
             }
         } else {
             self.validText = nil;

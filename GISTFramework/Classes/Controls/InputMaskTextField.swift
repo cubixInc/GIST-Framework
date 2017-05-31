@@ -39,6 +39,16 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
         }
     } //P.E.
     
+    @IBInspectable public var sendMaskedText:Bool = false;
+    
+    
+    var curText: String? {
+        get {
+            return (self.maskFormat != nil) ? self.planText:self.text;
+        }
+    } //P.E.
+    
+    
     private var _polyMaskTextFieldDelegate:PolyMaskTextFieldDelegate?;
     
     ///Maintainig Own delegate.
@@ -68,6 +78,7 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
         
         //Masking
         self.maskFormat = dicData?["maskFormat"] as? String;
+        self.sendMaskedText = dicData?["sendMaskedText"] as? Bool ?? false;
     } //F.E.
     
     //Mark: - UITextField Delegate Methods
