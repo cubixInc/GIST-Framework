@@ -119,8 +119,8 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Forgot Password
-    public static func forgotPassword(fields:ValidatedTextField ..., completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: FORGOT_PASSWORD_REQUEST, fields: fields, additional: nil, completion: completion, failure: failure);
+    public static func forgotPassword(fields:ValidatedTextField ..., additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        self.request(service: FORGOT_PASSWORD_REQUEST, fields: fields, additional: params, completion: completion, failure: failure);
     } //F.E.
     
     //MARK: - Change Password
