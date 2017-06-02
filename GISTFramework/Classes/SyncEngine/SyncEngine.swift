@@ -128,13 +128,14 @@ open class SyncEngine: NSObject {
     private func setupSyncedFile() {
         var hasToSync:Bool = true;
         
-        if let syncedFileUrlRes:String = Bundle.main.path(forResource: self.syncedFile, ofType: "plist") {
+        if let syncedFileUrlRes:String = self.filePath(for: self.syncedFile) {
             
             //Localization
             if (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
                 _languageCode = "-" + GIST_CONFIG.currentLanguageCode
+            } else {
+                _languageCode = "";
             }
-            
              
             //If File does not exist
             if (FileManager.default.fileExists(atPath: self.syncedFileUrl.path) == false) {
@@ -168,33 +169,6 @@ open class SyncEngine: NSObject {
             #endif
         }
     } //F.E.
-    
-    /*
-    private func validateBuildVersion() {
-        let curBuildVersion:String = AppInfo.versionNBuildNumber;
-        
-        var hasToUpdateVersion:Bool = false;
-        
-        if let fileVersion:String = _dictData?["VERSION_NUMBER"] as? String {
-            if (curBuildVersion != fileVersion) {
-                
-                //Sync
-                self.syncFromResource();
-                
-                //Update Version
-                hasToUpdateVersion = true;
-            }
-        } else {
-            //Set or Update Version
-            hasToUpdateVersion = true;
-        }
-        
-        if (hasToUpdateVersion) {
-            _dictData?["VERSION_NUMBER"] = curBuildVersion;
-            self.synchronize(true); // Forceing to be synchronized
-        }
-    } //F.E.
-    */
     
     /// Method to retrieve value for a given key of SyncEngine.
     ///
@@ -234,7 +208,7 @@ open class SyncEngine: NSObject {
     } //F.E.
     
     private func syncFromResource(hasToOverride override:Bool = false) {
-        let syncedFileUrlRes:String = Bundle.main.path(forResource: self.syncedFile, ofType: "plist")!
+        let syncedFileUrlRes:String = self.filePath(for: self.syncedFile)!
         
         //Sync file from Resource folder
         let resDictData:NSDictionary = NSDictionary(contentsOfFile: syncedFileUrlRes)!;
@@ -448,12 +422,17 @@ open class SyncEngine: NSObject {
         _dictData = NSMutableDictionary();
     } //F.E.
     
+    private func filePath(for resource:String) -> String? {
+        let path:String? = Bundle.main.path(forResource: resource, ofType: "plist", inDirectory: nil, forLocalization: GIST_CONFIG.currentLanguageCode) ?? Bundle.main.path(forResource: resource, ofType: "plist")
+        return path;
+    }
+    
     /// Method to retrieve a custom object for a given key of SyncEngine.
     ///
     /// - Parameter aKey: key from SyncEngine
     /// - Returns: A generic object for a given key
     private func customObjectForKey<T>(_ aKey: String) -> T? {
-        if let syncedFileUrlRes = Bundle.main.path(forResource: aKey, ofType: "plist") {
+        if let syncedFileUrlRes = self.filePath(for: aKey) {
             
             var languageCode:String = "";
             
@@ -506,76 +485,6 @@ open class SyncEngine: NSObject {
         return nil;
     } //F.E.
     
-    /*
-    private func customObjectForKey<T>(_ aKey: String) -> T? {
-        let rtnData:T? = _dictData?.object(forKey: aKey) as? T;
-        
-        if (rtnData != nil) {
-            if let instance =  rtnData as? NSMutableCopying  {
-                return instance.mutableCopy() as? T;
-            } else {
-                return rtnData;
-            }
-        }
-        
-        if let syncedFileUrlRes = Bundle.main.path(forResource: aKey, ofType: "plist") {
-            
-            var languageCode:String = "";
-            
-            //Localization
-            if (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
-                languageCode = "-" + GIST_CONFIG.currentLanguageCode
-            }
-            
-            let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(aKey+languageCode).plist");
-             
-            var isFileExist:Bool = FileManager.default.fileExists(atPath: url.path);
-            
-            #if DEBUG
-                if (isFileExist) {
-                    do {
-                        try FileManager.default.removeItem(at: url);
-                    } catch  {
-                        let nserror = error as NSError
-                        NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
-                        abort();
-                    }
-                     
-                    isFileExist = false;
-                }
-            #endif
-            
-            //If File does not exist
-            if (isFileExist == false) {
-                do {
-                    try FileManager.default.copyItem(at: URL(fileURLWithPath: syncedFileUrlRes), to: url);
-                } catch  {
-                    let nserror = error as NSError
-                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)");
-                    abort()
-                }
-            }
-            
-            //Fetching Data
-            if let arr = NSMutableArray(contentsOf: url) {
-                _dictData?.setObject(arr, forKey: aKey as NSCopying);
-                 
-                return arr.mutableCopy() as? T;
-            } else if let dict = NSMutableDictionary(contentsOf: url) {
-                _dictData?.setObject(dict, forKey: aKey as NSCopying);
-                 
-                return dict.mutableCopy() as? T;
-            }
-            
-        } else {
-            NSLog("Unresolved error : \(aKey).plist file not found in the resource folder");
-            abort();
-        }
-        
-        return nil;
-    } //F.E.
-    */
-    
     @discardableResult private func syncForCustomData(_ dict:NSDictionary) -> Bool {
         if (dict.count == 0) {
             return false;
@@ -592,7 +501,7 @@ open class SyncEngine: NSObject {
             
             //Localization
             var languageCode:String = "";
-            if let syncedFileUrlRes = Bundle.main.path(forResource: key, ofType: "plist") , (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
+            if let syncedFileUrlRes = self.filePath(for: key), (syncedFileUrlRes.range(of: "lproj") != nil && syncedFileUrlRes.range(of: "Base.lproj") == nil) {
                 //Localization
                 languageCode = "-" + GIST_CONFIG.currentLanguageCode;
             }
