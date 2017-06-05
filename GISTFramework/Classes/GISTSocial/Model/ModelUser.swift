@@ -25,6 +25,7 @@ public class ModelUser:NSObject, GISTUser {
     public var type: String?;
     public var userId: Int?;
     public var verificationToken: String?;
+    public var rawImage: UIImage?;
     
     required public init?(map: Map) {
     }
@@ -105,6 +106,7 @@ public class ModelUser:NSObject, GISTUser {
         instance.type = self.type;
         instance.userId = self.userId;
         instance.verificationToken = self.verificationToken;
+        instance.rawImage = self.rawImage;
         
         return instance;
     }
@@ -126,6 +128,7 @@ public class ModelUser:NSObject, GISTUser {
         map["type"] = self.reverseMap(type);
         map["user_id"] = self.reverseMap(userId);
         map["verification_token"] = self.reverseMap(verificationToken);
+        map["raw_image"] = self.reverseMap(rawImage);
         
         return map;
     }

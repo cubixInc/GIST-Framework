@@ -34,6 +34,7 @@ public protocol GISTUser: Mappable, ReverseMappable, NSCopying {
     var sentMobileVerification: Bool? {get set};
     
     var clientToken: String? {get set};
+    var rawImage: UIImage? {get set};
     
     init();
 } //P.E.

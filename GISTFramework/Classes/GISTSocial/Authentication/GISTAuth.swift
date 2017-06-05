@@ -226,7 +226,27 @@ public class GISTAuth<T:GISTUser>: NSObject {
             uParams["mobile_no"] = "\(countryCode)-\(uMobileNo)";
         }
         
-        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, delegate: nil);
+        let httpRequest:HTTPRequest
+        
+        //Multipart Request
+        if let rawImage:UIImage = uParams["raw_image"] as? UIImage {
+            print("raw : \(rawImage)");
+            
+            let imgData:Data;
+            
+            if (rawImage.size.width > 400 || rawImage.size.height > 400) {
+                imgData = UIImageJPEGRepresentation(rawImage.scaleAndRotateImage(400), 100)!;
+            } else {
+                imgData = UIImageJPEGRepresentation(rawImage, 90)!;
+            }
+            
+            uParams["raw_image"] = imgData;
+            
+            //Multipart Request
+            httpRequest = HTTPServiceManager.multipartRequest(requestName: service, parameters: uParams, delegate: nil)
+        } else {
+            httpRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, delegate: nil);
+        }
         
         httpRequest.onSuccess { (rawData:Any?) in
             let dicData:[String:Any]? = rawData as? [String:Any];
