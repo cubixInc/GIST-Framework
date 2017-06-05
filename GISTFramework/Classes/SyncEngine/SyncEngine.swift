@@ -423,7 +423,8 @@ open class SyncEngine: NSObject {
     } //F.E.
     
     private func filePath(for resource:String) -> String? {
-        let path:String? = Bundle.main.path(forResource: resource, ofType: "plist", inDirectory: nil, forLocalization: GIST_CONFIG.currentLanguageCode) ?? Bundle.main.path(forResource: resource, ofType: "plist")
+        let currLanguageCode:String = GIST_CONFIG.currentLanguageCode == "en" ? "Base" : GIST_CONFIG.currentLanguageCode;
+        let path:String? = Bundle.main.path(forResource: resource, ofType: "plist", inDirectory: nil, forLocalization: currLanguageCode) ?? Bundle.main.path(forResource: resource, ofType: "plist")
         return path;
     }
     

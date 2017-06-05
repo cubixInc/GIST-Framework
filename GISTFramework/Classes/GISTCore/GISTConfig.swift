@@ -35,14 +35,13 @@ public class GISTConfig: NSObject {
         get {
             if (_currentLanguageCode == nil) {
                 _currentLanguageCode = Bundle.main.preferredLocalizations[0];
-                //Locale.current.languageCode ?? "en";
             }
             
             return _currentLanguageCode!;
         }
         
         set {
-            //??_isRTL = nil;
+            _isRTL = nil;
             _currentLanguageCode = newValue;
         }
     } //P.E.
