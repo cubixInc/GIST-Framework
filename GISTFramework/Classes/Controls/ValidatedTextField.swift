@@ -31,6 +31,9 @@ open class ValidatedTextField: InputMaskTextField {
     /// Bool flag for validating a valid email or phone number text.
     @IBInspectable open var validateEmailOrPhone:Bool = false;
     
+    /// Bool flag for validating a valid email, phone or non empty number text.
+    @IBInspectable open var validateEmailPhoneOrUserName:Bool = false;
+    
     /// Bool flag for validating a valid url text.
     @IBInspectable open var validateURL:Bool = false;
     
@@ -181,6 +184,7 @@ open class ValidatedTextField: InputMaskTextField {
         self.validateEmail = dicData?["validateEmail"] as? Bool ?? false;
         self.validatePhone = dicData?["validatePhone"] as? Bool ?? false;
         self.validateEmailOrPhone = dicData?["validateEmailOrPhone"] as? Bool ?? false;
+        self.validateEmailPhoneOrUserName = dicData?["validateEmailPhoneOrUserName"] as? Bool ?? false;
         self.validityMsg = dicData?["validityMsg"] as? String;
         
         //Set the text and placeholder
@@ -211,6 +215,7 @@ open class ValidatedTextField: InputMaskTextField {
             (!validateEmail || self.isValidEmail()) &&
             (!validatePhone || self.isValidPhoneNo()) &&
             (!validateEmailOrPhone || (self.isValidEmail() || self.isValidPhoneNo())) &&
+            (!validateEmailPhoneOrUserName || (self.isValidEmail() || self.isValidPhoneNo() || !_isEmpty)) &&
             (!validateURL || self.isValidUrl()) &&
             (!validateNumeric || self.isNumeric()) &&
             (!validateAlphabetic || self.isAlphabetic()) &&
@@ -231,7 +236,6 @@ open class ValidatedTextField: InputMaskTextField {
         } else {
             self.validText = nil;
         }
-        
         
         if let dicData:NSMutableDictionary = self.data as? NSMutableDictionary {
             dicData["isValid"] = (_isValid && (!validateEmpty || !_isEmpty));
