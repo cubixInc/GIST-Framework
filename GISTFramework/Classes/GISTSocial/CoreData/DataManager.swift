@@ -23,8 +23,26 @@ public var MANAGED_CONTEXT:NSManagedObjectContext {
 
 public class DataManager: NSObject {
     
-    private let DATA_BASE_NAME:String = "CoreData_V1.0.sqlite";
-    private let DATA_BASE_MODEL:String = "CoreData"; // momd file
+    private var _dataBaseModel:String? = nil;
+    private var dataBaseModel:String {
+        if (_dataBaseModel == nil) {
+            _dataBaseModel = SyncedConstants.constant(forKey: "databaseFileName") ?? "CoreData";
+        }
+        
+        return _dataBaseModel!; // momd file
+    } //F.E.
+    
+    private var _dataBaseName:String? = nil;
+    private var dataBaseName:String {
+        if (_dataBaseName == nil) {
+            let modFile:String = self.dataBaseModel;
+            let version:String = SyncedConstants.constant(forKey: "databaseVersion") ?? "V1.0";
+            
+            _dataBaseName = "\(modFile)_\(version).sqlite";
+        }
+        
+        return _dataBaseName!;
+    } //F.E.
     
     public static var sharedManager: DataManager = DataManager();
     
@@ -35,7 +53,7 @@ public class DataManager: NSObject {
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = Bundle.main.url(forResource: self.DATA_BASE_MODEL, withExtension: "momd")!
+        let modelURL = Bundle.main.url(forResource: self.dataBaseModel, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
@@ -43,7 +61,7 @@ public class DataManager: NSObject {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.appendingPathComponent(self.DATA_BASE_NAME);
+        let url = self.applicationDocumentsDirectory.appendingPathComponent(self.dataBaseName);
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
