@@ -91,7 +91,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     //MARK: - Verify Phone
     public static func verifyPhone(code:String, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let user:GISTUser = GIST_GLOBAL.user, let mobileNo:String = user.formatedMobileNo, let verificationToken:String = user.verificationToken else {
+        guard let user:GISTUser = GIST_GLOBAL.user, let mobileNo:String = user.mobileNo, let verificationToken:String = user.verificationToken else {
             return;
         }
         
@@ -109,7 +109,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     public static func resendCode(completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let mobileNo:String = GIST_GLOBAL.user?.formatedMobileNo else {
+        guard let mobileNo:String = GIST_GLOBAL.user?.mobileNo else {
             return;
         }
         

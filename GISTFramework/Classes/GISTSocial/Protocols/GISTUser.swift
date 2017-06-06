@@ -40,11 +40,11 @@ public protocol GISTUser: Mappable, ReverseMappable, NSCopying {
     init();
 } //P.E.
 
-extension GISTUser {
-    var formatedMobileNo:String? {
+public extension GISTUser {
+    public var formatedMobile:String? {
         get {
-            if let pNumber:PhoneNumber = GISTUtility.validatePhoneNumber(self.mobileNo) {
-                return "+\(pNumber.countryCode)-\(pNumber.nationalNumber)";
+            if let pNumber:String = self.mobileNo {
+                return pNumber.replacingOccurrences(of: "-", with: "");
             }
             
             return nil;
