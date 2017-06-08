@@ -166,6 +166,26 @@ public class DataManager: NSObject {
         return rtnArr!;
     } //F.E.
     
+    public func fetchObjectsForEntityNameWithSection(_ entityName:String, predicate:NSPredicate?, descriptors:[NSSortDescriptor]?, sectionName: String)->NSFetchedResultsController<NSFetchRequestResult> {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        
+        // setting sort descriptor to fetch request
+        fetchRequest.sortDescriptors = descriptors ;//[descriptor!]
+        
+        // predicate for fetch request
+        fetchRequest.predicate = predicate
+        
+        let fetchRequestController:NSFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: sectionName, cacheName: nil)
+        
+        do {
+            try fetchRequestController.performFetch()
+        } catch {
+            print("An error occurred")
+        }
+        
+        return fetchRequestController;
+    } //F.E.
+    
     public func insertSingleObjectForEntityName<T:NSManagedObject>(_ entityName: String, uniquekey key:String, uniquekeyValue value:Any) -> T {
         
         var managedObj:NSManagedObject?;
