@@ -111,7 +111,7 @@ public class ModelUser:NSObject, GISTUser {
         return instance;
     }
     
-    public func toDictionary () -> NSDictionary? {
+    public func toDictionary () -> NSDictionary {
         let map:NSMutableDictionary = NSMutableDictionary();
         
         map["client_token"] = self.reverseMap(clientToken);

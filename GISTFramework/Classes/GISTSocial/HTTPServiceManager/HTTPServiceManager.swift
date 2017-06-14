@@ -464,7 +464,7 @@ open class HTTPRequest:NSObject {
         self.headers = headers;
         
         //User Token
-        if let clientToken:String = GISTGlobal.shared.user?.clientToken, self.headers != nil {
+        if let user:ModelUser = GIST_GLOBAL.getUser(), let clientToken:String = user.clientToken, self.headers != nil {
             self.headers!["client_token"] = clientToken;
         }
     } //C.E.

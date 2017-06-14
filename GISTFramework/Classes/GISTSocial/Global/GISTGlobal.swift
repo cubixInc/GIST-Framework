@@ -6,7 +6,8 @@
 //  Copyright © 2017 Social Cubix Inc. All rights reserved.
 //
 
-import UIKit
+import UIKit;
+import ObjectMapper;
 
 public let GIST_GLOBAL = GISTGlobal.shared;
 
@@ -23,33 +24,34 @@ public class GISTGlobal: NSObject {
     public var deviceToken:String?;
     public var apnsPermissionGranted:Bool?
     
-    private var _user:GISTUser?
-    public internal(set) var user:GISTUser? {
-        get {
-            
-            if _user == nil, let data: Data = UserDefaults.standard.object(forKey: "APP_USER") as? Data {
-                _user = NSKeyedUnarchiver.unarchiveObject(with: data) as? GISTUser;
-            }
-            
-            return _user;
-        }
-        
+    private var _userData:[String:Any]?
+    internal var userData:[String:Any]? {
         set {
-            _user = newValue;
+            _userData = newValue;
             
-            if let usr:GISTUser = _user {
-                let data = NSKeyedArchiver.archivedData(withRootObject: usr);
+            if let dictData:[String:Any] = _userData, let data:Data = dictData.toJSONData() {
                 UserDefaults.standard.set(data, forKey: "APP_USER");
                 UserDefaults.standard.synchronize();
             } else {
                 UserDefaults.standard.removeObject(forKey: "APP_USER")
             }
         }
+        
+        get {
+            if _userData == nil, let data: Data = UserDefaults.standard.object(forKey: "APP_USER") as? Data {
+                _userData = data.toJSONObject() as? [String:Any];
+            }
+            
+            return _userData;
+        }
     } //P.E.
     
     private var _hasAskedForApnsPermission:Bool?
     public var hasAskedForApnsPermission:Bool {
         get {
+            guard (userData != nil) else {
+                return false;
+            }
             
             if _hasAskedForApnsPermission == nil {
                 _hasAskedForApnsPermission = UserDefaults.standard.bool(forKey: "ASKED_APNS_PERMISSION");
@@ -65,5 +67,13 @@ public class GISTGlobal: NSObject {
             UserDefaults.standard.synchronize();
         }
     } //P.E.
+    
+    public func getUser<T:GISTUser>() -> T? {
+        guard let usrData = userData else {
+            return nil;
+        }
+        
+        return Mapper<T>().map(JSON: usrData)
+    } //F.E.
     
 } //F.E.

@@ -26,7 +26,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         self.setupKeyboardManager();
         
         //Register For Push Notification
-        if (GIST_GLOBAL.user != nil && GIST_GLOBAL.hasAskedForApnsPermission) {
+        if (GIST_GLOBAL.hasAskedForApnsPermission) {
             self.registerForPushNotifications();
         }
         
@@ -147,7 +147,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     
     //MARK: - Save Token
     private func savePushToken() {
-        guard let userId:Int = GIST_GLOBAL.user?.userId, let token:String = GIST_GLOBAL.deviceToken else {
+        guard let usr:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = usr.userId, let token:String = GIST_GLOBAL.deviceToken else {
             return;
         }
         
@@ -177,10 +177,10 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         switch host {
         case "forgot_password":
             //socialgist://forgot_password?verification_token={verification_token}
-            let user:GISTUser = GISTGlobal.shared.user ?? ModelUser();
+            let user:ModelUser = GIST_GLOBAL.getUser() ?? ModelUser();
             user.verificationToken = params["verification_token"];
             
-            GISTGlobal.shared.user = user;
+            GIST_GLOBAL.userData = user.toDictionary() as? [String : Any];
             
             return true;
             
@@ -191,11 +191,11 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         case "change_email":
             //socialgist://change_email?verification_token={verification_token}&new_email={new_email}
             
-            let user:GISTUser = GISTGlobal.shared.user ?? ModelUser();
+            let user:ModelUser = GIST_GLOBAL.getUser() ?? ModelUser();
             user.verificationToken = params["verification_token"];
             user.email = params["new_email"];
             
-            GISTGlobal.shared.user = user;
+            GIST_GLOBAL.userData = user.toDictionary() as? [String : Any];
             
             return true;
             

@@ -26,6 +26,9 @@ private let RESET_PASSWORD_REQUEST = "users/reset_password";
 private let DELETE_ACCOUNT = "users/delete_account";
 
 
+private let CHANGE_LOGIN_ID = "users/change_id_request";
+
+
 public class GISTAuth<T:GISTUser>: NSObject {
     
     //static let shared = GISTAuth<GISTUser>();
@@ -88,10 +91,24 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: EDIT_PROFILE_REQUEST, params: GISTUtility.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
     
+    public static func changeLoginId(new loginId:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        
+        guard let user:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = user.userId else {
+            return;
+        }
+        
+        let params:[String:Any] = [
+            "user_id":userId,
+            "new_login_id":loginId
+        ];
+        
+        self.request(service: CHANGE_LOGIN_ID, params: GISTUtility.formate(user: user, additional: params), completion:completion, failure:failure);
+    } //F.E.
+    
     //MARK: - Verify Phone
     public static func verifyPhone(code:String, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let user:GISTUser = GIST_GLOBAL.user, let mobileNo:String = user.mobileNo, let verificationToken:String = user.verificationToken else {
+        guard let user:ModelUser = GIST_GLOBAL.getUser(), let mobileNo:String = user.mobileNo, let verificationToken:String = user.verificationToken else {
             return;
         }
         
@@ -109,7 +126,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     public static func resendCode(completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let mobileNo:String = GIST_GLOBAL.user?.mobileNo else {
+        guard let user:ModelUser = GIST_GLOBAL.getUser(), let mobileNo:String = user.mobileNo else {
             return;
         }
         
@@ -126,7 +143,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     //MARK: - Change Password
     public static func changePassword(fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let userId:Int = GIST_GLOBAL.user?.userId else {
+        guard let user:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = user.userId else {
             return;
         }
         
@@ -138,7 +155,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     //MARK: - Reset Password
     public static func resetPassword(fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let user:GISTUser = GIST_GLOBAL.user, let verificationToken:String =  user.verificationToken else {
+        guard let user:ModelUser = GIST_GLOBAL.getUser(), let verificationToken:String =  user.verificationToken else {
             return;
         }
         
@@ -151,13 +168,13 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     //MARK: - Sign Out
     public static func signOut() {
-        GISTGlobal.shared.user = nil;
+        GIST_GLOBAL.userData = nil;
     } //F.E.
     
     //MARK: - Reset Password
     public static func deleteAccount(completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let user:GISTUser = GIST_GLOBAL.user, let userId:Int = user.userId else {
+        guard let user:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = user.userId else {
             return;
         }
         
@@ -251,13 +268,17 @@ public class GISTAuth<T:GISTUser>: NSObject {
         httpRequest.onSuccess { (rawData:Any?) in
             let dicData:[String:Any]? = rawData as? [String:Any];
             
-            if let userData:[String:Any] = dicData?["user"] as? [String:Any], let user:T = Mapper<T>().map(JSON: userData) {
+            if var userData:[String:Any] = dicData?["user"] as? [String:Any] {
                 
-                user.clientToken = dicData?["client_token"] as? String ?? GIST_GLOBAL.user?.clientToken;
+                let oldUserData:[String:Any]? = GIST_GLOBAL.userData;
                 
-                GIST_GLOBAL.user = user;
+                userData["client_token"] = dicData?["client_token"] as? String ?? oldUserData?["client_token"] as? String;
                 
-                completion?(user, rawData);
+                GIST_GLOBAL.userData = userData;
+                
+                let updateUser:T? = GIST_GLOBAL.getUser();
+                
+                completion?(updateUser, rawData);
             } else {
                 completion?(nil, rawData);
             }

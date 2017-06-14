@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 public protocol ReverseMappable {
-    func toDictionary () -> NSDictionary?;
+    func toDictionary () -> NSDictionary;
 }
 
 public extension ReverseMappable {
@@ -35,9 +35,8 @@ public extension ReverseMappable {
         
         for obj in arrMappableObj {
             if let mappable = obj as? ReverseMappable {
-                if let dict = mappable.toDictionary() {
-                    rtnArr.add(dict);
-                }
+                let dict = mappable.toDictionary()
+                rtnArr.add(dict);
             }
             
         }
