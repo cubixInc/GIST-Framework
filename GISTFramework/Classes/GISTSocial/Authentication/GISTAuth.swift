@@ -112,7 +112,9 @@ public class GISTAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        let verificationMode:String = (user.userId == nil) ? "forgot":"signup";
+        let isVerified:Bool = user.isVerified ?? false;
+        
+        let verificationMode:String = (user.userId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
         
         let params:[String:Any] = [
             "mobile_no":mobileNo,
