@@ -74,6 +74,15 @@ open class ValidatedTextView: BaseUITextView {
     
     private var _isValid:Bool = false;
     
+    private var _data:Any?
+    
+    /// Holds Data.
+    open var data:Any? {
+        get {
+            return _data;
+        }
+    } //P.E.
+    
     /// Flag for whether the input is valid or not.
     open var isValid:Bool {
         get {
@@ -128,6 +137,36 @@ open class ValidatedTextView: BaseUITextView {
         self.invalidSignBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
     } //F.E.
     
+    open func updateData(_ data: Any?) {
+        _data = data;
+        
+        let dicData:NSMutableDictionary? = data as? NSMutableDictionary;
+        
+        //First set the validations
+        self.validateEmpty = dicData?["validateEmpty"] as? Bool ?? false;
+        self.validateRegex = dicData?["validateRegex"] as? String ?? "";
+        
+        //??self.validityMsg = dicData?["validityMsg"] as? String;
+        
+        //Set the text and placeholder
+        self.text = dicData?["text"] as? String;
+        self.placeholder = dicData?["placeholder"] as? String;
+        
+        //Set the character Limit
+        self.minChar = dicData?["minChar"] as? Int ?? 0;
+        self.maxChar = dicData?["maxChar"] as? Int ?? 0;
+        
+        //Set the is password check
+        self.isSecureTextEntry = dicData?["isSecureTextEntry"] as? Bool ?? false;
+        self.isUserInteractionEnabled = dicData?["isUserInteractionEnabled"] as? Bool ?? true;
+        
+        /*
+        if let validated:Bool = dicData?["validated"] as? Bool, validated == true {
+            self.isInvalidSignHidden = (_isValid && (!validateEmpty || !_isEmpty));
+        }
+        */
+    } //F.E.
+    
     /// Observer to receive Text Changes
     ///
     /// - Parameter notification: Notification instance
@@ -149,6 +188,12 @@ open class ValidatedTextView: BaseUITextView {
             ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
         self.invalidSignBtn.isHidden = (_isValid || _isEmpty);
+        
+        if let dicData:NSMutableDictionary = self.data as? NSMutableDictionary {
+            dicData["isValid"] = (_isValid && (!validateEmpty || !_isEmpty));
+            
+            dicData["validText"] = self.text;
+        }
     } //F.E.
 
     

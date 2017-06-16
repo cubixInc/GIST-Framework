@@ -10,7 +10,7 @@ import UIKit
 
 /// BaseUIStackView is a subclass of UIStackView and implements BaseView. It has some extra proporties and support for SyncEngine.
 @available(iOS 9.0, *)
-class BaseUIStackView: UIStackView, BaseView {
+open class BaseUIStackView: UIStackView, BaseView {
     
     //MARK: - Properties
     

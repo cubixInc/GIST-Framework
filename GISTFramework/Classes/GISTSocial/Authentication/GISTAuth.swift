@@ -143,14 +143,15 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Change Password
-    public static func changePassword(fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        
+    public static func changePassword(fields:[ValidatedTextField], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         guard let user:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = user.userId else {
             return;
         }
         
-        let aParams:[String:Any] = ["user_id":userId];
+        var aParams:[String:Any] = params ?? [:];
+        aParams["user_id"] = userId;
         
+        print(aParams)
         self.request(service: CHANGE_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
     } //F.E.
     
@@ -225,9 +226,9 @@ public class GISTAuth<T:GISTUser>: NSObject {
     private static func request(service:String, params:[String:Any], completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
         
         var uParams:[String:Any] = params;
-        
+                
         uParams["device_type"] = "ios";
-        
+        print(uParams)
         if let token:String = GIST_GLOBAL.deviceToken {
             uParams["device_token"] = token;
         }
