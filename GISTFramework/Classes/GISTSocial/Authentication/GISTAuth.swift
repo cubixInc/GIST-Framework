@@ -31,8 +31,6 @@ private let CHANGE_LOGIN_ID = "users/change_id_request";
 
 public class GISTAuth<T:GISTUser>: NSObject {
     
-    //static let shared = GISTAuth<GISTUser>();
-    
     public typealias GISTAuthCompletion = (T?, Any?) -> Void
     public typealias GISTAuthFailure = (_ error:NSError) -> Void
     
@@ -55,7 +53,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: SIGN_UP_REQUEST, params: params, completion:completion, failure:failure);
     } //F.E.
     
-    public static func signUp(user:GISTUser, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func signUp(user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: SIGN_UP_REQUEST, params: GISTUtility.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
     
@@ -73,7 +71,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: SIGN_IN_REQUEST, params: params, completion:completion, failure:failure);
     } //F.E.
     
-    public static func signIn(user:GISTUser, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func signIn(user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         let service:String
         
@@ -87,7 +85,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Edit Profile
-    public static func editProfile(updated user:GISTUser, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func editProfile(updated user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: EDIT_PROFILE_REQUEST, params: GISTUtility.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
     
@@ -228,7 +226,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
         var uParams:[String:Any] = params;
                 
         uParams["device_type"] = "ios";
-        print(uParams)
+        
         if let token:String = GIST_GLOBAL.deviceToken {
             uParams["device_token"] = token;
         }

@@ -33,6 +33,7 @@ public class GISTGlobal: NSObject {
                 UserDefaults.standard.set(data, forKey: "APP_USER");
                 UserDefaults.standard.synchronize();
             } else {
+                _user = nil;
                 UserDefaults.standard.removeObject(forKey: "APP_USER")
             }
         }
@@ -68,12 +69,22 @@ public class GISTGlobal: NSObject {
         }
     } //P.E.
     
+    private var _user:GISTUser?
+    private var _userClass:String = ""
+    
     public func getUser<T:GISTUser>() -> T? {
         guard let usrData = userData else {
             return nil;
         }
         
-        return Mapper<T>().map(JSON: usrData)
+        let newClass = "\(type(of: T))";
+        
+        if (_user == nil || _userClass != newClass) {
+            _user = Mapper<T>().map(JSON: usrData);
+            _userClass = newClass;
+        }
+        
+        return _user;
     } //F.E.
     
 } //F.E.
