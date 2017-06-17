@@ -28,12 +28,12 @@ public class GISTGlobal: NSObject {
     internal var userData:[String:Any]? {
         set {
             _userData = newValue;
+            _user = nil;
             
             if let dictData:[String:Any] = _userData, let data:Data = dictData.toJSONData() {
                 UserDefaults.standard.set(data, forKey: "APP_USER");
                 UserDefaults.standard.synchronize();
             } else {
-                _user = nil;
                 UserDefaults.standard.removeObject(forKey: "APP_USER")
             }
         }
@@ -69,22 +69,22 @@ public class GISTGlobal: NSObject {
         }
     } //P.E.
     
-    private var _user:GISTUser?
-    private var _userClass:String = ""
+    private var _user:GISTUser?;
+    private var _userClass:String = "";
     
     public func getUser<T:GISTUser>() -> T? {
         guard let usrData = userData else {
             return nil;
         }
         
-        let newClass = "\(type(of: T))";
+        let newClass = "\(type(of: T()))";
         
         if (_user == nil || _userClass != newClass) {
             _user = Mapper<T>().map(JSON: usrData);
             _userClass = newClass;
         }
         
-        return _user;
+        return _user as? T;
     } //F.E.
     
 } //F.E.
