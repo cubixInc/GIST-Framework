@@ -103,7 +103,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Verify Phone
-    public static func verifyPhone(code:String, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func verifyPhone(code:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard let user:ModelUser = GIST_GLOBAL.getUser(), let mobileNo:String = user.mobileNo, let verificationToken:String = user.verificationToken else {
             return;
@@ -113,25 +113,26 @@ public class GISTAuth<T:GISTUser>: NSObject {
         
         let verificationMode:String = (user.userId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
         
-        let params:[String:Any] = [
-            "mobile_no":mobileNo,
-            "authy_code":code,
-            "verification_token":verificationToken,
-            "verification_mode":verificationMode
-        ];
+        var aParams:[String:Any] = params ?? [:];
         
-        self.request(service: VERIFY_PHONE_REQUEST, params: params, completion:completion, failure:failure);
+        aParams["mobile_no"] = mobileNo;
+        aParams["authy_code"] = code;
+        aParams["verification_token"] = verificationToken;
+        aParams["verification_mode"] = verificationMode;
+        
+        self.request(service: VERIFY_PHONE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
     
-    public static func resendCode(completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func resendCode(additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard let user:ModelUser = GIST_GLOBAL.getUser(), let mobileNo:String = user.mobileNo else {
             return;
         }
         
-        let params:[String:Any] = ["mobile_no":mobileNo];
+        var aParams:[String:Any] = params ?? [:];
+        aParams["mobile_no"] = mobileNo;
         
-        self.request(service: RESEND_CODE_REQUEST, params: params, completion:completion, failure:failure);
+        self.request(service: RESEND_CODE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Forgot Password
