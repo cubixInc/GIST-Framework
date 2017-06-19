@@ -95,12 +95,11 @@ public class GISTAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        let params:[String:Any] = [
-            "user_id":userId,
-            "new_login_id":loginId
-        ];
+        var aParams:[String:Any] = params ?? [:];
+        aParams["user_id"] = userId;
+        aParams["new_login_id"] = loginId;
         
-        self.request(service: CHANGE_LOGIN_ID, params: GISTUtility.formate(user: user, additional: params), completion:completion, failure:failure);
+        self.request(service: CHANGE_LOGIN_ID, params: aParams, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Verify Phone
@@ -149,7 +148,6 @@ public class GISTAuth<T:GISTUser>: NSObject {
         var aParams:[String:Any] = params ?? [:];
         aParams["user_id"] = userId;
         
-        print(aParams)
         self.request(service: CHANGE_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
     } //F.E.
     
