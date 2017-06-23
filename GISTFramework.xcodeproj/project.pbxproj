@@ -89,6 +89,8 @@
 		48DA7E7D1D9E666200464066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */; };
 		48DA7E7F1D9E674F00464066 /* BaseUISearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */; };
 		48E192891E8BC1C600638528 /* GISTEnumNConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E192881E8BC1C600638528 /* GISTEnumNConstants.swift */; };
+		48E574DB1EFCE2D3002FF32C /* GISTFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574DA1EFCE2D3002FF32C /* GISTFile.swift */; };
+		48E574DD1EFCF077002FF32C /* Data+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574DC1EFCF077002FF32C /* Data+Utility.swift */; };
 		48EA5C521D0FD35B003FDDAF /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 48EA5C511D0FD35B003FDDAF /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48EB0AEA1D7FEFD700BD93BC /* GISTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */; };
 		48EB0AEC1D7FF45B00BD93BC /* GISTUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB0AEB1D7FF45B00BD93BC /* GISTUtility.swift */; };
@@ -180,6 +182,8 @@
 		48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
 		48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISearchController.swift; sourceTree = "<group>"; };
 		48E192881E8BC1C600638528 /* GISTEnumNConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTEnumNConstants.swift; sourceTree = "<group>"; };
+		48E574DA1EFCE2D3002FF32C /* GISTFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTFile.swift; sourceTree = "<group>"; };
+		48E574DC1EFCF077002FF32C /* Data+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Utility.swift"; sourceTree = "<group>"; };
 		48EA5C4E1D0FD35B003FDDAF /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EA5C511D0FD35B003FDDAF /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
 		48EA5C531D0FD35B003FDDAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				48949D7C1ED814750055CD6C /* ModelUser.swift */,
+				48E574DA1EFCE2D3002FF32C /* GISTFile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				48BE3B3D1E77FAAE003C3198 /* UITextField+Utility.swift */,
+				48E574DC1EFCF077002FF32C /* Data+Utility.swift */,
 				48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */,
 				48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */,
 				483640F61E717774007FD8AC /* String+Utility.swift */,
@@ -674,6 +680,7 @@
 				4895305C1D12AD4100DFD38B /* BaseUIDesignableButton.swift in Sources */,
 				4820E7621ED2DF9400244DED /* URL+Utility.swift in Sources */,
 				489530591D12AD4100DFD38B /* BaseUIButton.swift in Sources */,
+				48E574DD1EFCF077002FF32C /* Data+Utility.swift in Sources */,
 				48C493731E88F73900F14CF4 /* ReachabilityHelper.swift in Sources */,
 				48E192891E8BC1C600638528 /* GISTEnumNConstants.swift in Sources */,
 				4895307B1D12AD4100DFD38B /* SyncedColors.swift in Sources */,
@@ -681,6 +688,7 @@
 				489691E91DDE46E6001DDCE5 /* Weak.swift in Sources */,
 				4895306B1D12AD4100DFD38B /* BaseUITextView.swift in Sources */,
 				4895306C1D12AD4100DFD38B /* BaseUIView.swift in Sources */,
+				48E574DB1EFCE2D3002FF32C /* GISTFile.swift in Sources */,
 				4895307C1D12AD4100DFD38B /* SyncedConstants.swift in Sources */,
 				4895307D1D12AD4100DFD38B /* SyncedFontStyles.swift in Sources */,
 				483640F71E717774007FD8AC /* String+Utility.swift in Sources */,

@@ -262,22 +262,44 @@ open class HTTPServiceManager: NSObject {
         case .success:
             if let dictData = response.result.value as? NSMutableDictionary {
                 
+                let message:String? = dictData["message"] as? String;
+
+                let errorCode:Int = (dictData["error"] as? Int) ?? 0;
+                let invalidSession:Int = (dictData["kick_user"] as? Int) ?? 0;
+
                 //If api is not as per Cubix Standard, return response as it is.
-                if (dictData["error"] == nil && dictData["data"] == nil && dictData["message"] == nil) {
+                if (errorCode == 0 && dictData["data"] == nil) {
                     self.requestDidSucceedWithData(httpRequest: httpRequest, data: dictData);
                     return;
                 }
                 
-                let errorCode:Int = (dictData["error"] as? Int) ?? 0;
-                
-                let invalidSession:Int = (dictData["kick_user"] as? Int) ?? 0;
-                
                 if (errorCode == 0 && invalidSession == 0) {
-                    //Success
-                    self.requestDidSucceedWithData(httpRequest: httpRequest, data: dictData["data"]);
+                    let data:Any? = dictData["data"];
+                    
+                    if let msg:String = message  {
+                        
+                        let rtnData:NSMutableDictionary
+                        
+                        if let subData:NSMutableDictionary =  data as? NSMutableDictionary {
+                            rtnData = subData;
+                        } else {
+                            rtnData = NSMutableDictionary();
+                            
+                            if let sData:Any = data  {
+                                rtnData["data"] = sData;
+                            }
+                        }
+                        
+                        rtnData["message"] = msg;
+                        
+                        self.requestDidSucceedWithData(httpRequest: httpRequest, data: rtnData);
+                    } else {
+                        self.requestDidSucceedWithData(httpRequest: httpRequest, data: data);
+                    }
+                    
                 } else {
                     //Failure
-                    let errorMessage: String = (dictData["message"] as? String) ?? "Unknown error";
+                    let errorMessage: String = message ?? "Unknown error";
                     let userInfo = [
                         NSLocalizedDescriptionKey: errorMessage,
                         "data":dictData["data"]
@@ -464,7 +486,8 @@ open class HTTPRequest:NSObject {
         self.headers = headers;
         
         //User Token
-        if let user:ModelUser = GIST_GLOBAL.getUser(), let clientToken:String = user.clientToken, self.headers != nil {
+        
+        if let clientToken:String = GIST_GLOBAL.userData?["client_token"] as? String, self.headers != nil {
             self.headers!["client_token"] = clientToken;
         }
     } //C.E.
@@ -483,13 +506,14 @@ open class HTTPRequest:NSObject {
     open func sendMultipartRequest(multipartEncodingResult:@escaping ((_ httpRequest:HTTPRequest, _ encodingCompletion:SessionManager.MultipartFormDataEncodingResult) -> Void)) {
         
         
-        
         Alamofire.upload(multipartFormData: { (formData:MultipartFormData) in
             if let params:Parameters = self.parameters {
                 for (key , value) in params {
                     
-                    if let data:Data = value as? Data {
-                        formData.append(data, withName: key, fileName: "fileName.\(data.extention)", mimeType: data.mimeType); // Here file name does not matter.
+                    if let file:GISTFile = value as? GISTFile {
+                        formData.append(file.data, withName: key, fileName: "fileName.\(file.ext)", mimeType: file.mimeType); // Here file name does not matter.
+                    } else if let data:Data = value as? Data {
+                        formData.append(data, withName: key, fileName: "fileName.\(data.fileExtension)", mimeType: data.mimeType); // Here file name does not matter.
                     } else {
                         formData.append("\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName: key)
                     }
@@ -581,57 +605,4 @@ open class HTTPRequest:NSObject {
     
 } //CLS END
 
-public extension Data {
-    public var mimeType:String {
-        get {
-            var c = [UInt32](repeating: 0, count: 1)
-            (self as NSData).getBytes(&c, length: 1)
-            switch (c[0]) {
-            case 0xFF:
-                return "image/jpeg";
-            case 0x89:
-                return "image/png";
-            case 0x47:
-                return "image/gif";
-            case 0x49, 0x4D:
-                return "image/tiff";
-            case 0x25:
-                return "application/pdf";
-            case 0xD0:
-                return "application/vnd";
-            case 0x46:
-                return "text/plain";
-            default:
-                print("mimeType for \(c[0]) in available");
-                return "application/octet-stream";
-            }
-        }
-    } //F.E.
-    
-    public var extention:String {
-        get {
-            var c = [UInt32](repeating: 0, count: 1)
-            (self as NSData).getBytes(&c, length: 1)
-            switch (c[0]) {
-            case 0xFF:
-                return "jpeg";
-            case 0x89:
-                return "png";
-            case 0x47:
-                return "gif";
-            case 0x49, 0x4D:
-                return "tiff";
-            case 0x25:
-                return "pdf";
-            case 0xD0:
-                return "vnd";
-            case 0x46:
-                return "txt";
-            default:
-                print("mimeType for \(c[0]) in not available");
-                return "octet-stream";
-            }
-        }
-    } //F.E.
-} //E.E.
 
