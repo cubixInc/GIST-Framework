@@ -16,6 +16,14 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
 
     public var window: UIWindow?
     
+    private lazy var transparentHUDView:UIView = {
+        let viw = UIView(frame: self.window!.bounds);
+        
+        self.window!.addSubview(viw);
+        
+        return viw;
+    } ();
+    
     //MARK: - Application Delegate
     open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -205,6 +213,17 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         
         
         return false;
+    } //F.E.
+    
+    //MARK: - HUD
+    public func showHUD() {
+        self.window!.bringSubview(toFront: self.transparentHUDView);
+        
+        self.transparentHUDView.isHidden = false;
+    } //F.E.
+    
+    public func hideHUD() {
+        self.transparentHUDView.isHidden = true;
     } //F.E.
     
 } //CLS END
