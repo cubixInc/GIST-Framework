@@ -144,6 +144,7 @@ open class ValidatedTextField: InputMaskTextField {
         let dicData:NSMutableDictionary? = data as? NSMutableDictionary;
         dicData?["text"] = textField.text;
         
+        
         //Validating the input
         self.validateText();
     } //F.E.
@@ -203,6 +204,10 @@ open class ValidatedTextField: InputMaskTextField {
         
         if let validated:Bool = dicData?["validated"] as? Bool, validated == true {
             self.isInvalidSignHidden = (_isValid && (!validateEmpty || !_isEmpty));
+        }
+        
+        if maskFormat != nil {
+            self.applyMaskFormat()
         }
     } //F.E.
     

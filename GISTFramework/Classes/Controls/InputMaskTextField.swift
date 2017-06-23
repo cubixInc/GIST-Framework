@@ -79,7 +79,21 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
         //Masking
         self.maskFormat = dicData?["maskFormat"] as? String;
         self.sendMaskedText = dicData?["sendMaskedText"] as? Bool ?? false;
+        
     } //F.E.
+    
+    open func applyMaskFormat() {
+        let mask: Mask = try! Mask(format: self.maskFormat!)
+        let input: String = self.text!
+        let result: Mask.Result = mask.apply(
+            toText: CaretString(
+                string: input,
+                caretPosition: input.endIndex
+            ),
+            autocomplete: true // you may consider disabling autocompletion for your case
+        )
+        self.text = result.formattedText.string
+    }
     
     //Mark: - UITextField Delegate Methods
     
