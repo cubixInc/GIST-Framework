@@ -226,6 +226,10 @@ open class BaseUITextView: UITextView, BaseView {
             self.addRoundedCorners();
         }
         
+        if (hasDropShadow) {
+            self.addDropShadow();
+        }
+        
         //Resizing Placeholder
         _lblPlaceholder?.frame = self.lblPlaceholderFrame;
     } //F.E.

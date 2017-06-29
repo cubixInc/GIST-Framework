@@ -82,6 +82,10 @@ open class BaseUIView: UIView, BaseView {
         if rounded {
             self.addRoundedCorners();
         }
+        
+        if (hasDropShadow) {
+            self.addDropShadow();
+        }
     } //F.E.
 
     

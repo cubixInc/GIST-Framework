@@ -175,6 +175,20 @@ open class BaseUISearchBar: UISearchBar, BaseView {
         self.commontInit();
     } //F.E.
     
+    /// Overridden methed to update layout.
+    override open func layoutSubviews() {
+        super.layoutSubviews();
+        
+        //Referesh on update layout
+        if rounded {
+            self.rounded = true;
+        }
+        
+        if (hasDropShadow) {
+            self.addDropShadow();
+        }
+    } //F.E.
+    
     //MARK: - Methods
     
     /// Common initazier for setting up items.

@@ -96,6 +96,10 @@ open class BaseUIStackView: UIStackView, BaseView {
         if rounded {
             self.addRoundedCorners();
         }
+        
+        if (hasDropShadow) {
+            self.addDropShadow();
+        }
     } //F.E.
     
     //MARK: - Methods

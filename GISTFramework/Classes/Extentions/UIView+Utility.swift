@@ -80,14 +80,14 @@ public extension UIView {
     
     /// Adds Drop shadow on the view
     public func addDropShadow() {
-        let shadowPath:UIBezierPath=UIBezierPath(rect: self.bounds)
+        let shadowPath:UIBezierPath = UIBezierPath(rect: self.bounds)
         let layer:CALayer = self.layer;
         
         layer.shadowColor = UIColor.black.cgColor;
-        layer.shadowOffset = CGSize(width: 1, height: 1);
-        layer.shadowOpacity = 0.21
-        layer.shadowRadius = 2.0
-        layer.shadowPath = shadowPath.cgPath
+        layer.shadowOffset = CGSize(width: 0, height: 1);
+        layer.shadowOpacity = 0.21;
+        layer.shadowRadius = 2.0;
+        layer.shadowPath = shadowPath.cgPath;
         
         layer.masksToBounds = false;
     } //F.E.

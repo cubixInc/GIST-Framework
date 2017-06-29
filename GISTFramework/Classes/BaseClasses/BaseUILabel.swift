@@ -153,6 +153,10 @@ open class BaseUILabel: UILabel, BaseView {
         if rounded {
             self.rounded = true;
         }
+        
+        if (hasDropShadow) {
+            self.addDropShadow();
+        }
     } //F.E.
     
     override open func drawText(in rect:CGRect) {

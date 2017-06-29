@@ -178,6 +178,10 @@ open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
         if rounded {
             self.addRoundedCorners();
         }
+        
+        if (hasDropShadow) {
+            self.addDropShadow();
+        }
     } //F.E.
     
     /// Overridden method to handle text paddings

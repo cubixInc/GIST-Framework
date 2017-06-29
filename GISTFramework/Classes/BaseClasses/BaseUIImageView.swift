@@ -111,6 +111,10 @@ open class BaseUIImageView: UIImageView, BaseView {
         if rounded {
             self.addRoundedCorners();
         }
+        
+        if (hasDropShadow) {
+            self.addDropShadow();
+        }
     } //F.E.
     
     //MARK: - Methods

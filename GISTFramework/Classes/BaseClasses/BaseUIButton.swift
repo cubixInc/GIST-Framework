@@ -133,7 +133,6 @@ open class BaseUIButton: UIButton, BaseView {
         }
     } //P.E.
     
-//    private var _titleKey:String?;
     private var _titleKeys:[UInt:String] = [UInt:String]();
     
     //MARK: - Constructors
@@ -167,6 +166,10 @@ open class BaseUIButton: UIButton, BaseView {
          
         if rounded {
             self.addRoundedCorners();
+        }
+        
+        if (hasDropShadow) {
+            self.addDropShadow();
         }
     } //F.E.
     
