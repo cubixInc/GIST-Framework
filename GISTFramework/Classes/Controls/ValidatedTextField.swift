@@ -113,7 +113,14 @@ open class ValidatedTextField: InputMaskTextField {
     /// Overridden property to get text changes.
     open override var text: String? {
         didSet {
-            self.validateText();
+            if (!self.isFirstResponder) {
+                
+                if maskFormat != nil {
+                    self.applyMaskFormat();
+                }
+                
+                self.validateText();
+            }
         }
     } //P.E.
     
@@ -188,10 +195,6 @@ open class ValidatedTextField: InputMaskTextField {
         self.validateEmailPhoneOrUserName = dicData?["validateEmailPhoneOrUserName"] as? Bool ?? false;
         self.validityMsg = dicData?["validityMsg"] as? String;
         
-        //Set the text and placeholder
-        self.text = dicData?["text"] as? String;
-        self.placeholder = dicData?["placeholder"] as? String;
-        
         //Set the character Limit
         self.minChar = dicData?["minChar"] as? Int ?? 0;
         self.maxChar = dicData?["maxChar"] as? Int ?? 0;
@@ -202,12 +205,12 @@ open class ValidatedTextField: InputMaskTextField {
         self.isSecureTextEntry = dicData?["isSecureTextEntry"] as? Bool ?? false;
         self.isUserInteractionEnabled = dicData?["isUserInteractionEnabled"] as? Bool ?? true;
         
+        //Set the text and placeholder
+        self.text = dicData?["text"] as? String;
+        self.placeholder = dicData?["placeholder"] as? String;
+        
         if let validated:Bool = dicData?["validated"] as? Bool, validated == true {
             self.isInvalidSignHidden = (_isValid && (!validateEmpty || !_isEmpty));
-        }
-        
-        if maskFormat != nil {
-            self.applyMaskFormat()
         }
     } //F.E.
     
@@ -229,6 +232,7 @@ open class ValidatedTextField: InputMaskTextField {
             ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
         self.isInvalidSignHidden = (_isValid || _isEmpty);
+
         
         let valid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
         
@@ -243,7 +247,7 @@ open class ValidatedTextField: InputMaskTextField {
         }
         
         if let dicData:NSMutableDictionary = self.data as? NSMutableDictionary {
-            dicData["isValid"] = (_isValid && (!validateEmpty || !_isEmpty));
+            dicData["isValid"] = valid;
             
             dicData["validText"] = self.validText;
         }

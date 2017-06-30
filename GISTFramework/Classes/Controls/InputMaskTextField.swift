@@ -82,7 +82,7 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
         
     } //F.E.
     
-    open func applyMaskFormat() {
+    open func applyMaskFormat()  {
         let mask: Mask = try! Mask(format: self.maskFormat!)
         let input: String = self.text!
         let result: Mask.Result = mask.apply(
@@ -92,7 +92,11 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
             ),
             autocomplete: true // you may consider disabling autocompletion for your case
         )
-        self.text = result.formattedText.string
+        
+        self.isValidMask = result.complete;
+        self.planText = result.extractedValue;
+        
+        super.text = result.formattedText.string;
     }
     
     //Mark: - UITextField Delegate Methods
