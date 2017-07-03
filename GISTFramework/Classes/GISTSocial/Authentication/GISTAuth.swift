@@ -140,6 +140,10 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: FORGOT_PASSWORD_REQUEST, fields: fields, additional: params, completion: completion, failure: failure);
     } //F.E.
     
+    public static func forgotPassword(arrData:NSMutableArray, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        self.request(service: FORGOT_PASSWORD_REQUEST, arrData: arrData, additional:params, completion:completion, failure:failure);
+    } //F.E.
+    
     //MARK: - Change Password
     public static func changePassword(fields:[ValidatedTextField], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         guard let user:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = user.userId else {
