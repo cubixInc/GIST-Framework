@@ -91,7 +91,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     public static func changeLoginId(new loginId:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let user:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = user.userId else {
+        guard let userId:Int = GIST_GLOBAL.userData?["user_id"] as? Int else {
             return;
         }
         
@@ -104,14 +104,15 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     //MARK: - Verify Phone
     public static func verifyPhone(code:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        
-        guard let user:ModelUser = GIST_GLOBAL.getUser(), let mobileNo:String = user.mobileNo, let verificationToken:String = user.verificationToken else {
+
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = usrData["mobile_no"] as? String, let verificationToken:String = usrData["verification_token"] as? String else {
             return;
         }
         
-        let isVerified:Bool = user.isVerified ?? false;
+        let isVerified:Bool = (usrData["is_verified"] as? Bool) ?? false;
+        let userId:Int? = usrData["user_id"] as? Int;
         
-        let verificationMode:String = (user.userId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
+        let verificationMode:String = (userId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
         
         var aParams:[String:Any] = params ?? [:];
         
@@ -125,7 +126,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     public static func resendCode(additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let user:ModelUser = GIST_GLOBAL.getUser(), let mobileNo:String = user.mobileNo else {
+        guard let mobileNo:String = GIST_GLOBAL.userData?["mobile_no"] as? String else {
             return;
         }
         
@@ -146,7 +147,8 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     //MARK: - Change Password
     public static func changePassword(fields:[ValidatedTextField], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        guard let user:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = user.userId else {
+        
+        guard let userId:Int = GIST_GLOBAL.userData?["user_id"] as? Int else {
             return;
         }
         
@@ -158,8 +160,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     //MARK: - Reset Password
     public static func resetPassword(fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        
-        guard let user:ModelUser = GIST_GLOBAL.getUser(), let verificationToken:String =  user.verificationToken else {
+        guard let verificationToken:String = GIST_GLOBAL.userData?["verification_token"] as? String else {
             return;
         }
         
@@ -178,7 +179,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     //MARK: - Reset Password
     public static func deleteAccount(completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let user:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = user.userId else {
+        guard let userId:Int = GIST_GLOBAL.userData?["user_id"] as? Int else {
             return;
         }
         
@@ -277,6 +278,10 @@ public class GISTAuth<T:GISTUser>: NSObject {
                 let oldUserData:[String:Any]? = GIST_GLOBAL.userData;
                 
                 userData["client_token"] = dicData?["client_token"] as? String ?? oldUserData?["client_token"] as? String;
+                
+                if let verificationMode:String = uParams["verification_mode"] as? String, verificationMode == "forgot" {
+                    userData["user_id"] = nil;
+                }
                 
                 GIST_GLOBAL.userData = userData;
                 

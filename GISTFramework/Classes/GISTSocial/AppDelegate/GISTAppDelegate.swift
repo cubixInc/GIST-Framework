@@ -155,7 +155,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     
     //MARK: - Save Token
     private func savePushToken() {
-        guard let usr:ModelUser = GIST_GLOBAL.getUser(), let userId:Int = usr.userId, let token:String = GIST_GLOBAL.deviceToken else {
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let userId:Int = usrData["user_id"] as? Int, let token:String = GIST_GLOBAL.deviceToken else {
             return;
         }
         
@@ -185,10 +185,11 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         switch host {
         case "forgot_password":
             //socialgist://forgot_password?verification_token={verification_token}
-            let user:ModelUser = GIST_GLOBAL.getUser() ?? ModelUser();
-            user.verificationToken = params["verification_token"];
             
-            GIST_GLOBAL.userData = user.toDictionary() as? [String : Any];
+            var usrData:[String:Any] = GIST_GLOBAL.userData ?? [:];
+            usrData["verification_token"] = params["verification_token"];
+            
+            GIST_GLOBAL.userData = usrData;
             
             return true;
             
@@ -199,12 +200,12 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         case "change_email":
             //socialgist://change_email?verification_token={verification_token}&new_email={new_email}
             
-            let user:ModelUser = GIST_GLOBAL.getUser() ?? ModelUser();
-            user.verificationToken = params["verification_token"];
-            user.email = params["new_email"];
+            var usrData:[String:Any] = GIST_GLOBAL.userData ?? [:];
+            usrData["verification_token"] = params["verification_token"];
+            usrData["email"] = params["new_email"];
             
-            GIST_GLOBAL.userData = user.toDictionary() as? [String : Any];
-            
+            GIST_GLOBAL.userData = usrData;
+
             return true;
             
         default:
