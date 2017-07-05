@@ -73,7 +73,7 @@ public class GISTGlobal: NSObject {
     private var _userClass:String = "";
     
     public func getUser<T:GISTUser>() -> T? {
-        guard let usrData = userData, let _:Int = usrData["user_id"] as? Int else {
+        guard let usrData = userData, let _:Int = usrData["user_id"] as? Int, let isVerified:Bool = usrData["is_verified"] as? Bool, isVerified == true else {
             return nil;
         }
         

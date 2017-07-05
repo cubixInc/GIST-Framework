@@ -27,6 +27,13 @@ public class ModelUser:NSObject, GISTUser {
     public var verificationToken: String?;
     public var rawImage: UIImage?;
     
+    public var userName: String?;
+    public var firstName: String?;
+    public var lastName: String?;
+    
+    public var image: String?;
+    public var thumb: String?;
+    
     required public init?(map: Map) {
     }
     
@@ -49,6 +56,13 @@ public class ModelUser:NSObject, GISTUser {
         type <- map["type"];
         userId <- map["user_id"];
         verificationToken <- map["verification_token"];
+        
+        userName <- map["user_name"];
+        firstName <- map["first_name"];
+        lastName <- map["last_name"];
+        image <- map["image"];
+        
+        thumb <- map["thumb"];
     }
     
     required public init(coder aDecoder: NSCoder) {
@@ -66,6 +80,13 @@ public class ModelUser:NSObject, GISTUser {
         type = aDecoder.decodeObject(forKey: "type") as? String;
         userId = aDecoder.decodeObject(forKey: "user_id") as? Int;
         verificationToken = aDecoder.decodeObject(forKey: "verification_token") as? String;
+        
+        userName = aDecoder.decodeObject(forKey: "user_name") as? String;
+        firstName = aDecoder.decodeObject(forKey: "first_name") as? String;
+        lastName = aDecoder.decodeObject(forKey: "last_name") as? String;
+        image = aDecoder.decodeObject(forKey: "image") as? String;
+        
+        thumb = aDecoder.decodeObject(forKey: "thumb") as? String;
     }
     
     public func encodeWithCoder(_ aCoder: NSCoder) {
@@ -83,6 +104,13 @@ public class ModelUser:NSObject, GISTUser {
         aCoder.encode(type, forKey: "type");
         aCoder.encode(userId, forKey: "user_id");
         aCoder.encode(verificationToken, forKey: "verification_token");
+        
+        aCoder.encode(userName, forKey: "user_name");
+        aCoder.encode(firstName, forKey: "first_name");
+        aCoder.encode(lastName, forKey: "last_name");
+        aCoder.encode(image, forKey: "image");
+        
+        aCoder.encode(thumb, forKey: "thumb");
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {
@@ -108,6 +136,12 @@ public class ModelUser:NSObject, GISTUser {
         instance.verificationToken = self.verificationToken;
         instance.rawImage = self.rawImage;
         
+        instance.userName = self.userName;
+        instance.firstName = self.firstName;
+        instance.lastName = self.lastName;
+        instance.image = self.image;
+        instance.thumb = self.thumb;
+        
         return instance;
     }
     
@@ -129,6 +163,13 @@ public class ModelUser:NSObject, GISTUser {
         map["user_id"] = self.reverseMap(userId);
         map["verification_token"] = self.reverseMap(verificationToken);
         map["raw_image"] = self.reverseMap(rawImage);
+        
+        map["user_name"] = self.reverseMap(userName);
+        map["first_name"] = self.reverseMap(firstName);
+        map["last_name"] = self.reverseMap(lastName);
+        map["image"] = self.reverseMap(image);
+        
+        map["thumb"] = self.reverseMap(thumb);
         
         return map;
     }
