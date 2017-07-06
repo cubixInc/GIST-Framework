@@ -79,8 +79,6 @@ public extension GISTUtility {
                         if let pKey:String = sDict?["paramKey"] as? String {
                             if let text:String = sDict?["validText"] as? String {
                                 rParams[pKey] = text;
-                            } else if let data:Any = sDict?["data"] as? Any {
-                                rParams[pKey] = data;
                             }
                         }
                     }
@@ -89,8 +87,6 @@ public extension GISTUtility {
                 } else if let pKey:String = dict["paramKey"] as? String {
                     if let text:String = dict["validText"] as? String {
                         rParams[pKey] = text;
-                    } else if let data:Any = dict["data"] as? Any {
-                        rParams[pKey] = data;
                     }
                 }
             }
