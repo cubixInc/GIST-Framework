@@ -176,11 +176,11 @@ public class GISTUtility: NSObject {
     ///
     /// - Parameter text: Sting
     /// - Returns: Bool whether the string is a valid phone number or not.
-    public class func isValidPhoneNo(_ text:String?) -> Bool {
-        return self.validatePhoneNumber(text) != nil;
+    public class func isValidPhoneNo(_ text:String?, withRegion region: String = PhoneNumberKit.defaultRegionCode()) -> Bool {
+        return self.validatePhoneNumber(text, withRegion:region) != nil;
     } //F.E.
     
-    public class func validatePhoneNumber(_ text:String?) -> PhoneNumber? {
+    public class func validatePhoneNumber(_ text:String?, withRegion region: String = PhoneNumberKit.defaultRegionCode()) -> PhoneNumber? {
         guard (text != nil) else {
             return nil;
         }
@@ -195,7 +195,7 @@ public class GISTUtility: NSObject {
         }
         
         do {
-            let phoneNumber:PhoneNumber = try kit.parse(pNumber);
+            let phoneNumber:PhoneNumber = try kit.parse(pNumber, withRegion:region);
             
             print("numberString: \(phoneNumber.numberString) countryCode: \(phoneNumber.countryCode) leadingZero: \(phoneNumber.leadingZero) nationalNumber: \(phoneNumber.nationalNumber) numberExtension: \(phoneNumber.numberExtension) type: \(phoneNumber.type)")
             

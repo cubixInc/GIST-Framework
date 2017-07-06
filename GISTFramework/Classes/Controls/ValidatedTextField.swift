@@ -117,6 +117,8 @@ open class ValidatedTextField: InputMaskTextField {
                 
                 if maskFormat != nil {
                     self.applyMaskFormat();
+                } else if maskPhone {
+                    self.applyPhoneMaskFormat();
                 }
                 
                 self.validateText();
@@ -279,7 +281,7 @@ open class ValidatedTextField: InputMaskTextField {
     ///
     /// - Returns: Bool flag for a valid input.
     private func isValidPhoneNo() -> Bool {
-        self.phoneNumber = GISTUtility.validatePhoneNumber(self.curText);
+        self.phoneNumber = GISTUtility.validatePhoneNumber(self.curText, withRegion: self.defaultRegion);
         return self.phoneNumber != nil;
     } //F.E.
     

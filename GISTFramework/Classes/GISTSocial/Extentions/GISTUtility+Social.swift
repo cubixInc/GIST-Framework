@@ -70,21 +70,29 @@ public extension GISTUtility {
         var rParams:[String:Any] = [:];
         
         for i in 0 ..< array.count {
-            let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
-            
-            if let dataArr:NSMutableArray = dict?["data"] as? NSMutableArray {
-                
-                for j in 0 ..< dataArr.count {
-                    let sDict:NSMutableDictionary? = dataArr[j] as? NSMutableDictionary;
+            if let dict:NSMutableDictionary = array[i] as? NSMutableDictionary {
+                if let dataArr:NSMutableArray = dict["data"] as? NSMutableArray {
                     
-                    if let pKey:String = sDict?["paramKey"] as? String, let text:String = sDict?["validText"] as? String {
+                    for j in 0 ..< dataArr.count {
+                        let sDict:NSMutableDictionary? = dataArr[j] as? NSMutableDictionary;
+                        
+                        if let pKey:String = sDict?["paramKey"] as? String {
+                            if let text:String = sDict?["validText"] as? String {
+                                rParams[pKey] = text;
+                            } else if let data:Any = sDict?["data"] as? Any {
+                                rParams[pKey] = data;
+                            }
+                        }
+                    }
+                    
+                    
+                } else if let pKey:String = dict["paramKey"] as? String {
+                    if let text:String = dict["validText"] as? String {
                         rParams[pKey] = text;
+                    } else if let data:Any = dict["data"] as? Any {
+                        rParams[pKey] = data;
                     }
                 }
-                
-                
-            } else if let pKey:String = dict?["paramKey"] as? String, let text:String = dict?["validText"] as? String {
-                rParams[pKey] = text;
             }
         }
         
@@ -107,6 +115,21 @@ public extension GISTUtility {
         }
         
         return rParams;
+    } //F.E.
+    
+    
+    public class func mapData(to array:NSMutableArray, from data:NSDictionary, forkey key:String){
+        for i in 0 ..< array.count {
+            if let dict:NSMutableDictionary = array[i] as? NSMutableDictionary {
+                if let paramKey:String = dict["paramKey"] as? String, let value:Any = data[paramKey] {
+                    dict[key] = value;
+                }
+                
+                if let dataArr:NSMutableArray = dict["data"] as? NSMutableArray {
+                    self.mapData(to: dataArr, from: data, forkey: key);
+                }
+            }
+        }
     } //F.E.
 
 } //CLS END

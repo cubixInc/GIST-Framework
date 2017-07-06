@@ -8,8 +8,9 @@
 
 import UIKit
 import InputMask
+import PhoneNumberKit
 
-open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener {
+open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener, MaskedPhoneTextFieldDelegateListener {
 
     open var planText:String?
     open var isValidMask:Bool = false;
@@ -20,36 +21,36 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
                 return;
             }
             
-            guard let mskFormate:String = maskFormat else {
-                _polyMaskTextFieldDelegate?.listener = nil;
-                _polyMaskTextFieldDelegate = nil;
-                
-                super.delegate = self;
-                return;
-            }
-            
-            if (_polyMaskTextFieldDelegate == nil) {
-                _polyMaskTextFieldDelegate = PolyMaskTextFieldDelegate(format: mskFormate);
-                _polyMaskTextFieldDelegate!.listener = self;
-                
-                super.delegate = _polyMaskTextFieldDelegate;
-            } else {
-                _polyMaskTextFieldDelegate!.maskFormat = mskFormate;
-            }
+            self.updateMaskFormate();
         }
     } //P.E.
     
     @IBInspectable public var sendMaskedText:Bool = false;
     
-    
-    var curText: String? {
-        get {
-            return (self.maskFormat != nil) ? self.planText:self.text;
+    @IBInspectable public var maskPhone: Bool = false {
+        didSet {
+            guard maskPhone != oldValue else {
+                return;
+            }
+            
+            self.updateMaskFormate();
         }
     } //P.E.
     
+    var curText: String? {
+        get {
+            return (self.maskFormat != nil || maskPhone) ? self.planText:self.text;
+        }
+    } //P.E.
+    
+    public var defaultRegion = PhoneNumberKit.defaultRegionCode() {
+        didSet {
+            _maskPhoneTextFieldDelegate?.defaultRegion = defaultRegion;
+        }
+    }
     
     private var _polyMaskTextFieldDelegate:PolyMaskTextFieldDelegate?;
+    private var _maskPhoneTextFieldDelegate:MaskedPhoneTextFieldDelegate?;
     
     ///Maintainig Own delegate.
     private weak var _delegate:UITextFieldDelegate?;
@@ -66,7 +67,7 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
     override func commonInit() {
         super.commonInit();
         
-        if (self.maskFormat == nil) {
+        if (self.maskFormat == nil && !self.maskPhone) {
             super.delegate = self;
         }
     } //F.E.
@@ -80,6 +81,49 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
         self.maskFormat = dicData?["maskFormat"] as? String;
         self.sendMaskedText = dicData?["sendMaskedText"] as? Bool ?? false;
         
+        self.maskPhone = dicData?["maskPhone"] as? Bool ?? false;
+        
+        if let defRegion = dicData?["defaultRegion"] as? String {
+            self.defaultRegion = defRegion;
+        }
+    } //F.E.
+    
+    func updateMaskFormate() {
+        
+        if let mskFormate:String = maskFormat {
+            _maskPhoneTextFieldDelegate?.listener = nil;
+            _maskPhoneTextFieldDelegate = nil;
+            
+            if (_polyMaskTextFieldDelegate == nil) {
+                _polyMaskTextFieldDelegate = PolyMaskTextFieldDelegate(format: mskFormate);
+                _polyMaskTextFieldDelegate!.listener = self;
+                
+                super.delegate = _polyMaskTextFieldDelegate;
+            } else {
+                _polyMaskTextFieldDelegate!.maskFormat = mskFormate;
+            }
+        } else if maskPhone {
+            
+            _polyMaskTextFieldDelegate?.listener = nil;
+            _polyMaskTextFieldDelegate = nil;
+            
+            if (_maskPhoneTextFieldDelegate == nil) {
+                _maskPhoneTextFieldDelegate = MaskedPhoneTextFieldDelegate(with: self);
+                _maskPhoneTextFieldDelegate!.listener = self;
+                _maskPhoneTextFieldDelegate!.defaultRegion = defaultRegion;
+                
+                super.delegate = _maskPhoneTextFieldDelegate;
+            }
+            
+        } else {
+            _polyMaskTextFieldDelegate?.listener = nil;
+            _polyMaskTextFieldDelegate = nil;
+            
+            _maskPhoneTextFieldDelegate?.listener = nil;
+            _maskPhoneTextFieldDelegate = nil;
+            
+            super.delegate = self;
+        }
     } //F.E.
     
     open func applyMaskFormat()  {
@@ -97,7 +141,17 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
         self.planText = result.extractedValue;
         
         super.text = result.formattedText.string;
-    }
+    } //F.E.
+    
+    open func applyPhoneMaskFormat()  {
+        
+        if let result = _maskPhoneTextFieldDelegate?.applyMask() {
+            super.text = result.formattedText;
+            self.planText = result.extractedValue;
+        }
+        
+    } //F.E.
+    
     
     //Mark: - UITextField Delegate Methods
     
@@ -161,9 +215,14 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener 
         return _delegate?.textFieldShouldReturn?(textField) ?? true;
     } //F.E.
     
-    public func textField(_ textField: UITextField, didFillMandatoryCharacters complete: Bool, didExtractValue value: String) {
+    open func textField(_ textField: UITextField, didFillMandatoryCharacters complete: Bool, didExtractValue value: String) {
         self.planText = value;
         self.isValidMask = complete;
     } //F.E.
+    
+    public func textField(_ textField: UITextField, didMaskPhoneWithExtractValue value: String) {
+        self.planText = value;
+    } //F.E.
+    
 
 } //CLS END
