@@ -160,7 +160,11 @@ open class FloatingLabelTextField: ValidatedTextField {
     }
     
     /// A Boolean value that determines whether the receiver has an error message.
-    var hasErrorMessage:Bool = false;
+    open var hasErrorMessage:Bool = false {
+        didSet {
+            self.updateControl(false);
+        }
+    }
     
     fileprivate var _renderingInInterfaceBuilder:Bool = false
     
