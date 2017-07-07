@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhoneNumberKit
 
 /// Extension for Utility
 public extension GISTUtility {
@@ -36,8 +37,17 @@ public extension GISTUtility {
                 if let dataArr:NSMutableArray = dict["data"] as? NSMutableArray {
                     isFieldValid = self.validate(array: dataArr, ignore: iParams);
                 } else if let pKey:String = dict["paramKey"] as? String, ignoreParams.contains(pKey) == false {
+                    
                     dict["validated"] = true;
-                    isFieldValid = dict["isValid"] as? Bool ?? false;
+                    
+                    var isValid:Bool? = dict["isValid"] as? Bool
+                    
+                    if (isValid == nil) {
+                        isValid = self.validate(dictionary: dict);
+                    }
+                    
+                    isFieldValid = isValid!;
+                    
                 } else {
                     isFieldValid = true;
                 }
@@ -51,6 +61,75 @@ public extension GISTUtility {
         return isValid;
         
     } //F.E.
+    
+    public class func validate(dictionary:NSMutableDictionary) -> Bool {
+        
+        guard let text:String = dictionary["text"] as? String else {
+            return true;
+        }
+        
+        //First set the validations
+        let validateEmpty:Bool = dictionary["validateEmpty"] as? Bool ?? false;
+        let validateEmail:Bool = dictionary["validateEmail"] as? Bool ?? false;
+        let validatePhone:Bool = dictionary["validatePhone"] as? Bool ?? false;
+        let validateEmailOrPhone:Bool = dictionary["validateEmailOrPhone"] as? Bool ?? false;
+        let validateEmailPhoneOrUserName:Bool = dictionary["validateEmailPhoneOrUserName"] as? Bool ?? false;
+        let validityMsg:String? = dictionary["validityMsg"] as? String;
+        
+        let validateURL:Bool = dictionary["validateURL"] as? Bool ?? false;
+        let validateNumeric:Bool = dictionary["validateNumeric"] as? Bool ?? false;
+        let validateAlphabetic:Bool = dictionary["validateAlphabetic"] as? Bool ?? false;
+        let validateRegex:String = dictionary["validateRegex"] as? String ?? "";
+        
+        //Set the character Limit
+        let minChar:Int = dictionary["minChar"] as? Int ?? 0;
+        let maxChar:Int = dictionary["maxChar"] as? Int ?? 0;
+        
+        let maxCharLimit:Int = dictionary["maxCharLimit"] as? Int ?? 50;
+        
+        let defRegion:String? = dictionary["defaultRegion"] as? String;
+        
+        let isEmail:Bool = self.isEmpty(text);
+        
+        var phoneNumber:PhoneNumber?;
+        
+        if (validatePhone || validateEmailOrPhone || validateEmailPhoneOrUserName) {
+            phoneNumber = self.validatePhoneNumber(text, withRegion: defRegion ?? PhoneNumberKit.defaultRegionCode());
+        }
+        
+        let isValidPhone:Bool =  phoneNumber != nil;
+        
+        let isValid:Bool =
+                (!validateEmpty || !isEmail) &&
+                (!validateEmail || self.isValidEmail(text)) &&
+                (!validatePhone || isValidPhone) &&
+                (!validateEmailOrPhone || (self.isValidEmail(text) || isValidPhone)) &&
+                (!validateEmailPhoneOrUserName || (self.isValidEmail(text) || isValidPhone || !isEmail)) &&
+                (!validateURL || self.isValidUrl(text)) &&
+                (!validateNumeric || self.isNumeric(text)) &&
+                (!validateAlphabetic || self.isAlphabetic(text)) &&
+                ((minChar == 0) || self.isValidForMinChar(text, noOfChar: minChar)) &&
+                ((maxChar == 0) || self.isValidForMaxChar(text, noOfChar: maxChar)) &&
+                ((validateRegex == "") || self.isValidForRegex(text, regex: validateRegex));
+        
+        let validText:String?;
+        
+        if isValid {
+            if let pNumber:PhoneNumber = phoneNumber {
+                validText = "+\(pNumber.countryCode)-\(pNumber.nationalNumber)";
+            } else {
+                validText = text;
+            }
+        } else {
+            validText = nil;
+        }
+        
+        dictionary["isValid"] = isValid;
+        dictionary["validText"] = validText;
+        
+        return isValid;
+    } //F.E.
+    
     
     public class func formate(fields:[ValidatedTextField], additional aParams:[String:Any]? = nil, ignore iParams:[String]? = nil) -> [String:Any] {
         var rParams:[String:Any] = [:];

@@ -197,6 +197,11 @@ open class ValidatedTextField: InputMaskTextField {
         self.validateEmailPhoneOrUserName = dicData?["validateEmailPhoneOrUserName"] as? Bool ?? false;
         self.validityMsg = dicData?["validityMsg"] as? String;
         
+        self.validateURL = dicData?["validateURL"] as? Bool ?? false;
+        self.validateNumeric = dicData?["validateNumeric"] as? Bool ?? false;
+        self.validateAlphabetic = dicData?["validateAlphabetic"] as? Bool ?? false;
+        self.validateRegex = dicData?["validateRegex"] as? String ?? "";
+        
         //Set the character Limit
         self.minChar = dicData?["minChar"] as? Int ?? 0;
         self.maxChar = dicData?["maxChar"] as? Int ?? 0;
@@ -234,7 +239,6 @@ open class ValidatedTextField: InputMaskTextField {
             ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
         self.isInvalidSignHidden = (_isValid || _isEmpty);
-
         
         let valid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
         
