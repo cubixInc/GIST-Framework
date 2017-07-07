@@ -24,23 +24,27 @@ public extension GISTUtility {
         
     } //F.E.
     
-    public class func validate(array:NSMutableArray) -> Bool {
+    public class func validate(array:NSMutableArray, ignore iParams:[String]? = nil) -> Bool {
         var isValid:Bool = true;
         
+        let ignoreParams:[String] = iParams ?? [];
+        
         for i in 0 ..< array.count {
-            let dict:NSMutableDictionary? = array[i] as? NSMutableDictionary;
-            
-            let isFieldValid:Bool;
-            
-            if let dataArr:NSMutableArray = dict?["data"] as? NSMutableArray {
-                isFieldValid = self.validate(array: dataArr);
-            } else {
-                dict?["validated"] = true;
-                isFieldValid = dict?["isValid"] as? Bool ?? false;
-            }
-            
-            if (isFieldValid == false && isValid == true) {
-                isValid = false; // The reason on not breaking loop here is that each field should call its isValid propert to update view
+            if let dict:NSMutableDictionary = array[i] as? NSMutableDictionary {
+                let isFieldValid:Bool;
+                
+                if let dataArr:NSMutableArray = dict["data"] as? NSMutableArray {
+                    isFieldValid = self.validate(array: dataArr, ignore: iParams);
+                } else if let pKey:String = dict["paramKey"] as? String, ignoreParams.contains(pKey) == false {
+                    dict["validated"] = true;
+                    isFieldValid = dict["isValid"] as? Bool ?? false;
+                } else {
+                    isFieldValid = true;
+                }
+                
+                if (isFieldValid == false && isValid == true) {
+                    isValid = false; // The reason for not breaking loop here is that each field should call its isValid propert to update view
+                }
             }
         }
         
@@ -48,7 +52,7 @@ public extension GISTUtility {
         
     } //F.E.
     
-    public class func formate(fields:[ValidatedTextField], additional params:[String:Any]? = nil) -> [String:Any] {
+    public class func formate(fields:[ValidatedTextField], additional aParams:[String:Any]? = nil, ignore iParams:[String]? = nil) -> [String:Any] {
         var rParams:[String:Any] = [:];
         
         for field in fields {
@@ -57,16 +61,24 @@ public extension GISTUtility {
             }
         }
 
-        if let aParams:[String:Any] = params {
-            for (pKey, pValue) in aParams {
+        //Additional Params
+        if let params:[String:Any] = aParams {
+            for (pKey, pValue) in params {
                 rParams[pKey] = pValue;
+            }
+        }
+        
+        //Ingnore Params
+        if let params:[String] = iParams {
+            for pKey in params {
+                rParams.removeValue(forKey: pKey);
             }
         }
         
         return rParams;
     } //F.E.
     
-    public class func formate(array:NSMutableArray, additional params:[String:Any]?) -> [String:Any] {
+    public class func formate(array:NSMutableArray, additional aParams:[String:Any]? = nil, ignore iParams:[String]? = nil) -> [String:Any] {
         var rParams:[String:Any] = [:];
         
         for i in 0 ..< array.count {
@@ -74,39 +86,59 @@ public extension GISTUtility {
                 if let dataArr:NSMutableArray = dict["data"] as? NSMutableArray {
                     
                     for j in 0 ..< dataArr.count {
-                        let sDict:NSMutableDictionary? = dataArr[j] as? NSMutableDictionary;
-                        
-                        if let pKey:String = sDict?["paramKey"] as? String {
-                            if let text:String = sDict?["validText"] as? String {
-                                rParams[pKey] = text;
+                        if let sDict:NSMutableDictionary = dataArr[j] as? NSMutableDictionary {
+                            if let pKey:String = sDict["paramKey"] as? String {
+                                if let text:String = sDict["rawText"] as? String {
+                                    rParams[pKey] = text;
+                                } else if let text:String = sDict["validText"] as? String {
+                                    rParams[pKey] = text;
+                                }
                             }
                         }
                     }
                     
                     
                 } else if let pKey:String = dict["paramKey"] as? String {
-                    if let text:String = dict["validText"] as? String {
+                    if let text:String = dict["rawText"] as? String {
+                        rParams[pKey] = text;
+                    } else if let text:String = dict["validText"] as? String {
                         rParams[pKey] = text;
                     }
                 }
             }
         }
         
-        if let aParams:[String:Any] = params {
-            for (pKey, pValue) in aParams {
+        //Additional Params
+        if let params:[String:Any] = aParams {
+            for (pKey, pValue) in params {
                 rParams[pKey] = pValue;
+            }
+        }
+        
+        //Ingnore Params
+        if let params:[String] = iParams {
+            for pKey in params {
+                rParams.removeValue(forKey: pKey);
             }
         }
         
         return rParams;
     } //F.E.
     
-    public class func formate(user:GISTUser, additional params:[String:Any]?) -> [String:Any] {
+    public class func formate(user:GISTUser, additional aParams:[String:Any]? = nil, ignore iParams:[String]? = nil) -> [String:Any] {
         var rParams:[String:Any] = user.toDictionary() as? [String:Any] ?? [:];
         
-        if let aParams:[String:Any] = params {
-            for (pKey, pValue) in aParams {
+        //Additional Params
+        if let params:[String:Any] = aParams {
+            for (pKey, pValue) in params {
                 rParams[pKey] = pValue;
+            }
+        }
+        
+        //Ingnore Params
+        if let params:[String] = iParams {
+            for pKey in params {
+                rParams.removeValue(forKey: pKey);
             }
         }
         
@@ -126,6 +158,18 @@ public extension GISTUtility {
                 }
             }
         }
+    } //F.E.
+    
+    public class func getData(from array:NSMutableArray, forkey key:String) -> NSMutableDictionary? {
+        for i in 0 ..< array.count {
+            if let dict:NSMutableDictionary = array[i] as? NSMutableDictionary {
+                if let paramKey:String = dict["paramKey"] as? String, paramKey == key {
+                    return dict;
+                }
+            }
+        }
+        
+        return nil;
     } //F.E.
 
 } //CLS END
