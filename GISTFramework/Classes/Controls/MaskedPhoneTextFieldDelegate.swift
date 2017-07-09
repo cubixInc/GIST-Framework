@@ -76,8 +76,10 @@ open class MaskedPhoneTextFieldDelegate: NSObject, UITextFieldDelegate {
     /**
      Init
      */
-    public init(with textField:UITextField) {
+    public init(with textField:UITextField, withPrefix prefix: Bool) {
         super.init();
+        
+        self.withPrefix = prefix;
         
         self.partialFormatter = PartialFormatter(phoneNumberKit: phoneNumberKit, defaultRegion: defaultRegion, withPrefix: withPrefix)
         
@@ -88,8 +90,16 @@ open class MaskedPhoneTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     
     func setup(){
-        _textField.autocorrectionType = .no
-        _textField.keyboardType = UIKeyboardType.phonePad
+        _textField.autocorrectionType = .no;
+        
+        /*
+        if withPrefix == false {
+            _textField.keyboardType = UIKeyboardType.numberPad
+        }
+        else {
+            _textField.keyboardType = UIKeyboardType.phonePad
+        }
+         */
     }
     
     public func applyMask() -> (formattedText:String, extractedValue:String) {

@@ -108,7 +108,7 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener,
             _polyMaskTextFieldDelegate = nil;
             
             if (_maskPhoneTextFieldDelegate == nil) {
-                _maskPhoneTextFieldDelegate = MaskedPhoneTextFieldDelegate(with: self);
+                _maskPhoneTextFieldDelegate = MaskedPhoneTextFieldDelegate(with: self, withPrefix:true);
                 _maskPhoneTextFieldDelegate!.listener = self;
                 _maskPhoneTextFieldDelegate!.defaultRegion = defaultRegion;
                 

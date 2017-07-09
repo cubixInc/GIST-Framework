@@ -138,6 +138,20 @@ open class ValidatedTextField: InputMaskTextField {
         }
     } //P.E.
     
+    public override var defaultRegion: String {
+        get {
+            return super.defaultRegion;
+        }
+        
+        set {
+            super.defaultRegion = newValue;
+            
+            if (!self.isFirstResponder) {
+                self.validateText();
+            }
+        }
+    }
+    
     //MARK: - Overridden Methods
     
     /// Overridden methed to update layout.
