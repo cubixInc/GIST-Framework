@@ -324,7 +324,7 @@ open class HTTPServiceManager: NSObject {
             }
 
         case .failure (let err):
-            let errorCode:Int = (err as? AFError)?.responseCode ?? -1;
+            let errorCode:Int = (err as? NSError)?.code ?? -2;
             let userInfo = [NSLocalizedDescriptionKey: err.localizedDescription]
             let error = NSError(domain: "com.cubix.gist", code: errorCode, userInfo: userInfo);
             

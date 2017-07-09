@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48065F6E1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48065F6D1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift */; };
 		4809C7351EB8AE480060F64E /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7341EB8AE480060F64E /* GISTAuth.swift */; };
 		4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */; };
 		4820E7621ED2DF9400244DED /* URL+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E7611ED2DF9400244DED /* URL+Utility.swift */; };
@@ -100,6 +101,7 @@
 
 /* Begin PBXFileReference section */
 		47A752A77860274A822EC83C /* Pods-GISTFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISTFramework/Pods-GISTFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		48065F6D1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedPhoneTextFieldDelegate.swift; sourceTree = "<group>"; };
 		4809C7341EB8AE480060F64E /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
 		4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GISTUtility+Social.swift"; sourceTree = "<group>"; };
 		4820E7611ED2DF9400244DED /* URL+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Utility.swift"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */,
 				484942B91E73050E004F4A9B /* CustomUIButton.swift */,
 				484942BA1E73050E004F4A9B /* CustomUIButtonDetailed.swift */,
+				48065F6D1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift */,
 				484942BB1E73050E004F4A9B /* CustomUIImageView.swift */,
 				484942BC1E73050E004F4A9B /* PopoverController.swift */,
 				484942BD1E73050E004F4A9B /* PopoverControllerView.swift */,
@@ -651,6 +654,7 @@
 				484942C91E73050E004F4A9B /* PopoverControllerView.swift in Sources */,
 				48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */,
 				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
+				48065F6E1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift in Sources */,
 				484942CC1E73050E004F4A9B /* UnderlinedUITextField.swift in Sources */,
 				48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */,
 				48C017071EADE6D2008FB1B9 /* DataManager.swift in Sources */,
