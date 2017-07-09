@@ -141,7 +141,12 @@ open class BaseUIViewController: UIViewController {
     ///Navigation back button tap handler.
     open func backButtonTapped() {
         self.view.endEditing(true);
-        _ = self.navigationController?.popViewController(animated: true)
+        
+        if (self.navigationController?.viewControllers.count == 1) {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
     } //F.E.
     
     /// Recursive update of layout and content from Sync Engine.
