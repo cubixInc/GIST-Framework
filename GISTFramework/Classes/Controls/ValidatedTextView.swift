@@ -86,6 +86,10 @@ open class ValidatedTextView: BaseUITextView {
     /// Flag for whether the input is valid or not.
     open var isValid:Bool {
         get {
+            if (self.isFirstResponder) {
+                self.validateText();
+            }
+            
             let cValid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
             
             self.invalidSignBtn.isHidden = cValid;
