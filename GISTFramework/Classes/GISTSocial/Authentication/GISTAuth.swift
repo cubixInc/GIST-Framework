@@ -98,6 +98,18 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: EDIT_PROFILE_REQUEST, arrData: arrData, additional:aParams, ignore:iParams, completion:completion, failure:failure);
     } //F.E.
     
+    public static func editProfile(params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        
+        guard let userId:Int = GIST_GLOBAL.userData?["user_id"] as? Int else {
+            return;
+        }
+        
+        var aParams:[String:Any] = params ?? [:];
+        aParams["user_id"] = userId;
+        
+        self.request(service: EDIT_PROFILE_REQUEST, params: aParams, completion:completion, failure:failure);
+    } //F.E.
+    
     public static func editProfile(updated user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: EDIT_PROFILE_REQUEST, params: GISTUtility.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
