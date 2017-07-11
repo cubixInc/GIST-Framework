@@ -11,6 +11,14 @@
 		4809C7351EB8AE480060F64E /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7341EB8AE480060F64E /* GISTAuth.swift */; };
 		4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */; };
 		4820E7621ED2DF9400244DED /* URL+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E7611ED2DF9400244DED /* URL+Utility.swift */; };
+		48226B001F14E25E0023C4DD /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226AFE1F14E25E0023C4DD /* UIViewExtensions.swift */; };
+		48226B011F14E25E0023C4DD /* UIImageView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226AFF1F14E25E0023C4DD /* UIImageView+Utility.swift */; };
+		48226B091F14E2B10023C4DD /* AnimatedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226B031F14E2B10023C4DD /* AnimatedLine.swift */; };
+		48226B0A1F14E2B10023C4DD /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226B041F14E2B10023C4DD /* AnimatedTextField.swift */; };
+		48226B0B1F14E2B10023C4DD /* AnimatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226B051F14E2B10023C4DD /* AnimatedTextInput.swift */; };
+		48226B0C1F14E2B10023C4DD /* AnimatedTextInputFieldConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226B061F14E2B10023C4DD /* AnimatedTextInputFieldConfigurator.swift */; };
+		48226B0D1F14E2B10023C4DD /* AnimatedTextInputStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226B071F14E2B10023C4DD /* AnimatedTextInputStyle.swift */; };
+		48226B0E1F14E2B10023C4DD /* AnimatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226B081F14E2B10023C4DD /* AnimatedTextView.swift */; };
 		483640F71E717774007FD8AC /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483640F61E717774007FD8AC /* String+Utility.swift */; };
 		48439F351ECC594F00836301 /* InputMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48439F341ECC594F00836301 /* InputMaskTextField.swift */; };
 		484942C41E73050E004F4A9B /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942B81E73050E004F4A9B /* CustomImageView.swift */; };
@@ -105,6 +113,14 @@
 		4809C7341EB8AE480060F64E /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
 		4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GISTUtility+Social.swift"; sourceTree = "<group>"; };
 		4820E7611ED2DF9400244DED /* URL+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Utility.swift"; sourceTree = "<group>"; };
+		48226AFE1F14E25E0023C4DD /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		48226AFF1F14E25E0023C4DD /* UIImageView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Utility.swift"; sourceTree = "<group>"; };
+		48226B031F14E2B10023C4DD /* AnimatedLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedLine.swift; sourceTree = "<group>"; };
+		48226B041F14E2B10023C4DD /* AnimatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
+		48226B051F14E2B10023C4DD /* AnimatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInput.swift; sourceTree = "<group>"; };
+		48226B061F14E2B10023C4DD /* AnimatedTextInputFieldConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInputFieldConfigurator.swift; sourceTree = "<group>"; };
+		48226B071F14E2B10023C4DD /* AnimatedTextInputStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInputStyle.swift; sourceTree = "<group>"; };
+		48226B081F14E2B10023C4DD /* AnimatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextView.swift; sourceTree = "<group>"; };
 		483640F61E717774007FD8AC /* String+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		48439F341ECC594F00836301 /* InputMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMaskTextField.swift; sourceTree = "<group>"; };
 		484942B81E73050E004F4A9B /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -233,9 +249,23 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		48226B021F14E2B10023C4DD /* AnimatedTextInput */ = {
+			isa = PBXGroup;
+			children = (
+				48226B031F14E2B10023C4DD /* AnimatedLine.swift */,
+				48226B041F14E2B10023C4DD /* AnimatedTextField.swift */,
+				48226B051F14E2B10023C4DD /* AnimatedTextInput.swift */,
+				48226B061F14E2B10023C4DD /* AnimatedTextInputFieldConfigurator.swift */,
+				48226B071F14E2B10023C4DD /* AnimatedTextInputStyle.swift */,
+				48226B081F14E2B10023C4DD /* AnimatedTextView.swift */,
+			);
+			path = AnimatedTextInput;
+			sourceTree = "<group>";
+		};
 		484942B71E730425004F4A9B /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				48226B021F14E2B10023C4DD /* AnimatedTextInput */,
 				484942B81E73050E004F4A9B /* CustomImageView.swift */,
 				48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */,
 				484942B91E73050E004F4A9B /* CustomUIButton.swift */,
@@ -334,6 +364,8 @@
 				48B465E81D48DB5D00BA3B5E /* UIFont+Utility.swift */,
 				487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */,
 				4820E7611ED2DF9400244DED /* URL+Utility.swift */,
+				48226AFE1F14E25E0023C4DD /* UIViewExtensions.swift */,
+				48226AFF1F14E25E0023C4DD /* UIImageView+Utility.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -656,11 +688,13 @@
 				489D8CA31D23A6AE0020515D /* UIApplication+Utility.swift in Sources */,
 				48065F6E1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift in Sources */,
 				484942CC1E73050E004F4A9B /* UnderlinedUITextField.swift in Sources */,
+				48226B0B1F14E2B10023C4DD /* AnimatedTextInput.swift in Sources */,
 				48BE3B3E1E77FAAE003C3198 /* UITextField+Utility.swift in Sources */,
 				48C017071EADE6D2008FB1B9 /* DataManager.swift in Sources */,
 				48C493721E88F73900F14CF4 /* Mappable+ToDictionary.swift in Sources */,
 				48B1371C1DF5400500842204 /* BaseUIBarButtonItem.swift in Sources */,
 				489530661D12AD4100DFD38B /* BaseUIStepper.swift in Sources */,
+				48226B0C1F14E2B10023C4DD /* AnimatedTextInputFieldConfigurator.swift in Sources */,
 				489530691D12AD4100DFD38B /* BaseUITableViewCell.swift in Sources */,
 				48B698311EB316C100E1DC9E /* PinCodeTextField.swift in Sources */,
 				484942D31E733576004F4A9B /* BaseViewProtocol.swift in Sources */,
@@ -671,6 +705,8 @@
 				4895307E1D12AD4100DFD38B /* SyncedText.swift in Sources */,
 				4895307F1D12AD4100DFD38B /* SyncEngine.swift in Sources */,
 				4895307A1D12AD4100DFD38B /* UIView+Utility.swift in Sources */,
+				48226B011F14E25E0023C4DD /* UIImageView+Utility.swift in Sources */,
+				48226B091F14E2B10023C4DD /* AnimatedLine.swift in Sources */,
 				489530771D12AD4100DFD38B /* UIImage+Utility.swift in Sources */,
 				486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */,
 				4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */,
@@ -680,6 +716,7 @@
 				48B465E91D48DB5D00BA3B5E /* UIFont+Utility.swift in Sources */,
 				48D59DCD1DB4081400B65A2E /* JSON+Utility.swift in Sources */,
 				489530781D12AD4100DFD38B /* UITableView+Utility.swift in Sources */,
+				48226B001F14E25E0023C4DD /* UIViewExtensions.swift in Sources */,
 				487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */,
 				4895305C1D12AD4100DFD38B /* BaseUIDesignableButton.swift in Sources */,
 				4820E7621ED2DF9400244DED /* URL+Utility.swift in Sources */,
@@ -693,10 +730,13 @@
 				4895306B1D12AD4100DFD38B /* BaseUITextView.swift in Sources */,
 				4895306C1D12AD4100DFD38B /* BaseUIView.swift in Sources */,
 				48E574DB1EFCE2D3002FF32C /* GISTFile.swift in Sources */,
+				48226B0E1F14E2B10023C4DD /* AnimatedTextView.swift in Sources */,
 				4895307C1D12AD4100DFD38B /* SyncedConstants.swift in Sources */,
+				48226B0D1F14E2B10023C4DD /* AnimatedTextInputStyle.swift in Sources */,
 				4895307D1D12AD4100DFD38B /* SyncedFontStyles.swift in Sources */,
 				483640F71E717774007FD8AC /* String+Utility.swift in Sources */,
 				484942C71E73050E004F4A9B /* CustomUIImageView.swift in Sources */,
+				48226B0A1F14E2B10023C4DD /* AnimatedTextField.swift in Sources */,
 				4895306A1D12AD4100DFD38B /* BaseUITextField.swift in Sources */,
 				4895305E1D12AD4100DFD38B /* BaseUIImageView.swift in Sources */,
 				48C493751E88F73900F14CF4 /* GISTUserPreferences.swift in Sources */,

@@ -62,8 +62,6 @@ open class ValidatedTextField: InputMaskTextField {
         }
     } //P.E.
     
-    //private var _validityMsg:String?
-    
     /**
      Validity msg for invalid input text. - Default text is 'Invalid'
      The msg can be a key of SyncEngine with a prefix '#'

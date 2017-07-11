@@ -9,7 +9,7 @@
 import UIKit
 
 /// BaseUITextField is a subclass of UITextField and implements UITextFieldDelegate, BaseView. It has some extra proporties and support for SyncEngine.
-open class BaseUITextField: UITextField, UITextFieldDelegate, BaseView {
+open class BaseUITextField: UITextField, BaseView {
    
     //MARK: - Properties
     

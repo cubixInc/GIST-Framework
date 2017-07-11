@@ -37,21 +37,16 @@ open class ValidatedTextView: BaseUITextView {
         }
     } //P.E.
     
-    private var _validityMsg:String?
-    
     /**
      Validity msg for invalid input text. - Default text is 'Invalid'
      The msg can be a key of SyncEngine with a prefix '#'
      */
-    @IBInspectable open var validityMsg:String {
-        get {
-            return _validityMsg ?? "Invalid";
+    @IBInspectable open var validityMsg:String? = nil;
+    
+    open var isInvalidSignHidden:Bool = true {
+        didSet {
+            self.invalidSignBtn.isHidden = isInvalidSignHidden;
         }
-        
-        set {
-            _validityMsg = SyncedText.text(forKey: newValue);
-        }
-        
     } //P.E.
     
     /// Lazy Button instance for invalid sign.
@@ -92,7 +87,7 @@ open class ValidatedTextView: BaseUITextView {
             
             let cValid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
             
-            self.invalidSignBtn.isHidden = cValid;
+            self.isInvalidSignHidden = cValid;
             
             return cValid;
         }
@@ -113,7 +108,7 @@ open class ValidatedTextView: BaseUITextView {
     /// - Parameters:
     ///   - frame: View Frame
     ///   - textContainer: NSTextContainer
-    override init(frame: CGRect, textContainer: NSTextContainer?) {
+    override public init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer);
          
         self.commonInit();
@@ -191,7 +186,7 @@ open class ValidatedTextView: BaseUITextView {
             ((maxChar == 0) || self.isValidForMaxChar(maxChar)) &&
             ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
-        self.invalidSignBtn.isHidden = (_isValid || _isEmpty);
+        self.isInvalidSignHidden = (_isValid || _isEmpty);
         
         if let dicData:NSMutableDictionary = self.data as? NSMutableDictionary {
             dicData["isValid"] = (_isValid && (!validateEmpty || !_isEmpty));
