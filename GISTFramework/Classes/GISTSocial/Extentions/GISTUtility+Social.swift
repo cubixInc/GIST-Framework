@@ -74,7 +74,6 @@ public extension GISTUtility {
         let validatePhone:Bool = dictionary["validatePhone"] as? Bool ?? false;
         let validateEmailOrPhone:Bool = dictionary["validateEmailOrPhone"] as? Bool ?? false;
         let validateEmailPhoneOrUserName:Bool = dictionary["validateEmailPhoneOrUserName"] as? Bool ?? false;
-        let validityMsg:String? = dictionary["validityMsg"] as? String;
         
         let validateURL:Bool = dictionary["validateURL"] as? Bool ?? false;
         let validateNumeric:Bool = dictionary["validateNumeric"] as? Bool ?? false;
@@ -84,8 +83,6 @@ public extension GISTUtility {
         //Set the character Limit
         let minChar:Int = dictionary["minChar"] as? Int ?? 0;
         let maxChar:Int = dictionary["maxChar"] as? Int ?? 0;
-        
-        let maxCharLimit:Int = dictionary["maxCharLimit"] as? Int ?? 50;
         
         let defRegion:String? = dictionary["defaultRegion"] as? String;
         

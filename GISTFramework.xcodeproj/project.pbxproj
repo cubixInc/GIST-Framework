@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		48051E2B1F160E28006C5507 /* ValidatedAnimatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48051E2A1F160E28006C5507 /* ValidatedAnimatedTextInput.swift */; };
+		48051E2D1F16318A006C5507 /* ValidatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48051E2C1F16318A006C5507 /* ValidatedTextInput.swift */; };
 		48065F6E1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48065F6D1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift */; };
 		4809C7351EB8AE480060F64E /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7341EB8AE480060F64E /* GISTAuth.swift */; };
 		4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */; };
@@ -111,6 +112,7 @@
 /* Begin PBXFileReference section */
 		47A752A77860274A822EC83C /* Pods-GISTFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISTFramework/Pods-GISTFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		48051E2A1F160E28006C5507 /* ValidatedAnimatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedAnimatedTextInput.swift; sourceTree = "<group>"; };
+		48051E2C1F16318A006C5507 /* ValidatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextInput.swift; sourceTree = "<group>"; };
 		48065F6D1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedPhoneTextFieldDelegate.swift; sourceTree = "<group>"; };
 		4809C7341EB8AE480060F64E /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
 		4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GISTUtility+Social.swift"; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				484942C21E73050E004F4A9B /* ValidatedTextView.swift */,
 				48B698301EB316C100E1DC9E /* PinCodeTextField.swift */,
 				48439F341ECC594F00836301 /* InputMaskTextField.swift */,
+				48051E2C1F16318A006C5507 /* ValidatedTextInput.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				48991B0C1D460C60007467A4 /* Array+Utility.swift in Sources */,
 				48A518801E5199FB006AE30A /* BaseUIStackView.swift in Sources */,
 				48BD58A91DF948D400E4274D /* BaseUIPageControl.swift in Sources */,
+				48051E2D1F16318A006C5507 /* ValidatedTextInput.swift in Sources */,
 				484942CA1E73050E004F4A9B /* ProgressUIButton.swift in Sources */,
 				489530671D12AD4100DFD38B /* BaseUISwitch.swift in Sources */,
 				484942D11E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift in Sources */,

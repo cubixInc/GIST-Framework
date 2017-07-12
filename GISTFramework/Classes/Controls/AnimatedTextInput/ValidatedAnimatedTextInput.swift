@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ValidatedAnimatedTextInput: AnimatedTextInput {
+open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
 
     open override var text: String? {
         get {

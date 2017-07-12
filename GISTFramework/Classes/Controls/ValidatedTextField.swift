@@ -15,7 +15,7 @@ import PhoneNumberKit
 } //P.E.
 
 /// ValidatedTextField is subclass of InputMaskTextField with extra proporties to validate text input.
-open class ValidatedTextField: InputMaskTextField {
+open class ValidatedTextField: InputMaskTextField, ValidatedTextInput {
     
     //MARK: - Properties
     
