@@ -14,7 +14,7 @@ import UIKit
 } //P.E.
 
 /// ValidatedTextView is subclass of BaseUITextView with extra proporties to validate text input.
-open class ValidatedTextView: BaseUITextView {
+open class ValidatedTextView: BaseUITextView, UITextViewDelegate {
 
     //MARK: - Properties
     
@@ -100,6 +100,18 @@ open class ValidatedTextView: BaseUITextView {
         }
     } //P.E.
     
+    ///Maintainig Own delegate.
+    private weak var _delegate:UITextViewDelegate?;
+    open override weak var delegate: UITextViewDelegate? {
+        get {
+            return _delegate;
+        }
+        
+        set {
+            _delegate = newValue;
+        }
+    } //P.E.
+    
     
     //MARK: - Constructors
     
@@ -171,8 +183,6 @@ open class ValidatedTextView: BaseUITextView {
     /// - Parameter notification: Notification instance
     override func textDidChangeObserver(_ notification:Notification) {
         super.textDidChangeObserver(notification);
-         
-        self.validateText();
     } //F.E.
     
     //MARK: - Methods
@@ -198,7 +208,7 @@ open class ValidatedTextView: BaseUITextView {
     
     /// A common initializer to setup/initialize sub components.
     private func commonInit() {
-        self.validateText();
+        super.delegate = self;
     } //F.E.
     
     /// Validats for an empty text
@@ -239,5 +249,49 @@ open class ValidatedTextView: BaseUITextView {
         (self.delegate as? ValidatedTextViewDelegate)?.validatedTextViewInvalidSignDidTap?(self, sender: sender)
     } //F.E.
     
-
+    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return _delegate?.textViewShouldBeginEditing?(textView) ?? true;
+    }
+    
+    public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        return _delegate?.textViewShouldEndEditing?(textView) ?? true;
+    }
+    
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        _delegate?.textViewDidBeginEditing?(textView);
+    }
+    
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        _delegate?.textViewDidEndEditing?(textView);
+        
+        //Updating text in the holding dictionary
+        let dicData:NSMutableDictionary? = data as? NSMutableDictionary;
+        dicData?["text"] = textView.text;
+        
+        
+        //Validating the input
+        self.validateText();
+    }
+    
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return _delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text) ?? true;
+    }
+    
+    public func textViewDidChange(_ textView: UITextView) {
+        _delegate?.textViewDidChange?(textView);
+    }
+    
+    public func textViewDidChangeSelection(_ textView: UITextView) {
+        _delegate?.textViewDidChangeSelection?(textView);
+    }
+    
+    public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return _delegate?.textView?(textView, shouldInteractWith: URL, in: characterRange, interaction: interaction) ?? false;
+    }
+    
+    public func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return _delegate?.textView?(textView, shouldInteractWith: textAttachment, in: characterRange, interaction: interaction) ?? false;
+    }
+    
+    
 } //CLS END
