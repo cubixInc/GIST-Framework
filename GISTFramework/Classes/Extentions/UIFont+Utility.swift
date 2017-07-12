@@ -32,7 +32,7 @@ public extension UIFont {
     public class func font(_ fontNameKey:String?, fontStyle:String?, sizedForIPad:Bool = false) ->UIFont! {
         let newValue:CGFloat = CGFloat(SyncedFontStyles.style(forKey: fontStyle ?? GIST_CONFIG.fontStyle));
         
-        return UIFont(name: SyncedConstants.constant(forKey: fontNameKey) ?? GIST_CONFIG.fontName, size: GISTUtility.convertToRatio(newValue, sizedForIPad:sizedForIPad));
+        return UIFont(name: SyncedConstants.constant(forKey: fontNameKey ?? GIST_CONFIG.fontName) ?? "Helvetica", size: GISTUtility.convertToRatio(newValue, sizedForIPad:sizedForIPad));
     } //F.E.
     
 } //CLS END

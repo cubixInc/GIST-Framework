@@ -46,4 +46,13 @@ public extension UITableView {
         self.setContentOffset(CGPoint.zero, animated: animated);
     } //F.E.
     
+    public func updateContent() {
+        let currentOffset = self.contentOffset
+        UIView.setAnimationsEnabled(false)
+        self.beginUpdates()
+        self.endUpdates()
+        UIView.setAnimationsEnabled(true)
+        self.setContentOffset(currentOffset, animated: false)
+    } //F.E.
+    
 } //E.E.
