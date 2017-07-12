@@ -95,7 +95,7 @@ extension AnimatedTextView: UITextViewDelegate {
         if text == "\n" {
             return textInputDelegate?.textInputShouldReturn(textInput: self) ?? true
         }
-        return textInputDelegate?.textInput(textInput: self, shouldChangeCharactersInRange: range, replacementString: text) ?? true
+        return textInputDelegate?.textInput(textInput: self, shouldChangeCharactersIn: range, replacementString: text) ?? true
     }
 
     public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {

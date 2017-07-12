@@ -1,165 +1,80 @@
 import UIKit
 
-public class AnimatedTextInputStyle {
+public protocol AnimatedTextInputStyle {
+    var sizeForIPad:Bool? { get }
     
-    public var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
+    var activeColor: String? { get }
+    var inactiveColor: String? { get }
+    var lineInactiveColor: String? { get }
+    var errorColor: String? { get }
     
-    public var activeColorStyle: String?;
-    public var inactiveColorStyle: String?;
-    public var lineInactiveColorStyle: String?;
-    public var errorColorStyle: String?;
+    var textFontName: String? { get }
+    var textFontStyle: String? { get }
     
-    public var textFontName: String? = GIST_CONFIG.fontName;
-    public var textFontStyle: String? = GIST_CONFIG.fontStyle;
+    var textFontColor: String? { get }
     
-    public var textFontColorStyle: String?;
+    var counterLabelFontName: String? { get }
+    var counterLabelFontStyle: String? { get }
     
-    public var counterLabelFontName: String? = GIST_CONFIG.fontName;
-    public var counterLabelFontStyle: String? = GIST_CONFIG.fontStyle;
+    var placeholderMinFontStyle: String? { get }
     
-    public var placeholderMinFontStyle: String = "small";
+    var leftMargin: CGFloat? { get }
+    var topMargin: CGFloat? { get }
+    var rightMargin: CGFloat? { get }
+    var bottomMargin: CGFloat? { get }
     
-    private var _leftMargin: CGFloat = GISTUtility.convertToRatio(10);
-    public var leftMargin: CGFloat {
-        get {
-            return _leftMargin;
-        }
-        
-        set {
-            _leftMargin = GISTUtility.convertToRatio(newValue);
-        }
-    }
+    var yHintPositionOffset: CGFloat? { get }
+    var yPlaceholderPositionOffset: CGFloat? { get }
     
-    private var _topMargin: CGFloat = GISTUtility.convertToRatio(25);
-    public var topMargin: CGFloat {
-        get {
-            return _topMargin;
-        }
-        
-        set {
-            _topMargin = GISTUtility.convertToRatio(newValue);
-        }
-    }
-    
-    
-    private var _rightMargin: CGFloat = GISTUtility.convertToRatio(10);
-    public var rightMargin: CGFloat {
-        get {
-            return _rightMargin;
-        }
-        
-        set {
-            _rightMargin = GISTUtility.convertToRatio(newValue);
-        }
-    }
-    
-    private var _bottomMargin: CGFloat =  GISTUtility.convertToRatio(20);
-    public var bottomMargin: CGFloat {
-        get {
-            return _bottomMargin;
-        }
-        
-        set {
-            _bottomMargin = GISTUtility.convertToRatio(newValue);
-        }
-    }
-    
-    private var _yHintPositionOffset: CGFloat =  GISTUtility.convertToRatio(5);
-    public var yHintPositionOffset: CGFloat {
-        get {
-            return _yHintPositionOffset;
-        }
-        
-        set {
-            _yHintPositionOffset = GISTUtility.convertToRatio(newValue);
-        }
-    }
-    
-    private var _yPlaceholderPositionOffset: CGFloat = 0;
-    public var yPlaceholderPositionOffset: CGFloat {
-        get {
-            return _yPlaceholderPositionOffset;
-        }
-        
-        set {
-            _yPlaceholderPositionOffset = GISTUtility.convertToRatio(newValue);
-        }
-    }
-    
-    public var textAttributes: [String: Any]? = nil
-    
-    var textInputFont:UIFont {
-        get {
-            return UIFont.font(textFontName, fontStyle: textFontStyle, sizedForIPad: sizeForIPad);
-        }
-    }
-    
-    var counterLabelFont:UIFont {
-        get {
-            return UIFont.font(counterLabelFontName, fontStyle: counterLabelFontStyle, sizedForIPad: sizeForIPad);
-        }
-    }
-    
-    var activeColor: UIColor {
-        get {
-            return SyncedColors.color(forKey: activeColorStyle) ?? UIColor(red: 51.0/255.0, green: 175.0/255.0, blue: 236.0/255.0, alpha: 1.0);
-        }
-    }
-    
-    var inactiveColor: UIColor {
-        get {
-            return SyncedColors.color(forKey: inactiveColorStyle) ?? UIColor.gray.withAlphaComponent(0.5);
-        }
-    }
-    
-    var lineInactiveColor: UIColor {
-        get {
-            return SyncedColors.color(forKey: lineInactiveColorStyle) ?? UIColor.gray.withAlphaComponent(0.2);
-        }
-    }
-    
-    var errorColor: UIColor {
-        get {
-            return SyncedColors.color(forKey: errorColorStyle) ?? UIColor.red;
-        }
-    }
-    
-    var textInputFontColor: UIColor {
-        get {
-            return SyncedColors.color(forKey: textFontColorStyle) ?? UIColor.black;
-        }
-    }
-    
-    var placeholderMinFontSize: CGFloat {
-        get {
-            let fSize:CGFloat = CGFloat(SyncedFontStyles.style(forKey: placeholderMinFontStyle))
-            
-            return GISTUtility.convertToRatio(fSize);
-        }
-    };
-    
+    var textAttributes: [String: Any]? { get }
 }
 
-/*
-class AnimatedTextInputStyle:NSObject {
-    var activeColor: UIColor = UIColor(red: 51.0/255.0, green: 175.0/255.0, blue: 236.0/255.0, alpha: 1.0);
-    var inactiveColor: UIColor = UIColor.gray.withAlphaComponent(0.5);
-    var lineInactiveColor: UIColor = UIColor.gray.withAlphaComponent(0.2);
-    var errorColor: UIColor = UIColor.red;
-    var textInputFont: UIFont = UIFont.systemFont(ofSize: 14);
-    var textInputFontColor: UIColor = UIColor.black;
-    var placeholderMinFontSize: CGFloat = 9;
-    var counterLabelFont: UIFont? =  UIFont.systemFont(ofSize: 9);
-    var leftMargin: CGFloat = 25;
-    var topMargin: CGFloat = 20;
-    var rightMargin: CGFloat = 0;
-    var bottomMargin: CGFloat = 10;
-    var yHintPositionOffset: CGFloat = 7;
-    var yPlaceholderPositionOffset: CGFloat = 0;
-    
-    Xvar textAttributes: [String: Any]? = nil
-}
-*/
+struct InternalAnimatedTextInputStyle {
+    let sizeForIPad:Bool;
+    let activeColor: UIColor;
+    let inactiveColor: UIColor;
+    let lineInactiveColor: UIColor;
+    let errorColor: UIColor;
+    let textInputFont: UIFont;
+    let textInputFontColor: UIColor;
+    let placeholderMinFontSize: CGFloat;
+    let counterLabelFont: UIFont;
+    let leftMargin: CGFloat;
+    let topMargin: CGFloat;
+    let rightMargin: CGFloat;
+    let bottomMargin: CGFloat;
+    let yHintPositionOffset: CGFloat;
+    let yPlaceholderPositionOffset: CGFloat;
+    let textAttributes: [String: Any]?;
+
+    init(_ style:AnimatedTextInputStyle?) {
+        sizeForIPad = style?.sizeForIPad ?? GIST_CONFIG.sizeForIPad;
+        
+        activeColor = SyncedColors.color(forKey: style?.activeColor) ?? UIColor(red: 51.0/255.0, green: 175.0/255.0, blue: 236.0/255.0, alpha: 1.0);
+        inactiveColor = SyncedColors.color(forKey: style?.inactiveColor) ?? UIColor.gray.withAlphaComponent(0.5);
+        lineInactiveColor = SyncedColors.color(forKey: style?.lineInactiveColor) ?? UIColor.gray.withAlphaComponent(0.2);
+        errorColor = SyncedColors.color(forKey: style?.errorColor) ?? UIColor.red;
+        
+        textInputFont = UIFont.font(style?.textFontName, fontStyle: style?.textFontStyle, sizedForIPad: sizeForIPad);
+        
+        textInputFontColor = SyncedColors.color(forKey: style?.textFontColor) ?? UIColor.black;
+        
+        placeholderMinFontSize =  GISTUtility.convertToRatio(CGFloat(SyncedFontStyles.style(forKey: style?.placeholderMinFontStyle ?? "small")));
+        
+        counterLabelFont =  UIFont.font(style?.counterLabelFontName, fontStyle: style?.counterLabelFontStyle, sizedForIPad: sizeForIPad);
+        
+        leftMargin = GISTUtility.convertToRatio(style?.leftMargin ?? 10);
+        topMargin = GISTUtility.convertToRatio(style?.topMargin ?? 25);
+        rightMargin = GISTUtility.convertToRatio(style?.rightMargin ?? 10);
+        bottomMargin = GISTUtility.convertToRatio(style?.bottomMargin ?? 20);
+        
+        yHintPositionOffset = GISTUtility.convertToRatio(style?.yHintPositionOffset ?? 5);
+        yPlaceholderPositionOffset = GISTUtility.convertToRatio(style?.yPlaceholderPositionOffset ?? 0);
+        
+        textAttributes = style?.textAttributes;
+    }
+} // CLS End
+
 
 /*
 public struct AnimatedTextInputStyleBlue: AnimatedTextInputStyle {
