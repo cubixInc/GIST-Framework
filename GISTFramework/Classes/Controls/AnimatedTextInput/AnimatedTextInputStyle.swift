@@ -63,9 +63,9 @@ struct InternalAnimatedTextInputStyle {
         
         counterLabelFont =  UIFont.font(style?.counterLabelFontName, fontStyle: style?.counterLabelFontStyle, sizedForIPad: sizeForIPad);
         
-        leftMargin = GISTUtility.convertToRatio(style?.leftMargin ?? 10);
+        leftMargin = style?.leftMargin ?? 15;
+        rightMargin = style?.rightMargin ?? 15;
         topMargin = GISTUtility.convertToRatio(style?.topMargin ?? 25);
-        rightMargin = GISTUtility.convertToRatio(style?.rightMargin ?? 10);
         bottomMargin = GISTUtility.convertToRatio(style?.bottomMargin ?? 20);
         
         yHintPositionOffset = GISTUtility.convertToRatio(style?.yHintPositionOffset ?? 5);

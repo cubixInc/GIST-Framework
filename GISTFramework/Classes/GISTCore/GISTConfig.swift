@@ -24,7 +24,7 @@ public class GISTConfig: NSObject {
     
     public var navigationBackButtonImgName:String = "NavBackButton";
     
-    public var seperatorWidth:CGFloat = 0.5;
+    public var seperatorWidth:CGFloat = 1.0 / UIScreen.main.scale;//0.5;
     
     public var sizeForIPad:Bool = true;
     public var sizeForNavi:Bool = false;

@@ -30,7 +30,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     // Calculated seperator frame Rect - Overridable
     open var seperatorFrame:CGRect {
         get  {
-            return CGRect(x: 0, y: (seperatorOnTop ? 0:self.frame.size.height - 0.5), width: self.frame.size.width, height: 0.5);
+            return CGRect(x: 0, y: (seperatorOnTop ? 0:self.frame.size.height - GIST_CONFIG.seperatorWidth), width: self.frame.size.width, height: GIST_CONFIG.seperatorWidth);
         }
     } //P.E.
     
