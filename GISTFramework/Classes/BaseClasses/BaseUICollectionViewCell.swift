@@ -26,7 +26,7 @@ open class BaseUICollectionViewCell: UICollectionViewCell, UIViewControllerPrevi
         }
     } //P.E.
     
-    class var cellID : String {
+    public class var cellID : String {
         return "\(self)ID"
     } //P.E.
     
