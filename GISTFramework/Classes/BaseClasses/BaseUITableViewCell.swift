@@ -139,7 +139,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         return sView;
     }()
     
-    class var cellID : String {
+    public class var cellID : String {
         return "\(self)ID"
     } //P.E.
     
