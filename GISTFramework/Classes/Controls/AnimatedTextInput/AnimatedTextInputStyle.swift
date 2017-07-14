@@ -13,6 +13,11 @@ public protocol AnimatedTextInputStyle {
     
     var textFontColor: String? { get }
     
+    var titleFontName: String? { get }
+    var titleFontStyle: String? { get }
+    
+    var titleFontColor: String? { get }
+    
     var counterLabelFontName: String? { get }
     var counterLabelFontStyle: String? { get }
     
@@ -37,6 +42,8 @@ struct InternalAnimatedTextInputStyle {
     let errorColor: UIColor;
     let textInputFont: UIFont;
     let textInputFontColor: UIColor;
+    let titleFont: UIFont;
+    let titleFontColor: UIColor;
     let placeholderMinFontSize: CGFloat;
     let counterLabelFont: UIFont;
     let leftMargin: CGFloat;
@@ -57,7 +64,10 @@ struct InternalAnimatedTextInputStyle {
         
         textInputFont = UIFont.font(style?.textFontName, fontStyle: style?.textFontStyle, sizedForIPad: sizeForIPad);
         
+        titleFont = UIFont.font(style?.titleFontName ?? style?.textFontName, fontStyle: style?.titleFontStyle ?? style?.textFontStyle, sizedForIPad: sizeForIPad);
+        
         textInputFontColor = SyncedColors.color(forKey: style?.textFontColor) ?? UIColor.black;
+        titleFontColor = SyncedColors.color(forKey: style?.titleFontColor ?? style?.textFontColor) ?? UIColor.black;
         
         placeholderMinFontSize =  GISTUtility.convertToRatio(CGFloat(SyncedFontStyles.style(forKey: style?.placeholderMinFontStyle ?? "small")));
         

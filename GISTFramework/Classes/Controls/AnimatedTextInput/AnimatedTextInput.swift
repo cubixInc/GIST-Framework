@@ -422,23 +422,24 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
 
     fileprivate func configurePlaceholderAsActiveHint() {
         isPlaceholderAsHint = true
-        configurePlaceholderWith(fontSize: iStyle.placeholderMinFontSize,
-                                 foregroundColor: iStyle.activeColor.cgColor,
+        configurePlaceholderWith(iStyle.titleFont, fontSize: iStyle.placeholderMinFontSize,
+                                 foregroundColor: iStyle.titleFontColor.cgColor,
                                  text: placeholder)
         lineView.fillLine(with: iStyle.activeColor)
     }
 
     fileprivate func configurePlaceholderAsInactiveHint() {
         isPlaceholderAsHint = true
-        configurePlaceholderWith(fontSize: iStyle.placeholderMinFontSize,
-                                 foregroundColor: iStyle.inactiveColor.cgColor,
+        
+        configurePlaceholderWith(iStyle.titleFont, fontSize: iStyle.placeholderMinFontSize,
+                                 foregroundColor: iStyle.titleFontColor.cgColor,
                                  text: placeholder)
         lineView.animateToInitialState()
     }
 
     fileprivate func configurePlaceholderAsDefault() {
         isPlaceholderAsHint = false
-        configurePlaceholderWith(fontSize: iStyle.textInputFont.pointSize,
+        configurePlaceholderWith(iStyle.textInputFont, fontSize: iStyle.textInputFont.pointSize,
                                  foregroundColor: iStyle.inactiveColor.cgColor,
                                  text: placeholder)
         lineView.animateToInitialState()
@@ -446,14 +447,15 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
 
     fileprivate func configurePlaceholderAsErrorHint() {
         isPlaceholderAsHint = true
-        configurePlaceholderWith(fontSize: iStyle.placeholderMinFontSize,
+        configurePlaceholderWith(iStyle.titleFont, fontSize: iStyle.placeholderMinFontSize,
                                  foregroundColor: iStyle.errorColor.cgColor,
                                  text: placeholderErrorText)
         lineView.fillLine(with: iStyle.errorColor)
     }
 
-    fileprivate func configurePlaceholderWith(fontSize: CGFloat, foregroundColor: CGColor, text: String?) {
+    fileprivate func configurePlaceholderWith(_ font:UIFont, fontSize: CGFloat, foregroundColor: CGColor, text: String?) {
         placeholderLayer.fontSize = fontSize
+        placeholderLayer.font = font;
         placeholderLayer.foregroundColor = foregroundColor
         placeholderLayer.string = text
         layoutPlaceholderLayer()

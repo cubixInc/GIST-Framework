@@ -99,7 +99,7 @@ open class FloatingLabelTextField: ValidatedTextField {
     // MARK: Line height
     
     /// A CGFloat value that determines the height for the bottom line when the control is in the normal state
-    @IBInspectable open var lineHeight:CGFloat = 0.5 {
+    @IBInspectable open var lineHeight:CGFloat = GIST_CONFIG.seperatorWidth {
         didSet {
             self.updateLineView();
             self.setNeedsDisplay();
@@ -107,7 +107,7 @@ open class FloatingLabelTextField: ValidatedTextField {
     } //P.E.
     
     /// A CGFloat value that determines the height for the bottom line when the control is in a selected state
-    @IBInspectable open var lineHeightSelected:CGFloat = 1.0 {
+    @IBInspectable open var lineHeightSelected:CGFloat = GIST_CONFIG.seperatorWidth {
         didSet {
             self.updateLineView();
             self.setNeedsDisplay();
@@ -293,9 +293,9 @@ open class FloatingLabelTextField: ValidatedTextField {
     }
     
     private func configureDefaultLineHeight() {
-        let onePixel:CGFloat = 1.0 / UIScreen.main.scale
-        self.lineHeight = 2.0 * onePixel
-        self.lineHeightSelected = 2.0 * self.lineHeight
+        //??let onePixel:CGFloat = 1.0 / UIScreen.main.scale
+        self.lineHeight = GIST_CONFIG.seperatorWidth;
+        self.lineHeightSelected = GIST_CONFIG.seperatorWidth;
     }
     
     // MARK: Responder handling
