@@ -70,18 +70,13 @@ public class GISTGlobal: NSObject {
     } //P.E.
     
     private var _user:GISTUser?;
-    private var _userClass:String = "";
-    
     public func getUser<T:GISTUser>() -> T? {
         guard let usrData = userData, let _:Int = usrData["user_id"] as? Int else {
             return nil;
         }
         
-        let newClass = "\(type(of: T()))";
-        
-        if (_user == nil || _userClass != newClass) {
+        if (_user == nil && _userData != nil) {
             _user = Mapper<T>().map(JSON: usrData);
-            _userClass = newClass;
         }
         
         return _user as? T;
