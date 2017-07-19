@@ -23,4 +23,20 @@ public extension String {
     public var hasOnlyNewlineSymbols: Bool {
         return trimmingCharacters(in: CharacterSet.newlines).isEmpty
     }
+    
+    public var encodeUTF8: String {
+        guard let cString = self.cString(using: .nonLossyASCII) else {
+            return self;
+        }
+        
+        return String(cString: cString, encoding: .utf8) ?? self;
+    }
+    
+    public var decodeUTF8: String {
+        guard let data = self.data(using: .utf8, allowLossyConversion: false) else {
+            return self;
+        }
+        
+        return String(data: data, encoding: .utf8) ?? self
+    }
 } //E.E.
