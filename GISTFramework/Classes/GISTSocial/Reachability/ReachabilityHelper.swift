@@ -10,7 +10,7 @@
 import UIKit
 import Alamofire
 
-var REACHABILITY_HELPER:ReachabilityHelper {
+public var REACHABILITY_HELPER:ReachabilityHelper {
     get {
         return ReachabilityHelper.sharedInstance;
     }
@@ -21,7 +21,7 @@ var REACHABILITY_HELPER:ReachabilityHelper {
     @objc optional func reachabilityDidUpdate(_ status: Bool);
 } //F.E.
 
-class ReachabilityHelper: NSObject {
+public class ReachabilityHelper: NSObject {
     
     fileprivate var _window: UIWindow!
     
@@ -42,7 +42,7 @@ class ReachabilityHelper: NSObject {
     } //P.E.
     
     //Public Method
-    var isInternetConnected:Bool {
+    public var isInternetConnected:Bool {
         get {
             if (self.internetConnectionLabelHidden != _internetConnected) {
                 self.internetConnectionLabelHidden = _internetConnected;
@@ -117,7 +117,7 @@ class ReachabilityHelper: NSObject {
     private var _delegates:NSHashTable<Weak<ReachabilityDelegate>> = NSHashTable();
     
     //MARK: - setupReachability
-    func setupReachability(_ window: UIWindow!) {
+    public func setupReachability(_ window: UIWindow!) {
         _window = window;
         
         _reachability = NetworkReachabilityManager();
@@ -158,7 +158,7 @@ class ReachabilityHelper: NSObject {
      Registers delegate targets.
      It may register multiple targets.
      */
-    open func registerDelegate(_ target:ReachabilityDelegate) {
+    public func registerDelegate(_ target:ReachabilityDelegate) {
         if self.weakDelegateForTarget(target) == nil {
             //Adding if not added
             _delegates.add(Weak<ReachabilityDelegate>(value: target))
@@ -169,7 +169,7 @@ class ReachabilityHelper: NSObject {
      Unregisters a delegate target.
      It should be called when, the target does not want to reveice application events.
      */
-    open func unregisterDelegate(_ target:ReachabilityDelegate) {
+    public func unregisterDelegate(_ target:ReachabilityDelegate) {
         if let wTarget:Weak<ReachabilityDelegate> = self.weakDelegateForTarget(target) {
             _delegates.remove(wTarget);
         }

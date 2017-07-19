@@ -179,8 +179,10 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         let host:String = url.host ?? "";
         let params:[String:String] = url.params;
         
+        /*
         let alr:UIAlertView = UIAlertView(title: host, message: params.toJSONString() ?? "", delegate: nil, cancelButtonTitle: "Cancel", otherButtonTitles: "Ok");
         alr.show();
+         */
         
         switch host {
         case "forgot_password":
