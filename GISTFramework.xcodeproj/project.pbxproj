@@ -11,7 +11,7 @@
 		48051E2D1F16318A006C5507 /* ValidatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48051E2C1F16318A006C5507 /* ValidatedTextInput.swift */; };
 		48065F6E1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48065F6D1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift */; };
 		4809C7351EB8AE480060F64E /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7341EB8AE480060F64E /* GISTAuth.swift */; };
-		4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */; };
+		4809C7381EB8AEB30060F64E /* GISTSocialUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4809C7371EB8AEB30060F64E /* GISTSocialUtils.swift */; };
 		4820E7621ED2DF9400244DED /* URL+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4820E7611ED2DF9400244DED /* URL+Utility.swift */; };
 		48226B001F14E25E0023C4DD /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226AFE1F14E25E0023C4DD /* UIViewExtensions.swift */; };
 		48226B011F14E25E0023C4DD /* UIImageView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48226AFF1F14E25E0023C4DD /* UIImageView+Utility.swift */; };
@@ -115,7 +115,7 @@
 		48051E2C1F16318A006C5507 /* ValidatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextInput.swift; sourceTree = "<group>"; };
 		48065F6D1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedPhoneTextFieldDelegate.swift; sourceTree = "<group>"; };
 		4809C7341EB8AE480060F64E /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
-		4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GISTUtility+Social.swift"; sourceTree = "<group>"; };
+		4809C7371EB8AEB30060F64E /* GISTSocialUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTSocialUtils.swift; sourceTree = "<group>"; };
 		4820E7611ED2DF9400244DED /* URL+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Utility.swift"; sourceTree = "<group>"; };
 		48226AFE1F14E25E0023C4DD /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		48226AFF1F14E25E0023C4DD /* UIImageView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Utility.swift"; sourceTree = "<group>"; };
@@ -245,11 +245,12 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
-		4809C7361EB8AE910060F64E /* Extentions */ = {
+		4809C7361EB8AE910060F64E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				4809C7371EB8AEB30060F64E /* GISTUtility+Social.swift */,
+				4809C7371EB8AEB30060F64E /* GISTSocialUtils.swift */,
 			);
+			name = Helpers;
 			path = Extentions;
 			sourceTree = "<group>";
 		};
@@ -412,7 +413,7 @@
 				4809C7331EB8AE480060F64E /* Authentication */,
 				48C493611E88F73900F14CF4 /* Global */,
 				48C4935D1E88F73900F14CF4 /* AppInfo */,
-				4809C7361EB8AE910060F64E /* Extentions */,
+				4809C7361EB8AE910060F64E /* Helpers */,
 				48949D7B1ED814750055CD6C /* Model */,
 				48C493651E88F73900F14CF4 /* Protocols */,
 				48C017041EADE6D2008FB1B9 /* CoreData */,
@@ -717,7 +718,7 @@
 				48226B091F14E2B10023C4DD /* AnimatedLine.swift in Sources */,
 				489530771D12AD4100DFD38B /* UIImage+Utility.swift in Sources */,
 				486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */,
-				4809C7381EB8AEB30060F64E /* GISTUtility+Social.swift in Sources */,
+				4809C7381EB8AEB30060F64E /* GISTSocialUtils.swift in Sources */,
 				484942C51E73050E004F4A9B /* CustomUIButton.swift in Sources */,
 				48DA7E7D1D9E666200464066 /* BaseUITableViewController.swift in Sources */,
 				48F569F21D37CE30007849A8 /* BaseUINavigationItem.swift in Sources */,

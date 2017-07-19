@@ -54,7 +54,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     public static func signUp(user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: SIGN_UP_REQUEST, params: GISTUtility.formate(user: user, additional: params), completion:completion, failure:failure);
+        self.request(service: SIGN_UP_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Sign In
@@ -81,7 +81,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
             service = SIGN_IN_REQUEST;
         }
         
-        self.request(service: service, params: GISTUtility.formate(user: user, additional: params), completion:completion, failure:failure);
+        self.request(service: service, params: GISTSocialUtils.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Edit Profile
@@ -111,7 +111,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     public static func editProfile(updated user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: EDIT_PROFILE_REQUEST, params: GISTUtility.formate(user: user, additional: params), completion:completion, failure:failure);
+        self.request(service: EDIT_PROFILE_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
     
     public static func changeLoginId(new loginId:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
@@ -225,7 +225,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     private static func request(service:String, arrData:NSMutableArray, additional aParams:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         
-        guard GISTUtility.validate(array: arrData, ignore:iParams) else {
+        guard GISTSocialUtils.validate(array: arrData, ignore:iParams) else {
             if (failure != nil) {
                 let error = NSError(domain: "com.cubix.gist", code: -1, userInfo: nil);
                 failure!(error);
@@ -233,12 +233,12 @@ public class GISTAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        self.request(service: service, params: GISTUtility.formate(array: arrData, additional: aParams, ignore:iParams), completion:completion, failure:failure);
+        self.request(service: service, params: GISTSocialUtils.formate(array: arrData, additional: aParams, ignore:iParams), completion:completion, failure:failure);
     } //F.E.
     
     private static func request(service:String, fields:[ValidatedTextField], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard GISTUtility.validate(fields: fields) else {
+        guard GISTSocialUtils.validate(fields: fields) else {
             if (failure != nil) {
                 let error = NSError(domain: "com.cubix.gist", code: -1, userInfo: nil);
                 failure!(error);
@@ -246,7 +246,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        self.request(service: service, params: GISTUtility.formate(fields: fields, additional:params), completion:completion, failure:failure);
+        self.request(service: service, params: GISTSocialUtils.formate(fields: fields, additional:params), completion:completion, failure:failure);
         
     } //F.E.
     

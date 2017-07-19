@@ -9,8 +9,7 @@
 import UIKit
 import PhoneNumberKit
 
-/// Extension for Utility
-public extension GISTUtility {
+public class GISTSocialUtils {
     
     public class func validate(fields:[ValidatedTextField]) -> Bool {
         var isValid:Bool = true;
@@ -86,28 +85,28 @@ public extension GISTUtility {
         
         let defRegion:String? = dictionary["defaultRegion"] as? String;
         
-        let isEmail:Bool = self.isEmpty(text);
+        let isEmail:Bool = GISTUtility.isEmpty(text);
         
         var phoneNumber:PhoneNumber?;
         
         if (validatePhone || validateEmailOrPhone || validateEmailPhoneOrUserName) {
-            phoneNumber = self.validatePhoneNumber(text, withRegion: defRegion ?? PhoneNumberKit.defaultRegionCode());
+            phoneNumber = GISTUtility.validatePhoneNumber(text, withRegion: defRegion ?? PhoneNumberKit.defaultRegionCode());
         }
         
         let isValidPhone:Bool =  phoneNumber != nil;
         
         let isValid:Bool =
                 (!validateEmpty || !isEmail) &&
-                (!validateEmail || self.isValidEmail(text)) &&
+                (!validateEmail || GISTUtility.isValidEmail(text)) &&
                 (!validatePhone || isValidPhone) &&
-                (!validateEmailOrPhone || (self.isValidEmail(text) || isValidPhone)) &&
-                (!validateEmailPhoneOrUserName || (self.isValidEmail(text) || isValidPhone || !isEmail)) &&
-                (!validateURL || self.isValidUrl(text)) &&
-                (!validateNumeric || self.isNumeric(text)) &&
-                (!validateAlphabetic || self.isAlphabetic(text)) &&
-                ((minChar == 0) || self.isValidForMinChar(text, noOfChar: minChar)) &&
-                ((maxChar == 0) || self.isValidForMaxChar(text, noOfChar: maxChar)) &&
-                ((validateRegex == "") || self.isValidForRegex(text, regex: validateRegex));
+                (!validateEmailOrPhone || (GISTUtility.isValidEmail(text) || isValidPhone)) &&
+                (!validateEmailPhoneOrUserName || (GISTUtility.isValidEmail(text) || isValidPhone || !isEmail)) &&
+                (!validateURL || GISTUtility.isValidUrl(text)) &&
+                (!validateNumeric || GISTUtility.isNumeric(text)) &&
+                (!validateAlphabetic || GISTUtility.isAlphabetic(text)) &&
+                ((minChar == 0) || GISTUtility.isValidForMinChar(text, noOfChar: minChar)) &&
+                ((maxChar == 0) || GISTUtility.isValidForMaxChar(text, noOfChar: maxChar)) &&
+                ((validateRegex == "") || GISTUtility.isValidForRegex(text, regex: validateRegex));
         
         let validText:String?;
         
