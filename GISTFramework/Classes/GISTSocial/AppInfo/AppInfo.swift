@@ -8,28 +8,28 @@
 
 import UIKit
 
-class AppInfo: NSObject {
+public class AppInfo: NSObject {
     
-    static var bundleNumber:String {
+   public static var bundleNumber:String {
         get {
             return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "";
         }
     } //P.E.
     
-    static var versionNumber:String {
+    public static var versionNumber:String {
         get {
             return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "";
         }
     } //P.E.
 
-    static var versionNBuildNumber:String {
+    public static var versionNBuildNumber:String {
         get {
             return "\(self.versionNumber) (\(self.bundleNumber))";
         }
     } //P.E.
     
     
-    static var bundleIdentifier:String {
+    public static var bundleIdentifier:String {
         get {
             return Bundle.main.bundleIdentifier ?? "";
         }
