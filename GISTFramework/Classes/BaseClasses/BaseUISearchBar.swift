@@ -136,7 +136,21 @@ open class BaseUISearchBar: UISearchBar, BaseView {
     /// Inspectable propery for Search bar icon.
     @IBInspectable open var searchBarIcon:UIImage? = nil {
         didSet {
-            self.setImage(searchBarIcon, for: UISearchBarIcon.search, state: UIControlState());
+            self.setImage(searchBarIcon, for: UISearchBarIcon.search, state: UIControlState.normal);
+        }
+    } //P.E.
+    
+    /// Inspectable propery for Search bar icon.
+    @IBInspectable open var clearBtnIcon:UIImage? = nil {
+        didSet {
+            self.setImage(clearBtnIcon, for: UISearchBarIcon.clear, state: UIControlState.normal);
+        }
+    } //P.E.
+    
+    /// Inspectable propery for Search bar icon.
+    @IBInspectable open var searchFieldBgImage:UIImage? = nil {
+        didSet {
+            self.setSearchFieldBackgroundImage(searchFieldBgImage, for: UIControlState.normal);
         }
     } //P.E.
     
