@@ -461,6 +461,8 @@ open class HTTPRequest:NSObject {
     fileprivate var _failureBlock:((_ error:NSError) -> Void)?
     fileprivate var _invalidSessionBlock:((_ error:NSError) -> Void)?
     
+    fileprivate var _progressBlock:Request.ProgressHandler?
+    
     fileprivate var _noInternetConnectionBlock:(() -> Void)?
     
     open weak var delegate:HTTPRequestDelegate?;
@@ -485,11 +487,21 @@ open class HTTPRequest:NSObject {
         self.method = method;
         self.headers = headers;
         
-        //User Token
-        
-        if let clientToken:String = GIST_GLOBAL.userData?["client_token"] as? String, self.headers != nil {
-            self.headers!["client_token"] = clientToken;
+        //User Token and User Id in Header
+        if self.headers != nil {
+            
+            //Client Token
+            if let clientToken:String = GIST_GLOBAL.userData?["client_token"] as? String {
+                self.headers!["client_token"] = clientToken;
+            }
+            
+            //User Id
+            if let userId:Int = GIST_GLOBAL.userData?["user_id"] as? Int {
+                self.headers!["user_id"] = "\(userId)";
+            }
         }
+        
+        
     } //C.E.
     
     open func sendRequest() -> DataRequest {
@@ -544,6 +556,15 @@ open class HTTPRequest:NSObject {
     @discardableResult open func onNoInternetConnection(response:@escaping () -> Void) -> HTTPRequest {
         _noInternetConnectionBlock = response;
         return self;
+    } //F.E.
+    
+    @discardableResult
+    open func uploadProgress(closure: @escaping Request.ProgressHandler) -> Self {
+        _progressBlock = closure;
+        
+        (self.request as? UploadRequest)?.uploadProgress(closure: closure);
+        
+        return self
     } //F.E.
     
     @discardableResult fileprivate func didSucceedWithData(data:Any?) -> Bool {

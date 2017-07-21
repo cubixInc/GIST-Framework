@@ -25,7 +25,6 @@ private let RESET_PASSWORD_REQUEST = "users/reset_password";
 
 private let DELETE_ACCOUNT = "users/delete_account";
 
-
 private let CHANGE_LOGIN_ID = "users/change_id_request";
 
 
