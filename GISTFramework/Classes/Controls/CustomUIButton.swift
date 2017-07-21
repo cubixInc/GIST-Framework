@@ -261,22 +261,26 @@ open class CustomUIButton: BaseUIButton {
     open var titleLabelFrame:CGRect {
         get {
             let offSet:CGPoint = self.titleOffSet;
-             
+            
             var rFrame:CGRect = self.titleLabel!.frame;
             
+            if (rFrame.size.width > self.frame.size.width) {
+                rFrame.size.width = self.frame.size.width;
+            }
+            
             if (offSet.x == 0) {
-                rFrame.origin.x = self.imageView!.frame.origin.x + ((self.imageView!.frame.size.width - self.titleLabel!.frame.size.width) / 2.0);
+                rFrame.origin.x = self.imageView!.frame.origin.x + ((self.imageView!.frame.size.width - rFrame.size.width) / 2.0);
             } else if (_reversedOrder) {
-                rFrame.origin.x = self.imageView!.frame.origin.x - self.titleLabel!.frame.size.width - offSet.x;
+                rFrame.origin.x = self.imageView!.frame.origin.x - rFrame.size.width - offSet.x;
             } else {
                 rFrame.origin.x = self.imageView!.frame.origin.x + self.imageView!.frame.size.width + offSet.x;
             }
             
             
             if (offSet.y == 0) {
-                rFrame.origin.y = self.imageView!.frame.origin.y + ((self.imageView!.frame.size.height - self.titleLabel!.frame.size.height) / 2.0);
+                rFrame.origin.y = self.imageView!.frame.origin.y + ((self.imageView!.frame.size.height - rFrame.size.height) / 2.0);
             } else if (_reversedOrder) {
-                rFrame.origin.y = self.imageView!.frame.origin.y - self.titleLabel!.frame.size.height - offSet.y;
+                rFrame.origin.y = self.imageView!.frame.origin.y - rFrame.size.height - offSet.y;
             } else {
                 rFrame.origin.y = self.imageView!.frame.origin.y + self.imageView!.frame.size.height + offSet.y;
             }
