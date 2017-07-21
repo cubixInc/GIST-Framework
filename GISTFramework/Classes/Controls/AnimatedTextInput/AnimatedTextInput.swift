@@ -145,7 +145,11 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
         set {
             if !textInput.view.isFirstResponder {
-                (newValue != nil) ? configurePlaceholderAsInactiveHint() : configurePlaceholderAsDefault()
+                if  let cCount:Int = newValue?.characters.count, cCount > 0 {
+                    configurePlaceholderAsInactiveHint()
+                } else {
+                    configurePlaceholderAsDefault()
+                }
             }
             textInput.currentText = newValue
         }

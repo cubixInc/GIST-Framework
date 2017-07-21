@@ -58,7 +58,7 @@ struct InternalAnimatedTextInputStyle {
         sizeForIPad = style?.sizeForIPad ?? GIST_CONFIG.sizeForIPad;
         
         activeColor = SyncedColors.color(forKey: style?.activeColor) ?? UIColor(red: 51.0/255.0, green: 175.0/255.0, blue: 236.0/255.0, alpha: 1.0);
-        inactiveColor = SyncedColors.color(forKey: style?.inactiveColor) ?? UIColor.gray.withAlphaComponent(0.5);
+        inactiveColor = SyncedColors.color(forKey: style?.inactiveColor) ?? UIColor(white: 0.80, alpha: 1);
         lineInactiveColor = SyncedColors.color(forKey: style?.lineInactiveColor) ?? UIColor.gray.withAlphaComponent(0.2);
         errorColor = SyncedColors.color(forKey: style?.errorColor) ?? UIColor.red;
         
