@@ -40,6 +40,15 @@ open class BaseUISearchBar: UISearchBar, BaseView {
         }
     } //P.E.
     
+    /// Placeholder Text Font color key from SyncEngine.
+    @IBInspectable open var placeholderColor:String? = nil {
+        didSet {
+            if let plcHolder:String = self.placeholder, let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
+                self.textField?.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSForegroundColorAttributeName: color]);
+            }
+        }
+    } //P.E.
+    
     @IBInspectable open var tintColorStyle:String? = nil {
         didSet {
             self.tintColor =  SyncedColors.color(forKey: tintColorStyle);
@@ -127,25 +136,55 @@ open class BaseUISearchBar: UISearchBar, BaseView {
     /// Inspectable propery for Search bar icon.
     @IBInspectable open var searchBarIcon:UIImage? = nil {
         didSet {
-            self.setImage(searchBarIcon, for: UISearchBarIcon.search, state: UIControlState());
+            self.setImage(searchBarIcon, for: UISearchBarIcon.search, state: UIControlState.normal);
+        }
+    } //P.E.
+    
+    /// Inspectable propery for Search bar icon.
+    @IBInspectable open var clearBtnIcon:UIImage? = nil {
+        didSet {
+            self.setImage(clearBtnIcon, for: UISearchBarIcon.clear, state: UIControlState.normal);
+        }
+    } //P.E.
+    
+    /// Inspectable propery for Search bar icon.
+    @IBInspectable open var searchFieldBgImage:UIImage? = nil {
+        didSet {
+            self.setSearchFieldBackgroundImage(searchFieldBgImage, for: UIControlState.normal);
         }
     } //P.E.
     
     private var _placeholderKey:String?
     
-    /// Overridden property to update text from SyncEngine (Hint '#' prefix).
+    /// Overridden property to set placeholder text from SyncEngine (Hint '#' prefix).
     override open var placeholder: String? {
         get {
             return super.placeholder;
         }
         
         set {
-            if let key:String = newValue , key.hasPrefix("#") == true{
-                _placeholderKey = key; // holding key for using later
-                 
-                super.placeholder = SyncedText.text(forKey: key);
-            } else {
+            guard let key:String = newValue else {
+                _placeholderKey = nil;
                 super.placeholder = newValue;
+                return;
+            }
+            
+            let newPlaceHolder:String;
+            
+            if (key.hasPrefix("#") == true) {
+                _placeholderKey = key; // holding key for using later
+                
+                newPlaceHolder = SyncedText.text(forKey: key);
+            } else {
+                _placeholderKey = nil;
+                
+                newPlaceHolder = key;
+            }
+            
+            if let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
+                self.textField?.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSForegroundColorAttributeName: color]);
+            } else {
+                super.placeholder = newPlaceHolder;
             }
         }
     } //P.E.

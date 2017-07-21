@@ -135,8 +135,8 @@ open class BaseUITextField: UITextField, BaseView {
                 newPlaceHolder = key;
             }
             
-            if let colorStyl:String = placeholderColor {
-                self.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSForegroundColorAttributeName: SyncedColors.color(forKey: colorStyl)!]);
+            if let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
+                self.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSForegroundColorAttributeName: color]);
             } else {
                 super.placeholder = newPlaceHolder;
             }
