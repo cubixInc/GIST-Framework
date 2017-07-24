@@ -23,7 +23,7 @@ public class ModelUser:NSObject, GISTUser {
     public var sentEmailVerification: Bool?;
     public var sentMobileVerification: Bool?;
     public var type: String?;
-    public var userId: Int?;
+    public var entityId: Int?;
     public var verificationToken: String?;
     public var rawImage: UIImage?;
     
@@ -54,7 +54,7 @@ public class ModelUser:NSObject, GISTUser {
         sentEmailVerification <- map["sent_email_verification"];
         sentMobileVerification <- map["sent_mobile_verification"];
         type <- map["type"];
-        userId <- map["user_id"];
+        entityId <- map["entity_id"];
         verificationToken <- map["verification_token"];
         
         userName <- map["user_name"];
@@ -78,7 +78,7 @@ public class ModelUser:NSObject, GISTUser {
         sentEmailVerification = aDecoder.decodeObject(forKey: "sent_email_verification") as? Bool;
         sentMobileVerification = aDecoder.decodeObject(forKey: "sent_mobile_verification") as? Bool;
         type = aDecoder.decodeObject(forKey: "type") as? String;
-        userId = aDecoder.decodeObject(forKey: "user_id") as? Int;
+        entityId = aDecoder.decodeObject(forKey: "entity_id") as? Int;
         verificationToken = aDecoder.decodeObject(forKey: "verification_token") as? String;
         
         userName = aDecoder.decodeObject(forKey: "user_name") as? String;
@@ -102,7 +102,7 @@ public class ModelUser:NSObject, GISTUser {
         aCoder.encode(sentEmailVerification, forKey: "sent_email_verification");
         aCoder.encode(sentMobileVerification, forKey: "sent_mobile_verification");
         aCoder.encode(type, forKey: "type");
-        aCoder.encode(userId, forKey: "user_id");
+        aCoder.encode(entityId, forKey: "entity_id");
         aCoder.encode(verificationToken, forKey: "verification_token");
         
         aCoder.encode(userName, forKey: "user_name");
@@ -132,7 +132,7 @@ public class ModelUser:NSObject, GISTUser {
         instance.sentEmailVerification = self.sentEmailVerification;
         instance.sentMobileVerification = self.sentMobileVerification;
         instance.type = self.type;
-        instance.userId = self.userId;
+        instance.entityId = self.entityId;
         instance.verificationToken = self.verificationToken;
         instance.rawImage = self.rawImage;
         
@@ -160,7 +160,7 @@ public class ModelUser:NSObject, GISTUser {
         map["sent_email_verification"] = self.reverseMap(sentEmailVerification);
         map["sent_mobile_verification"] = self.reverseMap(sentMobileVerification);
         map["type"] = self.reverseMap(type);
-        map["user_id"] = self.reverseMap(userId);
+        map["entity_id"] = self.reverseMap(entityId);
         map["verification_token"] = self.reverseMap(verificationToken);
         map["raw_image"] = self.reverseMap(rawImage);
         
