@@ -501,6 +501,12 @@ open class HTTPRequest:NSObject {
             }
         }
         
+        //Default Params
+        if (self.parameters != nil) {
+            self.parameters!["mobile_json"] = true;
+        } else {
+            self.parameters = ["mobile_json":true];
+        }
         
     } //C.E.
     
