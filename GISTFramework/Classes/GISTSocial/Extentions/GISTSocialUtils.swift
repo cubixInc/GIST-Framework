@@ -37,12 +37,12 @@ public class GISTSocialUtils {
                     isFieldValid = self.validate(array: dataArr, ignore: iParams);
                 } else if let pKey:String = dict["paramKey"] as? String, ignoreParams.contains(pKey) == false {
                     
-                    dict["validated"] = true;
-                    
                     var isValid:Bool? = dict["isValid"] as? Bool
                     
                     if (isValid == nil) {
                         isValid = self.validate(dictionary: dict);
+                    } else {
+                        dict["validated"] = true;
                     }
                     
                     isFieldValid = isValid!;
@@ -122,6 +122,8 @@ public class GISTSocialUtils {
         
         dictionary["isValid"] = isValid;
         dictionary["validText"] = validText;
+        
+        dictionary["validated"] = true;
         
         return isValid;
     } //F.E.
