@@ -224,13 +224,21 @@ open class ValidatedTextField: InputMaskTextField, ValidatedTextInput {
         
         self.maxCharLimit = dicData?["maxCharLimit"] as? Int ?? 50;
         
+        //Set the text and placeholder
+        self.text = dicData?["text"] as? String;
+        self.placeholder = dicData?["placeholder"] as? String;
+        
         //Set the is password check
         self.isSecureTextEntry = dicData?["isSecureTextEntry"] as? Bool ?? false;
         self.isUserInteractionEnabled = dicData?["isUserInteractionEnabled"] as? Bool ?? true;
         
-        //Set the text and placeholder
-        self.text = dicData?["text"] as? String;
-        self.placeholder = dicData?["placeholder"] as? String;
+        if let keyboardTypeStr:String = dicData?["keyboardType"] as? String {
+            self.keyboardType = UIKeyboardType.keyboardType(for: keyboardTypeStr);
+        }
+        
+        if let returnKeyTypeStr:String = dicData?["returnKeyType"] as? String {
+            self.returnKeyType = UIReturnKeyType.returnKeyType(for: returnKeyTypeStr);
+        }
         
         if let validated:Bool = dicData?["validated"] as? Bool, validated == true {
             self.isInvalidSignHidden = (_isValid && (!validateEmpty || !_isEmpty));

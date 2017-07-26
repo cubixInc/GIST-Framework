@@ -14,6 +14,13 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
 
     //MARK: - Properties
     
+    /// The String to display when the textfield is not editing and the input is not empty.
+    @IBInspectable open var title:String? {
+        didSet {
+            
+        }
+    } //P.E.
+    
     private var _placeholder:String? = "Placeholder";
     @IBInspectable open var placeholder:String? {
         set {
@@ -106,9 +113,53 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
     }
 
-    open var returnKeyType: UIReturnKeyType = .default {
-        didSet {
-            textInput.changeReturnKeyType(with: returnKeyType)
+    open var autocapitalizationType: UITextAutocapitalizationType {
+        get {
+            return self.textInput.autocapitalizationType;
+        }
+        
+        set {
+            self.textInput.autocapitalizationType = newValue;
+        }
+    }
+    
+    open var autocorrectionType: UITextAutocorrectionType {
+        get {
+            return self.textInput.autocorrectionType;
+        }
+        
+        set {
+            self.textInput.autocorrectionType = newValue;
+        }
+    }
+    
+    open var keyboardType: UIKeyboardType {
+        get {
+            return self.textInput.keyboardType;
+        }
+        
+        set {
+            self.textInput.keyboardType = newValue;
+        }
+    }
+    
+    open var keyboardAppearance: UIKeyboardAppearance {
+        get {
+            return self.textInput.keyboardAppearance;
+        }
+        
+        set {
+            self.textInput.keyboardAppearance = newValue;
+        }
+    }
+    
+    open var returnKeyType: UIReturnKeyType {
+        get {
+            return self.textInput.returnKeyType;
+        }
+        
+        set {
+            self.textInput.returnKeyType = newValue;
         }
     }
     
@@ -184,6 +235,16 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
             let paragraphStyle = textAttributes?[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = spacing
             textAttributes = [NSParagraphStyleAttributeName: paragraphStyle]
+        }
+    }
+    
+    var isSecureTextEntry: Bool {
+        get {
+            return self.textInput.isSecureTextEntry;
+        }
+        
+        set {
+            self.textInput.isSecureTextEntry = newValue;
         }
     }
 
@@ -288,15 +349,6 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         return isPlaceholderAsHint ? hintPosition : defaultPosition
     }
     
-    private var _data:Any?
-    
-    /// Holds Data.
-    open var data:Any? {
-        get {
-            return _data;
-        }
-    } //P.E.
-
     public override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -309,20 +361,6 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         setupCommonElements()
     }
     
-    //MARK: - Methods
-    
-    open func updateData(_ data: Any?) {
-        _data = data;
-        
-        let dicData:NSMutableDictionary? = data as? NSMutableDictionary;
-        
-        self.maxCharLimit = dicData?["maxCharLimit"] as? Int ?? (self.multilined ? 255 : 50);
-        
-        //Set the text and placeholder
-        self.text = dicData?["text"] as? String;
-        self.placeholder = dicData?["placeholder"] as? String;
-    } //F.E.
-
     override open var intrinsicContentSize: CGSize {
         let normalHeight = textInput.view.intrinsicContentSize.height
         return CGSize(width: UIViewNoIntrinsicMetric, height: normalHeight + iStyle.topMargin + iStyle.bottomMargin)
@@ -428,7 +466,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         isPlaceholderAsHint = true
         configurePlaceholderWith(iStyle.titleFont, fontSize: iStyle.placeholderMinFontSize,
                                  foregroundColor: iStyle.titleFontColor.cgColor,
-                                 text: placeholder)
+                                 text: self.title ?? self.placeholder)
         lineView.fillLine(with: iStyle.activeColor)
     }
 
@@ -437,7 +475,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         
         configurePlaceholderWith(iStyle.titleFont, fontSize: iStyle.placeholderMinFontSize,
                                  foregroundColor: iStyle.titleFontColor.cgColor,
-                                 text: placeholder)
+                                 text: self.title ?? self.placeholder)
         lineView.animateToInitialState()
     }
 
@@ -710,9 +748,21 @@ public protocol TextInput {
     var currentSelectedTextRange: UITextRange? { get set }
     var currentBeginningOfDocument: UITextPosition? { get }
     var contentInset: UIEdgeInsets { get set }
+    
+    var autocapitalizationType: UITextAutocapitalizationType { get set } // default is UITextAutocapitalizationTypeSentences
+    
+    var autocorrectionType: UITextAutocorrectionType { get set } // default is UITextAutocorrectionTypeDefault
+    
+    var keyboardType: UIKeyboardType { get set } // default is UIKeyboardTypeDefault
+    
+    var keyboardAppearance: UIKeyboardAppearance { get set } // default is UIKeyboardAppearanceDefault
+    
+    var returnKeyType: UIReturnKeyType { get set } // default is UIReturnKeyDefault (See note under UIReturnKeyType enum)
+    
+    var enablesReturnKeyAutomatically: Bool { get set } // default is NO (when YES, will automatically disable return key when text widget has zero-length contents, and will automatically enable when text widget has non-zero-length contents)
+    
+    var isSecureTextEntry: Bool { get set } // default is NO
 
-    func changeKeyboardType(with newKeyboardType: UIKeyboardType)
-    func changeReturnKeyType(with newReturnKeyType: UIReturnKeyType)
     func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition?
     func changeClearButtonMode(with newClearButtonMode: UITextFieldViewMode)
 }

@@ -105,14 +105,6 @@ class AnimatedTextField: UITextField {
 
 extension AnimatedTextField: TextInput {
 
-    public func changeKeyboardType(with newKeyboardType: UIKeyboardType) {
-        self.keyboardType = newKeyboardType;
-    }
-    
-    public func changeReturnKeyType(with newReturnKeyType: UIReturnKeyType) {
-        returnKeyType = newReturnKeyType
-    }
-
     public func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition? {
         return position(from: from, offset: offset)
     }

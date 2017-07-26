@@ -45,7 +45,7 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener,
         }
     } //P.E.
     
-    public var defaultRegion = PhoneNumberKit.defaultRegionCode() {
+    @IBInspectable public var defaultRegion = PhoneNumberKit.defaultRegionCode() {
         didSet {
             _maskPhoneTextFieldDelegate?.defaultRegion = defaultRegion;
         }

@@ -22,3 +22,89 @@ extension UITextField {
     }
 
 }
+
+
+public extension UIKeyboardType {
+    
+    public static func keyboardType(for type:String) -> UIKeyboardType {
+        switch type {
+            
+        case "default":
+            return UIKeyboardType.default;
+            
+        case "asciiCapable":
+            return UIKeyboardType.asciiCapable;
+            
+        case "URL":
+            return UIKeyboardType.URL;
+            
+        case "numberPad":
+            return UIKeyboardType.numberPad;
+            
+        case "phonePad":
+            return UIKeyboardType.phonePad;
+            
+        case "namePhonePad":
+            return UIKeyboardType.namePhonePad;
+            
+        case "emailAddress":
+            return UIKeyboardType.emailAddress;
+            
+        case "decimalPad":
+            return UIKeyboardType.decimalPad;
+            
+        case "twitter":
+            return UIKeyboardType.twitter;
+            
+        case "webSearch":
+            return UIKeyboardType.webSearch;
+            
+        case "asciiCapableNumberPad":
+            return UIKeyboardType.asciiCapableNumberPad;
+            
+        default:
+            return UIKeyboardType.default;
+        }
+    }
+}
+
+public extension UIReturnKeyType {
+    
+    public static func returnKeyType(for type:String) -> UIReturnKeyType {
+        switch type {
+            
+        case "default":
+            return UIReturnKeyType.default;
+            
+        case "go":
+            return UIReturnKeyType.go;
+            
+        case "google":
+            return UIReturnKeyType.google;
+            
+        case "join":
+            return UIReturnKeyType.join;
+            
+        case "route":
+            return UIReturnKeyType.route;
+            
+        case "search":
+            return UIReturnKeyType.search;
+            
+        case "send":
+            return UIReturnKeyType.send;
+            
+        case "done":
+            return UIReturnKeyType.done;
+            
+        case "emergencyCall":
+            return UIReturnKeyType.emergencyCall;
+            
+        case "continue":
+            return UIReturnKeyType.continue;
+            
+        default:
+            return UIReturnKeyType.default;
+        }
+    }
+}

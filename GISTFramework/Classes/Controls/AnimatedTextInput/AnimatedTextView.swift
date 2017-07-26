@@ -48,10 +48,6 @@ extension AnimatedTextView: TextInput {
         set { self.text = newValue }
     }
     
-    public func changeKeyboardType(with newKeyboardType: UIKeyboardType) {
-        self.keyboardType = newKeyboardType;
-    }
-
     public var currentSelectedTextRange: UITextRange? {
         get { return self.selectedTextRange }
         set { self.selectedTextRange = newValue }
@@ -59,10 +55,6 @@ extension AnimatedTextView: TextInput {
 
     public var currentBeginningOfDocument: UITextPosition? {
         return self.beginningOfDocument
-    }
-
-    public func changeReturnKeyType(with newReturnKeyType: UIReturnKeyType) {
-        returnKeyType = newReturnKeyType
     }
 
     public func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition? {
