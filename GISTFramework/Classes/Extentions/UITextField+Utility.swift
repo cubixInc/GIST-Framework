@@ -58,9 +58,13 @@ public extension UIKeyboardType {
             
         case "webSearch":
             return UIKeyboardType.webSearch;
-            
+        
         case "asciiCapableNumberPad":
-            return UIKeyboardType.asciiCapableNumberPad;
+            if #available(iOS 10.0, *) {
+                return UIKeyboardType.asciiCapableNumberPad
+            } else {
+                return UIKeyboardType.default
+            }
             
         default:
             return UIKeyboardType.default;
