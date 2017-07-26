@@ -37,6 +37,8 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener,
         }
     } //P.E.
     
+    @IBInspectable public var phonePrefix: Bool = true;
+    
     var curText: String? {
         get {
             return (self.maskFormat != nil || maskPhone) ? self.planText:self.text;
@@ -108,7 +110,7 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener,
             _polyMaskTextFieldDelegate = nil;
             
             if (_maskPhoneTextFieldDelegate == nil) {
-                _maskPhoneTextFieldDelegate = MaskedPhoneTextFieldDelegate(with: self, withPrefix:true);
+                _maskPhoneTextFieldDelegate = MaskedPhoneTextFieldDelegate(self, with:self.phonePrefix);
                 _maskPhoneTextFieldDelegate!.listener = self;
                 _maskPhoneTextFieldDelegate!.defaultRegion = defaultRegion;
                 

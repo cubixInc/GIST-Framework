@@ -7,7 +7,7 @@ target 'GISTFramework' do
 
     # Pods for GISTFramework
     pod 'UIColor_Hex_Swift', '~> 3.0.2'
-    pod 'PhoneNumberKit', '~> 1.2.2'
+    pod 'PhoneNumberKit', '~> 1.3.0'
 
     pod 'AlamofireObjectMapper', '~> 4.1.0'
     pod 'IQKeyboardManagerSwift', '~> 4.0.8'

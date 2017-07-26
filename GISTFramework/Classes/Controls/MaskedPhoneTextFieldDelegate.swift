@@ -55,7 +55,7 @@ open class MaskedPhoneTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     private var _textField: UITextField!;
     
-    var withPrefix: Bool = true;
+    var prefix: Bool = true;
     
     let nonNumericSet: NSCharacterSet = {
         var mutableSet = NSMutableCharacterSet.decimalDigit().inverted
@@ -76,12 +76,12 @@ open class MaskedPhoneTextFieldDelegate: NSObject, UITextFieldDelegate {
     /**
      Init
      */
-    public init(with textField:UITextField, withPrefix prefix: Bool) {
+    public init(_ textField:UITextField, with prefix: Bool) {
         super.init();
         
-        self.withPrefix = prefix;
+        self.prefix = prefix;
         
-        self.partialFormatter = PartialFormatter(phoneNumberKit: phoneNumberKit, defaultRegion: defaultRegion, withPrefix: withPrefix)
+        self.partialFormatter = PartialFormatter(phoneNumberKit: phoneNumberKit, defaultRegion: defaultRegion, withPrefix: prefix)
         
         _textField = textField;
         

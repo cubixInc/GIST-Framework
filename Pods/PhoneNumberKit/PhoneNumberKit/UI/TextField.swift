@@ -14,6 +14,27 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
     
     let phoneNumberKit = PhoneNumberKit()
     
+    /// Override setText so number will be automatically formatted when setting text by code
+    override open var text: String? {
+        set {
+            if newValue != nil {
+                let formattedNumber = partialFormatter.formatPartial(newValue! as String)
+                super.text = formattedNumber
+            }
+            else {
+                super.text = newValue
+            }
+        }
+        get {
+            return super.text
+        }
+    }
+    
+    /// allows text to be set without formatting
+    open func setTextUnformatted(newValue:String?) {
+        super.text = newValue
+    }
+    
     /// Override region to set a custom region. Automatically uses the default region code.
     public var defaultRegion = PhoneNumberKit.defaultRegionCode() {
         didSet {
@@ -32,7 +53,13 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
             }
         }
     }
+    public var isPartialFormatterEnabled = true
     
+    public var maxDigits: Int? {
+        didSet {
+            partialFormatter.maxDigits = maxDigits
+        }
+    }
     
     let partialFormatter: PartialFormatter
     
@@ -166,7 +193,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
         return nil
     }
     
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = text else {
             return false
         }
@@ -175,11 +202,20 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
         guard _delegate?.textField?(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true else {
             return false
         }
+        guard isPartialFormatterEnabled else {
+            return true
+        }
         
         let textAsNSString = text as NSString
         let changedRange = textAsNSString.substring(with: range) as NSString
         let modifiedTextField = textAsNSString.replacingCharacters(in: range, with: string)
-        let formattedNationalNumber = partialFormatter.formatPartial(modifiedTextField as String)
+        
+        let filteredCharacters = modifiedTextField.characters.filter {
+            return  String($0).rangeOfCharacter(from: (textField as! PhoneNumberTextField).nonNumericSet as CharacterSet) == nil
+        }
+        let rawNumberString = String(filteredCharacters)
+
+        let formattedNationalNumber = partialFormatter.formatPartial(rawNumberString as String)
         var selectedTextRange: NSRange?
         
         let nonNumericRange = (changedRange.rangeOfCharacter(from: nonNumericSet as CharacterSet).location != NSNotFound)
@@ -203,27 +239,27 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
     
     //MARK: UITextfield Delegate
     
-    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    open func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return _delegate?.textFieldShouldBeginEditing?(textField) ?? true
     }
     
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
+    open func textFieldDidBeginEditing(_ textField: UITextField) {
         _delegate?.textFieldDidBeginEditing?(textField)
     }
     
-    public func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    open func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return _delegate?.textFieldShouldEndEditing?(textField) ?? true
     }
     
-    public func textFieldDidEndEditing(_ textField: UITextField) {
+    open func textFieldDidEndEditing(_ textField: UITextField) {
         _delegate?.textFieldDidEndEditing?(textField)
     }
     
-    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    open func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return _delegate?.textFieldShouldClear?(textField) ?? true
     }
     
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return _delegate?.textFieldShouldReturn?(textField) ?? true
     }
 }
