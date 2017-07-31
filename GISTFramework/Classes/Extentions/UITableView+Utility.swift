@@ -28,7 +28,7 @@ public extension UITableView {
     
     public func scrollToBottom(_ animated: Bool = true) {
         
-        let delay = 0.1 * Double(NSEC_PER_SEC)
+        let delay = 0.1;
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             let numberOfSections = self.numberOfSections
