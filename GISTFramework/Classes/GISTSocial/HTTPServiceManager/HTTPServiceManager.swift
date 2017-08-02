@@ -246,11 +246,6 @@ open class HTTPServiceManager: NSObject {
         case .success(let req, _, _):
             httpRequest.request = req; //Holding alamofire Request instance
             
-            //Setting Progress block
-            if let progressHandler:Request.ProgressHandler = httpRequest._progressBlock {
-                req.uploadProgress(closure: progressHandler);
-            }
-            
             req.responseJSON(queue: nil, options: JSONSerialization.ReadingOptions.mutableContainers) {
                 (response:DataResponse<Any>) -> Void in
                 self.responseResult(httpRequest: httpRequest, response: response);
