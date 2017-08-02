@@ -501,8 +501,8 @@ open class HTTPRequest:NSObject {
             }
             
             //User Id
-            if let userId:Int = GIST_GLOBAL.userData?["user_id"] as? Int {
-                self.headers!["user_id"] = "\(userId)";
+            if let userId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int {
+                self.headers!["entity_id"] = "\(userId)";
             }
         }
         
