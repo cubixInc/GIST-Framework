@@ -16,6 +16,8 @@ open class BaseUIViewController: UIViewController {
     
     private var _hasBackButton:Bool = true;
     
+    private (set) var _completion:((Bool, Any?) -> Void)?
+    
     /// Flag for back button visibility.
     open var hasBackButton:Bool {
         get {
@@ -166,6 +168,15 @@ open class BaseUIViewController: UIViewController {
         } else {
             return false;
         }
+    } //F.E.
+    
+    //Completion Blocks
+    open func setOnCompletion(completion: @escaping (_ success:Bool, _ data:Any?) -> Void) {
+        _completion = completion;
+    } //F.E.
+    
+    open func completion(_ success:Bool, _ data:Any?) {
+        _completion?(success, data);
     } //F.E.
     
 } //CLS END
