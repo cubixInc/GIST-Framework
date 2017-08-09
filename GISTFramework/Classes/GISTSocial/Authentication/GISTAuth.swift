@@ -134,9 +134,9 @@ public class GISTAuth<T:GISTUser>: NSObject {
         }
         
         let isVerified:Bool = (usrData["is_verified"] as? Bool) ?? false;
-        let entityId:Int? = usrData["entity_id"] as? Int;
+        let userId:Int? = usrData["user_id"] as? Int;
         
-        let verificationMode:String = (entityId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
+        let verificationMode:String = (userId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
         
         var aParams:[String:Any] = params ?? [:];
         
