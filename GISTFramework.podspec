@@ -115,7 +115,7 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/BaseClasses'
     sp.dependency 'GISTFramework/Extentions'
     sp.dependency 'GISTFramework/SyncEngine'
-    sp.dependency 'InputMask', '~> 2.2.5'
+    sp.dependency 'InputMask', '~> 2.2.6'
   end
 
   s.subspec 'Extentions' do |sp|
@@ -140,8 +140,8 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/SyncEngine'
 
     sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
-    sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.9'
-    sp.dependency 'AFDateHelper', '~> 4.2.2'
+    sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.11'
+    sp.dependency 'AFDateHelper', '~> 4.2.4'
   end
 
   s.pod_target_xcconfig = {
