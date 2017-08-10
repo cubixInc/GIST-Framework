@@ -99,6 +99,7 @@
 		48D59DCD1DB4081400B65A2E /* JSON+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */; };
 		48DA7E7D1D9E666200464066 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */; };
 		48DA7E7F1D9E674F00464066 /* BaseUISearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */; };
+		48DAD7521F3CB25F00FC8C0D /* ThresholdTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DAD7511F3CB25F00FC8C0D /* ThresholdTime.swift */; };
 		48E192891E8BC1C600638528 /* GISTEnumNConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E192881E8BC1C600638528 /* GISTEnumNConstants.swift */; };
 		48E574DB1EFCE2D3002FF32C /* GISTFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574DA1EFCE2D3002FF32C /* GISTFile.swift */; };
 		48E574DD1EFCF077002FF32C /* Data+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E574DC1EFCF077002FF32C /* Data+Utility.swift */; };
@@ -203,6 +204,7 @@
 		48D59DCB1DB4081400B65A2E /* JSON+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Utility.swift"; sourceTree = "<group>"; };
 		48DA7E7C1D9E666200464066 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
 		48DA7E7E1D9E674F00464066 /* BaseUISearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISearchController.swift; sourceTree = "<group>"; };
+		48DAD7511F3CB25F00FC8C0D /* ThresholdTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThresholdTime.swift; sourceTree = "<group>"; };
 		48E192881E8BC1C600638528 /* GISTEnumNConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTEnumNConstants.swift; sourceTree = "<group>"; };
 		48E574DA1EFCE2D3002FF32C /* GISTFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTFile.swift; sourceTree = "<group>"; };
 		48E574DC1EFCF077002FF32C /* Data+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Utility.swift"; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 		48EB0AD71D7FEE7900BD93BC /* GISTCore */ = {
 			isa = PBXGroup;
 			children = (
+				48DAD7511F3CB25F00FC8C0D /* ThresholdTime.swift */,
 				48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */,
 				48EB0AEB1D7FF45B00BD93BC /* GISTUtility.swift */,
 				489691E81DDE46E6001DDCE5 /* Weak.swift */,
@@ -687,6 +690,7 @@
 				4895305D1D12AD4100DFD38B /* BaseUIDesignableView.swift in Sources */,
 				48C493741E88F73900F14CF4 /* TutorialView.swift in Sources */,
 				489530581D12AD4100DFD38B /* BaseSeperatorLayoutConstraint.swift in Sources */,
+				48DAD7521F3CB25F00FC8C0D /* ThresholdTime.swift in Sources */,
 				48C4936D1E88F73900F14CF4 /* GISTAppDelegate.swift in Sources */,
 				484942CE1E73050E004F4A9B /* ValidatedTextView.swift in Sources */,
 				489421C81D48954400310089 /* UIColor+Utility.swift in Sources */,
