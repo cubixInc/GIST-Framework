@@ -492,6 +492,12 @@ open class HTTPRequest:NSObject {
         self.method = method;
         self.headers = headers;
         
+        //Default Params
+        if (self.parameters != nil) {
+            self.parameters!["mobile_json"] = true;
+        } else {
+            self.parameters = ["mobile_json":true];
+        }
         
         //Client Token
         if let clientToken:String = GIST_GLOBAL.userData?["client_token"] as? String {
@@ -503,13 +509,6 @@ open class HTTPRequest:NSObject {
             
             self.headers?["entity_id"] = "\(entityId)";
             self.parameters?["actor_user_id"] = entityId;
-        }
-        
-        //Default Params
-        if (self.parameters != nil) {
-            self.parameters!["mobile_json"] = true;
-        } else {
-            self.parameters = ["mobile_json":true];
         }
         
     } //C.E.
