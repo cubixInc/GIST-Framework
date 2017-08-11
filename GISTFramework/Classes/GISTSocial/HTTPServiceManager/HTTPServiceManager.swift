@@ -492,18 +492,17 @@ open class HTTPRequest:NSObject {
         self.method = method;
         self.headers = headers;
         
-        //User Token and User Id in Header
-        if self.headers != nil {
+        
+        //Client Token
+        if let clientToken:String = GIST_GLOBAL.userData?["client_token"] as? String {
+            self.headers?["client_token"] = clientToken;
+        }
+        
+        // Entity Id & Actor ID
+        if let entityId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int {
             
-            //Client Token
-            if let clientToken:String = GIST_GLOBAL.userData?["client_token"] as? String {
-                self.headers!["client_token"] = clientToken;
-            }
-            
-            //User Id
-            if let userId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int {
-                self.headers!["entity_id"] = "\(userId)";
-            }
+            self.headers?["entity_id"] = "\(entityId)";
+            self.parameters?["actor_user_id"] = entityId;
         }
         
         //Default Params
