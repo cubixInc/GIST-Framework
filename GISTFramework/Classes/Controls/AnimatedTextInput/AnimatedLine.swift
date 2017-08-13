@@ -96,6 +96,11 @@ class AnimatedLine: UIView {
     }
 
     fileprivate func animateLine(to value: CGFloat) {
+        
+        //Removing Animation temporarily
+        self.lineLayer.strokeEnd = value
+        return;
+        
         let function = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transactionAnimation(with: animationDuration, timingFuncion: function) {
             self.lineLayer.strokeEnd = value

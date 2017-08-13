@@ -179,10 +179,18 @@ open class FloatingLabelTextField: ValidatedTextField {
      The String to display when the input field is empty.
      The placeholder can also appear in the title label when both `title` `selectedTitle` and are `nil`.
      */
+    
+    private var _placeholder:String? // Holding current Placeholder text
     override open var placeholder:String? {
-        didSet {
+        set {
+            super.placeholder = newValue;
+        
             self.setNeedsDisplay();
             self.updateTitleLabel();
+        }
+        
+        get {
+            return _placeholder ?? super.placeholder;
         }
     }
     
@@ -212,7 +220,6 @@ open class FloatingLabelTextField: ValidatedTextField {
             return super.isInvalidSignHidden
         }
     } //P.E.
-    
     
     // MARK: - Initializers
     
@@ -315,7 +322,13 @@ open class FloatingLabelTextField: ValidatedTextField {
     @discardableResult
     override open func becomeFirstResponder() -> Bool {
         let result = super.becomeFirstResponder()
+        
+        //Holding the sting of placeholder and making it nil
+        _placeholder = self.placeholder;
+        super.placeholder = nil;
+        
         self.updateControl(true)
+        
         return result
     }
     
@@ -325,17 +338,23 @@ open class FloatingLabelTextField: ValidatedTextField {
      */
     @discardableResult
     override open func resignFirstResponder() -> Bool {
+        
         let result =  super.resignFirstResponder()
-        self.updateControl(true)
+
+        super.placeholder = self._placeholder;
+        self._placeholder = nil;
+        
+        self.updateControl(true);
+        
         return result
     }
     
     // MARK: - View updates
     
-    private func updateControl(_ animated:Bool = false) {
+    private func updateControl(_ animated:Bool = false, completion: ((_ completed: Bool) -> Void)? = nil) {
         self.updateColors()
         self.updateLineView()
-        self.updateTitleLabel(animated)
+        self.updateTitleLabel(animated, completion:completion)
     }
     
     private func updateLineView() {
@@ -384,7 +403,7 @@ open class FloatingLabelTextField: ValidatedTextField {
     
     // MARK: - Title handling
     
-    private func updateTitleLabel(_ animated:Bool = false) {
+    private func updateTitleLabel(_ animated:Bool = false, completion: ((_ completed: Bool) -> Void)? = nil) {
         
         var titleText:String? = nil
         if self.hasErrorMessage {
@@ -401,7 +420,7 @@ open class FloatingLabelTextField: ValidatedTextField {
         }
         self.titleLabel.text = titleText
         
-        self.updateTitleVisibility(animated)
+        self.updateTitleVisibility(animated, completion:completion);
     }
     
     private var _titleVisible = false
@@ -423,16 +442,19 @@ open class FloatingLabelTextField: ValidatedTextField {
      - returns: True if the title is displayed on the control, false otherwise.
      */
     open func isTitleVisible() -> Bool {
-        return self.hasText || self.hasErrorMessage || _titleVisible
+        return self.hasText || self.hasErrorMessage || _titleVisible || self.isFirstResponder;
     }
     
     fileprivate func updateTitleVisibility(_ animated:Bool = false, completion: ((_ completed: Bool) -> Void)? = nil) {
+        
         let alpha:CGFloat = self.isTitleVisible() ? 1.0 : 0.0
         let frame:CGRect = self.titleLabelRectForBounds(self.bounds, editing: self.isTitleVisible())
+        
         let updateBlock = { () -> Void in
             self.titleLabel.alpha = alpha
             self.titleLabel.frame = frame
         }
+        
         if animated {
             let animationOptions:UIViewAnimationOptions = .curveEaseOut;
             let duration = self.isTitleVisible() ? titleFadeInDuration : titleFadeOutDuration
