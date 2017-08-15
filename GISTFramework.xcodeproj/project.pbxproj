@@ -36,6 +36,7 @@
 		484942CE1E73050E004F4A9B /* ValidatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942C21E73050E004F4A9B /* ValidatedTextView.swift */; };
 		484942D11E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942D01E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift */; };
 		484942D31E733576004F4A9B /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942D21E733576004F4A9B /* BaseViewProtocol.swift */; };
+		486588151F42153900DE5A56 /* FloatingLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486588141F42153900DE5A56 /* FloatingLabelTextView.swift */; };
 		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
 		487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */; };
 		4890D19D1ED612D5004E012D /* GISTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D19C1ED612D5004E012D /* GISTUser.swift */; };
@@ -141,6 +142,7 @@
 		484942C21E73050E004F4A9B /* ValidatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextView.swift; sourceTree = "<group>"; };
 		484942D01E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPopoverNavigationController.swift; sourceTree = "<group>"; };
 		484942D21E733576004F4A9B /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
+		486588141F42153900DE5A56 /* FloatingLabelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextView.swift; sourceTree = "<group>"; };
 		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Utility.swift"; sourceTree = "<group>"; };
 		4890D19C1ED612D5004E012D /* GISTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUser.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				48226B021F14E2B10023C4DD /* AnimatedTextInput */,
 				484942B81E73050E004F4A9B /* CustomImageView.swift */,
 				48BE3B391E77D8BF003C3198 /* FloatingLabelTextField.swift */,
+				486588141F42153900DE5A56 /* FloatingLabelTextView.swift */,
 				484942B91E73050E004F4A9B /* CustomUIButton.swift */,
 				484942BA1E73050E004F4A9B /* CustomUIButtonDetailed.swift */,
 				48065F6D1F12663D00747C99 /* MaskedPhoneTextFieldDelegate.swift */,
@@ -738,6 +741,7 @@
 				48C493731E88F73900F14CF4 /* ReachabilityHelper.swift in Sources */,
 				48E192891E8BC1C600638528 /* GISTEnumNConstants.swift in Sources */,
 				4895307B1D12AD4100DFD38B /* SyncedColors.swift in Sources */,
+				486588151F42153900DE5A56 /* FloatingLabelTextView.swift in Sources */,
 				48CF84F91DF1564E008C7D85 /* GISTConfig.swift in Sources */,
 				489691E91DDE46E6001DDCE5 /* Weak.swift in Sources */,
 				4895306B1D12AD4100DFD38B /* BaseUITextView.swift in Sources */,

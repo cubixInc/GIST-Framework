@@ -288,10 +288,14 @@ open class BaseUITextView: UITextView, BaseView {
 
     /// Observer for text changes.
     internal func textDidChangeObserver(_ notification:Notification) {
+        self.textViewDidChange();
+    } //F.E.
+    
+    public func textViewDidChange() {
         if (self.placeholder == nil) {
             return;
         }
-         
+        
         self.updatePlaceholderState();
     } //F.E.
     
