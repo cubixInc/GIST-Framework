@@ -180,7 +180,6 @@ open class FloatingLabelTextField: ValidatedTextField {
      The placeholder can also appear in the title label when both `title` `selectedTitle` and are `nil`.
      */
     
-    private var _placeholder:String? // Holding current Placeholder text
     override open var placeholder:String? {
         set {
             super.placeholder = newValue;
@@ -190,7 +189,7 @@ open class FloatingLabelTextField: ValidatedTextField {
         }
         
         get {
-            return _placeholder ?? super.placeholder;
+            return super.placeholder;
         }
     }
     
@@ -323,10 +322,6 @@ open class FloatingLabelTextField: ValidatedTextField {
     override open func becomeFirstResponder() -> Bool {
         let result = super.becomeFirstResponder()
         
-        //Holding the sting of placeholder and making it nil
-        _placeholder = self.placeholder;
-        super.placeholder = nil;
-        
         self.updateControl(true)
         
         return result
@@ -341,9 +336,6 @@ open class FloatingLabelTextField: ValidatedTextField {
         
         let result =  super.resignFirstResponder()
 
-        super.placeholder = self._placeholder;
-        self._placeholder = nil;
-        
         self.updateControl(true);
         
         return result
@@ -442,7 +434,7 @@ open class FloatingLabelTextField: ValidatedTextField {
      - returns: True if the title is displayed on the control, false otherwise.
      */
     open func isTitleVisible() -> Bool {
-        return self.hasText || self.hasErrorMessage || _titleVisible || self.isFirstResponder;
+        return self.hasText || self.hasErrorMessage || _titleVisible;
     }
     
     fileprivate func updateTitleVisibility(_ animated:Bool = false, completion: ((_ completed: Bool) -> Void)? = nil) {
