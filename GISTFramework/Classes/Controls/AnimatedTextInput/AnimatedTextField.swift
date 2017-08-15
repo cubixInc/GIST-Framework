@@ -1,6 +1,6 @@
 import UIKit
 
-class AnimatedTextField: UITextField {
+class AnimatedTextField: AnimatedInputMaskTextField {
 
     enum TextFieldType {
         case text
@@ -38,7 +38,7 @@ class AnimatedTextField: UITextField {
     }
 
     fileprivate func setup() {
-        delegate = self
+        //??delegate = self Already Receiving the delegate in the base class
         addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
@@ -139,29 +139,31 @@ extension AnimatedTextField: TextInputError {
     }
 }
 
-extension AnimatedTextField: UITextFieldDelegate {
+extension AnimatedTextField /*: UITextFieldDelegate*/ {
 
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
+    public override func textFieldDidBeginEditing(_ textField: UITextField) {
         textInputDelegate?.textInputDidBeginEditing(textInput: self)
     }
 
-    public func textFieldDidEndEditing(_ textField: UITextField) {
+    public override func textFieldDidEndEditing(_ textField: UITextField) {
         textInputDelegate?.textInputDidEndEditing(textInput: self)
     }
 
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return textInputDelegate?.textInput(textInput: self, shouldChangeCharactersIn: range, replacementString: string) ?? true
     }
 
-    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    public override func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return textInputDelegate?.textInputShouldBeginEditing(textInput: self) ?? true
     }
 
-    public func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    public override func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return textInputDelegate?.textInputShouldEndEditing(textInput: self) ?? true
     }
 
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textInputDelegate?.textInputShouldReturn(textInput: self) ?? true
     }
 }
+
+

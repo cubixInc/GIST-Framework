@@ -46,7 +46,74 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
     /// Validats maximum character limit.
     @IBInspectable open var maxChar:Int = 0;
     
-    @IBInspectable public var defaultRegion = PhoneNumberKit.defaultRegionCode()
+    
+    @IBInspectable public var maskFormat: String? {
+        get {
+            return (self.textInput as? AnimatedInputMaskTextField)?.maskFormat;
+        }
+        
+        set {
+            (self.textInput as? AnimatedInputMaskTextField)?.maskFormat = newValue;
+        }
+    } //P.E.
+    
+    @IBInspectable public var sendMaskedText:Bool {
+        get {
+            return (self.textInput as? AnimatedInputMaskTextField)?.sendMaskedText ?? false;
+        }
+        
+        set {
+            (self.textInput as? AnimatedInputMaskTextField)?.sendMaskedText = newValue;
+        }
+    } //P.E.
+    
+    @IBInspectable public var maskPhone: Bool {
+        get {
+            return (self.textInput as? AnimatedInputMaskTextField)?.maskPhone ?? false;
+        }
+        
+        set {
+            (self.textInput as? AnimatedInputMaskTextField)?.maskPhone = newValue;
+        }
+    } //P.E.
+    
+    @IBInspectable public var phonePrefix: Bool {
+        get {
+            return (self.textInput as? AnimatedInputMaskTextField)?.phonePrefix ?? true;
+        }
+        
+        set {
+            (self.textInput as? AnimatedInputMaskTextField)?.phonePrefix = newValue;
+        }
+    } //P.E.
+    
+    @IBInspectable public var defaultRegion:String {
+        get {
+            return (self.textInput as? AnimatedInputMaskTextField)?.defaultRegion ?? PhoneNumberKit.defaultRegionCode();
+        }
+        
+        set {
+            (self.textInput as? AnimatedInputMaskTextField)?.defaultRegion = newValue;
+        }
+    } //P.E.
+    
+    open var planText:String? {
+        get {
+            return (self.textInput as? AnimatedInputMaskTextField)?.planText;
+        }
+    } //P.E
+    
+    internal var curText: String? {
+        get {
+            return (self.maskFormat != nil || maskPhone) ? self.planText:self.text;
+        }
+    } //P.E.
+    
+    open var isValidMask:Bool {
+        get {
+            return (self.textInput as? AnimatedInputMaskTextField)?.isValidMask ?? false;
+        }
+    } //P.E.
     
     /**
      Validity msg for invalid input text. - Default text is 'Invalid'
@@ -74,12 +141,6 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         }
     } //P.E.
     
-    var curText: String? {
-        get {
-            return self.text;  //Incomplete
-        }
-    } //P.E.
-    
     open var validText: String?;
     
     /// Flag for whether the input is valid or not.
@@ -91,13 +152,15 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
             
             let cValid:Bool = (_isValid && (!validateEmpty || !_isEmpty));
             
+            self.isInvalidMsgHidden = cValid;
+            
             return cValid;
         }
     } //F.E.
     
     open var isInvalidMsgHidden:Bool = true {
         didSet {
-            if isInvalidMsgHidden == false, let errorMsg:String = self.validityMsg, errorMsg != ""  {
+            if isInvalidMsgHidden == false  {
                 self.show(error: self.validityMsg ?? "Invalid");
             } else {
                 self.clearError();
@@ -174,6 +237,7 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         _isEmpty = self.isEmpty();
         
         _isValid =
+            ((maskFormat == nil) || self.isValidMask) &&
             (!validateEmail || self.isValidEmail()) &&
             (!validatePhone || self.isValidPhoneNo()) &&
             (!validateEmailOrPhone || (self.isValidEmail() || self.isValidPhoneNo())) &&
@@ -193,7 +257,7 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
             if let pNumber:PhoneNumber = self.phoneNumber {
                 self.validText = "+\(pNumber.countryCode)-\(pNumber.nationalNumber)";
             } else {
-                self.validText = self.curText;
+                self.validText = (self.sendMaskedText) ? self.text : self.curText;
             }
         } else {
             self.validText = nil;
@@ -204,7 +268,6 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
             
             dicData["validText"] = self.validText;
         }
-        
     } //F.E.
     
     /// Overridden property to get text changes.

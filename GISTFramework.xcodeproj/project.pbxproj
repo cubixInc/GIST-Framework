@@ -36,6 +36,7 @@
 		484942CE1E73050E004F4A9B /* ValidatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942C21E73050E004F4A9B /* ValidatedTextView.swift */; };
 		484942D11E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942D01E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift */; };
 		484942D31E733576004F4A9B /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484942D21E733576004F4A9B /* BaseViewProtocol.swift */; };
+		486588171F42C6EB00DE5A56 /* AnimatedInputMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486588161F42C6EB00DE5A56 /* AnimatedInputMaskTextField.swift */; };
 		486865051D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */; };
 		487DBE2E1DBF5B250058359C /* CLPlacemark+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */; };
 		4890D19D1ED612D5004E012D /* GISTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D19C1ED612D5004E012D /* GISTUser.swift */; };
@@ -141,6 +142,7 @@
 		484942C21E73050E004F4A9B /* ValidatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextView.swift; sourceTree = "<group>"; };
 		484942D01E732E4E004F4A9B /* BaseUIPopoverNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPopoverNavigationController.swift; sourceTree = "<group>"; };
 		484942D21E733576004F4A9B /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
+		486588161F42C6EB00DE5A56 /* AnimatedInputMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedInputMaskTextField.swift; sourceTree = "<group>"; };
 		486865041D643C2E000BD55D /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		487DBE2D1DBF5B250058359C /* CLPlacemark+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Utility.swift"; sourceTree = "<group>"; };
 		4890D19C1ED612D5004E012D /* GISTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUser.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 			children = (
 				48226B031F14E2B10023C4DD /* AnimatedLine.swift */,
 				48226B041F14E2B10023C4DD /* AnimatedTextField.swift */,
+				486588161F42C6EB00DE5A56 /* AnimatedInputMaskTextField.swift */,
 				48226B051F14E2B10023C4DD /* AnimatedTextInput.swift */,
 				48226B061F14E2B10023C4DD /* AnimatedTextInputFieldConfigurator.swift */,
 				48226B071F14E2B10023C4DD /* AnimatedTextInputStyle.swift */,
@@ -754,6 +757,7 @@
 				4895305E1D12AD4100DFD38B /* BaseUIImageView.swift in Sources */,
 				48C493751E88F73900F14CF4 /* GISTUserPreferences.swift in Sources */,
 				48C493701E88F73900F14CF4 /* GISTGlobal.swift in Sources */,
+				486588171F42C6EB00DE5A56 /* AnimatedInputMaskTextField.swift in Sources */,
 				4890D19D1ED612D5004E012D /* GISTUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
