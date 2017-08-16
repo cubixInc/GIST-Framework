@@ -100,7 +100,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
     }
     
-    @IBInspectable var autocapitalization: String {
+    @IBInspectable var autoCapitalization: String {
         set {
             self.autocapitalizationType = UITextAutocapitalizationType.textAutocapitalizationType(for: newValue);
         }
@@ -110,7 +110,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
     }
     
-    @IBInspectable var autocorrection: String {
+    @IBInspectable var autoCorrection: String {
         set {
             self.autocorrectionType = UITextAutocorrectionType.textAutocorrectionType(for: newValue);
         }
