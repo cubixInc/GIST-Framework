@@ -12,4 +12,5 @@ public protocol ValidatedTextInput {
     var validText: String? {get set}
     var isValid:Bool  {get}
     
+    var paramKey:String? {get set}
 } //P.E.

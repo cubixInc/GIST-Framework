@@ -46,7 +46,6 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
     /// Validats maximum character limit.
     @IBInspectable open var maxChar:Int = 0;
     
-    
     @IBInspectable public var maskFormat: String? {
         get {
             return (self.textInput as? AnimatedInputMaskTextField)?.maskFormat;

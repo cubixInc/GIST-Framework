@@ -100,6 +100,9 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
     }
     
+    /// Parameter key for service - Default Value is nil
+    @IBInspectable open var paramKey:String?;
+    
     typealias AnimatedTextInputType = AnimatedTextInputFieldConfigurator.AnimatedTextInputType
 
     private var _tapAction: ((Void) -> Void)?

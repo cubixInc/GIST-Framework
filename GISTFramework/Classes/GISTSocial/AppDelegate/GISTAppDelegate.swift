@@ -10,7 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import UserNotifications
 
-private let SAVE_TOKEN_REQUEST = "users/save_token";
+private let SAVE_TOKEN_REQUEST = "entity_auth/save_token";
 
 open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 

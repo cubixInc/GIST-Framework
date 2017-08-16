@@ -39,7 +39,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //C.E.
     
     //MARK: - Sign Up
-    public static func signUp(fields:[ValidatedTextField], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func signUp(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: SIGN_UP_REQUEST, fields: fields, additional:params, completion:completion, failure:failure);
     } //F.E.
     
@@ -57,7 +57,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Sign In
-    public static func signIn(fields:[ValidatedTextField], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func signIn(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: SIGN_IN_REQUEST, fields: fields, additional:params, completion:completion, failure:failure);
     } //F.E.
     
@@ -164,7 +164,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Forgot Password
-    public static func forgotPassword(fields:ValidatedTextField ..., additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func forgotPassword(fields:ValidatedTextInput ..., additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: FORGOT_PASSWORD_REQUEST, fields: fields, additional: params, completion: completion, failure: failure);
     } //F.E.
     
@@ -173,7 +173,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Change Password
-    public static func changePassword(fields:[ValidatedTextField], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func changePassword(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard let entityId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int else {
             return;
@@ -186,7 +186,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Reset Password
-    public static func resetPassword(fields:[ValidatedTextField], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func resetPassword(fields:[ValidatedTextInput], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         guard let verificationToken:String = GIST_GLOBAL.userData?["verification_token"] as? String else {
             return;
         }
@@ -238,7 +238,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: service, params: GISTSocialUtils.formate(array: arrData, additional: aParams, ignore:iParams), completion:completion, failure:failure);
     } //F.E.
     
-    private static func request(service:String, fields:[ValidatedTextField], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    private static func request(service:String, fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard GISTSocialUtils.validate(fields: fields) else {
             if (failure != nil) {

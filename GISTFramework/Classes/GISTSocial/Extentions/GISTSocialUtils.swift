@@ -11,7 +11,7 @@ import PhoneNumberKit
 
 public class GISTSocialUtils {
     
-    public class func validate(fields:[ValidatedTextField]) -> Bool {
+    public class func validate(fields:[ValidatedTextInput]) -> Bool {
         var isValid:Bool = true;
         
         for field in fields {
@@ -129,7 +129,7 @@ public class GISTSocialUtils {
     } //F.E.
     
     
-    public class func formate(fields:[ValidatedTextField], additional aParams:[String:Any]? = nil, ignore iParams:[String]? = nil) -> [String:Any] {
+    public class func formate(fields:[ValidatedTextInput], additional aParams:[String:Any]? = nil, ignore iParams:[String]? = nil) -> [String:Any] {
         var rParams:[String:Any] = [:];
         
         for field in fields {
@@ -202,7 +202,8 @@ public class GISTSocialUtils {
         return rParams;
     } //F.E.
     
-    public class func formate(user:GISTUser, additional aParams:[String:Any]? = nil, ignore iParams:[String]? = nil) -> [String:Any] {
+    //SHOULD NOT BE USED PUBLICALLY
+    internal class func formate(user:GISTUser, additional aParams:[String:Any]? = nil, ignore iParams:[String]? = nil) -> [String:Any] {
         var rParams:[String:Any] = user.toDictionary() as? [String:Any] ?? [:];
         
         //Additional Params
@@ -221,7 +222,6 @@ public class GISTSocialUtils {
         
         return rParams;
     } //F.E.
-    
     
     public class func mapData(to array:NSMutableArray, from data:NSDictionary, forkey key:String){
         for i in 0 ..< array.count {
