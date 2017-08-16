@@ -110,5 +110,42 @@ public extension UIReturnKeyType {
         default:
             return UIReturnKeyType.default;
         }
-    }
-}
+    } //F.E.
+} //E.E.
+
+public extension UITextAutocapitalizationType {
+    public static func textAutocapitalizationType (for type:String) -> UITextAutocapitalizationType {
+        
+        switch type {
+        case "none":
+            return UITextAutocapitalizationType.none;
+        
+        case "words":
+            return UITextAutocapitalizationType.words;
+            
+        case "sentences":
+            return UITextAutocapitalizationType.sentences;
+            
+        case "allCharacters":
+            return UITextAutocapitalizationType.allCharacters;
+            
+        default:
+            return UITextAutocapitalizationType.none;
+        }
+    } //F.E.
+} //E.E.
+
+public extension UITextAutocorrectionType {
+    public static func textAutocorrectionType (for type:String) -> UITextAutocorrectionType {
+        switch type {
+        case "no":
+            return UITextAutocorrectionType.no;
+            
+        case "yes":
+            return UITextAutocorrectionType.yes;
+            
+        default:
+            return UITextAutocorrectionType.default;
+        }
+    } //F.E.
+} //E.E.

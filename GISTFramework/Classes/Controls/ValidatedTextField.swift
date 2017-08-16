@@ -232,6 +232,14 @@ open class ValidatedTextField: InputMaskTextField, ValidatedTextInput {
         self.isSecureTextEntry = dicData?["isSecureTextEntry"] as? Bool ?? false;
         self.isUserInteractionEnabled = dicData?["isUserInteractionEnabled"] as? Bool ?? true;
         
+        if let autocapitalizationTypeStr:String = dicData?["autocapitalizationType"] as? String {
+            self.autocapitalizationType = UITextAutocapitalizationType.textAutocapitalizationType(for: autocapitalizationTypeStr);
+        }
+        
+        if let autocorrectionTypeStr:String = dicData?["autocorrectionType"] as? String {
+            self.autocorrectionType = UITextAutocorrectionType.textAutocorrectionType(for: autocorrectionTypeStr);
+        }
+        
         if let keyboardTypeStr:String = dicData?["keyboardType"] as? String {
             self.keyboardType = UIKeyboardType.keyboardType(for: keyboardTypeStr);
         }
