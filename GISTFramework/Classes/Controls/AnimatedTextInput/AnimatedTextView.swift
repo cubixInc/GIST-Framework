@@ -63,6 +63,9 @@ extension AnimatedTextView: TextInput {
     
     public func changeClearButtonMode(with newClearButtonMode: UITextFieldViewMode) {}
     
+    public func updateData(_ data: Any?) {
+        // DO WHAT SO EVER
+    } //F.E.
 }
 
 extension AnimatedTextView: UITextViewDelegate {

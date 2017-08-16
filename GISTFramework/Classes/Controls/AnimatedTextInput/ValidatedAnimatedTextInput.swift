@@ -181,6 +181,8 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
     open func updateData(_ data: Any?) {
         _data = data;
         
+        self.textInput.updateData(data);
+        
         let dicData:NSMutableDictionary? = data as? NSMutableDictionary;
         
         //First set the validations

@@ -808,6 +808,8 @@ public protocol TextInput {
 
     func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition?
     func changeClearButtonMode(with newClearButtonMode: UITextFieldViewMode)
+    
+    func updateData(_ data: Any?);
 }
 
 public extension TextInput where Self: UIView {
