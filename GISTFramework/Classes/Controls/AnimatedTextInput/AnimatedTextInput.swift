@@ -100,6 +100,46 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
     }
     
+    @IBInspectable var autocapitalization: String {
+        set {
+            self.autocapitalizationType = UITextAutocapitalizationType.textAutocapitalizationType(for: newValue);
+        }
+        
+        get {
+            return "\(self.autocapitalizationType)";
+        }
+    }
+    
+    @IBInspectable var autocorrection: String {
+        set {
+            self.autocorrectionType = UITextAutocorrectionType.textAutocorrectionType(for: newValue);
+        }
+        
+        get {
+            return "\(self.autocorrectionType)";
+        }
+    }
+    
+    @IBInspectable var keyboard: String {
+        set {
+            self.keyboardType = UIKeyboardType.keyboardType(for: newValue);
+        }
+        
+        get {
+            return "\(self.keyboardType)";
+        }
+    }
+    
+    @IBInspectable var returnKey: String {
+        set {
+            self.returnKeyType = UIReturnKeyType.returnKeyType(for: newValue);
+        }
+        
+        get {
+            return "\(self.returnKeyType)";
+        }
+    }
+    
     /// Parameter key for service - Default Value is nil
     @IBInspectable open var paramKey:String?;
     
