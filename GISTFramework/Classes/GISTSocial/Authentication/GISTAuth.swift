@@ -109,9 +109,12 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: EDIT_PROFILE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
     
+    /*
+     Should not be called
     public static func editProfile(updated user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: EDIT_PROFILE_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
+    */
     
     public static func changeLoginId(new loginId:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
