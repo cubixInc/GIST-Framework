@@ -52,9 +52,6 @@ open class HTTPServiceManager: NSObject {
         //Base Server URL
         _serverBaseURL = URL(string: serverBaseURL)!;
         
-        //Adding Language Key
-        _headers["language"] = GIST_CONFIG.currentLanguageCode;
-        
         let urlToSync:String = _serverBaseURL.appendingPathComponent("se/get_all").absoluteString;
         
         guard let authHeader = authorizationHandler?() else {
@@ -508,6 +505,8 @@ open class HTTPRequest:NSObject {
             self.parameters = ["mobile_json":true];
         }
         
+        //Adding Language Key
+        self.headers?["language"] = GIST_CONFIG.currentLanguageCode;
     } //C.E.
     
     open func sendRequest() -> DataRequest {
