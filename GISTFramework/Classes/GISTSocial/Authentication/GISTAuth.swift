@@ -150,7 +150,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     public static func resendCode(additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let mobileNo:String = GIST_GLOBAL.userData?["mobile_no"] as? String else {
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = (usrData["new_mobile_no"] as? String ?? usrData["mobile_no"] as? String) else {
             return;
         }
         
