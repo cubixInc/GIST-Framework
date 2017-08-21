@@ -140,7 +140,7 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/SyncEngine'
 
     sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
-    sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.11'
+    sp.dependency 'IQKeyboardManagerSwift', '4.0.11'
     sp.dependency 'AFDateHelper', '~> 4.2.4'
   end
 
