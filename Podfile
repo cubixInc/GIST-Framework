@@ -10,7 +10,9 @@ target 'GISTFramework' do
     pod 'PhoneNumberKit', '~> 1.3.0'
 
     pod 'AlamofireObjectMapper', '~> 4.1.0'
-    pod 'IQKeyboardManagerSwift', '4.0.11'
     pod 'InputMask', '~> 2.2.5'
     pod 'AFDateHelper', '~> 4.2.2'
+    
+    #pod 'IQKeyboardManagerSwift', '~> 4.0.12'
+    pod 'IQKeyboardManagerSwift', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git'
 end
