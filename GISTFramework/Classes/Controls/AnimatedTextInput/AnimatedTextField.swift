@@ -97,8 +97,11 @@ class AnimatedTextField: AnimatedInputMaskTextField {
 
     @objc fileprivate func textFieldDidChange() {
         if let text = text {
-            attributedText = NSAttributedString(string: text, attributes: textAttributes)
+            let range = self.selectedTextRange;
+            self.attributedText = NSAttributedString(string: text, attributes: textAttributes)
+            self.selectedTextRange = range;
         }
+        
         textInputDelegate?.textInputDidChange(textInput: self)
     }
 }
