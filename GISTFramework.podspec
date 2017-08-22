@@ -138,12 +138,9 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/Extentions'
     sp.dependency 'GISTFramework/Controls'
     sp.dependency 'GISTFramework/SyncEngine'
-
     sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
     sp.dependency 'AFDateHelper', '~> 4.2.4'
-
-# sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.12'
-    sp.dependency 'IQKeyboardManagerSwift', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git'
+    sp.dependency 'IQKeyboardManagerSwift', '4.0.10'
 
   end
 
