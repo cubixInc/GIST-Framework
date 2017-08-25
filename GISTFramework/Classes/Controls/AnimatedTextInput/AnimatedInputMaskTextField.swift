@@ -183,7 +183,7 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
     } //F.E.
     
     
-    private func addPrefix()  {
+     func addPrefix()  {
         if let prefix:String = self.prefix, let txt:String = self.text {
             self.planText = txt;
             
@@ -238,9 +238,6 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
     ///   - string: Replacement String
     /// - Returns: Bool flag for should change characters in range
     open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        self.addPrefix();
-        
         return _delegate?.textField?(textField, shouldChangeCharactersIn:range, replacementString:string) ?? true;
     } //F.E.
     

@@ -86,6 +86,17 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         }
     } //P.E.
     
+    @IBInspectable public var prefix: String? {
+        get {
+            return (self.textInput as? AnimatedInputMaskTextField)?.prefix;
+        }
+        
+        set {
+            (self.textInput as? AnimatedInputMaskTextField)?.prefix = newValue;
+        }
+    } //P.E.
+    
+    
     @IBInspectable public var defaultRegion:String {
         get {
             return (self.textInput as? AnimatedInputMaskTextField)?.defaultRegion ?? PhoneNumberKit.defaultRegionCode();
@@ -104,7 +115,7 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
     
     internal var curText: String? {
         get {
-            return (self.maskFormat != nil || maskPhone) ? self.planText:self.text;
+            return (self.maskFormat != nil || self.prefix != nil || maskPhone) ? self.planText:self.text;
         }
     } //P.E.
     

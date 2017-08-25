@@ -96,7 +96,11 @@ class AnimatedTextField: AnimatedInputMaskTextField {
     }
 
     @objc fileprivate func textFieldDidChange() {
-        if let text = text {
+        
+        self.addPrefix();
+        
+        if let text = self.text {
+            
             let range = self.selectedTextRange;
             self.attributedText = NSAttributedString(string: text, attributes: textAttributes)
             self.selectedTextRange = range;
@@ -153,7 +157,10 @@ extension AnimatedTextField /*: UITextFieldDelegate*/ {
     }
 
     public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return textInputDelegate?.textInput(textInput: self, shouldChangeCharactersIn: range, replacementString: string) ?? true
+        
+        let rtn:Bool = textInputDelegate?.textInput(textInput: self, shouldChangeCharactersIn: range, replacementString: string) ?? true;
+        
+        return rtn;
     }
 
     public override func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
