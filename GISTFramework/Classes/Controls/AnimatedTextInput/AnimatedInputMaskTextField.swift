@@ -48,9 +48,11 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
     private var _polyMaskTextFieldDelegate:PolyMaskTextFieldDelegate?;
     private var _maskPhoneTextFieldDelegate:MaskedPhoneTextFieldDelegate?;
     
+    public var prefix: String?
+    
     var curText: String? {
         get {
-            return (self.maskFormat != nil || maskPhone) ? self.planText:self.text;
+            return (self.maskFormat != nil || self.prefix != nil || self.maskPhone) ? self.planText:self.text;
         }
     } //P.E.
 
@@ -108,9 +110,12 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
         
         self.maskPhone = dicData?["maskPhone"] as? Bool ?? false;
         
+        self.prefix = dicData?["prefix"] as? String;
+        
         if let defRegion = dicData?["defaultRegion"] as? String {
             self.defaultRegion = defRegion;
         }
+        
     } //F.E.
     
     func updateMaskFormate() {
@@ -178,6 +183,19 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
     } //F.E.
     
     
+    private func addPrefix()  {
+        if let prefix:String = self.prefix, let txt:String = self.text {
+            self.planText = txt;
+            
+            if txt.hasPrefix(prefix) {
+                self.planText?.remove(at: txt.startIndex);
+            } else {
+                super.text = "$\(txt)";
+            }
+        }
+    } //F.E.
+    
+    
     //Mark: - UITextField Delegate Methods
     
     /// Protocol method of textFieldShouldBeginEditing.
@@ -220,6 +238,9 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
     ///   - string: Replacement String
     /// - Returns: Bool flag for should change characters in range
     open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        self.addPrefix();
+        
         return _delegate?.textField?(textField, shouldChangeCharactersIn:range, replacementString:string) ?? true;
     } //F.E.
     
