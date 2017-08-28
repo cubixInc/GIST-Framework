@@ -119,14 +119,14 @@ class AnimatedTextField: AnimatedInputMaskTextField {
         textInputDelegate?.textInputDidChange(textInput: self)
     }
     
-    private func addPrefix()  {
+    func addPrefix()  {
         if let prefix:String = self.prefix, let txt:String = self.text {
             self.planText = txt;
             
             if txt.hasPrefix(prefix) {
                 self.planText?.remove(at: txt.startIndex);
             } else {
-                super.text = "$\(txt)";
+                super.text = "\(prefix)\(txt)";
             }
         }
     } //F.E.

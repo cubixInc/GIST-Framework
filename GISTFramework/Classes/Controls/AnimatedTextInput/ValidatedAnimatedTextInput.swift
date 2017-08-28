@@ -146,6 +146,16 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
             
             if (!self.isFirstResponder) {
                 
+                if maskFormat != nil {
+                    (self.textInput as? AnimatedInputMaskTextField)?.applyMaskFormat();
+                } else if maskPhone {
+                    (self.textInput as? AnimatedInputMaskTextField)?.applyPhoneMaskFormat();
+                }
+                
+                if (self.prefix != nil) {
+                    (self.textInput as? AnimatedTextField)?.addPrefix();
+                }
+                
                 self.validateText();
             }
         }
