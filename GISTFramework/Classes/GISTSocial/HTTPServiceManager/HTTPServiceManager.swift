@@ -302,9 +302,11 @@ open class HTTPServiceManager: NSObject {
                 } else {
                     //Failure
                     let errorMessage: String = message ?? "Unknown error";
-                    let userInfo = [
+                    let data: [String:Any] = dictData["data"] as? [String:Any] ?? [:];
+                    
+                    let userInfo:[AnyHashable : Any] = [
                         NSLocalizedDescriptionKey: errorMessage,
-                        "data":dictData["data"]
+                        "data":data
                     ]
                     
                     let error = NSError(domain: "com.cubix.gist", code: errorCode, userInfo: userInfo);
@@ -453,7 +455,7 @@ open class HTTPRequest:NSObject {
     
     open override var description: String {
         get {
-            return "[HTTPRequest] [\(method)] \(requestName): \(_urlString)";
+            return "[HTTPRequest] [\(method)] \(requestName): \(String(describing: _urlString))";
         }
     } //P.E.
     
@@ -515,7 +517,7 @@ open class HTTPRequest:NSObject {
     open func sendRequest() -> DataRequest {
         #if DEBUG
             print("------------------------------------------------------------------");
-            print("url: \(self.urlString) params: \(self.parameters) headers: \(self.headers)")
+            print("url: \(self.urlString) params: \(String(describing: self.parameters)) headers: \(String(describing: self.headers))")
             print("------------------------------------------------------------------");
         #endif
         

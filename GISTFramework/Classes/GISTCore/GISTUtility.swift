@@ -197,7 +197,7 @@ public class GISTUtility: NSObject {
         do {
             let phoneNumber:PhoneNumber = try kit.parse(pNumber, withRegion:region);
             
-            print("numberString: \(phoneNumber.numberString) countryCode: \(phoneNumber.countryCode) leadingZero: \(phoneNumber.leadingZero) nationalNumber: \(phoneNumber.nationalNumber) numberExtension: \(phoneNumber.numberExtension) type: \(phoneNumber.type)")
+            print("numberString: \(phoneNumber.numberString) countryCode: \(phoneNumber.countryCode) leadingZero: \(phoneNumber.leadingZero) nationalNumber: \(phoneNumber.nationalNumber) numberExtension: \(String(describing: phoneNumber.numberExtension)) type: \(phoneNumber.type)")
             
             return phoneNumber;
         }

@@ -51,7 +51,7 @@ public extension UIImage {
             
         case .down:
             transform = CGAffineTransform(translationX: imageSize.width, y: imageSize.height)
-            transform = transform.rotated(by: CGFloat(M_PI))
+            transform = transform.rotated(by: .pi)
             break
             
         case .left:
@@ -59,7 +59,7 @@ public extension UIImage {
             bounds.size.height = bounds.size.width
             bounds.size.width = boundHeight
             transform = CGAffineTransform(translationX: 0.0, y: imageSize.width)
-            transform = transform.rotated(by: CGFloat(3.0 * M_PI / 2.0))
+            transform = transform.rotated(by: 3.0 * .pi / 2.0)
             break
             
         case .right:
@@ -67,7 +67,7 @@ public extension UIImage {
             bounds.size.height = bounds.size.width
             bounds.size.width = boundHeight
             transform = CGAffineTransform(translationX: imageSize.height, y: 0.0)
-            transform = transform.rotated(by: CGFloat(M_PI / 2.0))
+            transform = transform.rotated(by: .pi / 2.0)
             break
             
         case .upMirrored:
@@ -86,7 +86,7 @@ public extension UIImage {
             bounds.size.width = boundHeight
             transform = CGAffineTransform(translationX: imageSize.height, y: imageSize.width)
             transform = transform.scaledBy(x: -1.0, y: 1.0)
-            transform = transform.rotated(by: CGFloat(3.0 * M_PI / 2.0))
+            transform = transform.rotated(by: 3.0 * .pi / 2.0)
             break
             
         case .rightMirrored:
@@ -94,7 +94,7 @@ public extension UIImage {
             bounds.size.height = bounds.size.width
             bounds.size.width = boundHeight
             transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            transform = transform.rotated(by: CGFloat(M_PI / 2.0))
+            transform = transform.rotated(by: .pi / 2.0)
             break
         }
         

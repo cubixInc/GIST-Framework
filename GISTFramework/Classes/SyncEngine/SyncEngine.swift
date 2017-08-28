@@ -358,7 +358,7 @@ open class SyncEngine: NSObject {
                         if let resData:NSDictionary = dictData["data"] as? NSDictionary , error == 0{
                             self.syncForServerData(resData);
                         } else {
-                            print("message : \(message)");
+                            print("message : \(String(describing: message))");
                         }
                     }
                 }
@@ -366,7 +366,7 @@ open class SyncEngine: NSObject {
                     print("INVALID JSON");
                 }
             } else {
-                print("Error : \(error?.localizedDescription)");
+                print("Error : \(String(describing: error?.localizedDescription))");
             }
         }.resume();
     } //F.E.

@@ -88,11 +88,11 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
     
     @IBInspectable public var prefix: String? {
         get {
-            return (self.textInput as? AnimatedInputMaskTextField)?.prefix;
+            return (self.textInput as? AnimatedTextField)?.prefix;
         }
         
         set {
-            (self.textInput as? AnimatedInputMaskTextField)?.prefix = newValue;
+            (self.textInput as? AnimatedTextField)?.prefix = newValue;
         }
     } //P.E.
     

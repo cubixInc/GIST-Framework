@@ -48,14 +48,6 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
     private var _polyMaskTextFieldDelegate:PolyMaskTextFieldDelegate?;
     private var _maskPhoneTextFieldDelegate:MaskedPhoneTextFieldDelegate?;
     
-    public var prefix: String?
-    
-    var curText: String? {
-        get {
-            return (self.maskFormat != nil || self.prefix != nil || self.maskPhone) ? self.planText:self.text;
-        }
-    } //P.E.
-
     ///Maintainig Own delegate.
     private weak var _delegate:UITextFieldDelegate?;
     open override weak var delegate: UITextFieldDelegate? {
@@ -109,8 +101,6 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
         self.sendMaskedText = dicData?["sendMaskedText"] as? Bool ?? false;
         
         self.maskPhone = dicData?["maskPhone"] as? Bool ?? false;
-        
-        self.prefix = dicData?["prefix"] as? String;
         
         if let defRegion = dicData?["defaultRegion"] as? String {
             self.defaultRegion = defRegion;
@@ -181,20 +171,6 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
         }
         
     } //F.E.
-    
-    
-     func addPrefix()  {
-        if let prefix:String = self.prefix, let txt:String = self.text {
-            self.planText = txt;
-            
-            if txt.hasPrefix(prefix) {
-                self.planText?.remove(at: txt.startIndex);
-            } else {
-                super.text = "$\(txt)";
-            }
-        }
-    } //F.E.
-    
     
     //Mark: - UITextField Delegate Methods
     

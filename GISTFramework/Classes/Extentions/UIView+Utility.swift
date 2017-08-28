@@ -15,12 +15,12 @@ public extension UIView {
     public var rotation:CGFloat {
         get {
             let radians:CGFloat = atan2(self.transform.b, self.transform.a)
-            let degrees:CGFloat = radians * (180.0 / CGFloat(M_PI))
+            let degrees:CGFloat = radians * (180.0 / .pi)
             return degrees;
         }
         
         set {
-            let radians = newValue / 180.0 * CGFloat(M_PI)
+            let radians = newValue / 180.0 * .pi
             let rotation = self.transform.rotated(by: radians);
             self.transform = rotation
         }

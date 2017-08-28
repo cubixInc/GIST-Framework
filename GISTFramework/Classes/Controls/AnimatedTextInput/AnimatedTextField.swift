@@ -18,6 +18,8 @@ class AnimatedTextField: AnimatedInputMaskTextField {
     public var textAttributes: [String: Any]?
     public var contentInset: UIEdgeInsets = .zero
 
+    public var prefix: String?
+    
     fileprivate var disclosureButtonAction: ((Void) -> Void)?
 
     override init(frame: CGRect) {
@@ -41,6 +43,14 @@ class AnimatedTextField: AnimatedInputMaskTextField {
         //??delegate = self Already Receiving the delegate in the base class
         addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
+    
+    override func updateData(_ data: Any?) {
+        super.updateData(data);
+        
+        let dicData:NSMutableDictionary? = data as? NSMutableDictionary;
+        
+        self.prefix = dicData?["prefix"] as? String;
+    } //F.E.
     
     @discardableResult override public func becomeFirstResponder() -> Bool {
         if let alignment = (textAttributes?[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle)?.alignment {
@@ -108,7 +118,46 @@ class AnimatedTextField: AnimatedInputMaskTextField {
         
         textInputDelegate?.textInputDidChange(textInput: self)
     }
-}
+    
+    private func addPrefix()  {
+        if let prefix:String = self.prefix, let txt:String = self.text {
+            self.planText = txt;
+            
+            if txt.hasPrefix(prefix) {
+                self.planText?.remove(at: txt.startIndex);
+            } else {
+                super.text = "$\(txt)";
+            }
+        }
+    } //F.E.
+    
+    public override func textFieldDidBeginEditing(_ textField: UITextField) {
+        textInputDelegate?.textInputDidBeginEditing(textInput: self)
+    }
+    
+    public override func textFieldDidEndEditing(_ textField: UITextField) {
+        textInputDelegate?.textInputDidEndEditing(textInput: self)
+    }
+    
+    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let rtn:Bool = textInputDelegate?.textInput(textInput: self, shouldChangeCharactersIn: range, replacementString: string) ?? true;
+        
+        return rtn;
+    }
+    
+    public override func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return textInputDelegate?.textInputShouldBeginEditing(textInput: self) ?? true
+    }
+    
+    public override func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return textInputDelegate?.textInputShouldEndEditing(textInput: self) ?? true
+    }
+    
+    public override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textInputDelegate?.textInputShouldReturn(textInput: self) ?? true
+    }
+} //CLS END
 
 extension AnimatedTextField: TextInput {
 
@@ -146,34 +195,5 @@ extension AnimatedTextField: TextInputError {
     }
 }
 
-extension AnimatedTextField /*: UITextFieldDelegate*/ {
-
-    public override func textFieldDidBeginEditing(_ textField: UITextField) {
-        textInputDelegate?.textInputDidBeginEditing(textInput: self)
-    }
-
-    public override func textFieldDidEndEditing(_ textField: UITextField) {
-        textInputDelegate?.textInputDidEndEditing(textInput: self)
-    }
-
-    public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let rtn:Bool = textInputDelegate?.textInput(textInput: self, shouldChangeCharactersIn: range, replacementString: string) ?? true;
-        
-        return rtn;
-    }
-
-    public override func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return textInputDelegate?.textInputShouldBeginEditing(textInput: self) ?? true
-    }
-
-    public override func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return textInputDelegate?.textInputShouldEndEditing(textInput: self) ?? true
-    }
-
-    public override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textInputDelegate?.textInputShouldReturn(textInput: self) ?? true
-    }
-}
 
 

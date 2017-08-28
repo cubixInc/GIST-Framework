@@ -287,7 +287,7 @@ open class PopoverControllerView: BaseUIView {
     } //F.E.
     
     private func radianFromDegree(_ a:Double) -> CGFloat {
-        return CGFloat(M_PI * a / 180.0);
+        return CGFloat(.pi * a / 180.0);
     } //F.E.
     
     //Defining here in the class privately, so that the class be independent - It may be improved

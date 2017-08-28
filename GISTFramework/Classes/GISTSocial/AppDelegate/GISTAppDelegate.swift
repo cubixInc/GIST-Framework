@@ -41,6 +41,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         return true;
     } //F.E.
     
+    @available(iOS, obsoleted: 10.0)
     open func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         
         if notificationSettings.types != UIUserNotificationType() {
