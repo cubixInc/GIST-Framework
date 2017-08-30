@@ -125,7 +125,7 @@ class AnimatedTextField: AnimatedInputMaskTextField {
             
             if txt.hasPrefix(prefix) {
                 self.planText?.remove(at: txt.startIndex);
-            } else {
+            } else if !txt.isEmpty {
                 super.text = "\(prefix)\(txt)";
             }
         }
