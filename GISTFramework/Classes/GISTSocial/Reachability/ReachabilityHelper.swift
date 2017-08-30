@@ -180,9 +180,11 @@ public class ReachabilityHelper: NSObject {
     /// - Parameter target: GISTApplicationDelegate
     /// - Returns: an optional weak target of a target (e.g. Weak<GISTApplicationDelegate>?).
     private func weakDelegateForTarget(_ target:ReachabilityDelegate) -> Weak<ReachabilityDelegate>?{
-        let enumerator:NSEnumerator = _delegates.objectEnumerator();
         
-        while let wTarget:Weak<ReachabilityDelegate> = enumerator.nextObject() as? Weak<ReachabilityDelegate> {
+        let instances = _delegates.allObjects;
+        
+        for i:Int in 0 ..< instances.count {
+            let wTarget:Weak<ReachabilityDelegate> = instances[i];
             if (wTarget.value == nil) {
                 //Removing if lost target already
                 _delegates.remove(wTarget);
@@ -193,4 +195,5 @@ public class ReachabilityHelper: NSObject {
         
         return nil;
     } //F.E.
+    
 } //CLS END

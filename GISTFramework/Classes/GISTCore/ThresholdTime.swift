@@ -64,4 +64,12 @@ public class ThresholdTime: NSObject {
         _lastUpdatedTime[identifier] = Date();
     } // F.E.
     
+    public class func reset() {
+        self.shared.reset();
+    } //F.E.
+    
+    public func reset() {
+        _lastUpdatedTime = [:];
+    } //F.E.
+    
 } //CLS END

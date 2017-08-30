@@ -81,9 +81,11 @@ open class GISTApplication: NSObject, UIApplicationDelegate {
     /// - Parameter target: GISTApplicationDelegate
     /// - Returns: an optional weak target of a target (e.g. Weak<GISTApplicationDelegate>?).
     private func weakDelegateForTarget(_ target:GISTApplicationDelegate) -> Weak<GISTApplicationDelegate>?{
-        let enumerator:NSEnumerator = _delegates.objectEnumerator();
         
-        while let wTarget:Weak<GISTApplicationDelegate> = enumerator.nextObject() as? Weak<GISTApplicationDelegate> {
+        let instances = _delegates.allObjects;
+        
+        for i:Int in 0 ..< instances.count {
+            let wTarget:Weak<GISTApplicationDelegate> = instances[i];
             if (wTarget.value == nil) {
                 //Removing if lost target already
                 _delegates.remove(wTarget);
@@ -91,7 +93,7 @@ open class GISTApplication: NSObject, UIApplicationDelegate {
                 return wTarget;
             }
         }
-         
+        
         return nil;
     } //F.E.
     
