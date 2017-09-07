@@ -161,7 +161,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         }
         
         let params:[String:Any] = [
-            "entityId":entityId,
+            "entity_id":entityId,
             "device_token":token,
             "device_type":"ios"
         ]
