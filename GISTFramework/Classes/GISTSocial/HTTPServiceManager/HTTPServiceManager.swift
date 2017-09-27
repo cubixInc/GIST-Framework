@@ -278,7 +278,7 @@ open class HTTPServiceManager: NSObject {
                 if (errorCode == 0 && invalidSession == 0) {
                     let data:Any? = dictData["data"];
                     
-                    if let msg:String = message  {
+                    if let msg:String = message, msg != ""  {
                         
                         let rtnData:NSMutableDictionary
                         
