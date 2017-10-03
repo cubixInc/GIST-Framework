@@ -229,8 +229,8 @@ open class ValidatedTextField: InputMaskTextField, ValidatedTextInput {
         self.maxChar = dicData?["maxChar"] as? Int ?? 0;
         
         //Set the Value Limit
-        self.minValue = dicData?["minValue"] as? Int ?? 0;
-        self.maxValue = dicData?["maxValue"] as? Int ?? 0;
+        self.minValue = dicData?["minValue"] as? Int ?? -1;
+        self.maxValue = dicData?["maxValue"] as? Int ?? -1;
         
         self.maxCharLimit = dicData?["maxCharLimit"] as? Int ?? 50;
         
