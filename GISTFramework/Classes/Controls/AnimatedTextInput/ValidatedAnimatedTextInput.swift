@@ -46,6 +46,12 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
     /// Validats maximum character limit.
     @IBInspectable open var maxChar:Int = 0;
     
+    /// Validats minimum character limit.
+    @IBInspectable open var minValue:Int = -1;
+    
+    /// Validats maximum character limit.
+    @IBInspectable open var maxValue:Int = -1;
+    
     @IBInspectable public var maskFormat: String? {
         get {
             return (self.textInput as? AnimatedInputMaskTextField)?.maskFormat;
@@ -223,6 +229,10 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         self.minChar = dicData?["minChar"] as? Int ?? 0;
         self.maxChar = dicData?["maxChar"] as? Int ?? 0;
         
+        //Set the Value Limit
+        self.minValue = dicData?["minValue"] as? Int ?? -1;
+        self.maxValue = dicData?["maxValue"] as? Int ?? -1;
+        
         self.maxCharLimit = dicData?["maxCharLimit"] as? Int ?? (self.multilined ? 255 : 50);
         
         if let defRegion = dicData?["defaultRegion"] as? String {
@@ -277,6 +287,8 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
             (!validateAlphabetic || self.isAlphabetic()) &&
             ((minChar == 0) || self.isValidForMinChar(minChar)) &&
             ((maxChar == 0) || self.isValidForMaxChar(maxChar)) &&
+            ((minValue == -1) || self.isValidForMinValue(minValue)) &&
+            ((maxValue == -1) || self.isValidForMaxValue(maxValue)) &&
             ((validateRegex == "") || self.isValidForRegex(validateRegex));
         
         self.isInvalidMsgHidden = (_isValid || _isEmpty);
@@ -369,6 +381,14 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
     /// - Returns: Bool flag for a valid input.
     private func isValidForMaxChar(_ noOfChar:Int) -> Bool {
         return GISTUtility.isValidForMaxChar(self.curText, noOfChar: noOfChar);
+    } //F.E.
+    
+    private func isValidForMinValue(_ value:Int) -> Bool {
+        return GISTUtility.isValidForMinValue(self.curText, value: value);
+    } //F.E.
+    
+    private func isValidForMaxValue(_ value:Int) -> Bool {
+        return GISTUtility.isValidForMaxValue(self.curText, value: value);
     } //F.E.
     
     /// Validats for a regex

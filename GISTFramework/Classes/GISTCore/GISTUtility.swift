@@ -239,7 +239,8 @@ public class GISTUtility: NSObject {
     
     /// Validate String for minimum character limit.
     ///
-    /// - Parameter text: Sting
+    /// - Parameter text: String
+    /// - Parameter noOfChar: Int
     /// - Returns: Bool whether the string is a valid number of characters.
     public class func isValidForMinChar(_ text:String?, noOfChar:Int) -> Bool {
         guard (text != nil) else {
@@ -251,7 +252,8 @@ public class GISTUtility: NSObject {
     
     /// Validate String for maximum character limit.
     ///
-    /// - Parameter text: Sting
+    /// - Parameter text: String?
+    /// - Parameter noOfChar: Int
     /// - Returns: Bool whether the string is a valid number of characters.
     public class func isValidForMaxChar(_ text:String?, noOfChar:Int) -> Bool {
         guard (text != nil) else {
@@ -261,11 +263,33 @@ public class GISTUtility: NSObject {
         return (text!.utf16.count <= noOfChar);
     } //F.E.
     
-    /// Validate String for Phone Number regex.
+    /// Validate String for mininum value entered.
     ///
-    /// - Parameter text: Sting
-    /// - Returns: Bool whether the string is a valid phone number or not.
+    /// - Parameter text: String?
+    /// - Parameter value: Int
+    /// - Returns: Bool whether the string is valid.
+    public class func isValidForMinValue(_ text:String?, value:Int) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        let amount:Int = Int(text!) ?? 0;
+        return amount >= value;
+    } //F.E.
     
+    /// Validate String for mininum value entered.
+    ///
+    /// - Parameter text: String
+    /// - Parameter value: Int
+    /// - Returns: Bool whether the string is valid.
+    public class func isValidForMaxValue(_ text:String?, value:Int) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        let amount:Int = Int(text!) ?? 0;
+        return amount <= value;
+    } //F.E.
     
     /// Validate String for a regex.
     ///
