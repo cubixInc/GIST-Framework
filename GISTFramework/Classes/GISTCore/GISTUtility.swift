@@ -261,6 +261,25 @@ public class GISTUtility: NSObject {
         return (text!.utf16.count <= noOfChar);
     } //F.E.
     
+    
+    public class func isValidForMinValue(_ text:String?, value:Int) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        let amount:Int = Int(text!) ?? 0;
+        return amount >= value;
+    } //F.E.
+    
+    public class func isValidForMaxValue(_ text:String?, value:Int) -> Bool {
+        guard (text != nil) else {
+            return false;
+        }
+        
+        let amount:Int = Int(text!) ?? 0;
+        return amount <= value;
+    } //F.E.
+    
     /// Validate String for Phone Number regex.
     ///
     /// - Parameter text: Sting
