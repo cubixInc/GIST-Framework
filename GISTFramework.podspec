@@ -141,7 +141,7 @@ Pod::Spec.new do |s|
 
     sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
     sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.9'
-    sp.dependency 'AFDateHelper', '~> 4.2.2'
+    sp.dependency 'AFDateHelper', '4.2.4'
   end
 
   s.pod_target_xcconfig = {
