@@ -60,7 +60,7 @@ open class SyncEngine: NSObject {
     
     private var syncedFileUrl: URL {
         get {
-            return self.applicationDocumentsDirectory.appendingPathComponent("\(self.versionNumber)/\(self.syncedFile + self._languageCode).plist");
+            return self.syncedFolderUrl.appendingPathComponent("\(self.syncedFile + self._languageCode).plist");
         }
     }
     
@@ -470,7 +470,18 @@ open class SyncEngine: NSObject {
                 languageCode = "-" + GIST_CONFIG.currentLanguageCode;
             }
             
-            let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(aKey+languageCode).plist");
+            //If Folder does not exist
+            if (FileManager.default.fileExists(atPath: self.syncedFolderUrl.path) == false) {
+                do {
+                    try FileManager.default.createDirectory(at: self.syncedFolderUrl, withIntermediateDirectories: true, attributes: nil)
+                } catch  {
+                    let error = error as NSError
+                    NSLog("Unresolved error \(error), \(error.userInfo)")
+                    abort()
+                }
+            }
+            
+            let url:URL = self.syncedFolderUrl.appendingPathComponent("\(aKey+languageCode).plist");
              
             var isFileExist:Bool = FileManager.default.fileExists(atPath: url.path);
             
