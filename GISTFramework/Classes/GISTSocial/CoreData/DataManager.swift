@@ -36,7 +36,7 @@ public class DataManager: NSObject {
     private var dataBaseName:String {
         if (_dataBaseName == nil) {
             let modFile:String = self.dataBaseModel;
-            let version:String = SyncedConstants.constant(forKey: "databaseVersion") ?? "V1.0";
+            let version:String = AppInfo.versionNBuildNumber;//SyncedConstants.constant(forKey: "databaseVersion") ?? "V1.0";
             
             _dataBaseName = "\(modFile)_\(version).sqlite";
         }
