@@ -41,9 +41,26 @@ open class SyncEngine: NSObject {
         return urls[urls.count-1]
     }();
     
+    private var _versionNumber:String?
+    private var versionNumber:String {
+        get {
+            if (_versionNumber == nil) {
+                _versionNumber = AppInfo.versionNBuildNumber;
+            }
+            
+            return _versionNumber!;
+        }
+    }
+    
+    private var syncedFolderUrl: URL {
+        get {
+            return self.applicationDocumentsDirectory.appendingPathComponent("\(self.versionNumber)");
+        }
+    }
+    
     private var syncedFileUrl: URL {
         get {
-            return self.applicationDocumentsDirectory.appendingPathComponent("\(self.syncedFile + self._languageCode).plist");
+            return self.applicationDocumentsDirectory.appendingPathComponent("\(self.versionNumber)/\(self.syncedFile + self._languageCode).plist");
         }
     }
     
@@ -137,15 +154,26 @@ open class SyncEngine: NSObject {
                 _languageCode = "";
             }
              
+            //If Folder does not exist
+            if (FileManager.default.fileExists(atPath: self.syncedFolderUrl.path) == false) {
+                do {
+                    try FileManager.default.createDirectory(at: self.syncedFolderUrl, withIntermediateDirectories: true, attributes: nil)
+                } catch  {
+                    let error = error as NSError
+                    NSLog("Unresolved error \(error), \(error.userInfo)")
+                    abort()
+                }
+            }
+            
             //If File does not exist
             if (FileManager.default.fileExists(atPath: self.syncedFileUrl.path) == false) {
                 do {
                     try FileManager.default.copyItem(at: URL(fileURLWithPath: syncedFileUrlRes), to: syncedFileUrl);
-                     
+                    
                     hasToSync = false; // NO Sync required, if new file created
                 } catch  {
-                    let nserror = error as NSError
-                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                    let error = error as NSError
+                    NSLog("Unresolved error \(error), \(error.userInfo)")
                     abort()
                 }
             }
