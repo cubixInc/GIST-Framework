@@ -72,6 +72,21 @@ public extension UIKeyboardType {
     }
 }
 
+public extension UIKeyboardAppearance {
+    public static func keyboardAppearance(for type:String) -> UIKeyboardAppearance {
+        switch type {
+        case "dark":
+                return UIKeyboardAppearance.dark;
+            
+        case "light":
+                return UIKeyboardAppearance.light;
+            
+        default:
+                return UIKeyboardAppearance.default;
+        }
+    }
+}
+
 public extension UIReturnKeyType {
     
     public static func returnKeyType(for type:String) -> UIReturnKeyType {
