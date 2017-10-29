@@ -508,6 +508,9 @@ open class HTTPRequest:NSObject {
             
             self.headers?["entity_id"] = "\(entityId)";
             self.parameters?["actor_user_id"] = entityId;
+        } else if let userId:Int = GIST_GLOBAL.userData?["user_id"] as? Int {
+            self.headers?["user_id"] = "\(userId)";
+            self.parameters?["actor_user_id"] = userId;
         }
         
         //Adding Language Key
@@ -531,8 +534,11 @@ open class HTTPRequest:NSObject {
         Alamofire.upload(multipartFormData: { (formData:MultipartFormData) in
             if let params:Parameters = self.parameters {
                 for (key , value) in params {
-                    
-                    if let file:GISTFile = value as? GISTFile {
+                    if let files:[GISTFile] = value as? [GISTFile] {
+                        for file in files {
+                            formData.append(file.data, withName: key, fileName: "fileName.\(file.ext)", mimeType: file.mimeType); // Here file name does not matter.
+                        }
+                    } else if let file:GISTFile = value as? GISTFile {
                         formData.append(file.data, withName: key, fileName: "fileName.\(file.ext)", mimeType: file.mimeType); // Here file name does not matter.
                     } else if let data:Data = value as? Data {
                         formData.append(data, withName: key, fileName: "fileName.\(data.fileExtension)", mimeType: data.mimeType); // Here file name does not matter.
