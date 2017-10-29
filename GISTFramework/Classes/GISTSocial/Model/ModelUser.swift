@@ -23,7 +23,7 @@ public class ModelUser:NSObject, GISTUser {
     public var sentEmailVerification: Bool?;
     public var sentMobileVerification: Bool?;
     public var type: String?;
-    public var entityId: Int?;
+    public var userId: Int?;
     public var verificationToken: String?;
     public var rawImage: UIImage?;
     
@@ -42,6 +42,8 @@ public class ModelUser:NSObject, GISTUser {
     }
     
     public func mapping(map: Map) {
+        userId <- map[USER_ID];
+        
         clientToken <- map["client_token"];
         deviceToken <- map["device_token"];
         email <- map["email"];
@@ -54,9 +56,7 @@ public class ModelUser:NSObject, GISTUser {
         sentEmailVerification <- map["sent_email_verification"];
         sentMobileVerification <- map["sent_mobile_verification"];
         type <- map["type"];
-        entityId <- map["entity_id"];
         verificationToken <- map["verification_token"];
-        
         userName <- map["user_name"];
         firstName <- map["first_name"];
         lastName <- map["last_name"];
@@ -66,6 +66,8 @@ public class ModelUser:NSObject, GISTUser {
     }
     
     required public init(coder aDecoder: NSCoder) {
+        userId = aDecoder.decodeObject(forKey: USER_ID) as? Int;
+        
         clientToken = aDecoder.decodeObject(forKey: "client_token") as? String;
         deviceToken = aDecoder.decodeObject(forKey: "device_token") as? String;
         email = aDecoder.decodeObject(forKey: "email") as? String;
@@ -78,7 +80,7 @@ public class ModelUser:NSObject, GISTUser {
         sentEmailVerification = aDecoder.decodeObject(forKey: "sent_email_verification") as? Bool;
         sentMobileVerification = aDecoder.decodeObject(forKey: "sent_mobile_verification") as? Bool;
         type = aDecoder.decodeObject(forKey: "type") as? String;
-        entityId = aDecoder.decodeObject(forKey: "entity_id") as? Int;
+        
         verificationToken = aDecoder.decodeObject(forKey: "verification_token") as? String;
         
         userName = aDecoder.decodeObject(forKey: "user_name") as? String;
@@ -90,6 +92,8 @@ public class ModelUser:NSObject, GISTUser {
     }
     
     public func encodeWithCoder(_ aCoder: NSCoder) {
+        aCoder.encode(userId, forKey: USER_ID);
+        
         aCoder.encode(clientToken, forKey: "client_token");
         aCoder.encode(deviceToken, forKey: "device_token");
         aCoder.encode(email, forKey: "email");
@@ -102,7 +106,6 @@ public class ModelUser:NSObject, GISTUser {
         aCoder.encode(sentEmailVerification, forKey: "sent_email_verification");
         aCoder.encode(sentMobileVerification, forKey: "sent_mobile_verification");
         aCoder.encode(type, forKey: "type");
-        aCoder.encode(entityId, forKey: "entity_id");
         aCoder.encode(verificationToken, forKey: "verification_token");
         
         aCoder.encode(userName, forKey: "user_name");
@@ -132,7 +135,7 @@ public class ModelUser:NSObject, GISTUser {
         instance.sentEmailVerification = self.sentEmailVerification;
         instance.sentMobileVerification = self.sentMobileVerification;
         instance.type = self.type;
-        instance.entityId = self.entityId;
+        instance.userId = self.userId;
         instance.verificationToken = self.verificationToken;
         instance.rawImage = self.rawImage;
         
@@ -147,6 +150,7 @@ public class ModelUser:NSObject, GISTUser {
     
     public func toDictionary () -> NSDictionary {
         let map:NSMutableDictionary = NSMutableDictionary();
+        map[USER_ID] = self.reverseMap(userId);
         
         map["client_token"] = self.reverseMap(clientToken);
         map["device_token"] = self.reverseMap(deviceToken);
@@ -160,7 +164,6 @@ public class ModelUser:NSObject, GISTUser {
         map["sent_email_verification"] = self.reverseMap(sentEmailVerification);
         map["sent_mobile_verification"] = self.reverseMap(sentMobileVerification);
         map["type"] = self.reverseMap(type);
-        map["entity_id"] = self.reverseMap(entityId);
         map["verification_token"] = self.reverseMap(verificationToken);
         map["raw_image"] = self.reverseMap(rawImage);
         

@@ -93,7 +93,6 @@
 		48C493721E88F73900F14CF4 /* Mappable+ToDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C493661E88F73900F14CF4 /* Mappable+ToDictionary.swift */; };
 		48C493731E88F73900F14CF4 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C493681E88F73900F14CF4 /* ReachabilityHelper.swift */; };
 		48C493741E88F73900F14CF4 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4936A1E88F73900F14CF4 /* TutorialView.swift */; };
-		48C493751E88F73900F14CF4 /* GISTUserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4936C1E88F73900F14CF4 /* GISTUserPreferences.swift */; };
 		48CF84F91DF1564E008C7D85 /* GISTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF84F81DF1564E008C7D85 /* GISTConfig.swift */; };
 		48D06BCE1D3772D8007EC9AA /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */; };
 		48D59DCC1DB4081400B65A2E /* UIScrollView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */; };
@@ -199,7 +198,6 @@
 		48C493661E88F73900F14CF4 /* Mappable+ToDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mappable+ToDictionary.swift"; sourceTree = "<group>"; };
 		48C493681E88F73900F14CF4 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		48C4936A1E88F73900F14CF4 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
-		48C4936C1E88F73900F14CF4 /* GISTUserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUserPreferences.swift; sourceTree = "<group>"; };
 		48CF84F81DF1564E008C7D85 /* GISTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTConfig.swift; sourceTree = "<group>"; };
 		48D06BCD1D3772D8007EC9AA /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
 		48D59DCA1DB4081400B65A2E /* UIScrollView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utility.swift"; sourceTree = "<group>"; };
@@ -425,7 +423,6 @@
 				48C493631E88F73900F14CF4 /* HTTPServiceManager */,
 				48C493671E88F73900F14CF4 /* Reachability */,
 				48C493691E88F73900F14CF4 /* TutorialView */,
-				48C4936B1E88F73900F14CF4 /* UserPreferences */,
 			);
 			path = GISTSocial;
 			sourceTree = "<group>";
@@ -486,14 +483,6 @@
 				48C4936A1E88F73900F14CF4 /* TutorialView.swift */,
 			);
 			path = TutorialView;
-			sourceTree = "<group>";
-		};
-		48C4936B1E88F73900F14CF4 /* UserPreferences */ = {
-			isa = PBXGroup;
-			children = (
-				48C4936C1E88F73900F14CF4 /* GISTUserPreferences.swift */,
-			);
-			path = UserPreferences;
 			sourceTree = "<group>";
 		};
 		48EA5C441D0FD35B003FDDAF = {
@@ -755,7 +744,6 @@
 				48226B0A1F14E2B10023C4DD /* AnimatedTextField.swift in Sources */,
 				4895306A1D12AD4100DFD38B /* BaseUITextField.swift in Sources */,
 				4895305E1D12AD4100DFD38B /* BaseUIImageView.swift in Sources */,
-				48C493751E88F73900F14CF4 /* GISTUserPreferences.swift in Sources */,
 				48C493701E88F73900F14CF4 /* GISTGlobal.swift in Sources */,
 				486588171F42C6EB00DE5A56 /* AnimatedInputMaskTextField.swift in Sources */,
 				4890D19D1ED612D5004E012D /* GISTUser.swift in Sources */,

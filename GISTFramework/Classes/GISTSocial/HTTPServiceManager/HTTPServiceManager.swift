@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 
+public let USER_ID = HTTPServiceManager.sharedInstance.userIdKey;
+
 open class HTTPServiceManager: NSObject {
     
     open static let sharedInstance = HTTPServiceManager();
@@ -27,6 +29,21 @@ open class HTTPServiceManager: NSObject {
             self.sharedInstance._serverBaseURL = newValue;
         }
     } //P.E.
+    
+    public var entityFramework:Bool = true {
+        didSet {
+            if (entityFramework == true) {
+                userIdKey = "entity_id";
+                authenticationModule = "entity_auth"
+            } else {
+                userIdKey = "user_id";
+                authenticationModule = "users"
+            }
+        }
+    } //P.E.
+    
+    internal var userIdKey:String = "entity_id";
+    internal var authenticationModule:String = "entity_auth";
     
     fileprivate var _hudRetainCount:Int = 0;
     
@@ -504,12 +521,8 @@ open class HTTPRequest:NSObject {
         }
         
         // Entity Id & Actor ID
-        if let entityId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int {
-            
-            self.headers?["entity_id"] = "\(entityId)";
-            self.parameters?["actor_user_id"] = entityId;
-        } else if let userId:Int = GIST_GLOBAL.userData?["user_id"] as? Int {
-            self.headers?["user_id"] = "\(userId)";
+        if let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int {
+            self.headers?[USER_ID] = "\(userId)";
             self.parameters?["actor_user_id"] = userId;
         }
         

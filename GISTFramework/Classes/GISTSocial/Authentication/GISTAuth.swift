@@ -9,23 +9,25 @@
 import UIKit
 import ObjectMapper
 
-private let SIGN_UP_REQUEST = "entity_auth";
-private let SIGN_IN_REQUEST = "entity_auth/signin";
-private let SOCIAL_SIGN_IN_REQUEST = "entity_auth/social_login";
+private let SIGN_UP_REQUEST = "";
+private let MOBILE_SIGN_UP_REQUEST = "mobile_signup";
 
-private let EDIT_PROFILE_REQUEST = "entity_auth/edit_profile";
+private let SIGN_IN_REQUEST = "signin";
+private let SOCIAL_SIGN_IN_REQUEST = "social_login";
 
-private let RESEND_CODE_REQUEST = "entity_auth/resend_code";
-private let VERIFY_PHONE_REQUEST = "entity_auth/verify_phone";
+private let EDIT_PROFILE_REQUEST = "edit_profile";
 
-private let FORGOT_PASSWORD_REQUEST = "entity_auth/forgot_request";
-private let CHANGE_PASSWORD_REQUEST = "entity_auth/change_password";
+private let RESEND_CODE_REQUEST = "resend_code";
+private let VERIFY_PHONE_REQUEST = "verify_phone";
 
-private let RESET_PASSWORD_REQUEST = "entity_auth/reset_password";
+private let FORGOT_PASSWORD_REQUEST = "forgot_request";
+private let CHANGE_PASSWORD_REQUEST = "change_password";
 
-private let DELETE_ACCOUNT = "entity_auth/delete_account";
+private let RESET_PASSWORD_REQUEST = "reset_password";
 
-private let CHANGE_LOGIN_ID = "entity_auth/change_id_request";
+private let DELETE_ACCOUNT = "delete_account";
+
+private let CHANGE_LOGIN_ID = "change_id_request";
 
 
 public class GISTAuth<T:GISTUser>: NSObject {
@@ -43,17 +45,13 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: SIGN_UP_REQUEST, fields: fields, additional:params, completion:completion, failure:failure);
     } //F.E.
     
-    public static func signUp(arrData:NSMutableArray, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func signUp(arrData:NSMutableArray, additional params:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
 
-        self.request(service: SIGN_UP_REQUEST, arrData: arrData, additional:params, ignore:nil, completion:completion, failure:failure);
+        self.request(service: SIGN_UP_REQUEST, arrData: arrData, additional:params, ignore:iParams, completion:completion, failure:failure);
     } //F.E.
     
     public static func signUp(params:[String:Any], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: SIGN_UP_REQUEST, params: params, completion:completion, failure:failure);
-    } //F.E.
-    
-    public static func signUp(user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: SIGN_UP_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Sign In
@@ -87,43 +85,37 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     public static func editProfile(arrData:NSMutableArray, additional params:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let entityId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int else {
+        guard let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int else {
             return;
         }
         
         var aParams:[String:Any] = params ?? [:];
-        aParams["entity_id"] = entityId;
+        aParams[USER_ID] = userId;
         
         self.request(service: EDIT_PROFILE_REQUEST, arrData: arrData, additional:aParams, ignore:iParams, completion:completion, failure:failure);
     } //F.E.
     
     public static func editProfile(params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let entityId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int else {
+        guard let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int else {
             return;
         }
         
         var aParams:[String:Any] = params ?? [:];
-        aParams["entity_id"] = entityId;
+        aParams["USER_ID"] = userId;
         
         self.request(service: EDIT_PROFILE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
     
-    /*
-     Should not be called
-    public static func editProfile(updated user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: EDIT_PROFILE_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), completion:completion, failure:failure);
-    } //F.E.
-    */
-    
+
     public static func changeLoginId(new loginId:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let entityId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int else {
+        guard let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int else {
             return;
         }
         
         var aParams:[String:Any] = params ?? [:];
-        aParams["entity_id"] = entityId;
+        aParams[USER_ID] = userId;
         aParams["new_login_id"] = loginId;
         
         self.request(service: CHANGE_LOGIN_ID, params: aParams, completion:completion, failure:failure);
@@ -137,9 +129,9 @@ public class GISTAuth<T:GISTUser>: NSObject {
         }
         
         let isVerified:Bool = (usrData["is_verified"] as? Bool) ?? false;
-        let entityId:Int? = usrData["entity_id"] as? Int;
+        let userId:Int? = usrData[USER_ID] as? Int;
         
-        let verificationMode:String = (entityId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
+        let verificationMode:String = (userId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
         
         var aParams:[String:Any] = params ?? [:];
         
@@ -175,12 +167,12 @@ public class GISTAuth<T:GISTUser>: NSObject {
     //MARK: - Change Password
     public static func changePassword(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let entityId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int else {
+        guard let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int else {
             return;
         }
         
         var aParams:[String:Any] = params ?? [:];
-        aParams["entity_id"] = entityId;
+        aParams[USER_ID] = userId;
         
         self.request(service: CHANGE_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
     } //F.E.
@@ -203,16 +195,16 @@ public class GISTAuth<T:GISTUser>: NSObject {
         GIST_GLOBAL.userData = nil;
     } //F.E.
     
-    //MARK: - Reset Password
-    public static func deleteAccount(completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    //MARK: - Delete Account
+    public static func deleteAccount(additional aParams: [String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let entityId:Int = GIST_GLOBAL.userData?["entity_id"] as? Int else {
+        guard let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int else {
             return;
         }
         
-        let params:[String:Any] = [
-            "entity_id":entityId
-        ];
+        var params:[String:Any] = aParams ?? [:];
+        params[USER_ID] = userId;
+        
         
         self.request(service: DELETE_ACCOUNT, params: params, completion: { (user:GISTUser?, rawData:Any?) in
             
@@ -276,7 +268,16 @@ public class GISTAuth<T:GISTUser>: NSObject {
             uParams["mobile_no"] = "\(countryCode)-\(uMobileNo)";
         }
         
+        let requestName:String;
+        
+        if service == SIGN_UP_REQUEST, uParams["mobile_no"] != nil, uParams["password"] == nil  {
+            requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(MOBILE_SIGN_UP_REQUEST)";
+        } else {
+            requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(service)";
+        }
+        
         let httpRequest:HTTPRequest
+        
         
         //Multipart Request
         if let rawImage:UIImage = uParams["raw_image"] as? UIImage {
@@ -285,17 +286,17 @@ public class GISTAuth<T:GISTUser>: NSObject {
             let imgData:Data;
             
             if (rawImage.size.width > 400 || rawImage.size.height > 400) {
-                imgData = UIImageJPEGRepresentation(rawImage.scaleAndRotateImage(400), 100)!;
+                imgData = UIImageJPEGRepresentation(rawImage.scaleAndRotateImage(400), 1)!;
             } else {
-                imgData = UIImageJPEGRepresentation(rawImage, 90)!;
+                imgData = UIImageJPEGRepresentation(rawImage, 1)!;
             }
             
             uParams["raw_image"] = imgData;
             
             //Multipart Request
-            httpRequest = HTTPServiceManager.multipartRequest(requestName: service, parameters: uParams, delegate: nil)
+            httpRequest = HTTPServiceManager.multipartRequest(requestName: requestName, parameters: uParams, delegate: nil)
         } else {
-            httpRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, delegate: nil);
+            httpRequest = HTTPServiceManager.request(requestName: requestName, parameters: uParams, delegate: nil);
         }
         
         httpRequest.onSuccess { (rawData:Any?) in
@@ -308,7 +309,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
                 userData["client_token"] = dicData?["client_token"] as? String ?? oldUserData?["client_token"] as? String;
                 
                 if let verificationMode:String = uParams["verification_mode"] as? String, verificationMode == "forgot" {
-                    userData["entity_id"] = nil;
+                    userData[USER_ID] = nil;
                 }
                 
                 GIST_GLOBAL.userData = userData;

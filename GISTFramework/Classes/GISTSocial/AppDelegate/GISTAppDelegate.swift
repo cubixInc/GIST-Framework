@@ -156,15 +156,16 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     
     //MARK: - Save Token
     private func savePushToken() {
-        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let entityId:Int = usrData["entity_id"] as? Int, let token:String = GIST_GLOBAL.deviceToken else {
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let token:String = GIST_GLOBAL.deviceToken, let userId:Int = usrData[USER_ID] as? Int else {
             return;
         }
         
         let params:[String:Any] = [
-            "entity_id":entityId,
             "device_token":token,
-            "device_type":"ios"
+            "device_type":"ios",
+            USER_ID:userId
         ]
+        
         
         let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: SAVE_TOKEN_REQUEST, parameters: params, delegate: nil);
         

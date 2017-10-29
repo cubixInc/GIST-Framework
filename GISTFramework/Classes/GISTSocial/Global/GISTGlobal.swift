@@ -71,7 +71,7 @@ public class GISTGlobal: NSObject {
     
     private var _user:GISTUser?;
     public func getUser<T:GISTUser>() -> T? {
-        guard let usrData = userData, let _:Int = usrData["entity_id"] as? Int else {
+        guard let usrData = userData, let _:Int = usrData[USER_ID] as? Int else {
             return nil;
         }
         

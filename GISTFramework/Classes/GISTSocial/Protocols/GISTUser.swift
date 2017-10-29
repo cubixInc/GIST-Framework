@@ -15,7 +15,7 @@ import PhoneNumberKit
     */
 
 public protocol GISTUser: Mappable, ReverseMappable, NSCopying {
-    var entityId: Int? {get set};
+    var userId: Int? {get set};
     var type: String? {get set};
     
     var email: String? {get set};
