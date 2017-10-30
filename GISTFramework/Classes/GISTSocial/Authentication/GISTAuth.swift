@@ -102,7 +102,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
         }
         
         var aParams:[String:Any] = params ?? [:];
-        aParams["USER_ID"] = userId;
+        aParams[USER_ID] = userId;
         
         self.request(service: EDIT_PROFILE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
