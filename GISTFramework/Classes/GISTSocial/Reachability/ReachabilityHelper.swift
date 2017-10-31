@@ -150,7 +150,7 @@ public class ReachabilityHelper: NSObject {
         
     } //F.E.
     
-    func internetConnectionLabelTapHandler(_ btn:AnyObject) {
+    @objc func internetConnectionLabelTapHandler(_ btn:AnyObject) {
         self.internetConnectionLabelHidden = true;
     } //F.E.
  

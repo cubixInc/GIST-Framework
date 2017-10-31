@@ -141,7 +141,7 @@ open class BaseUIViewController: UIViewController {
     } //F.E.
     
     ///Navigation back button tap handler.
-    open func backButtonTapped() {
+    @objc open func backButtonTapped() {
         self.view.endEditing(true);
         
         if (self.navigationController?.viewControllers.count == 1) {

@@ -199,7 +199,7 @@ open class PopoverControllerView: BaseUIView {
         }
     } //F.E.
     
-    func backgroundViewTapped(_ gestureRecognizer:UITapGestureRecognizer) {
+    @objc func backgroundViewTapped(_ gestureRecognizer:UITapGestureRecognizer) {
         self.dismissPopoverAnimated(true);
     } //F.E.
     

@@ -44,7 +44,7 @@ open class BaseUISearchBar: UISearchBar, BaseView {
     @IBInspectable open var placeholderColor:String? = nil {
         didSet {
             if let plcHolder:String = self.placeholder, let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
-                self.textField?.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSForegroundColorAttributeName: color]);
+                self.textField?.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSAttributedStringKey.foregroundColor: color]);
             }
         }
     } //P.E.
@@ -182,7 +182,7 @@ open class BaseUISearchBar: UISearchBar, BaseView {
             }
             
             if let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
-                self.textField?.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSForegroundColorAttributeName: color]);
+                self.textField?.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSAttributedStringKey.foregroundColor: color]);
             } else {
                 super.placeholder = newPlaceHolder;
             }

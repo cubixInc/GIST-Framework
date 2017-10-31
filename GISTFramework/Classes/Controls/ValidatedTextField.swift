@@ -383,7 +383,7 @@ open class ValidatedTextField: InputMaskTextField, ValidatedTextInput {
     /// Method to handle tap event for invalid sign button.
     ///
     /// - Parameter sender: Invalid Sign Button
-    func invalidSignBtnHandler(_ sender:UIButton) {
+    @objc func invalidSignBtnHandler(_ sender:UIButton) {
         (self.delegate as? ValidatedTextFieldDelegate)?.validatedTextFieldInvalidSignDidTap?(self, sender: sender)
     } //F.E.
 } //CLS END

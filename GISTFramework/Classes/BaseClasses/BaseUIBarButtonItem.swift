@@ -40,7 +40,7 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
     /// Extended proprty font for Segmented Controler Items
     open var font:UIFont? = nil {
         didSet {
-            self.setTitleTextAttributes([NSFontAttributeName:self.font!], for: UIControlState());
+            self.setTitleTextAttributes([NSAttributedStringKey.font:self.font!], for: UIControlState());
         }
     }
     

@@ -15,12 +15,12 @@ class AnimatedTextField: AnimatedInputMaskTextField {
     var rightViewPadding: CGFloat
     weak public var textInputDelegate: TextInputDelegate?
 
-    public var textAttributes: [String: Any]?
+    public var textAttributes: [NSAttributedStringKey: Any]?
     public var contentInset: UIEdgeInsets = .zero
 
     public var prefix: String?
     
-    fileprivate var disclosureButtonAction: ((Void) -> Void)?
+    fileprivate var disclosureButtonAction: (() -> Void)?
 
     override init(frame: CGRect) {
         self.rightViewPadding = defaultPadding
@@ -53,7 +53,7 @@ class AnimatedTextField: AnimatedInputMaskTextField {
     } //F.E.
     
     @discardableResult override public func becomeFirstResponder() -> Bool {
-        if let alignment = (textAttributes?[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle)?.alignment {
+        if let alignment = (textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSMutableParagraphStyle)?.alignment {
             textAlignment = alignment
         }
         return super.becomeFirstResponder()
@@ -91,7 +91,7 @@ class AnimatedTextField: AnimatedInputMaskTextField {
                       height: bounds.height - contentInset.top - contentInset.bottom)
     }
 
-    func add(disclosureButton button: UIButton, action: @escaping ((Void) -> Void)) {
+    func add(disclosureButton button: UIButton, action: @escaping (() -> Void)) {
         let selector = #selector(disclosureButtonPressed)
         if disclosureButtonAction != nil, let previousButton = rightView as? UIButton {
             previousButton.removeTarget(self, action: selector, for: .touchUpInside)

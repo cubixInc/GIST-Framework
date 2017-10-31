@@ -164,7 +164,7 @@ internal class UIRadioButtonManager:NSObject {
     /// Tap Handler for all radio buttons
     ///
     /// - Parameter radioButton: UIRadioButton
-    func buttonsTapHandler(_ radioButton:UIRadioButton) {
+    @objc func buttonsTapHandler(_ radioButton:UIRadioButton) {
         if let hashTable:NSHashTable<WeakRef<UIRadioButton>> = _mainBtnsDict[radioButton.groupId] as? NSHashTable<WeakRef<UIRadioButton>> {
             let enumerator:NSEnumerator = hashTable.objectEnumerator();
             

@@ -245,7 +245,7 @@ open class ValidatedTextView: BaseUITextView, UITextViewDelegate {
     /// Method to handle tap event for invalid sign button.
     ///
     /// - Parameter sender: Invalid Sign Button
-    func invalidSignBtnHandler(_ sender:UIButton) {
+    @objc func invalidSignBtnHandler(_ sender:UIButton) {
         (self.delegate as? ValidatedTextViewDelegate)?.validatedTextViewInvalidSignDidTap?(self, sender: sender)
     } //F.E.
     

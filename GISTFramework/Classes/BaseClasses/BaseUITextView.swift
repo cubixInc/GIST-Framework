@@ -287,7 +287,7 @@ open class BaseUITextView: UITextView, BaseView {
     } //F.E.
 
     /// Observer for text changes.
-    internal func textDidChangeObserver(_ notification:Notification) {
+    @objc internal func textDidChangeObserver(_ notification:Notification) {
         self.textViewDidChange();
     } //F.E.
     

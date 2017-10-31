@@ -326,7 +326,7 @@ open class HTTPServiceManager: NSObject {
                         "data":data
                     ]
                     
-                    let error = NSError(domain: "com.cubix.gist", code: errorCode, userInfo: userInfo);
+                    let error = NSError(domain: "com.cubix.gist", code: errorCode, userInfo: (userInfo as! [String : Any]));
                     
                     if (invalidSession == 0) {
                         self.requestDidFailWithError(httpRequest: httpRequest, error: error);

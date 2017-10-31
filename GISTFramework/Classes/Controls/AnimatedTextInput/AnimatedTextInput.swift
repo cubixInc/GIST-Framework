@@ -145,7 +145,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
     
     typealias AnimatedTextInputType = AnimatedTextInputFieldConfigurator.AnimatedTextInputType
 
-    private var _tapAction: ((Void) -> Void)?
+    private var _tapAction: (() -> Void)?
     
     open  weak var delegate: AnimatedTextInputDelegate?
     open fileprivate(set) var isActive = false
@@ -260,24 +260,24 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
 
     open var font: UIFont? {
         get { return textInput.font }
-        set { textAttributes = [NSFontAttributeName: newValue as Any] }
+        set { textAttributes = [NSAttributedStringKey.font: newValue as Any] }
     }
 
     open var textColor: UIColor? {
         get { return textInput.textColor }
-        set { textAttributes = [NSForegroundColorAttributeName: newValue as Any] }
+        set { textAttributes = [NSAttributedStringKey.foregroundColor: newValue as Any] }
     }
 
     open var lineSpacing: CGFloat? {
         get {
-            guard let paragraph = textAttributes?[NSParagraphStyleAttributeName] as? NSParagraphStyle else { return nil }
+            guard let paragraph = textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle else { return nil }
             return paragraph.lineSpacing
         }
         set {
             guard let spacing = newValue else { return }
-            let paragraphStyle = textAttributes?[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
+            let paragraphStyle = textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = spacing
-            textAttributes = [NSParagraphStyleAttributeName: paragraphStyle]
+            textAttributes = [NSAttributedStringKey.paragraphStyle: paragraphStyle]
         }
     }
     
@@ -293,44 +293,44 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
 
     open var textAlignment: NSTextAlignment? {
         get {
-            guard let paragraph = textInput.textAttributes?[NSParagraphStyleAttributeName] as? NSParagraphStyle else { return nil }
+            guard let paragraph = textInput.textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle else { return nil }
             return paragraph.alignment
         }
         set {
             guard let alignment = newValue else { return }
-            let paragraphStyle = textAttributes?[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
+            let paragraphStyle = textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
             paragraphStyle.alignment = alignment
-            textAttributes = [NSParagraphStyleAttributeName: paragraphStyle]
+            textAttributes = [NSAttributedStringKey.paragraphStyle: paragraphStyle]
         }
     }
 
     open var tailIndent: CGFloat? {
         get {
-            guard let paragraph = textAttributes?[NSParagraphStyleAttributeName] as? NSParagraphStyle else { return nil }
+            guard let paragraph = textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle else { return nil }
             return paragraph.tailIndent
         }
         set {
             guard let indent = newValue else { return }
-            let paragraphStyle = textAttributes?[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
+            let paragraphStyle = textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
             paragraphStyle.tailIndent = indent
-            textAttributes = [NSParagraphStyleAttributeName: paragraphStyle]
+            textAttributes = [NSAttributedStringKey.paragraphStyle: paragraphStyle]
         }
     }
 
     open var headIndent: CGFloat? {
         get {
-            guard let paragraph = textAttributes?[NSParagraphStyleAttributeName] as? NSParagraphStyle else { return nil }
+            guard let paragraph = textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle else { return nil }
             return paragraph.headIndent
         }
         set {
             guard let indent = newValue else { return }
-            let paragraphStyle = textAttributes?[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
+            let paragraphStyle = textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
             paragraphStyle.headIndent = indent
-            textAttributes = [NSParagraphStyleAttributeName: paragraphStyle]
+            textAttributes = [NSAttributedStringKey.paragraphStyle: paragraphStyle]
         }
     }
 
-    open var textAttributes: [String: Any]? {
+    open var textAttributes: [NSAttributedStringKey: Any]? {
         didSet {
             guard var textInputAttributes = textInput.textAttributes else {
                 textInput.textAttributes = textAttributes
@@ -546,7 +546,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         layoutPlaceholderLayer()
     }
 
-    fileprivate func animatePlaceholder(to applyConfiguration: (Void) -> Void) {
+    fileprivate func animatePlaceholder(to applyConfiguration: () -> Void) {
         let duration = 0.2
         let function = CAMediaTimingFunction(controlPoints: 0.3, 0.0, 0.5, 0.95)
         transactionAnimation(with: duration, timingFuncion: function, animations: applyConfiguration)
@@ -554,7 +554,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
 
     // mark: Behaviours
 
-    public func onTap(action: @escaping (Void) -> Void) {
+    public func onTap(action: @escaping () -> Void) {
         _tapAction = action;
     } //F.E.
     
@@ -786,7 +786,7 @@ public protocol TextInput {
     var currentText: String? { get set }
     var font: UIFont? { get set }
     var textColor: UIColor? { get set }
-    var textAttributes: [String: Any]? { get set }
+    var textAttributes: [NSAttributedStringKey: Any]? { get set }
     weak var textInputDelegate: TextInputDelegate? { get set }
     var currentSelectedTextRange: UITextRange? { get set }
     var currentBeginningOfDocument: UITextPosition? { get }

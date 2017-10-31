@@ -41,14 +41,6 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         return true;
     } //F.E.
     
-    @available(iOS, obsoleted: 10.0)
-    open func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        
-        if notificationSettings.types != UIUserNotificationType() {
-            application.registerForRemoteNotifications()
-        }
-    } //F.E.
-    
     open func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // Convert token to string
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})

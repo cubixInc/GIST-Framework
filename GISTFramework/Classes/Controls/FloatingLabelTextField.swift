@@ -259,7 +259,7 @@ open class FloatingLabelTextField: ValidatedTextField {
     /**
      Invoked when the editing state of the textfield changes. Override to respond to this change.
      */
-    open func editingChanged() {
+    @objc open func editingChanged() {
         self.updateControl(true);
         self.updateTitleLabel(true);
     }

@@ -38,9 +38,9 @@ open class BaseUINavigationController: UINavigationController {
      /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
-            var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
-             
-            attrDict[NSFontAttributeName] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
+            
+            attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             
             self.navigationBar.titleTextAttributes = attrDict;
         }
@@ -49,9 +49,9 @@ open class BaseUINavigationController: UINavigationController {
     /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
-            var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
+            var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
              
-            attrDict[NSFontAttributeName] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             
             self.navigationBar.titleTextAttributes = attrDict;
         }
@@ -60,9 +60,9 @@ open class BaseUINavigationController: UINavigationController {
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColor:String? = nil {
         didSet {
-            var attrDict:[String : Any] = self.navigationBar.titleTextAttributes ?? [String : Any]();
+            var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes ?? [NSAttributedStringKey : Any]();
              
-            attrDict[NSForegroundColorAttributeName] = SyncedColors.color(forKey: fontColor);
+            attrDict[NSAttributedStringKey.foregroundColor] = SyncedColors.color(forKey: fontColor);
             
             self.navigationBar.titleTextAttributes = attrDict;
         }
@@ -142,8 +142,8 @@ open class BaseUINavigationController: UINavigationController {
     /// Updating the appearance of Navigation Bar.
     private func updateAppearance() {
         //Update Font
-        var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
-        attrDict[NSFontAttributeName] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
+        attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         self.navigationBar.titleTextAttributes = attrDict;
         

@@ -7,12 +7,11 @@ target 'GISTFramework' do
 
     # Pods for GISTFramework
     pod 'UIColor_Hex_Swift', '~> 3.0.2'
-    pod 'PhoneNumberKit', '~> 1.3.0'
+    pod 'PhoneNumberKit', '~> 2.0.0'
 
-    pod 'AlamofireObjectMapper', '~> 4.1.0'
-    pod 'InputMask', '~> 2.2.5'
-    pod 'AFDateHelper', '~> 4.2.2'
+    pod 'AlamofireObjectMapper', '~> 5.0.0'
+    pod 'InputMask', '~> 2.2.6'
+    pod 'AFDateHelper', '~> 4.2.6'
     
-    #pod 'IQKeyboardManagerSwift', '~> 4.0.12'
-    pod 'IQKeyboardManagerSwift', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git'
+    pod 'IQKeyboardManagerSwift', '~> 5.0.4'
 end

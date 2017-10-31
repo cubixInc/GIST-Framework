@@ -72,7 +72,7 @@ open class BaseUILabel: UILabel, BaseView {
         didSet {
             if (underlinedText) {
                 let attString:NSMutableAttributedString=NSMutableAttributedString(string: (self.text?.capitalized)! as String)
-                attString.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue , range: NSRange(location: 0, length: attString.length))
+                attString.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue , range: NSRange(location: 0, length: attString.length))
                 self.attributedText = attString
             } else {
                 // TO HANDLER
@@ -162,7 +162,7 @@ open class BaseUILabel: UILabel, BaseView {
     override open func drawText(in rect:CGRect) {
         guard self.topAligned, let lblText = self.text else {  return super.drawText(in: rect) }
         
-        let attributedText = NSAttributedString(string: lblText, attributes: [NSFontAttributeName: font])
+        let attributedText = NSAttributedString(string: lblText, attributes: [NSAttributedStringKey.font: font])
         
         var newRect = rect;
         newRect.size.height = attributedText.boundingRect(with: rect.size, options: .usesLineFragmentOrigin, context: nil).size.height

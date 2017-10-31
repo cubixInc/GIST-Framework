@@ -181,7 +181,7 @@ open class ProgressUIButton: BaseUIButton {
     } //F.E.
     
     /// Update methed called instantaneously when the bar is filling
-    func update() {
+    @objc func update() {
         guard _timePassed < self.progressTime else {
             self.triggerEvent();
             return;

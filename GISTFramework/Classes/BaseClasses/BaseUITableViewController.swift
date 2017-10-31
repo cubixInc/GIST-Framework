@@ -111,7 +111,7 @@ open class BaseUITableViewController: UITableViewController {
     //MARK: - Methods
     
     ///Setting up custom back button.
-    open func backButtonTapped() {
+    @objc open func backButtonTapped() {
         self.view.endEditing(true);
         
         if (self.navigationController?.viewControllers.count == 1) {
