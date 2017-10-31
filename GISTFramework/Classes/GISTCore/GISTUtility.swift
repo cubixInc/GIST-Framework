@@ -14,8 +14,8 @@ public class GISTUtility: NSObject {
     
     //MARK: - Properties
     
-    @nonobjc static let deviceRatio:CGFloat = UIScreen.main.bounds.height / 736.0;
-    @nonobjc static let deviceRatioWN:CGFloat = (UIScreen.main.bounds.height - 64.0) / (736.0 - 64.0); // Ratio with Navigation
+    @nonobjc public static let deviceRatio:CGFloat = UIScreen.main.bounds.height / 736.0;
+    @nonobjc public static let deviceRatioWN:CGFloat = (UIScreen.main.bounds.height - 64.0) / (736.0 - 64.0); // Ratio with Navigation
     
     /// Bool flag for device type.
     @nonobjc public static let isIPad:Bool = UIDevice.current.userInterfaceIdiom == .pad;
