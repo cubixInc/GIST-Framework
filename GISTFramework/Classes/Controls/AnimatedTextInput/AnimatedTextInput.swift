@@ -281,7 +281,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
     }
     
-    var isSecureTextEntry: Bool {
+    @IBInspectable open var isSecureTextEntry: Bool {
         get {
             return self.textInput.isSecureTextEntry;
         }
