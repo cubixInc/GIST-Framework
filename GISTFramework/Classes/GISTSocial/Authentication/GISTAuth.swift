@@ -273,7 +273,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
         if service == SIGN_UP_REQUEST, uParams["mobile_no"] != nil, uParams["password"] == nil  {
             requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(MOBILE_SIGN_UP_REQUEST)";
         } else {
-            requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(service)";
+            requestName = (service == "") ? HTTPServiceManager.sharedInstance.authenticationModule : "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(service)";
         }
         
         let httpRequest:HTTPRequest
