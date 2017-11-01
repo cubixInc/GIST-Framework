@@ -10,7 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import UserNotifications
 
-private let SAVE_TOKEN_REQUEST = "entity_auth/save_token";
+private let SAVE_TOKEN_REQUEST = "save_token";
 
 open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
@@ -158,8 +158,8 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
             USER_ID:userId
         ]
         
-        
-        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: SAVE_TOKEN_REQUEST, parameters: params, delegate: nil);
+        let requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(SAVE_TOKEN_REQUEST)";
+        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: requestName, parameters: params, delegate: nil);
         
         httpRequest.onSuccess { (rawData:Any?) in
             print("Device Token Saved ...");
