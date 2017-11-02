@@ -55,7 +55,7 @@ open class TutorialView: BaseUIView, UIScrollViewDelegate {
             if (newValue != _currPage) {
                 _currPage = newValue;
                 
-                self.pageControl?.currentPage = _currPage;
+                //??self.pageControl?.currentPage = _currPage;
                 
                 //Scrolling to new Page
                 self.scrollView.setContentOffset(CGPoint(x: (self.scrollView.contentSize.width /  CGFloat(self.numberOfPages)) * CGFloat(_currPage), y: 0), animated: true);
