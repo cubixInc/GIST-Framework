@@ -161,6 +161,16 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         }
     } //P.E.
     
+    open var forcedInvalid:Bool {
+        get {
+            return false;
+        }
+        
+        set {
+            _isValid = newValue;
+        }
+    }
+    
     open var validText: String?;
     
     /// Flag for whether the input is valid or not.
