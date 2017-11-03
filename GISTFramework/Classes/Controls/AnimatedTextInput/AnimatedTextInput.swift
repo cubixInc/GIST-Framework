@@ -363,6 +363,12 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
     }
 
+    open override var isUserInteractionEnabled: Bool {
+        didSet {
+            textInput.isUserInteractionEnabled = self.isUserInteractionEnabled;
+        }
+    }
+    
     fileprivate let lineView = AnimatedLine()
     fileprivate let placeholderLayer = CATextLayer()
     fileprivate let counterLabel = UILabel()
@@ -806,6 +812,8 @@ public protocol TextInput {
     
     var isSecureTextEntry: Bool { get set } // default is NO
 
+    var isUserInteractionEnabled: Bool { get set }
+    
     func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition?
     func changeClearButtonMode(with newClearButtonMode: UITextFieldViewMode)
     

@@ -10,7 +10,7 @@ import UIKit
 import PhoneNumberKit
 
 open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
-
+    
     //MARK: - Properties
     
     /// Bool flag for validating an empty text.
@@ -161,6 +161,16 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         }
     } //P.E.
     
+    open var forcedInvalid:Bool {
+        get {
+            return false;
+        }
+        
+        set {
+            _isValid = newValue;
+        }
+    }
+    
     open var validText: String?;
     
     /// Flag for whether the input is valid or not.
@@ -234,7 +244,7 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         self.placeholder = dicData?["placeholder"] as? String;
         
         self.text = dicData?["text"] as? String;
-
+        
         //Set the is password check
         self.isSecureTextEntry = dicData?["isSecureTextEntry"] as? Bool ?? false;
         self.isUserInteractionEnabled = dicData?["isUserInteractionEnabled"] as? Bool ?? true;
@@ -382,5 +392,5 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
     private func isValidForRegex(_ regex:String)->Bool {
         return GISTUtility.isValidForRegex(self.curText, regex: regex);
     } //F.E.
-
+    
 } //CLS END
