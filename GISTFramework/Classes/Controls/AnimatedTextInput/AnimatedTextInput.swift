@@ -362,6 +362,12 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
             textInput.contentInset = insets
         }
     }
+    
+    open override var isUserInteractionEnabled: Bool {
+        didSet {
+            textInput.isUserInteractionEnabled = self.isUserInteractionEnabled;
+        }
+    }
 
     fileprivate let lineView = AnimatedLine()
     fileprivate let placeholderLayer = CATextLayer()
@@ -805,6 +811,8 @@ public protocol TextInput {
     var enablesReturnKeyAutomatically: Bool { get set } // default is NO (when YES, will automatically disable return key when text widget has zero-length contents, and will automatically enable when text widget has non-zero-length contents)
     
     var isSecureTextEntry: Bool { get set } // default is NO
+    
+    var isUserInteractionEnabled: Bool { get set }
 
     func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition?
     func changeClearButtonMode(with newClearButtonMode: UITextFieldViewMode)
