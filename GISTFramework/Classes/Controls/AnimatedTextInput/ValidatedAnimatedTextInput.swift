@@ -167,7 +167,7 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         }
         
         set {
-            _isValid = newValue;
+            _isValid = !newValue;
         }
     }
     
