@@ -785,6 +785,10 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
     open func textInputShouldReturn(textInput: TextInput) -> Bool {
         return delegate?.animatedTextInputShouldReturn?(animatedTextInput: self) ?? true
     }
+    
+    open func add(disclosureButton button: UIButton, action: @escaping (() -> Void)) {
+        (self.textInput as? AnimatedTextField)?.add(disclosureButton: button, action: action);
+    }
 }
 
 public protocol TextInput {
