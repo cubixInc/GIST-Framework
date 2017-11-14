@@ -243,6 +243,12 @@ public class GISTSocialUtils {
                 if let paramKey:String = dict["paramKey"] as? String, paramKey == key {
                     return dict;
                 }
+                
+                if let sDataArr:NSMutableArray = dict["data"] as? NSMutableArray {
+                    if let sDict:NSMutableDictionary = self.getData(from: sDataArr, forkey: key) {
+                        return sDict
+                    }
+                }
             }
         }
         
