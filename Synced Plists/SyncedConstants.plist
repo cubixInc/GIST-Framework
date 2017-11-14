@@ -6,7 +6,5 @@
 	<string>Helvetica Neue</string>
 	<key>databaseFileName</key>
 	<string>CoreData</string>
-	<key>databaseVersion</key>
-	<string>V1.0</string>
 </dict>
 </plist>
