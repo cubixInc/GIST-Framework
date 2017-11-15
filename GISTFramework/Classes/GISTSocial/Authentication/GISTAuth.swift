@@ -149,8 +149,20 @@ public class GISTAuth<T:GISTUser>: NSObject {
             return;
         }
         
+        
+        let isVerified:Bool = (usrData["is_verified"] as? Bool) ?? false;
+        let userId:Int? = usrData[USER_ID] as? Int;
+        
+        let verificationMode:String = (userId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
+        
+        
         var aParams:[String:Any] = params ?? [:];
         aParams["mobile_no"] = mobileNo;
+        aParams["verification_mode"] = verificationMode;
+        
+        if (userId != nil) {
+            aParams["user_id"] = userId!;
+        }
         
         self.request(service: RESEND_CODE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
