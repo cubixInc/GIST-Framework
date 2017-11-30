@@ -12,6 +12,8 @@ import UIKit
 extension UIView {
     
     /// Recursive update of layout and content from Sync Engine.
+    
+    @objc
     func updateSyncedData() {
         (self as? BaseView)?.updateView();
          
