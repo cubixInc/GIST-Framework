@@ -14,7 +14,24 @@ public class GISTUtility: NSObject {
     
     //MARK: - Properties
     
-    @nonobjc public static let deviceRatio:CGFloat = UIScreen.main.bounds.height / 736.0;
+    @nonobjc static var screenHeight:CGFloat  {
+        if #available(iOS 11.0, *) {
+            let topInset:CGFloat = UIApplication.shared.statusBarFrame.height
+            
+            guard topInset >= 44 else { return UIScreen.main.bounds.height }
+            
+            let bottomInset:CGFloat = 34;//rootView.safeAreaInsets.bottom
+            
+            return UIScreen.main.bounds.height - topInset - bottomInset;
+            
+        } else {
+            return UIScreen.main.bounds.height;
+        }
+    }
+    
+    @nonobjc public static let deviceRatio:CGFloat =  screenHeight / 736.0;
+
+    
     @nonobjc public static let deviceRatioWN:CGFloat = (UIScreen.main.bounds.height - 64.0) / (736.0 - 64.0); // Ratio with Navigation
     
     /// Bool flag for device type.

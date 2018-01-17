@@ -59,13 +59,13 @@ public class ReachabilityHelper: NSObject {
         get {
             
             if (_internetConnectionLbl == nil) {
-                let btnSize:CGSize = CGSize(width: UIScreen.main.bounds.width, height: 64);
+                let statusBarHeight:CGFloat = UIApplication.shared.statusBarFrame.height;
+                let btnSize:CGSize = CGSize(width: UIScreen.main.bounds.width, height: 44 + statusBarHeight);
                 
                 _internetConnectionLbl = BaseUIButton();
-                _internetConnectionLbl.frame = CGRect(x: 0, y: -64, width: btnSize.width, height: btnSize.height);
-                
-                
-                _internetConnectionLbl.titleEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0);
+                _internetConnectionLbl.frame = CGRect(x: 0, y: -btnSize.height, width: btnSize.width, height: btnSize.height);
+
+                _internetConnectionLbl.titleEdgeInsets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0);
 
                 _internetConnectionLbl.setTitle("No Internet Connection", for: UIControlState.normal);
                 _internetConnectionLbl.setTitleColor(UIColor.white, for: UIControlState.normal);
