@@ -415,7 +415,6 @@
 				48C4935B1E88F73900F14CF4 /* AppDelegate */,
 				4809C7331EB8AE480060F64E /* Authentication */,
 				48C493611E88F73900F14CF4 /* Global */,
-				48C4935D1E88F73900F14CF4 /* AppInfo */,
 				4809C7361EB8AE910060F64E /* Helpers */,
 				48949D7B1ED814750055CD6C /* Model */,
 				48C493651E88F73900F14CF4 /* Protocols */,
@@ -433,14 +432,6 @@
 				48C4935C1E88F73900F14CF4 /* GISTAppDelegate.swift */,
 			);
 			path = AppDelegate;
-			sourceTree = "<group>";
-		};
-		48C4935D1E88F73900F14CF4 /* AppInfo */ = {
-			isa = PBXGroup;
-			children = (
-				48C4935E1E88F73900F14CF4 /* AppInfo.swift */,
-			);
-			path = AppInfo;
 			sourceTree = "<group>";
 		};
 		48C493611E88F73900F14CF4 /* Global */ = {
@@ -516,6 +507,7 @@
 		48EB0AD71D7FEE7900BD93BC /* GISTCore */ = {
 			isa = PBXGroup;
 			children = (
+				48C4935E1E88F73900F14CF4 /* AppInfo.swift */,
 				48DAD7511F3CB25F00FC8C0D /* ThresholdTime.swift */,
 				48EB0AE91D7FEFD700BD93BC /* GISTApplication.swift */,
 				48EB0AEB1D7FF45B00BD93BC /* GISTUtility.swift */,
