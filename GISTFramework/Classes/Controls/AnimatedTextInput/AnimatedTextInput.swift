@@ -239,7 +239,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
         set {
             if !textInput.view.isFirstResponder {
-                if  let cCount:Int = newValue?.characters.count, cCount > 0 {
+                if  let cCount:Int = newValue?.count, cCount > 0 {
                     configurePlaceholderAsInactiveHint()
                 } else {
                     configurePlaceholderAsDefault()
@@ -505,7 +505,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
     fileprivate func updateCounter() {
         guard let counterText = counterLabel.text else { return }
         let components = counterText.components(separatedBy: "/")
-        let characters = (text != nil) ? text!.characters.count : 0
+        let characters = text?.count ?? 0
         counterLabel.text = "\(characters)/\(components[1])"
     }
 
@@ -677,7 +677,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
 
     open func showCharacterCounterLabel(with maximum: Int? = nil) {
         hasCounterLabel = true
-        let characters = (text != nil) ? text!.characters.count : 0
+        let characters = text?.count ?? 0
         if let maximumValue = maximum {
             counterLabel.text = "\(characters)/\(maximumValue)"
         } else {

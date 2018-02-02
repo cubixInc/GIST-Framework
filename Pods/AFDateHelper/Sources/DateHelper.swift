@@ -1,7 +1,7 @@
 //
 //  AFDateHelper.swift
 //  https://github.com/melvitax/DateHelper
-//  Version 4.2.6
+//  Version 4.2.7
 //
 //  Created by Melvin Rivera on 7/15/14.
 //  Copyright (c) 2014. All rights reserved.
@@ -31,7 +31,11 @@ public extension Date {
                 guard let match = regex.firstMatch(in: string, range: NSRange(location: 0, length: string.utf16.count)) else {
                     return nil
                 }
+                 #if swift(>=4.0)
                 let dateString = (string as NSString).substring(with: match.range(at: 1))
+                #else
+                let dateString = (string as NSString).substring(with: match.rangeAt(1))
+                #endif
                 let interval = Double(dateString)! / 1000.0
                 self.init(timeIntervalSince1970: interval)
                 return
@@ -358,15 +362,14 @@ public extension Date {
     
     // MARK: Date for...
     
-    func dateFor(_ type:DateForType) -> Date {
+    func dateFor(_ type:DateForType, calendar:Calendar = Calendar.current) -> Date {
         switch type {
         case .startOfDay:
             return adjust(hour: 0, minute: 0, second: 0)
         case .endOfDay:
             return adjust(hour: 23, minute: 59, second: 59)
         case .startOfWeek:
-            let offset = component(.weekday)!-1
-            return adjust(.day, offset: -(offset))
+            return calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
         case .endOfWeek:
             let offset = 7 - component(.weekday)!
             return adjust(.day, offset: offset)

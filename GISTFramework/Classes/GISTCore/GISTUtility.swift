@@ -246,12 +246,10 @@ public class GISTUtility: NSObject {
             return false;
         }
         
-        for chr in text!.characters {
-            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
-                return false
-            }
-        }
-        return true;
+        let regexURL: String = ".*[^A-Za-z ].*"
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regexURL)
+        
+        return predicate.evaluate(with: text)
     } //F.E.
     
     /// Validate String for minimum character limit.
@@ -264,7 +262,7 @@ public class GISTUtility: NSObject {
             return false;
         }
         
-        return (text!.utf16.count >= noOfChar);
+        return (text!.count >= noOfChar);
     } //F.E.
     
     /// Validate String for maximum character limit.
@@ -277,7 +275,7 @@ public class GISTUtility: NSObject {
             return false;
         }
         
-        return (text!.utf16.count <= noOfChar);
+        return (text!.count <= noOfChar);
     } //F.E.
     
     /// Validate String for mininum value entered.

@@ -34,7 +34,18 @@ public final class PhoneNumberKit: NSObject {
     ///   - ignoreType: Avoids number type checking for faster performance.
     /// - Returns: PhoneNumber object.
     public func parse(_ numberString: String, withRegion region: String = PhoneNumberKit.defaultRegionCode(), ignoreType: Bool = false) throws -> PhoneNumber {
-        return try parseManager.parse(numberString, withRegion: region, ignoreType: ignoreType)
+
+        var numberStringWithPlus = numberString
+
+        do {
+            return try parseManager.parse(numberString, withRegion: region, ignoreType: ignoreType)
+        } catch  {
+            if (numberStringWithPlus.first != "+"){
+                numberStringWithPlus = "+" + numberStringWithPlus
+            }
+        }
+        
+        return try parseManager.parse(numberStringWithPlus, withRegion: region, ignoreType: ignoreType)
     }
         
     /// Parses an array of number strings. Optimised for performance. Invalid numbers are ignored in the resulting array
@@ -44,8 +55,8 @@ public final class PhoneNumberKit: NSObject {
     /// - parameter ignoreType:   Avoids number type checking for faster performance.
     ///
     /// - returns: array of PhoneNumber objects.
-    public func parse(_ numberStrings: [String], withRegion region: String = PhoneNumberKit.defaultRegionCode(), ignoreType: Bool = false) -> [PhoneNumber] {
-        return parseManager.parseMultiple(numberStrings, withRegion: region, ignoreType: ignoreType)
+    public func parse(_ numberStrings: [String], withRegion region: String = PhoneNumberKit.defaultRegionCode(), ignoreType: Bool = false, shouldReturnFailedEmptyNumbers: Bool = false) -> [PhoneNumber] {
+        return parseManager.parseMultiple(numberStrings, withRegion: region, ignoreType: ignoreType, shouldReturnFailedEmptyNumbers: shouldReturnFailedEmptyNumbers)
     }
     
     // MARK: Formatting

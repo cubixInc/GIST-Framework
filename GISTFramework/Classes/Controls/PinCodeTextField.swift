@@ -190,20 +190,20 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
     }
     
     func character(atIndex i: Int) -> Character? {
-        let inputTextCount = text?.characters.count ?? 0
+        let inputTextCount = text?.count ?? 0
         let character: Character?
         if i < inputTextCount {
             let string = text ?? ""
-            character = isSecureTextEntry ? "•" : string[string.characters.index(string.startIndex, offsetBy: i)]
+            character = isSecureTextEntry ? "•" : string[string.index(string.startIndex, offsetBy: i)]
         } else {
-            character = self.placeholder?.characters.first
+            character = self.placeholder?.first
         }
         
         return character
     }
     
     private func isPlaceholder(_ i: Int) -> Bool {
-        let inputTextCount = text?.characters.count ?? 0
+        let inputTextCount = text?.count ?? 0
         return i >= inputTextCount
     }
     
@@ -267,18 +267,13 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
         let newText = text.map { $0 + character } ?? character
         let isNewline = character.hasOnlyNewlineSymbols
         let isCharacterMatchingCharacterSet = character.trimmingCharacters(in: allowedCharacterSet).isEmpty
-        let isLengthWithinLimit = newText.characters.count <= characterLimit
+        let isLengthWithinLimit = newText.count <= characterLimit
         return !isNewline && isCharacterMatchingCharacterSet && isLengthWithinLimit
     }
     
     //UIKeyInput Delegate Methods and Properties
     public var hasText: Bool {
-        if let text = text {
-            return !text.isEmpty
-        }
-        else {
-            return false
-        }
+        return text?.isEmpty ?? false
     }
     
     public var isSecureTextEntry: Bool {
@@ -302,7 +297,7 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
             let newText = text.map { $0 + charToInsert } ?? charToInsert
             text = newText
             _delegate?.textFieldValueChanged?(self)
-            if (newText.characters.count == characterLimit) {
+            if (newText.count == characterLimit) {
                 if (_delegate?.textFieldShouldEndEditing?(self) ?? true) {
                     let _ = resignFirstResponder()
                 }
@@ -312,7 +307,7 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
     
     public func deleteBackward() {
         guard hasText else { return }
-        text?.characters.removeLast()
+        text?.removeLast()
         _delegate?.textFieldValueChanged?(self)
     }
     

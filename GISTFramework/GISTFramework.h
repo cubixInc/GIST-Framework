@@ -2,8 +2,8 @@
 //  GISTFramework.h
 //  GISTFramework
 //
-//  Created by Shoaib Abdul on 14/06/2016.
-//  Copyright © 2016 Social Cubix. All rights reserved.
+//  Created by Shoaib on 2/2/18.
+//  Copyright © 2018 Shoaib. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

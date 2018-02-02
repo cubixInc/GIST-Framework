@@ -270,7 +270,7 @@ open class BaseUITextView: UITextView, BaseView {
     private func updatePlaceholderState() {
         //Checking if _lblPlaceholder is initialized or not
         if (_lblPlaceholder != nil) {
-            self.lblPlaceholder.isHidden = (self.text.characters.count > 0);
+            self.lblPlaceholder.isHidden = (self.text.count > 0);
         }
     } //F.E.
     

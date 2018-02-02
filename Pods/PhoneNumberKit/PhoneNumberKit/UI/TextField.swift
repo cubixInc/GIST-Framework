@@ -87,6 +87,14 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
             return partialFormatter.currentRegion
         }
     }
+    
+    public var nationalNumber: String {
+        get {
+            let rawNumber = self.text ?? String()
+            return partialFormatter.nationalNumber(from: rawNumber)
+        }
+    }
+    
     public var isValidNumber: Bool {
         get {
             let rawNumber = self.text ?? String()
@@ -210,7 +218,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
         let changedRange = textAsNSString.substring(with: range) as NSString
         let modifiedTextField = textAsNSString.replacingCharacters(in: range, with: string)
         
-        let filteredCharacters = modifiedTextField.characters.filter {
+        let filteredCharacters = modifiedTextField.filter {
             return  String($0).rangeOfCharacter(from: (textField as! PhoneNumberTextField).nonNumericSet as CharacterSet) == nil
         }
         let rawNumberString = String(filteredCharacters)
