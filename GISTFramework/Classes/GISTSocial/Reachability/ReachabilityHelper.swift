@@ -95,7 +95,7 @@ public class ReachabilityHelper: NSObject {
                 var newFrame = self.internetConnectionLbl.frame;
                 
                 if (_internetConnectionLabelHidden == true) {
-                    newFrame.origin.y = -64;
+                    newFrame.origin.y = -(44 + UIApplication.shared.statusBarFrame.height);
                 } else {
                     newFrame.origin.y = 0;
                     
