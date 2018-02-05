@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		486881A72028854100236058 /* Gradient+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486881A62028854100236058 /* Gradient+Utility.swift */; };
 		48EF2E3A20248F92000B4925 /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 48EF2E3820248F92000B4925 /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48EF2EB7202490FE000B4925 /* BaseLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E42202490FE000B4925 /* BaseLayoutConstraint.swift */; };
 		48EF2EB8202490FE000B4925 /* BaseSeperatorLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E43202490FE000B4925 /* BaseSeperatorLayoutConstraint.swift */; };
@@ -112,6 +113,7 @@
 
 /* Begin PBXFileReference section */
 		1386186C18B1E3B84FF8A4E5 /* Pods-GISTFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISTFramework/Pods-GISTFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		486881A62028854100236058 /* Gradient+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gradient+Utility.swift"; sourceTree = "<group>"; };
 		48EF2E3520248F92000B4925 /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EF2E3820248F92000B4925 /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
 		48EF2E3920248F92000B4925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 		48EF2E7B202490FE000B4925 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				486881A62028854100236058 /* Gradient+Utility.swift */,
 				48EF2E7C202490FE000B4925 /* Array+Utility.swift */,
 				48EF2E7D202490FE000B4925 /* CLPlacemark+Utility.swift */,
 				48EF2E7E202490FE000B4925 /* Data+Utility.swift */,
@@ -656,6 +659,7 @@
 				48EF2EFD202490FE000B4925 /* UIView+Utility.swift in Sources */,
 				48EF2EF6202490FE000B4925 /* UIFont+Utility.swift in Sources */,
 				48EF2ED9202490FE000B4925 /* AnimatedTextInputFieldConfigurator.swift in Sources */,
+				486881A72028854100236058 /* Gradient+Utility.swift in Sources */,
 				48EF2EFC202490FE000B4925 /* UIView+Sync.swift in Sources */,
 				48EF2EB7202490FE000B4925 /* BaseLayoutConstraint.swift in Sources */,
 				48EF2EF3202490FE000B4925 /* String+Utility.swift in Sources */,
