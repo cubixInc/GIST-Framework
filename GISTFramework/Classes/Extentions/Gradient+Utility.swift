@@ -8,9 +8,29 @@
 
 import UIKit
 
+public extension UIView {
+    
+    public func applyGradient(_ colors:[UIColor], type:GradientType, locations:[NSNumber]? = nil) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.bounds
+        
+        gradientLayer.colors = colors.map { (c) -> CGColor in
+            return c.cgColor
+        }
+
+        gradientLayer.setGradient(type);
+        gradientLayer.locations = locations;
+        
+        
+        self.layer.addSublayer(gradientLayer);
+    } //F.E.
+    
+    
+} //F.E.
+
 public extension CAGradientLayer {
     
-    public func setGradient(for type:GradientType) {
+    public func setGradient(_ type:GradientType) {
         let points = type.points();
         
         self.startPoint = points.start;
