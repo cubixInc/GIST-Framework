@@ -21,8 +21,7 @@ public extension UIView {
         gradientLayer.setGradient(type);
         gradientLayer.locations = locations;
         
-        
-        self.layer.addSublayer(gradientLayer);
+        self.layer.insertSublayer(gradientLayer, at: 0);
     } //F.E.
     
     
