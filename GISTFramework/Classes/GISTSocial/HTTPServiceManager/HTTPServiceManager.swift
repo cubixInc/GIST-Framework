@@ -359,7 +359,9 @@ open class HTTPServiceManager: NSObject {
     } //F.E.
     
     fileprivate func requestDidSucceedWithData(httpRequest:HTTPRequest, data:Any?) {
-        httpRequest.didSucceedWithData(data: data);
+        DispatchQueue.main.async {
+            httpRequest.didSucceedWithData(data: data);
+        }
         
         //Did Finish
         self.requestDidFinish(httpRequest: httpRequest);

@@ -124,9 +124,11 @@ public class GISTAuth<T:GISTUser>: NSObject {
     //MARK: - Verify Phone
     public static func verifyPhone(code:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
 
-        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = (usrData["new_mobile_no"] as? String ?? usrData["mobile_no"] as? String), let verificationToken:String = usrData["verification_token"] as? String else {
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = usrData["mobile_no"] as? String, let verificationToken:String = usrData["verification_token"] as? String else {
             return;
         }
+        
+        let newMobileNo:String = usrData["new_mobile_no"] as? String ?? "";
         
         let isVerified:Bool = (usrData["is_verified"] as? Bool) ?? false;
         let userId:Int? = usrData[USER_ID] as? Int;
@@ -135,7 +137,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
         
         var aParams:[String:Any] = params ?? [:];
         
-        aParams["mobile_no"] = mobileNo;
+        aParams["mobile_no"] = (newMobileNo != "") ? newMobileNo : mobileNo;
         aParams["authy_code"] = code;
         aParams["verification_token"] = verificationToken;
         aParams["verification_mode"] = verificationMode;
@@ -145,18 +147,20 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     public static func resendCode(additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = (usrData["new_mobile_no"] as? String ?? usrData["mobile_no"] as? String) else {
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = usrData["mobile_no"] as? String else {
             return;
         }
         
+        let newMobileNo:String = usrData["new_mobile_no"] as? String ?? "";
+        
         var aParams:[String:Any] = params ?? [:];
-        aParams["mobile_no"] = mobileNo;
+        aParams["mobile_no"] = (newMobileNo != "") ? newMobileNo : mobileNo;
         
         self.request(service: RESEND_CODE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Forgot Password
-    public static func forgotPassword(fields:ValidatedTextInput ..., additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func forgotPassword(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: FORGOT_PASSWORD_REQUEST, fields: fields, additional: params, completion: completion, failure: failure);
     } //F.E.
     
@@ -245,6 +249,10 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     private static func request(service:String, params:[String:Any], completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
+        
+        if (service == SIGN_UP_REQUEST || service == SIGN_IN_REQUEST ||  service == MOBILE_SIGN_UP_REQUEST || service == SOCIAL_SIGN_IN_REQUEST || service == FORGOT_PASSWORD_REQUEST) {
+            self.signOut();
+        }
         
         var uParams:[String:Any] = params;
                 
