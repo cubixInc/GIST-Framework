@@ -10,18 +10,21 @@ import UIKit
 
 public extension UIView {
     
-    public func applyGradient(_ colors:[UIColor], type:GradientType, locations:[NSNumber]? = nil) {
+    public func applyGradient(_ colors:[UIColor], type:GradientType, locations:[NSNumber]? = nil) -> CAGradientLayer{
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         
         gradientLayer.colors = colors.map { (c) -> CGColor in
             return c.cgColor
         }
-
+        
         gradientLayer.setGradient(type);
         gradientLayer.locations = locations;
         
-        self.layer.insertSublayer(gradientLayer, at: 0);
+        
+        self.layer.addSublayer(gradientLayer);
+        
+        return gradientLayer;
     } //F.E.
     
     
