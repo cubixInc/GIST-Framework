@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - Extension for UISearchBar to get textField instance
-extension UISearchBar {
+public extension UISearchBar {
     var textField: UITextField? {
         get {
             return self.value(forKey: "_searchField") as? UITextField
