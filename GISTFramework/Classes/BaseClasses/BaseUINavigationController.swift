@@ -39,10 +39,15 @@ open class BaseUINavigationController: UINavigationController {
     @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
             var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
-            
             attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-            
             self.navigationBar.titleTextAttributes = attrDict;
+            
+            if #available(iOS 11.0, *) {
+                attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
+                self.navigationBar.largeTitleTextAttributes = attrDict
+            } else {
+                // Fallback on earlier versions
+            };
         }
     } //P.E.
     
@@ -50,10 +55,22 @@ open class BaseUINavigationController: UINavigationController {
     @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
             var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
-             
             attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-            
             self.navigationBar.titleTextAttributes = attrDict;
+        }
+    } //P.E.
+    
+    @IBInspectable open var largeFontStyle:String = GIST_CONFIG.largeFontStyle {
+        didSet {
+
+            if #available(iOS 11.0, *) {
+                var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedStringKey : Any]()
+                attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
+                
+                self.navigationBar.largeTitleTextAttributes = attrDict
+            } else {
+                // Fallback on earlier versions
+            };
         }
     } //P.E.
     
@@ -61,10 +78,15 @@ open class BaseUINavigationController: UINavigationController {
     @IBInspectable open var fontColor:String? = nil {
         didSet {
             var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes ?? [NSAttributedStringKey : Any]();
-             
             attrDict[NSAttributedStringKey.foregroundColor] = SyncedColors.color(forKey: fontColor);
-            
             self.navigationBar.titleTextAttributes = attrDict;
+            
+            if #available(iOS 11.0, *) {
+                var lAttrDict:[NSAttributedStringKey : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedStringKey : Any]()
+                lAttrDict[NSAttributedStringKey.foregroundColor] = SyncedColors.color(forKey: fontColor);
+                
+                self.navigationBar.largeTitleTextAttributes = lAttrDict
+            }
         }
     } //P.E.
     
@@ -147,6 +169,13 @@ open class BaseUINavigationController: UINavigationController {
         
         self.navigationBar.titleTextAttributes = attrDict;
         
+        if #available(iOS 11.0, *) {
+            var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
+            attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
+            
+            self.navigationBar.largeTitleTextAttributes = attrDict
+        }
+
         //Re-assigning if there are any changes from server
         
         if let newBgColor = bgColor {
