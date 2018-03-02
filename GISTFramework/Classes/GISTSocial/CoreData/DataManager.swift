@@ -190,7 +190,15 @@ public class DataManager: NSObject {
         
         var managedObj:NSManagedObject?;
         
-        let arr :[T] = DATA_MANAGER.fetchObjectsForEntityName(entityName, predicate: NSPredicate(format: "\(key)==\(value)"), descriptor: nil);
+        let predicate:NSPredicate
+        
+        if value is String {
+            predicate = NSPredicate(format: "\(key)=='\(value)'");
+        } else {
+            predicate = NSPredicate(format: "\(key)==\(value)");
+        }
+        
+        let arr :[T] = DATA_MANAGER.fetchObjectsForEntityName(entityName, predicate: predicate, descriptor: nil);
         
         managedObj = arr.first;
         
