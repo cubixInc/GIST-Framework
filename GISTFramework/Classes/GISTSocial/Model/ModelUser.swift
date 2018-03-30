@@ -11,7 +11,6 @@ import ObjectMapper
 
 ///ModelUser User
 public class ModelUser:NSObject, GISTUser {
-    public var clientToken: String?;
     public var deviceToken: String?;
     public var email: String?;
     public var isEmailVerified: Bool?;
@@ -44,7 +43,6 @@ public class ModelUser:NSObject, GISTUser {
     public func mapping(map: Map) {
         userId <- map[USER_ID];
         
-        clientToken <- map["client_token"];
         deviceToken <- map["device_token"];
         email <- map["email"];
         isEmailVerified <- map["is_email_verified"];
@@ -68,7 +66,6 @@ public class ModelUser:NSObject, GISTUser {
     required public init(coder aDecoder: NSCoder) {
         userId = aDecoder.decodeObject(forKey: USER_ID) as? Int;
         
-        clientToken = aDecoder.decodeObject(forKey: "client_token") as? String;
         deviceToken = aDecoder.decodeObject(forKey: "device_token") as? String;
         email = aDecoder.decodeObject(forKey: "email") as? String;
         isEmailVerified = aDecoder.decodeObject(forKey: "is_email_verified") as? Bool;
@@ -94,7 +91,6 @@ public class ModelUser:NSObject, GISTUser {
     public func encodeWithCoder(_ aCoder: NSCoder) {
         aCoder.encode(userId, forKey: USER_ID);
         
-        aCoder.encode(clientToken, forKey: "client_token");
         aCoder.encode(deviceToken, forKey: "device_token");
         aCoder.encode(email, forKey: "email");
         aCoder.encode(isEmailVerified, forKey: "is_email_verified");
@@ -123,7 +119,6 @@ public class ModelUser:NSObject, GISTUser {
     public func clone() -> ModelUser {
         let instance:ModelUser = ModelUser();
         
-        instance.clientToken = self.clientToken;
         instance.deviceToken = self.deviceToken;
         instance.email = self.email;
         instance.isEmailVerified = self.isEmailVerified;
@@ -152,7 +147,6 @@ public class ModelUser:NSObject, GISTUser {
         let map:NSMutableDictionary = NSMutableDictionary();
         map[USER_ID] = self.reverseMap(userId);
         
-        map["client_token"] = self.reverseMap(clientToken);
         map["device_token"] = self.reverseMap(deviceToken);
         map["email"] = self.reverseMap(email);
         map["is_email_verified"] = self.reverseMap(isEmailVerified);

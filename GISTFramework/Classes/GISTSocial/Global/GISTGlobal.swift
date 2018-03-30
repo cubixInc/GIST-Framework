@@ -47,6 +47,33 @@ public class GISTGlobal: NSObject {
         }
     } //P.E.
     
+    
+    private var _accessToken:String?
+    internal var accessToken:String? {
+        set {
+            _accessToken = newValue;
+
+            if _accessToken != nil {
+                UserDefaults.standard.set(_accessToken!, forKey: "ACCESS_TOKEN");
+                UserDefaults.standard.synchronize();
+            } else {
+                UserDefaults.standard.removeObject(forKey: "ACCESS_TOKEN")
+            }
+        }
+        
+        get {
+            guard _userData != nil else {
+                return nil;
+            }
+            
+            if _accessToken == nil {
+                _accessToken = UserDefaults.standard.string(forKey: "ACCESS_TOKEN");
+            }
+            
+            return _accessToken;
+        }
+    } //P.E.
+    
     private var _hasAskedForApnsPermission:Bool?
     public var hasAskedForApnsPermission:Bool {
         get {
@@ -71,8 +98,18 @@ public class GISTGlobal: NSObject {
     
     private var _user:GISTUser?;
     public func getUser<T:GISTUser>() -> T? {
-        guard let usrData = userData, let _:Int = usrData[USER_ID] as? Int else {
+        guard let usrData = userData else {
             return nil;
+        }
+        
+        if HTTPServiceManager.sharedInstance.microService {
+            guard self.accessToken != nil else {
+                return nil;
+            }
+        } else {
+            guard let _:Int = usrData[USER_ID] as? Int else {
+                return nil;
+            }
         }
         
         if (_user == nil && _userData != nil) {

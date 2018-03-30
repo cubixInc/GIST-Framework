@@ -118,8 +118,8 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    public static func initialize(_ urlToSync:String, authorizationHandler: @autoclosure @escaping ()->(name:String, password:String)) {
-        SyncEngine.sharedInstance.initialize(urlToSync, authorizationHandler: authorizationHandler);
+    public static func initialize(_ urlToSync:String, headers:[String:String]?) {
+        SyncEngine.sharedInstance.initialize(urlToSync, headers: headers);
     } //F.E.
     
     /// Initializer for Sync Engine.
@@ -127,19 +127,19 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    private func initialize(_ urlToSync:String, authorizationHandler:(()->(name:String, password:String))?) {
+    private func initialize(_ urlToSync:String, headers:[String:String]?) {
         _urlToSync = URL(string: urlToSync);
         
         //Adding Language Key
         _headers["language"] = GIST_CONFIG.currentLanguageCode;
         
         //Security Headers
-        if let authHeader = authorizationHandler?(), let data = "\(authHeader.name):\(authHeader.password)".data(using: .utf8) {
-            
-            let credential = data.base64EncodedString(options: [])
-            
-            _headers["Authorization"] = "Basic \(credential)";
+        if let dictHeaders:[String:String] = headers {
+            for header in dictHeaders {
+                _headers[header.key] = header.value;
+            }
         }
+        
     } //F.E.
     
     private func setupSyncedFile() {

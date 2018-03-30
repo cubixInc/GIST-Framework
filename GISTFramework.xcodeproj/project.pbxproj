@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		486881A72028854100236058 /* Gradient+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486881A62028854100236058 /* Gradient+Utility.swift */; };
+		4871B5C1206D3518006332FB /* GISTMicroAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4871B5C0206D3518006332FB /* GISTMicroAuth.swift */; };
 		48EF2E3A20248F92000B4925 /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 48EF2E3820248F92000B4925 /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48EF2EB7202490FE000B4925 /* BaseLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E42202490FE000B4925 /* BaseLayoutConstraint.swift */; };
 		48EF2EB8202490FE000B4925 /* BaseSeperatorLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E43202490FE000B4925 /* BaseSeperatorLayoutConstraint.swift */; };
@@ -114,6 +115,7 @@
 /* Begin PBXFileReference section */
 		1386186C18B1E3B84FF8A4E5 /* Pods-GISTFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISTFramework/Pods-GISTFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		486881A62028854100236058 /* Gradient+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gradient+Utility.swift"; sourceTree = "<group>"; };
+		4871B5C0206D3518006332FB /* GISTMicroAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTMicroAuth.swift; sourceTree = "<group>"; };
 		48EF2E3520248F92000B4925 /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EF2E3820248F92000B4925 /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
 		48EF2E3920248F92000B4925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				48EF2E9A202490FE000B4925 /* GISTAuth.swift */,
+				4871B5C0206D3518006332FB /* GISTMicroAuth.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				48EF2F14202490FE000B4925 /* TutorialView.swift in Sources */,
 				48EF2F15202490FE000B4925 /* SyncedColors.swift in Sources */,
 				48EF2EB8202490FE000B4925 /* BaseSeperatorLayoutConstraint.swift in Sources */,
+				4871B5C1206D3518006332FB /* GISTMicroAuth.swift in Sources */,
 				48EF2EE9202490FE000B4925 /* UIRadioButton.swift in Sources */,
 				48EF2ED6202490FE000B4925 /* AnimatedLine.swift in Sources */,
 				48EF2ECF202490FE000B4925 /* BaseUITableViewController.swift in Sources */,

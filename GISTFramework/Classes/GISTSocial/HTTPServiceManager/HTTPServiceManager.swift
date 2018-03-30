@@ -35,6 +35,24 @@ open class HTTPServiceManager: NSObject {
             if (entityFramework == true) {
                 userIdKey = "entity_id";
                 authenticationModule = "entity_auth"
+            } else if (microService == true) {
+                userIdKey = "NOT_DEFINED";
+                authenticationModule = "user"
+            } else {
+                userIdKey = "user_id";
+                authenticationModule = "users"
+            }
+        }
+    } //P.E.
+    
+    public var microService:Bool = false {
+        didSet {
+            if (microService == true) {
+                userIdKey = "NOT_DEFINED";
+                authenticationModule = "user"
+            } else if (entityFramework == true) {
+                userIdKey = "entity_id";
+                authenticationModule = "entity_auth"
             } else {
                 userIdKey = "user_id";
                 authenticationModule = "users"
@@ -57,41 +75,29 @@ open class HTTPServiceManager: NSObject {
     fileprivate override init() {}
     
     //MARK: - Initialize
-    open class func initialize(serverBaseURL:String) {
-        self.sharedInstance.initialize(serverBaseURL: serverBaseURL, authorizationHandler:nil);
+    open class func initialize(serverBaseURL:String, headers:[String:String]?) {
+        self.sharedInstance.initialize(serverBaseURL: serverBaseURL, headers:headers, authorizationHandler:nil);
     } //F.E.
     
-    open class func initialize(serverBaseURL:String, authorizationHandler: @autoclosure @escaping ()->(name:String, password:String)) {
-        self.sharedInstance.initialize(serverBaseURL: serverBaseURL, authorizationHandler: authorizationHandler);
+    open class func initialize(serverBaseURL:String, headers:[String:String]?, authorizationHandler: @autoclosure @escaping ()->(name:String, password:String)) {
+        self.sharedInstance.initialize(serverBaseURL: serverBaseURL, headers:headers, authorizationHandler: authorizationHandler);
     } //F.E.
     
-    fileprivate func initialize(serverBaseURL:String, authorizationHandler:(()->(name:String, password:String))?) {
+    fileprivate func initialize(serverBaseURL:String, headers:[String:String]?, authorizationHandler:(()->(name:String, password:String))?) {
         //Base Server URL
         _serverBaseURL = URL(string: serverBaseURL)!;
         
         let urlToSync:String = _serverBaseURL.appendingPathComponent("se/get_all").absoluteString;
         
-        guard let authHeader = authorizationHandler?() else {
-            return;
-        }
-        
-        //Security Headers
-        self.authorizationHeader(user: authHeader.name, password: authHeader.password);
-        
-        //Initializing Sync Engine
-        SyncEngine.initialize(urlToSync, authorizationHandler: (name: authHeader.name, password: authHeader.password));
-        
-    } //F.E.
-    
-    //MARK: - Authorization Handling
-    open class func authorizationHeader(user: String, password: String) {
-        HTTPServiceManager.sharedInstance.authorizationHeader(user: user, password: password);
-    } //F.E.
-    
-    fileprivate func authorizationHeader(user: String, password: String) {
-        if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
+        //Http Header
+        _headers = headers ?? [:];
+
+        if let authHeader = authorizationHandler?(), let authorizationHeader = Request.authorizationHeader(user: authHeader.name, password: authHeader.password) {
+            
             _headers[authorizationHeader.key] = authorizationHeader.value;
         }
+            
+        SyncEngine.initialize(urlToSync, headers: _headers);
     } //F.E.
     
     //MARK: - Progress Bar Handling
@@ -506,28 +512,26 @@ open class HTTPRequest:NSObject {
         super.init();
         
         self.requestName = requestName;
-        self.parameters = parameters;
+        self.parameters = parameters ?? [:];
         self.method = method;
-        self.headers = headers;
+        self.headers = headers ?? [:];
 
-        //Default Params
-        if (self.parameters != nil) {
-            self.parameters!["mobile_json"] = true;
-        } else {
-            self.parameters = ["mobile_json":true];
+        //Access token
+        if let accessToken:String = GIST_GLOBAL.accessToken {
+            self.headers?["access_token"] = accessToken;
         }
         
-        //Client Token
-        if let clientToken:String = GIST_GLOBAL.userData?["client_token"] as? String {
-            self.headers?["client_token"] = clientToken;
+        if (HTTPServiceManager.sharedInstance.entityFramework) {
+            //Default Params
+            self.parameters?["mobile_json"] = true;
+            
+            // Entity Id & Actor ID
+            if let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int {
+                self.headers?[USER_ID] = "\(userId)";
+                self.parameters?["actor_user_id"] = userId;
+            }
         }
-        
-        // Entity Id & Actor ID
-        if let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int {
-            self.headers?[USER_ID] = "\(userId)";
-            self.parameters?["actor_user_id"] = userId;
-        }
-        
+
         //Adding Language Key
         self.headers?["language"] = GIST_CONFIG.currentLanguageCode;
     } //C.E.

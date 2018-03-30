@@ -148,23 +148,33 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     
     //MARK: - Save Token
     private func savePushToken() {
-        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let token:String = GIST_GLOBAL.deviceToken, let userId:Int = usrData[USER_ID] as? Int else {
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let token:String = GIST_GLOBAL.deviceToken else {
             return;
         }
         
-        let params:[String:Any] = [
+        var params:[String:Any] = [
             "device_token":token,
-            "device_type":"ios",
-            USER_ID:userId
+            "device_type":"ios"
         ]
         
-        let requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(SAVE_TOKEN_REQUEST)";
+        if let userId:Int = usrData[USER_ID] as? Int {
+            params[USER_ID] = userId;
+        }
+
+        let requestName:String;
+        
+        if (HTTPServiceManager.sharedInstance.microService) {
+            requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/update";
+        } else {
+            requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(SAVE_TOKEN_REQUEST)";
+        }
+        
         let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: requestName, parameters: params, delegate: nil);
         
         httpRequest.onSuccess { (rawData:Any?) in
             print("Device Token Saved ...");
         };
-        
+
     } //F.E.
     
     //MARK: - Deep Linking

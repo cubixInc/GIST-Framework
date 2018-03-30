@@ -121,6 +121,8 @@ open class BaseUINavigationController: UINavigationController {
     
     private var _lastSyncedDate:String?
     
+    private (set) var _completion:((Bool, Any?) -> Void)?
+    
     //MARK: - Constructors
     
     /// Overridden constructor to setup/ initialize components.
@@ -205,5 +207,14 @@ open class BaseUINavigationController: UINavigationController {
         } else {
             return false;
         }
+    } //F.E.
+    
+    //Completion Blocks
+    open func setOnCompletion(completion: @escaping (_ success:Bool, _ data:Any?) -> Void) {
+        _completion = completion;
+    } //F.E.
+    
+    open func completion(_ success:Bool, _ data:Any?) {
+        _completion?(success, data);
     } //F.E.
 } //F.E.
