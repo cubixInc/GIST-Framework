@@ -40,17 +40,15 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
     /// Extended proprty font for Segmented Controler Items
     open var font:UIFont? = nil {
         didSet {
-            self.setTitleTextAttributes([NSAttributedStringKey.font:self.font!], for: UIControlState());
+            self.setTitleTextAttributes([NSAttributedStringKey.font:self.font!], for: UIControlState.normal);
+            self.setTitleTextAttributes([NSAttributedStringKey.font:self.font!], for: UIControlState.highlighted);
+            self.setTitleTextAttributes([NSAttributedStringKey.font:self.font!], for: UIControlState.disabled);
         }
     }
-    
-    private var _titleKey:String?;
     
     open override var title: String? {
         set {
             if let key:String = newValue , key.hasPrefix("#") == true{
-                 
-                _titleKey = key;  // holding key for using later
                 super.title = SyncedText.text(forKey: key);
             } else {
                 super.title = newValue;
@@ -90,8 +88,6 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
         //Updating text with synced data
         if let txt:String = self.title , txt.hasPrefix("#") == true {
             self.title = txt; // Assigning again to set value from synced data
-        } else if _titleKey != nil {
-            self.title = _titleKey
         }
         
         if (self.respectRTL && GISTUtility.isRTL) {

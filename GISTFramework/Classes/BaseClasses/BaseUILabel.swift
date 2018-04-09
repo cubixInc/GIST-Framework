@@ -103,7 +103,6 @@ open class BaseUILabel: UILabel, BaseView {
     
     @IBInspectable open var topAligned:Bool = false;
     
-    private var _textKey: String?
     override open var text: String? {
         get {
             return super.text;
@@ -111,8 +110,6 @@ open class BaseUILabel: UILabel, BaseView {
         
         set {
             if let key:String = newValue , key.hasPrefix("#") == true {
-                _textKey = key; // holding key for using later
-                
                 super.text = SyncedText.text(forKey: key);
             } else {
                 super.text = newValue;
@@ -183,8 +180,6 @@ open class BaseUILabel: UILabel, BaseView {
         //Updating text with synced data
         if let txt:String = self.text , txt.hasPrefix("#") == true {
             self.text = txt; // Assigning again to set value from synced data
-        } else if _textKey != nil {
-            self.text = _textKey;
         }
     } //F.E.
     

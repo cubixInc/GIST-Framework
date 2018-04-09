@@ -19,8 +19,6 @@ open class BaseUITableViewController: UITableViewController {
     private var _hasBackButton:Bool = true;
     private var _hasForcedBackButton = false;
     
-    private var _titleKey:String?;
-    
     /// Overriden title property to set title from SyncEngine (Hint '#' prefix).
     override open var title: String? {
         get {
@@ -29,8 +27,6 @@ open class BaseUITableViewController: UITableViewController {
         
         set {
             if let key:String = newValue , key.hasPrefix("#") == true {
-                _titleKey = key;  // holding key for using later
-                
                 super.title = SyncedText.text(forKey: key);
             } else {
                 super.title = newValue;

@@ -51,8 +51,6 @@ open class BaseUISegmentedControl: UISegmentedControl, BaseView {
         }
     };
 
-    private var _titleKeys:[Int:String] = [Int:String]();
-    
     /// Overridden constructor to setup/ initialize components.
     ///
     /// - Parameter items: Segment Items
@@ -90,8 +88,6 @@ open class BaseUISegmentedControl: UISegmentedControl, BaseView {
     ///   - segment: Segment Index
     override open func setTitle(_ title: String?, forSegmentAt segment: Int) {
         if let key:String = title , key.hasPrefix("#") == true {
-             
-            _titleKeys[segment] = key;  // holding key for using later
             super.setTitle(SyncedText.text(forKey: key), forSegmentAt: segment);
         } else {
             super.setTitle(title, forSegmentAt: segment);

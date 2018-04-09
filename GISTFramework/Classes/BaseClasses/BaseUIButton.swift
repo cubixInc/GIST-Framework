@@ -133,8 +133,6 @@ open class BaseUIButton: UIButton, BaseView {
         }
     } //P.E.
     
-    private var _titleKeys:[UInt:String] = [UInt:String]();
-    
     //MARK: - Constructors
     
     /// Overridden constructor to setup/ initialize components.
@@ -181,7 +179,6 @@ open class BaseUIButton: UIButton, BaseView {
     ///   - state: Button State
     override open func setTitle(_ title: String?, for state: UIControlState) {
         if let key:String = title , key.hasPrefix("#") == true{
-            _titleKeys[state.rawValue] = key;  // holding key for using later
             super.setTitle(SyncedText.text(forKey: key), for: state);
         } else {
             super.setTitle(title, for: state);
@@ -207,8 +204,6 @@ open class BaseUIButton: UIButton, BaseView {
             // Assigning again to set value from synced data
             if let txt:String = self.title(for: state), txt.hasPrefix("#") == true {
                 self.setTitle(txt, for: state);
-            } else if let txtKey:String = _titleKeys[state.rawValue] {
-                self.setTitle(txtKey, for: state);
             }
             
             if self.respectRTL, GISTUtility.isRTL, let img:UIImage = self.image(for: state) {
