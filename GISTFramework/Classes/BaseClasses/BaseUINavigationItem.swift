@@ -51,5 +51,15 @@ open class BaseUINavigationItem: UINavigationItem, BaseView {
     /// Overridden method to setup/ initialize components.
     open override func awakeFromNib() {
         super.awakeFromNib();
-    }
+        
+        self.commontInit();
+    } //F.E.
+    
+    /// Common initazier for setting up items.
+    private func commontInit() {
+        if let txt:String = self.title , txt.hasPrefix("#") == true {
+            self.title = txt; // Assigning again to set value from synced data
+        }
+    } //F.E.
+
 } //CLS END
