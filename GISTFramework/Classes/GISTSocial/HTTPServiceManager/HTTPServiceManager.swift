@@ -172,23 +172,27 @@ open class HTTPServiceManager: NSObject {
     
     //MARK: - Requests Handling
     @discardableResult open class func request(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.request(requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate);
+        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate);
     }
     
     @discardableResult open class func request(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.request(requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate);
+        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate);
     } //F.E.
     
     @discardableResult open class func request(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return HTTPServiceManager.sharedInstance.request(requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
+        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
     } //F.E.
     
-    fileprivate func request(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+    @discardableResult open class func request(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+        return HTTPServiceManager.sharedInstance.request(serviceBaseURL:serviceBaseURL, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
+    } //F.E.
+    
+    fileprivate func request(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
         
         assert(_serverBaseURL != nil, "HTTPServiceManager.initialize(serverBaseURL: authorizationHandler:) not called.");
         
         let httpRequest:HTTPRequest = HTTPRequest(requestName: requestName, parameters: parameters, method: method, headers: _headers);
-        
+        httpRequest.serverBaseURL = serviceBaseURL;
         httpRequest.delegate = delegate;
         httpRequest.hasProgressHUD = showHud;
         
@@ -218,23 +222,27 @@ open class HTTPServiceManager: NSObject {
     
     //MARK: - Multipart Requests Handling
     @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.multipartRequest(requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate);
+        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate);
     } //F.E.
     
     @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.multipartRequest(requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate);
+        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate);
     } //F.E.
     
     @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return HTTPServiceManager.sharedInstance.multipartRequest(requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
+        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
     } //F.E.
     
-    fileprivate func multipartRequest(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+    @discardableResult open class func multipartRequest(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+        return HTTPServiceManager.sharedInstance.multipartRequest(serviceBaseURL:serviceBaseURL, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
+    } //F.E.
+    
+    fileprivate func multipartRequest(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
         
         assert(_serverBaseURL != nil, "HTTPServiceManager.initialize(serverBaseURL: authorizationHandler:) not called.");
         
         let httpRequest:HTTPRequest = HTTPRequest(requestName: requestName, parameters: parameters, method: method, headers: _headers);
-        
+        httpRequest.serverBaseURL = serviceBaseURL;
         httpRequest.delegate = delegate;
         httpRequest.hasProgressHUD = showHud;
         
@@ -457,13 +465,16 @@ open class HTTPRequest:NSObject {
     open var requestName:String!
     open var parameters:Parameters?
     open var method:HTTPMethod = .post
+    open var serverBaseURL:URL?
     
     fileprivate var _urlString:String?
     open var urlString:String {
         get {
             
             if (_urlString == nil) {
-                _urlString = HTTPServiceManager.serverBaseURL.appendingPathComponent(requestName).absoluteString;
+                _urlString = self.serverBaseURL != nil ?
+                    self.serverBaseURL!.appendingPathComponent(requestName).absoluteString:
+                    HTTPServiceManager.serverBaseURL.appendingPathComponent(requestName).absoluteString;
             }
             
             return _urlString!;
