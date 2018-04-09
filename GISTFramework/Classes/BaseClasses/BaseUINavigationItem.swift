@@ -51,18 +51,5 @@ open class BaseUINavigationItem: UINavigationItem, BaseView {
     /// Overridden method to setup/ initialize components.
     open override func awakeFromNib() {
         super.awakeFromNib();
-         
-        self.updateView();
     }
-    
-    //MARK: - Methods
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView() {
-        if let txt:String = self.title , txt.hasPrefix("#") == true {
-            self.title = txt; // Assigning again to set value from synced data
-        } else if _titleKey != nil {
-            self.title = _titleKey;
-        }
-    } //F.E.
 } //CLS END

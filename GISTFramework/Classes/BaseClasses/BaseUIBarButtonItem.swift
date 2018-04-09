@@ -98,14 +98,5 @@ open class BaseUIBarButtonItem: UIBarButtonItem, BaseView {
             super.image = self.image?.mirrored();
         }
     } //F.E.
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView(){
-        self.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-        
-        if let txtKey:String = _titleKey {
-            self.title = txtKey
-        }
-    } //F.E.
-    
+
 } //CLS END

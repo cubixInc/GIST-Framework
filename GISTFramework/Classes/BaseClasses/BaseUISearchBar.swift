@@ -241,41 +241,4 @@ open class BaseUISearchBar: UISearchBar, BaseView {
         }
     } //F.E.
 
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView() {
-        //Setting Font
-        if let txtField:UITextField = self.textField {
-            txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-        }
-        
-        //Re-assigning if there are any changes from server
-        if let plcHKey:String = _placeholderKey {
-            self.placeholder = plcHKey;
-        }
-        
-        if let bgCStyle:String = self.bgColorStyle {
-            self.bgColorStyle = bgCStyle;
-        }
-        
-        if let fBgCStyle:String = self.fontBgColorStyle {
-            self.fontBgColorStyle = fBgCStyle;
-        }
-        
-        if let borderCStyle:String = self.borderColorStyle {
-            self.borderColorStyle = borderCStyle;
-        }
-        
-        if let tCStyle = self.tintColorStyle {
-            self.tintColorStyle = tCStyle;
-        }
-        
-        if let tBCStyle = self.barTintColorStyle {
-            self.barTintColorStyle = tBCStyle;
-        }
-        
-        if let fntClrStyle = self.fontColorStyle {
-            self.fontColorStyle = fntClrStyle;
-        }
-    } //F.E.
-
 } //CLS END

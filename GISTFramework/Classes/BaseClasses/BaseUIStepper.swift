@@ -25,13 +25,4 @@ open class BaseUIStepper: UIStepper, BaseView {
         super.awakeFromNib()
     } //F.E.
     
-    //MARK: - Methods
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView(){
-        if let tintCStyle = self.tintColorStyle {
-            self.tintColorStyle = tintCStyle;
-        }
-    } //F.E.
-    
 } //CLS END

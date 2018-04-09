@@ -56,13 +56,6 @@ open class BaseUIDesignableButton: BaseUIButton {
         self.xibSetup(xibName: _xibName, viewIndex: _xibViewIndex);
     } //F.E.
     
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    override func updateView() {
-        super.updateView();
-         
-        (_view as? BaseView)?.updateView();
-    } //F.E.
-    
     //MARK: - Methods
     
     /// Setup Custom View

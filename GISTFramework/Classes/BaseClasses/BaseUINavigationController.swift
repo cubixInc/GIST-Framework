@@ -118,9 +118,7 @@ open class BaseUINavigationController: UINavigationController {
             }
         }
     } //P.E.
-    
-    private var _lastSyncedDate:String?
-    
+
     private (set) var _completion:((Bool, Any?) -> Void)?
     
     //MARK: - Constructors
@@ -152,8 +150,6 @@ open class BaseUINavigationController: UINavigationController {
     /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
-         
-         _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
 
     /// Overridden method to receive memory warning.
@@ -192,21 +188,6 @@ open class BaseUINavigationController: UINavigationController {
             self.fontColor = newFontColor;
         }
         
-    } //F.E.
-    
-    /// Recursive update of layout and content from Sync Engine.
-    @discardableResult func updateSyncedData() -> Bool {
-        if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
-            _lastSyncedDate = syncedDate;
-             
-            
-            //Update preference
-            self.updateAppearance();
-            
-            return true;
-        } else {
-            return false;
-        }
     } //F.E.
     
     //Completion Blocks

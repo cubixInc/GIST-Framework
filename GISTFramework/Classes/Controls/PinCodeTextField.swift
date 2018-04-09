@@ -127,9 +127,7 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
     }
     
     //MARK: Private
-    override func updateView() {
-        super.updateView();
-        
+    func updateView() {
         if (needToRecreateUnderlines()) {
             recreateUnderlines()
         }

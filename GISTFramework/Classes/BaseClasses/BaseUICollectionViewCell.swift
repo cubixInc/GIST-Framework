@@ -37,13 +37,6 @@ open class BaseUICollectionViewCell: UICollectionViewCell, UIViewControllerPrevi
         super.awakeFromNib()
     } //F.E.
     
-    /// Recursive update of layout and content from Sync Engine.
-    override func updateSyncedData() {
-        super.updateSyncedData();
-         
-        self.contentView.updateSyncedData();
-    } //F.E.
-    
     //MARK: - Methods
     
     /// This method should be called in cellForRowAt:indexPath. it also must be overriden in all sub classes of BaseUICollectionViewCell to update the collection view cell's content.
@@ -51,15 +44,8 @@ open class BaseUICollectionViewCell: UICollectionViewCell, UIViewControllerPrevi
     /// - Parameter data: Cell Data
     open func updateData(_ data:Any?) {
         _data = data;
-         
-        self.updateSyncedData();
     } //F.E.
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView() {
-        //DOING NOTHING FOR NOW
-    } //F.E.
-    
+
     //MARK: - UIViewControllerPreviewingDelegate protocol methods
     
     /// Protocol method for viewControllerForLocation (CGPoint)

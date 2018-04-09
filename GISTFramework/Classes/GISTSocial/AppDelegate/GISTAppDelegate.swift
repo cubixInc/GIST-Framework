@@ -62,6 +62,10 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
 
     open func applicationDidEnterBackground(_ application: UIApplication) {
         GISTApplication.sharedInstance.applicationDidEnterBackground(application);
+        
+        if SyncEngine.hasSyncDataUpdated {
+            exit(0);
+        }
     } //F.E.
 
     open func applicationWillEnterForeground(_ application: UIApplication) {

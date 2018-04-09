@@ -733,17 +733,6 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
     
     //MARK: - Methods
     
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView(){
-        if let bgCStyle:String = self.bgColorStyle {
-            self.bgColorStyle = bgCStyle;
-        }
-        
-        if let borderCStyle:String = self.borderColorStyle {
-            self.borderColorStyle = borderCStyle;
-        }
-    } //F.E.
-
     open func textInputDidBeginEditing(textInput: TextInput) {
         becomeFirstResponder()
         delegate?.animatedTextInputDidBeginEditing?(animatedTextInput: self)

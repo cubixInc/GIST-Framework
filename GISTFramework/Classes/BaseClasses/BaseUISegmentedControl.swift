@@ -111,23 +111,4 @@ open class BaseUISegmentedControl: UISegmentedControl, BaseView {
         }
     } //F.E.
     
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView(){
-        
-        //Re-assigning if there are any changes from server
-        if let bColorStyle = self.bgColorStyle {
-            self.bgColorStyle = bColorStyle;
-        }
-        
-        if let tColorStyle =  self.tintColorStyle {
-            self.tintColorStyle = tColorStyle;
-        }
-        
-        for i:Int in 0..<numberOfSegments {
-            if let key:String = _titleKeys[i] {
-                self.setTitle(key, forSegmentAt: i);
-            }
-        }
-    } //F.E.
-    
 } //CLS END

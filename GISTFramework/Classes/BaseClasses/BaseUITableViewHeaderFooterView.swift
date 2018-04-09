@@ -133,13 +133,6 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
         self.commonInit();
     } //F.E.
     
-    /// Recursive update of layout and content from Sync Engine.
-    override func updateSyncedData() {
-        super.updateSyncedData();
-         
-        self.contentView.updateSyncedData();
-    } //F.E.
-    
     //MARK: - Methods
     
     /// A common initializer to setup/initialize sub components.
@@ -148,33 +141,12 @@ open class BaseUITableViewHeaderFooterView: UITableViewHeaderFooterView, BaseVie
         
         self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.detailFontStyle, sizedForIPad: sizeForIPad);
     } //F.E.
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView() {
-        if let bgCStyle = self.bgColorStyle {
-            self.bgColorStyle = bgCStyle;
-        }
-        
-        if let fName = self.fontName {
-            self.fontName = fName;
-        }
-        
-        if let fColor = self.fontColor {
-            self.fontColor = fColor;
-        }
-        
-        if let dColor = self.detailFontColor {
-            self.detailFontColor = dColor;
-        }
-    } //F.E.
-    
+
     /// This method should be called in cellForRowAt:indexPath. it also must be overriden in all sub classes of BaseUITableViewHeaderFooterView to update the table view header/Footer view content.
     ///
     /// - Parameter data: Header View Data
     open func updateData(_ data:Any?) {
         _data = data;
-         
-        self.updateSyncedData();
     } //F.E.
     
 } //CLS END

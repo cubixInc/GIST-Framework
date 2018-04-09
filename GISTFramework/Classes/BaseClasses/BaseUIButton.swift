@@ -218,33 +218,4 @@ open class BaseUIButton: UIButton, BaseView {
         
     } //F.E.
     
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView() {
-        //Setting font
-        self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-        
-        //Re-assigning if there are any changes from server
-        if let bgCStyle:String = self.bgColorStyle {
-            self.bgColorStyle = bgCStyle;
-        }
-        
-        if let borderCStyle:String = self.borderColorStyle {
-            self.borderColorStyle = borderCStyle;
-        }
-        
-        if let fntClrStyle = self.fontColorStyle {
-            self.fontColorStyle = fntClrStyle;
-        }
-        
-        if let fntSelClrStyle = self.fontSelectedColorStyle {
-            self.fontSelectedColorStyle = fntSelClrStyle;
-        }
-        
-        for i:UInt in _titleKeys.keys {
-            if let key:String = _titleKeys[i] {
-              self.setTitle(key, for: UIControlState(rawValue: i));
-            }
-        }
-    } //F.E.
-    
 } //CLS END

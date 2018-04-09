@@ -79,7 +79,6 @@
 		48EF2EF9202490FE000B4925 /* UIScrollView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E87202490FE000B4925 /* UIScrollView+Utility.swift */; };
 		48EF2EFA202490FE000B4925 /* UITableView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E88202490FE000B4925 /* UITableView+Utility.swift */; };
 		48EF2EFB202490FE000B4925 /* UITextField+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E89202490FE000B4925 /* UITextField+Utility.swift */; };
-		48EF2EFC202490FE000B4925 /* UIView+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E8A202490FE000B4925 /* UIView+Sync.swift */; };
 		48EF2EFD202490FE000B4925 /* UIView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E8B202490FE000B4925 /* UIView+Utility.swift */; };
 		48EF2EFE202490FE000B4925 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E8C202490FE000B4925 /* UIViewExtensions.swift */; };
 		48EF2EFF202490FE000B4925 /* URL+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF2E8D202490FE000B4925 /* URL+Utility.swift */; };
@@ -188,7 +187,6 @@
 		48EF2E87202490FE000B4925 /* UIScrollView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utility.swift"; sourceTree = "<group>"; };
 		48EF2E88202490FE000B4925 /* UITableView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Utility.swift"; sourceTree = "<group>"; };
 		48EF2E89202490FE000B4925 /* UITextField+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Utility.swift"; sourceTree = "<group>"; };
-		48EF2E8A202490FE000B4925 /* UIView+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Sync.swift"; sourceTree = "<group>"; };
 		48EF2E8B202490FE000B4925 /* UIView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utility.swift"; sourceTree = "<group>"; };
 		48EF2E8C202490FE000B4925 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		48EF2E8D202490FE000B4925 /* URL+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Utility.swift"; sourceTree = "<group>"; };
@@ -370,7 +368,6 @@
 				48EF2E87202490FE000B4925 /* UIScrollView+Utility.swift */,
 				48EF2E88202490FE000B4925 /* UITableView+Utility.swift */,
 				48EF2E89202490FE000B4925 /* UITextField+Utility.swift */,
-				48EF2E8A202490FE000B4925 /* UIView+Sync.swift */,
 				48EF2E8B202490FE000B4925 /* UIView+Utility.swift */,
 				48EF2E8C202490FE000B4925 /* UIViewExtensions.swift */,
 				48EF2E8D202490FE000B4925 /* URL+Utility.swift */,
@@ -663,7 +660,6 @@
 				48EF2EF6202490FE000B4925 /* UIFont+Utility.swift in Sources */,
 				48EF2ED9202490FE000B4925 /* AnimatedTextInputFieldConfigurator.swift in Sources */,
 				486881A72028854100236058 /* Gradient+Utility.swift in Sources */,
-				48EF2EFC202490FE000B4925 /* UIView+Sync.swift in Sources */,
 				48EF2EB7202490FE000B4925 /* BaseLayoutConstraint.swift in Sources */,
 				48EF2EF3202490FE000B4925 /* String+Utility.swift in Sources */,
 				48EF2EC2202490FE000B4925 /* BaseUINavigationItem.swift in Sources */,

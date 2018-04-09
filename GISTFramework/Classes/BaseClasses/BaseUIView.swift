@@ -88,18 +88,4 @@ open class BaseUIView: UIView, BaseView {
         }
     } //F.E.
 
-    
-    //MARK: - Methods
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView(){
-        if let bgCStyle:String = self.bgColorStyle {
-            self.bgColorStyle = bgCStyle;
-        }
-        
-        if let borderCStyle:String = self.borderColorStyle {
-            self.borderColorStyle = borderCStyle;
-        }
-    } //F.E.
-    
 } //CLS END

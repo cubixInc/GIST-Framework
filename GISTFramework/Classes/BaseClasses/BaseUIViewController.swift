@@ -46,8 +46,6 @@ open class BaseUIViewController: UIViewController {
         }
     } //P.E.
     
-    private var _lastSyncedDate:String?
-    
     private var _titleKey:String?;
     
     /// Overriden title property to set title from SyncEngine (Hint '#' prefix).
@@ -110,8 +108,6 @@ open class BaseUIViewController: UIViewController {
     /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
-         
-        _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
     
     /// Overridden method to setup/ initialize components.
@@ -119,7 +115,6 @@ open class BaseUIViewController: UIViewController {
         super.viewWillAppear(animated);
          
         self.setupBackBtn();
-        self.updateSyncedData();
     }//F.E.
     
     //MARK: - Methods
@@ -148,25 +143,6 @@ open class BaseUIViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         } else {
             _ = self.navigationController?.popViewController(animated: true)
-        }
-    } //F.E.
-    
-    /// Recursive update of layout and content from Sync Engine.
-    @discardableResult func updateSyncedData() -> Bool {
-        if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
-            _lastSyncedDate = syncedDate;
-             
-            if _titleKey != nil {
-                self.title = _titleKey;
-            }
-             
-            self.view.updateSyncedData();
-            
-            (self.navigationController as? BaseUINavigationController)?.updateSyncedData();
-            
-            return true;
-        } else {
-            return false;
         }
     } //F.E.
     

@@ -39,24 +39,5 @@ open class BaseUISlider: UISlider, BaseView {
         super.awakeFromNib();
     } //F.E.
     
-    //MARK: - Methods
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView() {
-        //Re-assigning if there are any changes from server
-        
-        if let minCStyle = self.minColorStyle {
-            self.minColorStyle = minCStyle;
-        }
-        
-        if let maxCStyle = self.maxColorStyle {
-            self.maxColorStyle = maxCStyle;
-        }
-        
-        if let thumbCStyle = self.thumbColorStyle {
-            self.thumbColorStyle = thumbCStyle;
-        }
-        
-    } //F.E.
     
 } //CLS END

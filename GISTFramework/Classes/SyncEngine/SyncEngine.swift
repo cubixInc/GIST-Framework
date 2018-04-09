@@ -74,13 +74,16 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
-    /// Holds Last Synced Server Data
+    /*
+    
     open static var lastSyncedServerDate:String? {
         get {
             return SyncEngine.sharedInstance.lastSyncedServerDate;
         }
     } //P.E.
+    */
     
+    /// Holds Last Synced Server Data
     private var lastSyncedServerDate:String? {
         get {
             return UserDefaults.standard.object(forKey: "LAST_SYNCED_SERVER_DATE" + _languageCode) as? String;
@@ -102,6 +105,14 @@ open class SyncEngine: NSObject {
             UserDefaults.standard.synchronize();
         }
     } //P.E.
+    
+    open static var hasSyncDataUpdated:Bool {
+        get {
+            return SyncEngine.sharedInstance.hasSyncDataUpdated;
+        }
+    } //P.E.
+    
+    private var hasSyncDataUpdated:Bool = false;
     
     //MARK: - Constructors
     
@@ -384,6 +395,9 @@ open class SyncEngine: NSObject {
                         
                         //If Has data and no error ... !
                         if let resData:NSDictionary = dictData["data"] as? NSDictionary , error == 0, resData.count > 0 {
+                            
+                            self.hasSyncDataUpdated = true;
+                            
                             self.syncForServerData(resData);
                         } else {
                             print("message : \(String(describing: message))");

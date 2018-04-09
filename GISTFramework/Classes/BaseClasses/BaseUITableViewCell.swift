@@ -189,13 +189,6 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         super.setSelected(selected, animated: animated);
     } //F.E.
     
-    /// Recursive update of layout and content from Sync Engine.
-    override func updateSyncedData() {
-        super.updateSyncedData();
-         
-        self.contentView.updateSyncedData();
-    } //F.E.
-    
     /// Overridden methed to update layout.
     override open func layoutSubviews() {
         super.layoutSubviews();
@@ -216,36 +209,11 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
         self.detailTextLabel?.font = UIFont.font(self.fontName, fontStyle: self.fontDetailStyle, sizedForIPad: sizeForIPad);
     } //F.E.
     
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView() {
-        if let bgCStyle = self.bgColorStyle {
-            self.bgColorStyle = bgCStyle;
-        }
-        
-        if let sepColorStyle = self.seperatorColorStyle {
-            self.seperatorColorStyle = sepColorStyle;
-        }
-        
-        if let fName = self.fontName {
-            self.fontName = fName;
-        }
-        
-        if let fColor = self.fontColor {
-            self.fontColor = fColor;
-        }
-        
-        if let dColor = self.detailColor {
-            self.detailColor = dColor;
-        }
-    } //F.E.
-    
     /// This method should be called in cellForRowAt:indexPath. it also must be overriden in all sub classes of BaseUITableViewCell to update the table view cell's content.
     ///
     /// - Parameter data: Cell Data
     open func updateData(_ data:Any?) {
         _data = data;
-         
-        self.updateSyncedData();
     } //F.E.
 
 } //CLS END

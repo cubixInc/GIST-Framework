@@ -41,17 +41,4 @@ open class BaseUITableView: UITableView, BaseView {
         super.layoutSubviews();
     } //F.E.
     
-    //MARK: - Methods
-    
-    /// Updates layout and contents from SyncEngine. this is a protocol method BaseView that is called when the view is refreshed.
-    func updateView(){
-        if let tintCStyle = tintColorStyle {
-            self.tintColorStyle = tintCStyle;
-        }
-        
-        if let bgCStyle = self.bgColorStyle {
-            self.bgColorStyle = bgCStyle;
-        }
-    } //F.E.
-    
 } //CLS END
