@@ -72,6 +72,8 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         //Badge count to zero
         application.applicationIconBadgeNumber = 0;
         
+        SyncEngine.syncData();
+        
         GISTApplication.sharedInstance.applicationDidBecomeActive(application);
     } //F.E.
 

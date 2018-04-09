@@ -383,7 +383,7 @@ open class SyncEngine: NSObject {
                         let message:String? = dictData["message"] as? String;
                         
                         //If Has data and no error ... !
-                        if let resData:NSDictionary = dictData["data"] as? NSDictionary , error == 0{
+                        if let resData:NSDictionary = dictData["data"] as? NSDictionary , error == 0, resData.count > 0 {
                             self.syncForServerData(resData);
                         } else {
                             print("message : \(String(describing: message))");
