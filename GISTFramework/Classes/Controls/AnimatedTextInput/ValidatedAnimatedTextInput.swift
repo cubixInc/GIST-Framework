@@ -233,7 +233,7 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         self.minChar = dicData?["minChar"] as? Int ?? 0;
         self.maxChar = dicData?["maxChar"] as? Int ?? 0;
         
-        self.maxCharLimit = dicData?["maxCharLimit"] as? Int ?? (self.multilined ? 255 : 50);
+        self.maxCharLimit = dicData?["maxCharLimit"] as? Int ?? dicData?["maxChar"] as? Int ?? (self.multilined ? 255 : 50);
         
         if let defRegion = dicData?["defaultRegion"] as? String {
             self.defaultRegion = defRegion;
