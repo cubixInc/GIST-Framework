@@ -29,6 +29,8 @@ private let DELETE_ACCOUNT = "delete_account";
 
 private let CHANGE_LOGIN_ID = "change_id_request";
 
+private let SAVE_TOKEN_REQUEST = "save_token";
+
 
 public class GISTAuth<T:GISTUser>: NSObject {
     
@@ -192,6 +194,29 @@ public class GISTAuth<T:GISTUser>: NSObject {
         ];
         
         self.request(service: RESET_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
+    } //F.E.
+    
+    //MARK: - Save Token
+    internal static func savePushToken(_ deviceToken:String, additional params: [String:Any]?) {
+        
+        GIST_GLOBAL.deviceToken = deviceToken;
+        
+        guard let userData = GIST_GLOBAL.userData, let userId:Int = userData[USER_ID] as? Int else {
+            return;
+        }
+        
+        if let cDeviceToken:String = userData["device_token"] as? String, cDeviceToken == deviceToken {
+            //Already Saved To
+            return;
+        }
+
+        var aParams:[String:Any] = params ?? [:];
+        aParams[USER_ID] = userId;
+        
+        self.request(service: SAVE_TOKEN_REQUEST, params: aParams, completion: { (user, rawData) in
+            //Saved
+            print("Token saved ... !");
+        }, failure: nil);
     } //F.E.
     
     //MARK: - Sign Out

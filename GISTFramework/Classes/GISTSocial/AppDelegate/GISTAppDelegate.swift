@@ -10,7 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import UserNotifications
 
-private let SAVE_TOKEN_REQUEST = "save_token";
+
 
 open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
@@ -153,35 +153,11 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     
     //MARK: - Save Token
     public func savePushToken(_ deviceToken:String) {
-        GIST_GLOBAL.deviceToken = deviceToken;
-        
-        guard let usrData:[String:Any] = GIST_GLOBAL.userData else {
-            return;
-        }
-        
-        var params:[String:Any] = [
-            "device_token":deviceToken,
-            "device_type":"ios"
-        ]
-        
-        if let userId:Int = usrData[USER_ID] as? Int {
-            params[USER_ID] = userId;
-        }
-
-        let requestName:String;
-        
         if (HTTPServiceManager.sharedInstance.microService) {
-            requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/update";
+            GISTMicroAuth<ModelUser>.savePushToken(deviceToken, additional: nil);
         } else {
-            requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(SAVE_TOKEN_REQUEST)";
+            GISTAuth<ModelUser>.savePushToken(deviceToken, additional: nil);
         }
-        
-        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: requestName, parameters: params, delegate: nil);
-        
-        httpRequest.onSuccess { (rawData:Any?) in
-            print("Device Token Saved ...");
-        };
-
     } //F.E.
     
     //MARK: - Deep Linking

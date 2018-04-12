@@ -30,6 +30,7 @@ private let SIGN_OUT = "logout";
 
 private let CHANGE_LOGIN_ID = "change_id_request";
 
+
 public class GISTMicroAuth<T:GISTUser>: NSObject {
     
     public typealias GISTAuthCompletion = (T?, Any?) -> Void
@@ -85,23 +86,21 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     
     public static func editProfile(arrData:NSMutableArray, additional params:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let identifier:String = GIST_GLOBAL.userData?["identifier"] as? String else {
+        guard let _:String = GIST_GLOBAL.userData?["identifier"] as? String else {
             return;
         }
         
-        var aParams:[String:Any] = params ?? [:];
-        aParams["identifier"] = identifier;
+        let aParams:[String:Any] = params ?? [:];
         
         self.request(service: EDIT_PROFILE_REQUEST, arrData: arrData, additional:aParams, ignore:iParams, completion:completion, failure:failure);
     } //F.E.
     
     public static func editProfile(params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        guard let identifier:String = GIST_GLOBAL.userData?["identifier"] as? String else {
+        guard let _:String = GIST_GLOBAL.userData?["identifier"] as? String else {
             return;
         }
         
-        var aParams:[String:Any] = params ?? [:];
-        aParams["identifier"] = identifier;
+        let aParams:[String:Any] = params ?? [:];
         
         self.request(service: EDIT_PROFILE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
@@ -201,6 +200,28 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             //Cleanup in either case
             print("SIGN_OUT error : \(error.localizedDescription)");
         }
+    } //F.E.
+    
+    //MARK: - Save Token
+    internal static func savePushToken(_ deviceToken:String, additional params: [String:Any]?) {
+        
+        GIST_GLOBAL.deviceToken = deviceToken;
+        
+        guard let userData = GIST_GLOBAL.userData, let _:String = GIST_GLOBAL.userData?["identifier"] as? String else {
+            return;
+        }
+        
+        if let cDeviceToken:String = userData["device_token"] as? String, cDeviceToken == deviceToken {
+            //Already Saved To
+            return;
+        }
+
+        let aParams:[String:Any] = params ?? [:];
+        
+        self.request(service: EDIT_PROFILE_REQUEST, params: aParams, completion: { (user, rawData) in
+            //Saved
+            print("Token saved ... !");
+        }, failure: nil);
     } //F.E.
     
     private static func cleanup() {
