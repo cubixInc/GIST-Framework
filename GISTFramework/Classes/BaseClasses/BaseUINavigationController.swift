@@ -42,12 +42,17 @@ open class BaseUINavigationController: UINavigationController {
             attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             self.navigationBar.titleTextAttributes = attrDict;
             
+        }
+    } //P.E.
+    
+    @IBInspectable open var largeFontName:String = GIST_CONFIG.fontName {
+        didSet {
             if #available(iOS 11.0, *) {
-                attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
+                var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedStringKey : Any]()
+                
+                attrDict[NSAttributedStringKey.font] = UIFont.font(largeFontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
                 self.navigationBar.largeTitleTextAttributes = attrDict
-            } else {
-                // Fallback on earlier versions
-            };
+            }
         }
     } //P.E.
     
@@ -65,7 +70,7 @@ open class BaseUINavigationController: UINavigationController {
 
             if #available(iOS 11.0, *) {
                 var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedStringKey : Any]()
-                attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
+                attrDict[NSAttributedStringKey.font] = UIFont.font(largeFontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
                 
                 self.navigationBar.largeTitleTextAttributes = attrDict
             } else {
@@ -150,6 +155,8 @@ open class BaseUINavigationController: UINavigationController {
     /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
+        
+        self.updateAppearance();
     } //F.E.
 
     /// Overridden method to receive memory warning.
@@ -169,7 +176,7 @@ open class BaseUINavigationController: UINavigationController {
         
         if #available(iOS 11.0, *) {
             var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
-            attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
+            attrDict[NSAttributedStringKey.font] = UIFont.font(largeFontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
             
             self.navigationBar.largeTitleTextAttributes = attrDict
         }
