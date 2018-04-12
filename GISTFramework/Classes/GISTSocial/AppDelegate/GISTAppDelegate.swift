@@ -152,7 +152,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     } //F.E.
     
     //MARK: - Save Token
-    private func savePushToken(_ deviceToken:String) {
+    public func savePushToken(_ deviceToken:String) {
         GIST_GLOBAL.deviceToken = deviceToken;
         
         guard let usrData:[String:Any] = GIST_GLOBAL.userData else {
