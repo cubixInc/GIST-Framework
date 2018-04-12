@@ -48,8 +48,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
 
-        GIST_GLOBAL.deviceToken = deviceTokenString;
-        self.savePushToken();
+        self.savePushToken(deviceTokenString);
     } //F.E.
     
     open func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -153,13 +152,15 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     } //F.E.
     
     //MARK: - Save Token
-    private func savePushToken() {
-        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let token:String = GIST_GLOBAL.deviceToken else {
+    private func savePushToken(_ deviceToken:String) {
+        GIST_GLOBAL.deviceToken = deviceToken;
+        
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData else {
             return;
         }
         
         var params:[String:Any] = [
-            "device_token":token,
+            "device_token":deviceToken,
             "device_type":"ios"
         ]
         
