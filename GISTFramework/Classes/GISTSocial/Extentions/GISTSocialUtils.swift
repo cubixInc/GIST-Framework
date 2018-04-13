@@ -165,8 +165,8 @@ public class GISTSocialUtils {
                     for j in 0 ..< dataArr.count {
                         if let sDict:NSMutableDictionary = dataArr[j] as? NSMutableDictionary {
                             if let pKey:String = sDict["paramKey"] as? String {
-                                if let text:Any = sDict["rawText"] {
-                                    rParams[pKey] = text;
+                                if let rawData:Any = sDict["rawData"] {
+                                    rParams[pKey] = rawData;
                                 } else if let text:String = sDict["validText"] as? String {
                                     rParams[pKey] = text;
                                 }
@@ -176,8 +176,8 @@ public class GISTSocialUtils {
                     
                     
                 } else if let pKey:String = dict["paramKey"] as? String {
-                    if let text:Any = dict["rawText"] {
-                        rParams[pKey] = text;
+                    if let rawData:Any = dict["rawData"] {
+                        rParams[pKey] = rawData;
                     } else if let text:String = dict["validText"] as? String {
                         rParams[pKey] = text;
                     }

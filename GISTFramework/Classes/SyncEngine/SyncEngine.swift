@@ -353,7 +353,7 @@ open class SyncEngine: NSObject {
             
             print("Not initialized or invalid url path is provided; Call/Check SyncEngine.initialize(:) in application(didFinishLaunchingWithOptions:)");
             
-            abort();
+            return;
         }
         
         if self.hasSyncThresholdTimePassed {
