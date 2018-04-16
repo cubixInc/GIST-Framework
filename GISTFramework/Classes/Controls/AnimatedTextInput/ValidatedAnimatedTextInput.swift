@@ -130,6 +130,7 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
      The msg can be a key of SyncEngine with a prefix '#'
      */
     @IBInspectable open var validityMsg:String? = nil;
+    @IBInspectable open var validityMsgForEmpty:String? = nil;
     
     private var _isEmpty:Bool = false;
     
@@ -191,7 +192,16 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
     open var isInvalidMsgHidden:Bool = true {
         didSet {
             if isInvalidMsgHidden == false  {
-                self.show(error: self.validityMsg ?? "Invalid");
+                
+                let errorMsg:String;
+                
+                if (_isEmpty && self.validityMsgForEmpty != nil) {
+                    errorMsg = self.validityMsgForEmpty!;
+                } else {
+                    errorMsg = validityMsg ?? "Invalid";
+                }
+                
+                self.show(error: errorMsg);
             } else {
                 self.clearError();
             }
@@ -223,6 +233,7 @@ open class ValidatedAnimatedTextInput: AnimatedTextInput, ValidatedTextInput {
         self.validateEmailOrPhone = dicData?["validateEmailOrPhone"] as? Bool ?? false;
         self.validateEmailPhoneOrUserName = dicData?["validateEmailPhoneOrUserName"] as? Bool ?? false;
         self.validityMsg = dicData?["validityMsg"] as? String;
+        
         
         self.validateURL = dicData?["validateURL"] as? Bool ?? false;
         self.validateNumeric = dicData?["validateNumeric"] as? Bool ?? false;

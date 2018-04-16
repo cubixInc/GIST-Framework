@@ -73,7 +73,18 @@ open class ValidatedTextField: InputMaskTextField, ValidatedTextInput {
      The msg can be a key of SyncEngine with a prefix '#'
      */
     @IBInspectable open var validityMsg:String? = nil;
+    @IBInspectable open var validityMsgForEmpty:String? = nil;
     
+    internal var errorMsg:String {
+        get {
+            if (_isEmpty && self.validityMsgForEmpty != nil) {
+                return self.validityMsgForEmpty!;
+            } else {
+                return validityMsg ?? "";
+            }
+        }
+    }
+
     /// Lazy Button instance for invalid sign.
     private lazy var invalidSignBtn:CustomUIButton =  {
         let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.custom);
@@ -218,6 +229,7 @@ open class ValidatedTextField: InputMaskTextField, ValidatedTextInput {
         self.validateEmailOrPhone = dicData?["validateEmailOrPhone"] as? Bool ?? false;
         self.validateEmailPhoneOrUserName = dicData?["validateEmailPhoneOrUserName"] as? Bool ?? false;
         self.validityMsg = dicData?["validityMsg"] as? String;
+        self.validityMsgForEmpty = dicData?["validityMsgForEmpty"] as? String;
         
         self.validateURL = dicData?["validateURL"] as? Bool ?? false;
         self.validateNumeric = dicData?["validateNumeric"] as? Bool ?? false;

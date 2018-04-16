@@ -210,9 +210,7 @@ open class FloatingLabelTextField: ValidatedTextField {
         set {
             super.isInvalidSignHidden = newValue;
             
-            let errorMsg:String = self.validityMsg ?? "";
-            
-            self.hasErrorMessage = (isInvalidSignHidden == false && errorMsg != "");
+            self.hasErrorMessage = (isInvalidSignHidden == false && self.errorMsg != "");
         }
         
         get {
@@ -399,7 +397,7 @@ open class FloatingLabelTextField: ValidatedTextField {
         
         var titleText:String? = nil
         if self.hasErrorMessage {
-            titleText = self.titleFormatter(self.validityMsg!)
+            titleText = self.titleFormatter(self.errorMsg);
         } else {
             if self.editingOrSelected {
                 titleText = self.selectedTitleOrTitlePlaceholder()
