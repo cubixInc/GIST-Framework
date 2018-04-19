@@ -76,6 +76,13 @@ open class GISTApplication: NSObject, UIApplicationDelegate {
         }
     } //F.E.
     
+    /**
+     Unregisters all delegate target.
+     */
+    open func unregisterAllTargets() {
+        _delegates.removeAllObjects();
+    } //F.E.
+    
     /// Retrieving weak instance of a given target
     ///
     /// - Parameter target: GISTApplicationDelegate

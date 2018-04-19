@@ -347,6 +347,13 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
                 let updateUser:T? = GIST_GLOBAL.getUser();
                 
                 completion?(updateUser, rawData);
+            } else if let userData:[String:Any] = (dicData?["user"] as? [Any])?.first as? [String:Any] {
+                    
+                GIST_GLOBAL.userData = userData;
+                
+                let updateUser:T? = GIST_GLOBAL.getUser();
+                    
+                completion?(updateUser, rawData);
             } else {
                 completion?(nil, rawData);
             }
