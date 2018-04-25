@@ -753,7 +753,7 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         let rtn:Bool = delegate?.animatedTextInput?(animatedTextInput: self, shouldChangeCharactersIn: range, replacementString: string) ?? true;
         
         //IF CHARACTERS-LIMIT <= ZERO, MEANS NO RESTRICTIONS ARE APPLIED
-        if (self.maxCharLimit <= 0 || rtn == false) {
+        if (self.maxCharLimit <= 0 || rtn == false || string == "") {
             return rtn;
         }
         
