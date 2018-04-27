@@ -62,7 +62,11 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     open func applicationDidEnterBackground(_ application: UIApplication) {
         GISTApplication.sharedInstance.applicationDidEnterBackground(application);
         
+        //Resting App if the language is changed or has update in syncEngine data file
+        
         if SyncEngine.hasSyncDataUpdated {
+            exit(0);
+        } else if let cLangCode:String = Locale.current.languageCode, cLangCode != GIST_CONFIG.currentLanguageCode {
             exit(0);
         }
     } //F.E.

@@ -11,6 +11,8 @@ import UIKit
 /// BaseUITableViewController is a subclass of UITableViewController. It has some extra proporties and support for SyncEngine.
 open class BaseUITableViewController: UITableViewController {
 
+    private (set) var _completion:((Bool, Any?) -> Void)?
+    
     //MARK: - Properties
     
     /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
@@ -110,5 +112,14 @@ open class BaseUITableViewController: UITableViewController {
         } else {
             _ = self.navigationController?.popViewController(animated: true)
         }
+    } //F.E.
+    
+    //Completion Blocks
+    open func setOnCompletion(completion: @escaping (_ success:Bool, _ data:Any?) -> Void) {
+        _completion = completion;
+    } //F.E.
+    
+    open func completion(_ success:Bool, _ data:Any?) {
+        _completion?(success, data);
     } //F.E.
 } //CLS END
