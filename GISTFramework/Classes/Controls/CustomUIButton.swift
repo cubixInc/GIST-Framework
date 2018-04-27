@@ -133,8 +133,13 @@ open class CustomUIButton: BaseUIButton {
             
             var cContentMode:UIViewContentMode = self.contentMode;
             
+            let isReversedOrder:Bool;
+            
             //Respect for Right to left Handling
             if ((self.respectContentRTL || self.respectRTL) && GISTUtility.isRTL) {
+                
+                isReversedOrder = !_reversedOrder;
+                
                 switch cContentMode {
                 case .left:
                     cContentMode = .right;
@@ -157,6 +162,8 @@ open class CustomUIButton: BaseUIButton {
                 default:
                     break;
                 }
+            } else {
+                isReversedOrder = _reversedOrder;
             }
             
             switch (cContentMode) {
@@ -164,7 +171,7 @@ open class CustomUIButton: BaseUIButton {
             case .top:
                 rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0;
                 
-                if (_reversedOrder) {
+                if (isReversedOrder) {
                     rFrame.origin.y = _containtOffSet.y + offSetFix.y;
                 } else {
                     rFrame.origin.y = _containtOffSet.y;
@@ -172,7 +179,7 @@ open class CustomUIButton: BaseUIButton {
                 break;
                 
             case .topLeft:
-                if (_reversedOrder) {
+                if (isReversedOrder) {
                     rFrame.origin.x = _containtOffSet.x + offSetFix.x;
                     rFrame.origin.y = _containtOffSet.y + offSetFix.y;
                 } else {
@@ -182,7 +189,7 @@ open class CustomUIButton: BaseUIButton {
                 break;
                 
             case .topRight:
-                if (_reversedOrder) {
+                if (isReversedOrder) {
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
                     rFrame.origin.y = _containtOffSet.y + offSetFix.y;
                 } else {
@@ -194,7 +201,7 @@ open class CustomUIButton: BaseUIButton {
             case .bottom:
                 rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0;
                 
-                if (_reversedOrder) {
+                if (isReversedOrder) {
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
                 } else {
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y) - _containtOffSet.y;
@@ -202,7 +209,7 @@ open class CustomUIButton: BaseUIButton {
                 break;
                 
             case .bottomLeft:
-                if (_reversedOrder) {
+                if (isReversedOrder) {
                     rFrame.origin.x = _containtOffSet.x + offSetFix.x;
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
                 } else {
@@ -212,7 +219,7 @@ open class CustomUIButton: BaseUIButton {
                 break;
                 
             case .bottomRight:
-                if (_reversedOrder) {
+                if (isReversedOrder) {
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
                     rFrame.origin.y = (self.frame.size.height - rFrame.size.height) - _containtOffSet.y;
                 } else {
@@ -224,7 +231,7 @@ open class CustomUIButton: BaseUIButton {
             case .left:
                 rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0;
                 
-                if (_reversedOrder) {
+                if (isReversedOrder) {
                     rFrame.origin.x = _containtOffSet.x + offSetFix.x;
                 } else {
                     rFrame.origin.x = _containtOffSet.x;
@@ -234,7 +241,7 @@ open class CustomUIButton: BaseUIButton {
             case .right:
                 rFrame.origin.y = (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0;
                 
-                if (_reversedOrder) {
+                if (isReversedOrder) {
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width) - _containtOffSet.x;
                 } else {
                     rFrame.origin.x = (self.frame.size.width - rFrame.size.width - offSetFix.x) - _containtOffSet.x;
@@ -242,7 +249,7 @@ open class CustomUIButton: BaseUIButton {
                 break;
                 
             default:
-                if (_reversedOrder) {
+                if (isReversedOrder) {
                     rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width + offSetFix.x)/2.0, y: (self.frame.size.height - rFrame.size.height + offSetFix.y)/2.0);
                 } else {
                     rFrame.origin = CGPoint(x: (self.frame.size.width - rFrame.size.width - offSetFix.x)/2.0, y: (self.frame.size.height - rFrame.size.height - offSetFix.y)/2.0);
@@ -262,6 +269,15 @@ open class CustomUIButton: BaseUIButton {
         get {
             let offSet:CGPoint = self.titleOffSet;
             
+            let isReversedOrder:Bool;
+            
+            //Respect for Right to left Handling
+            if ((self.respectContentRTL || self.respectRTL) && GISTUtility.isRTL) {
+                isReversedOrder = !_reversedOrder;
+            } else {
+                isReversedOrder = _reversedOrder;
+            }
+            
             var rFrame:CGRect = self.titleLabel!.frame;
             
             if (rFrame.size.width > self.frame.size.width) {
@@ -270,7 +286,7 @@ open class CustomUIButton: BaseUIButton {
             
             if (offSet.x == 0) {
                 rFrame.origin.x = self.imageView!.frame.origin.x + ((self.imageView!.frame.size.width - rFrame.size.width) / 2.0);
-            } else if (_reversedOrder) {
+            } else if (isReversedOrder) {
                 rFrame.origin.x = self.imageView!.frame.origin.x - rFrame.size.width - offSet.x;
             } else {
                 rFrame.origin.x = self.imageView!.frame.origin.x + self.imageView!.frame.size.width + offSet.x;
@@ -279,7 +295,7 @@ open class CustomUIButton: BaseUIButton {
             
             if (offSet.y == 0) {
                 rFrame.origin.y = self.imageView!.frame.origin.y + ((self.imageView!.frame.size.height - rFrame.size.height) / 2.0);
-            } else if (_reversedOrder) {
+            } else if (isReversedOrder) {
                 rFrame.origin.y = self.imageView!.frame.origin.y - rFrame.size.height - offSet.y;
             } else {
                 rFrame.origin.y = self.imageView!.frame.origin.y + self.imageView!.frame.size.height + offSet.y;
