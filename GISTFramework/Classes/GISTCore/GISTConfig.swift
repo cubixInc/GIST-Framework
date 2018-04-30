@@ -44,8 +44,23 @@ public class GISTConfig: NSObject {
         }
         
         set {
+            if (_currentLanguageCode == newValue) {
+                return;
+            }
+            
             _isRTL = nil;
+            
             _currentLanguageCode = newValue;
+            
+
+            //change language in the app
+            //the language will be changed after restart
+            UserDefaults.standard.set([newValue], forKey: "AppleLanguages");
+            UserDefaults.standard.synchronize();
+            
+            //Changes semantic to all views
+            //this hack needs in case of languages with different semantics: leftToRight(en/uk) & rightToLeft(ar)
+            UIView.appearance().semanticContentAttribute = self.isRTL ? .forceRightToLeft : .forceLeftToRight;
         }
     } //P.E.
     

@@ -66,15 +66,6 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         
         if SyncEngine.hasSyncDataUpdated {
             exit(0);
-        } else if let cLangCode:String = Bundle.main.preferredLocalizations.first, cLangCode != GIST_CONFIG.currentLanguageCode {
-            
-            UserDefaults.standard.set([GIST_CONFIG.currentLanguageCode], forKey: "AppleLanguages");
-            UserDefaults.standard.synchronize();
-            
-            DispatchQueue.main.async {
-                exit(0);
-            }
-
         }
     } //F.E.
 
