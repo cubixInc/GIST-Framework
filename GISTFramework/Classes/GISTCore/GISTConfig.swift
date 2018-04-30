@@ -37,7 +37,7 @@ public class GISTConfig: NSObject {
     public var currentLanguageCode:String {
         get {
             if (_currentLanguageCode == nil) {
-                _currentLanguageCode = Bundle.main.preferredLocalizations[0];
+                _currentLanguageCode = Bundle.main.preferredLocalizations.first ?? "en";
             }
             
             return _currentLanguageCode!;
