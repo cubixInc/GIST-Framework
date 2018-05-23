@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import Alamofire
 
 private let SIGN_UP_REQUEST = "signup"; //POST
 private let VERIFY_EMAIL_REQUEST = "email-confirm"; //POST
@@ -48,30 +49,30 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     
     //MARK: - Sign Up
     public static func signUp(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: SIGN_UP_REQUEST, fields: fields, additional:params, completion:completion, failure:failure);
+        self.request(service: SIGN_UP_REQUEST, fields: fields, additional:params, method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     public static func signUp(arrData:NSMutableArray, additional params:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
 
-        self.request(service: SIGN_UP_REQUEST, arrData: arrData, additional:params, ignore:iParams, completion:completion, failure:failure);
+        self.request(service: SIGN_UP_REQUEST, arrData: arrData, additional:params, ignore:iParams, method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     public static func signUp(params:[String:Any], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: SIGN_UP_REQUEST, params: params, completion:completion, failure:failure);
+        self.request(service: SIGN_UP_REQUEST, params: params, method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Sign In
     public static func signIn(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: SIGN_IN_REQUEST, fields: fields, additional:params, completion:completion, failure:failure);
+        self.request(service: SIGN_IN_REQUEST, fields: fields, additional:params, method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     public static func signIn(arrData:NSMutableArray, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        self.request(service: SIGN_IN_REQUEST, arrData: arrData, additional:params, ignore:nil, completion:completion, failure:failure);
+        self.request(service: SIGN_IN_REQUEST, arrData: arrData, additional:params, ignore:nil, method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     public static func signIn(params:[String:Any], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: SIGN_IN_REQUEST, params: params, completion:completion, failure:failure);
+        self.request(service: SIGN_IN_REQUEST, params: params, method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     public static func signIn(user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
@@ -82,7 +83,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             aParams["socialLogin"] = true;
         }
 
-        self.request(service: SIGN_IN_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), completion:completion, failure:failure);
+        self.request(service: SIGN_IN_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Edit Profile
@@ -91,14 +92,14 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
 
         let aParams:[String:Any] = params ?? [:];
         
-        self.request(service: EDIT_PROFILE_REQUEST, arrData: arrData, additional:aParams, ignore:iParams, completion:completion, failure:failure);
+        self.request(service: EDIT_PROFILE_REQUEST, arrData: arrData, additional:aParams, ignore:iParams, method: HTTPMethod.put, completion:completion, failure:failure);
     } //F.E.
     
     public static func editProfile(params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
 
         let aParams:[String:Any] = params ?? [:];
         
-        self.request(service: EDIT_PROFILE_REQUEST, params: aParams, completion:completion, failure:failure);
+        self.request(service: EDIT_PROFILE_REQUEST, params: aParams, method: HTTPMethod.put, completion:completion, failure:failure);
     } //F.E.
     
 
@@ -163,16 +164,16 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         var aParams:[String:Any] = params ?? [:];
         aParams["email"] = email;
         
-        self.request(service: RESEND_EMAIL_CODE_REQUEST, params: aParams, completion:completion, failure:failure);
+        self.request(service: RESEND_EMAIL_CODE_REQUEST, params: aParams, method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Forgot Password
     public static func forgotPassword(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: FORGOT_PASSWORD_REQUEST, fields: fields, additional: params, completion: completion, failure: failure);
+        self.request(service: FORGOT_PASSWORD_REQUEST, fields: fields, additional: params, method: HTTPMethod.post, completion: completion, failure: failure);
     } //F.E.
     
     public static func forgotPassword(arrData:NSMutableArray, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: FORGOT_PASSWORD_REQUEST, arrData: arrData, additional:params, ignore:nil, completion:completion, failure:failure);
+        self.request(service: FORGOT_PASSWORD_REQUEST, arrData: arrData, additional:params, ignore:nil, method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Change Password
@@ -203,7 +204,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             "verification_token":verificationToken
         ];
         
-        self.request(service: RESET_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
+        self.request(service: RESET_PASSWORD_REQUEST, fields: fields, additional: aParams, method: HTTPMethod.post, completion: completion, failure: failure);
     } //F.E.
     
     //MARK: - Sign Out
@@ -212,7 +213,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             self.cleanup();
         }
 
-        self.request(service: SIGN_OUT, params: aParams ?? [:], completion: { (user, rawData) in
+        self.request(service: SIGN_OUT, params: aParams ?? [:], method: HTTPMethod.get, completion: { (user, rawData) in
             print("Successfully SIGN_OUT")
         }) { (error) in
             //Cleanup in either case
@@ -237,7 +238,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
 
         let aParams:[String:Any] = params ?? [:];
         
-        self.request(service: EDIT_PROFILE_REQUEST, params: aParams, completion: { (user, rawData) in
+        self.request(service: EDIT_PROFILE_REQUEST, params: aParams, method: HTTPMethod.put, completion: { (user, rawData) in
             //Saved
             print("Token saved ... !");
         }, failure: nil);
@@ -271,7 +272,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     */
     
     //MARK: - Requests
-    private static func request(service:String, arrData:NSMutableArray, additional aParams:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    private static func request(service:String, arrData:NSMutableArray, additional aParams:[String:Any]?, ignore iParams:[String]?, method: HTTPMethod, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         
         guard GISTSocialUtils.validate(array: arrData, ignore:iParams) else {
@@ -282,10 +283,10 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        self.request(service: service, params: GISTSocialUtils.formate(array: arrData, additional: aParams, ignore:iParams), completion:completion, failure:failure);
+        self.request(service: service, params: GISTSocialUtils.formate(array: arrData, additional: aParams, ignore:iParams), method:method, completion:completion, failure:failure);
     } //F.E.
     
-    private static func request(service:String, fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    private static func request(service:String, fields:[ValidatedTextInput], additional params:[String:Any]?, method: HTTPMethod, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard GISTSocialUtils.validate(fields: fields) else {
             if (failure != nil) {
@@ -295,11 +296,11 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        self.request(service: service, params: GISTSocialUtils.formate(fields: fields, additional:params), completion:completion, failure:failure);
+        self.request(service: service, params: GISTSocialUtils.formate(fields: fields, additional:params), method:method, completion:completion, failure:failure);
         
     } //F.E.
     
-    private static func request(service:String, params:[String:Any], completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
+    private static func request(service:String, params:[String:Any], method: HTTPMethod, completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
 //        if (service == SIGN_UP_REQUEST || service == SIGN_IN_REQUEST ||  service == MOBILE_SIGN_UP_REQUEST || service == SOCIAL_SIGN_IN_REQUEST || service == FORGOT_PASSWORD_REQUEST) {
         
         if (service == SIGN_UP_REQUEST || service == SIGN_IN_REQUEST || service == FORGOT_PASSWORD_REQUEST) {
@@ -331,7 +332,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             uParams["mobile_no"] = "\(countryCode)-\(uMobileNo)";
         }
         
-        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, delegate: nil);
+        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, method: method, showHud: true, delegate: nil);
         
         httpRequest.onSuccess { (rawData:Any?) in
             let dicData:[String:Any]? = rawData as? [String:Any];
