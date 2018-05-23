@@ -11,9 +11,11 @@ import ObjectMapper
 import Alamofire
 
 private let SIGN_UP_REQUEST = "signup"; //POST
-private let VERIFY_EMAIL_REQUEST = "email-confirm"; //POST
-private let SIGN_IN_REQUEST = "signin"; //POST
 
+private let VERIFY_EMAIL_REQUEST = "email-confirm"; //POST
+private let VERIFY_PASSWORD_RESET_REQUEST = "verify-password-reset-token"; //POST
+
+private let SIGN_IN_REQUEST = "signin"; //POST
 
 private let FORGOT_PASSWORD_REQUEST = "send-password-recovery-email"; //POST
 private let RESET_PASSWORD_REQUEST = "update-password"; //POST
@@ -23,6 +25,9 @@ private let RESEND_EMAIL_CODE_REQUEST = "resend-confirmation-email"; //POST
 private let SIGN_OUT = "logout"; //GET
 
 private let EDIT_PROFILE_REQUEST = "update-user"; // PUT
+
+
+
 
 /*
   NOT USING RIGHT NOW
@@ -143,7 +148,15 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         
         aParams["token"] = token;
         
-        self.request(service: VERIFY_EMAIL_REQUEST, params: aParams, method: HTTPMethod.post, completion:completion, failure:failure);
+        let service:String;
+        
+        if GIST_GLOBAL.userData == nil {
+            service = VERIFY_PASSWORD_RESET_REQUEST;
+        } else {
+            service = VERIFY_EMAIL_REQUEST;
+        }
+        
+        self.request(service: service, params: aParams, method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     
@@ -163,9 +176,6 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
      */
     
     public static func resendEmailCode(additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        
-        assertionFailure("NEED TO WORK ON PARAMS");
-        
         guard let usrData:[String:Any] = GIST_GLOBAL.userData, let email:String = usrData["email"] as? String else {
             return;
         }
@@ -203,14 +213,13 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     
     //MARK: - Reset Password
     public static func resetPassword(fields:[ValidatedTextInput], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        assertionFailure("NEED TO WORK ON PARAMS");
-        
-        guard let verificationToken:String = GIST_GLOBAL.userData?["verification_token"] as? String else {
+
+        guard let passwordResetToken:String = GIST_GLOBAL.userData?["passwordResetToken"] as? String else {
             return;
         }
         
         let aParams:[String:Any] = [
-            "verification_token":verificationToken
+            "token":passwordResetToken
         ];
         
         self.request(service: RESET_PASSWORD_REQUEST, fields: fields, additional: aParams, method: HTTPMethod.post, completion: completion, failure: failure);
