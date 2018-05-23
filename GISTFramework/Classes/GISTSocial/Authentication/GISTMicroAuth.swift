@@ -9,26 +9,31 @@
 import UIKit
 import ObjectMapper
 
-private let SIGN_UP_REQUEST = "";
-private let MOBILE_SIGN_UP_REQUEST = "mobile_signup";
+private let SIGN_UP_REQUEST = "signup"; //POST
+private let VERIFY_EMAIL_REQUEST = "email-confirm"; //POST
+private let SIGN_IN_REQUEST = "signin"; //POST
 
-private let SIGN_IN_REQUEST = "signin";
+
+private let FORGOT_PASSWORD_REQUEST = "send-password-recovery-email"; //POST
+private let RESET_PASSWORD_REQUEST = "update-password"; //POST
+
+private let RESEND_EMAIL_CODE_REQUEST = "resend-confirmation-email"; //POST
+
+private let SIGN_OUT = "logout"; //GET
+
+private let EDIT_PROFILE_REQUEST = "update-user"; // PUT
+
+/*
+  NOT USING RIGHT NOW
+private let MOBILE_SIGN_UP_REQUEST = "mobile_signup";
 private let SOCIAL_SIGN_IN_REQUEST = "social_login";
 
-private let EDIT_PROFILE_REQUEST = "update";
-
-private let RESEND_CODE_REQUEST = "resend";
 private let VERIFY_PHONE_REQUEST = "verify_phone";
 
-private let FORGOT_PASSWORD_REQUEST = "forgot_request";
 private let CHANGE_PASSWORD_REQUEST = "change_password";
-
-private let RESET_PASSWORD_REQUEST = "reset_password";
-
 private let DELETE_ACCOUNT = "delete_account";
-private let SIGN_OUT = "logout";
-
 private let CHANGE_LOGIN_ID = "change_id_request";
+*/
 
 
 public class GISTMicroAuth<T:GISTUser>: NSObject {
@@ -70,42 +75,36 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     public static func signIn(user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        
-        let service:String
+
+        var aParams:[String:Any] = params ?? [:];
         
         if let platformType:String = user.platformType, platformType != "custom" {
-            service = SOCIAL_SIGN_IN_REQUEST;
-        } else {
-            service = SIGN_IN_REQUEST;
+            aParams["socialLogin"] = true;
         }
-        
-        self.request(service: service, params: GISTSocialUtils.formate(user: user, additional: params), completion:completion, failure:failure);
+
+        self.request(service: SIGN_IN_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Edit Profile
     
     public static func editProfile(arrData:NSMutableArray, additional params:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        
-        guard let _:String = GIST_GLOBAL.userData?["identifier"] as? String else {
-            return;
-        }
-        
+
         let aParams:[String:Any] = params ?? [:];
         
         self.request(service: EDIT_PROFILE_REQUEST, arrData: arrData, additional:aParams, ignore:iParams, completion:completion, failure:failure);
     } //F.E.
     
     public static func editProfile(params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        guard let _:String = GIST_GLOBAL.userData?["identifier"] as? String else {
-            return;
-        }
-        
+
         let aParams:[String:Any] = params ?? [:];
         
         self.request(service: EDIT_PROFILE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
     
 
+    /*
+     NOT AVAILABLE RIGHT NOW
+     
     public static func changeLoginId(new loginId:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard let identifier:String = GIST_GLOBAL.userData?["identifier"] as? String else {
@@ -118,8 +117,11 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         
         self.request(service: CHANGE_LOGIN_ID, params: aParams, completion:completion, failure:failure);
     } //F.E.
+    */
     
     //MARK: - Verify Phone
+    /*
+     NOT AVAILABLE RIGHT NOW
     public static func verifyPhone(code:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
 
         guard let usrData:[String:Any] = GIST_GLOBAL.userData, let identifier:String = usrData["identifier"] as? String else {
@@ -133,7 +135,10 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
 
         self.request(service: VERIFY_PHONE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
+     */
     
+    /*
+     NOT AVAILABLE RIGHT NOW
     public static func resendCode(additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard let usrData:[String:Any] = GIST_GLOBAL.userData, let identifier:String = usrData["identifier"] as? String else {
@@ -144,6 +149,21 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         aParams["identifier"] = identifier;
         
         self.request(service: RESEND_CODE_REQUEST, params: aParams, completion:completion, failure:failure);
+    } //F.E.
+     */
+    
+    public static func resendEmailCode(additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        
+        assertionFailure("NEED TO WORK ON PARAMS");
+        
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let email:String = usrData["email"] as? String else {
+            return;
+        }
+        
+        var aParams:[String:Any] = params ?? [:];
+        aParams["email"] = email;
+        
+        self.request(service: RESEND_EMAIL_CODE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Forgot Password
@@ -156,6 +176,8 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Change Password
+    /*
+     NOT AVAILABLE RIGHT NOW
     public static func changePassword(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard let identifier:String = GIST_GLOBAL.userData?["identifier"] as? String else {
@@ -167,9 +189,12 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         
         self.request(service: CHANGE_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
     } //F.E.
+    */
     
     //MARK: - Reset Password
     public static func resetPassword(fields:[ValidatedTextInput], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        assertionFailure("NEED TO WORK ON PARAMS");
+        
         guard let verificationToken:String = GIST_GLOBAL.userData?["verification_token"] as? String else {
             return;
         }
@@ -187,14 +212,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             self.cleanup();
         }
 
-        guard let identifier:String = GIST_GLOBAL.userData?["identifier"] as? String else {
-            return;
-        }
-        
-        var params:[String:Any] = aParams ?? [:];
-        params["identifier"] = identifier;
-        
-        self.request(service: SIGN_OUT, params: params, completion: { (user, rawData) in
+        self.request(service: SIGN_OUT, params: aParams ?? [:], completion: { (user, rawData) in
             print("Successfully SIGN_OUT")
         }) { (error) in
             //Cleanup in either case
@@ -207,9 +225,10 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         
         GIST_GLOBAL.deviceToken = deviceToken;
         
-        guard let userData = GIST_GLOBAL.userData, let _:String = GIST_GLOBAL.userData?["identifier"] as? String else {
+        guard let userData = GIST_GLOBAL.userData, GIST_GLOBAL.accessToken != nil else {
             return;
         }
+        
         
         if let cDeviceToken:String = userData["device_token"] as? String, cDeviceToken == deviceToken {
             //Already Saved To
@@ -230,6 +249,8 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Delete Account
+    /*
+     NOT AVAILABLE RIGHT NOW
     public static func deleteAccount(additional aParams: [String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard let identifier:String = GIST_GLOBAL.userData?["identifier"] as? String else {
@@ -247,6 +268,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             
         }, failure: failure);
     } //F.E.
+    */
     
     //MARK: - Requests
     private static func request(service:String, arrData:NSMutableArray, additional aParams:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
@@ -278,8 +300,9 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     private static func request(service:String, params:[String:Any], completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
+//        if (service == SIGN_UP_REQUEST || service == SIGN_IN_REQUEST ||  service == MOBILE_SIGN_UP_REQUEST || service == SOCIAL_SIGN_IN_REQUEST || service == FORGOT_PASSWORD_REQUEST) {
         
-        if (service == SIGN_UP_REQUEST || service == SIGN_IN_REQUEST ||  service == MOBILE_SIGN_UP_REQUEST || service == SOCIAL_SIGN_IN_REQUEST || service == FORGOT_PASSWORD_REQUEST) {
+        if (service == SIGN_UP_REQUEST || service == SIGN_IN_REQUEST || service == FORGOT_PASSWORD_REQUEST) {
             self.cleanup();
         }
         
@@ -308,36 +331,18 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             uParams["mobile_no"] = "\(countryCode)-\(uMobileNo)";
         }
         
-        let requestName:String = (service == "") ? HTTPServiceManager.sharedInstance.authenticationModule : "\(HTTPServiceManager.sharedInstance.authenticationModule)/\(service)";
-        
-        let httpRequest:HTTPRequest
-        
-        
-        //Multipart Request
-        if let rawImage:UIImage = uParams["raw_image"] as? UIImage {
-            print("raw : \(rawImage)");
-            
-            let imgData:Data;
-            
-            if (rawImage.size.width > 400 || rawImage.size.height > 400) {
-                imgData = UIImageJPEGRepresentation(rawImage.scaleAndRotateImage(400), 1)!;
-            } else {
-                imgData = UIImageJPEGRepresentation(rawImage, 1)!;
-            }
-            
-            uParams["raw_image"] = imgData;
-            
-            //Multipart Request
-            httpRequest = HTTPServiceManager.multipartRequest(requestName: requestName, parameters: uParams, delegate: nil)
-        } else {
-            httpRequest = HTTPServiceManager.request(requestName: requestName, parameters: uParams, delegate: nil);
-        }
+        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, delegate: nil);
         
         httpRequest.onSuccess { (rawData:Any?) in
             let dicData:[String:Any]? = rawData as? [String:Any];
             
-            if let accessToken:String = dicData?["access_token"] as? String {
-                GIST_GLOBAL.accessToken = accessToken;
+            
+//            "access_token": {
+//                "token": "du2atrc4mzi8296myr8ra6xabikjz27s6tw1o8yd",
+//                "valid_till": "1527142952758"
+//            }
+            if let accessToken:[String:Any] = dicData?["access_token"] as? [String:Any], let token:String = accessToken["token"] as? String {
+                GIST_GLOBAL.accessToken = token;
             }
             
             if let userData:[String:Any] = dicData?["user"] as? [String:Any] {
@@ -346,13 +351,6 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
                 
                 let updateUser:T? = GIST_GLOBAL.getUser();
                 
-                completion?(updateUser, rawData);
-            } else if let userData:[String:Any] = (dicData?["user"] as? [Any])?.first as? [String:Any] {
-                    
-                GIST_GLOBAL.userData = userData;
-                
-                let updateUser:T? = GIST_GLOBAL.getUser();
-                    
                 completion?(updateUser, rawData);
             } else {
                 completion?(nil, rawData);

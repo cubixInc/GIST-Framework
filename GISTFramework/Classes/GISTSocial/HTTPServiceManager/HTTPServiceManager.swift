@@ -529,7 +529,7 @@ open class HTTPRequest:NSObject {
 
         //Access token
         if let accessToken:String = GIST_GLOBAL.accessToken {
-            self.headers?["access_token"] = accessToken;
+            self.headers?["X-Access-Token"] = accessToken;
         }
         
         if (HTTPServiceManager.sharedInstance.entityFramework) {
