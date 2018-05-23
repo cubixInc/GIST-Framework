@@ -49,7 +49,7 @@ public class GISTGlobal: NSObject {
     
     
     private var _accessToken:String?
-    internal var accessToken:String? {
+    public var accessToken:String? {
         set {
             _accessToken = newValue;
 
@@ -102,11 +102,7 @@ public class GISTGlobal: NSObject {
             return nil;
         }
         
-        if HTTPServiceManager.sharedInstance.microService {
-            guard self.accessToken != nil else {
-                return nil;
-            }
-        } else {
+        if HTTPServiceManager.sharedInstance.microService == false {
             guard let _:Int = usrData[USER_ID] as? Int else {
                 return nil;
             }
@@ -118,5 +114,5 @@ public class GISTGlobal: NSObject {
         
         return _user as? T;
     } //F.E.
-    
-} //F.E.
+
+} //CLS END
