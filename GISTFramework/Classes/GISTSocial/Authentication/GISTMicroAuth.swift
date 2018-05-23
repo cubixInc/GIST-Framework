@@ -138,6 +138,15 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
      */
     
+    public static func verifyEmail(token:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        var aParams:[String:Any] = params ?? [:];
+        
+        aParams["token"] = token;
+        
+        self.request(service: VERIFY_EMAIL_REQUEST, params: aParams, method: HTTPMethod.post, completion:completion, failure:failure);
+    } //F.E.
+    
+    
     /*
      NOT AVAILABLE RIGHT NOW
     public static func resendCode(additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
