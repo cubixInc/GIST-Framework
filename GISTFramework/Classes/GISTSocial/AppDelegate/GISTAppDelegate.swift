@@ -74,10 +74,14 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     } //F.E.
 
     open func applicationDidBecomeActive(_ application: UIApplication) {
-        //Badge count to zero
-        application.applicationIconBadgeNumber = 0;
         
+        if GIST_CONFIG.resetBadgeCount {
+            //Badge count to zero
+            application.applicationIconBadgeNumber = 0;
+        }
+
         SyncEngine.syncData();
+        GISTMicroAuth<ModelUser>.refreshAccessToken();
         
         GISTApplication.sharedInstance.applicationDidBecomeActive(application);
     } //F.E.

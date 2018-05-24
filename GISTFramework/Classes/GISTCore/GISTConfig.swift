@@ -31,6 +31,8 @@ public class GISTConfig: NSObject {
     public var sizeForIPad:Bool = true;
     public var sizeForNavi:Bool = false;
     
+    public var resetBadgeCount:Bool = true;
+    
     public var respectRTL:Bool = false;
     
     private var _currentLanguageCode:String?
@@ -74,5 +76,7 @@ public class GISTConfig: NSObject {
             return _isRTL!;
         }
     } //P.E.
+    
+    
 
 } //CLS END

@@ -262,12 +262,24 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         }, failure: nil);
     } //F.E.
     
-    //MARK: - Refresh Access token
+    //MARK: - Refresh Access token - It refereshes access token, only when it is required
     public static func refreshAccessToken() {
         guard let _ = GIST_GLOBAL.userData, GIST_GLOBAL.accessToken != nil else {
             return;
         }
         
+        let curTimeIntervale:TimeInterval = Date().timeIntervalSince1970;
+        
+        let expiryTimeIntervale:TimeInterval = GIST_GLOBAL.accessTokenValidTill ?? curTimeIntervale;
+        
+        let halfDuration:TimeInterval = GIST_GLOBAL.accessTokenDuration / 2.0;
+
+        let diff = expiryTimeIntervale - curTimeIntervale;
+        
+        guard (diff > 0 &&  diff < halfDuration) || halfDuration == 0 else {
+            return;
+        }
+
         self.request(service: REFRESH_ACCESS_TOKEN, params: [:], method: HTTPMethod.get, completion: { (user, rawData) in
             print("Successfully REFRESH_ACCESS_TOKEN")
         }) { (error) in
@@ -369,12 +381,10 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         httpRequest.onSuccess { (rawData:Any?) in
             let dicData:[String:Any]? = rawData as? [String:Any];
             
-            
 //            "access_token": {
 //                "token": "du2atrc4mzi8296myr8ra6xabikjz27s6tw1o8yd",
 //                "valid_till": "1527142952758"
 //            }
-            
             if let accessToken:[String:Any] = dicData?["access_token"] as? [String:Any] {
                 self.updateAccessToken(accessToken);
             }
@@ -401,10 +411,18 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             GIST_GLOBAL.accessToken = token;
         }
         
-        if let validAccessTokenTill:String = accessToken["valid_till"] as? String, let timeInterval:TimeInterval = TimeInterval(validAccessTokenTill) {
-            GIST_GLOBAL.accessTokenValidTill = timeInterval;
+        if let validAccessTokenTill:String = accessToken["valid_till"] as? String, let expiryTimeInMili:TimeInterval = TimeInterval(validAccessTokenTill) {
+            
+            let expiryInSec:TimeInterval = expiryTimeInMili / 1000.0;
+            
+            GIST_GLOBAL.accessTokenValidTill = expiryInSec;
+            
+            let curTimeIntervale:TimeInterval = Date().timeIntervalSince1970;
+
+            GIST_GLOBAL.accessTokenDuration = expiryInSec - curTimeIntervale;
         } else {
             GIST_GLOBAL.accessTokenValidTill = nil;
+            GIST_GLOBAL.accessTokenDuration = 0;
         }
     } //F.E.
     

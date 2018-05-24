@@ -321,5 +321,5 @@ public class GISTUtility: NSObject {
         
         return predicate.evaluate(with: text!);
     } //F.E.
-    
+
 } //CLS END
