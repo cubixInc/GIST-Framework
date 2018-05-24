@@ -6,9 +6,9 @@
 //  Copyright © 2017 Social Cubix. All rights reserved.
 //
 
-import UIKit
 import ObjectMapper
 import Alamofire
+
 
 private let SIGN_UP_REQUEST = "signup"; //POST
 
@@ -26,7 +26,7 @@ private let SIGN_OUT = "logout"; //GET
 
 private let EDIT_PROFILE_REQUEST = "update-user"; // PUT
 
-
+private let REFRESH_ACCESS_TOKEN = "refresh-access-token" // GET
 
 
 /*
@@ -262,6 +262,16 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         }, failure: nil);
     } //F.E.
     
+    //MARK: - Refresh Access token
+    public static func refreshAccessToken() {
+        self.request(service: REFRESH_ACCESS_TOKEN, params: [:], method: HTTPMethod.get, completion: { (user, rawData) in
+            print("Successfully REFRESH_ACCESS_TOKEN")
+        }) { (error) in
+            //Cleanup in either case
+            print("Access token error : \(error.localizedDescription)");
+        }
+    } //F.E.
+    
     private static func cleanup() {
         GIST_GLOBAL.userData = nil;
         GIST_GLOBAL.accessToken = nil;
@@ -360,8 +370,9 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
 //                "token": "du2atrc4mzi8296myr8ra6xabikjz27s6tw1o8yd",
 //                "valid_till": "1527142952758"
 //            }
-            if let accessToken:[String:Any] = dicData?["access_token"] as? [String:Any], let token:String = accessToken["token"] as? String {
-                GIST_GLOBAL.accessToken = token;
+            
+            if let accessToken:[String:Any] = dicData?["access_token"] as? [String:Any] {
+                self.updateAccessToken(accessToken);
             }
             
             if let userData:[String:Any] = dicData?["user"] as? [String:Any] {
@@ -378,6 +389,18 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         
         if (failure != nil) {
             httpRequest.onFailure(response: failure!);
+        }
+    } //F.E.
+    
+    private static func updateAccessToken(_ accessToken:[String:Any]) {
+        if let token:String = accessToken["token"] as? String {
+            GIST_GLOBAL.accessToken = token;
+        }
+        
+        if let validAccessTokenTill:String = accessToken["valid_till"] as? String, let timeInterval:TimeInterval = TimeInterval(validAccessTokenTill) {
+            GIST_GLOBAL.accessTokenValidTill = timeInterval;
+        } else {
+            GIST_GLOBAL.accessTokenValidTill = nil;
         }
     } //F.E.
     

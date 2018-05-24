@@ -9,6 +9,7 @@
 import UIKit;
 import ObjectMapper;
 
+
 public let GIST_GLOBAL = GISTGlobal.shared;
 
 /// GISTGlobal is a singleton instance class to hold default shared data.
@@ -71,6 +72,32 @@ public class GISTGlobal: NSObject {
             }
             
             return _accessToken;
+        }
+    } //P.E.
+    
+    private var _accessTokenValidTill:TimeInterval?
+    public var accessTokenValidTill:TimeInterval? {
+        set {
+            _accessTokenValidTill = newValue;
+            
+            if _accessTokenValidTill != nil {
+                UserDefaults.standard.set(_accessTokenValidTill!, forKey: "ACCESS_TOKEN_VALID_TILL");
+                UserDefaults.standard.synchronize();
+            } else {
+                UserDefaults.standard.removeObject(forKey: "ACCESS_TOKEN_VALID_TILL")
+            }
+        }
+        
+        get {
+            guard _accessTokenValidTill != nil else {
+                return nil;
+            }
+            
+            if _accessTokenValidTill == nil {
+                _accessTokenValidTill = UserDefaults.standard.double(forKey: "ACCESS_TOKEN_VALID_TILL");
+            }
+            
+            return _accessTokenValidTill;
         }
     } //P.E.
     
