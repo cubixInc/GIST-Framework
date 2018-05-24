@@ -264,6 +264,10 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     
     //MARK: - Refresh Access token
     public static func refreshAccessToken() {
+        guard let _ = GIST_GLOBAL.userData, GIST_GLOBAL.accessToken != nil else {
+            return;
+        }
+        
         self.request(service: REFRESH_ACCESS_TOKEN, params: [:], method: HTTPMethod.get, completion: { (user, rawData) in
             print("Successfully REFRESH_ACCESS_TOKEN")
         }) { (error) in
