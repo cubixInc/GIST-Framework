@@ -63,7 +63,7 @@ public class GISTGlobal: NSObject {
         }
         
         get {
-            guard _userData != nil else {
+            guard _userData != nil && self.isAccessTokenValid else {
                 return nil;
             }
             
