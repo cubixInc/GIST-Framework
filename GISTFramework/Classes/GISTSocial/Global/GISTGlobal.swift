@@ -126,10 +126,6 @@ public class GISTGlobal: NSObject {
     
     public var isAccessTokenValid:Bool {
         get {
-            guard let _ = GIST_GLOBAL.userData, GIST_GLOBAL.accessToken != nil else {
-                return false;
-            }
-            
             let curTimeIntervale:TimeInterval = Date().timeIntervalSince1970;
             let expiryTimeIntervale:TimeInterval = self.accessTokenValidTill ?? curTimeIntervale;
 
@@ -161,7 +157,7 @@ public class GISTGlobal: NSObject {
     
     private var _user:GISTUser?;
     public func getUser<T:GISTUser>() -> T? {
-        guard let usrData = userData else {
+        guard let usrData:[String:Any] = userData else {
             return nil;
         }
         

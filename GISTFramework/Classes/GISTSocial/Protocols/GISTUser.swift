@@ -24,7 +24,7 @@ public protocol GISTUser: Mappable, ReverseMappable, NSCopying {
     var platformId: String? {get set};
     var platformType: String? {get set};
     
-    var isVerified: Bool? {get set};
+    var isVerified: Bool {get set};
     
     var isMobileVerified: Bool? {get set};
     var isEmailVerified: Bool? {get set};

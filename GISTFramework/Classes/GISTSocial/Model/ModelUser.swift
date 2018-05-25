@@ -15,7 +15,7 @@ public class ModelUser:NSObject, GISTUser {
     public var email: String?;
     public var isEmailVerified: Bool?;
     public var isMobileVerified: Bool?;
-    public var isVerified: Bool?;
+    public var isVerified: Bool = false;
     public var mobileNo: String?;
     public var platformId: String?;
     public var platformType: String?;
@@ -70,7 +70,7 @@ public class ModelUser:NSObject, GISTUser {
         email = aDecoder.decodeObject(forKey: "email") as? String;
         isEmailVerified = aDecoder.decodeObject(forKey: "is_email_verified") as? Bool;
         isMobileVerified = aDecoder.decodeObject(forKey: "is_mobile_verified") as? Bool;
-        isVerified = aDecoder.decodeObject(forKey: "is_verified") as? Bool;
+        isVerified = aDecoder.decodeObject(forKey: "is_verified") as? Bool ?? false;
         mobileNo = aDecoder.decodeObject(forKey: "mobile_no") as? String;
         platformId = aDecoder.decodeObject(forKey: "platform_id") as? String;
         platformType = aDecoder.decodeObject(forKey: "platform_type") as? String;
