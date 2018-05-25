@@ -402,7 +402,6 @@
 				48EF2EA8202490FE000B4925 /* Protocols */,
 				48EF2EAB202490FE000B4925 /* Reachability */,
 				48EF2EAD202490FE000B4925 /* TutorialView */,
-				48EF2EAF202490FE000B4925 /* UserPreferences */,
 			);
 			path = GISTSocial;
 			sourceTree = "<group>";
@@ -490,13 +489,6 @@
 				48EF2EAE202490FE000B4925 /* TutorialView.swift */,
 			);
 			path = TutorialView;
-			sourceTree = "<group>";
-		};
-		48EF2EAF202490FE000B4925 /* UserPreferences */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UserPreferences;
 			sourceTree = "<group>";
 		};
 		48EF2EB0202490FE000B4925 /* SyncEngine */ = {
