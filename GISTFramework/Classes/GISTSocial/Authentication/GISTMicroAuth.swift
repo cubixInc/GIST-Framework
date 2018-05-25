@@ -214,7 +214,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     //MARK: - Reset Password
     public static func resetPassword(fields:[ValidatedTextInput], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
 
-        guard let passwordResetToken:String = GIST_GLOBAL.userData?["passwordResetToken"] as? String else {
+        guard let passwordResetToken:String = GIST_GLOBAL.userData?["password_reset_token"] as? String else {
             return;
         }
         
