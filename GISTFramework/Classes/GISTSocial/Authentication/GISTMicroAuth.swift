@@ -85,7 +85,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         var aParams:[String:Any] = params ?? [:];
         
         if let platformType:String = user.platformType, platformType != "custom" {
-            aParams["socialLogin"] = true;
+            aParams["social_login"] = true;
         }
 
         self.request(service: SIGN_IN_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), method: HTTPMethod.post, completion:completion, failure:failure);
