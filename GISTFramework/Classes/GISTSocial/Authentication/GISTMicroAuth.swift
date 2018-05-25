@@ -88,7 +88,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             aParams["social_login"] = true;
         }
 
-        self.request(service: SIGN_IN_REQUEST, params: GISTSocialUtils.formate(user: user, additional: params), method: HTTPMethod.post, completion:completion, failure:failure);
+        self.request(service: SIGN_IN_REQUEST, params: GISTSocialUtils.formate(user: user, additional: aParams), method: HTTPMethod.post, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Edit Profile
