@@ -150,10 +150,13 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
         
         let service:String;
         
-        if GIST_GLOBAL.userData == nil {
-            service = VERIFY_PASSWORD_RESET_REQUEST;
-        } else {
+        let isVerified:Bool = GIST_GLOBAL.userData?["is_verified"] as? Bool ?? false
+        
+        
+        if isVerified == false {
             service = VERIFY_EMAIL_REQUEST;
+        } else {
+            service = VERIFY_PASSWORD_RESET_REQUEST;
         }
         
         self.request(service: service, params: aParams, method: HTTPMethod.post, completion:completion, failure:failure);
