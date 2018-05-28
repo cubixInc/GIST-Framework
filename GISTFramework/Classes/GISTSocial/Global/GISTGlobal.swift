@@ -63,7 +63,7 @@ public class GISTGlobal: NSObject {
         }
         
         get {
-            guard _userData != nil && self.isAccessTokenValid else {
+            guard self.userData != nil && self.isAccessTokenValid else {
                 return nil;
             }
             
@@ -89,7 +89,7 @@ public class GISTGlobal: NSObject {
         }
         
         get {
-            guard _userData != nil else {
+            guard self.userData != nil else {
                 return nil;
             }
             
@@ -129,7 +129,7 @@ public class GISTGlobal: NSObject {
             let curTimeIntervale:TimeInterval = Date().timeIntervalSince1970;
             let expiryTimeIntervale:TimeInterval = self.accessTokenValidTill ?? curTimeIntervale;
 
-            return curTimeIntervale > expiryTimeIntervale;
+            return expiryTimeIntervale > curTimeIntervale;
         }
     } //P.E.
     
