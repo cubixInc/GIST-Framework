@@ -292,7 +292,6 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     private static func cleanup() {
-        GIST_GLOBAL.userData = nil;
         GIST_GLOBAL.accessToken = nil;
     } //F.E.
     

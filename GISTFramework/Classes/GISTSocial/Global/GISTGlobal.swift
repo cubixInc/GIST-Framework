@@ -58,12 +58,16 @@ public class GISTGlobal: NSObject {
                 UserDefaults.standard.set(_accessToken!, forKey: "ACCESS_TOKEN");
                 UserDefaults.standard.synchronize();
             } else {
+                
+                self.accessTokenValidTill = nil;
+                self.userData = nil;
+
                 UserDefaults.standard.removeObject(forKey: "ACCESS_TOKEN")
             }
         }
         
         get {
-            guard self.userData != nil && self.isAccessTokenValid else {
+            guard self.isAccessTokenValid else {
                 return nil;
             }
             
@@ -89,9 +93,6 @@ public class GISTGlobal: NSObject {
         }
         
         get {
-            guard self.userData != nil else {
-                return nil;
-            }
             
             if _accessTokenValidTill == nil {
                 _accessTokenValidTill = UserDefaults.standard.double(forKey: "ACCESS_TOKEN_VALID_TILL");
@@ -106,12 +107,8 @@ public class GISTGlobal: NSObject {
         set {
             _accessTokenDuration = newValue;
             
-            if _accessTokenDuration != nil {
-                UserDefaults.standard.set(_accessTokenDuration! > 0 ? _accessTokenDuration!:0, forKey: "ACCESS_TOKEN_DURATION");
-                UserDefaults.standard.synchronize();
-            } else {
-                UserDefaults.standard.removeObject(forKey: "ACCESS_TOKEN_DURATION")
-            }
+            UserDefaults.standard.set(newValue > 0 ? newValue:0, forKey: "ACCESS_TOKEN_DURATION");
+            UserDefaults.standard.synchronize();
         }
         
         get {
