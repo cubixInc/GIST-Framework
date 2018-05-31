@@ -36,10 +36,11 @@ private let SOCIAL_SIGN_IN_REQUEST = "social_login";
 
 private let VERIFY_PHONE_REQUEST = "verify_phone";
 
-private let CHANGE_PASSWORD_REQUEST = "change_password";
 private let DELETE_ACCOUNT = "delete_account";
 private let CHANGE_LOGIN_ID = "change_id_request";
 */
+
+private let CHANGE_PASSWORD_REQUEST = "change-password";
 
 
 public class GISTMicroAuth<T:GISTUser>: NSObject {
@@ -199,20 +200,20 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Change Password
-    /*
-     NOT AVAILABLE RIGHT NOW
-    public static func changePassword(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        
-        guard let identifier:String = GIST_GLOBAL.userData?["identifier"] as? String else {
-            return;
-        }
-        
-        var aParams:[String:Any] = params ?? [:];
-        aParams["identifier"] = identifier;
-        
-        self.request(service: CHANGE_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
+
+    public static func changePassword(fields:[ValidatedTextInput], additional aParams:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        self.request(service: CHANGE_PASSWORD_REQUEST, fields: fields, additional: aParams, method: HTTPMethod.put, completion: completion, failure: failure);
     } //F.E.
-    */
+    
+    public static func changePassword(newPassword:String, oldPassword:String , additional aParams:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+        
+        var params:[String:Any] = aParams ?? [:];
+        
+        params["new_password"] = newPassword;
+        params["old_password"] = oldPassword;
+        
+        self.request(service: CHANGE_PASSWORD_REQUEST, params: params, method: HTTPMethod.put, completion: completion, failure: failure);
+    } //F.E.
     
     //MARK: - Reset Password
     public static func resetPassword(fields:[ValidatedTextInput], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
