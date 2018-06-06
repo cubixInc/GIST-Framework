@@ -252,7 +252,6 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        
         if let cDeviceToken:String = userData["device_token"] as? String, cDeviceToken == deviceToken {
             //Already Saved To
             return;
@@ -272,15 +271,8 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        let curTimeIntervale:TimeInterval = Date().timeIntervalSince1970;
-        
-        let expiryTimeIntervale:TimeInterval = GIST_GLOBAL.accessTokenValidTill ?? curTimeIntervale;
-        
-        let halfDuration:TimeInterval = GIST_GLOBAL.accessTokenDuration / 2.0;
-
-        let diff = expiryTimeIntervale - curTimeIntervale;
-        
-        guard (diff > 0 &&  diff < halfDuration) || halfDuration == 0 else {
+        //Refresh access token after every 2 hours
+        guard ThresholdTime.hasPassed(2, forIdentifier: "UPDATE_ACCESS_TOKEN", unit: ThresholdTime.Unit.hour) else {
             return;
         }
 
@@ -410,6 +402,8 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     private static func updateAccessToken(_ accessToken:[String:Any]) {
+        ThresholdTime.updateTime(forIdentifier: "UPDATE_ACCESS_TOKEN");
+        
         if let token:String = accessToken["token"] as? String {
             GIST_GLOBAL.accessToken = token;
         }
@@ -420,12 +414,8 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             
             GIST_GLOBAL.accessTokenValidTill = expiryInSec;
             
-            let curTimeIntervale:TimeInterval = Date().timeIntervalSince1970;
-
-            GIST_GLOBAL.accessTokenDuration = expiryInSec - curTimeIntervale;
         } else {
             GIST_GLOBAL.accessTokenValidTill = nil;
-            GIST_GLOBAL.accessTokenDuration = 0;
         }
     } //F.E.
     

@@ -67,10 +67,7 @@ public class GISTGlobal: NSObject {
         }
         
         get {
-            guard self.isAccessTokenValid else {
-                return nil;
-            }
-            
+
             if _accessToken == nil {
                 _accessToken = UserDefaults.standard.string(forKey: "ACCESS_TOKEN");
             }
@@ -78,6 +75,7 @@ public class GISTGlobal: NSObject {
             return _accessToken;
         }
     } //P.E.
+    
     
     private var _accessTokenValidTill:TimeInterval?
     public var accessTokenValidTill:TimeInterval? {
@@ -99,34 +97,6 @@ public class GISTGlobal: NSObject {
             }
             
             return _accessTokenValidTill;
-        }
-    } //P.E.
-    
-    private var _accessTokenDuration:TimeInterval?
-    public var accessTokenDuration:TimeInterval {
-        set {
-            _accessTokenDuration = newValue;
-            
-            UserDefaults.standard.set(newValue > 0 ? newValue:0, forKey: "ACCESS_TOKEN_DURATION");
-            UserDefaults.standard.synchronize();
-        }
-        
-        get {
-
-            if _accessTokenDuration == nil {
-                _accessTokenDuration = UserDefaults.standard.double(forKey: "ACCESS_TOKEN_DURATION");
-            }
-            
-            return _accessTokenDuration ?? 0;
-        }
-    } //P.E.
-    
-    public var isAccessTokenValid:Bool {
-        get {
-            let curTimeIntervale:TimeInterval = Date().timeIntervalSince1970;
-            let expiryTimeIntervale:TimeInterval = self.accessTokenValidTill ?? curTimeIntervale;
-
-            return expiryTimeIntervale > curTimeIntervale;
         }
     } //P.E.
     
