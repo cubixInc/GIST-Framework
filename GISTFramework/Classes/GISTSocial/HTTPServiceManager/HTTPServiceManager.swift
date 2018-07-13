@@ -15,7 +15,7 @@ open class HTTPServiceManager: NSObject {
     
     open static let sharedInstance = HTTPServiceManager();
     
-    fileprivate var _requests:[String:HTTPRequest] = [:];
+    fileprivate var _requests:[HTTPRequest] = []; // Here Hash map is not used because service name was used as key and same service may be called more than once with differen params.
     
     fileprivate var _headers:HTTPHeaders = HTTPHeaders();
     
@@ -87,17 +87,14 @@ open class HTTPServiceManager: NSObject {
         //Base Server URL
         _serverBaseURL = URL(string: serverBaseURL)!;
         
-        let urlToSync:String = _serverBaseURL.appendingPathComponent("se/get_all").absoluteString;
-        
         //Http Header
         _headers = headers ?? [:];
 
         if let authHeader = authorizationHandler?(), let authorizationHeader = Request.authorizationHeader(user: authHeader.name, password: authHeader.password) {
-            
             _headers[authorizationHeader.key] = authorizationHeader.value;
         }
-            
-        SyncEngine.initialize(urlToSync, headers: _headers);
+
+        SyncEngine.initialize(_serverBaseURL, requestName:nil, headers: _headers);
     } //F.E.
     
     //MARK: - Progress Bar Handling
@@ -375,7 +372,7 @@ open class HTTPServiceManager: NSObject {
         }
         
         //Holding reference
-        _requests[httpRequest.requestName] = httpRequest;
+        _requests.append(httpRequest);
     } //F.E.
     
     fileprivate func requestDidFinish(httpRequest:HTTPRequest) {
@@ -385,20 +382,36 @@ open class HTTPServiceManager: NSObject {
             self.hideProgressHUD();
         }
         
-        _requests.removeValue(forKey: httpRequest.requestName);
+        _requests.removeObject(httpRequest);
     } //F.E.
     
     //MARK: - Cancel Request Handling
     open class func cancelRequest(requestName:String) {
         self.sharedInstance.cancelRequest(requestName: requestName);
     } //F.E.
-    
+
     fileprivate func cancelRequest(requestName:String) {
-        if let httpRequest:HTTPRequest = _requests[requestName] {
-            httpRequest.cancel();
+        
+        //Reversed loop because index may change ofter removing object from array
+        for i:Int in (0 ..< _requests.count).reversed() {
+            let request:HTTPRequest = _requests[i];
             
-            self.requestDidFinish(httpRequest: httpRequest);
+            if (request.requestName == requestName) {
+                request.cancel();
+                self.requestDidFinish(httpRequest: request);
+            }
         }
+        
+    } //F.E.
+    
+    open class func cancelRequest(request:HTTPRequest) {
+        self.sharedInstance.cancelRequest(request: request);
+    } //F.E.
+    
+    fileprivate func cancelRequest(request:HTTPRequest) {
+        request.cancel();
+        
+        self.requestDidFinish(httpRequest: request);
     } //F.E.
     
     open class func cancelAllRequests() {
@@ -406,10 +419,12 @@ open class HTTPServiceManager: NSObject {
     } //F.E.
     
     fileprivate func cancelAllRequests() {
-        for (_, httpRequest) in _requests {
-            httpRequest.cancel();
+        //Reversed loop because index may change ofter removing object from array
+        for i:Int in (0 ..< _requests.count).reversed() {
+            let request:HTTPRequest = _requests[i];
             
-            self.requestDidFinish(httpRequest: httpRequest);
+            request.cancel();
+            self.requestDidFinish(httpRequest: request);
         }
     } //F.E.
     
@@ -620,7 +635,9 @@ open class HTTPRequest:NSObject {
     } //F.E.
     
     //MARK: - Cancel
-    open func cancel() {
+    
+    //Should not be called directly from outside of the class
+    fileprivate func cancel() {
         //Flaging On
         _cancelled = true;
         

@@ -266,21 +266,27 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Refresh Access token - It refereshes access token, only when it is required
-    public static func refreshAccessToken() {
+    public static func refreshAccessToken(_ completion:@escaping (_ success:Bool) -> Void) {
         guard let _ = GIST_GLOBAL.userData, GIST_GLOBAL.accessToken != nil else {
+            completion(false);
             return;
         }
         
         //Refresh access token after every 2 hours
         guard ThresholdTime.hasPassed(2, forIdentifier: "UPDATE_ACCESS_TOKEN", unit: ThresholdTime.Unit.hour) else {
+            completion(false);
             return;
         }
 
         self.request(service: REFRESH_ACCESS_TOKEN, params: [:], method: HTTPMethod.get, completion: { (user, rawData) in
-            print("Successfully REFRESH_ACCESS_TOKEN")
+            print("Successfully REFRESH_ACCESS_TOKEN");
+            
+            completion(true);
         }) { (error) in
             //Cleanup in either case
             print("Access token error : \(error.localizedDescription)");
+            
+            completion(false);
         }
     } //F.E.
     

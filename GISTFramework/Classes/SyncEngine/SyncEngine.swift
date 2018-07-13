@@ -129,8 +129,8 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    public static func initialize(_ urlToSync:String, headers:[String:String]?) {
-        SyncEngine.sharedInstance.initialize(urlToSync, headers: headers);
+    public static func initialize(_ serverBaseURL:URL, requestName:String?, headers:[String:String]?) {
+        SyncEngine.sharedInstance.initialize(serverBaseURL, requestName:requestName, headers: headers);
     } //F.E.
     
     /// Initializer for Sync Engine.
@@ -138,8 +138,8 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    private func initialize(_ urlToSync:String, headers:[String:String]?) {
-        _urlToSync = URL(string: urlToSync);
+    private func initialize(_ serverBaseURL:URL, requestName:String?, headers:[String:String]?) {
+        _urlToSync = serverBaseURL.appendingPathComponent(requestName ?? "se/get_all");
         
         //Adding Language Key
         _headers["language"] = GIST_CONFIG.currentLanguageCode;

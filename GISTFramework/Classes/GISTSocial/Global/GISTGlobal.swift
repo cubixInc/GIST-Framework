@@ -134,10 +134,10 @@ public class GISTGlobal: NSObject {
             }
         }
         
-        if (_user == nil && _userData != nil) {
+        if (_user as? T == nil) {
             _user = Mapper<T>().map(JSON: usrData);
         }
-        
+
         return _user as? T;
     } //F.E.
 
