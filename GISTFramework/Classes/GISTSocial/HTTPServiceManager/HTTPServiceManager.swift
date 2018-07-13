@@ -72,6 +72,8 @@ open class HTTPServiceManager: NSObject {
     fileprivate var _invalidSessionBlock:((_ httpRequest:HTTPRequest, _ error:NSError)->Void)?
     fileprivate var _noInternetConnectionBlock:((_ httpRequest:HTTPRequest)->Void)?
     
+    fileprivate var _isBlocked:Bool = false;
+    
     fileprivate override init() {}
     
     //MARK: - Initialize
@@ -193,34 +195,17 @@ open class HTTPServiceManager: NSObject {
         httpRequest.delegate = delegate;
         httpRequest.hasProgressHUD = showHud;
         
+        httpRequest.multipart = multipart;
+        
         httpRequest.blocking = blocking;
         
-        self.request(httpRequest: httpRequest, multipart:multipart);
+        if (_isBlocked == false) {
+            self.request(httpRequest: httpRequest);
+        } else {
+            self.requestGotHold(httpRequest: httpRequest);
+        }
         
         return httpRequest;
-    } //F.E.
-    
-    public func request(httpRequest:HTTPRequest, multipart:Bool) {
-        //Validation for internet connection
-        guard (REACHABILITY_HELPER.isInternetConnected) else {
-            //Calling after delay so that block may initialize
-            GISTUtility.delay(0.01, closure: {
-                self.requestDidFailWithNoInternetConnection(httpRequest: httpRequest);
-            });
-            return;
-        }
-        
-        if (multipart) {
-            httpRequest.sendMultipartRequest(multipartEncodingResult: multipartEncodingResult);
-        } else {
-            httpRequest.sendRequest().responseJSON(queue: nil, options: JSONSerialization.ReadingOptions.mutableContainers) {
-                (response:DataResponse<Any>) -> Void in
-                self.responseResult(httpRequest: httpRequest, response: response);
-            }
-        }
-
-        //Request Did Start
-        self.requestDidStart(httpRequest: httpRequest);
     } //F.E.
     
     //MARK: - Multipart Requests Handling
@@ -257,6 +242,46 @@ open class HTTPServiceManager: NSObject {
             }
         case .failure(let errorType):
             self.requestDidFailWithError(httpRequest: httpRequest, error: errorType as NSError);
+        }
+    } //F.E.
+    
+    //MARK: - Request Sending
+    
+    public func request(httpRequest:HTTPRequest) {
+        //Validation for internet connection
+        guard (REACHABILITY_HELPER.isInternetConnected) else {
+            //Calling after delay so that block may initialize
+            GISTUtility.delay(0.01, closure: {
+                self.requestDidFailWithNoInternetConnection(httpRequest: httpRequest);
+            });
+            
+            return;
+        }
+        
+        if (httpRequest.multipart) {
+            httpRequest.sendMultipartRequest(multipartEncodingResult: multipartEncodingResult);
+        } else {
+            httpRequest.sendRequest().responseJSON(queue: nil, options: JSONSerialization.ReadingOptions.mutableContainers) {
+                (response:DataResponse<Any>) -> Void in
+                self.responseResult(httpRequest: httpRequest, response: response);
+            }
+        }
+        
+        //Request Did Start
+        self.requestDidStart(httpRequest: httpRequest);
+    } //F.E.
+    
+    fileprivate func runPendingRequests() {
+        for i:Int in (0 ..< _requests.count).reversed() {
+            let request:HTTPRequest = _requests[i];
+            
+            if (request.pending) {
+                request.pending = false;
+                
+                self.request(httpRequest: request);
+                
+                break;
+            }
         }
     } //F.E.
     
@@ -313,6 +338,8 @@ open class HTTPServiceManager: NSObject {
         
         //Did Finish
         self.requestDidFinish(httpRequest: httpRequest);
+        
+        self.runPendingRequests();
     } //F.E.
     
     fileprivate func requestDidFailWithError(httpRequest:HTTPRequest, error:NSError) {
@@ -322,6 +349,8 @@ open class HTTPServiceManager: NSObject {
 
         //Did Finish
         self.requestDidFinish(httpRequest: httpRequest);
+        
+        self.runPendingRequests();
     } //F.E.
     
     fileprivate func requestDidFailWithInvalidSession(httpRequest:HTTPRequest, error:NSError) {
@@ -330,13 +359,19 @@ open class HTTPServiceManager: NSObject {
         }
         
         //Did Finish
-        self.requestDidFinish(httpRequest: httpRequest);
+        //??self.requestDidFinish(httpRequest: httpRequest);
+        
+        //Canceling the current one and all pending requests
+        self.cancelAllRequests();
     } //F.E.
     
     fileprivate func requestDidFailWithNoInternetConnection(httpRequest:HTTPRequest) {
         if (httpRequest.didFailWithNoInternetConnection() == false) {
             _noInternetConnectionBlock?(httpRequest);
         }
+        
+        //Canceling the current one and all pending requests
+        self.cancelAllRequests();
     } //F.E.
     
     fileprivate func requestDidStart(httpRequest:HTTPRequest) {
@@ -346,8 +381,13 @@ open class HTTPServiceManager: NSObject {
             self.showProgressHUD();
         }
         
+        _isBlocked = httpRequest.blocking;
+        
         //Holding reference
-        _requests.append(httpRequest);
+        if _requests.index(of: httpRequest) == nil {
+            _requests.append(httpRequest);
+        }
+
     } //F.E.
     
     fileprivate func requestDidFinish(httpRequest:HTTPRequest) {
@@ -357,8 +397,19 @@ open class HTTPServiceManager: NSObject {
             self.hideProgressHUD();
         }
         
+        _isBlocked = false;
+        
         _requests.removeObject(httpRequest);
     } //F.E.
+    
+    fileprivate func requestGotHold(httpRequest:HTTPRequest) {
+        
+        httpRequest.pending = true;
+        
+        //Holding reference
+        _requests.append(httpRequest);
+    } //F.E.
+    
     
     //MARK: - Cancel Request Handling
     open class func cancelRequest(requestName:String) {
@@ -418,6 +469,8 @@ open class HTTPRequest:NSObject {
     open var parameters:Parameters?
     open var method:HTTPMethod = .post
     open var serverBaseURL:URL?
+    
+    open var multipart:Bool = false;
     
     open var pending:Bool = false;
     open var blocking:Bool = false;
