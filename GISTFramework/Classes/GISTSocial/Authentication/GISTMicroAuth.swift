@@ -259,7 +259,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
 
         let aParams:[String:Any] = params ?? [:];
         
-        self.request(service: EDIT_PROFILE_REQUEST, params: aParams, method: HTTPMethod.put, completion: { (user, rawData) in
+        self.request(service: EDIT_PROFILE_REQUEST, params: aParams, method: HTTPMethod.put, blocking:true, completion: { (user, rawData) in
             //Saved
             print("Token saved ... !");
         }, failure: nil);

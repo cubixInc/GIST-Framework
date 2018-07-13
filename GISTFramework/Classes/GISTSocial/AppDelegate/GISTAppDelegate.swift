@@ -80,11 +80,12 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
             application.applicationIconBadgeNumber = 0;
         }
 
-        GISTMicroAuth<ModelUser>.refreshAccessToken(nil)
+        GISTMicroAuth<ModelUser>.refreshAccessToken { (success) in
+            GISTApplication.sharedInstance.applicationDidBecomeActive(application);
+            
+            SyncEngine.syncData();
+        }
         
-        SyncEngine.syncData(); // To review
-        
-        GISTApplication.sharedInstance.applicationDidBecomeActive(application);
     } //F.E.
 
     open func applicationWillTerminate(_ application: UIApplication) {

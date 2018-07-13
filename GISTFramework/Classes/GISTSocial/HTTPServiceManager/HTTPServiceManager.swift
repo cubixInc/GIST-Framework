@@ -272,7 +272,7 @@ open class HTTPServiceManager: NSObject {
     } //F.E.
     
     fileprivate func runPendingRequests() {
-        for i:Int in (0 ..< _requests.count).reversed() {
+        for i:Int in (0 ..< _requests.count) {
             let request:HTTPRequest = _requests[i];
             
             if (request.pending) {
@@ -334,12 +334,13 @@ open class HTTPServiceManager: NSObject {
     fileprivate func requestDidSucceedWithData(httpRequest:HTTPRequest, data:Any?) {
         DispatchQueue.main.async {
             httpRequest.didSucceedWithData(data: data);
+            
+            //Did Finish
+            self.requestDidFinish(httpRequest: httpRequest);
+            
+            self.runPendingRequests();
         }
-        
-        //Did Finish
-        self.requestDidFinish(httpRequest: httpRequest);
-        
-        self.runPendingRequests();
+
     } //F.E.
     
     fileprivate func requestDidFailWithError(httpRequest:HTTPRequest, error:NSError) {
@@ -534,11 +535,7 @@ open class HTTPRequest:NSObject {
         self.method = method;
         self.headers = headers ?? [:];
 
-        //Access token
-        if let accessToken:String = GIST_GLOBAL.accessToken {
-            self.headers?["X-Access-Token"] = accessToken;
-        }
-        
+
         if (HTTPServiceManager.sharedInstance.entityFramework) {
             //Default Params
             self.parameters?["mobile_json"] = true;
@@ -555,6 +552,12 @@ open class HTTPRequest:NSObject {
     } //C.E.
     
     open func sendRequest() -> DataRequest {
+        
+        //Update Access token
+        if let accessToken:String = GIST_GLOBAL.accessToken {
+            self.headers?["X-Access-Token"] = accessToken;
+        }
+        
         #if DEBUG
             print("------------------------------------------------------------------");
             print("url: \(self.urlString) params: \(String(describing: self.parameters)) headers: \(String(describing: self.headers))")
@@ -566,6 +569,11 @@ open class HTTPRequest:NSObject {
     } //F.E.
     
     open func sendMultipartRequest(multipartEncodingResult:@escaping ((_ httpRequest:HTTPRequest, _ encodingCompletion:SessionManager.MultipartFormDataEncodingResult) -> Void)) {
+        
+        //Update Access token
+        if let accessToken:String = GIST_GLOBAL.accessToken {
+            self.headers?["X-Access-Token"] = accessToken;
+        }
         
         Alamofire.upload(multipartFormData: { (formData:MultipartFormData) in
             if let params:Parameters = self.parameters {
