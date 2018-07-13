@@ -78,7 +78,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     public static func signIn(params:[String:Any], completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
-        self.request(service: SIGN_IN_REQUEST, params: params, method: HTTPMethod.post, completion:completion, failure:failure);
+        self.request(service: SIGN_IN_REQUEST, params: params, method: HTTPMethod.post,  completion:completion, failure:failure);
     } //F.E.
     
     public static func signIn(user:T, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
@@ -89,7 +89,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             aParams["social_login"] = true;
         }
 
-        self.request(service: SIGN_IN_REQUEST, params: GISTSocialUtils.formate(user: user, additional: aParams), method: HTTPMethod.post, completion:completion, failure:failure);
+        self.request(service: SIGN_IN_REQUEST, params: GISTSocialUtils.formate(user: user, additional: aParams), method: HTTPMethod.post,  completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Edit Profile
@@ -266,27 +266,27 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Refresh Access token - It refereshes access token, only when it is required
-    public static func refreshAccessToken(_ completion:@escaping (_ success:Bool) -> Void) {
+    public static func refreshAccessToken(_ completion:((_ success:Bool) -> Void)?) {
         guard let _ = GIST_GLOBAL.userData, GIST_GLOBAL.accessToken != nil else {
-            completion(false);
+            completion?(false);
             return;
         }
         
         //Refresh access token after every 2 hours
         guard ThresholdTime.hasPassed(2, forIdentifier: "UPDATE_ACCESS_TOKEN", unit: ThresholdTime.Unit.hour) else {
-            completion(false);
+            completion?(false);
             return;
         }
 
-        self.request(service: REFRESH_ACCESS_TOKEN, params: [:], method: HTTPMethod.get, completion: { (user, rawData) in
+        self.request(service: REFRESH_ACCESS_TOKEN, params: [:], method: HTTPMethod.get, blocking:true, completion: { (user, rawData) in
             print("Successfully REFRESH_ACCESS_TOKEN");
             
-            completion(true);
+            completion?(true);
         }) { (error) in
             //Cleanup in either case
             print("Access token error : \(error.localizedDescription)");
             
-            completion(false);
+            completion?(false);
         }
     } //F.E.
     
@@ -328,7 +328,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        self.request(service: service, params: GISTSocialUtils.formate(array: arrData, additional: aParams, ignore:iParams), method:method, completion:completion, failure:failure);
+        self.request(service: service, params: GISTSocialUtils.formate(array: arrData, additional: aParams, ignore:iParams), method:method,  completion:completion, failure:failure);
     } //F.E.
     
     private static func request(service:String, fields:[ValidatedTextInput], additional params:[String:Any]?, method: HTTPMethod, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
@@ -341,11 +341,15 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             return;
         }
         
-        self.request(service: service, params: GISTSocialUtils.formate(fields: fields, additional:params), method:method, completion:completion, failure:failure);
+        self.request(service: service, params: GISTSocialUtils.formate(fields: fields, additional:params), method:method,  completion:completion, failure:failure);
         
     } //F.E.
     
     private static func request(service:String, params:[String:Any], method: HTTPMethod, completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
+        self.request(service:service, params:params, method: method, blocking:false, completion:completion, failure:failure);
+    }
+    
+    private static func request(service:String, params:[String:Any], method: HTTPMethod, blocking:Bool, completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
 //        if (service == SIGN_UP_REQUEST || service == SIGN_IN_REQUEST ||  service == MOBILE_SIGN_UP_REQUEST || service == SOCIAL_SIGN_IN_REQUEST || service == FORGOT_PASSWORD_REQUEST) {
         
         if (service == SIGN_UP_REQUEST || service == SIGN_IN_REQUEST || service == FORGOT_PASSWORD_REQUEST) {
@@ -377,7 +381,7 @@ public class GISTMicroAuth<T:GISTUser>: NSObject {
             uParams["mobile_no"] = "\(countryCode)-\(uMobileNo)";
         }
         
-        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, method: method, showHud: true, delegate: nil);
+        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: service, parameters: uParams, method: method, showHud: true, delegate: nil, blocking: blocking);
         
         httpRequest.onSuccess { (rawData:Any?) in
             let dicData:[String:Any]? = rawData as? [String:Any];
