@@ -168,23 +168,23 @@ open class HTTPServiceManager: NSObject {
     } //F.E.
     
     //MARK: - Requests Handling
-    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate);
+    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
+        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate, blocking:blocking);
     }
     
-    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate);
+    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
+        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate, blocking:blocking);
     } //F.E.
     
-    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
+    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
+        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate, blocking:blocking);
     } //F.E.
     
-    @discardableResult open class func request(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return HTTPServiceManager.sharedInstance.request(serviceBaseURL:serviceBaseURL, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
+    @discardableResult open class func request(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
+        return HTTPServiceManager.sharedInstance.request(serviceBaseURL:serviceBaseURL, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate, multipart: false, blocking:blocking);
     } //F.E.
     
-    fileprivate func request(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+    fileprivate func request(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, multipart:Bool, blocking:Bool) -> HTTPRequest {
         
         assert(_serverBaseURL != nil, "HTTPServiceManager.initialize(serverBaseURL: authorizationHandler:) not called.");
         
@@ -193,12 +193,14 @@ open class HTTPServiceManager: NSObject {
         httpRequest.delegate = delegate;
         httpRequest.hasProgressHUD = showHud;
         
-        self.request(httpRequest: httpRequest);
+        httpRequest.blocking = blocking;
+        
+        self.request(httpRequest: httpRequest, multipart:multipart);
         
         return httpRequest;
     } //F.E.
     
-    public func request(httpRequest:HTTPRequest) {
+    public func request(httpRequest:HTTPRequest, multipart:Bool) {
         //Validation for internet connection
         guard (REACHABILITY_HELPER.isInternetConnected) else {
             //Calling after delay so that block may initialize
@@ -208,63 +210,36 @@ open class HTTPServiceManager: NSObject {
             return;
         }
         
-        httpRequest.sendRequest().responseJSON(queue: nil, options: JSONSerialization.ReadingOptions.mutableContainers) {
-            (response:DataResponse<Any>) -> Void in
-            self.responseResult(httpRequest: httpRequest, response: response);
+        if (multipart) {
+            httpRequest.sendMultipartRequest(multipartEncodingResult: multipartEncodingResult);
+        } else {
+            httpRequest.sendRequest().responseJSON(queue: nil, options: JSONSerialization.ReadingOptions.mutableContainers) {
+                (response:DataResponse<Any>) -> Void in
+                self.responseResult(httpRequest: httpRequest, response: response);
+            }
         }
-        
+
         //Request Did Start
         self.requestDidStart(httpRequest: httpRequest);
     } //F.E.
     
     //MARK: - Multipart Requests Handling
-    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate);
+    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
+        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate, blocking:blocking);
     } //F.E.
     
-    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate);
+    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
+        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate, blocking:blocking);
     } //F.E.
     
-    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
+    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
+        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate, blocking:blocking);
     } //F.E.
     
-    @discardableResult open class func multipartRequest(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        return HTTPServiceManager.sharedInstance.multipartRequest(serviceBaseURL:serviceBaseURL, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
+    @discardableResult open class func multipartRequest(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
+        return HTTPServiceManager.sharedInstance.request(serviceBaseURL:serviceBaseURL, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate, multipart: true, blocking:blocking);
     } //F.E.
-    
-    fileprivate func multipartRequest(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
-        
-        assert(_serverBaseURL != nil, "HTTPServiceManager.initialize(serverBaseURL: authorizationHandler:) not called.");
-        
-        let httpRequest:HTTPRequest = HTTPRequest(requestName: requestName, parameters: parameters, method: method, headers: _headers);
-        httpRequest.serverBaseURL = serviceBaseURL;
-        httpRequest.delegate = delegate;
-        httpRequest.hasProgressHUD = showHud;
-        
-        self.multipartRequest(httpRequest: httpRequest);
-        
-        return httpRequest;
-    } //F.E.
-    
-    public func multipartRequest(httpRequest:HTTPRequest) {
-        
-        //Validation for internet connection
-        guard (REACHABILITY_HELPER.isInternetConnected) else {
-            //Calling after delay so that block may initialize
-            GISTUtility.delay(0.01, closure: {
-                self.requestDidFailWithNoInternetConnection(httpRequest: httpRequest);
-            });
-            return;
-        }
-        
-        httpRequest.sendMultipartRequest(multipartEncodingResult: multipartEncodingResult);
-        
-        //Request Did Start
-        self.requestDidStart(httpRequest: httpRequest);
-    } //F.E.
-    
+
     fileprivate func multipartEncodingResult(httpRequest:HTTPRequest, encodingCompletion:SessionManager.MultipartFormDataEncodingResult) {
         
         switch encodingCompletion {
@@ -444,6 +419,9 @@ open class HTTPRequest:NSObject {
     open var method:HTTPMethod = .post
     open var serverBaseURL:URL?
     
+    open var pending:Bool = false;
+    open var blocking:Bool = false;
+    
     fileprivate var _urlString:String?
     open var urlString:String {
         get {
@@ -484,13 +462,12 @@ open class HTTPRequest:NSObject {
     
     open weak var delegate:HTTPRequestDelegate?;
     
-    fileprivate var _cancelled:Bool = false;
-    fileprivate var cancelled:Bool {
+    private var _cancelled:Bool = false;
+    private var cancelled:Bool {
         get {
             return _cancelled;
         }
     } //P.E.
-    
     
     private override init() {
         super.init();
@@ -536,7 +513,6 @@ open class HTTPRequest:NSObject {
     } //F.E.
     
     open func sendMultipartRequest(multipartEncodingResult:@escaping ((_ httpRequest:HTTPRequest, _ encodingCompletion:SessionManager.MultipartFormDataEncodingResult) -> Void)) {
-        
         
         Alamofire.upload(multipartFormData: { (formData:MultipartFormData) in
             if let params:Parameters = self.parameters {
