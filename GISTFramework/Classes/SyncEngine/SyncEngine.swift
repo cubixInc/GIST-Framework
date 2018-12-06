@@ -559,8 +559,8 @@ open class SyncEngine: NSObject {
                 //Localization
                 languageCode = "-" + GIST_CONFIG.currentLanguageCode;
             }
-            //-
-            let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(key+languageCode).plist");
+            
+            let url:URL = self.syncedFolderUrl.appendingPathComponent("\(key + languageCode).plist");
             _ = nValue.write(to: url, atomically: true);
         }
         
