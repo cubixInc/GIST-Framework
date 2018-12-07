@@ -13,7 +13,7 @@ public let USER_ID = HTTPServiceManager.sharedInstance.userIdKey;
 
 open class HTTPServiceManager: NSObject {
     
-    open static let sharedInstance = HTTPServiceManager();
+    public static let sharedInstance = HTTPServiceManager();
     
     fileprivate var _requests:[HTTPRequest] = []; // Here Hash map is not used because service name was used as key and same service may be called more than once with differen params.
     
@@ -500,7 +500,7 @@ open class HTTPRequest:NSObject {
     
     open override var description: String {
         get {
-            return "[HTTPRequest] [\(method)] \(requestName): \(String(describing: _urlString))";
+            return "[HTTPRequest] [\(method)] \(String(describing: requestName)): \(String(describing: _urlString))";
         }
     } //P.E.
     

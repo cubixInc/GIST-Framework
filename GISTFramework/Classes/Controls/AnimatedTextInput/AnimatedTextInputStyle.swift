@@ -32,6 +32,19 @@ public protocol AnimatedTextInputStyle {
     var yPlaceholderPositionOffset: CGFloat? { get }
     
     var textAttributes: [String: Any]? { get }
+  
+    /*
+     //TO DO LATER
+    var placeholderInactiveColor: UIColor { get }
+    
+    var lineActiveColor: UIColor { get }
+    var lineHeight: CGFloat { get }
+    
+    var textInputFont: UIFont { get }
+    var textInputFontColor: UIColor { get }
+    var placeholderMinFontSize: CGFloat { get }
+    var counterLabelFont: UIFont? { get }
+     */
 }
 
 struct InternalAnimatedTextInputStyle {

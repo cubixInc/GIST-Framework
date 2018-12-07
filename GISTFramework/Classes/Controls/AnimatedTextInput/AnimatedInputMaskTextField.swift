@@ -45,7 +45,7 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
         }
     } //P.E.
     
-    private var _polyMaskTextFieldDelegate:PolyMaskTextFieldDelegate?;
+    private var _polyMaskTextFieldDelegate:MaskedTextFieldDelegate?;
     private var _maskPhoneTextFieldDelegate:MaskedPhoneTextFieldDelegate?;
     
     ///Maintainig Own delegate.
@@ -115,12 +115,13 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
             _maskPhoneTextFieldDelegate = nil;
             
             if (_polyMaskTextFieldDelegate == nil) {
-                _polyMaskTextFieldDelegate = PolyMaskTextFieldDelegate(format: mskFormate);
+                
+                _polyMaskTextFieldDelegate = MaskedTextFieldDelegate(primaryFormat: mskFormate);
                 _polyMaskTextFieldDelegate!.listener = self;
                 
                 super.delegate = _polyMaskTextFieldDelegate;
             } else {
-                _polyMaskTextFieldDelegate!.maskFormat = mskFormate;
+                _polyMaskTextFieldDelegate!.primaryMaskFormat = mskFormate;
             }
         } else if maskPhone {
             

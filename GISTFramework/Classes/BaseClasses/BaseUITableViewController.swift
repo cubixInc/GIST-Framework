@@ -95,7 +95,7 @@ open class BaseUITableViewController: UITableViewController {
             if (self.navigationItem.leftBarButtonItem == nil && (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1))) {
                 self.navigationItem.hidesBackButton = true;
                  
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonTapped));
+                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItem.Style.plain, target: self, action: #selector(backButtonTapped));
             }
         }
     } //F.E.

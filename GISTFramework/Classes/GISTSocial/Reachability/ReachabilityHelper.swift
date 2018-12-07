@@ -67,15 +67,15 @@ public class ReachabilityHelper: NSObject {
 
                 _internetConnectionLbl.titleEdgeInsets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0);
 
-                _internetConnectionLbl.setTitle("No Internet Connection", for: UIControlState.normal);
-                _internetConnectionLbl.setTitleColor(UIColor.white, for: UIControlState.normal);
+                _internetConnectionLbl.setTitle("No Internet Connection", for: UIControl.State.normal);
+                _internetConnectionLbl.setTitleColor(UIColor.white, for: UIControl.State.normal);
                 
                 _internetConnectionLbl.backgroundColor = UIColor.theme;
                 
                 _internetConnectionLbl.titleLabel?.font = UIFont.font("small");
                 
                 //Adding Target
-                _internetConnectionLbl.addTarget(self, action: #selector(ReachabilityHelper.internetConnectionLabelTapHandler(_:)) , for: UIControlEvents.touchUpInside)
+                _internetConnectionLbl.addTarget(self, action: #selector(ReachabilityHelper.internetConnectionLabelTapHandler(_:)) , for: UIControl.Event.touchUpInside)
                 
                 _window.addSubview(_internetConnectionLbl);
             }
@@ -99,7 +99,7 @@ public class ReachabilityHelper: NSObject {
                 } else {
                     newFrame.origin.y = 0;
                     
-                    _window.bringSubview(toFront: self.internetConnectionLbl);
+                    _window.bringSubviewToFront(self.internetConnectionLbl);
                 }
                 
                 UIView.animate(withDuration: 0.35, animations: { () -> Void in

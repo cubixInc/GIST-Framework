@@ -122,7 +122,7 @@ open class BaseUIViewController: UIViewController {
                 
                 self.navigationItem.hidesBackButton = true;
                 
-                self.navigationItem.leftBarButtonItem = BaseUIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonTapped));
+                self.navigationItem.leftBarButtonItem = BaseUIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItem.Style.plain, target: self, action: #selector(backButtonTapped));
                 
                 (self.navigationItem.leftBarButtonItem as? BaseUIBarButtonItem)?.respectRTL = true;
              }

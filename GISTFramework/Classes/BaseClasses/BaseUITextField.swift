@@ -94,7 +94,7 @@ open class BaseUITextField: UITextField, BaseView {
         didSet {
             if let colorStyl:String = placeholderColor {
                 if let plcHolder:String = self.placeholder {
-                    self.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSAttributedStringKey.foregroundColor: SyncedColors.color(forKey: colorStyl)!]);
+                    self.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSAttributedString.Key.foregroundColor: SyncedColors.color(forKey: colorStyl)!]);
                 }
             }
         }
@@ -136,7 +136,7 @@ open class BaseUITextField: UITextField, BaseView {
             }
             
             if let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
-                self.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSAttributedStringKey.foregroundColor: color]);
+                self.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSAttributedString.Key.foregroundColor: color]);
             } else {
                 super.placeholder = newPlaceHolder;
             }

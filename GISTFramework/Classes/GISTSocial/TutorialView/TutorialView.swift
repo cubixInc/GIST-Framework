@@ -114,7 +114,7 @@ open class TutorialView: BaseUIView, UIScrollViewDelegate {
                     scrollView.addSubview(tView as! UIView);
                      _layoutViews.append(tView);
                 } else {
-                    assert(true, "Invalid layout: \(layoutViewName) must implement SCTutorialViewLayout protocol");
+                    assert(true, "Invalid layout: \(String(describing: layoutViewName)) must implement SCTutorialViewLayout protocol");
                 }
             }
         } else {

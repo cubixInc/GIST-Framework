@@ -1,9 +1,8 @@
 //
-//  InputMask
+// Project «InputMask»
+// Created by Jeorge Taflanidi
 //
-//  Created by Egor Taflanidi on 16.08.28.
-//  Copyright © 28 Heisei Egor Taflanidi. All rights reserved.
-//
+
 
 import Foundation
 
@@ -15,12 +14,12 @@ import Foundation
  
  - seealso: ```State``` class.
  
- - complexity: ```O(formatString.characters.count)``` plus ```FormatSanitizer``` complexity.
+ - complexity: ```O(formatString.count)``` plus ```FormatSanitizer``` complexity.
  
  - requires: Format string to contain only flat groups of symbols in ```[]``` and ```{}``` brackets without nested
- brackets, like ```[[000]99]```. Also, ```[…]``` groups may contain only the specified characters ("0", "9", "A", "a", 
- "_" and "-"). Square bracket ```[]``` groups cannot contain mixed types of symbols ("0" and "9" with "A" and "a" or
- "_" and "-").
+ brackets, like ```[[000]99]```. Also, ```[]``` groups may contain only the specified characters ("0", "9", "A", "a",
+ "_", "-" and "…"). Square bracket ```[]``` groups cannot contain mixed types of symbols ("0" and "9" with "A" and "a"
+ or "_" and "-").
 
  ```Compiler``` object is initialized and ```Compiler.compile(formatString:)``` is called during the ```Mask``` instance
  initialization.
@@ -30,6 +29,13 @@ import Foundation
 public class Compiler {
     
     /**
+     A list of custom rules to compile square bracket ```[]``` groups of format symbols.
+     
+     - seealso: ```Notation``` class.
+     */
+    private let customNotations: [Notation]
+    
+    /**
      ### CompilerError
      
      Compiler error exception type, thrown when ```formatString``` contains inappropriate character sequences.
@@ -37,7 +43,18 @@ public class Compiler {
      ```CompilerError``` is used by the ```Compiler``` and ```FormatSanitizer``` classes.
      */
     public enum CompilerError: Error {
-        case WrongFormat
+        case wrongFormat
+    }
+    
+    /**
+     Constructor.
+     
+     - Parameter customNotations: a list of custom rules to compile square bracket ```[]``` groups of format symbols.
+     
+     - seealso: ```Notation``` class.
+     */
+    init(customNotations: [Notation]) {
+        self.customNotations = customNotations
     }
     
     /**
@@ -54,27 +71,27 @@ public class Compiler {
      ```
      is converted to sequence:
      ```
-     0. ValueState.Numeric          [0]
-     1. OptionalValueState.Numeric  [9]
+     0. ValueState.numeric          [0]
+     1. OptionalValueState.numeric  [9]
      2. FixedState                  {.}
-     3. ValueState.Numeric          [0]
-     4. OptionalValueState.Numeric  [9]
+     3. ValueState.numeric          [0]
+     4. OptionalValueState.numeric  [9]
      5. FixedState                  {.}
      6. FreeState                    1
      7. FreeState                    9
-     8. ValueState.Numeric          [0]
-     9. ValueState.Numeric          [0]
+     8. ValueState.numeric          [0]
+     9. ValueState.numeric          [0]
      ```
      
      - parameter formatString: string with a mask format.
      
      - seealso: ```State``` class.
      
-     - complexity: ```O(formatString.characters.count)``` plus ```FormatSanitizer``` complexity.
+     - complexity: ```O(formatString.count)``` plus ```FormatSanitizer``` complexity.
      
      - requires: Format string to contain only flat groups of symbols in ```[]``` and ```{}``` brackets without nested
-     brackets, like ```[[000]99]```. Also, ```[…]``` groups may contain only the specified characters ("0", "9", "A", "a",
-     "_" and "-").
+     brackets, like ```[[000]99]```. Also, ```[]``` groups may contain only the specified characters ("0", "9", "A", "a",
+     "_", "-" and "…").
      
      - returns: Initialized ```State``` object with assigned ```State.child``` chain.
      
@@ -86,7 +103,8 @@ public class Compiler {
         return try self.compile(
             sanitizedFormat,
             valueable: false,
-            fixed: false
+            fixed: false,
+            lastCharacter: nil
         )
     }
     
@@ -94,113 +112,79 @@ public class Compiler {
 
 private extension Compiler {
     
-    func compile(_ string: String, valueable: Bool, fixed: Bool) throws -> State {
+    func compile(
+        _ string: String,
+        valueable: Bool,
+        fixed: Bool,
+        lastCharacter: Character?
+    ) throws -> State {
         guard
-            let char: Character = string.characters.first
+            let char: Character = string.first
         else {
             return EOLState()
         }
         
-        if "[" == char {
-            return try self.compile(
-                string.truncateFirst(),
-                valueable: true,
-                fixed: false
-            )
-        }
-        
-        if "{" == char {
-            return try self.compile(
-                string.truncateFirst(),
-                valueable: false,
-                fixed: true
-            )
-        }
-        
-        if "]" == char {
-            return try self.compile(
-                string.truncateFirst(),
-                valueable: false,
-                fixed: false
-            )
-        }
-        
-        if "}" == char {
-            return try self.compile(
-                string.truncateFirst(),
-                valueable: false,
-                fixed: false
-            )
+        switch char {
+            case "[":
+                if "\\" == lastCharacter { // escaped [
+                    break
+                }
+                return try self.compile(
+                    string.truncateFirst(),
+                    valueable: true,
+                    fixed: false,
+                    lastCharacter: char
+                )
+            
+            case "{":
+                if "\\" == lastCharacter { // escaped {
+                    break
+                }
+                return try self.compile(
+                    string.truncateFirst(),
+                    valueable: false,
+                    fixed: true,
+                    lastCharacter: char
+                )
+            
+            case "]":
+                if "\\" == lastCharacter { // escaped ]
+                    break
+                }
+                return try self.compile(
+                    string.truncateFirst(),
+                    valueable: false,
+                    fixed: false,
+                    lastCharacter: char
+                )
+            
+            case "}":
+                if "\\" == lastCharacter { // escaped }
+                    break
+                }
+                return try self.compile(
+                    string.truncateFirst(),
+                    valueable: false,
+                    fixed: false,
+                    lastCharacter: char
+                )
+            
+            case "\\": // the escapting character
+                if "\\" == lastCharacter { // escaped «\» character
+                    break
+                }
+                return try self.compile(
+                    string.truncateFirst(),
+                    valueable: valueable,
+                    fixed: fixed,
+                    lastCharacter: char
+                )
+            
+            default: break
         }
         
         if valueable {
-            if "0" == char {
-                return ValueState(
-                    child: try self.compile(
-                        string.truncateFirst(),
-                        valueable: true,
-                        fixed: false
-                    ),
-                    type: ValueState.StateType.Numeric
-                )
-            }
-            
-            if "A" == char {
-                return ValueState(
-                    child: try self.compile(
-                        string.truncateFirst(),
-                        valueable: true,
-                        fixed: false
-                    ),
-                    type: ValueState.StateType.Literal
-                )
-            }
-            
-            if "_" == char {
-                return ValueState(
-                    child: try self.compile(
-                        string.truncateFirst(),
-                        valueable: true,
-                        fixed: false
-                    ),
-                    type: ValueState.StateType.AlphaNumeric
-                )
-            }
-            
-            if "9" == char {
-                return OptionalValueState(
-                    child: try self.compile(
-                        string.truncateFirst(),
-                        valueable: true,
-                        fixed: false
-                    ),
-                    type: OptionalValueState.StateType.Numeric
-                )
-            }
-            
-            if "a" == char {
-                return OptionalValueState(
-                    child: try self.compile(
-                        string.truncateFirst(),
-                        valueable: true,
-                        fixed: false
-                    ),
-                    type: OptionalValueState.StateType.Literal
-                )
-            }
-            
-            if "-" == char {
-                return OptionalValueState(
-                    child: try self.compile(
-                        string.truncateFirst(),
-                        valueable: true,
-                        fixed: false
-                    ),
-                    type: OptionalValueState.StateType.AlphaNumeric
-                )
-            }
-            
-            throw CompilerError.WrongFormat
+            return try compileValueable(char, string: string, lastCharacter: lastCharacter)
         }
         
         if fixed {
@@ -208,7 +192,8 @@ private extension Compiler {
                 child: try self.compile(
                     string.truncateFirst(),
                     valueable: false,
-                    fixed: true
+                    fixed: true,
+                    lastCharacter: char
                 ),
                 ownCharacter: char
             )
@@ -218,9 +203,152 @@ private extension Compiler {
             child: try self.compile(
                 string.truncateFirst(),
                 valueable: false,
-                fixed: false),
+                fixed: false,
+                lastCharacter: char
+            ),
             ownCharacter: char
         )
+    }
+    
+    func compileValueable(_ char: Character, string: String, lastCharacter: Character?) throws -> State {
+        switch char {
+            case "0":
+                return ValueState(
+                    child: try self.compile(
+                        string.truncateFirst(),
+                        valueable: true,
+                        fixed: false,
+                        lastCharacter: char
+                    ),
+                    type: ValueState.StateType.numeric
+                )
+            
+            case "A":
+                return ValueState(
+                    child: try self.compile(
+                        string.truncateFirst(),
+                        valueable: true,
+                        fixed: false,
+                        lastCharacter: char
+                    ),
+                    type: ValueState.StateType.literal
+                )
+            
+            case "_":
+                return ValueState(
+                    child: try self.compile(
+                        string.truncateFirst(),
+                        valueable: true,
+                        fixed: false,
+                        lastCharacter: char
+                    ),
+                    type: ValueState.StateType.alphaNumeric
+                )
+            
+            case "…":
+                return ValueState(inheritedType: try self.determineInheritedType(forLastCharacter: lastCharacter))
+            
+            case "9":
+                return OptionalValueState(
+                    child: try self.compile(
+                        string.truncateFirst(),
+                        valueable: true,
+                        fixed: false,
+                        lastCharacter: char
+                    ),
+                    type: OptionalValueState.StateType.numeric
+                )
+            
+            case "a":
+                return OptionalValueState(
+                    child: try self.compile(
+                        string.truncateFirst(),
+                        valueable: true,
+                        fixed: false,
+                        lastCharacter: char
+                    ),
+                    type: OptionalValueState.StateType.literal
+                )
+            
+            case "-":
+                return OptionalValueState(
+                    child: try self.compile(
+                        string.truncateFirst(),
+                        valueable: true,
+                        fixed: false,
+                        lastCharacter: char
+                    ),
+                    type: OptionalValueState.StateType.alphaNumeric
+                )
+            
+            default: return try self.compileWithCustomNotations(char, string: string)
+        }
+    }
+    
+    func determineInheritedType(forLastCharacter character: Character?) throws -> ValueState.StateType {
+        guard
+            let character: Character = character,
+            String(character) != ""
+        else {
+            throw CompilerError.wrongFormat
+        }
+        
+        switch character {
+            case "0", "9":
+                return ValueState.StateType.numeric
+            
+            case "A", "a":
+                return ValueState.StateType.literal
+            
+            case "_", "-":
+                return ValueState.StateType.alphaNumeric
+            
+            case "…":
+                return ValueState.StateType.alphaNumeric
+            
+            case "[":
+                return ValueState.StateType.alphaNumeric
+            
+            default: return try determineCustomStateType(forCharacter: character)
+        }
+    }
+    
+    func compileWithCustomNotations(_ char: Character, string: String) throws -> State {
+        for notation in self.customNotations {
+            if notation.character == char {
+                if notation.isOptional {
+                    return OptionalValueState(
+                        child: try self.compile(
+                            string.truncateFirst(),
+                            valueable: true,
+                            fixed: false,
+                            lastCharacter: char
+                        ),
+                        type: OptionalValueState.StateType.custom(char: char, characterSet: notation.characterSet)
+                    )
+                } else {
+                    return ValueState(
+                        child: try self.compile(
+                            string.truncateFirst(),
+                            valueable: true,
+                            fixed: false,
+                            lastCharacter: char
+                        ),
+                        type: ValueState.StateType.custom(char: char, characterSet: notation.characterSet)
+                    )
+                }
+            }
+        }
+        throw CompilerError.wrongFormat
+    }
+    
+    func determineCustomStateType(forCharacter character: Character) throws -> ValueState.StateType {
+        for notation in self.customNotations {
+            if notation.character == character {
+                return ValueState.StateType.custom(char: character, characterSet: notation.characterSet)
+            }
+        }
+        throw CompilerError.wrongFormat
     }
     
 }

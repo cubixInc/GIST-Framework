@@ -2,19 +2,18 @@ import UIKit
 
 final class AnimatedTextView: UITextView {
 
-    public var textAttributes: [NSAttributedStringKey: Any]? {
+    public var textAttributes: [NSAttributedString.Key: Any]? {
         didSet {
             guard let attributes = textAttributes else { return }
-            typingAttributes = Dictionary(uniqueKeysWithValues: attributes.lazy.map { ($0.key.rawValue, $0.value) })
+            typingAttributes = Dictionary(uniqueKeysWithValues: attributes.lazy.map { ($0.key, $0.value) })
         }
     }
     
     public override var font: UIFont? {
         didSet {
             var attributes = typingAttributes
-            attributes[NSAttributedStringKey.font.rawValue] = font
-            
-            textAttributes = Dictionary(uniqueKeysWithValues: attributes.lazy.map { (NSAttributedStringKey($0.key), $0.value)})
+            attributes[NSAttributedString.Key.font] = font
+            textAttributes = Dictionary(uniqueKeysWithValues: attributes.lazy.map { ($0.key, $0.value)})
         }
     }
 
@@ -44,6 +43,10 @@ final class AnimatedTextView: UITextView {
 
 extension AnimatedTextView: TextInput {
 
+    public func configureInputView(newInputView: UIView) {
+        inputView = newInputView
+    }
+    
     public var currentText: String? {
         get { return text }
         set { self.text = newValue }
@@ -53,16 +56,35 @@ extension AnimatedTextView: TextInput {
         get { return self.selectedTextRange }
         set { self.selectedTextRange = newValue }
     }
-
+    
     public var currentBeginningOfDocument: UITextPosition? {
         return self.beginningOfDocument
     }
-
+    
+    public var currentKeyboardAppearance: UIKeyboardAppearance {
+        get { return self.keyboardAppearance }
+        set { self.keyboardAppearance = newValue}
+    }
+    
+    public var autocorrection: UITextAutocorrectionType {
+        get { return self.autocorrectionType }
+        set { self.autocorrectionType = newValue }
+    }
+    
+    public var autocapitalization: UITextAutocapitalizationType {
+        get { return self.autocapitalizationType }
+        set { self.autocapitalizationType = newValue }
+    }
+    
+    public func changeReturnKeyType(with newReturnKeyType: UIReturnKeyType) {
+        returnKeyType = newReturnKeyType
+    }
+    
     public func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition? {
         return position(from: from, offset: offset)
     }
     
-    public func changeClearButtonMode(with newClearButtonMode: UITextFieldViewMode) {}
+    public func changeClearButtonMode(with newClearButtonMode: UITextField.ViewMode) {}
     
     public func updateData(_ data: Any?) {
         // DO WHAT SO EVER

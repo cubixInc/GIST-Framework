@@ -106,7 +106,7 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
-    open static var hasSyncDataUpdated:Bool {
+    public static var hasSyncDataUpdated:Bool {
         get {
             return SyncEngine.sharedInstance.hasSyncDataUpdated;
         }

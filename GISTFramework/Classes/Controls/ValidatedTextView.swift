@@ -33,7 +33,7 @@ open class ValidatedTextView: BaseUITextView, UITextViewDelegate {
     /// Inspectable property for invalid sign image.
     @IBInspectable var invalidSign:UIImage? = nil {
         didSet {
-            invalidSignBtn.setImage(invalidSign, for: UIControlState());
+            invalidSignBtn.setImage(invalidSign, for: UIControl.State());
         }
     } //P.E.
     
@@ -51,15 +51,15 @@ open class ValidatedTextView: BaseUITextView, UITextViewDelegate {
     
     /// Lazy Button instance for invalid sign.
     private lazy var invalidSignBtn:BaseUIButton =  {
-        let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.custom);
+        let cBtn:CustomUIButton = CustomUIButton(type: UIButton.ButtonType.custom);
         cBtn.backgroundColor = UIColor.clear;
         cBtn.isHidden = true;
         let sizeWH:CGFloat = GISTUtility.convertToRatio(60);
         cBtn.frame = CGRect(x: self.frame.size.width - sizeWH, y: 0, width: sizeWH, height: sizeWH);
-        cBtn.contentMode = UIViewContentMode.right;
+        cBtn.contentMode = UIView.ContentMode.right;
         cBtn.containtOffSet = GISTUtility.convertPointToRatio(CGPoint(x: 10, y: 0));
         
-        cBtn.addTarget(self, action: #selector(invalidSignBtnHandler(_:)), for: UIControlEvents.touchUpInside);
+        cBtn.addTarget(self, action: #selector(invalidSignBtnHandler(_:)), for: UIControl.Event.touchUpInside);
         
         self.addSubview(cBtn);
         return cBtn;

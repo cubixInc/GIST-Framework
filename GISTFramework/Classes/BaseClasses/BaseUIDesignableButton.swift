@@ -60,7 +60,7 @@ open class BaseUIDesignableButton: BaseUIButton {
     
     /// Setup Custom View
     open func xibSetup(xibName:String, viewIndex:Int) {
-        _view = UIView.loadDynamicViewWithNib(xibName, viewIndex: viewIndex, owner: self) as! UIView;
+        _view = UIView.loadDynamicViewWithNib(xibName, viewIndex: viewIndex, owner: self) as? UIView;
         
         //Disabling the interaction for subview
         _view.isUserInteractionEnabled = false;
@@ -69,7 +69,7 @@ open class BaseUIDesignableButton: BaseUIButton {
         _view.frame = bounds;
         
         // Make the view stretch with containing view
-        _view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight];
+        _view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight];
         
         // Adding custom subview on top of our view
         self.addSubview(_view);

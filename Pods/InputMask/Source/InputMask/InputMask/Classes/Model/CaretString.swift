@@ -1,9 +1,8 @@
 //
-//  InputMask
+// Project «InputMask»
+// Created by Jeorge Taflanidi
 //
-//  Created by Egor Taflanidi on 16.08.28.
-//  Copyright © 28 Heisei Egor Taflanidi. All rights reserved.
-//
+
 
 import Foundation
 
@@ -13,7 +12,7 @@ import Foundation
  
  Model object that represents string with current cursor position.
  */
-public struct CaretString: CustomDebugStringConvertible, CustomStringConvertible {
+public struct CaretString: CustomDebugStringConvertible, CustomStringConvertible, Equatable {
     
     /**
      Text from the user.
@@ -35,17 +34,28 @@ public struct CaretString: CustomDebugStringConvertible, CustomStringConvertible
         self.string = string
         self.caretPosition = caretPosition
     }
+
+    /**
+     Constructor.
+     
+     Same as the ```init(string:caretPosition:)```, with the caret position equal to the end of the line.
+     */
+    public init(string: String) {
+        self.init(string: string, caretPosition: string.endIndex)
+    }
     
     public var debugDescription: String {
-        get {
-            return "STRING: \(self.string)\nCARET POSITION: \(self.caretPosition)"
-        }
+        return "STRING: \(self.string)\nCARET POSITION: \(self.caretPosition)"
     }
     
     public var description: String {
-        get {
-            return self.debugDescription
-        }
+        return self.debugDescription
     }
     
+}
+
+
+public func ==(left: CaretString, right: CaretString) -> Bool {
+    return left.caretPosition == right.caretPosition
+        && left.string        == right.string
 }

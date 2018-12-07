@@ -38,8 +38,8 @@ open class BaseUINavigationController: UINavigationController {
      /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
-            var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
-            attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedString.Key : Any]()
+            attrDict[NSAttributedString.Key.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             self.navigationBar.titleTextAttributes = attrDict;
             
         }
@@ -48,9 +48,9 @@ open class BaseUINavigationController: UINavigationController {
     @IBInspectable open var largeFontName:String = GIST_CONFIG.fontName {
         didSet {
             if #available(iOS 11.0, *) {
-                var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedStringKey : Any]()
+                var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedString.Key : Any]()
                 
-                attrDict[NSAttributedStringKey.font] = UIFont.font(largeFontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
+                attrDict[NSAttributedString.Key.font] = UIFont.font(largeFontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
                 self.navigationBar.largeTitleTextAttributes = attrDict
             }
         }
@@ -59,8 +59,8 @@ open class BaseUINavigationController: UINavigationController {
     /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
-            var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
-            attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedString.Key : Any]()
+            attrDict[NSAttributedString.Key.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             self.navigationBar.titleTextAttributes = attrDict;
         }
     } //P.E.
@@ -69,8 +69,8 @@ open class BaseUINavigationController: UINavigationController {
         didSet {
 
             if #available(iOS 11.0, *) {
-                var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedStringKey : Any]()
-                attrDict[NSAttributedStringKey.font] = UIFont.font(largeFontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
+                var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedString.Key : Any]()
+                attrDict[NSAttributedString.Key.font] = UIFont.font(largeFontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
                 
                 self.navigationBar.largeTitleTextAttributes = attrDict
             } else {
@@ -82,13 +82,13 @@ open class BaseUINavigationController: UINavigationController {
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColor:String? = nil {
         didSet {
-            var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes ?? [NSAttributedStringKey : Any]();
-            attrDict[NSAttributedStringKey.foregroundColor] = SyncedColors.color(forKey: fontColor);
+            var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.titleTextAttributes ?? [NSAttributedString.Key : Any]();
+            attrDict[NSAttributedString.Key.foregroundColor] = SyncedColors.color(forKey: fontColor);
             self.navigationBar.titleTextAttributes = attrDict;
             
             if #available(iOS 11.0, *) {
-                var lAttrDict:[NSAttributedStringKey : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedStringKey : Any]()
-                lAttrDict[NSAttributedStringKey.foregroundColor] = SyncedColors.color(forKey: fontColor);
+                var lAttrDict:[NSAttributedString.Key : Any] = self.navigationBar.largeTitleTextAttributes  ?? [NSAttributedString.Key : Any]()
+                lAttrDict[NSAttributedString.Key.foregroundColor] = SyncedColors.color(forKey: fontColor);
                 
                 self.navigationBar.largeTitleTextAttributes = lAttrDict
             }
@@ -169,14 +169,14 @@ open class BaseUINavigationController: UINavigationController {
     /// Updating the appearance of Navigation Bar.
     private func updateAppearance() {
         //Update Font
-        var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
-        attrDict[NSAttributedStringKey.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedString.Key : Any]()
+        attrDict[NSAttributedString.Key.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         self.navigationBar.titleTextAttributes = attrDict;
         
         if #available(iOS 11.0, *) {
-            var attrDict:[NSAttributedStringKey : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedStringKey : Any]()
-            attrDict[NSAttributedStringKey.font] = UIFont.font(largeFontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
+            var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedString.Key : Any]()
+            attrDict[NSAttributedString.Key.font] = UIFont.font(largeFontName, fontStyle: largeFontStyle, sizedForIPad: self.sizeForIPad);
             
             self.navigationBar.largeTitleTextAttributes = attrDict
         }

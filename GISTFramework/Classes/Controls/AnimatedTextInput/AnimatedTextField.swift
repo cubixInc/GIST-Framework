@@ -15,7 +15,7 @@ class AnimatedTextField: AnimatedInputMaskTextField {
     var rightViewPadding: CGFloat
     weak public var textInputDelegate: TextInputDelegate?
 
-    public var textAttributes: [NSAttributedStringKey: Any]?
+    public var textAttributes: [NSAttributedString.Key: Any]?
     public var contentInset: UIEdgeInsets = .zero
 
     public var prefix: String?
@@ -40,7 +40,7 @@ class AnimatedTextField: AnimatedInputMaskTextField {
     }
 
     fileprivate func setup() {
-        //??delegate = self Already Receiving the delegate in the base class
+        //??delegate = self; Already Receiving the delegate in the base class
         addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
@@ -53,7 +53,7 @@ class AnimatedTextField: AnimatedInputMaskTextField {
     } //F.E.
     
     @discardableResult override public func becomeFirstResponder() -> Bool {
-        if let alignment = (textAttributes?[NSAttributedStringKey.paragraphStyle] as? NSMutableParagraphStyle)?.alignment {
+        if let alignment = (textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSMutableParagraphStyle)?.alignment {
             textAlignment = alignment
         }
         return super.becomeFirstResponder()
@@ -161,26 +161,49 @@ class AnimatedTextField: AnimatedInputMaskTextField {
 
 extension AnimatedTextField: TextInput {
 
+    public func configureInputView(newInputView: UIView) {
+        inputView = newInputView
+    }
+    
+    public func changeReturnKeyType(with newReturnKeyType: UIReturnKeyType) {
+        returnKeyType = newReturnKeyType
+    }
+    
     public func currentPosition(from: UITextPosition, offset: Int) -> UITextPosition? {
         return position(from: from, offset: offset)
     }
     
-    public func changeClearButtonMode(with newClearButtonMode: UITextFieldViewMode) {
+    public func changeClearButtonMode(with newClearButtonMode: UITextField.ViewMode) {
         clearButtonMode = newClearButtonMode
     }
-
+    
     public var currentText: String? {
         get { return text }
         set { self.text = newValue }
     }
-
+    
+    public var autocorrection: UITextAutocorrectionType {
+        get { return self.autocorrectionType }
+        set { self.autocorrectionType = newValue }
+    }
+    
+    public var autocapitalization: UITextAutocapitalizationType {
+        get { return self.autocapitalizationType }
+        set { self.autocapitalizationType = newValue }
+    }
+    
     public var currentSelectedTextRange: UITextRange? {
         get { return self.selectedTextRange }
         set { self.selectedTextRange = newValue }
     }
-
-    open var currentBeginningOfDocument: UITextPosition? {
+    
+    public var currentBeginningOfDocument: UITextPosition? {
         get { return self.beginningOfDocument }
+    }
+    
+    public var currentKeyboardAppearance: UIKeyboardAppearance {
+        get { return self.keyboardAppearance }
+        set { self.keyboardAppearance = newValue}
     }
 }
 

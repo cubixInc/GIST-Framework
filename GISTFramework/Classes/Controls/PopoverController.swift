@@ -190,7 +190,7 @@ open class PopoverController: BaseUIViewController {
     
     private func setupPopoverController(_ contentViewController:UIViewController) {
         _contentViewController = contentViewController;
-        self.addChildViewController(_contentViewController!);
+        self.addChild(_contentViewController!);
          
         setupPopoverController(_contentViewController!.view);
     } //F.E.
@@ -209,12 +209,12 @@ open class PopoverController: BaseUIViewController {
         //ContainerView
         _containerView = BaseUIView(frame: containtViewRect);
         _containerView.backgroundColor = UIColor.clear;
-        _containerView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth];
+        _containerView.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth];
         _containerView.addRoundedCorners(6);
         self.view.addSubview(_containerView);
         
         _contentView!.frame = CGRect(x: 0, y: 0, width: containtViewRect.width, height: containtViewRect.height);
-        _contentView!.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth];
+        _contentView!.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth];
         _containerView.addSubview(_contentView!);
         
         //Arrow
@@ -270,7 +270,7 @@ open class PopoverController: BaseUIViewController {
         {_contentView!.removeFromSuperview();}
          
         if (_contentViewController != nil)
-        {_contentViewController!.removeFromParentViewController();}
+        {_contentViewController!.removeFromParent();}
          
         _containerView.removeFromSuperview();
         _backgroundView.removeFromSuperview();

@@ -25,7 +25,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     } ();
     
     //MARK: - Application Delegate
-    open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         //Initialize Reachability
         ReachabilityHelper.sharedInstance.setupReachability(self.window!);
@@ -79,13 +79,16 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
             //Badge count to zero
             application.applicationIconBadgeNumber = 0;
         }
-
-        GISTMicroAuth<ModelUser>.refreshAccessToken { (success) in
+        
+        if (HTTPServiceManager.sharedInstance.microService) {
+            GISTMicroAuth<ModelUser>.refreshAccessToken { (success) in
+                GISTApplication.sharedInstance.applicationDidBecomeActive(application);
+                SyncEngine.syncData();
+            }
+        } else {
             GISTApplication.sharedInstance.applicationDidBecomeActive(application);
-            
             SyncEngine.syncData();
         }
-        
     } //F.E.
 
     open func applicationWillTerminate(_ application: UIApplication) {
@@ -120,8 +123,9 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     //MARK: - Keyboard Avoiding
     open func setupKeyboardManager() {
         //Register Keyboard avoiding
-        IQKeyboardManager.sharedManager().enable = true
-        IQKeyboardManager.sharedManager().keyboardDistanceFromTextField = 0;
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.keyboardDistanceFromTextField = 0;
     } //F.E.
     
     //MARK: - Notification Settings
@@ -215,7 +219,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     
     //MARK: - HUD
     public func showHUD() {
-        self.window!.bringSubview(toFront: self.transparentHUDView);
+        self.window!.bringSubviewToFront(self.transparentHUDView);
         
         self.transparentHUDView.isHidden = false;
     } //F.E.

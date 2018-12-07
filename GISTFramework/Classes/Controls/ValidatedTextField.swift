@@ -64,7 +64,7 @@ open class ValidatedTextField: InputMaskTextField, ValidatedTextInput {
     /// Inspectable property for invalid sign image.
     @IBInspectable open var invalidSign:UIImage? = nil {
         didSet {
-            invalidSignBtn.setImage(invalidSign, for: UIControlState());
+            invalidSignBtn.setImage(invalidSign, for: UIControl.State());
         }
     } //P.E.
     
@@ -87,13 +87,13 @@ open class ValidatedTextField: InputMaskTextField, ValidatedTextInput {
 
     /// Lazy Button instance for invalid sign.
     private lazy var invalidSignBtn:CustomUIButton =  {
-        let cBtn:CustomUIButton = CustomUIButton(type: UIButtonType.custom);
+        let cBtn:CustomUIButton = CustomUIButton(type: UIButton.ButtonType.custom);
         cBtn.isHidden = true;
         cBtn.frame = CGRect(x: self.frame.size.width - self.frame.size.height, y: 0, width: self.frame.size.height, height: self.frame.size.height);
-        cBtn.contentMode = UIViewContentMode.right;
+        cBtn.contentMode = UIView.ContentMode.right;
         cBtn.containtOffSet = GISTUtility.convertPointToRatio(CGPoint(x: 10, y: 0));
         
-        cBtn.addTarget(self, action: #selector(invalidSignBtnHandler(_:)), for: UIControlEvents.touchUpInside);
+        cBtn.addTarget(self, action: #selector(invalidSignBtnHandler(_:)), for: UIControl.Event.touchUpInside);
         
         self.addSubview(cBtn);
         return cBtn;

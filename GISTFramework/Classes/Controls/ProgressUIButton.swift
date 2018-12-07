@@ -154,7 +154,7 @@ open class ProgressUIButton: BaseUIButton {
     } //F.E.
     
     private func triggerEvent() {
-        self.sendActions(for: UIControlEvents.touchUpInside);
+        self.sendActions(for: UIControl.Event.touchUpInside);
         
         self.unscheduleUpdater();
     } //F.E.

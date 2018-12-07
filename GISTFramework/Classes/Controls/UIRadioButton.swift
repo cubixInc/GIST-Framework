@@ -123,7 +123,7 @@ internal class UIRadioButtonManager:NSObject {
     /// - Parameter radioButton: UIRadioButton.
     func addButton(_ radioButton:UIRadioButton) {
         
-        radioButton.addTarget(self, action: #selector(buttonsTapHandler), for: UIControlEvents.touchUpInside);
+        radioButton.addTarget(self, action: #selector(buttonsTapHandler), for: UIControl.Event.touchUpInside);
          
         var hashTable:NSHashTable<WeakRef<UIRadioButton>>? = _mainBtnsDict[radioButton.groupId] as? NSHashTable
         
@@ -141,7 +141,7 @@ internal class UIRadioButtonManager:NSObject {
     /// - Parameter radioButton: UIRadioButton
     func removeButton(_ radioButton:UIRadioButton) {
         
-        radioButton.removeTarget(self, action: #selector(buttonsTapHandler), for: UIControlEvents.touchUpInside);
+        radioButton.removeTarget(self, action: #selector(buttonsTapHandler), for: UIControl.Event.touchUpInside);
         
         if let hashTable:NSHashTable<WeakRef<UIRadioButton>> = _mainBtnsDict[radioButton.groupId] as? NSHashTable<WeakRef<UIRadioButton>> {
             let enumerator:NSEnumerator = hashTable.objectEnumerator();

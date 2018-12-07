@@ -1,9 +1,8 @@
 //
-//  InputMask
+// Project «InputMask»
+// Created by Jeorge Taflanidi
 //
-//  Created by Egor Taflanidi on 16.08.28.
-//  Copyright © 28 Heisei Egor Taflanidi. All rights reserved.
-//
+
 
 import Foundation
 
@@ -72,15 +71,11 @@ class State: CustomDebugStringConvertible, CustomStringConvertible {
     }
     
     var debugDescription: String {
-        get {
-            return "BASE -> " + (nil != self.child ? self.child!.debugDescription : "nil")
-        }
+        return "BASE -> " + (nil != self.child ? self.child!.debugDescription : "nil")
     }
     
     var description: String {
-        get {
-            return self.debugDescription
-        }
+        return self.debugDescription
     }
     
 }

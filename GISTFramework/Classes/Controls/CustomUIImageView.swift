@@ -31,7 +31,7 @@ private class CustomUIImageView: BaseUIImageView {
                  
                 //??self.clipsToBounds = true;
                  
-                self.sendSubview(toBack: _imageView!);
+                self.sendSubviewToBack(_imageView!);
             }
              
             return _imageView!;
@@ -44,7 +44,7 @@ private class CustomUIImageView: BaseUIImageView {
     
     /**
      Calculated frame of button image view.
-     It uses UIButton native UIViewContentMode to calculate frames.
+     It uses UIButton native UIView.ContentMode to calculate frames.
      */
     private var imageViewFrame:CGRect {
         get {
@@ -56,12 +56,12 @@ private class CustomUIImageView: BaseUIImageView {
                  
                 let imgRatio:CGFloat = (imgSize.height / imgSize.width);
                  
-                if ((self.contentMode != UIViewContentMode.scaleAspectFit) && (self.contentMode != UIViewContentMode.scaleAspectFill)  && (self.contentMode != UIViewContentMode.scaleToFill)) {
+                if ((self.contentMode != UIView.ContentMode.scaleAspectFit) && (self.contentMode != UIView.ContentMode.scaleAspectFill)  && (self.contentMode != UIView.ContentMode.scaleToFill)) {
                     rFrame.size.width =  GISTUtility.convertToRatio(imgSize.width);
                     rFrame.size.height =  imgRatio * rFrame.width;
                 }
                 
-                var cContentMode:UIViewContentMode = self.contentMode;
+                var cContentMode:UIView.ContentMode = self.contentMode;
                 
                 //Respect for Right to left Handling
                 if ((self.respectContentRTL || self.respectRTL) && GISTUtility.isRTL) {
@@ -176,7 +176,7 @@ private class CustomUIImageView: BaseUIImageView {
     } //P.E.
     
     /// Overriden propert to get content mode changes.
-    override var contentMode:UIViewContentMode {
+    override var contentMode:UIView.ContentMode {
         get {
             return super.contentMode;
         }

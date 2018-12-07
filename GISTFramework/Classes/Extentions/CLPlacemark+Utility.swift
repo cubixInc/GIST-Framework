@@ -15,11 +15,7 @@ public extension CLPlacemark {
     /// Returns formated Address from 'FormattedAddressLines' array
     public var formatedAddress:String? {
         get {
-            if let addrList = self.addressDictionary?["FormattedAddressLines"] as? [String] {
-                return addrList.joined(separator: ", ")
-            } else {
-                return nil;
-            }
+            return "\(self.thoroughfare ?? ""), \(self.locality ?? ""), \(self.subLocality ?? ""), \(self.administrativeArea ?? ""), \(self.postalCode ?? ""), \(self.country ?? "")"
         }
     } //P.E.
 } //E.E.

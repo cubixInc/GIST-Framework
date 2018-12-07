@@ -446,7 +446,7 @@ open class FloatingLabelTextField: ValidatedTextField {
         }
         
         if animated {
-            let animationOptions:UIViewAnimationOptions = .curveEaseOut;
+            let animationOptions:UIView.AnimationOptions = .curveEaseOut;
             let duration = self.isTitleVisible() ? titleFadeInDuration : titleFadeOutDuration
             
             UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: { () -> Void in
