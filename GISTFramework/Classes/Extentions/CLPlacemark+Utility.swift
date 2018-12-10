@@ -15,7 +15,34 @@ public extension CLPlacemark {
     /// Returns formated Address from 'FormattedAddressLines' array
     public var formatedAddress:String? {
         get {
-            return "\(self.thoroughfare ?? ""), \(self.locality ?? ""), \(self.subLocality ?? ""), \(self.administrativeArea ?? ""), \(self.postalCode ?? ""), \(self.country ?? "")"
+            
+            var addressParts:[String] = [];
+            
+            if (self.thoroughfare != nil) {
+                addressParts.append(self.thoroughfare!);
+            }
+            
+            if (self.locality != nil) {
+                addressParts.append(self.locality!);
+            }
+            
+            if (self.subLocality != nil) {
+                addressParts.append(self.subLocality!);
+            }
+            
+            if (self.administrativeArea != nil) {
+                addressParts.append(self.administrativeArea!);
+            }
+            
+            if (self.postalCode != nil) {
+                addressParts.append(self.postalCode!);
+            }
+            
+            if (self.country != nil) {
+                addressParts.append(self.country!);
+            }
+            
+            return addressParts.joined(separator: ", ")
         }
     } //P.E.
 } //E.E.
