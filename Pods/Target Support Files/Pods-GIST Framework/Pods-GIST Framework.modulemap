@@ -1,0 +1,6 @@
+framework module Pods_GIST_Framework {
+  umbrella header "Pods-GIST Framework-umbrella.h"
+
+  export *
+  module * { export * }
+}

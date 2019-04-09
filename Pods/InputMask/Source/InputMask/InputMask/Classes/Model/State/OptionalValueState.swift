@@ -1,9 +1,8 @@
 //
-//  InputMask
+// Project «InputMask»
+// Created by Jeorge Taflanidi
 //
-//  Created by Egor Taflanidi on 17.08.28.
-//  Copyright © 28 Heisei Egor Taflanidi. All rights reserved.
-//
+
 
 import Foundation
 
@@ -24,26 +23,30 @@ class OptionalValueState: State {
     /**
      ### StateType
      
-     * ```Numeric``` stands for [9] characters
-     * ```Literal``` stands for [a] characters
-     * ```AlphaNumeric``` stands for [-] characters
+     * ```numeric``` stands for [9] characters
+     * ```literal``` stands for [a] characters
+     * ```alphaNumeric``` stands for [-] characters
+     * ```custom``` stands for characters of custom notation
      */
     enum StateType {
-        case Numeric
-        case Literal
-        case AlphaNumeric
+        case numeric
+        case literal
+        case alphaNumeric
+        case custom(char: Character, characterSet: CharacterSet)
     }
     
     let type: StateType
     
     func accepts(character char: Character) -> Bool {
         switch self.type {
-            case .Numeric:
+            case .numeric:
                 return CharacterSet.decimalDigits.isMember(character: char)
-            case .Literal:
+            case .literal:
                 return CharacterSet.letters.isMember(character: char)
-            case .AlphaNumeric:
+            case .alphaNumeric:
                 return CharacterSet.alphanumerics.isMember(character: char)
+            case .custom(_, let characterSet):
+                return characterSet.isMember(character: char)
         }
     }
     
@@ -78,21 +81,21 @@ class OptionalValueState: State {
     init(
         child: State,
         type: StateType
-        ) {
+    ) {
         self.type = type
         super.init(child: child)
     }
     
     override var debugDescription: String {
-        get {
-            switch self.type {
-                case .Literal:
-                    return "[a] -> " + (nil != self.child ? self.child!.debugDescription : "nil")
-                case .Numeric:
-                    return "[9] -> " + (nil != self.child ? self.child!.debugDescription : "nil")
-                case .AlphaNumeric:
-                    return "[-] -> " + (nil != self.child ? self.child!.debugDescription : "nil")
-            }
+        switch self.type {
+            case .literal:
+                return "[a] -> " + (nil != self.child ? self.child!.debugDescription : "nil")
+            case .numeric:
+                return "[9] -> " + (nil != self.child ? self.child!.debugDescription : "nil")
+            case .alphaNumeric:
+                return "[-] -> " + (nil != self.child ? self.child!.debugDescription : "nil")
+            case .custom(let char, _):
+                return "[\(char)] -> " + (nil != self.child ? self.child!.debugDescription : "nil")
         }
     }
     

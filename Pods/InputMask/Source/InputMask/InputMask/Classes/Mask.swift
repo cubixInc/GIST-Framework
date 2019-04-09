@@ -1,9 +1,8 @@
 //
-//  InputMask
+// Project «InputMask»
+// Created by Jeorge Taflanidi
 //
-//  Created by Egor Taflanidi on 10.08.28.
-//  Copyright © 28 Heisei Egor Taflanidi. All rights reserved.
-//
+
 
 import Foundation
 
@@ -67,13 +66,14 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
      Constructor.
      
      - parameter format: mask format.
+     - parameter customNotations: a list of custom rules to compile square bracket ```[]``` groups of format symbols.
      
      - returns: Initialized ```Mask``` instance.
      
      - throws: ```CompilerError``` if format string is incorrect.
      */
-    public required init(format: String) throws {
-        self.initialState = try Compiler().compile(formatString: format)
+    public required init(format: String, customNotations: [Notation] = []) throws {
+        self.initialState = try Compiler(customNotations: customNotations).compile(formatString: format)
     }
     
     /**
@@ -85,11 +85,11 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
      - returns: Previously cached ```Mask``` object for requested format string. If such it doesn't exist in cache, the
      object is constructed, cached and returned.
      */
-    public static func getOrCreate(withFormat format: String) throws -> Mask {
+    public static func getOrCreate(withFormat format: String, customNotations: [Notation] = []) throws -> Mask {
         if let cachedMask: Mask = cache[format] {
             return cachedMask
         } else {
-            let mask: Mask = try Mask(format: format)
+            let mask: Mask = try Mask(format: format, customNotations: customNotations)
             cache[format] = mask
             return mask
         }
@@ -165,7 +165,7 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
      
      - returns: Placeholder string.
      */
-    public func placeholder() -> String {
+    public var placeholder: String {
         return self.appendPlaceholder(withState: self.initialState, placeholder: "")
     }
     
@@ -174,17 +174,8 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
      
      - returns: Minimal satisfying count of characters inside the text field.
      */
-    public func acceptableTextLength() -> Int {
-        var state: State? = self.initialState
-        var length: Int = 0
-        while let s: State = state, !(state is EOLState) {
-            if s is FixedState || s is FreeState || s is ValueState {
-                length += 1
-            }
-            state = s.child
-        }
-        
-        return length
+    public var acceptableTextLength: Int {
+        return self.countStates(ofTypes: [FixedState.self, FreeState.self, ValueState.self])
     }
     
     /**
@@ -192,17 +183,8 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
      
      - returns: Total available count of mandatory and optional characters inside the text field.
      */
-    public func totalTextLength() -> Int {
-        var state: State? = self.initialState
-        var length: Int = 0
-        while let s: State = state, !(state is EOLState) {
-            if s is FixedState || s is FreeState || s is ValueState || s is OptionalValueState {
-                length += 1
-            }
-            state = s.child
-        }
-        
-        return length
+    public var totalTextLength: Int {
+        return self.countStates(ofTypes: [FixedState.self, FreeState.self, ValueState.self, OptionalValueState.self])
     }
     
     /**
@@ -210,7 +192,7 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
      
      - returns: Minimal satisfying count of characters in extracted value.
      */
-    public func acceptableValueLength() -> Int {
+    public var acceptableValueLength: Int {
         var state: State? = self.initialState
         var length: Int = 0
         while let s: State = state, !(state is EOLState) {
@@ -228,7 +210,7 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
      
      - returns: Total available count of mandatory and optional characters for extracted value.
      */
-    public func totalValueLength() -> Int {
+    public var totalValueLength: Int {
         var state: State? = self.initialState
         var length: Int = 0
         while let s: State = state, !(state is EOLState) {
@@ -255,6 +237,7 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
     
 }
 
+
 private extension Mask {
     
     func appendPlaceholder(withState state: State?, placeholder: String) -> String {
@@ -275,27 +258,36 @@ private extension Mask {
         
         if let state = state as? OptionalValueState {
             switch state.type {
-                case .AlphaNumeric:
+                case .alphaNumeric:
                     return self.appendPlaceholder(withState: state.child, placeholder: placeholder + "-")
                 
-                case .Literal:
+                case .literal:
                     return self.appendPlaceholder(withState: state.child, placeholder: placeholder + "a")
                 
-                case .Numeric:
+                case .numeric:
                     return self.appendPlaceholder(withState: state.child, placeholder: placeholder + "0")
+                
+                case .custom(let char, _):
+                    return self.appendPlaceholder(withState: state.child, placeholder: placeholder + String(char))
             }
         }
         
         if let state = state as? ValueState {
             switch state.type {
-                case .AlphaNumeric:
+                case .alphaNumeric:
                     return self.appendPlaceholder(withState: state.child, placeholder: placeholder + "-")
                     
-                case .Literal:
+                case .literal:
                     return self.appendPlaceholder(withState: state.child, placeholder: placeholder + "a")
                     
-                case .Numeric:
+                case .numeric:
                     return self.appendPlaceholder(withState: state.child, placeholder: placeholder + "0")
+                
+                case .ellipsis:
+                    return placeholder
+                
+                case .custom(let char, _):
+                    return self.appendPlaceholder(withState: state.child, placeholder: placeholder + String(char))
             }
         }
         
@@ -305,13 +297,28 @@ private extension Mask {
     func noMandatoryCharactersLeftAfterState(_ state: State) -> Bool {
         if (state is EOLState) {
             return true
-        } else if (state is FixedState
-                || state is FreeState
-                || state is ValueState) {
+        } else if let valueState = state as? ValueState {
+            return valueState.isElliptical
+        } else if (state is FixedState || state is FreeState) {
             return false
         } else {
             return self.noMandatoryCharactersLeftAfterState(state.nextState())
         }
+    }
+        
+    func countStates(ofTypes stateTypes: [State.Type]) -> Int {
+        var state: State? = self.initialState
+        var length: Int = 0
+        while let s: State = state, !(state is EOLState) {
+            for stateType in stateTypes {
+                if type(of: s) == stateType {
+                    length += 1
+                }
+            }
+            state = s.child
+        }
+        
+        return length
     }
     
 }

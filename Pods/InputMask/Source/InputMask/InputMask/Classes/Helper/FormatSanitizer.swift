@@ -1,9 +1,8 @@
 //
-//  InputMask
+// Project «InputMask»
+// Created by Jeorge Taflanidi
 //
-//  Created by Egor Taflanidi on 17.08.28.
-//  Copyright © 28 Heisei Egor Taflanidi. All rights reserved.
-//
+
 
 import Foundation
 
@@ -14,7 +13,7 @@ import Foundation
  Sanitizes given ```formatString``` before it's compilation.
  
  - complexity: ```O(2*floor(log(n)))```, and switches to ```O(n^2)``` for ```n < 20``` where 
- ```n = formatString.characters.count```
+ ```n = formatString.count```
 
  - requires: Format string to contain only flat groups of symbols in ```[]``` and ```{}``` brackets without nested
  brackets, like ```[[000]99]```. Square bracket ```[]``` groups may contain mixed types of symbols ("0" and "9" with
@@ -39,8 +38,10 @@ class FormatSanitizer {
      a ([0099]) b
      ```
      
+     Also, ellipsis in square brackets [] is always placed at the end.
+     
      - complexity: ```O(2*floor(log(n)))```, and switches to ```O(n^2)``` for ```n < 20``` where
-     ```n = formatString.characters.count```
+     ```n = formatString.count```
      
      - requires: Format string to contain only flat groups of symbols in ```[]``` and ```{}``` brackets without nested
      brackets, like ```[[000]99]```. Square bracket ```[]``` groups may contain mixed types of symbols ("0" and "9" with
@@ -64,42 +65,58 @@ class FormatSanitizer {
 private extension FormatSanitizer {
     
     func checkOpenBraces(_ string: String) throws {
+        var escape:          Bool = false
         var squareBraceOpen: Bool = false
         var curlyBraceOpen:  Bool = false
         
-        for char in string.characters {
-            if "[" == char {
-                if squareBraceOpen {
-                    throw Compiler.CompilerError.WrongFormat
-                }
-                squareBraceOpen = true
+        for char in string {
+            if "\\" == char {
+                escape = !escape
+                continue
             }
             
-            if "]" == char {
+            if "[" == char {
+                if squareBraceOpen {
+                    throw Compiler.CompilerError.wrongFormat
+                }
+                squareBraceOpen = true && !escape
+            }
+            
+            if "]" == char && !escape {
                 squareBraceOpen = false
             }
             
             if "{" == char {
                 if curlyBraceOpen {
-                    throw Compiler.CompilerError.WrongFormat
+                    throw Compiler.CompilerError.wrongFormat
                 }
-                curlyBraceOpen = true
+                curlyBraceOpen = true && !escape
             }
             
-            if "}" == char {
+            if "}" == char && !escape {
                 curlyBraceOpen = false
             }
+            
+            escape = false
         }
     }
     
     func getFormatBlocks(_ string: String) -> [String] {
-        var blocks: [String] = []
-        var currentBlock: String = ""
+        var blocks:       [String] = []
+        var currentBlock: String   = ""
+        var escape:       Bool     = false
         
-        for char in string.characters {
-            if "[" == char
-            || "{" == char {
-                if 0 < currentBlock.characters.count {
+        for char in string {
+            if "\\" == char {
+                if !escape {
+                    escape = true
+                    currentBlock += String(char)
+                    continue
+                }
+            }
+            
+            if ("[" == char || "{" == char) && !escape {
+                if 0 < currentBlock.count {
                     blocks.append(currentBlock)
                 }
                 
@@ -108,11 +125,12 @@ private extension FormatSanitizer {
             
             currentBlock += String(char)
             
-            if "]" == char
-            || "}" == char {
+            if ("]" == char || "}" == char) && !escape {
                 blocks.append(currentBlock)
                 currentBlock = ""
             }
+            
+            escape = false
         }
         
         if !currentBlock.isEmpty {
@@ -128,13 +146,13 @@ private extension FormatSanitizer {
         for block in blocks {
             if block.hasPrefix("[") {
                 var blockBuffer: String = ""
-                for blockCharacter in block.characters {
+                for blockCharacter in block {
                     if blockCharacter == "[" {
                         blockBuffer += String(blockCharacter)
                         continue
                     }
                     
-                    if blockCharacter == "]" {
+                    if blockCharacter == "]" && !blockBuffer.hasSuffix("\\") {
                         blockBuffer += String(blockCharacter)
                         resultingBlocks.append(blockBuffer)
                         break
@@ -210,7 +228,7 @@ private extension FormatSanitizer {
                                     .replacingOccurrences(of: "]", with: "")
                                     .replacingOccurrences(of: "_", with: "A")
                                     .replacingOccurrences(of: "-", with: "a")
-                                    .characters.sorted()
+                                    .sorted()
                           )
                         + "]"
                     sortedBlock = sortedBlock
@@ -233,7 +251,7 @@ private extension FormatSanitizer {
             + String(block
                 .replacingOccurrences(of: "[", with: "")
                 .replacingOccurrences(of: "]", with: "")
-                .characters.sorted()
+                .sorted()
             )
             + "]"
     }
