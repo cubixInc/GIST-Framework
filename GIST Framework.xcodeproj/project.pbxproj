@@ -252,7 +252,7 @@
 		DCEC91FB225CEBB700FB026F = {
 			isa = PBXGroup;
 			children = (
-				DCEC9207225CEBB700FB026F /* GIST Framework */,
+				DCEC9207225CEBB700FB026F /* GISTFramework */,
 				DCEC9206225CEBB700FB026F /* Products */,
 				A89459EAD4763B881D1A1700 /* Pods */,
 				33D7E7AA13E1B5FF083EEF56 /* Frameworks */,
@@ -267,14 +267,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DCEC9207225CEBB700FB026F /* GIST Framework */ = {
+		DCEC9207225CEBB700FB026F /* GISTFramework */ = {
 			isa = PBXGroup;
 			children = (
 				DCEC9208225CEBB700FB026F /* GIST_Framework.h */,
 				DCEC9210225CEC1800FB026F /* Classes */,
 				DCEC9209225CEBB700FB026F /* Info.plist */,
 			);
-			path = "GIST Framework";
+			path = GISTFramework;
 			sourceTree = "<group>";
 		};
 		DCEC9210225CEC1800FB026F /* Classes */ = {
@@ -869,7 +869,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "GIST Framework/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cubix.GIST-Framework";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -891,7 +895,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "GIST Framework/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cubix.GIST-Framework";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
