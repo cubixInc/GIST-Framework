@@ -40,7 +40,7 @@ public protocol GISTUser: Mappable, ReverseMappable, NSCopying {
 } //P.E.
 
 public extension GISTUser {
-    public var formatedMobile:String? {
+    var formatedMobile:String? {
         get {
             if let pNumber:String = self.mobileNo {
                 return pNumber.replacingOccurrences(of: "-", with: "");

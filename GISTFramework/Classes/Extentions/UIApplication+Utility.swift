@@ -15,7 +15,7 @@ public extension UIApplication {
     ///
     /// - Parameter base: UIViewController of which topViewController is required
     /// - Returns: Top View Controller of the the given base controller
-    public class func topViewController(_ base: UIViewController) -> UIViewController? {
+    class func topViewController(_ base: UIViewController) -> UIViewController? {
         if let nav = base as? UINavigationController {
             return topViewController(nav.visibleViewController!)
         }

@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - UITableView extension for Utility Method
 public extension UITableView {
-    public func reloadData(_ animated:Bool, completion:(()->Void)? = nil) {
+    func reloadData(_ animated:Bool, completion:(()->Void)? = nil) {
         if (animated) {
             self.fadeOut({ (finished) -> () in
                 self.reloadData();
@@ -26,7 +26,7 @@ public extension UITableView {
         }
     } //F.E.
     
-    public func scrollToBottom(_ animated: Bool = true) {
+    func scrollToBottom(_ animated: Bool = true) {
         
         let delay = 0.1;
         
@@ -42,11 +42,11 @@ public extension UITableView {
         }
     } //F.E.
     
-    public func scrollToTop(_ animated: Bool = true) {
+    func scrollToTop(_ animated: Bool = true) {
         self.setContentOffset(CGPoint.zero, animated: animated);
     } //F.E.
     
-    public func updateContent() {
+    func updateContent() {
         let currentOffset = self.contentOffset
         UIView.setAnimationsEnabled(false)
         self.beginUpdates()

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "733F4015679FD17C81EFCB913A3A8F0C"
+               BlueprintIdentifier = "9AE7693E69DCBCCDD4F8A3522A8711A0"
                BuildableName = "Pods_GISTFramework.framework"
                BlueprintName = "Pods-GISTFramework"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "733F4015679FD17C81EFCB913A3A8F0C"
+            BlueprintIdentifier = "9AE7693E69DCBCCDD4F8A3522A8711A0"
             BuildableName = "Pods_GISTFramework.framework"
             BlueprintName = "Pods-GISTFramework"
             ReferencedContainer = "container:Pods.xcodeproj">

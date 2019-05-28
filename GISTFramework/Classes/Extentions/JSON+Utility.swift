@@ -12,12 +12,12 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
     //MARK: - Methods
     
     ///Returns JSON String
-    public func toJSONString() -> String? {
+    func toJSONString() -> String? {
         return self.toJSONData()?.toString();
     } //F.E.
     
     ///Returns JSON Data
-    public func toJSONData() -> Data? {
+    func toJSONData() -> Data? {
         return try? JSONSerialization.data(withJSONObject: self, options: []);
     } //F.E.
     
@@ -29,12 +29,12 @@ public extension Array {
     //MARK: - Methods
     
     ///Returns JSON String
-    public func toJSONString() -> String? {
+    func toJSONString() -> String? {
         return self.toJSONData()?.toString();
     } //F.E.
     
     ///Returns JSON Data
-    public func toJSONData() -> Data? {
+    func toJSONData() -> Data? {
         return try? JSONSerialization.data(withJSONObject: self, options: []);
     } //F.E.
 
@@ -46,12 +46,12 @@ public extension String {
     //MARK: - Methods
     
     ///Returns Object from JSON String
-    public func toJSONObject() -> Any? {
+    func toJSONObject() -> Any? {
         return self.toDataUTF8String()?.toJSONObject();
     } //F.E.
     
     ///Returns Data from String
-    public func toDataUTF8String() -> Data? {
+    func toDataUTF8String() -> Data? {
         return self.data(using: String.Encoding.utf8);
     }
 } //E.E.
@@ -62,12 +62,12 @@ public extension Data {
     //MARK: - Methods
     
     ///Returns String from Data
-    public func toString() -> String? {
+    func toString() -> String? {
         return String(data: self, encoding: String.Encoding.utf8);
     } //F.E.
     
     ///Returns JSON Object from Data
-    public func toJSONObject() -> Any? {
+    func toJSONObject() -> Any? {
         do {
             return try JSONSerialization.jsonObject(with: self, options: JSONSerialization.ReadingOptions.mutableContainers);
         } catch let error as NSError {

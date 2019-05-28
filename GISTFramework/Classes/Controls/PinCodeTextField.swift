@@ -168,7 +168,7 @@ open class PinCodeTextField: BaseUIView, UIKeyInput {
     
     private func updateLabels() {
         for label in labels {
-            let index = labels.index(of: label) ?? 0
+            let index = labels.firstIndex(of: label) ?? 0
             let currentCharacter = self.character(atIndex: index)
             label.text = currentCharacter.map { String($0) }
             label.font = font

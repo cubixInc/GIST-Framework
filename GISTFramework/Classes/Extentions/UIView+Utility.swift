@@ -12,7 +12,7 @@ import UIKit
 public extension UIView {
     
     /// Rotate a view by specified degrees in CGFloat
-    public var rotation:CGFloat {
+    var rotation:CGFloat {
         get {
             let radians:CGFloat = atan2(self.transform.b, self.transform.a)
             let degrees:CGFloat = radians * (180.0 / .pi)
@@ -33,7 +33,7 @@ public extension UIView {
     ///   - viewIndex: View Index
     ///   - owner: Nib Owner AnyObject
     /// - Returns: UIView
-    public class func loadWithNib(_ nibName:String, viewIndex:Int, owner: AnyObject) -> Any {
+    class func loadWithNib(_ nibName:String, viewIndex:Int, owner: AnyObject) -> Any {
         return Bundle.main.loadNibNamed(nibName, owner: owner, options: nil)![viewIndex];
     } //F.E.
     
@@ -44,7 +44,7 @@ public extension UIView {
     ///   - viewIndex: View Index
     ///   - owner: Nib Owner AnyObject
     /// - Returns: UIView
-    public class func loadDynamicViewWithNib(_ nibName:String, viewIndex:Int, owner: AnyObject) -> Any {
+    class func loadDynamicViewWithNib(_ nibName:String, viewIndex:Int, owner: AnyObject) -> Any {
         
         let bundle = Bundle(for: type(of: owner));
         let nib = UINib(nibName: nibName, bundle: bundle);
@@ -58,28 +58,28 @@ public extension UIView {
     /// - Parameters:
     ///   - color: Border Color
     ///   - width: Border Width
-    public func addBorder(_ color:UIColor?, width:Int){
+    func addBorder(_ color:UIColor?, width:Int){
         let layer:CALayer = self.layer;
         layer.borderColor = color?.cgColor
         layer.borderWidth = (CGFloat(width)/CGFloat(2)) as CGFloat
     } //F.E.
     
     /// Makes Rounded corners of View. it trims the view in circle
-    public func addRoundedCorners() {
+    func addRoundedCorners() {
         self.addRoundedCorners(self.frame.size.width/2.0);
     } //F.E.
     
     /// Adds rounded corner with defined radius
     ///
     /// - Parameter radius: Radius Value
-    public func addRoundedCorners(_ radius:CGFloat) {
+    func addRoundedCorners(_ radius:CGFloat) {
         let layer:CALayer = self.layer;
         layer.cornerRadius = radius
         layer.masksToBounds = true
     } //F.E.
     
     /// Adds Drop shadow on the view
-    public func addDropShadow() {
+    func addDropShadow() {
         let shadowPath:UIBezierPath = UIBezierPath(rect: self.bounds)
         let layer:CALayer = self.layer;
         
@@ -97,7 +97,7 @@ public extension UIView {
     /// - Parameters:
     ///   - duration: Fade duration - Default Value is 0.25
     ///   - completion: Completion block
-    public func fadeIn(withDuration duration:Double = 0.25, _ completion:((_ finished:Bool)->())? = nil) {
+    func fadeIn(withDuration duration:Double = 0.25, _ completion:((_ finished:Bool)->())? = nil) {
         self.alpha = 0.0;
         self.isHidden = false;
         
@@ -113,7 +113,7 @@ public extension UIView {
     /// - Parameters:
     ///   - duration: Fade duration - Default Value is 0.25
     ///   - completion: Completion block
-    public func fadeOut(withDuration duration:Double = 0.25, _ completion:((_ finished:Bool)->())? = nil) {
+    func fadeOut(withDuration duration:Double = 0.25, _ completion:((_ finished:Bool)->())? = nil) {
         self.alpha = 1.0
         UIView.animate(withDuration: duration, animations: { () -> Void in
             self.alpha=0.0;
@@ -124,7 +124,7 @@ public extension UIView {
     } //F.E.
     
     /// Shakes view in a static animation
-    public func shake() {
+    func shake() {
         let shake:CABasicAnimation = CABasicAnimation(keyPath: "position");
         shake.duration = 0.1;
         shake.repeatCount = 2;
@@ -135,7 +135,7 @@ public extension UIView {
     } //F.E.
     
     /// Rempves all views from the view
-    public func removeAllSubviews() {
+    func removeAllSubviews() {
         for view in self.subviews {
             view.removeFromSuperview();
         }

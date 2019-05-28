@@ -159,7 +159,7 @@ open class BaseUILabel: UILabel, BaseView {
     override open func drawText(in rect:CGRect) {
         guard self.topAligned, let lblText = self.text else {  return super.drawText(in: rect) }
         
-        let attributedText = NSAttributedString(string: lblText, attributes: [NSAttributedString.Key.font: font])
+        let attributedText = NSAttributedString(string: lblText, attributes: [NSAttributedString.Key.font: font as Any])
         
         var newRect = rect;
         newRect.size.height = attributedText.boundingRect(with: rect.size, options: .usesLineFragmentOrigin, context: nil).size.height

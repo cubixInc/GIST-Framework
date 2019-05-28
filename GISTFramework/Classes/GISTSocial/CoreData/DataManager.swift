@@ -261,7 +261,7 @@ public class DataManager: NSObject {
 }
 
 public extension ManagedProtocol {
-    static public func addEntries<T:ManagedProtocol>(_ objectArray: NSArray, cleanup:Bool = false) -> [T]? {
+    static func addEntries<T:ManagedProtocol>(_ objectArray: NSArray, cleanup:Bool = false) -> [T]? {
         
         guard objectArray.count > 0 else {
             
@@ -295,7 +295,7 @@ public extension ManagedProtocol {
         return (rtnArr as? [T])
     } //F.E.
     
-    public static func cleanup() {
+    static func cleanup() {
         if #available(iOS 9.0, *) {
             DATA_MANAGER.deleteAllObjectsForEntityName(self.entityName)
         } else {

@@ -26,7 +26,7 @@ extension UITextField {
 
 public extension UIKeyboardType {
     
-    public static func keyboardType(for type:String) -> UIKeyboardType {
+    static func keyboardType(for type:String) -> UIKeyboardType {
         switch type {
             
         case "default":
@@ -73,7 +73,7 @@ public extension UIKeyboardType {
 }
 
 public extension UIKeyboardAppearance {
-    public static func keyboardAppearance(for type:String) -> UIKeyboardAppearance {
+    static func keyboardAppearance(for type:String) -> UIKeyboardAppearance {
         switch type {
         case "dark":
                 return UIKeyboardAppearance.dark;
@@ -89,7 +89,7 @@ public extension UIKeyboardAppearance {
 
 public extension UIReturnKeyType {
     
-    public static func returnKeyType(for type:String) -> UIReturnKeyType {
+    static func returnKeyType(for type:String) -> UIReturnKeyType {
         switch type {
             
         case "default":
@@ -129,7 +129,7 @@ public extension UIReturnKeyType {
 } //E.E.
 
 public extension UITextAutocapitalizationType {
-    public static func textAutocapitalizationType (for type:String) -> UITextAutocapitalizationType {
+    static func textAutocapitalizationType (for type:String) -> UITextAutocapitalizationType {
         
         switch type {
         case "none":
@@ -151,7 +151,7 @@ public extension UITextAutocapitalizationType {
 } //E.E.
 
 public extension UITextAutocorrectionType {
-    public static func textAutocorrectionType (for type:String) -> UITextAutocorrectionType {
+    static func textAutocorrectionType (for type:String) -> UITextAutocorrectionType {
         switch type {
         case "no":
             return UITextAutocorrectionType.no;

@@ -17,7 +17,7 @@ public extension UIImage {
     ///
     /// - Parameter maxSize: Maximum Image Size
     /// - Returns: Resized and Ratated UIImage
-    public func scaleAndRotateImage(_ maxSize: CGFloat) -> UIImage {
+    func scaleAndRotateImage(_ maxSize: CGFloat) -> UIImage {
         
         let imgRef = self.cgImage!
         
@@ -42,9 +42,7 @@ public extension UIImage {
         let imageSize = CGSize(width: width, height: height)
         var boundHeight : CGFloat = 0.0
         
-        let ori = self.imageOrientation
-        
-        switch(ori) {
+        switch(self.imageOrientation) {
         case .up:
             transform = CGAffineTransform.identity
             break
@@ -96,12 +94,15 @@ public extension UIImage {
             transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             transform = transform.rotated(by: .pi / 2.0)
             break
+            
+        default:
+            break;
         }
         
         UIGraphicsBeginImageContext(bounds.size)
         let context = UIGraphicsGetCurrentContext()
         
-        if ori == UIImage.Orientation.right || ori == UIImage.Orientation.left {
+        if self.imageOrientation == UIImage.Orientation.right || self.imageOrientation == UIImage.Orientation.left {
             context!.scaleBy(x: -scaleRatio, y: scaleRatio)
             context!.translateBy(x: -height, y: 0.0)
         } else {
@@ -120,7 +121,7 @@ public extension UIImage {
     /// Mirroring the Image
     ///
     /// - Returns: mirrored image
-    public func mirrored() -> UIImage {
+    func mirrored() -> UIImage {
         return UIImage(cgImage: self.cgImage!, scale:self.scale , orientation: UIImage.Orientation.upMirrored)
     } //F.E.
 } //CLS END

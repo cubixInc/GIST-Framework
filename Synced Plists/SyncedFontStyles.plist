@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>xxSmall</key>
+	<real>11</real>
+	<key>xSmall</key>
+	<real>13</real>
+	<key>small</key>
+	<real>16</real>
+	<key>medium</key>
+	<real>20</real>
+	<key>large</key>
+	<real>24</real>
+	<key>xLarge</key>
+	<real>32</real>
+	<key>xxLarge</key>
+	<real>55</real>
+</dict>
+</plist>

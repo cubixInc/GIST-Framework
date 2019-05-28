@@ -13,7 +13,7 @@ import CoreLocation
 public extension CLPlacemark {
     
     /// Returns formated Address from 'FormattedAddressLines' array
-    public var formatedAddress:String? {
+    var formatedAddress:String? {
         get {
             
             var addressParts:[String] = [];

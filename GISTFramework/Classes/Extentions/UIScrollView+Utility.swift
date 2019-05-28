@@ -15,7 +15,7 @@ public extension UIScrollView {
     //MARK: - Properties
     
     /// Returns current page of scroll view. this method is useful when pagination is ON in scroll view. - value range is 0 to numberOfPages-1
-    public var currentPage:Int {
+    var currentPage:Int {
         get {
             return Int(floor((self.contentOffset.x - self.bounds.size.width * 0.5) / self.bounds.size.width)) + 1;
         }

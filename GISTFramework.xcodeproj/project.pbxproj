@@ -7,523 +7,71 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2738AF64971345D690CCA66D /* Pods_GISTFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7504025304AD3A134BDEE2F4 /* Pods_GISTFramework.framework */; };
-		DCE480A821BA43BE00F72079 /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE480A621BA43BE00F72079 /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DCE4812521BA443100F72079 /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B021BA443100F72079 /* BaseUITableViewHeaderFooterView.swift */; };
-		DCE4812621BA443100F72079 /* BaseLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B121BA443100F72079 /* BaseLayoutConstraint.swift */; };
-		DCE4812721BA443100F72079 /* BaseUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B221BA443100F72079 /* BaseUIButton.swift */; };
-		DCE4812821BA443100F72079 /* BaseUIStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B321BA443100F72079 /* BaseUIStepper.swift */; };
-		DCE4812921BA443100F72079 /* BaseUIPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B421BA443100F72079 /* BaseUIPageControl.swift */; };
-		DCE4812A21BA443100F72079 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B521BA443100F72079 /* BaseUIView.swift */; };
-		DCE4812B21BA443100F72079 /* BaseUIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B621BA443100F72079 /* BaseUIStackView.swift */; };
-		DCE4812C21BA443100F72079 /* BaseSeperatorLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B721BA443100F72079 /* BaseSeperatorLayoutConstraint.swift */; };
-		DCE4812D21BA443100F72079 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B821BA443100F72079 /* BaseUITableViewController.swift */; };
-		DCE4812E21BA443100F72079 /* BaseUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480B921BA443100F72079 /* BaseUITableViewCell.swift */; };
-		DCE4812F21BA443100F72079 /* BaseUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480BA21BA443100F72079 /* BaseUISlider.swift */; };
-		DCE4813021BA443100F72079 /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480BB21BA443100F72079 /* BaseUITabBarController.swift */; };
-		DCE4813121BA443100F72079 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480BC21BA443100F72079 /* BaseUIViewController.swift */; };
-		DCE4813221BA443100F72079 /* BaseUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480BD21BA443100F72079 /* BaseUILabel.swift */; };
-		DCE4813321BA443100F72079 /* BaseUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480BE21BA443100F72079 /* BaseUICollectionView.swift */; };
-		DCE4813421BA443100F72079 /* BaseUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480BF21BA443100F72079 /* BaseUISwitch.swift */; };
-		DCE4813521BA443100F72079 /* BaseUISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C021BA443100F72079 /* BaseUISearchBar.swift */; };
-		DCE4813621BA443100F72079 /* BaseUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C121BA443100F72079 /* BaseUITextField.swift */; };
-		DCE4813721BA443100F72079 /* BaseUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C221BA443100F72079 /* BaseUITableView.swift */; };
-		DCE4813821BA443100F72079 /* BaseUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C321BA443100F72079 /* BaseUINavigationController.swift */; };
-		DCE4813921BA443100F72079 /* BaseUINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C421BA443100F72079 /* BaseUINavigationItem.swift */; };
-		DCE4813A21BA443100F72079 /* BaseUIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C521BA443100F72079 /* BaseUIScrollView.swift */; };
-		DCE4813B21BA443100F72079 /* BaseUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C621BA443100F72079 /* BaseUISegmentedControl.swift */; };
-		DCE4813C21BA443100F72079 /* BaseUISearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C721BA443100F72079 /* BaseUISearchController.swift */; };
-		DCE4813D21BA443100F72079 /* BaseUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C821BA443100F72079 /* BaseUITextView.swift */; };
-		DCE4813E21BA443100F72079 /* BaseUIDesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480C921BA443100F72079 /* BaseUIDesignableButton.swift */; };
-		DCE4813F21BA443100F72079 /* BaseUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480CA21BA443100F72079 /* BaseUICollectionViewCell.swift */; };
-		DCE4814021BA443100F72079 /* BaseUIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480CB21BA443100F72079 /* BaseUIBarButtonItem.swift */; };
-		DCE4814121BA443100F72079 /* BaseUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480CC21BA443100F72079 /* BaseUIImageView.swift */; };
-		DCE4814221BA443100F72079 /* BaseUIDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480CD21BA443100F72079 /* BaseUIDesignableView.swift */; };
-		DCE4814321BA443100F72079 /* HTTPServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480D021BA443100F72079 /* HTTPServiceManager.swift */; };
-		DCE4814421BA443100F72079 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480D221BA443100F72079 /* DataManager.swift */; };
-		DCE4814521BA443100F72079 /* ManagedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480D321BA443100F72079 /* ManagedParser.swift */; };
-		DCE4814621BA443100F72079 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480D521BA443100F72079 /* TutorialView.swift */; };
-		DCE4814721BA443100F72079 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480D721BA443100F72079 /* ReachabilityHelper.swift */; };
-		DCE4814821BA443100F72079 /* GISTSocialUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480D921BA443100F72079 /* GISTSocialUtils.swift */; };
-		DCE4814921BA443100F72079 /* GISTFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480DB21BA443100F72079 /* GISTFile.swift */; };
-		DCE4814A21BA443100F72079 /* ModelUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480DC21BA443100F72079 /* ModelUser.swift */; };
-		DCE4814B21BA443100F72079 /* GISTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480DE21BA443100F72079 /* GISTAppDelegate.swift */; };
-		DCE4814C21BA443100F72079 /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480E021BA443100F72079 /* GISTAuth.swift */; };
-		DCE4814D21BA443100F72079 /* GISTMicroAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480E121BA443100F72079 /* GISTMicroAuth.swift */; };
-		DCE4814E21BA443100F72079 /* Mappable+ToDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480E321BA443100F72079 /* Mappable+ToDictionary.swift */; };
-		DCE4814F21BA443100F72079 /* GISTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480E421BA443100F72079 /* GISTUser.swift */; };
-		DCE4815021BA443100F72079 /* GISTGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480E621BA443100F72079 /* GISTGlobal.swift */; };
-		DCE4815121BA443100F72079 /* GISTEnumNConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480E721BA443100F72079 /* GISTEnumNConstants.swift */; };
-		DCE4815221BA443100F72079 /* MaskedPhoneTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480E921BA443100F72079 /* MaskedPhoneTextFieldDelegate.swift */; };
-		DCE4815321BA443100F72079 /* PopoverControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480EA21BA443100F72079 /* PopoverControllerView.swift */; };
-		DCE4815421BA443100F72079 /* BaseUIPopoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480EB21BA443100F72079 /* BaseUIPopoverNavigationController.swift */; };
-		DCE4815521BA443100F72079 /* PinCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480EC21BA443100F72079 /* PinCodeTextField.swift */; };
-		DCE4815621BA443100F72079 /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480ED21BA443100F72079 /* FloatingLabelTextField.swift */; };
-		DCE4815721BA443100F72079 /* ValidatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480EE21BA443100F72079 /* ValidatedTextInput.swift */; };
-		DCE4815821BA443100F72079 /* ValidatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480EF21BA443100F72079 /* ValidatedTextView.swift */; };
-		DCE4815921BA443100F72079 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480F021BA443100F72079 /* CustomUIImageView.swift */; };
-		DCE4815A21BA443100F72079 /* CustomUIButtonDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480F121BA443100F72079 /* CustomUIButtonDetailed.swift */; };
-		DCE4815B21BA443100F72079 /* UIRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480F221BA443100F72079 /* UIRadioButton.swift */; };
-		DCE4815C21BA443100F72079 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480F321BA443100F72079 /* ValidatedTextField.swift */; };
-		DCE4815D21BA443100F72079 /* ProgressUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480F421BA443100F72079 /* ProgressUIButton.swift */; };
-		DCE4815E21BA443100F72079 /* AnimatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480F621BA443100F72079 /* AnimatedTextInput.swift */; };
-		DCE4815F21BA443100F72079 /* AnimatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480F721BA443100F72079 /* AnimatedTextView.swift */; };
-		DCE4816021BA443100F72079 /* AnimatedTextInputFieldConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480F821BA443100F72079 /* AnimatedTextInputFieldConfigurator.swift */; };
-		DCE4816121BA443100F72079 /* ValidatedAnimatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480F921BA443100F72079 /* ValidatedAnimatedTextInput.swift */; };
-		DCE4816221BA443100F72079 /* AnimatedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480FA21BA443100F72079 /* AnimatedLine.swift */; };
-		DCE4816321BA443100F72079 /* AnimatedInputMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480FB21BA443100F72079 /* AnimatedInputMaskTextField.swift */; };
-		DCE4816421BA443100F72079 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480FC21BA443100F72079 /* AnimatedTextField.swift */; };
-		DCE4816521BA443100F72079 /* AnimatedTextInputStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480FD21BA443100F72079 /* AnimatedTextInputStyle.swift */; };
-		DCE4816621BA443100F72079 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480FE21BA443100F72079 /* PopoverController.swift */; };
-		DCE4816721BA443100F72079 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE480FF21BA443100F72079 /* CustomImageView.swift */; };
-		DCE4816821BA443100F72079 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810021BA443100F72079 /* CustomUIButton.swift */; };
-		DCE4816921BA443100F72079 /* InputMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810121BA443100F72079 /* InputMaskTextField.swift */; };
-		DCE4816A21BA443100F72079 /* UnderlinedUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810221BA443100F72079 /* UnderlinedUITextField.swift */; };
-		DCE4816B21BA443100F72079 /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810421BA443100F72079 /* UIImage+Utility.swift */; };
-		DCE4816C21BA443100F72079 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810521BA443100F72079 /* UIColor+Utility.swift */; };
-		DCE4816D21BA443100F72079 /* Array+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810621BA443100F72079 /* Array+Utility.swift */; };
-		DCE4816E21BA443100F72079 /* UITableView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810721BA443100F72079 /* UITableView+Utility.swift */; };
-		DCE4816F21BA443100F72079 /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810821BA443100F72079 /* String+Utility.swift */; };
-		DCE4817021BA443100F72079 /* URL+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810921BA443100F72079 /* URL+Utility.swift */; };
-		DCE4817121BA443100F72079 /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810A21BA443100F72079 /* UIApplication+Utility.swift */; };
-		DCE4817221BA443100F72079 /* JSON+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810B21BA443100F72079 /* JSON+Utility.swift */; };
-		DCE4817321BA443100F72079 /* Int+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810C21BA443100F72079 /* Int+Utility.swift */; };
-		DCE4817421BA443100F72079 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810D21BA443100F72079 /* UIViewExtensions.swift */; };
-		DCE4817521BA443100F72079 /* UIScrollView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810E21BA443100F72079 /* UIScrollView+Utility.swift */; };
-		DCE4817621BA443100F72079 /* Data+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4810F21BA443100F72079 /* Data+Utility.swift */; };
-		DCE4817721BA443100F72079 /* UITextField+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811021BA443100F72079 /* UITextField+Utility.swift */; };
-		DCE4817821BA443100F72079 /* UIImageView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811121BA443100F72079 /* UIImageView+Utility.swift */; };
-		DCE4817921BA443100F72079 /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811221BA443100F72079 /* UIFont+Utility.swift */; };
-		DCE4817A21BA443100F72079 /* CLPlacemark+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811321BA443100F72079 /* CLPlacemark+Utility.swift */; };
-		DCE4817B21BA443100F72079 /* UIView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811421BA443100F72079 /* UIView+Utility.swift */; };
-		DCE4817C21BA443100F72079 /* Gradient+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811521BA443100F72079 /* Gradient+Utility.swift */; };
-		DCE4817D21BA443100F72079 /* GISTUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811721BA443100F72079 /* GISTUtility.swift */; };
-		DCE4817E21BA443100F72079 /* GISTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811821BA443100F72079 /* GISTConfig.swift */; };
-		DCE4817F21BA443100F72079 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811921BA443100F72079 /* AppInfo.swift */; };
-		DCE4818021BA443100F72079 /* ThresholdTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811A21BA443100F72079 /* ThresholdTime.swift */; };
-		DCE4818121BA443100F72079 /* GISTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811B21BA443100F72079 /* GISTApplication.swift */; };
-		DCE4818221BA443100F72079 /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811C21BA443100F72079 /* BaseViewProtocol.swift */; };
-		DCE4818321BA443100F72079 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4811D21BA443100F72079 /* Weak.swift */; };
-		DCE4818421BA443100F72079 /* SyncedFontStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4812021BA443100F72079 /* SyncedFontStyles.swift */; };
-		DCE4818521BA443100F72079 /* SyncedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4812121BA443100F72079 /* SyncedText.swift */; };
-		DCE4818621BA443100F72079 /* SyncedColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4812221BA443100F72079 /* SyncedColors.swift */; };
-		DCE4818721BA443100F72079 /* SyncedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4812321BA443100F72079 /* SyncedConstants.swift */; };
-		DCE4818821BA443100F72079 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4812421BA443100F72079 /* SyncEngine.swift */; };
+		A027A9E97CDD536F50403C4E /* Pods_GISTFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E04496F6EDE013513D932D8 /* Pods_GISTFramework.framework */; };
+		DC329A79229C08FE00A425FF /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = DC329A77229C08FE00A425FF /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		451DD9FE34533EC829E0C279 /* Pods-GISTFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GISTFramework/Pods-GISTFramework.debug.xcconfig"; sourceTree = "<group>"; };
-		7504025304AD3A134BDEE2F4 /* Pods_GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE58D80AF2376A677182DA63 /* Pods-GISTFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-GISTFramework/Pods-GISTFramework.release.xcconfig"; sourceTree = "<group>"; };
-		DCE480A321BA43BE00F72079 /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DCE480A621BA43BE00F72079 /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
-		DCE480A721BA43BE00F72079 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCE480B021BA443100F72079 /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
-		DCE480B121BA443100F72079 /* BaseLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLayoutConstraint.swift; sourceTree = "<group>"; };
-		DCE480B221BA443100F72079 /* BaseUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIButton.swift; sourceTree = "<group>"; };
-		DCE480B321BA443100F72079 /* BaseUIStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIStepper.swift; sourceTree = "<group>"; };
-		DCE480B421BA443100F72079 /* BaseUIPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPageControl.swift; sourceTree = "<group>"; };
-		DCE480B521BA443100F72079 /* BaseUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
-		DCE480B621BA443100F72079 /* BaseUIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIStackView.swift; sourceTree = "<group>"; };
-		DCE480B721BA443100F72079 /* BaseSeperatorLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSeperatorLayoutConstraint.swift; sourceTree = "<group>"; };
-		DCE480B821BA443100F72079 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
-		DCE480B921BA443100F72079 /* BaseUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewCell.swift; sourceTree = "<group>"; };
-		DCE480BA21BA443100F72079 /* BaseUISlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISlider.swift; sourceTree = "<group>"; };
-		DCE480BB21BA443100F72079 /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
-		DCE480BC21BA443100F72079 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
-		DCE480BD21BA443100F72079 /* BaseUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUILabel.swift; sourceTree = "<group>"; };
-		DCE480BE21BA443100F72079 /* BaseUICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUICollectionView.swift; sourceTree = "<group>"; };
-		DCE480BF21BA443100F72079 /* BaseUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISwitch.swift; sourceTree = "<group>"; };
-		DCE480C021BA443100F72079 /* BaseUISearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISearchBar.swift; sourceTree = "<group>"; };
-		DCE480C121BA443100F72079 /* BaseUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITextField.swift; sourceTree = "<group>"; };
-		DCE480C221BA443100F72079 /* BaseUITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableView.swift; sourceTree = "<group>"; };
-		DCE480C321BA443100F72079 /* BaseUINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUINavigationController.swift; sourceTree = "<group>"; };
-		DCE480C421BA443100F72079 /* BaseUINavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUINavigationItem.swift; sourceTree = "<group>"; };
-		DCE480C521BA443100F72079 /* BaseUIScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIScrollView.swift; sourceTree = "<group>"; };
-		DCE480C621BA443100F72079 /* BaseUISegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISegmentedControl.swift; sourceTree = "<group>"; };
-		DCE480C721BA443100F72079 /* BaseUISearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISearchController.swift; sourceTree = "<group>"; };
-		DCE480C821BA443100F72079 /* BaseUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITextView.swift; sourceTree = "<group>"; };
-		DCE480C921BA443100F72079 /* BaseUIDesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIDesignableButton.swift; sourceTree = "<group>"; };
-		DCE480CA21BA443100F72079 /* BaseUICollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUICollectionViewCell.swift; sourceTree = "<group>"; };
-		DCE480CB21BA443100F72079 /* BaseUIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIBarButtonItem.swift; sourceTree = "<group>"; };
-		DCE480CC21BA443100F72079 /* BaseUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIImageView.swift; sourceTree = "<group>"; };
-		DCE480CD21BA443100F72079 /* BaseUIDesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIDesignableView.swift; sourceTree = "<group>"; };
-		DCE480D021BA443100F72079 /* HTTPServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPServiceManager.swift; sourceTree = "<group>"; };
-		DCE480D221BA443100F72079 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		DCE480D321BA443100F72079 /* ManagedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedParser.swift; sourceTree = "<group>"; };
-		DCE480D521BA443100F72079 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
-		DCE480D721BA443100F72079 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
-		DCE480D921BA443100F72079 /* GISTSocialUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTSocialUtils.swift; sourceTree = "<group>"; };
-		DCE480DB21BA443100F72079 /* GISTFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTFile.swift; sourceTree = "<group>"; };
-		DCE480DC21BA443100F72079 /* ModelUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
-		DCE480DE21BA443100F72079 /* GISTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAppDelegate.swift; sourceTree = "<group>"; };
-		DCE480E021BA443100F72079 /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
-		DCE480E121BA443100F72079 /* GISTMicroAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTMicroAuth.swift; sourceTree = "<group>"; };
-		DCE480E321BA443100F72079 /* Mappable+ToDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mappable+ToDictionary.swift"; sourceTree = "<group>"; };
-		DCE480E421BA443100F72079 /* GISTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUser.swift; sourceTree = "<group>"; };
-		DCE480E621BA443100F72079 /* GISTGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTGlobal.swift; sourceTree = "<group>"; };
-		DCE480E721BA443100F72079 /* GISTEnumNConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTEnumNConstants.swift; sourceTree = "<group>"; };
-		DCE480E921BA443100F72079 /* MaskedPhoneTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedPhoneTextFieldDelegate.swift; sourceTree = "<group>"; };
-		DCE480EA21BA443100F72079 /* PopoverControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverControllerView.swift; sourceTree = "<group>"; };
-		DCE480EB21BA443100F72079 /* BaseUIPopoverNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPopoverNavigationController.swift; sourceTree = "<group>"; };
-		DCE480EC21BA443100F72079 /* PinCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextField.swift; sourceTree = "<group>"; };
-		DCE480ED21BA443100F72079 /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
-		DCE480EE21BA443100F72079 /* ValidatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextInput.swift; sourceTree = "<group>"; };
-		DCE480EF21BA443100F72079 /* ValidatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextView.swift; sourceTree = "<group>"; };
-		DCE480F021BA443100F72079 /* CustomUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
-		DCE480F121BA443100F72079 /* CustomUIButtonDetailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButtonDetailed.swift; sourceTree = "<group>"; };
-		DCE480F221BA443100F72079 /* UIRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadioButton.swift; sourceTree = "<group>"; };
-		DCE480F321BA443100F72079 /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
-		DCE480F421BA443100F72079 /* ProgressUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressUIButton.swift; sourceTree = "<group>"; };
-		DCE480F621BA443100F72079 /* AnimatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInput.swift; sourceTree = "<group>"; };
-		DCE480F721BA443100F72079 /* AnimatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextView.swift; sourceTree = "<group>"; };
-		DCE480F821BA443100F72079 /* AnimatedTextInputFieldConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInputFieldConfigurator.swift; sourceTree = "<group>"; };
-		DCE480F921BA443100F72079 /* ValidatedAnimatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedAnimatedTextInput.swift; sourceTree = "<group>"; };
-		DCE480FA21BA443100F72079 /* AnimatedLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedLine.swift; sourceTree = "<group>"; };
-		DCE480FB21BA443100F72079 /* AnimatedInputMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedInputMaskTextField.swift; sourceTree = "<group>"; };
-		DCE480FC21BA443100F72079 /* AnimatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
-		DCE480FD21BA443100F72079 /* AnimatedTextInputStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInputStyle.swift; sourceTree = "<group>"; };
-		DCE480FE21BA443100F72079 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
-		DCE480FF21BA443100F72079 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
-		DCE4810021BA443100F72079 /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
-		DCE4810121BA443100F72079 /* InputMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMaskTextField.swift; sourceTree = "<group>"; };
-		DCE4810221BA443100F72079 /* UnderlinedUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedUITextField.swift; sourceTree = "<group>"; };
-		DCE4810421BA443100F72079 /* UIImage+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810521BA443100F72079 /* UIColor+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810621BA443100F72079 /* Array+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810721BA443100F72079 /* UITableView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810821BA443100F72079 /* String+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810921BA443100F72079 /* URL+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810A21BA443100F72079 /* UIApplication+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810B21BA443100F72079 /* JSON+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810C21BA443100F72079 /* Int+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810D21BA443100F72079 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
-		DCE4810E21BA443100F72079 /* UIScrollView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utility.swift"; sourceTree = "<group>"; };
-		DCE4810F21BA443100F72079 /* Data+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Utility.swift"; sourceTree = "<group>"; };
-		DCE4811021BA443100F72079 /* UITextField+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Utility.swift"; sourceTree = "<group>"; };
-		DCE4811121BA443100F72079 /* UIImageView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Utility.swift"; sourceTree = "<group>"; };
-		DCE4811221BA443100F72079 /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
-		DCE4811321BA443100F72079 /* CLPlacemark+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Utility.swift"; sourceTree = "<group>"; };
-		DCE4811421BA443100F72079 /* UIView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utility.swift"; sourceTree = "<group>"; };
-		DCE4811521BA443100F72079 /* Gradient+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gradient+Utility.swift"; sourceTree = "<group>"; };
-		DCE4811721BA443100F72079 /* GISTUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUtility.swift; sourceTree = "<group>"; };
-		DCE4811821BA443100F72079 /* GISTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTConfig.swift; sourceTree = "<group>"; };
-		DCE4811921BA443100F72079 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
-		DCE4811A21BA443100F72079 /* ThresholdTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThresholdTime.swift; sourceTree = "<group>"; };
-		DCE4811B21BA443100F72079 /* GISTApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTApplication.swift; sourceTree = "<group>"; };
-		DCE4811C21BA443100F72079 /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
-		DCE4811D21BA443100F72079 /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
-		DCE4812021BA443100F72079 /* SyncedFontStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedFontStyles.swift; sourceTree = "<group>"; };
-		DCE4812121BA443100F72079 /* SyncedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedText.swift; sourceTree = "<group>"; };
-		DCE4812221BA443100F72079 /* SyncedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedColors.swift; sourceTree = "<group>"; };
-		DCE4812321BA443100F72079 /* SyncedConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedConstants.swift; sourceTree = "<group>"; };
-		DCE4812421BA443100F72079 /* SyncEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
+		1147A2E355CD353D20AE2077 /* Pods-GISTFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.release.xcconfig"; path = "Target Support Files/Pods-GISTFramework/Pods-GISTFramework.release.xcconfig"; sourceTree = "<group>"; };
+		1E04496F6EDE013513D932D8 /* Pods_GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E02A1FF8472686B9DC1CC3 /* Pods-GISTFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GISTFramework.debug.xcconfig"; path = "Target Support Files/Pods-GISTFramework/Pods-GISTFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		DC329A74229C08FE00A425FF /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC329A77229C08FE00A425FF /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
+		DC329A78229C08FE00A425FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DCE480A021BA43BE00F72079 /* Frameworks */ = {
+		DC329A71229C08FE00A425FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2738AF64971345D690CCA66D /* Pods_GISTFramework.framework in Frameworks */,
+				A027A9E97CDD536F50403C4E /* Pods_GISTFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D12AEEFBEDDC63F89EB6BF26 /* Pods */ = {
+		898E88B6D46EF66063E5D131 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				451DD9FE34533EC829E0C279 /* Pods-GISTFramework.debug.xcconfig */,
-				CE58D80AF2376A677182DA63 /* Pods-GISTFramework.release.xcconfig */,
+				B0E02A1FF8472686B9DC1CC3 /* Pods-GISTFramework.debug.xcconfig */,
+				1147A2E355CD353D20AE2077 /* Pods-GISTFramework.release.xcconfig */,
 			);
-			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		DCE4809921BA43BE00F72079 = {
+		DC329A6A229C08FE00A425FF = {
 			isa = PBXGroup;
 			children = (
-				DCE480A521BA43BE00F72079 /* GISTFramework */,
-				DCE480A421BA43BE00F72079 /* Products */,
-				D12AEEFBEDDC63F89EB6BF26 /* Pods */,
-				E04490563C2AE2E0F24B2BCE /* Frameworks */,
+				DC329A76229C08FE00A425FF /* GISTFramework */,
+				DC329A75229C08FE00A425FF /* Products */,
+				898E88B6D46EF66063E5D131 /* Pods */,
+				E35BF7C885408F03444D505C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		DCE480A421BA43BE00F72079 /* Products */ = {
+		DC329A75229C08FE00A425FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DCE480A321BA43BE00F72079 /* GISTFramework.framework */,
+				DC329A74229C08FE00A425FF /* GISTFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DCE480A521BA43BE00F72079 /* GISTFramework */ = {
+		DC329A76229C08FE00A425FF /* GISTFramework */ = {
 			isa = PBXGroup;
 			children = (
-				DCE480A621BA43BE00F72079 /* GISTFramework.h */,
-				DCE480A721BA43BE00F72079 /* Info.plist */,
-				DCE480AE21BA443100F72079 /* Classes */,
+				DC329A77229C08FE00A425FF /* GISTFramework.h */,
+				DC329A78229C08FE00A425FF /* Info.plist */,
 			);
 			path = GISTFramework;
 			sourceTree = "<group>";
 		};
-		DCE480AE21BA443100F72079 /* Classes */ = {
+		E35BF7C885408F03444D505C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DCE480AF21BA443100F72079 /* BaseClasses */,
-				DCE480CE21BA443100F72079 /* GISTSocial */,
-				DCE480E821BA443100F72079 /* Controls */,
-				DCE4810321BA443100F72079 /* Extentions */,
-				DCE4811621BA443100F72079 /* GISTCore */,
-				DCE4811E21BA443100F72079 /* SyncEngine */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		DCE480AF21BA443100F72079 /* BaseClasses */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480B021BA443100F72079 /* BaseUITableViewHeaderFooterView.swift */,
-				DCE480B121BA443100F72079 /* BaseLayoutConstraint.swift */,
-				DCE480B221BA443100F72079 /* BaseUIButton.swift */,
-				DCE480B321BA443100F72079 /* BaseUIStepper.swift */,
-				DCE480B421BA443100F72079 /* BaseUIPageControl.swift */,
-				DCE480B521BA443100F72079 /* BaseUIView.swift */,
-				DCE480B621BA443100F72079 /* BaseUIStackView.swift */,
-				DCE480B721BA443100F72079 /* BaseSeperatorLayoutConstraint.swift */,
-				DCE480B821BA443100F72079 /* BaseUITableViewController.swift */,
-				DCE480B921BA443100F72079 /* BaseUITableViewCell.swift */,
-				DCE480BA21BA443100F72079 /* BaseUISlider.swift */,
-				DCE480BB21BA443100F72079 /* BaseUITabBarController.swift */,
-				DCE480BC21BA443100F72079 /* BaseUIViewController.swift */,
-				DCE480BD21BA443100F72079 /* BaseUILabel.swift */,
-				DCE480BE21BA443100F72079 /* BaseUICollectionView.swift */,
-				DCE480BF21BA443100F72079 /* BaseUISwitch.swift */,
-				DCE480C021BA443100F72079 /* BaseUISearchBar.swift */,
-				DCE480C121BA443100F72079 /* BaseUITextField.swift */,
-				DCE480C221BA443100F72079 /* BaseUITableView.swift */,
-				DCE480C321BA443100F72079 /* BaseUINavigationController.swift */,
-				DCE480C421BA443100F72079 /* BaseUINavigationItem.swift */,
-				DCE480C521BA443100F72079 /* BaseUIScrollView.swift */,
-				DCE480C621BA443100F72079 /* BaseUISegmentedControl.swift */,
-				DCE480C721BA443100F72079 /* BaseUISearchController.swift */,
-				DCE480C821BA443100F72079 /* BaseUITextView.swift */,
-				DCE480C921BA443100F72079 /* BaseUIDesignableButton.swift */,
-				DCE480CA21BA443100F72079 /* BaseUICollectionViewCell.swift */,
-				DCE480CB21BA443100F72079 /* BaseUIBarButtonItem.swift */,
-				DCE480CC21BA443100F72079 /* BaseUIImageView.swift */,
-				DCE480CD21BA443100F72079 /* BaseUIDesignableView.swift */,
-			);
-			path = BaseClasses;
-			sourceTree = "<group>";
-		};
-		DCE480CE21BA443100F72079 /* GISTSocial */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480CF21BA443100F72079 /* HTTPServiceManager */,
-				DCE480D121BA443100F72079 /* CoreData */,
-				DCE480D421BA443100F72079 /* TutorialView */,
-				DCE480D621BA443100F72079 /* Reachability */,
-				DCE480D821BA443100F72079 /* Extentions */,
-				DCE480DA21BA443100F72079 /* Model */,
-				DCE480DD21BA443100F72079 /* AppDelegate */,
-				DCE480DF21BA443100F72079 /* Authentication */,
-				DCE480E221BA443100F72079 /* Protocols */,
-				DCE480E521BA443100F72079 /* Global */,
-			);
-			path = GISTSocial;
-			sourceTree = "<group>";
-		};
-		DCE480CF21BA443100F72079 /* HTTPServiceManager */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480D021BA443100F72079 /* HTTPServiceManager.swift */,
-			);
-			path = HTTPServiceManager;
-			sourceTree = "<group>";
-		};
-		DCE480D121BA443100F72079 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480D221BA443100F72079 /* DataManager.swift */,
-				DCE480D321BA443100F72079 /* ManagedParser.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		DCE480D421BA443100F72079 /* TutorialView */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480D521BA443100F72079 /* TutorialView.swift */,
-			);
-			path = TutorialView;
-			sourceTree = "<group>";
-		};
-		DCE480D621BA443100F72079 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480D721BA443100F72079 /* ReachabilityHelper.swift */,
-			);
-			path = Reachability;
-			sourceTree = "<group>";
-		};
-		DCE480D821BA443100F72079 /* Extentions */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480D921BA443100F72079 /* GISTSocialUtils.swift */,
-			);
-			path = Extentions;
-			sourceTree = "<group>";
-		};
-		DCE480DA21BA443100F72079 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480DB21BA443100F72079 /* GISTFile.swift */,
-				DCE480DC21BA443100F72079 /* ModelUser.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		DCE480DD21BA443100F72079 /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480DE21BA443100F72079 /* GISTAppDelegate.swift */,
-			);
-			path = AppDelegate;
-			sourceTree = "<group>";
-		};
-		DCE480DF21BA443100F72079 /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480E021BA443100F72079 /* GISTAuth.swift */,
-				DCE480E121BA443100F72079 /* GISTMicroAuth.swift */,
-			);
-			path = Authentication;
-			sourceTree = "<group>";
-		};
-		DCE480E221BA443100F72079 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480E321BA443100F72079 /* Mappable+ToDictionary.swift */,
-				DCE480E421BA443100F72079 /* GISTUser.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		DCE480E521BA443100F72079 /* Global */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480E621BA443100F72079 /* GISTGlobal.swift */,
-				DCE480E721BA443100F72079 /* GISTEnumNConstants.swift */,
-			);
-			path = Global;
-			sourceTree = "<group>";
-		};
-		DCE480E821BA443100F72079 /* Controls */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480E921BA443100F72079 /* MaskedPhoneTextFieldDelegate.swift */,
-				DCE480EA21BA443100F72079 /* PopoverControllerView.swift */,
-				DCE480EB21BA443100F72079 /* BaseUIPopoverNavigationController.swift */,
-				DCE480EC21BA443100F72079 /* PinCodeTextField.swift */,
-				DCE480ED21BA443100F72079 /* FloatingLabelTextField.swift */,
-				DCE480EE21BA443100F72079 /* ValidatedTextInput.swift */,
-				DCE480EF21BA443100F72079 /* ValidatedTextView.swift */,
-				DCE480F021BA443100F72079 /* CustomUIImageView.swift */,
-				DCE480F121BA443100F72079 /* CustomUIButtonDetailed.swift */,
-				DCE480F221BA443100F72079 /* UIRadioButton.swift */,
-				DCE480F321BA443100F72079 /* ValidatedTextField.swift */,
-				DCE480F421BA443100F72079 /* ProgressUIButton.swift */,
-				DCE480F521BA443100F72079 /* AnimatedTextInput */,
-				DCE480FE21BA443100F72079 /* PopoverController.swift */,
-				DCE480FF21BA443100F72079 /* CustomImageView.swift */,
-				DCE4810021BA443100F72079 /* CustomUIButton.swift */,
-				DCE4810121BA443100F72079 /* InputMaskTextField.swift */,
-				DCE4810221BA443100F72079 /* UnderlinedUITextField.swift */,
-			);
-			path = Controls;
-			sourceTree = "<group>";
-		};
-		DCE480F521BA443100F72079 /* AnimatedTextInput */ = {
-			isa = PBXGroup;
-			children = (
-				DCE480F621BA443100F72079 /* AnimatedTextInput.swift */,
-				DCE480F721BA443100F72079 /* AnimatedTextView.swift */,
-				DCE480F821BA443100F72079 /* AnimatedTextInputFieldConfigurator.swift */,
-				DCE480F921BA443100F72079 /* ValidatedAnimatedTextInput.swift */,
-				DCE480FA21BA443100F72079 /* AnimatedLine.swift */,
-				DCE480FB21BA443100F72079 /* AnimatedInputMaskTextField.swift */,
-				DCE480FC21BA443100F72079 /* AnimatedTextField.swift */,
-				DCE480FD21BA443100F72079 /* AnimatedTextInputStyle.swift */,
-			);
-			path = AnimatedTextInput;
-			sourceTree = "<group>";
-		};
-		DCE4810321BA443100F72079 /* Extentions */ = {
-			isa = PBXGroup;
-			children = (
-				DCE4810421BA443100F72079 /* UIImage+Utility.swift */,
-				DCE4810521BA443100F72079 /* UIColor+Utility.swift */,
-				DCE4810621BA443100F72079 /* Array+Utility.swift */,
-				DCE4810721BA443100F72079 /* UITableView+Utility.swift */,
-				DCE4810821BA443100F72079 /* String+Utility.swift */,
-				DCE4810921BA443100F72079 /* URL+Utility.swift */,
-				DCE4810A21BA443100F72079 /* UIApplication+Utility.swift */,
-				DCE4810B21BA443100F72079 /* JSON+Utility.swift */,
-				DCE4810C21BA443100F72079 /* Int+Utility.swift */,
-				DCE4810D21BA443100F72079 /* UIViewExtensions.swift */,
-				DCE4810E21BA443100F72079 /* UIScrollView+Utility.swift */,
-				DCE4810F21BA443100F72079 /* Data+Utility.swift */,
-				DCE4811021BA443100F72079 /* UITextField+Utility.swift */,
-				DCE4811121BA443100F72079 /* UIImageView+Utility.swift */,
-				DCE4811221BA443100F72079 /* UIFont+Utility.swift */,
-				DCE4811321BA443100F72079 /* CLPlacemark+Utility.swift */,
-				DCE4811421BA443100F72079 /* UIView+Utility.swift */,
-				DCE4811521BA443100F72079 /* Gradient+Utility.swift */,
-			);
-			path = Extentions;
-			sourceTree = "<group>";
-		};
-		DCE4811621BA443100F72079 /* GISTCore */ = {
-			isa = PBXGroup;
-			children = (
-				DCE4811721BA443100F72079 /* GISTUtility.swift */,
-				DCE4811821BA443100F72079 /* GISTConfig.swift */,
-				DCE4811921BA443100F72079 /* AppInfo.swift */,
-				DCE4811A21BA443100F72079 /* ThresholdTime.swift */,
-				DCE4811B21BA443100F72079 /* GISTApplication.swift */,
-				DCE4811C21BA443100F72079 /* BaseViewProtocol.swift */,
-				DCE4811D21BA443100F72079 /* Weak.swift */,
-			);
-			path = GISTCore;
-			sourceTree = "<group>";
-		};
-		DCE4811E21BA443100F72079 /* SyncEngine */ = {
-			isa = PBXGroup;
-			children = (
-				DCE4811F21BA443100F72079 /* SubClasses */,
-				DCE4812421BA443100F72079 /* SyncEngine.swift */,
-			);
-			path = SyncEngine;
-			sourceTree = "<group>";
-		};
-		DCE4811F21BA443100F72079 /* SubClasses */ = {
-			isa = PBXGroup;
-			children = (
-				DCE4812021BA443100F72079 /* SyncedFontStyles.swift */,
-				DCE4812121BA443100F72079 /* SyncedText.swift */,
-				DCE4812221BA443100F72079 /* SyncedColors.swift */,
-				DCE4812321BA443100F72079 /* SyncedConstants.swift */,
-			);
-			path = SubClasses;
-			sourceTree = "<group>";
-		};
-		E04490563C2AE2E0F24B2BCE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7504025304AD3A134BDEE2F4 /* Pods_GISTFramework.framework */,
+				1E04496F6EDE013513D932D8 /* Pods_GISTFramework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -531,26 +79,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		DCE4809E21BA43BE00F72079 /* Headers */ = {
+		DC329A6F229C08FE00A425FF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCE480A821BA43BE00F72079 /* GISTFramework.h in Headers */,
+				DC329A79229C08FE00A425FF /* GISTFramework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		DCE480A221BA43BE00F72079 /* GISTFramework */ = {
+		DC329A73229C08FE00A425FF /* GISTFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DCE480AB21BA43BE00F72079 /* Build configuration list for PBXNativeTarget "GISTFramework" */;
+			buildConfigurationList = DC329A7C229C08FE00A425FF /* Build configuration list for PBXNativeTarget "GISTFramework" */;
 			buildPhases = (
-				A6E00BFB074AAEDBCCAD7BBB /* [CP] Check Pods Manifest.lock */,
-				DCE4809E21BA43BE00F72079 /* Headers */,
-				DCE4809F21BA43BE00F72079 /* Sources */,
-				DCE480A021BA43BE00F72079 /* Frameworks */,
-				DCE480A121BA43BE00F72079 /* Resources */,
+				DC8653535A59C582067747E2 /* [CP] Check Pods Manifest.lock */,
+				DC329A6F229C08FE00A425FF /* Headers */,
+				DC329A70229C08FE00A425FF /* Sources */,
+				DC329A71229C08FE00A425FF /* Frameworks */,
+				DC329A72229C08FE00A425FF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -558,42 +106,42 @@
 			);
 			name = GISTFramework;
 			productName = GISTFramework;
-			productReference = DCE480A321BA43BE00F72079 /* GISTFramework.framework */;
+			productReference = DC329A74229C08FE00A425FF /* GISTFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		DCE4809A21BA43BE00F72079 /* Project object */ = {
+		DC329A6B229C08FE00A425FF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Shoaib Mac Book Pro";
 				TargetAttributes = {
-					DCE480A221BA43BE00F72079 = {
-						CreatedOnToolsVersion = 10.1;
+					DC329A73229C08FE00A425FF = {
+						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
 			};
-			buildConfigurationList = DCE4809D21BA43BE00F72079 /* Build configuration list for PBXProject "GISTFramework" */;
+			buildConfigurationList = DC329A6E229C08FE00A425FF /* Build configuration list for PBXProject "GISTFramework" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = DCE4809921BA43BE00F72079;
-			productRefGroup = DCE480A421BA43BE00F72079 /* Products */;
+			mainGroup = DC329A6A229C08FE00A425FF;
+			productRefGroup = DC329A75229C08FE00A425FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DCE480A221BA43BE00F72079 /* GISTFramework */,
+				DC329A73229C08FE00A425FF /* GISTFramework */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		DCE480A121BA43BE00F72079 /* Resources */ = {
+		DC329A72229C08FE00A425FF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -603,16 +151,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A6E00BFB074AAEDBCCAD7BBB /* [CP] Check Pods Manifest.lock */ = {
+		DC8653535A59C582067747E2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-GISTFramework-checkManifestLockResult.txt",
 			);
@@ -624,117 +176,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		DCE4809F21BA43BE00F72079 /* Sources */ = {
+		DC329A70229C08FE00A425FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCE4816321BA443100F72079 /* AnimatedInputMaskTextField.swift in Sources */,
-				DCE4813821BA443100F72079 /* BaseUINavigationController.swift in Sources */,
-				DCE4818321BA443100F72079 /* Weak.swift in Sources */,
-				DCE4818021BA443100F72079 /* ThresholdTime.swift in Sources */,
-				DCE4814421BA443100F72079 /* DataManager.swift in Sources */,
-				DCE4817821BA443100F72079 /* UIImageView+Utility.swift in Sources */,
-				DCE4813621BA443100F72079 /* BaseUITextField.swift in Sources */,
-				DCE4814821BA443100F72079 /* GISTSocialUtils.swift in Sources */,
-				DCE4817A21BA443100F72079 /* CLPlacemark+Utility.swift in Sources */,
-				DCE4812E21BA443100F72079 /* BaseUITableViewCell.swift in Sources */,
-				DCE4814521BA443100F72079 /* ManagedParser.swift in Sources */,
-				DCE4814121BA443100F72079 /* BaseUIImageView.swift in Sources */,
-				DCE4812521BA443100F72079 /* BaseUITableViewHeaderFooterView.swift in Sources */,
-				DCE4814F21BA443100F72079 /* GISTUser.swift in Sources */,
-				DCE4815121BA443100F72079 /* GISTEnumNConstants.swift in Sources */,
-				DCE4815421BA443100F72079 /* BaseUIPopoverNavigationController.swift in Sources */,
-				DCE4818221BA443100F72079 /* BaseViewProtocol.swift in Sources */,
-				DCE4815721BA443100F72079 /* ValidatedTextInput.swift in Sources */,
-				DCE4816621BA443100F72079 /* PopoverController.swift in Sources */,
-				DCE4815821BA443100F72079 /* ValidatedTextView.swift in Sources */,
-				DCE4814B21BA443100F72079 /* GISTAppDelegate.swift in Sources */,
-				DCE4813A21BA443100F72079 /* BaseUIScrollView.swift in Sources */,
-				DCE4814C21BA443100F72079 /* GISTAuth.swift in Sources */,
-				DCE4816E21BA443100F72079 /* UITableView+Utility.swift in Sources */,
-				DCE4814921BA443100F72079 /* GISTFile.swift in Sources */,
-				DCE4814E21BA443100F72079 /* Mappable+ToDictionary.swift in Sources */,
-				DCE4816C21BA443100F72079 /* UIColor+Utility.swift in Sources */,
-				DCE4817321BA443100F72079 /* Int+Utility.swift in Sources */,
-				DCE4813921BA443100F72079 /* BaseUINavigationItem.swift in Sources */,
-				DCE4818621BA443100F72079 /* SyncedColors.swift in Sources */,
-				DCE4816921BA443100F72079 /* InputMaskTextField.swift in Sources */,
-				DCE4813E21BA443100F72079 /* BaseUIDesignableButton.swift in Sources */,
-				DCE4817621BA443100F72079 /* Data+Utility.swift in Sources */,
-				DCE4817421BA443100F72079 /* UIViewExtensions.swift in Sources */,
-				DCE4817C21BA443100F72079 /* Gradient+Utility.swift in Sources */,
-				DCE4813321BA443100F72079 /* BaseUICollectionView.swift in Sources */,
-				DCE4813521BA443100F72079 /* BaseUISearchBar.swift in Sources */,
-				DCE4815F21BA443100F72079 /* AnimatedTextView.swift in Sources */,
-				DCE4814321BA443100F72079 /* HTTPServiceManager.swift in Sources */,
-				DCE4815921BA443100F72079 /* CustomUIImageView.swift in Sources */,
-				DCE4812C21BA443100F72079 /* BaseSeperatorLayoutConstraint.swift in Sources */,
-				DCE4816021BA443100F72079 /* AnimatedTextInputFieldConfigurator.swift in Sources */,
-				DCE4818821BA443100F72079 /* SyncEngine.swift in Sources */,
-				DCE4812F21BA443100F72079 /* BaseUISlider.swift in Sources */,
-				DCE4816121BA443100F72079 /* ValidatedAnimatedTextInput.swift in Sources */,
-				DCE4816421BA443100F72079 /* AnimatedTextField.swift in Sources */,
-				DCE4815C21BA443100F72079 /* ValidatedTextField.swift in Sources */,
-				DCE4813021BA443100F72079 /* BaseUITabBarController.swift in Sources */,
-				DCE4815D21BA443100F72079 /* ProgressUIButton.swift in Sources */,
-				DCE4817E21BA443100F72079 /* GISTConfig.swift in Sources */,
-				DCE4814221BA443100F72079 /* BaseUIDesignableView.swift in Sources */,
-				DCE4816521BA443100F72079 /* AnimatedTextInputStyle.swift in Sources */,
-				DCE4815021BA443100F72079 /* GISTGlobal.swift in Sources */,
-				DCE4817D21BA443100F72079 /* GISTUtility.swift in Sources */,
-				DCE4812D21BA443100F72079 /* BaseUITableViewController.swift in Sources */,
-				DCE4816B21BA443100F72079 /* UIImage+Utility.swift in Sources */,
-				DCE4814721BA443100F72079 /* ReachabilityHelper.swift in Sources */,
-				DCE4815B21BA443100F72079 /* UIRadioButton.swift in Sources */,
-				DCE4813B21BA443100F72079 /* BaseUISegmentedControl.swift in Sources */,
-				DCE4817021BA443100F72079 /* URL+Utility.swift in Sources */,
-				DCE4814A21BA443100F72079 /* ModelUser.swift in Sources */,
-				DCE4812B21BA443100F72079 /* BaseUIStackView.swift in Sources */,
-				DCE4813421BA443100F72079 /* BaseUISwitch.swift in Sources */,
-				DCE4817921BA443100F72079 /* UIFont+Utility.swift in Sources */,
-				DCE4817221BA443100F72079 /* JSON+Utility.swift in Sources */,
-				DCE4812921BA443100F72079 /* BaseUIPageControl.swift in Sources */,
-				DCE4812621BA443100F72079 /* BaseLayoutConstraint.swift in Sources */,
-				DCE4816F21BA443100F72079 /* String+Utility.swift in Sources */,
-				DCE4816721BA443100F72079 /* CustomImageView.swift in Sources */,
-				DCE4815621BA443100F72079 /* FloatingLabelTextField.swift in Sources */,
-				DCE4813221BA443100F72079 /* BaseUILabel.swift in Sources */,
-				DCE4813C21BA443100F72079 /* BaseUISearchController.swift in Sources */,
-				DCE4814D21BA443100F72079 /* GISTMicroAuth.swift in Sources */,
-				DCE4816D21BA443100F72079 /* Array+Utility.swift in Sources */,
-				DCE4818121BA443100F72079 /* GISTApplication.swift in Sources */,
-				DCE4817121BA443100F72079 /* UIApplication+Utility.swift in Sources */,
-				DCE4813D21BA443100F72079 /* BaseUITextView.swift in Sources */,
-				DCE4815321BA443100F72079 /* PopoverControllerView.swift in Sources */,
-				DCE4814621BA443100F72079 /* TutorialView.swift in Sources */,
-				DCE4818721BA443100F72079 /* SyncedConstants.swift in Sources */,
-				DCE4816221BA443100F72079 /* AnimatedLine.swift in Sources */,
-				DCE4816A21BA443100F72079 /* UnderlinedUITextField.swift in Sources */,
-				DCE4815221BA443100F72079 /* MaskedPhoneTextFieldDelegate.swift in Sources */,
-				DCE4817F21BA443100F72079 /* AppInfo.swift in Sources */,
-				DCE4814021BA443100F72079 /* BaseUIBarButtonItem.swift in Sources */,
-				DCE4818421BA443100F72079 /* SyncedFontStyles.swift in Sources */,
-				DCE4818521BA443100F72079 /* SyncedText.swift in Sources */,
-				DCE4812821BA443100F72079 /* BaseUIStepper.swift in Sources */,
-				DCE4812721BA443100F72079 /* BaseUIButton.swift in Sources */,
-				DCE4817521BA443100F72079 /* UIScrollView+Utility.swift in Sources */,
-				DCE4816821BA443100F72079 /* CustomUIButton.swift in Sources */,
-				DCE4813721BA443100F72079 /* BaseUITableView.swift in Sources */,
-				DCE4817721BA443100F72079 /* UITextField+Utility.swift in Sources */,
-				DCE4813F21BA443100F72079 /* BaseUICollectionViewCell.swift in Sources */,
-				DCE4812A21BA443100F72079 /* BaseUIView.swift in Sources */,
-				DCE4815E21BA443100F72079 /* AnimatedTextInput.swift in Sources */,
-				DCE4817B21BA443100F72079 /* UIView+Utility.swift in Sources */,
-				DCE4813121BA443100F72079 /* BaseUIViewController.swift in Sources */,
-				DCE4815A21BA443100F72079 /* CustomUIButtonDetailed.swift in Sources */,
-				DCE4815521BA443100F72079 /* PinCodeTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		DCE480A921BA43BE00F72079 /* Debug */ = {
+		DC329A7A229C08FE00A425FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -786,7 +238,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -798,7 +250,7 @@
 			};
 			name = Debug;
 		};
-		DCE480AA21BA43BE00F72079 /* Release */ = {
+		DC329A7B229C08FE00A425FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -844,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -856,20 +308,19 @@
 			};
 			name = Release;
 		};
-		DCE480AC21BA43BE00F72079 /* Debug */ = {
+		DC329A7D229C08FE00A425FF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 451DD9FE34533EC829E0C279 /* Pods-GISTFramework.debug.xcconfig */;
+			baseConfigurationReference = B0E02A1FF8472686B9DC1CC3 /* Pods-GISTFramework.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3K24B25FCL;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GISTFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -877,27 +328,25 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cubix.GISTFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		DCE480AD21BA43BE00F72079 /* Release */ = {
+		DC329A7E229C08FE00A425FF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE58D80AF2376A677182DA63 /* Pods-GISTFramework.release.xcconfig */;
+			baseConfigurationReference = 1147A2E355CD353D20AE2077 /* Pods-GISTFramework.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3K24B25FCL;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GISTFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -905,9 +354,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cubix.GISTFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -915,25 +363,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DCE4809D21BA43BE00F72079 /* Build configuration list for PBXProject "GISTFramework" */ = {
+		DC329A6E229C08FE00A425FF /* Build configuration list for PBXProject "GISTFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DCE480A921BA43BE00F72079 /* Debug */,
-				DCE480AA21BA43BE00F72079 /* Release */,
+				DC329A7A229C08FE00A425FF /* Debug */,
+				DC329A7B229C08FE00A425FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DCE480AB21BA43BE00F72079 /* Build configuration list for PBXNativeTarget "GISTFramework" */ = {
+		DC329A7C229C08FE00A425FF /* Build configuration list for PBXNativeTarget "GISTFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DCE480AC21BA43BE00F72079 /* Debug */,
-				DCE480AD21BA43BE00F72079 /* Release */,
+				DC329A7D229C08FE00A425FF /* Debug */,
+				DC329A7E229C08FE00A425FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = DCE4809A21BA43BE00F72079 /* Project object */;
+	rootObject = DC329A6B229C08FE00A425FF /* Project object */;
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 public extension URL {
-    public var params: Dictionary<String, String> {
+    var params: Dictionary<String, String> {
         get {
             var results = [String:String]()
             if let keyValues:[String] = self.query?.components(separatedBy: "&") {

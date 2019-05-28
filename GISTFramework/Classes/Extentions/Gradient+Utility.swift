@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIView {
     
-    public func applyGradient(_ colors:[UIColor], type:GradientType, locations:[NSNumber]? = nil) -> CAGradientLayer{
+    func applyGradient(_ colors:[UIColor], type:GradientType, locations:[NSNumber]? = nil) -> CAGradientLayer{
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         
@@ -31,7 +31,7 @@ public extension UIView {
 
 public extension CAGradientLayer {
     
-    public func setGradient(_ type:GradientType) {
+    func setGradient(_ type:GradientType) {
         let points = type.points();
         
         self.startPoint = points.start;

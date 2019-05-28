@@ -2,8 +2,8 @@
 //  GISTFramework.h
 //  GISTFramework
 //
-//  Created by Shoaib Mac Book Pro on 12/7/18.
-//  Copyright © 2018 Shoaib Mac Book Pro. All rights reserved.
+//  Created by Shoaib Mac Book Pro on 5/27/19.
+//  Copyright © 2019 Shoaib Mac Book Pro. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

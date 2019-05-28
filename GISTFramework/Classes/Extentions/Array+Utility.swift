@@ -12,8 +12,8 @@ public extension Array where Element: Equatable {
     /// Removes object from the array with validation of availablity
     ///
     /// - Parameter object: Element to delete
-    public mutating func removeObject(_ object: Element) {
-        if let index = self.index(of: object) {
+    mutating func removeObject(_ object: Element) {
+        if let index = self.firstIndex(of: object) {
             self.remove(at: index)
         }
     } //F.E.
@@ -21,7 +21,7 @@ public extension Array where Element: Equatable {
     /// Removes array elemets form the array
     ///
     /// - Parameter array: Elements of array to delete
-    public mutating func removeObjectsInArray(_ array: [Element]) {
+    mutating func removeObjectsInArray(_ array: [Element]) {
         for object in array {
             self.removeObject(object)
         }

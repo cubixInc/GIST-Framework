@@ -9,7 +9,7 @@
 import UIKit
 
 public extension Data {
-    public var mimeType:String {
+    var mimeType:String {
         get {
             var c = [UInt32](repeating: 0, count: 1)
             (self as NSData).getBytes(&c, length: 1)
@@ -35,7 +35,7 @@ public extension Data {
         }
     } //F.E.
     
-    public var fileExtension:String {
+    var fileExtension:String {
         get {
             var c = [UInt32](repeating: 0, count: 1)
             (self as NSData).getBytes(&c, length: 1)

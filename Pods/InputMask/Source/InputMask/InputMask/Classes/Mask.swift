@@ -47,20 +47,28 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
         public let complete: Bool
         
         public var debugDescription: String {
-            get {
-                return "FORMATTED TEXT: \(self.formattedText)\nEXTRACTED VALUE: \(self.extractedValue)\nAFFINITY: \(self.affinity)\nCOMPLETE: \(self.complete)"
-            }
+            return "FORMATTED TEXT: \(self.formattedText)\nEXTRACTED VALUE: \(self.extractedValue)\nAFFINITY: \(self.affinity)\nCOMPLETE: \(self.complete)"
         }
         
         public var description: String {
-            get {
-                return self.debugDescription
-            }
+            return self.debugDescription
+        }
+
+        /**
+         Produce a reversed ```Result``` with reversed formatted text (```CaretString```) and reversed extracted value.
+         */
+        func reversed() -> Result {
+            return Result(
+                formattedText: self.formattedText.reversed(),
+                extractedValue: self.extractedValue.reversed,
+                affinity: affinity,
+                complete: complete
+            )
         }
     }
     
     private let initialState: State
-    private static var cache: [String : Mask] = [:]
+    private static var cache: [String: Mask] = [:]
     
     /**
      Constructor.
@@ -85,7 +93,7 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
      - returns: Previously cached ```Mask``` object for requested format string. If such it doesn't exist in cache, the
      object is constructed, cached and returned.
      */
-    public static func getOrCreate(withFormat format: String, customNotations: [Notation] = []) throws -> Mask {
+    public class func getOrCreate(withFormat format: String, customNotations: [Notation] = []) throws -> Mask {
         if let cachedMask: Mask = cache[format] {
             return cachedMask
         } else {
@@ -96,6 +104,19 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
     }
     
     /**
+     Check your mask format is valid.
+     
+     - parameter format: mask format.
+     - parameter customNotations: a list of custom rules to compile square bracket ```[]``` groups of format symbols.
+     
+     - returns: ```true``` if this format coupled with custom notations will compile into a working ```Mask``` object.
+     Otherwise ```false```.
+     */
+    public class func isValid(format: String, customNotations: [Notation] = []) -> Bool {
+        return nil != (try? self.init(format: format, customNotations: customNotations))
+    }
+    
+    /**
      Apply mask to the user input string.
      
      - parameter toText: user input string with current cursor position
@@ -103,13 +124,12 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
      - returns: Formatted text with extracted value an adjusted cursor position.
      */
     public func apply(toText text: CaretString, autocomplete: Bool = false) -> Result {
-        let iterator: CaretStringIterator = CaretStringIterator(caretString: text)
+        let iterator: CaretStringIterator = self.makeIterator(forText: text)
         
         var affinity:               Int     = 0
         var extractedValue:         String  = ""
         var modifiedString:         String  = ""
-        var modifiedCaretPosition:  Int     =
-            text.string.distance(from: text.string.startIndex, to: text.caretPosition) 
+        var modifiedCaretPosition:  Int     = text.string.distanceFromStartIndex(to: text.caretPosition)
         
         var state:       State      = self.initialState
         var beforeCaret: Bool       = iterator.beforeCaret()
@@ -152,7 +172,7 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
         return Result(
             formattedText: CaretString(
                 string: modifiedString,
-                caretPosition: modifiedString.index(modifiedString.startIndex, offsetBy: modifiedCaretPosition)
+                caretPosition: modifiedString.startIndex(offsetBy: modifiedCaretPosition)
             ),
             extractedValue: extractedValue,
             affinity: affinity,
@@ -224,15 +244,15 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
     }
     
     public var debugDescription: String {
-        get {
-            return self.initialState.debugDescription
-        }
+        return self.initialState.debugDescription
     }
     
     public var description: String {
-        get {
-            return self.debugDescription
-        }
+        return self.debugDescription
+    }
+    
+    func makeIterator(forText text: CaretString) -> CaretStringIterator {
+        return CaretStringIterator(caretString: text)
     }
     
 }
@@ -299,7 +319,7 @@ private extension Mask {
             return true
         } else if let valueState = state as? ValueState {
             return valueState.isElliptical
-        } else if (state is FixedState || state is FreeState) {
+        } else if (state is FixedState) {
             return false
         } else {
             return self.noMandatoryCharactersLeftAfterState(state.nextState())

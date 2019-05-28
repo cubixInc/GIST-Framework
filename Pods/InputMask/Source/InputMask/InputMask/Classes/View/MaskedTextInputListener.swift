@@ -21,22 +21,36 @@ open class MaskedTextInputListener: NSObject {
     open weak var listener: OnMaskedTextChangedListener?
     open var onMaskedTextChangedCallback: ((_ textInput: UITextInput, _ value: String, _ complete: Bool) -> ())?
 
-    @IBInspectable open var primaryMaskFormat: String
-    @IBInspectable open var autocomplete: Bool
+    @IBInspectable open var primaryMaskFormat:   String
+    @IBInspectable open var autocomplete:        Bool
     @IBInspectable open var autocompleteOnFocus: Bool
+    @IBInspectable open var rightToLeft:         Bool
+    
+    /**
+     Shortly after new text is being pasted from the clipboard, ```UITextInput``` receives a new value for its
+     `selectedTextRange` property from the system. This new range is not consistent with the formatted text and
+     calculated caret position most of the time, yet it's being assigned just after ```set caretPosition``` call.
+     
+     To ensure correct caret position is set, it is assigned asynchronously (presumably after a vanishingly
+     small delay), if caret movement is set to be non-atomic.
+     
+     Default is ```true```.
+     */
+    @IBInspectable open var atomicCaretMovement: Bool = true
 
-    open var affineFormats: [String]
+    open var affineFormats:               [String]
     open var affinityCalculationStrategy: AffinityCalculationStrategy
-    open var customNotations: [Notation]
+    open var customNotations:             [Notation]
     
     open var primaryMask: Mask {
-        return try! Mask.getOrCreate(withFormat: primaryMaskFormat, customNotations: customNotations)
+        return try! maskGetOrCreate(withFormat: primaryMaskFormat, customNotations: customNotations)
     }
     
     public init(
         primaryFormat: String = "",
         autocomplete: Bool = true,
         autocompleteOnFocus: Bool = true,
+        rightToLeft: Bool = false,
         affineFormats: [String] = [],
         affinityCalculationStrategy: AffinityCalculationStrategy = .wholeString,
         customNotations: [Notation] = [],
@@ -45,6 +59,7 @@ open class MaskedTextInputListener: NSObject {
         self.primaryMaskFormat = primaryFormat
         self.autocomplete = autocomplete
         self.autocompleteOnFocus = autocompleteOnFocus
+        self.rightToLeft = rightToLeft
         self.affineFormats = affineFormats
         self.affinityCalculationStrategy = affinityCalculationStrategy
         self.customNotations = customNotations
@@ -52,9 +67,27 @@ open class MaskedTextInputListener: NSObject {
         super.init()
     }
     
-    public override convenience init() {
-        // Interface Builder support
-        self.init(primaryFormat: "")
+    public override init() {
+        /**
+         Interface Builder support
+         
+         https://developer.apple.com/documentation/xcode_release_notes/xcode_10_2_release_notes/swift_5_release_notes_for_xcode_10_2
+         From known issue no.2:
+         
+         > To reduce the size taken up by Swift metadata, convenience initializers defined in Swift now only allocate an
+         > object ahead of time if they’re calling a designated initializer defined in Objective-C. In most cases, this
+         > has no effect on your program, but if your convenience initializer is called from Objective-C, the initial
+         > allocation from +alloc is released without any initializer being called.
+         */
+        self.primaryMaskFormat = ""
+        self.autocomplete = true
+        self.autocompleteOnFocus = true
+        self.rightToLeft = false
+        self.affineFormats = []
+        self.affinityCalculationStrategy = .wholeString
+        self.customNotations = []
+        self.onMaskedTextChangedCallback = nil
+        super.init()
     }
     
     /**
@@ -108,13 +141,12 @@ open class MaskedTextInputListener: NSObject {
         let mask: Mask = pickMask(forText: CaretString(string: text), autocomplete: autocomplete)
 
         let result: Mask.Result = mask.apply(
-            toText: CaretString(string: text, caretPosition: text.endIndex),
+            toText: CaretString(string: text),
             autocomplete: autocomplete
         )
 
         field.allText = result.formattedText.string
-        field.caretPosition = result.formattedText.string.distance(
-            from: result.formattedText.string.startIndex,
+        field.caretPosition = result.formattedText.string.distanceFromStartIndex(
             to: result.formattedText.caretPosition
         )
 
@@ -146,7 +178,7 @@ open class MaskedTextInputListener: NSObject {
     
     open func deleteText(inRange range: NSRange, inTextInput field: UITextInput) -> Mask.Result {
         let updatedText: String = replaceCharacters(inText: field.allText, range: range, withCharacters: "")
-        let caretPosition: String.Index = updatedText.index(updatedText.startIndex, offsetBy: range.location)
+        let caretPosition: String.Index = updatedText.startIndex(offsetBy: range.location)
 
         let mask: Mask = pickMask(
             forText: CaretString(string: updatedText, caretPosition: caretPosition),
@@ -166,10 +198,7 @@ open class MaskedTextInputListener: NSObject {
     
     open func modifyText(inRange range: NSRange, inTextInput field: UITextInput, withText text: String) -> Mask.Result {
         let updatedText: String = replaceCharacters(inText: field.allText, range: range, withCharacters: text)
-        let caretPosition: String.Index = updatedText.index(
-            updatedText.startIndex,
-            offsetBy: range.location + text.count
-        )
+        let caretPosition: String.Index = updatedText.startIndex(offsetBy: range.location + text.count)
         
         let mask: Mask = pickMask(
             forText: CaretString(string: updatedText, caretPosition: caretPosition),
@@ -182,10 +211,18 @@ open class MaskedTextInputListener: NSObject {
         )
         
         field.allText = result.formattedText.string
-        field.caretPosition = result.formattedText.string.distance(
-            from: result.formattedText.string.startIndex,
-            to: result.formattedText.caretPosition
-        )
+        
+        if self.atomicCaretMovement {
+            field.caretPosition = result.formattedText.string.distanceFromStartIndex(
+                to: result.formattedText.caretPosition
+            )
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
+                field.caretPosition = result.formattedText.string.distanceFromStartIndex(
+                    to: result.formattedText.caretPosition
+                )
+            }
+        }
         
         return result
     }
@@ -209,7 +246,7 @@ open class MaskedTextInputListener: NSObject {
         let primaryAffinity: Int = affinityCalculationStrategy.calculateAffinity(ofMask: primaryMask, forText: text, autocomplete: autocomplete)
         
         var masksAndAffinities: [MaskAndAffinity] = affineFormats.map { (affineFormat: String) -> MaskAndAffinity in
-            let mask = try! Mask.getOrCreate(withFormat: affineFormat, customNotations: customNotations)
+            let mask = try! maskGetOrCreate(withFormat: affineFormat, customNotations: customNotations)
             let affinity = affinityCalculationStrategy.calculateAffinity(ofMask: mask, forText: text, autocomplete: autocomplete)
             return MaskAndAffinity(mask: mask, affinity: affinity)
         }.sorted { (left: MaskAndAffinity, right: MaskAndAffinity) -> Bool in
@@ -237,6 +274,13 @@ open class MaskedTextInputListener: NSObject {
     open func notifyOnMaskedTextChangedListeners(forTextInput textInput: UITextInput, result: Mask.Result) {
         listener?.textInput(textInput, didExtractValue: result.extractedValue, didFillMandatoryCharacters: result.complete)
         onMaskedTextChangedCallback?(textInput, result.extractedValue, result.complete)
+    }
+
+    private func maskGetOrCreate(withFormat format: String, customNotations: [Notation]) throws -> Mask {
+        if rightToLeft {
+            return try RTLMask.getOrCreate(withFormat: format, customNotations: customNotations)
+        }
+        return try Mask.getOrCreate(withFormat: format, customNotations: customNotations)
     }
 
     private struct MaskAndAffinity {

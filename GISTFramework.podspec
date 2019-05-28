@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "4.4.1"
+  s.version      = "5.0.0"
   s.summary      = "GISTFramework is bottom architecture layour of iOS apps."
 
   # This description is used to generate tags and improve search results.
@@ -53,10 +53,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Social Cubix Inc." => "" }
-  # Or just: s.author    = "Social Cubix Inc."
-  # s.authors            = { "Social Cubix Inc." => "" }
-  # s.social_media_url   = "http://twitter.com/Cubix Labs Inc."
+  s.author             = { "Cubix.co Inc." => "" }
+  # Or just: s.author    = "Cubix.co Inc."
+  # s.authors            = { "Cubix.co Inc." => "" }
+  # s.social_media_url   = "http://twitter.com/Cubix.co Inc."
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -68,7 +68,7 @@ Pod::Spec.new do |s|
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-    s.ios.deployment_target = "9.0"
+    s.ios.deployment_target = "11.0"
   # s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => "4.4.1" }
+  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => "5.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -99,7 +99,7 @@ Pod::Spec.new do |s|
   s.subspec 'GISTCore' do |sp|
     sp.source_files = 'GISTFramework/Classes/GISTCore/**/*.{swift}'
 
-    sp.dependency 'PhoneNumberKit', '~> 2.5.0'
+    sp.dependency 'PhoneNumberKit', '~> 2.6.0'
   end
 
   s.subspec 'BaseClasses' do |sp|
@@ -115,7 +115,7 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/BaseClasses'
     sp.dependency 'GISTFramework/Extentions'
     sp.dependency 'GISTFramework/SyncEngine'
-    sp.dependency 'InputMask', '~> 4.0.2'
+    sp.dependency 'InputMask', '~> 4.1.1'
   end
 
   s.subspec 'Extentions' do |sp|
@@ -127,7 +127,7 @@ Pod::Spec.new do |s|
   s.subspec 'SyncEngine' do |sp|
     sp.source_files = 'GISTFramework/Classes/SyncEngine/**/*.{swift}'
     sp.dependency 'GISTFramework/GISTCore'
-    sp.dependency 'UIColor_Hex_Swift', '~> 4.2.0'
+    sp.dependency 'UIColor_Hex_Swift', '~> 5.1.0'
   end
 
   s.subspec 'GISTSocial' do |sp|
@@ -138,9 +138,10 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/Extentions'
     sp.dependency 'GISTFramework/Controls'
     sp.dependency 'GISTFramework/SyncEngine'
-    sp.dependency 'AlamofireObjectMapper', '~> 5.2.0'
+    sp.dependency 'Alamofire', '~> 5.0.0-beta.6'
+    sp.dependency 'ObjectMapper', '~> 3.4.2'
     sp.dependency 'AFDateHelper', '~> 4.2.7'
-    sp.dependency 'IQKeyboardManagerSwift', '~> 6.2.0'
+    sp.dependency 'IQKeyboardManagerSwift', '~> 6.3.0'
 
   end
 
