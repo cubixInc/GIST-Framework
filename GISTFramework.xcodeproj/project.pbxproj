@@ -9,6 +9,107 @@
 /* Begin PBXBuildFile section */
 		A027A9E97CDD536F50403C4E /* Pods_GISTFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E04496F6EDE013513D932D8 /* Pods_GISTFramework.framework */; };
 		DC329A79229C08FE00A425FF /* GISTFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = DC329A77229C08FE00A425FF /* GISTFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DCA7848722AE657500144633 /* BaseUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841222AE657400144633 /* BaseUITableViewHeaderFooterView.swift */; };
+		DCA7848822AE657500144633 /* BaseLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841322AE657400144633 /* BaseLayoutConstraint.swift */; };
+		DCA7848922AE657500144633 /* BaseUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841422AE657400144633 /* BaseUIButton.swift */; };
+		DCA7848A22AE657500144633 /* BaseUIStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841522AE657400144633 /* BaseUIStepper.swift */; };
+		DCA7848B22AE657500144633 /* BaseUIPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841622AE657400144633 /* BaseUIPageControl.swift */; };
+		DCA7848C22AE657500144633 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841722AE657400144633 /* BaseUIView.swift */; };
+		DCA7848D22AE657500144633 /* BaseUIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841822AE657400144633 /* BaseUIStackView.swift */; };
+		DCA7848E22AE657500144633 /* BaseSeperatorLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841922AE657400144633 /* BaseSeperatorLayoutConstraint.swift */; };
+		DCA7848F22AE657500144633 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841A22AE657400144633 /* BaseUITableViewController.swift */; };
+		DCA7849022AE657500144633 /* BaseUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841B22AE657400144633 /* BaseUITableViewCell.swift */; };
+		DCA7849122AE657500144633 /* BaseUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841C22AE657400144633 /* BaseUISlider.swift */; };
+		DCA7849222AE657500144633 /* BaseUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841D22AE657400144633 /* BaseUITabBarController.swift */; };
+		DCA7849322AE657500144633 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841E22AE657400144633 /* BaseUIViewController.swift */; };
+		DCA7849422AE657500144633 /* BaseUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7841F22AE657400144633 /* BaseUILabel.swift */; };
+		DCA7849522AE657500144633 /* BaseUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842022AE657400144633 /* BaseUICollectionView.swift */; };
+		DCA7849622AE657500144633 /* BaseUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842122AE657400144633 /* BaseUISwitch.swift */; };
+		DCA7849722AE657500144633 /* BaseUISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842222AE657400144633 /* BaseUISearchBar.swift */; };
+		DCA7849822AE657500144633 /* BaseUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842322AE657400144633 /* BaseUITextField.swift */; };
+		DCA7849922AE657500144633 /* BaseUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842422AE657400144633 /* BaseUITableView.swift */; };
+		DCA7849A22AE657500144633 /* BaseUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842522AE657400144633 /* BaseUINavigationController.swift */; };
+		DCA7849B22AE657500144633 /* BaseUINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842622AE657400144633 /* BaseUINavigationItem.swift */; };
+		DCA7849C22AE657500144633 /* BaseUIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842722AE657400144633 /* BaseUIScrollView.swift */; };
+		DCA7849D22AE657500144633 /* BaseUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842822AE657400144633 /* BaseUISegmentedControl.swift */; };
+		DCA7849E22AE657500144633 /* BaseUISearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842922AE657400144633 /* BaseUISearchController.swift */; };
+		DCA7849F22AE657500144633 /* BaseUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842A22AE657400144633 /* BaseUITextView.swift */; };
+		DCA784A022AE657500144633 /* BaseUIDesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842B22AE657400144633 /* BaseUIDesignableButton.swift */; };
+		DCA784A122AE657500144633 /* BaseUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842C22AE657400144633 /* BaseUICollectionViewCell.swift */; };
+		DCA784A222AE657500144633 /* BaseUIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842D22AE657400144633 /* BaseUIBarButtonItem.swift */; };
+		DCA784A322AE657500144633 /* BaseUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842E22AE657400144633 /* BaseUIImageView.swift */; };
+		DCA784A422AE657500144633 /* BaseUIDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7842F22AE657400144633 /* BaseUIDesignableView.swift */; };
+		DCA784A522AE657500144633 /* HTTPServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7843222AE657400144633 /* HTTPServiceManager.swift */; };
+		DCA784A622AE657500144633 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7843422AE657400144633 /* DataManager.swift */; };
+		DCA784A722AE657500144633 /* ManagedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7843522AE657400144633 /* ManagedParser.swift */; };
+		DCA784A822AE657500144633 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7843722AE657400144633 /* TutorialView.swift */; };
+		DCA784A922AE657500144633 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7843922AE657400144633 /* ReachabilityHelper.swift */; };
+		DCA784AA22AE657500144633 /* GISTSocialUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7843B22AE657400144633 /* GISTSocialUtils.swift */; };
+		DCA784AB22AE657500144633 /* GISTFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7843D22AE657400144633 /* GISTFile.swift */; };
+		DCA784AC22AE657500144633 /* ModelUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7843E22AE657400144633 /* ModelUser.swift */; };
+		DCA784AD22AE657500144633 /* GISTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844022AE657400144633 /* GISTAppDelegate.swift */; };
+		DCA784AE22AE657500144633 /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844222AE657400144633 /* GISTAuth.swift */; };
+		DCA784AF22AE657500144633 /* GISTMicroAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844322AE657400144633 /* GISTMicroAuth.swift */; };
+		DCA784B022AE657500144633 /* Mappable+ToDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844522AE657400144633 /* Mappable+ToDictionary.swift */; };
+		DCA784B122AE657500144633 /* GISTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844622AE657400144633 /* GISTUser.swift */; };
+		DCA784B222AE657500144633 /* GISTGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844822AE657400144633 /* GISTGlobal.swift */; };
+		DCA784B322AE657500144633 /* GISTEnumNConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844922AE657400144633 /* GISTEnumNConstants.swift */; };
+		DCA784B422AE657500144633 /* MaskedPhoneTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844B22AE657400144633 /* MaskedPhoneTextFieldDelegate.swift */; };
+		DCA784B522AE657500144633 /* PopoverControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844C22AE657400144633 /* PopoverControllerView.swift */; };
+		DCA784B622AE657500144633 /* BaseUIPopoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844D22AE657400144633 /* BaseUIPopoverNavigationController.swift */; };
+		DCA784B722AE657500144633 /* PinCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844E22AE657400144633 /* PinCodeTextField.swift */; };
+		DCA784B822AE657500144633 /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844F22AE657400144633 /* FloatingLabelTextField.swift */; };
+		DCA784B922AE657500144633 /* ValidatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845022AE657400144633 /* ValidatedTextInput.swift */; };
+		DCA784BA22AE657500144633 /* ValidatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845122AE657400144633 /* ValidatedTextView.swift */; };
+		DCA784BB22AE657500144633 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845222AE657400144633 /* CustomUIImageView.swift */; };
+		DCA784BC22AE657500144633 /* CustomUIButtonDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845322AE657400144633 /* CustomUIButtonDetailed.swift */; };
+		DCA784BD22AE657500144633 /* UIRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845422AE657400144633 /* UIRadioButton.swift */; };
+		DCA784BE22AE657500144633 /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845522AE657400144633 /* ValidatedTextField.swift */; };
+		DCA784BF22AE657500144633 /* ProgressUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845622AE657400144633 /* ProgressUIButton.swift */; };
+		DCA784C022AE657500144633 /* AnimatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845822AE657400144633 /* AnimatedTextInput.swift */; };
+		DCA784C122AE657500144633 /* AnimatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845922AE657400144633 /* AnimatedTextView.swift */; };
+		DCA784C222AE657500144633 /* AnimatedTextInputFieldConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845A22AE657400144633 /* AnimatedTextInputFieldConfigurator.swift */; };
+		DCA784C322AE657500144633 /* ValidatedAnimatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845B22AE657400144633 /* ValidatedAnimatedTextInput.swift */; };
+		DCA784C422AE657500144633 /* AnimatedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845C22AE657400144633 /* AnimatedLine.swift */; };
+		DCA784C522AE657500144633 /* AnimatedInputMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845D22AE657400144633 /* AnimatedInputMaskTextField.swift */; };
+		DCA784C622AE657500144633 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845E22AE657400144633 /* AnimatedTextField.swift */; };
+		DCA784C722AE657500144633 /* AnimatedTextInputStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7845F22AE657400144633 /* AnimatedTextInputStyle.swift */; };
+		DCA784C822AE657500144633 /* PopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846022AE657400144633 /* PopoverController.swift */; };
+		DCA784C922AE657500144633 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846122AE657400144633 /* CustomImageView.swift */; };
+		DCA784CA22AE657500144633 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846222AE657400144633 /* CustomUIButton.swift */; };
+		DCA784CB22AE657500144633 /* InputMaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846322AE657400144633 /* InputMaskTextField.swift */; };
+		DCA784CC22AE657500144633 /* UnderlinedUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846422AE657400144633 /* UnderlinedUITextField.swift */; };
+		DCA784CD22AE657500144633 /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846622AE657400144633 /* UIImage+Utility.swift */; };
+		DCA784CE22AE657500144633 /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846722AE657400144633 /* UIColor+Utility.swift */; };
+		DCA784CF22AE657500144633 /* Array+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846822AE657400144633 /* Array+Utility.swift */; };
+		DCA784D022AE657500144633 /* UITableView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846922AE657400144633 /* UITableView+Utility.swift */; };
+		DCA784D122AE657500144633 /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846A22AE657400144633 /* String+Utility.swift */; };
+		DCA784D222AE657500144633 /* URL+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846B22AE657400144633 /* URL+Utility.swift */; };
+		DCA784D322AE657500144633 /* UIApplication+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846C22AE657400144633 /* UIApplication+Utility.swift */; };
+		DCA784D422AE657500144633 /* JSON+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846D22AE657400144633 /* JSON+Utility.swift */; };
+		DCA784D522AE657500144633 /* Int+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846E22AE657400144633 /* Int+Utility.swift */; };
+		DCA784D622AE657500144633 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7846F22AE657400144633 /* UIViewExtensions.swift */; };
+		DCA784D722AE657500144633 /* UIScrollView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847022AE657400144633 /* UIScrollView+Utility.swift */; };
+		DCA784D822AE657500144633 /* Data+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847122AE657400144633 /* Data+Utility.swift */; };
+		DCA784D922AE657500144633 /* UITextField+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847222AE657400144633 /* UITextField+Utility.swift */; };
+		DCA784DA22AE657500144633 /* UIImageView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847322AE657400144633 /* UIImageView+Utility.swift */; };
+		DCA784DB22AE657500144633 /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847422AE657400144633 /* UIFont+Utility.swift */; };
+		DCA784DC22AE657500144633 /* CLPlacemark+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847522AE657400144633 /* CLPlacemark+Utility.swift */; };
+		DCA784DD22AE657500144633 /* UIView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847622AE657400144633 /* UIView+Utility.swift */; };
+		DCA784DE22AE657500144633 /* Gradient+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847722AE657400144633 /* Gradient+Utility.swift */; };
+		DCA784DF22AE657500144633 /* GISTUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847922AE657400144633 /* GISTUtility.swift */; };
+		DCA784E022AE657500144633 /* GISTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847A22AE657400144633 /* GISTConfig.swift */; };
+		DCA784E122AE657500144633 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847B22AE657400144633 /* AppInfo.swift */; };
+		DCA784E222AE657500144633 /* ThresholdTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847C22AE657400144633 /* ThresholdTime.swift */; };
+		DCA784E322AE657500144633 /* GISTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847D22AE657400144633 /* GISTApplication.swift */; };
+		DCA784E422AE657500144633 /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847E22AE657400144633 /* BaseViewProtocol.swift */; };
+		DCA784E522AE657500144633 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7847F22AE657400144633 /* Weak.swift */; };
+		DCA784E622AE657500144633 /* SyncedFontStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7848222AE657400144633 /* SyncedFontStyles.swift */; };
+		DCA784E722AE657500144633 /* SyncedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7848322AE657400144633 /* SyncedText.swift */; };
+		DCA784E822AE657500144633 /* SyncedColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7848422AE657400144633 /* SyncedColors.swift */; };
+		DCA784E922AE657500144633 /* SyncedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7848522AE657400144633 /* SyncedConstants.swift */; };
+		DCA784EA22AE657500144633 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7848622AE657400144633 /* SyncEngine.swift */; };
+		DCBF5D4822AE683C00289721 /* Scale9Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBF5D4722AE683C00289721 /* Scale9Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +119,107 @@
 		DC329A74229C08FE00A425FF /* GISTFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GISTFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC329A77229C08FE00A425FF /* GISTFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GISTFramework.h; sourceTree = "<group>"; };
 		DC329A78229C08FE00A425FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCA7841222AE657400144633 /* BaseUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		DCA7841322AE657400144633 /* BaseLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLayoutConstraint.swift; sourceTree = "<group>"; };
+		DCA7841422AE657400144633 /* BaseUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIButton.swift; sourceTree = "<group>"; };
+		DCA7841522AE657400144633 /* BaseUIStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIStepper.swift; sourceTree = "<group>"; };
+		DCA7841622AE657400144633 /* BaseUIPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPageControl.swift; sourceTree = "<group>"; };
+		DCA7841722AE657400144633 /* BaseUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
+		DCA7841822AE657400144633 /* BaseUIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIStackView.swift; sourceTree = "<group>"; };
+		DCA7841922AE657400144633 /* BaseSeperatorLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSeperatorLayoutConstraint.swift; sourceTree = "<group>"; };
+		DCA7841A22AE657400144633 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
+		DCA7841B22AE657400144633 /* BaseUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableViewCell.swift; sourceTree = "<group>"; };
+		DCA7841C22AE657400144633 /* BaseUISlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISlider.swift; sourceTree = "<group>"; };
+		DCA7841D22AE657400144633 /* BaseUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITabBarController.swift; sourceTree = "<group>"; };
+		DCA7841E22AE657400144633 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
+		DCA7841F22AE657400144633 /* BaseUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUILabel.swift; sourceTree = "<group>"; };
+		DCA7842022AE657400144633 /* BaseUICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUICollectionView.swift; sourceTree = "<group>"; };
+		DCA7842122AE657400144633 /* BaseUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISwitch.swift; sourceTree = "<group>"; };
+		DCA7842222AE657400144633 /* BaseUISearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISearchBar.swift; sourceTree = "<group>"; };
+		DCA7842322AE657400144633 /* BaseUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITextField.swift; sourceTree = "<group>"; };
+		DCA7842422AE657400144633 /* BaseUITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITableView.swift; sourceTree = "<group>"; };
+		DCA7842522AE657400144633 /* BaseUINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUINavigationController.swift; sourceTree = "<group>"; };
+		DCA7842622AE657400144633 /* BaseUINavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUINavigationItem.swift; sourceTree = "<group>"; };
+		DCA7842722AE657400144633 /* BaseUIScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIScrollView.swift; sourceTree = "<group>"; };
+		DCA7842822AE657400144633 /* BaseUISegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISegmentedControl.swift; sourceTree = "<group>"; };
+		DCA7842922AE657400144633 /* BaseUISearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUISearchController.swift; sourceTree = "<group>"; };
+		DCA7842A22AE657400144633 /* BaseUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITextView.swift; sourceTree = "<group>"; };
+		DCA7842B22AE657400144633 /* BaseUIDesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIDesignableButton.swift; sourceTree = "<group>"; };
+		DCA7842C22AE657400144633 /* BaseUICollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUICollectionViewCell.swift; sourceTree = "<group>"; };
+		DCA7842D22AE657400144633 /* BaseUIBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIBarButtonItem.swift; sourceTree = "<group>"; };
+		DCA7842E22AE657400144633 /* BaseUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIImageView.swift; sourceTree = "<group>"; };
+		DCA7842F22AE657400144633 /* BaseUIDesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIDesignableView.swift; sourceTree = "<group>"; };
+		DCA7843222AE657400144633 /* HTTPServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPServiceManager.swift; sourceTree = "<group>"; };
+		DCA7843422AE657400144633 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		DCA7843522AE657400144633 /* ManagedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedParser.swift; sourceTree = "<group>"; };
+		DCA7843722AE657400144633 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		DCA7843922AE657400144633 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
+		DCA7843B22AE657400144633 /* GISTSocialUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTSocialUtils.swift; sourceTree = "<group>"; };
+		DCA7843D22AE657400144633 /* GISTFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTFile.swift; sourceTree = "<group>"; };
+		DCA7843E22AE657400144633 /* ModelUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
+		DCA7844022AE657400144633 /* GISTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAppDelegate.swift; sourceTree = "<group>"; };
+		DCA7844222AE657400144633 /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
+		DCA7844322AE657400144633 /* GISTMicroAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTMicroAuth.swift; sourceTree = "<group>"; };
+		DCA7844522AE657400144633 /* Mappable+ToDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mappable+ToDictionary.swift"; sourceTree = "<group>"; };
+		DCA7844622AE657400144633 /* GISTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUser.swift; sourceTree = "<group>"; };
+		DCA7844822AE657400144633 /* GISTGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTGlobal.swift; sourceTree = "<group>"; };
+		DCA7844922AE657400144633 /* GISTEnumNConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTEnumNConstants.swift; sourceTree = "<group>"; };
+		DCA7844B22AE657400144633 /* MaskedPhoneTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedPhoneTextFieldDelegate.swift; sourceTree = "<group>"; };
+		DCA7844C22AE657400144633 /* PopoverControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverControllerView.swift; sourceTree = "<group>"; };
+		DCA7844D22AE657400144633 /* BaseUIPopoverNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPopoverNavigationController.swift; sourceTree = "<group>"; };
+		DCA7844E22AE657400144633 /* PinCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextField.swift; sourceTree = "<group>"; };
+		DCA7844F22AE657400144633 /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
+		DCA7845022AE657400144633 /* ValidatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextInput.swift; sourceTree = "<group>"; };
+		DCA7845122AE657400144633 /* ValidatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextView.swift; sourceTree = "<group>"; };
+		DCA7845222AE657400144633 /* CustomUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
+		DCA7845322AE657400144633 /* CustomUIButtonDetailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButtonDetailed.swift; sourceTree = "<group>"; };
+		DCA7845422AE657400144633 /* UIRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadioButton.swift; sourceTree = "<group>"; };
+		DCA7845522AE657400144633 /* ValidatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
+		DCA7845622AE657400144633 /* ProgressUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressUIButton.swift; sourceTree = "<group>"; };
+		DCA7845822AE657400144633 /* AnimatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInput.swift; sourceTree = "<group>"; };
+		DCA7845922AE657400144633 /* AnimatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextView.swift; sourceTree = "<group>"; };
+		DCA7845A22AE657400144633 /* AnimatedTextInputFieldConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInputFieldConfigurator.swift; sourceTree = "<group>"; };
+		DCA7845B22AE657400144633 /* ValidatedAnimatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatedAnimatedTextInput.swift; sourceTree = "<group>"; };
+		DCA7845C22AE657400144633 /* AnimatedLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedLine.swift; sourceTree = "<group>"; };
+		DCA7845D22AE657400144633 /* AnimatedInputMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedInputMaskTextField.swift; sourceTree = "<group>"; };
+		DCA7845E22AE657400144633 /* AnimatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
+		DCA7845F22AE657400144633 /* AnimatedTextInputStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInputStyle.swift; sourceTree = "<group>"; };
+		DCA7846022AE657400144633 /* PopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverController.swift; sourceTree = "<group>"; };
+		DCA7846122AE657400144633 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		DCA7846222AE657400144633 /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		DCA7846322AE657400144633 /* InputMaskTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputMaskTextField.swift; sourceTree = "<group>"; };
+		DCA7846422AE657400144633 /* UnderlinedUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedUITextField.swift; sourceTree = "<group>"; };
+		DCA7846622AE657400144633 /* UIImage+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
+		DCA7846722AE657400144633 /* UIColor+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
+		DCA7846822AE657400144633 /* Array+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utility.swift"; sourceTree = "<group>"; };
+		DCA7846922AE657400144633 /* UITableView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Utility.swift"; sourceTree = "<group>"; };
+		DCA7846A22AE657400144633 /* String+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
+		DCA7846B22AE657400144633 /* URL+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Utility.swift"; sourceTree = "<group>"; };
+		DCA7846C22AE657400144633 /* UIApplication+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Utility.swift"; sourceTree = "<group>"; };
+		DCA7846D22AE657400144633 /* JSON+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Utility.swift"; sourceTree = "<group>"; };
+		DCA7846E22AE657400144633 /* Int+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Utility.swift"; sourceTree = "<group>"; };
+		DCA7846F22AE657400144633 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		DCA7847022AE657400144633 /* UIScrollView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utility.swift"; sourceTree = "<group>"; };
+		DCA7847122AE657400144633 /* Data+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Utility.swift"; sourceTree = "<group>"; };
+		DCA7847222AE657400144633 /* UITextField+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Utility.swift"; sourceTree = "<group>"; };
+		DCA7847322AE657400144633 /* UIImageView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Utility.swift"; sourceTree = "<group>"; };
+		DCA7847422AE657400144633 /* UIFont+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
+		DCA7847522AE657400144633 /* CLPlacemark+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Utility.swift"; sourceTree = "<group>"; };
+		DCA7847622AE657400144633 /* UIView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utility.swift"; sourceTree = "<group>"; };
+		DCA7847722AE657400144633 /* Gradient+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gradient+Utility.swift"; sourceTree = "<group>"; };
+		DCA7847922AE657400144633 /* GISTUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUtility.swift; sourceTree = "<group>"; };
+		DCA7847A22AE657400144633 /* GISTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTConfig.swift; sourceTree = "<group>"; };
+		DCA7847B22AE657400144633 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		DCA7847C22AE657400144633 /* ThresholdTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThresholdTime.swift; sourceTree = "<group>"; };
+		DCA7847D22AE657400144633 /* GISTApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTApplication.swift; sourceTree = "<group>"; };
+		DCA7847E22AE657400144633 /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
+		DCA7847F22AE657400144633 /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
+		DCA7848222AE657400144633 /* SyncedFontStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedFontStyles.swift; sourceTree = "<group>"; };
+		DCA7848322AE657400144633 /* SyncedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedText.swift; sourceTree = "<group>"; };
+		DCA7848422AE657400144633 /* SyncedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedColors.swift; sourceTree = "<group>"; };
+		DCA7848522AE657400144633 /* SyncedConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncedConstants.swift; sourceTree = "<group>"; };
+		DCA7848622AE657400144633 /* SyncEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
+		DCBF5D4722AE683C00289721 /* Scale9Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scale9Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +264,263 @@
 		DC329A76229C08FE00A425FF /* GISTFramework */ = {
 			isa = PBXGroup;
 			children = (
+				DCA7841022AE657400144633 /* Classes */,
 				DC329A77229C08FE00A425FF /* GISTFramework.h */,
 				DC329A78229C08FE00A425FF /* Info.plist */,
 			);
 			path = GISTFramework;
+			sourceTree = "<group>";
+		};
+		DCA7841022AE657400144633 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7841122AE657400144633 /* BaseClasses */,
+				DCA7843022AE657400144633 /* GISTSocial */,
+				DCA7844A22AE657400144633 /* Controls */,
+				DCA7846522AE657400144633 /* Extentions */,
+				DCA7847822AE657400144633 /* GISTCore */,
+				DCA7848022AE657400144633 /* SyncEngine */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DCA7841122AE657400144633 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				DCBF5D4722AE683C00289721 /* Scale9Image.swift */,
+				DCA7841222AE657400144633 /* BaseUITableViewHeaderFooterView.swift */,
+				DCA7841322AE657400144633 /* BaseLayoutConstraint.swift */,
+				DCA7841422AE657400144633 /* BaseUIButton.swift */,
+				DCA7841522AE657400144633 /* BaseUIStepper.swift */,
+				DCA7841622AE657400144633 /* BaseUIPageControl.swift */,
+				DCA7841722AE657400144633 /* BaseUIView.swift */,
+				DCA7841822AE657400144633 /* BaseUIStackView.swift */,
+				DCA7841922AE657400144633 /* BaseSeperatorLayoutConstraint.swift */,
+				DCA7841A22AE657400144633 /* BaseUITableViewController.swift */,
+				DCA7841B22AE657400144633 /* BaseUITableViewCell.swift */,
+				DCA7841C22AE657400144633 /* BaseUISlider.swift */,
+				DCA7841D22AE657400144633 /* BaseUITabBarController.swift */,
+				DCA7841E22AE657400144633 /* BaseUIViewController.swift */,
+				DCA7841F22AE657400144633 /* BaseUILabel.swift */,
+				DCA7842022AE657400144633 /* BaseUICollectionView.swift */,
+				DCA7842122AE657400144633 /* BaseUISwitch.swift */,
+				DCA7842222AE657400144633 /* BaseUISearchBar.swift */,
+				DCA7842322AE657400144633 /* BaseUITextField.swift */,
+				DCA7842422AE657400144633 /* BaseUITableView.swift */,
+				DCA7842522AE657400144633 /* BaseUINavigationController.swift */,
+				DCA7842622AE657400144633 /* BaseUINavigationItem.swift */,
+				DCA7842722AE657400144633 /* BaseUIScrollView.swift */,
+				DCA7842822AE657400144633 /* BaseUISegmentedControl.swift */,
+				DCA7842922AE657400144633 /* BaseUISearchController.swift */,
+				DCA7842A22AE657400144633 /* BaseUITextView.swift */,
+				DCA7842B22AE657400144633 /* BaseUIDesignableButton.swift */,
+				DCA7842C22AE657400144633 /* BaseUICollectionViewCell.swift */,
+				DCA7842D22AE657400144633 /* BaseUIBarButtonItem.swift */,
+				DCA7842E22AE657400144633 /* BaseUIImageView.swift */,
+				DCA7842F22AE657400144633 /* BaseUIDesignableView.swift */,
+			);
+			path = BaseClasses;
+			sourceTree = "<group>";
+		};
+		DCA7843022AE657400144633 /* GISTSocial */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7843122AE657400144633 /* HTTPServiceManager */,
+				DCA7843322AE657400144633 /* CoreData */,
+				DCA7843622AE657400144633 /* TutorialView */,
+				DCA7843822AE657400144633 /* Reachability */,
+				DCA7843A22AE657400144633 /* Extentions */,
+				DCA7843C22AE657400144633 /* Model */,
+				DCA7843F22AE657400144633 /* AppDelegate */,
+				DCA7844122AE657400144633 /* Authentication */,
+				DCA7844422AE657400144633 /* Protocols */,
+				DCA7844722AE657400144633 /* Global */,
+			);
+			path = GISTSocial;
+			sourceTree = "<group>";
+		};
+		DCA7843122AE657400144633 /* HTTPServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7843222AE657400144633 /* HTTPServiceManager.swift */,
+			);
+			path = HTTPServiceManager;
+			sourceTree = "<group>";
+		};
+		DCA7843322AE657400144633 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7843422AE657400144633 /* DataManager.swift */,
+				DCA7843522AE657400144633 /* ManagedParser.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		DCA7843622AE657400144633 /* TutorialView */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7843722AE657400144633 /* TutorialView.swift */,
+			);
+			path = TutorialView;
+			sourceTree = "<group>";
+		};
+		DCA7843822AE657400144633 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7843922AE657400144633 /* ReachabilityHelper.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		DCA7843A22AE657400144633 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7843B22AE657400144633 /* GISTSocialUtils.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		DCA7843C22AE657400144633 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7843D22AE657400144633 /* GISTFile.swift */,
+				DCA7843E22AE657400144633 /* ModelUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DCA7843F22AE657400144633 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7844022AE657400144633 /* GISTAppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		DCA7844122AE657400144633 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7844222AE657400144633 /* GISTAuth.swift */,
+				DCA7844322AE657400144633 /* GISTMicroAuth.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		DCA7844422AE657400144633 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7844522AE657400144633 /* Mappable+ToDictionary.swift */,
+				DCA7844622AE657400144633 /* GISTUser.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DCA7844722AE657400144633 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7844822AE657400144633 /* GISTGlobal.swift */,
+				DCA7844922AE657400144633 /* GISTEnumNConstants.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		DCA7844A22AE657400144633 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7844B22AE657400144633 /* MaskedPhoneTextFieldDelegate.swift */,
+				DCA7844C22AE657400144633 /* PopoverControllerView.swift */,
+				DCA7844D22AE657400144633 /* BaseUIPopoverNavigationController.swift */,
+				DCA7844E22AE657400144633 /* PinCodeTextField.swift */,
+				DCA7844F22AE657400144633 /* FloatingLabelTextField.swift */,
+				DCA7845022AE657400144633 /* ValidatedTextInput.swift */,
+				DCA7845122AE657400144633 /* ValidatedTextView.swift */,
+				DCA7845222AE657400144633 /* CustomUIImageView.swift */,
+				DCA7845322AE657400144633 /* CustomUIButtonDetailed.swift */,
+				DCA7845422AE657400144633 /* UIRadioButton.swift */,
+				DCA7845522AE657400144633 /* ValidatedTextField.swift */,
+				DCA7845622AE657400144633 /* ProgressUIButton.swift */,
+				DCA7845722AE657400144633 /* AnimatedTextInput */,
+				DCA7846022AE657400144633 /* PopoverController.swift */,
+				DCA7846122AE657400144633 /* CustomImageView.swift */,
+				DCA7846222AE657400144633 /* CustomUIButton.swift */,
+				DCA7846322AE657400144633 /* InputMaskTextField.swift */,
+				DCA7846422AE657400144633 /* UnderlinedUITextField.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		DCA7845722AE657400144633 /* AnimatedTextInput */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7845822AE657400144633 /* AnimatedTextInput.swift */,
+				DCA7845922AE657400144633 /* AnimatedTextView.swift */,
+				DCA7845A22AE657400144633 /* AnimatedTextInputFieldConfigurator.swift */,
+				DCA7845B22AE657400144633 /* ValidatedAnimatedTextInput.swift */,
+				DCA7845C22AE657400144633 /* AnimatedLine.swift */,
+				DCA7845D22AE657400144633 /* AnimatedInputMaskTextField.swift */,
+				DCA7845E22AE657400144633 /* AnimatedTextField.swift */,
+				DCA7845F22AE657400144633 /* AnimatedTextInputStyle.swift */,
+			);
+			path = AnimatedTextInput;
+			sourceTree = "<group>";
+		};
+		DCA7846522AE657400144633 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7846622AE657400144633 /* UIImage+Utility.swift */,
+				DCA7846722AE657400144633 /* UIColor+Utility.swift */,
+				DCA7846822AE657400144633 /* Array+Utility.swift */,
+				DCA7846922AE657400144633 /* UITableView+Utility.swift */,
+				DCA7846A22AE657400144633 /* String+Utility.swift */,
+				DCA7846B22AE657400144633 /* URL+Utility.swift */,
+				DCA7846C22AE657400144633 /* UIApplication+Utility.swift */,
+				DCA7846D22AE657400144633 /* JSON+Utility.swift */,
+				DCA7846E22AE657400144633 /* Int+Utility.swift */,
+				DCA7846F22AE657400144633 /* UIViewExtensions.swift */,
+				DCA7847022AE657400144633 /* UIScrollView+Utility.swift */,
+				DCA7847122AE657400144633 /* Data+Utility.swift */,
+				DCA7847222AE657400144633 /* UITextField+Utility.swift */,
+				DCA7847322AE657400144633 /* UIImageView+Utility.swift */,
+				DCA7847422AE657400144633 /* UIFont+Utility.swift */,
+				DCA7847522AE657400144633 /* CLPlacemark+Utility.swift */,
+				DCA7847622AE657400144633 /* UIView+Utility.swift */,
+				DCA7847722AE657400144633 /* Gradient+Utility.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		DCA7847822AE657400144633 /* GISTCore */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7847922AE657400144633 /* GISTUtility.swift */,
+				DCA7847A22AE657400144633 /* GISTConfig.swift */,
+				DCA7847B22AE657400144633 /* AppInfo.swift */,
+				DCA7847C22AE657400144633 /* ThresholdTime.swift */,
+				DCA7847D22AE657400144633 /* GISTApplication.swift */,
+				DCA7847E22AE657400144633 /* BaseViewProtocol.swift */,
+				DCA7847F22AE657400144633 /* Weak.swift */,
+			);
+			path = GISTCore;
+			sourceTree = "<group>";
+		};
+		DCA7848022AE657400144633 /* SyncEngine */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7848122AE657400144633 /* SubClasses */,
+				DCA7848622AE657400144633 /* SyncEngine.swift */,
+			);
+			path = SyncEngine;
+			sourceTree = "<group>";
+		};
+		DCA7848122AE657400144633 /* SubClasses */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7848222AE657400144633 /* SyncedFontStyles.swift */,
+				DCA7848322AE657400144633 /* SyncedText.swift */,
+				DCA7848422AE657400144633 /* SyncedColors.swift */,
+				DCA7848522AE657400144633 /* SyncedConstants.swift */,
+			);
+			path = SubClasses;
 			sourceTree = "<group>";
 		};
 		E35BF7C885408F03444D505C /* Frameworks */ = {
@@ -180,6 +635,107 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCA784C522AE657500144633 /* AnimatedInputMaskTextField.swift in Sources */,
+				DCA7849A22AE657500144633 /* BaseUINavigationController.swift in Sources */,
+				DCA784E522AE657500144633 /* Weak.swift in Sources */,
+				DCA784E222AE657500144633 /* ThresholdTime.swift in Sources */,
+				DCA784A622AE657500144633 /* DataManager.swift in Sources */,
+				DCA784DA22AE657500144633 /* UIImageView+Utility.swift in Sources */,
+				DCA7849822AE657500144633 /* BaseUITextField.swift in Sources */,
+				DCA784AA22AE657500144633 /* GISTSocialUtils.swift in Sources */,
+				DCA784DC22AE657500144633 /* CLPlacemark+Utility.swift in Sources */,
+				DCA7849022AE657500144633 /* BaseUITableViewCell.swift in Sources */,
+				DCA784A722AE657500144633 /* ManagedParser.swift in Sources */,
+				DCA784A322AE657500144633 /* BaseUIImageView.swift in Sources */,
+				DCA7848722AE657500144633 /* BaseUITableViewHeaderFooterView.swift in Sources */,
+				DCA784B122AE657500144633 /* GISTUser.swift in Sources */,
+				DCA784B322AE657500144633 /* GISTEnumNConstants.swift in Sources */,
+				DCA784B622AE657500144633 /* BaseUIPopoverNavigationController.swift in Sources */,
+				DCA784E422AE657500144633 /* BaseViewProtocol.swift in Sources */,
+				DCA784B922AE657500144633 /* ValidatedTextInput.swift in Sources */,
+				DCA784C822AE657500144633 /* PopoverController.swift in Sources */,
+				DCA784BA22AE657500144633 /* ValidatedTextView.swift in Sources */,
+				DCA784AD22AE657500144633 /* GISTAppDelegate.swift in Sources */,
+				DCA7849C22AE657500144633 /* BaseUIScrollView.swift in Sources */,
+				DCA784AE22AE657500144633 /* GISTAuth.swift in Sources */,
+				DCA784D022AE657500144633 /* UITableView+Utility.swift in Sources */,
+				DCA784AB22AE657500144633 /* GISTFile.swift in Sources */,
+				DCA784B022AE657500144633 /* Mappable+ToDictionary.swift in Sources */,
+				DCA784CE22AE657500144633 /* UIColor+Utility.swift in Sources */,
+				DCA784D522AE657500144633 /* Int+Utility.swift in Sources */,
+				DCA7849B22AE657500144633 /* BaseUINavigationItem.swift in Sources */,
+				DCA784E822AE657500144633 /* SyncedColors.swift in Sources */,
+				DCA784CB22AE657500144633 /* InputMaskTextField.swift in Sources */,
+				DCA784A022AE657500144633 /* BaseUIDesignableButton.swift in Sources */,
+				DCA784D822AE657500144633 /* Data+Utility.swift in Sources */,
+				DCA784D622AE657500144633 /* UIViewExtensions.swift in Sources */,
+				DCA784DE22AE657500144633 /* Gradient+Utility.swift in Sources */,
+				DCA7849522AE657500144633 /* BaseUICollectionView.swift in Sources */,
+				DCA7849722AE657500144633 /* BaseUISearchBar.swift in Sources */,
+				DCA784C122AE657500144633 /* AnimatedTextView.swift in Sources */,
+				DCA784A522AE657500144633 /* HTTPServiceManager.swift in Sources */,
+				DCA784BB22AE657500144633 /* CustomUIImageView.swift in Sources */,
+				DCA7848E22AE657500144633 /* BaseSeperatorLayoutConstraint.swift in Sources */,
+				DCA784C222AE657500144633 /* AnimatedTextInputFieldConfigurator.swift in Sources */,
+				DCA784EA22AE657500144633 /* SyncEngine.swift in Sources */,
+				DCA7849122AE657500144633 /* BaseUISlider.swift in Sources */,
+				DCA784C322AE657500144633 /* ValidatedAnimatedTextInput.swift in Sources */,
+				DCA784C622AE657500144633 /* AnimatedTextField.swift in Sources */,
+				DCA784BE22AE657500144633 /* ValidatedTextField.swift in Sources */,
+				DCA7849222AE657500144633 /* BaseUITabBarController.swift in Sources */,
+				DCA784BF22AE657500144633 /* ProgressUIButton.swift in Sources */,
+				DCA784E022AE657500144633 /* GISTConfig.swift in Sources */,
+				DCA784A422AE657500144633 /* BaseUIDesignableView.swift in Sources */,
+				DCA784C722AE657500144633 /* AnimatedTextInputStyle.swift in Sources */,
+				DCA784B222AE657500144633 /* GISTGlobal.swift in Sources */,
+				DCA784DF22AE657500144633 /* GISTUtility.swift in Sources */,
+				DCA7848F22AE657500144633 /* BaseUITableViewController.swift in Sources */,
+				DCA784CD22AE657500144633 /* UIImage+Utility.swift in Sources */,
+				DCA784A922AE657500144633 /* ReachabilityHelper.swift in Sources */,
+				DCBF5D4822AE683C00289721 /* Scale9Image.swift in Sources */,
+				DCA784BD22AE657500144633 /* UIRadioButton.swift in Sources */,
+				DCA7849D22AE657500144633 /* BaseUISegmentedControl.swift in Sources */,
+				DCA784D222AE657500144633 /* URL+Utility.swift in Sources */,
+				DCA784AC22AE657500144633 /* ModelUser.swift in Sources */,
+				DCA7848D22AE657500144633 /* BaseUIStackView.swift in Sources */,
+				DCA7849622AE657500144633 /* BaseUISwitch.swift in Sources */,
+				DCA784DB22AE657500144633 /* UIFont+Utility.swift in Sources */,
+				DCA784D422AE657500144633 /* JSON+Utility.swift in Sources */,
+				DCA7848B22AE657500144633 /* BaseUIPageControl.swift in Sources */,
+				DCA7848822AE657500144633 /* BaseLayoutConstraint.swift in Sources */,
+				DCA784D122AE657500144633 /* String+Utility.swift in Sources */,
+				DCA784C922AE657500144633 /* CustomImageView.swift in Sources */,
+				DCA784B822AE657500144633 /* FloatingLabelTextField.swift in Sources */,
+				DCA7849422AE657500144633 /* BaseUILabel.swift in Sources */,
+				DCA7849E22AE657500144633 /* BaseUISearchController.swift in Sources */,
+				DCA784AF22AE657500144633 /* GISTMicroAuth.swift in Sources */,
+				DCA784CF22AE657500144633 /* Array+Utility.swift in Sources */,
+				DCA784E322AE657500144633 /* GISTApplication.swift in Sources */,
+				DCA784D322AE657500144633 /* UIApplication+Utility.swift in Sources */,
+				DCA7849F22AE657500144633 /* BaseUITextView.swift in Sources */,
+				DCA784B522AE657500144633 /* PopoverControllerView.swift in Sources */,
+				DCA784A822AE657500144633 /* TutorialView.swift in Sources */,
+				DCA784E922AE657500144633 /* SyncedConstants.swift in Sources */,
+				DCA784C422AE657500144633 /* AnimatedLine.swift in Sources */,
+				DCA784CC22AE657500144633 /* UnderlinedUITextField.swift in Sources */,
+				DCA784B422AE657500144633 /* MaskedPhoneTextFieldDelegate.swift in Sources */,
+				DCA784E122AE657500144633 /* AppInfo.swift in Sources */,
+				DCA784A222AE657500144633 /* BaseUIBarButtonItem.swift in Sources */,
+				DCA784E622AE657500144633 /* SyncedFontStyles.swift in Sources */,
+				DCA784E722AE657500144633 /* SyncedText.swift in Sources */,
+				DCA7848A22AE657500144633 /* BaseUIStepper.swift in Sources */,
+				DCA7848922AE657500144633 /* BaseUIButton.swift in Sources */,
+				DCA784D722AE657500144633 /* UIScrollView+Utility.swift in Sources */,
+				DCA784CA22AE657500144633 /* CustomUIButton.swift in Sources */,
+				DCA7849922AE657500144633 /* BaseUITableView.swift in Sources */,
+				DCA784D922AE657500144633 /* UITextField+Utility.swift in Sources */,
+				DCA784A122AE657500144633 /* BaseUICollectionViewCell.swift in Sources */,
+				DCA7848C22AE657500144633 /* BaseUIView.swift in Sources */,
+				DCA784C022AE657500144633 /* AnimatedTextInput.swift in Sources */,
+				DCA784DD22AE657500144633 /* UIView+Utility.swift in Sources */,
+				DCA7849322AE657500144633 /* BaseUIViewController.swift in Sources */,
+				DCA784BC22AE657500144633 /* CustomUIButtonDetailed.swift in Sources */,
+				DCA784B722AE657500144633 /* PinCodeTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
