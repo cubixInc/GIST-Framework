@@ -13,11 +13,11 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
 
     //MARK: - Properties
     
-    /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
-    @IBInspectable open var backButtonImage:String? = GIST_CONFIG.navigationBackButtonImgName;
-    
     /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
+    
+    /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
+    @IBInspectable open var backButtonImage:String? = GIST_CONFIG.navigationBackButtonImgName;
     
     /// Navigation background Color key from SyncEngine.
     @IBInspectable open var bgColor:String? = nil {
@@ -176,14 +176,19 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
         let barItem:BaseUIBarButtonItem;
         
         if let backButtonImage = self.backButtonImage {
+            
+            //Removing back button arrow indicator
+            self.navigationBar.backIndicatorImage = UIImage();
+            self.navigationBar.backIndicatorTransitionMaskImage = UIImage();
+            
             barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImage), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
+            
+            barItem.respectRTL = true;
         } else {
             barItem = BaseUIBarButtonItem(title: " ", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
         }
         
-        barItem.respectRTL = true;
-        
-        self.navigationItem.backBarButtonItem = barItem;
+        self.topViewController?.navigationItem.backBarButtonItem = barItem;
         
         self.navigationBar.delegate = self; // Receiving navigation bar delegates
     } //F.E.
