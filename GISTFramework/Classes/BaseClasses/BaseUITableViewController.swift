@@ -15,9 +15,6 @@ open class BaseUITableViewController: UITableViewController {
     
     //MARK: - Properties
     
-    /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
-    @IBInspectable open var backButtonImgName:String? = GIST_CONFIG.navigationBackButtonImgName;
-    
     /// Overriden title property to set title from SyncEngine (Hint '#' prefix).
     override open var title: String? {
         get {
@@ -38,8 +35,6 @@ open class BaseUITableViewController: UITableViewController {
     /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
-        
-        self.setupBackBtn();
     } //F.E.
     
     /// Overridden method
@@ -48,24 +43,6 @@ open class BaseUITableViewController: UITableViewController {
         
         self.view.endEditing(true);
     } //F.E.
-    
-    //MARK: - Methods
-    
-    ///Setting up custom back button
-    private func setupBackBtn() {
-        let barItem:BaseUIBarButtonItem;
-        
-        if let backButtonImgName = self.backButtonImgName {
-            barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImgName), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
-        } else {
-            barItem = BaseUIBarButtonItem(title: " ", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
-        }
-        
-        barItem.respectRTL = true;
-        
-        self.navigationItem.backBarButtonItem = barItem;
-    } //F.E.
-    
     
     //MARK: - Methods
     

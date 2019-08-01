@@ -13,6 +13,9 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
 
     //MARK: - Properties
     
+    /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
+    @IBInspectable open var backButtonImage:String? = GIST_CONFIG.navigationBackButtonImgName;
+    
     /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
     
@@ -156,9 +159,8 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
     override open func viewDidLoad() {
         super.viewDidLoad();
         
+        self.setupBackButton();
         self.updateAppearance();
-        
-        self.navigationBar.delegate = self; // Receiving navigation bar delegates
     } //F.E.
     
     /// Overridden method to receive memory warning.
@@ -167,6 +169,24 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
     } //F.E.
     
     //MARK: - Methods
+    
+    ///Setting up custom back button.
+    private func setupBackButton() {
+        
+        let barItem:BaseUIBarButtonItem;
+        
+        if let backButtonImage = self.backButtonImage {
+            barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImage), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
+        } else {
+            barItem = BaseUIBarButtonItem(title: " ", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
+        }
+        
+        barItem.respectRTL = true;
+        
+        self.navigationItem.backBarButtonItem = barItem;
+        
+        self.navigationBar.delegate = self; // Receiving navigation bar delegates
+    } //F.E.
     
     /// Updating the appearance of Navigation Bar.
     private func updateAppearance() {
