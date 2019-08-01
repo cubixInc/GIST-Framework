@@ -277,7 +277,7 @@
 				DCA7841122AE657400144633 /* BaseClasses */,
 				DCA7843022AE657400144633 /* GISTSocial */,
 				DCA7844A22AE657400144633 /* Controls */,
-				DCA7846522AE657400144633 /* Extentions */,
+				DCA7846522AE657400144633 /* Extensions */,
 				DCA7847822AE657400144633 /* GISTCore */,
 				DCA7848022AE657400144633 /* SyncEngine */,
 			);
@@ -464,7 +464,7 @@
 			path = AnimatedTextInput;
 			sourceTree = "<group>";
 		};
-		DCA7846522AE657400144633 /* Extentions */ = {
+		DCA7846522AE657400144633 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				DCA7846622AE657400144633 /* UIImage+Utility.swift */,
@@ -486,7 +486,7 @@
 				DCA7847622AE657400144633 /* UIView+Utility.swift */,
 				DCA7847722AE657400144633 /* Gradient+Utility.swift */,
 			);
-			path = Extentions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DCA7847822AE657400144633 /* GISTCore */ = {

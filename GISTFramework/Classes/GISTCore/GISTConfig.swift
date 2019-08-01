@@ -24,7 +24,7 @@ public class GISTConfig: NSObject {
     
     public var largeFontStyle:String = "large";
     
-    public var navigationBackButtonImgName:String = "NavBackButton";
+    public var navigationBackButtonImgName:String? = nil;
     
     public var seperatorWidth:CGFloat = 1.0 / UIScreen.main.scale;//0.5;
     

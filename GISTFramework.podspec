@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "5.0.0"
+  s.version      = "5.0.1"
   s.summary      = "GISTFramework is bottom architecture layour of iOS apps."
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => "5.0.0" }
+  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => "5.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -105,7 +105,7 @@ Pod::Spec.new do |s|
   s.subspec 'BaseClasses' do |sp|
     sp.source_files = 'GISTFramework/Classes/BaseClasses/**/*.{swift}'
     sp.dependency 'GISTFramework/GISTCore'
-    sp.dependency 'GISTFramework/Extentions'
+    sp.dependency 'GISTFramework/Extensions'
     sp.dependency 'GISTFramework/SyncEngine'
   end
 
@@ -113,13 +113,13 @@ Pod::Spec.new do |s|
     sp.source_files = 'GISTFramework/Classes/Controls/**/*.{swift}'
     sp.dependency 'GISTFramework/GISTCore'
     sp.dependency 'GISTFramework/BaseClasses'
-    sp.dependency 'GISTFramework/Extentions'
+    sp.dependency 'GISTFramework/Extensions'
     sp.dependency 'GISTFramework/SyncEngine'
-    sp.dependency 'InputMask', '~> 4.1.1'
+    sp.dependency 'InputMask', '~> 4.3.0'
   end
 
-  s.subspec 'Extentions' do |sp|
-    sp.source_files = 'GISTFramework/Classes/Extentions/**/*.{swift}'
+  s.subspec 'Extensions' do |sp|
+    sp.source_files = 'GISTFramework/Classes/Extensions/**/*.{swift}'
     sp.dependency 'GISTFramework/GISTCore'
     sp.dependency 'GISTFramework/SyncEngine'
   end
@@ -135,13 +135,12 @@ Pod::Spec.new do |s|
 
     sp.dependency 'GISTFramework/GISTCore'
     sp.dependency 'GISTFramework/BaseClasses'
-    sp.dependency 'GISTFramework/Extentions'
+    sp.dependency 'GISTFramework/Extensions'
     sp.dependency 'GISTFramework/Controls'
     sp.dependency 'GISTFramework/SyncEngine'
-    sp.dependency 'Alamofire', '~> 5.0.0-beta.6'
-    sp.dependency 'ObjectMapper', '~> 3.4.2'
+    sp.dependency 'AlamofireObjectMapper', '~> 6.1.0'
     sp.dependency 'AFDateHelper', '~> 4.2.7'
-    sp.dependency 'IQKeyboardManagerSwift', '~> 6.3.0'
+    sp.dependency 'IQKeyboardManagerSwift', '~> 6.4.0'
 
   end
 

@@ -9,7 +9,7 @@
 import UIKit
 
 /// BaseUINavigationController is a subclass of UINavigationController. It has some extra proporties and support for SyncEngine.
-open class BaseUINavigationController: UINavigationController {
+open class BaseUINavigationController: UINavigationController, UINavigationBarDelegate {
 
     //MARK: - Properties
     
@@ -157,8 +157,10 @@ open class BaseUINavigationController: UINavigationController {
         super.viewDidLoad();
         
         self.updateAppearance();
+        
+        self.navigationBar.delegate = self; // Receiving navigation bar delegates
     } //F.E.
-
+    
     /// Overridden method to receive memory warning.
     override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning();
@@ -205,4 +207,29 @@ open class BaseUINavigationController: UINavigationController {
     open func completion(_ success:Bool, _ data:Any?) {
         _completion?(success, data);
     } //F.E.
+    
+    //MARK: - Delegate
+    
+    public func navigationBar(_ navigationBar: UINavigationBar, shouldPush item: UINavigationItem) -> Bool {
+        return (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, shouldPush: item) ?? true;
+    } //F.E.
+
+    public func navigationBar(_ navigationBar: UINavigationBar, didPush item: UINavigationItem) {
+        (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, didPush: item);
+    } //F.E.
+    
+    public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
+        if (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, shouldPop: item) ?? true {
+            self.popViewController(animated: true);
+            return true;
+        }
+        
+        return false;
+    } //F.E.
+    
+    public func navigationBar(_ navigationBar: UINavigationBar, didPop item: UINavigationItem) {
+        (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, didPop: item);
+    } //F.E.
+ 
+    
 } //F.E.
