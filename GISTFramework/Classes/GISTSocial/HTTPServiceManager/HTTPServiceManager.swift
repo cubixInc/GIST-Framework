@@ -239,8 +239,7 @@ open class HTTPServiceManager: NSObject {
             dataRequest.authenticate(username: authHeader.username, password: authHeader.password)
         }
         
-        dataRequest.responseJSON(queue: .main, options: JSONSerialization.ReadingOptions.mutableContainers) {
-            (response:DataResponse<Any>) -> Void in
+        dataRequest.responseJSON(queue: DispatchQueue.main, options: JSONSerialization.ReadingOptions.mutableContainers) { (response:AFDataResponse<Any>) in
             self.responseResult(httpRequest: httpRequest, dataResponse: response);
         }
         
@@ -263,7 +262,7 @@ open class HTTPServiceManager: NSObject {
     } //F.E.
     
     //MARK: - Response Handling
-    fileprivate func responseResult(httpRequest:HTTPRequest, dataResponse:DataResponse<Any>) {
+    fileprivate func responseResult(httpRequest:HTTPRequest, dataResponse:AFDataResponse<Any>) {
         switch dataResponse.result
         {
         case .success:

@@ -132,10 +132,10 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener,
     open func applyMaskFormat()  {
         let mask: Mask = try! Mask(format: self.maskFormat!)
         let input: String = self.text!
+        
         let result: Mask.Result = mask.apply(
             toText: CaretString(
-                string: input,
-                caretPosition: input.endIndex
+                string: input
             ),
             autocomplete: true // you may consider disabling autocompletion for your case
         )

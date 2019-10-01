@@ -196,7 +196,7 @@ open class SyncEngine: NSObject {
         
         
         //Fetching Data
-        _dictData = NSMutableDictionary(contentsOf: self.syncedFileUrl);//NSDictionary(contentsOfURL: self.syncedFileUrl);
+        _dictData = NSMutableDictionary(contentsOf: self.syncedFileUrl);
         
         if (hasToSync) {
             #if DEBUG
@@ -234,11 +234,11 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - anObject: A SyncEngine object
     ///   - aKey: A key of SyncEngine
-    public class func syncObject(_ anObject: AnyObject, forKey aKey: String) {
+    public class func syncObject(_ anObject: Any, forKey aKey: String) {
         return self.sharedInstance.syncObject(anObject, forKey:aKey);
     } //F.E.
     
-    internal func syncObject(_ anObject: AnyObject, forKey aKey: String) {
+    internal func syncObject(_ anObject: Any, forKey aKey: String) {
         if (_isCustomData) {
             self.syncForCustomData([aKey:anObject]);
         } else {

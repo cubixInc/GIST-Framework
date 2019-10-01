@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => "5.0.1" }
+  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => s.version.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -99,7 +99,7 @@ Pod::Spec.new do |s|
   s.subspec 'GISTCore' do |sp|
     sp.source_files = 'GISTFramework/Classes/GISTCore/**/*.{swift}'
 
-    sp.dependency 'PhoneNumberKit', '~> 2.6.0'
+    sp.dependency 'PhoneNumberKit', '~> 3.0.0'
   end
 
   s.subspec 'BaseClasses' do |sp|
@@ -115,7 +115,7 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/BaseClasses'
     sp.dependency 'GISTFramework/Extensions'
     sp.dependency 'GISTFramework/SyncEngine'
-    sp.dependency 'InputMask', '~> 4.3.0'
+    sp.dependency 'InputMask', '~> 5.0.0'
   end
 
   s.subspec 'Extensions' do |sp|
@@ -138,9 +138,10 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/Extensions'
     sp.dependency 'GISTFramework/Controls'
     sp.dependency 'GISTFramework/SyncEngine'
-    sp.dependency 'AlamofireObjectMapper', '~> 6.1.0'
-    sp.dependency 'AFDateHelper', '~> 4.2.7'
-    sp.dependency 'IQKeyboardManagerSwift', '~> 6.4.0'
+    sp.dependency 'Alamofire', '~> 5.0.0-rc.2'
+    sp.dependency 'ObjectMapper', '~> 3.5.1'
+    sp.dependency 'AFDateHelper', '~> 4.3.0'
+    sp.dependency 'IQKeyboardManagerSwift', '~> 6.5.1'
 
   end
 

@@ -122,8 +122,7 @@ public class ReachabilityHelper: NSObject {
         
         _reachability = NetworkReachabilityManager();
         
-        _reachability!.listener = self.reachabilityUpdate;
-        _reachability!.startListening();
+        _reachability!.startListening(onUpdatePerforming: reachabilityUpdate);
     } //F.E.
     
     
