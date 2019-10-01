@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "5.0.1"
+  s.version      = "5.0.2"
   s.summary      = "GISTFramework is bottom architecture layour of iOS apps."
 
   # This description is used to generate tags and improve search results.
