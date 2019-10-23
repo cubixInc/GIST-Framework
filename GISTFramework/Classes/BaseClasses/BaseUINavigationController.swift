@@ -172,7 +172,11 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
     
     ///Setting up custom back button.
     private func setupBackButton() {
-        
+        self.navigationBar.delegate = self; // Receiving navigation bar delegates
+        self.updateBackButton();
+    } //F.E.
+    
+    private func updateBackButton() {
         let barItem:BaseUIBarButtonItem;
         
         if let backButtonImage = self.backButtonImage {
@@ -189,8 +193,6 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
         }
         
         self.topViewController?.navigationItem.backBarButtonItem = barItem;
-        
-        self.navigationBar.delegate = self; // Receiving navigation bar delegates
     } //F.E.
     
     /// Updating the appearance of Navigation Bar.
@@ -241,15 +243,12 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
 
     public func navigationBar(_ navigationBar: UINavigationBar, didPush item: UINavigationItem) {
         (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, didPush: item);
+        
+        self.updateBackButton();
     } //F.E.
     
     public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
-        if (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, shouldPop: item) ?? true {
-            self.popViewController(animated: true);
-            return true;
-        }
-        
-        return false;
+        return (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, shouldPop: item) ?? true;
     } //F.E.
     
     public func navigationBar(_ navigationBar: UINavigationBar, didPop item: UINavigationItem) {

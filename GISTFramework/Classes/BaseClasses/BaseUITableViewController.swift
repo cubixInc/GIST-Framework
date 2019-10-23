@@ -40,12 +40,19 @@ open class BaseUITableViewController: UITableViewController {
     /// Overridden method
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated);
+
+        if (self.isMovingFromParent) {
+            self.backButtonTapped();
+        }
         
-        self.view.endEditing(true);
     } //F.E.
     
     //MARK: - Methods
     
+    open func backButtonTapped() {
+        self.view.endEditing(true);
+    } //F.E.
+
     //Completion Blocks
     open func setOnCompletion(completion: @escaping (_ success:Bool, _ data:Any?) -> Void) {
         _completion = completion;
