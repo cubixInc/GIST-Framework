@@ -205,8 +205,8 @@ open class BaseUISearchController: UISearchController {
         if let backButtonImage = self.backButtonImage {
             
             //Removing back button arrow indicator
-            self.navigationBar.backIndicatorImage = UIImage();
-            self.navigationBar.backIndicatorTransitionMaskImage = UIImage();
+            //??self.navigationController?.navigationBar.backIndicatorImage = UIImage();
+            //??self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage();
             
             barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImage), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
             

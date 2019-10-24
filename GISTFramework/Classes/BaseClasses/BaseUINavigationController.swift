@@ -156,6 +156,7 @@ open class BaseUINavigationController: UINavigationController {
     override open func viewDidLoad() {
         super.viewDidLoad();
         
+        self.updateBackButton();
         self.updateAppearance();
     } //F.E.
     
@@ -165,6 +166,24 @@ open class BaseUINavigationController: UINavigationController {
     } //F.E.
     
     //MARK: - Methods
+    
+    private func updateBackButton() {
+        let barItem:BaseUIBarButtonItem;
+        
+        if let backButtonImage = GIST_CONFIG.navigationBackButtonImgName {
+            //Removing back button arrow indicator
+            self.navigationBar.backIndicatorImage = UIImage();
+            self.navigationBar.backIndicatorTransitionMaskImage = UIImage();
+            
+            barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImage), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
+            
+            barItem.respectRTL = true;
+        } else {
+            barItem = BaseUIBarButtonItem(title: " ", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
+        }
+        
+        self.navigationItem.backBarButtonItem = barItem;
+    } //F.E.
     
     /// Updating the appearance of Navigation Bar.
     private func updateAppearance() {
