@@ -26,7 +26,9 @@ open class BaseUISearchController: UISearchController {
     /// Search text field background color key from Sync Engine.
     @IBInspectable open var fontBgColorStyle:String? = nil {
         didSet {
-            self.searchBar.searchTextField.backgroundColor =  SyncedColors.color(forKey: fontBgColorStyle);
+            if let txtField:UITextField = self.searchBar.textField {
+                txtField.backgroundColor =  SyncedColors.color(forKey: fontBgColorStyle);
+            }
         }
     }
     
@@ -92,21 +94,27 @@ open class BaseUISearchController: UISearchController {
     /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
-            self.searchBar.searchTextField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            if let txtField:UITextField = self.searchBar.textField {
+                txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            }
         }
     }
     
     /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
-            self.searchBar.searchTextField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            if let txtField:UITextField = self.searchBar.textField {
+                txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            }
         }
     }
     
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
-            self.searchBar.searchTextField.textColor = SyncedColors.color(forKey: fontColorStyle);
+            if let txtField:UITextField = self.searchBar.textField {
+                txtField.textColor = SyncedColors.color(forKey: fontColorStyle);
+            }
         }
     }
     
@@ -171,27 +179,17 @@ open class BaseUISearchController: UISearchController {
         self.commontInit();
     } //F.E.
     
-    /// Overridden method
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated);
-
-        if (self.isMovingFromParent) {
-            self.backButtonTapped();
-        }
-        
-    } //F.E.
-    
     //MARK: - Methods
-    open func backButtonTapped() {
-        self.view.endEditing(true);
-    } //F.E.
+    
     /// Common initazier for setting up items.
     private func commontInit() {
         if let placeHoldertxt:String = self.placeholder , placeHoldertxt.hasPrefix("#") == true{
             self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
         }
         
-        self.searchBar.searchTextField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        if let txtField:UITextField = self.searchBar.textField {
+            txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        }
     } //F.E.
 
 } //CLS END
