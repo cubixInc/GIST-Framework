@@ -10,6 +10,9 @@ import UIKit
 
 /// BaseUITableViewController is a subclass of UITableViewController. It has some extra proporties and support for SyncEngine.
 open class BaseUITableViewController: UITableViewController {
+    
+    /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
+    @IBInspectable open var backButtonImage:String? = GIST_CONFIG.navigationBackButtonImgName;
 
     private (set) var _completion:((Bool, Any?) -> Void)?
     
@@ -35,6 +38,7 @@ open class BaseUITableViewController: UITableViewController {
     /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
+        self.updateBackButton();
     } //F.E.
     
     /// Overridden method
@@ -48,6 +52,24 @@ open class BaseUITableViewController: UITableViewController {
     } //F.E.
     
     //MARK: - Methods
+    private func updateBackButton() {
+        let barItem:BaseUIBarButtonItem;
+        
+        if let backButtonImage = self.backButtonImage {
+            
+            //Removing back button arrow indicator
+            self.navigationBar.backIndicatorImage = UIImage();
+            self.navigationBar.backIndicatorTransitionMaskImage = UIImage();
+            
+            barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImage), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
+            
+            barItem.respectRTL = true;
+        } else {
+            barItem = BaseUIBarButtonItem(title: " ", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
+        }
+        
+        self.navigationItem.backBarButtonItem = barItem;
+    } //F.E.
     
     open func backButtonTapped() {
         self.view.endEditing(true);

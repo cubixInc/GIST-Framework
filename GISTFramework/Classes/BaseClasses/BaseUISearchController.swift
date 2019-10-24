@@ -125,6 +125,9 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
+    @IBInspectable open var backButtonImage:String? = GIST_CONFIG.navigationBackButtonImgName;
+    
     private var _placeholderKey:String?
     
     /// placeholder text propery to set text from SyncEngine (Hint '#' prefix).
@@ -179,8 +182,46 @@ open class BaseUISearchController: UISearchController {
         self.commontInit();
     } //F.E.
     
-    //MARK: - Methods
+    open override func viewDidLoad() {
+        super.viewDidLoad();
+        
+        self.updateBackButton();
+    } //F.E.
     
+    /// Overridden method
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated);
+
+        if (self.isMovingFromParent) {
+            self.backButtonTapped();
+        }
+        
+    } //F.E.
+    
+    //MARK: - Methods
+    private func updateBackButton() {
+        let barItem:BaseUIBarButtonItem;
+        
+        if let backButtonImage = self.backButtonImage {
+            
+            //Removing back button arrow indicator
+            self.navigationBar.backIndicatorImage = UIImage();
+            self.navigationBar.backIndicatorTransitionMaskImage = UIImage();
+            
+            barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImage), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
+            
+            barItem.respectRTL = true;
+        } else {
+            barItem = BaseUIBarButtonItem(title: " ", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
+        }
+        
+        self.navigationItem.backBarButtonItem = barItem;
+    } //F.E.
+    
+    open func backButtonTapped() {
+        self.view.endEditing(true);
+    } //F.E.
+
     /// Common initazier for setting up items.
     private func commontInit() {
         if let placeHoldertxt:String = self.placeholder , placeHoldertxt.hasPrefix("#") == true{

@@ -9,15 +9,12 @@
 import UIKit
 
 /// BaseUINavigationController is a subclass of UINavigationController. It has some extra proporties and support for SyncEngine.
-open class BaseUINavigationController: UINavigationController, UINavigationBarDelegate {
+open class BaseUINavigationController: UINavigationController {
 
     //MARK: - Properties
     
     /// Flag for whether to resize the values for iPad.
     @IBInspectable open var sizeForIPad:Bool = GIST_CONFIG.sizeForIPad;
-    
-    /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
-    @IBInspectable open var backButtonImage:String? = GIST_CONFIG.navigationBackButtonImgName;
     
     /// Navigation background Color key from SyncEngine.
     @IBInspectable open var bgColor:String? = nil {
@@ -159,7 +156,6 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
     override open func viewDidLoad() {
         super.viewDidLoad();
         
-        self.setupBackButton();
         self.updateAppearance();
     } //F.E.
     
@@ -169,31 +165,6 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
     } //F.E.
     
     //MARK: - Methods
-    
-    ///Setting up custom back button.
-    private func setupBackButton() {
-        self.navigationBar.delegate = self; // Receiving navigation bar delegates
-        self.updateBackButton();
-    } //F.E.
-    
-    private func updateBackButton() {
-        let barItem:BaseUIBarButtonItem;
-        
-        if let backButtonImage = self.backButtonImage {
-            
-            //Removing back button arrow indicator
-            self.navigationBar.backIndicatorImage = UIImage();
-            self.navigationBar.backIndicatorTransitionMaskImage = UIImage();
-            
-            barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImage), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
-            
-            barItem.respectRTL = true;
-        } else {
-            barItem = BaseUIBarButtonItem(title: " ", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
-        }
-        
-        self.topViewController?.navigationItem.backBarButtonItem = barItem;
-    } //F.E.
     
     /// Updating the appearance of Navigation Bar.
     private func updateAppearance() {
@@ -233,26 +204,6 @@ open class BaseUINavigationController: UINavigationController, UINavigationBarDe
     
     open func completion(_ success:Bool, _ data:Any?) {
         _completion?(success, data);
-    } //F.E.
-    
-    //MARK: - Delegate
-    
-    public func navigationBar(_ navigationBar: UINavigationBar, shouldPush item: UINavigationItem) -> Bool {
-        return (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, shouldPush: item) ?? true;
-    } //F.E.
-
-    public func navigationBar(_ navigationBar: UINavigationBar, didPush item: UINavigationItem) {
-        (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, didPush: item);
-        
-        self.updateBackButton();
-    } //F.E.
-    
-    public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
-        return (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, shouldPop: item) ?? true;
-    } //F.E.
-    
-    public func navigationBar(_ navigationBar: UINavigationBar, didPop item: UINavigationItem) {
-        (self.visibleViewController as? UINavigationBarDelegate)?.navigationBar?(navigationBar, didPop: item);
     } //F.E.
  
     
