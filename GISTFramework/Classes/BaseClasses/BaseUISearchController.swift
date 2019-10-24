@@ -26,9 +26,7 @@ open class BaseUISearchController: UISearchController {
     /// Search text field background color key from Sync Engine.
     @IBInspectable open var fontBgColorStyle:String? = nil {
         didSet {
-            if let txtField:UITextField = self.searchBar.textField {
-                txtField.backgroundColor =  SyncedColors.color(forKey: fontBgColorStyle);
-            }
+            self.searchBar.textField.backgroundColor =  SyncedColors.color(forKey: fontBgColorStyle);
         }
     }
     
@@ -94,27 +92,21 @@ open class BaseUISearchController: UISearchController {
     /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
-            if let txtField:UITextField = self.searchBar.textField {
-                txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-            }
+            self.searchBar.textField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
     /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
-            if let txtField:UITextField = self.searchBar.textField {
-                txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-            }
+            self.searchBar.textField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         }
     }
     
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
-            if let txtField:UITextField = self.searchBar.textField {
-                txtField.textColor = SyncedColors.color(forKey: fontColorStyle);
-            }
+            self.searchBar.textField.textColor = SyncedColors.color(forKey: fontColorStyle);
         }
     }
     
@@ -228,9 +220,7 @@ open class BaseUISearchController: UISearchController {
             self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
         }
         
-        if let txtField:UITextField = self.searchBar.textField {
-            txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
-        }
+        self.searchBar.textField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
     } //F.E.
 
 } //CLS END
