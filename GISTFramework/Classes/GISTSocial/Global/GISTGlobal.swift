@@ -9,7 +9,6 @@
 import UIKit;
 import ObjectMapper;
 
-
 public let GIST_GLOBAL = GISTGlobal.shared;
 
 /// GISTGlobal is a singleton instance class to hold default shared data.
@@ -26,7 +25,7 @@ public class GISTGlobal: NSObject {
     public var apnsPermissionGranted:Bool?
     
     private var _userData:[String:Any]?
-    internal var userData:[String:Any]? {
+    public var userData:[String:Any]? {
         set {
             _userData = newValue;
             _user = nil;
@@ -45,58 +44,6 @@ public class GISTGlobal: NSObject {
             }
             
             return _userData;
-        }
-    } //P.E.
-    
-    
-    private var _accessToken:String?
-    public var accessToken:String? {
-        set {
-            _accessToken = newValue;
-
-            if _accessToken != nil {
-                UserDefaults.standard.set(_accessToken!, forKey: "ACCESS_TOKEN");
-                UserDefaults.standard.synchronize();
-            } else {
-                
-                self.accessTokenValidTill = nil;
-                self.userData = nil;
-
-                UserDefaults.standard.removeObject(forKey: "ACCESS_TOKEN")
-            }
-        }
-        
-        get {
-
-            if _accessToken == nil {
-                _accessToken = UserDefaults.standard.string(forKey: "ACCESS_TOKEN");
-            }
-            
-            return _accessToken;
-        }
-    } //P.E.
-    
-    
-    private var _accessTokenValidTill:TimeInterval?
-    public var accessTokenValidTill:TimeInterval? {
-        set {
-            _accessTokenValidTill = newValue;
-            
-            if _accessTokenValidTill != nil {
-                UserDefaults.standard.set(_accessTokenValidTill!, forKey: "ACCESS_TOKEN_VALID_TILL");
-                UserDefaults.standard.synchronize();
-            } else {
-                UserDefaults.standard.removeObject(forKey: "ACCESS_TOKEN_VALID_TILL")
-            }
-        }
-        
-        get {
-            
-            if _accessTokenValidTill == nil {
-                _accessTokenValidTill = UserDefaults.standard.double(forKey: "ACCESS_TOKEN_VALID_TILL");
-            }
-            
-            return _accessTokenValidTill;
         }
     } //P.E.
     
@@ -124,21 +71,16 @@ public class GISTGlobal: NSObject {
     
     private var _user:GISTUser?;
     public func getUser<T:GISTUser>() -> T? {
-        guard let usrData:[String:Any] = userData else {
+        //guard let usrData = userData, let _:Int = usrData[USER_ID] as? Int else {
+        guard let usrData = userData else {
             return nil;
         }
         
-        if HTTPServiceManager.sharedInstance.microService == false {
-            guard let _:Int = usrData[USER_ID] as? Int else {
-                return nil;
-            }
-        }
-        
-        if (_user as? T == nil) {
+        if (_user == nil && _userData != nil) {
             _user = Mapper<T>().map(JSON: usrData);
         }
-
+        
         return _user as? T;
     } //F.E.
-
-} //CLS END
+    
+} //F.E.

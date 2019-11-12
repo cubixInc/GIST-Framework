@@ -10,9 +10,9 @@ import UIKit
 
 // MARK: - Extension for UISearchBar to get textField instance
 public extension UISearchBar {
-    var textField: UITextField {
+    var textField: UITextField? {
         get {
-            return self.searchTextField;
+            return self.value(forKey: "_searchField") as? UITextField
         }
     }
 }
@@ -34,7 +34,9 @@ open class BaseUISearchBar: UISearchBar, BaseView {
     
     @IBInspectable open var fontBgColorStyle:String? = nil {
         didSet {
-            self.textField.backgroundColor =  SyncedColors.color(forKey: fontBgColorStyle);
+            if let txtField:UITextField = self.textField {
+                txtField.backgroundColor =  SyncedColors.color(forKey: fontBgColorStyle);
+            }
         }
     } //P.E.
     
@@ -42,7 +44,7 @@ open class BaseUISearchBar: UISearchBar, BaseView {
     @IBInspectable open var placeholderColor:String? = nil {
         didSet {
             if let plcHolder:String = self.placeholder, let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
-                self.textField.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSAttributedString.Key.foregroundColor: color]);
+                self.textField?.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSAttributedString.Key.foregroundColor: color]);
             }
         }
     } //P.E.
@@ -107,21 +109,27 @@ open class BaseUISearchBar: UISearchBar, BaseView {
     /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
-            self.textField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            if let txtField:UITextField = self.textField {
+                txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            }
         }
     } //P.E.
     
     /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
-            self.textField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            if let txtField:UITextField = self.textField {
+                txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            }
         }
     } //P.E.
     
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
-            self.textField.textColor = SyncedColors.color(forKey: fontColorStyle);
+            if let txtField:UITextField = self.textField {
+                txtField.textColor = SyncedColors.color(forKey: fontColorStyle);
+            }
         }
     } //P.E.
     
@@ -174,7 +182,7 @@ open class BaseUISearchBar: UISearchBar, BaseView {
             }
             
             if let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
-                self.textField.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSAttributedString.Key.foregroundColor: color]);
+                self.textField?.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSAttributedString.Key.foregroundColor: color]);
             } else {
                 super.placeholder = newPlaceHolder;
             }
@@ -228,7 +236,9 @@ open class BaseUISearchBar: UISearchBar, BaseView {
             self.placeholder = placeHoldertxt; // Assigning again to set value from synced data
         }
         
-        self.textField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        if let txtField:UITextField = self.textField {
+            txtField.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        }
     } //F.E.
 
 } //CLS END

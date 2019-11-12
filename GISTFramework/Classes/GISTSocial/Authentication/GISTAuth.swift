@@ -29,8 +29,6 @@ private let DELETE_ACCOUNT = "delete_account";
 
 private let CHANGE_LOGIN_ID = "change_id_request";
 
-private let SAVE_TOKEN_REQUEST = "save_token";
-
 
 public class GISTAuth<T:GISTUser>: NSObject {
     
@@ -126,11 +124,9 @@ public class GISTAuth<T:GISTUser>: NSObject {
     //MARK: - Verify Phone
     public static func verifyPhone(code:String, additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
 
-        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = usrData["mobile_no"] as? String, let verificationToken:String = usrData["verification_token"] as? String else {
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = (usrData["new_mobile_no"] as? String ?? usrData["mobile_no"] as? String), let verificationToken:String = usrData["verification_token"] as? String else {
             return;
         }
-        
-        let newMobileNo:String = usrData["new_mobile_no"] as? String ?? "";
         
         let isVerified:Bool = (usrData["is_verified"] as? Bool) ?? false;
         let userId:Int? = usrData[USER_ID] as? Int;
@@ -139,7 +135,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
         
         var aParams:[String:Any] = params ?? [:];
         
-        aParams["mobile_no"] = (newMobileNo != "") ? newMobileNo : mobileNo;
+        aParams["mobile_no"] = mobileNo;
         aParams["authy_code"] = code;
         aParams["verification_token"] = verificationToken;
         aParams["verification_mode"] = verificationMode;
@@ -149,20 +145,30 @@ public class GISTAuth<T:GISTUser>: NSObject {
     
     public static func resendCode(additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
-        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = usrData["mobile_no"] as? String else {
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let mobileNo:String = (usrData["new_mobile_no"] as? String ?? usrData["mobile_no"] as? String) else {
             return;
         }
         
-        let newMobileNo:String = usrData["new_mobile_no"] as? String ?? "";
+        
+        let isVerified:Bool = (usrData["is_verified"] as? Bool) ?? false;
+        let userId:Int? = usrData[USER_ID] as? Int;
+        
+        let verificationMode:String = (userId == nil) ? "forgot" : (isVerified ? "change_mobile_no" : "signup");
+        
         
         var aParams:[String:Any] = params ?? [:];
-        aParams["mobile_no"] = (newMobileNo != "") ? newMobileNo : mobileNo;
+        aParams["mobile_no"] = mobileNo;
+        aParams["verification_mode"] = verificationMode;
+        
+        if (userId != nil) {
+            aParams["user_id"] = userId!;
+        }
         
         self.request(service: RESEND_CODE_REQUEST, params: aParams, completion:completion, failure:failure);
     } //F.E.
     
     //MARK: - Forgot Password
-    public static func forgotPassword(fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func forgotPassword(fields:ValidatedTextInput ..., additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         self.request(service: FORGOT_PASSWORD_REQUEST, fields: fields, additional: params, completion: completion, failure: failure);
     } //F.E.
     
@@ -196,29 +202,6 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: RESET_PASSWORD_REQUEST, fields: fields, additional: aParams, completion: completion, failure: failure);
     } //F.E.
     
-    //MARK: - Save Token
-    internal static func savePushToken(_ deviceToken:String, additional params: [String:Any]?) {
-        
-        GIST_GLOBAL.deviceToken = deviceToken;
-        
-        guard let userData = GIST_GLOBAL.userData, let userId:Int = userData[USER_ID] as? Int else {
-            return;
-        }
-        
-        if let cDeviceToken:String = userData["device_token"] as? String, cDeviceToken == deviceToken {
-            //Already Saved To
-            return;
-        }
-
-        var aParams:[String:Any] = params ?? [:];
-        aParams[USER_ID] = userId;
-        
-        self.request(service: SAVE_TOKEN_REQUEST, params: aParams, completion: { (user, rawData) in
-            //Saved
-            print("Token saved ... !");
-        }, failure: nil);
-    } //F.E.
-    
     //MARK: - Sign Out
     public static func signOut() {
         GIST_GLOBAL.userData = nil;
@@ -245,7 +228,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
     } //F.E.
     
     //MARK: - Requests
-    private static func request(service:String, arrData:NSMutableArray, additional aParams:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func request(service:String, arrData:NSMutableArray, additional aParams:[String:Any]?, ignore iParams:[String]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         
         guard GISTSocialUtils.validate(array: arrData, ignore:iParams) else {
@@ -259,7 +242,7 @@ public class GISTAuth<T:GISTUser>: NSObject {
         self.request(service: service, params: GISTSocialUtils.formate(array: arrData, additional: aParams, ignore:iParams), completion:completion, failure:failure);
     } //F.E.
     
-    private static func request(service:String, fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
+    public static func request(service:String, fields:[ValidatedTextInput], additional params:[String:Any]?, completion:@escaping GISTAuthCompletion, failure:GISTAuthFailure?) {
         
         guard GISTSocialUtils.validate(fields: fields) else {
             if (failure != nil) {
@@ -273,20 +256,13 @@ public class GISTAuth<T:GISTUser>: NSObject {
         
     } //F.E.
     
-    private static func request(service:String, params:[String:Any], completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
-        
-        if (service == SIGN_UP_REQUEST || service == SIGN_IN_REQUEST ||  service == MOBILE_SIGN_UP_REQUEST || service == SOCIAL_SIGN_IN_REQUEST || service == FORGOT_PASSWORD_REQUEST) {
-            self.signOut();
-        }
+    public static func request(service:String, params:[String:Any], completion:GISTAuthCompletion?, failure:GISTAuthFailure?)  {
         
         var uParams:[String:Any] = params;
                 
         uParams["device_type"] = "ios";
+        uParams["entity_type_id"] = "user";
         
-        if (HTTPServiceManager.sharedInstance.entityFramework) {
-            uParams["entity_type_id"] = "user";
-        }
-
         if let token:String = GIST_GLOBAL.deviceToken {
             uParams["device_token"] = token;
         }
@@ -322,7 +298,6 @@ public class GISTAuth<T:GISTUser>: NSObject {
             let imgData:Data;
             
             if (rawImage.size.width > 400 || rawImage.size.height > 400) {
-                
                 imgData = rawImage.scaleAndRotateImage(400).jpegData(compressionQuality: 1)!;
             } else {
                 imgData = rawImage.jpegData(compressionQuality: 1)!;
@@ -339,12 +314,11 @@ public class GISTAuth<T:GISTUser>: NSObject {
         httpRequest.onSuccess { (rawData:Any?) in
             let dicData:[String:Any]? = rawData as? [String:Any];
             
-            
-            if let accessToken:String = dicData?["access_token"] as? String {
-                GIST_GLOBAL.accessToken = accessToken;
-            }
-
             if var userData:[String:Any] = dicData?["user"] as? [String:Any] {
+                
+                let oldUserData:[String:Any]? = GIST_GLOBAL.userData;
+                
+                userData["client_token"] = dicData?["client_token"] as? String ?? oldUserData?["client_token"] as? String;
                 
                 if let verificationMode:String = uParams["verification_mode"] as? String, verificationMode == "forgot" {
                     userData[USER_ID] = nil;

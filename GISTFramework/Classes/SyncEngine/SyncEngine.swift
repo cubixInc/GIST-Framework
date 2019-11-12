@@ -74,16 +74,13 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
-    /*
-    
-    open static var lastSyncedServerDate:String? {
+    /// Holds Last Synced Server Data
+    public static var lastSyncedServerDate:String? {
         get {
             return SyncEngine.sharedInstance.lastSyncedServerDate;
         }
     } //P.E.
-    */
     
-    /// Holds Last Synced Server Data
     private var lastSyncedServerDate:String? {
         get {
             return UserDefaults.standard.object(forKey: "LAST_SYNCED_SERVER_DATE" + _languageCode) as? String;
@@ -106,14 +103,6 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
-    public static var hasSyncDataUpdated:Bool {
-        get {
-            return SyncEngine.sharedInstance.hasSyncDataUpdated;
-        }
-    } //P.E.
-    
-    private var hasSyncDataUpdated:Bool = false;
-    
     //MARK: - Constructors
     
     override init() {
@@ -129,8 +118,8 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    public static func initialize(_ serverBaseURL:URL, requestName:String?, headers:[String:String]?) {
-        SyncEngine.sharedInstance.initialize(serverBaseURL, requestName:requestName, headers: headers);
+    public static func initialize(_ urlToSync:String) {
+        SyncEngine.sharedInstance.initialize(urlToSync);
     } //F.E.
     
     /// Initializer for Sync Engine.
@@ -138,19 +127,19 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    private func initialize(_ serverBaseURL:URL, requestName:String?, headers:[String:String]?) {
-        _urlToSync = serverBaseURL.appendingPathComponent(requestName ?? "se/get_all");
+    private func initialize(_ urlToSync:String) {
+        _urlToSync = URL(string: urlToSync);
         
         //Adding Language Key
         _headers["language"] = GIST_CONFIG.currentLanguageCode;
         
         //Security Headers
-        if let dictHeaders:[String:String] = headers {
-            for header in dictHeaders {
-                _headers[header.key] = header.value;
-            }
-        }
-        
+//        if let authHeader = authorizationHandler?(), let data = "\(authHeader.name):\(authHeader.password)".data(using: .utf8) {
+//
+//            let credential = data.base64EncodedString(options: [])
+//
+//            _headers["Authorization"] = "Basic \(credential)";
+//        }
     } //F.E.
     
     private func setupSyncedFile() {
@@ -196,7 +185,7 @@ open class SyncEngine: NSObject {
         
         
         //Fetching Data
-        _dictData = NSMutableDictionary(contentsOf: self.syncedFileUrl);
+        _dictData = NSMutableDictionary(contentsOf: self.syncedFileUrl);//NSDictionary(contentsOfURL: self.syncedFileUrl);
         
         if (hasToSync) {
             #if DEBUG
@@ -234,11 +223,11 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - anObject: A SyncEngine object
     ///   - aKey: A key of SyncEngine
-    public class func syncObject(_ anObject: Any, forKey aKey: String) {
+    public class func syncObject(_ anObject: AnyObject, forKey aKey: String) {
         return self.sharedInstance.syncObject(anObject, forKey:aKey);
     } //F.E.
     
-    internal func syncObject(_ anObject: Any, forKey aKey: String) {
+    internal func syncObject(_ anObject: AnyObject, forKey aKey: String) {
         if (_isCustomData) {
             self.syncForCustomData([aKey:anObject]);
         } else {
@@ -353,7 +342,7 @@ open class SyncEngine: NSObject {
             
             print("Not initialized or invalid url path is provided; Call/Check SyncEngine.initialize(:) in application(didFinishLaunchingWithOptions:)");
             
-            return;
+            abort();
         }
         
         if self.hasSyncThresholdTimePassed {
@@ -394,10 +383,7 @@ open class SyncEngine: NSObject {
                         let message:String? = dictData["message"] as? String;
                         
                         //If Has data and no error ... !
-                        if let resData:NSDictionary = dictData["data"] as? NSDictionary , error == 0, resData.count > 0 {
-                            
-                            self.hasSyncDataUpdated = true;
-                            
+                        if let resData:NSDictionary = dictData["data"] as? NSDictionary , error == 0{
                             self.syncForServerData(resData);
                         } else {
                             print("message : \(String(describing: message))");
@@ -559,8 +545,8 @@ open class SyncEngine: NSObject {
                 //Localization
                 languageCode = "-" + GIST_CONFIG.currentLanguageCode;
             }
-            
-            let url:URL = self.syncedFolderUrl.appendingPathComponent("\(key + languageCode).plist");
+            //-
+            let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(key+languageCode).plist");
             _ = nValue.write(to: url, atomically: true);
         }
         

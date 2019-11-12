@@ -34,13 +34,14 @@ public protocol GISTUser: Mappable, ReverseMappable, NSCopying {
     var sentEmailVerification: Bool? {get set};
     var sentMobileVerification: Bool? {get set};
     
+    var clientToken: String? {get set};
     var rawImage: UIImage? {get set};
     
     init();
 } //P.E.
 
 public extension GISTUser {
-    var formatedMobile:String? {
+    public var formatedMobile:String? {
         get {
             if let pNumber:String = self.mobileNo {
                 return pNumber.replacingOccurrences(of: "-", with: "");

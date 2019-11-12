@@ -15,7 +15,7 @@ open class HTTPServiceManager: NSObject {
     
     public static let sharedInstance = HTTPServiceManager();
     
-    fileprivate var _requests:[HTTPRequest] = []; // Here Hash map is not used because service name was used as key and same service may be called more than once with differen params.
+    fileprivate var _requests:[String:HTTPRequest] = [:];
     
     fileprivate var _headers:HTTPHeaders = HTTPHeaders();
     
@@ -37,24 +37,6 @@ open class HTTPServiceManager: NSObject {
             if (entityFramework == true) {
                 userIdKey = "entity_id";
                 authenticationModule = "entity_auth"
-            } else if (microService == true) {
-                userIdKey = "NOT_DEFINED";
-                authenticationModule = "user"
-            } else {
-                userIdKey = "user_id";
-                authenticationModule = "users"
-            }
-        }
-    } //P.E.
-    
-    public var microService:Bool = false {
-        didSet {
-            if (microService == true) {
-                userIdKey = "NOT_DEFINED";
-                authenticationModule = "user"
-            } else if (entityFramework == true) {
-                userIdKey = "entity_id";
-                authenticationModule = "entity_auth"
             } else {
                 userIdKey = "user_id";
                 authenticationModule = "users"
@@ -74,24 +56,28 @@ open class HTTPServiceManager: NSObject {
     fileprivate var _invalidSessionBlock:((_ httpRequest:HTTPRequest, _ error:NSError)->Void)?
     fileprivate var _noInternetConnectionBlock:((_ httpRequest:HTTPRequest)->Void)?
     
-    fileprivate var _isBlocked:Bool = false;
-    
     fileprivate override init() {}
     
     //MARK: - Initialize
-    open class func initialize(serverBaseURL:String, headers:HTTPHeaders?, authHeader:AuthHeader? = nil) {
-        self.sharedInstance.initialize(serverBaseURL: serverBaseURL, headers:headers, authHeader: authHeader);
+    open class func initialize(serverBaseURL:String) {
+        self.sharedInstance.initialize(serverBaseURL: serverBaseURL, authHeader:nil);
     } //F.E.
     
-    fileprivate func initialize(serverBaseURL:String, headers:HTTPHeaders?, authHeader:AuthHeader? = nil) {
+    open class func initialize(serverBaseURL:String, authHeader:AuthHeader? = nil) {
+        self.sharedInstance.initialize(serverBaseURL: serverBaseURL, authHeader: authHeader);
+    } //F.E.
+    
+    fileprivate func initialize(serverBaseURL:String, authHeader:AuthHeader? = nil) {
         //Base Server URL
-        self._serverBaseURL = URL(string: serverBaseURL)!;
+        _serverBaseURL = URL(string: serverBaseURL)!;
         
-        //Http Headers
-        self._headers = headers ?? HTTPHeaders();
+        let urlToSync:String = _serverBaseURL.appendingPathComponent("se/get_all").absoluteString;
+        
         self._authHeader = authHeader;
         
-        SyncEngine.initialize(_serverBaseURL, requestName:nil, headers: _headers.dictionary);
+        //Initializing Sync Engine
+        SyncEngine.initialize(urlToSync)
+        
     } //F.E.
     
     //MARK: - Progress Bar Handling
@@ -165,62 +151,32 @@ open class HTTPServiceManager: NSObject {
     } //F.E.
     
     //MARK: - Requests Handling
-    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
-        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate, blocking:blocking);
+    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+        return self.request(requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate);
     }
     
-    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
-        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate, blocking:blocking);
+    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+        return self.request(requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate);
     } //F.E.
     
-    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
-        return self.request(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate, blocking:blocking);
+    @discardableResult open class func request(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+        return HTTPServiceManager.sharedInstance.request(requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
     } //F.E.
     
-    @discardableResult open class func request(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
-        return HTTPServiceManager.sharedInstance.request(serviceBaseURL:serviceBaseURL, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate, multipart: false, blocking:blocking);
-    } //F.E.
-    
-    fileprivate func request(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, multipart:Bool, blocking:Bool) -> HTTPRequest {
+    fileprivate func request(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
         
         assert(_serverBaseURL != nil, "HTTPServiceManager.initialize(serverBaseURL: authorizationHandler:) not called.");
         
         let httpRequest:HTTPRequest = HTTPRequest(requestName: requestName, parameters: parameters, method: method, headers: _headers);
-        httpRequest.serverBaseURL = serviceBaseURL;
+        
         httpRequest.delegate = delegate;
         httpRequest.hasProgressHUD = showHud;
+        httpRequest.multipart = false;
         
-        httpRequest.multipart = multipart;
-        
-        httpRequest.blocking = blocking;
-        
-        if (_isBlocked == false) {
-            self.request(httpRequest: httpRequest);
-        } else {
-            self.requestGotHold(httpRequest: httpRequest);
-        }
+        self.request(httpRequest: httpRequest);
         
         return httpRequest;
     } //F.E.
-    
-    //MARK: - Multipart Requests Handling
-    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
-        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate, blocking:blocking);
-    } //F.E.
-    
-    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
-        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate, blocking:blocking);
-    } //F.E.
-    
-    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
-        return self.multipartRequest(serviceBaseURL:nil, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate, blocking:blocking);
-    } //F.E.
-    
-    @discardableResult open class func multipartRequest(serviceBaseURL:URL?, requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?, blocking:Bool = false) -> HTTPRequest {
-        return HTTPServiceManager.sharedInstance.request(serviceBaseURL:serviceBaseURL, requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate, multipart: true, blocking:blocking);
-    } //F.E.
-
-    //MARK: - Request Sending
     
     public func request(httpRequest:HTTPRequest) {
         //Validation for internet connection
@@ -229,70 +185,123 @@ open class HTTPServiceManager: NSObject {
             GISTUtility.delay(0.01, closure: {
                 self.requestDidFailWithNoInternetConnection(httpRequest: httpRequest);
             });
-            
             return;
         }
         
         let dataRequest:DataRequest = httpRequest.sendRequest();
-
+        
         if let authHeader = self._authHeader {
             dataRequest.authenticate(username: authHeader.username, password: authHeader.password)
         }
         
         dataRequest.responseJSON(queue: DispatchQueue.main, options: JSONSerialization.ReadingOptions.mutableContainers) { (response:AFDataResponse<Any>) in
-            self.responseResult(httpRequest: httpRequest, dataResponse: response);
+            self.responseResult(httpRequest: httpRequest, response: response);
         }
         
         //Request Did Start
         self.requestDidStart(httpRequest: httpRequest);
     } //F.E.
     
-    fileprivate func runPendingRequests() {
-        for i:Int in (0 ..< _requests.count) {
-            let request:HTTPRequest = _requests[i];
-            
-            if (request.pending) {
-                request.pending = false;
-                
-                self.request(httpRequest: request);
-                
-                break;
-            }
-        }
+    //MARK: - Multipart Requests Handling
+    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+        return self.multipartRequest(requestName: requestName, parameters: parameters, method: .post, showHud: true, delegate: delegate);
+    } //F.E.
+    
+    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+        return self.multipartRequest(requestName: requestName, parameters: parameters, method: .post, showHud: showHud, delegate: delegate);
+    } //F.E.
+    
+    @discardableResult open class func multipartRequest(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+        return HTTPServiceManager.sharedInstance.multipartRequest(requestName: requestName, parameters: parameters, method: method, showHud:showHud, delegate:delegate);
+    } //F.E.
+    
+    fileprivate func multipartRequest(requestName:String, parameters:[String:Any]?, method:HTTPMethod, showHud:Bool, delegate:HTTPRequestDelegate?) -> HTTPRequest {
+        
+        assert(_serverBaseURL != nil, "HTTPServiceManager.initialize(serverBaseURL: authorizationHandler:) not called.");
+        
+        let httpRequest:HTTPRequest = HTTPRequest(requestName: requestName, parameters: parameters, method: method, headers: _headers);
+        
+        httpRequest.delegate = delegate;
+        httpRequest.hasProgressHUD = showHud;
+        httpRequest.multipart = true;
+        
+        self.request(httpRequest: httpRequest);
+        
+        return httpRequest;
     } //F.E.
     
     //MARK: - Response Handling
-    fileprivate func responseResult(httpRequest:HTTPRequest, dataResponse:AFDataResponse<Any>) {
-        switch dataResponse.result
+    fileprivate func responseResult(httpRequest:HTTPRequest, response:AFDataResponse<Any>) {
+        switch response.result
         {
         case .success:
-            
-            let statusCode:Int = dataResponse.response?.statusCode ?? 200;
-            
-            if statusCode >= 200 && statusCode <= 299 {
-                self.requestDidSucceedWithData(httpRequest: httpRequest, data: dataResponse.value);
-            } else {
-                let dictData:[String:Any] = dataResponse.value as? [String:Any] ?? [:];
+            if let dictData = response.value as? NSMutableDictionary {
                 
-                let errorMessage:String = dictData["message"] as? String  ?? "Unknown error";
+                let message:String? = dictData["message"] as? String;
 
-                let userInfo:[AnyHashable : Any] = [
-                    NSLocalizedDescriptionKey: errorMessage,
-                    "data":dictData
-                ]
-                
-                let error = NSError(domain: "com.cubix.gist", code: statusCode, userInfo: (userInfo as! [String : Any]));
-                
-                if (statusCode == 403) {
-                    //Invalid session
-                    self.requestDidFailWithInvalidSession(httpRequest: httpRequest, error: error);
-                } else {
-                    //Error
-                     self.requestDidFailWithError(httpRequest: httpRequest, error: error);
+                let errorCode:Int = (dictData["error"] as? Int) ?? 0;
+                let invalidSession:Int = (dictData["kick_user"] as? Int) ?? 0;
+
+                //If api is not as per Cubix Standard, return response as it is.
+                if (errorCode == 0 && dictData["data"] == nil) {
+                    self.requestDidSucceedWithData(httpRequest: httpRequest, data: dictData);
+                    return;
                 }
+                
+                if (errorCode == 0 && invalidSession == 0) {
+                    let data:Any? = dictData["data"];
+                    
+                    if let msg:String = message, msg != ""  {
+                        
+                        let rtnData:NSMutableDictionary
+                        
+                        if let subData:NSMutableDictionary =  data as? NSMutableDictionary {
+                            rtnData = subData;
+                        } else {
+                            rtnData = NSMutableDictionary();
+                            
+                            if let sData:Any = data  {
+                                rtnData["data"] = sData;
+                            }
+                        }
+                        
+                        rtnData["message"] = msg;
+                        
+                        self.requestDidSucceedWithData(httpRequest: httpRequest, data: rtnData);
+                    } else {
+                        self.requestDidSucceedWithData(httpRequest: httpRequest, data: data);
+                    }
+                    
+                } else {
+                    //Failure
+                    let errorMessage: String = message ?? "Unknown error";
+//                    let data: [String:Any] = dictData["data"] as? [String:Any] ?? [:];
+                    
+//                    let userInfo:[AnyHashable : Any] = [
+//                        NSLocalizedDescriptionKey: errorMessage,
+//                        "data":data
+//                    ]
+                    
+                    let userInfo = [NSLocalizedDescriptionKey: errorMessage]
+                    
+                    let error = NSError(domain: "com.cubix.gist", code: errorCode, userInfo: userInfo);
+                    
+                    if (invalidSession == 0) {
+                        self.requestDidFailWithError(httpRequest: httpRequest, error: error);
+                    } else {
+                        self.requestDidFailWithInvalidSession(httpRequest: httpRequest, error: error);
+                    }
+                }
+            } else {
+                
+                //Failure
+                let errorMessage: String = "Unknown error";
+                let userInfo = [NSLocalizedDescriptionKey: errorMessage]
+                let error = NSError(domain: "com.cubix.gist", code: 404, userInfo: userInfo);
+                
+                self.requestDidFailWithError(httpRequest: httpRequest, error: error);
             }
 
-            
         case .failure (let err):
             let errorCode:Int = (err as NSError).code;
             let userInfo = [NSLocalizedDescriptionKey: err.localizedDescription]
@@ -301,22 +310,17 @@ open class HTTPServiceManager: NSObject {
             self.requestDidFailWithError(httpRequest: httpRequest, error: error);
             
             //For Debug
-            if let strData = dataResponse.data?.toString() {
-                print("Response Data: \(strData)");
+            if let responseData = response.data?.toString() {
+                print("Response Data: \(responseData)");
             }
         }
     } //F.E.
     
     fileprivate func requestDidSucceedWithData(httpRequest:HTTPRequest, data:Any?) {
-        DispatchQueue.main.async {
-            httpRequest.didSucceedWithData(data: data);
-            
-            //Did Finish
-            self.requestDidFinish(httpRequest: httpRequest);
-            
-            self.runPendingRequests();
-        }
-
+        httpRequest.didSucceedWithData(data: data);
+        
+        //Did Finish
+        self.requestDidFinish(httpRequest: httpRequest);
     } //F.E.
     
     fileprivate func requestDidFailWithError(httpRequest:HTTPRequest, error:NSError) {
@@ -326,8 +330,6 @@ open class HTTPServiceManager: NSObject {
 
         //Did Finish
         self.requestDidFinish(httpRequest: httpRequest);
-        
-        self.runPendingRequests();
     } //F.E.
     
     fileprivate func requestDidFailWithInvalidSession(httpRequest:HTTPRequest, error:NSError) {
@@ -336,19 +338,13 @@ open class HTTPServiceManager: NSObject {
         }
         
         //Did Finish
-        //??self.requestDidFinish(httpRequest: httpRequest);
-        
-        //Canceling the current one and all pending requests
-        self.cancelAllRequests();
+        self.requestDidFinish(httpRequest: httpRequest);
     } //F.E.
     
     fileprivate func requestDidFailWithNoInternetConnection(httpRequest:HTTPRequest) {
         if (httpRequest.didFailWithNoInternetConnection() == false) {
             _noInternetConnectionBlock?(httpRequest);
         }
-        
-        //Canceling the current one and all pending requests
-        self.cancelAllRequests();
     } //F.E.
     
     fileprivate func requestDidStart(httpRequest:HTTPRequest) {
@@ -358,13 +354,8 @@ open class HTTPServiceManager: NSObject {
             self.showProgressHUD();
         }
         
-        _isBlocked = httpRequest.blocking;
-        
         //Holding reference
-        if _requests.firstIndex(of: httpRequest) == nil {
-            _requests.append(httpRequest);
-        }
-
+        _requests[httpRequest.requestName] = httpRequest;
     } //F.E.
     
     fileprivate func requestDidFinish(httpRequest:HTTPRequest) {
@@ -374,47 +365,20 @@ open class HTTPServiceManager: NSObject {
             self.hideProgressHUD();
         }
         
-        _isBlocked = false;
-        
-        _requests.removeObject(httpRequest);
+        _requests.removeValue(forKey: httpRequest.requestName);
     } //F.E.
-    
-    fileprivate func requestGotHold(httpRequest:HTTPRequest) {
-        
-        httpRequest.pending = true;
-        
-        //Holding reference
-        _requests.append(httpRequest);
-    } //F.E.
-    
     
     //MARK: - Cancel Request Handling
     open class func cancelRequest(requestName:String) {
         self.sharedInstance.cancelRequest(requestName: requestName);
     } //F.E.
-
+    
     fileprivate func cancelRequest(requestName:String) {
-        
-        //Reversed loop because index may change ofter removing object from array
-        for i:Int in (0 ..< _requests.count).reversed() {
-            let request:HTTPRequest = _requests[i];
+        if let httpRequest:HTTPRequest = _requests[requestName] {
+            httpRequest.cancel();
             
-            if (request.requestName == requestName) {
-                request.cancel();
-                self.requestDidFinish(httpRequest: request);
-            }
+            self.requestDidFinish(httpRequest: httpRequest);
         }
-        
-    } //F.E.
-    
-    open class func cancelRequest(request:HTTPRequest) {
-        self.sharedInstance.cancelRequest(request: request);
-    } //F.E.
-    
-    fileprivate func cancelRequest(request:HTTPRequest) {
-        request.cancel();
-        
-        self.requestDidFinish(httpRequest: request);
     } //F.E.
     
     open class func cancelAllRequests() {
@@ -422,12 +386,10 @@ open class HTTPServiceManager: NSObject {
     } //F.E.
     
     fileprivate func cancelAllRequests() {
-        //Reversed loop because index may change ofter removing object from array
-        for i:Int in (0 ..< _requests.count).reversed() {
-            let request:HTTPRequest = _requests[i];
+        for (_, httpRequest) in _requests {
+            httpRequest.cancel();
             
-            request.cancel();
-            self.requestDidFinish(httpRequest: request);
+            self.requestDidFinish(httpRequest: httpRequest);
         }
     } //F.E.
     
@@ -445,21 +407,16 @@ open class HTTPRequest:NSObject {
     open var requestName:String!
     open var parameters:Parameters?
     open var method:HTTPMethod = .post
-    open var serverBaseURL:URL?
     
     open var multipart:Bool = false;
     
-    open var pending:Bool = false;
-    open var blocking:Bool = false;
-    
     fileprivate var _urlString:String?
+
     open var urlString:String {
         get {
             
             if (_urlString == nil) {
-                _urlString = self.serverBaseURL != nil ?
-                    self.serverBaseURL!.appendingPathComponent(requestName).absoluteString:
-                    HTTPServiceManager.serverBaseURL.appendingPathComponent(requestName).absoluteString;
+                _urlString = HTTPServiceManager.serverBaseURL.appendingPathComponent(requestName).absoluteString;
             }
             
             return _urlString!;
@@ -476,7 +433,7 @@ open class HTTPRequest:NSObject {
     
     open override var description: String {
         get {
-            return "[HTTPRequest] [\(method)] \(String(describing: requestName)): \(String(describing: _urlString))";
+            return "[HTTPRequest] [\(method)] \(requestName): \(String(describing: _urlString))";
         }
     } //P.E.
     
@@ -492,12 +449,13 @@ open class HTTPRequest:NSObject {
     
     open weak var delegate:HTTPRequestDelegate?;
     
-    private var _cancelled:Bool = false;
-    private var cancelled:Bool {
+    fileprivate var _cancelled:Bool = false;
+    fileprivate var cancelled:Bool {
         get {
             return _cancelled;
         }
     } //P.E.
+    
     
     private override init() {
         super.init();
@@ -507,33 +465,33 @@ open class HTTPRequest:NSObject {
         super.init();
         
         self.requestName = requestName;
-        self.parameters = parameters ?? [:];
+        self.parameters = parameters;
         self.method = method;
-        self.headers = headers ?? [:];
+        self.headers = headers;
 
-
-        if (HTTPServiceManager.sharedInstance.entityFramework) {
-            //Default Params
-            self.parameters?["mobile_json"] = true;
-            
-            // Entity Id & Actor ID
-            if let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int {
-                self.headers?[USER_ID] = "\(userId)";
-                self.parameters?["actor_user_id"] = userId;
-            }
+        //Default Params
+        if (self.parameters != nil) {
+            self.parameters!["mobile_json"] = true;
+        } else {
+            self.parameters = ["mobile_json":true];
         }
-
+        
+        //Client Token
+        if let clientToken:String = GIST_GLOBAL.userData?["client_token"] as? String {
+            self.headers?["client_token"] = clientToken;
+        }
+        
+        // Entity Id & Actor ID
+        if let userId:Int = GIST_GLOBAL.userData?[USER_ID] as? Int {
+            self.headers?[USER_ID] = "\(userId)";
+            self.parameters?["actor_user_id"] = userId;
+        }
+        
         //Adding Language Key
         self.headers?["language"] = GIST_CONFIG.currentLanguageCode;
     } //C.E.
     
     open func sendRequest() -> DataRequest {
-        
-        //Update Access token
-        if let accessToken:String = GIST_GLOBAL.accessToken {
-            self.headers?["X-Access-Token"] = accessToken;
-        }
-        
         #if DEBUG
             print("------------------------------------------------------------------");
             print("url: \(self.urlString) params: \(String(describing: self.parameters)) headers: \(String(describing: self.headers))")
@@ -642,9 +600,7 @@ open class HTTPRequest:NSObject {
     } //F.E.
     
     //MARK: - Cancel
-    
-    //Should not be called directly from outside of the class
-    fileprivate func cancel() {
+    open func cancel() {
         //Flaging On
         _cancelled = true;
         
@@ -659,7 +615,8 @@ open class HTTPRequest:NSObject {
 } //CLS END
 
 
-open class AuthHeader:NSObject {
+
+public class AuthHeader:NSObject {
     
     open var username:String!
     open var password:String!
@@ -677,4 +634,3 @@ open class AuthHeader:NSObject {
     } //F.E.
     
 } //CLS END
-

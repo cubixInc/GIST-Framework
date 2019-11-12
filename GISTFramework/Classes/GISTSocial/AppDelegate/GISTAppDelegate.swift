@@ -47,8 +47,8 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
-
-        self.savePushToken(deviceTokenString);
+        GIST_GLOBAL.deviceToken = deviceTokenString;
+        self.savePushToken();
     } //F.E.
     
     open func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -64,9 +64,9 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         
         //Resting App if the language is changed or has update in syncEngine data file
         
-        if SyncEngine.hasSyncDataUpdated {
-            exit(0);
-        }
+//        if SyncEngine.hasSyncDataUpdated {
+//            exit(0);
+//        }
     } //F.E.
 
     open func applicationWillEnterForeground(_ application: UIApplication) {
@@ -80,15 +80,8 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
             application.applicationIconBadgeNumber = 0;
         }
         
-        if (HTTPServiceManager.sharedInstance.microService) {
-            GISTMicroAuth<ModelUser>.refreshAccessToken { (success) in
-                GISTApplication.sharedInstance.applicationDidBecomeActive(application);
-                SyncEngine.syncData();
-            }
-        } else {
-            GISTApplication.sharedInstance.applicationDidBecomeActive(application);
-            SyncEngine.syncData();
-        }
+        GISTApplication.sharedInstance.applicationDidBecomeActive(application);
+        SyncEngine.syncData();
     } //F.E.
 
     open func applicationWillTerminate(_ application: UIApplication) {
@@ -164,12 +157,24 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     } //F.E.
     
     //MARK: - Save Token
-    public func savePushToken(_ deviceToken:String) {
-        if (HTTPServiceManager.sharedInstance.microService) {
-            GISTMicroAuth<ModelUser>.savePushToken(deviceToken, additional: nil);
-        } else {
-            GISTAuth<ModelUser>.savePushToken(deviceToken, additional: nil);
+    private func savePushToken() {
+        guard let usrData:[String:Any] = GIST_GLOBAL.userData, let token:String = GIST_GLOBAL.deviceToken, let userId:Int = usrData[USER_ID] as? Int else {
+            return;
         }
+        
+        let params:[String:Any] = [
+            "device_token":token,
+            "device_type":"ios",
+            USER_ID:userId
+        ]
+        
+        let requestName = "\(HTTPServiceManager.sharedInstance.authenticationModule)/save_token";
+        let httpRequest:HTTPRequest = HTTPServiceManager.request(requestName: requestName, parameters: params, delegate: nil);
+        
+        httpRequest.onSuccess { (rawData:Any?) in
+            print("Device Token Saved ...");
+        };
+        
     } //F.E.
     
     //MARK: - Deep Linking
