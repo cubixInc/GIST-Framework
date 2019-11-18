@@ -771,7 +771,9 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
     }
     
     open func add(disclosureButton button: UIButton, action: @escaping (() -> Void)) {
-        (self.textInput as? AnimatedTextField)?.add(disclosureButton: button, action: action);
+        if let textField:AnimatedTextField = self.textInput as? AnimatedTextField {
+            textField.add(disclosureButton: button, action: action);
+        } 
     }
 }
 
