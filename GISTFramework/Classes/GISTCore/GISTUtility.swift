@@ -37,6 +37,19 @@ public class GISTUtility: NSObject {
     /// Bool flag for device type.
     @nonobjc public static let isIPad:Bool = UIDevice.current.userInterfaceIdiom == .pad;
     
+    ///Bool flag for if the device has nodge
+    @nonobjc public static var hasNotch:Bool {
+        get {
+            if #available(iOS 11.0, *) {
+                // with notch: 44.0 on iPhone X, XS, XS Max, XR.
+                // without notch: 24.0 on iPad Pro 12.9" 3rd generation, 20.0 on iPhone 8 on iOS 12+.
+                
+                return UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0 > 0
+            }
+            return false
+        }
+    }
+    
     /// Flag to check user interfce layout direction
     @nonobjc public static var isRTL:Bool  {
         get {
