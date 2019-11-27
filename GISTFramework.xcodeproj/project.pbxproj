@@ -49,11 +49,9 @@
 		DCA784AC22AE657500144633 /* ModelUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7843E22AE657400144633 /* ModelUser.swift */; };
 		DCA784AD22AE657500144633 /* GISTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844022AE657400144633 /* GISTAppDelegate.swift */; };
 		DCA784AE22AE657500144633 /* GISTAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844222AE657400144633 /* GISTAuth.swift */; };
-		DCA784AF22AE657500144633 /* GISTMicroAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844322AE657400144633 /* GISTMicroAuth.swift */; };
 		DCA784B022AE657500144633 /* Mappable+ToDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844522AE657400144633 /* Mappable+ToDictionary.swift */; };
 		DCA784B122AE657500144633 /* GISTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844622AE657400144633 /* GISTUser.swift */; };
 		DCA784B222AE657500144633 /* GISTGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844822AE657400144633 /* GISTGlobal.swift */; };
-		DCA784B322AE657500144633 /* GISTEnumNConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844922AE657400144633 /* GISTEnumNConstants.swift */; };
 		DCA784B422AE657500144633 /* MaskedPhoneTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844B22AE657400144633 /* MaskedPhoneTextFieldDelegate.swift */; };
 		DCA784B522AE657500144633 /* PopoverControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844C22AE657400144633 /* PopoverControllerView.swift */; };
 		DCA784B622AE657500144633 /* BaseUIPopoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7844D22AE657400144633 /* BaseUIPopoverNavigationController.swift */; };
@@ -159,11 +157,9 @@
 		DCA7843E22AE657400144633 /* ModelUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
 		DCA7844022AE657400144633 /* GISTAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAppDelegate.swift; sourceTree = "<group>"; };
 		DCA7844222AE657400144633 /* GISTAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTAuth.swift; sourceTree = "<group>"; };
-		DCA7844322AE657400144633 /* GISTMicroAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTMicroAuth.swift; sourceTree = "<group>"; };
 		DCA7844522AE657400144633 /* Mappable+ToDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mappable+ToDictionary.swift"; sourceTree = "<group>"; };
 		DCA7844622AE657400144633 /* GISTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTUser.swift; sourceTree = "<group>"; };
 		DCA7844822AE657400144633 /* GISTGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTGlobal.swift; sourceTree = "<group>"; };
-		DCA7844922AE657400144633 /* GISTEnumNConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISTEnumNConstants.swift; sourceTree = "<group>"; };
 		DCA7844B22AE657400144633 /* MaskedPhoneTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedPhoneTextFieldDelegate.swift; sourceTree = "<group>"; };
 		DCA7844C22AE657400144633 /* PopoverControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverControllerView.swift; sourceTree = "<group>"; };
 		DCA7844D22AE657400144633 /* BaseUIPopoverNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIPopoverNavigationController.swift; sourceTree = "<group>"; };
@@ -401,7 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				DCA7844222AE657400144633 /* GISTAuth.swift */,
-				DCA7844322AE657400144633 /* GISTMicroAuth.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -419,7 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				DCA7844822AE657400144633 /* GISTGlobal.swift */,
-				DCA7844922AE657400144633 /* GISTEnumNConstants.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -649,7 +643,6 @@
 				DCA784A322AE657500144633 /* BaseUIImageView.swift in Sources */,
 				DCA7848722AE657500144633 /* BaseUITableViewHeaderFooterView.swift in Sources */,
 				DCA784B122AE657500144633 /* GISTUser.swift in Sources */,
-				DCA784B322AE657500144633 /* GISTEnumNConstants.swift in Sources */,
 				DCA784B622AE657500144633 /* BaseUIPopoverNavigationController.swift in Sources */,
 				DCA784E422AE657500144633 /* BaseViewProtocol.swift in Sources */,
 				DCA784B922AE657500144633 /* ValidatedTextInput.swift in Sources */,
@@ -708,7 +701,6 @@
 				DCA784B822AE657500144633 /* FloatingLabelTextField.swift in Sources */,
 				DCA7849422AE657500144633 /* BaseUILabel.swift in Sources */,
 				DCA7849E22AE657500144633 /* BaseUISearchController.swift in Sources */,
-				DCA784AF22AE657500144633 /* GISTMicroAuth.swift in Sources */,
 				DCA784CF22AE657500144633 /* Array+Utility.swift in Sources */,
 				DCA784E322AE657500144633 /* GISTApplication.swift in Sources */,
 				DCA784D322AE657500144633 /* UIApplication+Utility.swift in Sources */,

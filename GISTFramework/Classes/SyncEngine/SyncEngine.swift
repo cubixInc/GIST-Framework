@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 /**
  SyncEngine is framework to Sync Data from Server.
  It syncs application's Colors, Constants, Font Sizes/Styles and Texts/ Strings.
@@ -118,8 +118,8 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    public static func initialize(_ urlToSync:String) {
-        SyncEngine.sharedInstance.initialize(urlToSync);
+    public static func initialize(_ urlToSync:String, authHeader:AuthHeader? = nil) {
+        SyncEngine.sharedInstance.initialize(urlToSync, authHeader: authHeader);
     } //F.E.
     
     /// Initializer for Sync Engine.
@@ -127,19 +127,17 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    private func initialize(_ urlToSync:String) {
+    private func initialize(_ urlToSync:String, authHeader:AuthHeader? = nil) {
         _urlToSync = URL(string: urlToSync);
         
         //Adding Language Key
         _headers["language"] = GIST_CONFIG.currentLanguageCode;
         
         //Security Headers
-//        if let authHeader = authorizationHandler?(), let data = "\(authHeader.name):\(authHeader.password)".data(using: .utf8) {
-//
-//            let credential = data.base64EncodedString(options: [])
-//
-//            _headers["Authorization"] = "Basic \(credential)";
-//        }
+        if let aHeader = authHeader {
+            let header = HTTPHeader.authorization(username: aHeader.username, password: aHeader.password);
+            self._headers[header.name] = header.value;
+        }
     } //F.E.
     
     private func setupSyncedFile() {

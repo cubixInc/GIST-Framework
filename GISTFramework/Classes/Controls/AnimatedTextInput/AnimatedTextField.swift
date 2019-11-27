@@ -8,6 +8,16 @@ class AnimatedTextField: AnimatedInputMaskTextField {
         case numeric
         case selection
     }
+    
+    override var rightView: UIView? {
+        get {
+            return super.rightView;
+        }
+        
+        set {
+            super.rightView = newValue
+        }
+    }
 
     fileprivate let defaultPadding: CGFloat = -16
     fileprivate let clearButtonPadding: CGFloat = -8
@@ -92,13 +102,14 @@ class AnimatedTextField: AnimatedInputMaskTextField {
     }
 
     func add(disclosureButton button: UIButton, action: @escaping (() -> Void)) {
-        let selector = #selector(disclosureButtonPressed)
         if disclosureButtonAction != nil, let previousButton = rightView as? UIButton {
-            previousButton.removeTarget(self, action: selector, for: .touchUpInside)
+            previousButton.removeTarget(self, action: #selector(disclosureButtonPressed), for: .touchUpInside)
         }
         disclosureButtonAction = action
-        button.addTarget(self, action: selector, for: .touchUpInside)
-        rightView = button
+        button.addTarget(self, action: #selector(disclosureButtonPressed), for: .touchUpInside)
+        self.rightView = button
+        
+        self.rightViewMode = .always;
     }
 
     @objc fileprivate func disclosureButtonPressed() {

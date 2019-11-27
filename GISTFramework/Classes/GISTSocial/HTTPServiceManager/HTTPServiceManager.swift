@@ -19,8 +19,6 @@ open class HTTPServiceManager: NSObject {
     
     fileprivate var _headers:HTTPHeaders = HTTPHeaders();
     
-    fileprivate var _authHeader:AuthHeader? = nil;
-    
     fileprivate var _serverBaseURL:URL!;
     open class var serverBaseURL:URL {
         get {
@@ -73,10 +71,11 @@ open class HTTPServiceManager: NSObject {
         
         let urlToSync:String = _serverBaseURL.appendingPathComponent("se/get_all").absoluteString;
         
-        self._authHeader = authHeader;
-        
+        if let aHeader = authHeader {
+           self._headers.add(HTTPHeader.authorization(username: aHeader.username, password: aHeader.password));
+        }
         //Initializing Sync Engine
-        SyncEngine.initialize(urlToSync)
+        SyncEngine.initialize(urlToSync, authHeader: authHeader)
         
     } //F.E.
     
@@ -189,10 +188,6 @@ open class HTTPServiceManager: NSObject {
         }
         
         let dataRequest:DataRequest = httpRequest.sendRequest();
-        
-        if let authHeader = self._authHeader {
-            dataRequest.authenticate(username: authHeader.username, password: authHeader.password)
-        }
         
         dataRequest.responseJSON(queue: DispatchQueue.main, options: JSONSerialization.ReadingOptions.mutableContainers) { (response:AFDataResponse<Any>) in
             self.responseResult(httpRequest: httpRequest, response: response);
@@ -433,7 +428,7 @@ open class HTTPRequest:NSObject {
     
     open override var description: String {
         get {
-            return "[HTTPRequest] [\(method)] \(requestName): \(String(describing: _urlString))";
+            return "[HTTPRequest] [\(method)] \(String(describing: requestName)): \(String(describing: _urlString))";
         }
     } //P.E.
     
