@@ -14,6 +14,16 @@ public class GISTUtility: NSObject {
     
     //MARK: - Properties
     
+    @nonobjc static var bundle:Bundle?  {
+        let frameworkBundle = Bundle(for: GISTUtility.self);
+        
+        if let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("GISTFrameworkBundle.bundle") {
+            return Bundle(url: bundleURL);
+        } else {
+            return nil;
+        }
+    } //P.E.
+    
     @nonobjc static var screenHeight:CGFloat  {
         if #available(iOS 11.0, *) {
             let topInset:CGFloat = UIApplication.shared.statusBarFrame.height
@@ -27,11 +37,10 @@ public class GISTUtility: NSObject {
         } else {
             return UIScreen.main.bounds.height;
         }
-    }
+    } //F.E.
     
     @nonobjc public static let deviceRatio:CGFloat =  screenHeight / 736.0;
 
-    
     @nonobjc public static let deviceRatioWN:CGFloat = (UIScreen.main.bounds.height - 64.0) / (736.0 - 64.0); // Ratio with Navigation
     
     /// Bool flag for device type.
@@ -333,6 +342,23 @@ public class GISTUtility: NSObject {
         let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
         
         return predicate.evaluate(with: text!);
+    } //F.E.
+    
+    public class func addBackButton(_ vc:UIViewController, backButtonImageName:String?, target: Any?, action: Selector?) {
+        var backButtonImage:UIImage?;
+        
+        if let backButtonImageName = backButtonImageName {
+            backButtonImage = UIImage(named: backButtonImageName);
+        } else {
+            backButtonImage = UIImage(named: "backButton", in: self.bundle, compatibleWith: nil);
+        }
+        
+        let barButtonItem = BaseUIBarButtonItem(image: backButtonImage, style:UIBarButtonItem.Style.plain, target: target, action: action);
+        
+        barButtonItem.respectRTL = GISTConfig.shared.respectRTL;
+        
+        vc.navigationItem.hidesBackButton = true;
+        vc.navigationItem.leftBarButtonItem = barButtonItem;
     } //F.E.
 
 } //CLS END

@@ -9,7 +9,7 @@
 import UIKit
 
 /// BaseUINavigationController is a subclass of UINavigationController. It has some extra proporties and support for SyncEngine.
-open class BaseUINavigationController: UINavigationController {
+open class BaseUINavigationController: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
 
     //MARK: - Properties
     
@@ -156,7 +156,7 @@ open class BaseUINavigationController: UINavigationController {
     override open func viewDidLoad() {
         super.viewDidLoad();
         
-        self.updateBackButton();
+        self.setupInteractivePop();
         self.updateAppearance();
     } //F.E.
     
@@ -166,23 +166,9 @@ open class BaseUINavigationController: UINavigationController {
     } //F.E.
     
     //MARK: - Methods
-    
-    private func updateBackButton() {
-        let barItem:BaseUIBarButtonItem;
-        
-        if let backButtonImage = GIST_CONFIG.navigationBackButtonImgName {
-            //Removing back button arrow indicator
-            self.navigationBar.backIndicatorImage = UIImage();
-            self.navigationBar.backIndicatorTransitionMaskImage = UIImage();
-            
-            barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImage), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
-            
-            barItem.respectRTL = true;
-        } else {
-            barItem = BaseUIBarButtonItem(title: " ", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
-        }
-        
-        self.navigationItem.backBarButtonItem = barItem;
+    private func setupInteractivePop() {
+        self.delegate = self;
+        self.interactivePopGestureRecognizer?.delegate = self;
     } //F.E.
     
     /// Updating the appearance of Navigation Bar.
@@ -225,5 +211,13 @@ open class BaseUINavigationController: UINavigationController {
         _completion?(success, data);
     } //F.E.
  
+    ///MARK:- Delegate Methods
+    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true;
+    } //F.E.
     
-} //F.E.
+    open func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        self.interactivePopGestureRecognizer?.isEnabled = self.viewControllers.count > 1;
+    } //F.E.
+    
+} //CLS END

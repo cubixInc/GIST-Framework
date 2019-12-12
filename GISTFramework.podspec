@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "5.0.3"
+  s.version      = "5.1.0"
   s.summary      = "GISTFramework is bottom architecture layour of iOS apps."
 
   # This description is used to generate tags and improve search results.
@@ -162,6 +162,9 @@ Pod::Spec.new do |s|
 
   # s.preserve_paths = "Synced\ Plists"
 
+  s.resource_bundle = {
+    'GISTFrameworkBundle' => 'GISTFramework/Resourses/*.*'
+  }
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #

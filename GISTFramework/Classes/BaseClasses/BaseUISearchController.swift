@@ -117,8 +117,10 @@ open class BaseUISearchController: UISearchController {
         }
     }
     
+    @IBInspectable open var hasBackButton:Bool = true;
+    
     /// Inspectable property for navigation back button - Default back button image is 'NavBackButton'
-    @IBInspectable open var backButtonImage:String? = GIST_CONFIG.navigationBackButtonImgName;
+    @IBInspectable open var backButtonImageName:String? = GIST_CONFIG.backButtonImageName;
     
     private var _placeholderKey:String?
     
@@ -177,41 +179,27 @@ open class BaseUISearchController: UISearchController {
     open override func viewDidLoad() {
         super.viewDidLoad();
         
-        self.updateBackButton();
+        self.setupBackButton();
     } //F.E.
-    
-    /// Overridden method
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated);
 
-        if (self.isMovingFromParent) {
-            self.backButtonTapped();
-        }
-        
-    } //F.E.
-    
     //MARK: - Methods
-    private func updateBackButton() {
-        let barItem:BaseUIBarButtonItem;
-        
-        if let backButtonImage = self.backButtonImage {
-            
-            //Removing back button arrow indicator
-            //??self.navigationController?.navigationBar.backIndicatorImage = UIImage();
-            //??self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage();
-            
-            barItem = BaseUIBarButtonItem(image: UIImage(named: backButtonImage), style:UIBarButtonItem.Style.plain, target: nil, action: nil);
-            
-            barItem.respectRTL = true;
-        } else {
-            barItem = BaseUIBarButtonItem(title: " ", style: UIBarButtonItem.Style.plain, target: nil, action: nil);
+    private func setupBackButton() {
+        if self.hasBackButton, self.navigationItem.leftBarButtonItem == nil, let navigationController = self.navigationController, navigationController.viewControllers.count > 1 {
+            self.navigationItem.hidesBackButton = true;
+
+            GISTUtility.addBackButton(self, backButtonImageName: self.backButtonImageName, target: self, action: #selector(backButtonTapped));
         }
-        
-        self.navigationItem.backBarButtonItem = barItem;
     } //F.E.
     
-    open func backButtonTapped() {
+    @objc
+    @IBAction open func backButtonTapped(_ sender:Any) {
         self.view.endEditing(true);
+        
+        if (self.navigationController?.viewControllers.count == 1) {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
     } //F.E.
 
     /// Common initazier for setting up items.
