@@ -98,7 +98,9 @@ class AnimatedTextField: AnimatedInputMaskTextField {
         }
         disclosureButtonAction = action
         button.addTarget(self, action: selector, for: .touchUpInside)
-        rightView = button
+        rightView = button;
+        
+        self.rightViewMode = .always;
     }
 
     @objc fileprivate func disclosureButtonPressed() {
