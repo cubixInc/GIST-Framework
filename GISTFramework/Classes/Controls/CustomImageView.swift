@@ -61,7 +61,7 @@ open class CustomImageView: BaseUIView {
                  
                 //??self.clipsToBounds = true;
                  
-                self.sendSubview(toBack: _imageView!);
+                self.sendSubviewToBack(_imageView!);
             }
              
             return _imageView!;
@@ -74,7 +74,7 @@ open class CustomImageView: BaseUIView {
     
     /**
      Calculated frame of button image view.
-     It uses UIButton native UIViewContentMode to calculate frames.
+     It uses UIButton native UIView.ContentMode to calculate frames.
      */
     private var imageViewFrame:CGRect {
         get {
@@ -86,7 +86,7 @@ open class CustomImageView: BaseUIView {
                  
                 let imgRatio:CGFloat = (imgSize.height / imgSize.width);
                  
-                if ((self.contentMode != UIViewContentMode.scaleAspectFit) && (self.contentMode != UIViewContentMode.scaleAspectFill)  && (self.contentMode != UIViewContentMode.scaleToFill)) {
+                if ((self.contentMode != UIView.ContentMode.scaleAspectFit) && (self.contentMode != UIView.ContentMode.scaleAspectFill)  && (self.contentMode != UIView.ContentMode.scaleToFill)) {
                     
                     if (self.imageFixedSize.height > 0 && self.imageFixedSize.width > 0) {
                         //Height and Width both are fixed
@@ -108,7 +108,7 @@ open class CustomImageView: BaseUIView {
                     }
                 }
                 
-                var cContentMode:UIViewContentMode = self.contentMode;
+                var cContentMode:UIView.ContentMode = self.contentMode;
                 
                 //Respect for Right to left Handling
                 if ((self.respectContentRTL || self.respectRTL) && GISTUtility.isRTL) {
@@ -223,7 +223,7 @@ open class CustomImageView: BaseUIView {
     } //P.E.
     
     /// Overriden propert to get content mode changes.
-    override open var contentMode:UIViewContentMode {
+    override open var contentMode:UIView.ContentMode {
         get {
             return super.contentMode;
         }

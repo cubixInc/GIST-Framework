@@ -166,7 +166,7 @@ open class BaseUITextView: UITextView, BaseView {
                 
                 _lblPlaceholder!.textAlignment = self.textAlignment;
                 
-                _lblPlaceholder!.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight];
+                _lblPlaceholder!.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight];
                 
                 self.addSubview(_lblPlaceholder!);
                 
@@ -270,7 +270,7 @@ open class BaseUITextView: UITextView, BaseView {
     private func updatePlaceholderState() {
         //Checking if _lblPlaceholder is initialized or not
         if (_lblPlaceholder != nil) {
-            self.lblPlaceholder.isHidden = (self.text.characters.count > 0);
+            self.lblPlaceholder.isHidden = (self.text.count > 0);
         }
     } //F.E.
     
@@ -278,7 +278,7 @@ open class BaseUITextView: UITextView, BaseView {
     
     /// Adding observer for UITextView Text Change.
     private func addTextDidChangeObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeObserver), name: NSNotification.Name.UITextViewTextDidChange, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeObserver), name: UITextView.textDidChangeNotification, object: nil);
     } //F.E.
     
     /// Removing observer for UITextView.
@@ -287,6 +287,7 @@ open class BaseUITextView: UITextView, BaseView {
     } //F.E.
 
     /// Observer for text changes.
+    @objc
     internal func textDidChangeObserver(_ notification:Notification) {
         self.textViewDidChange();
     } //F.E.

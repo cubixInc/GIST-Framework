@@ -13,7 +13,7 @@ import UIKit
 // MARK: - UIImage extention for Utility methods and property
 public extension UIImage {
     
-    /// Scaling image with image size and ratating image to identity if orientation is other than UIImageOrientation.up
+    /// Scaling image with image size and ratating image to identity if orientation is other than UIImage.Orientation.up
     ///
     /// - Parameter maxSize: Maximum Image Size
     /// - Returns: Resized and Ratated UIImage
@@ -101,7 +101,7 @@ public extension UIImage {
         UIGraphicsBeginImageContext(bounds.size)
         let context = UIGraphicsGetCurrentContext()
         
-        if ori == UIImageOrientation.right || ori == UIImageOrientation.left {
+        if ori == UIImage.Orientation.right || ori == UIImage.Orientation.left {
             context!.scaleBy(x: -scaleRatio, y: scaleRatio)
             context!.translateBy(x: -height, y: 0.0)
         } else {
@@ -121,6 +121,6 @@ public extension UIImage {
     ///
     /// - Returns: mirrored image
     public func mirrored() -> UIImage {
-        return UIImage(cgImage: self.cgImage!, scale:self.scale , orientation: UIImageOrientation.upMirrored)
+        return UIImage(cgImage: self.cgImage!, scale:self.scale , orientation: UIImage.Orientation.upMirrored)
     } //F.E.
 } //CLS END

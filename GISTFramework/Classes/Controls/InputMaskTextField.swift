@@ -51,7 +51,7 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener,
         }
     }
     
-    private var _polyMaskTextFieldDelegate:PolyMaskTextFieldDelegate?;
+    private var _polyMaskTextFieldDelegate:MaskedTextFieldDelegate?;
     private var _maskPhoneTextFieldDelegate:MaskedPhoneTextFieldDelegate?;
     
     ///Maintainig Own delegate.
@@ -97,12 +97,12 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener,
             _maskPhoneTextFieldDelegate = nil;
             
             if (_polyMaskTextFieldDelegate == nil) {
-                _polyMaskTextFieldDelegate = PolyMaskTextFieldDelegate(format: mskFormate);
+                _polyMaskTextFieldDelegate = MaskedTextFieldDelegate(primaryFormat: mskFormate);
                 _polyMaskTextFieldDelegate!.listener = self;
                 
                 super.delegate = _polyMaskTextFieldDelegate;
             } else {
-                _polyMaskTextFieldDelegate!.maskFormat = mskFormate;
+                _polyMaskTextFieldDelegate!.primaryMaskFormat = mskFormate;
             }
         } else if maskPhone {
             
@@ -131,10 +131,10 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener,
     open func applyMaskFormat()  {
         let mask: Mask = try! Mask(format: self.maskFormat!)
         let input: String = self.text!
+        
         let result: Mask.Result = mask.apply(
             toText: CaretString(
-                string: input,
-                caretPosition: input.endIndex
+                string: input
             ),
             autocomplete: true // you may consider disabling autocompletion for your case
         )

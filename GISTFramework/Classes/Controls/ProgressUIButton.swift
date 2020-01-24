@@ -154,7 +154,7 @@ open class ProgressUIButton: BaseUIButton {
     } //F.E.
     
     private func triggerEvent() {
-        self.sendActions(for: UIControlEvents.touchUpInside);
+        self.sendActions(for: UIControl.Event.touchUpInside);
         
         self.unscheduleUpdater();
     } //F.E.
@@ -181,6 +181,7 @@ open class ProgressUIButton: BaseUIButton {
     } //F.E.
     
     /// Update methed called instantaneously when the bar is filling
+    @objc
     func update() {
         guard _timePassed < self.progressTime else {
             self.triggerEvent();

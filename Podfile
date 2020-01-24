@@ -6,11 +6,11 @@ target 'GISTFramework' do
     use_frameworks!
 
     # Pods for GISTFramework
-    pod 'UIColor_Hex_Swift', '~> 3.0.2'
-    pod 'PhoneNumberKit', '~> 1.3.0'
+    pod 'UIColor_Hex_Swift', '5.1.0'
+    pod 'PhoneNumberKit', '3.1.0'
 
-    pod 'AlamofireObjectMapper', '~> 4.1.0'
-    pod 'IQKeyboardManagerSwift', '~> 4.0.8'
-    pod 'InputMask', '~> 2.2.5'
-    pod 'AFDateHelper', '4.2.4'
+    pod 'AlamofireObjectMapper', '6.2.0'
+    pod 'IQKeyboardManagerSwift', '6.5.4'
+    pod 'InputMask', '5.0.0'
+    pod 'AFDateHelper', '4.3.0'
 end

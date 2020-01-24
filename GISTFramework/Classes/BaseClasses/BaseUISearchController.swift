@@ -121,7 +121,7 @@ open class BaseUISearchController: UISearchController {
     /// Inspectable property for search bar icon image.
     @IBInspectable open var searchBarIcon:UIImage? = nil {
         didSet {
-            self.searchBar.setImage(searchBarIcon, for: UISearchBarIcon.search, state: UIControlState());
+            self.searchBar.setImage(searchBarIcon, for: UISearchBar.Icon.search, state: UIControl.State());
         }
     }
     

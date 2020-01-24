@@ -25,7 +25,7 @@ open class GISTApplication: NSObject, UIApplicationDelegate {
     //MARK: - Properties
     
     /// Singleton sharedInstance for GISTApplication
-    open static var sharedInstance:GISTApplication = GISTApplication();
+    public static var sharedInstance:GISTApplication = GISTApplication();
     
     /// Registers delegate - it may hold more than one delegate.
     open var delegate:GISTApplicationDelegate? {

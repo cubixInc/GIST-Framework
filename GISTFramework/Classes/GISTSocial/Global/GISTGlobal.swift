@@ -47,6 +47,56 @@ public class GISTGlobal: NSObject {
         }
     } //P.E.
     
+    private var _accessToken:String?
+    public var accessToken:String? {
+       set {
+           _accessToken = newValue;
+
+           if _accessToken != nil {
+               UserDefaults.standard.set(_accessToken!, forKey: "ACCESS_TOKEN");
+               UserDefaults.standard.synchronize();
+           } else {
+               
+               self.accessTokenValidTill = nil;
+               self.userData = nil;
+
+               UserDefaults.standard.removeObject(forKey: "ACCESS_TOKEN")
+           }
+       }
+       
+       get {
+
+           if _accessToken == nil {
+               _accessToken = UserDefaults.standard.string(forKey: "ACCESS_TOKEN");
+           }
+           
+           return _accessToken;
+       }
+    } //P.E.
+    
+    private var _accessTokenValidTill:TimeInterval?
+    public var accessTokenValidTill:TimeInterval? {
+        set {
+            _accessTokenValidTill = newValue;
+            
+            if _accessTokenValidTill != nil {
+                UserDefaults.standard.set(_accessTokenValidTill!, forKey: "ACCESS_TOKEN_VALID_TILL");
+                UserDefaults.standard.synchronize();
+            } else {
+                UserDefaults.standard.removeObject(forKey: "ACCESS_TOKEN_VALID_TILL")
+            }
+        }
+        
+        get {
+            
+            if _accessTokenValidTill == nil {
+                _accessTokenValidTill = UserDefaults.standard.double(forKey: "ACCESS_TOKEN_VALID_TILL");
+            }
+            
+            return _accessTokenValidTill;
+        }
+    } //P.E.
+    
     private var _hasAskedForApnsPermission:Bool?
     public var hasAskedForApnsPermission:Bool {
         get {

@@ -97,7 +97,7 @@ open class CustomUIButton: BaseUIButton {
     
     /**
      Calculated frame of button image view.
-     It uses UIButton native UIViewContentMode to calculate frames.
+     It uses UIButton native UIView.ContentMode to calculate frames.
      */
     open var imageViewFrame:CGRect {
         get {
@@ -131,7 +131,7 @@ open class CustomUIButton: BaseUIButton {
             
             let offSetFix:CGPoint = self.offSetFixPoint;
             
-            var cContentMode:UIViewContentMode = self.contentMode;
+            var cContentMode:UIView.ContentMode = self.contentMode;
             
             //Respect for Right to left Handling
             if ((self.respectContentRTL || self.respectRTL) && GISTUtility.isRTL) {
@@ -290,7 +290,7 @@ open class CustomUIButton: BaseUIButton {
     } //F.E.
     
     /// Overriden propert to get content mode changes.
-    override open var contentMode:UIViewContentMode {
+    override open var contentMode:UIView.ContentMode {
         get {
             return super.contentMode;
         }

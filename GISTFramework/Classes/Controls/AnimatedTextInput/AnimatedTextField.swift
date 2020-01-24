@@ -15,10 +15,10 @@ class AnimatedTextField: UITextField {
     var rightViewPadding: CGFloat
     weak public var textInputDelegate: TextInputDelegate?
 
-    public var textAttributes: [String: Any]?
+    public var textAttributes: [NSAttributedString.Key: Any]?
     public var contentInset: UIEdgeInsets = .zero
 
-    fileprivate var disclosureButtonAction: ((Void) -> Void)?
+    fileprivate var disclosureButtonAction: (() -> Void)?
 
     override init(frame: CGRect) {
         self.rightViewPadding = defaultPadding
@@ -43,7 +43,8 @@ class AnimatedTextField: UITextField {
     }
     
     @discardableResult override public func becomeFirstResponder() -> Bool {
-        if let alignment = (textAttributes?[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle)?.alignment {
+        //NSParagraphStyleAttributeName
+        if let alignment = (textAttributes?[NSAttributedString.Key.paragraphStyle] as? NSMutableParagraphStyle)?.alignment {
             textAlignment = alignment
         }
         return super.becomeFirstResponder()
@@ -81,7 +82,7 @@ class AnimatedTextField: UITextField {
                       height: bounds.height - contentInset.top - contentInset.bottom)
     }
 
-    func add(disclosureButton button: UIButton, action: @escaping ((Void) -> Void)) {
+    func add(disclosureButton button: UIButton, action: @escaping (() -> Void)) {
         let selector = #selector(disclosureButtonPressed)
         if disclosureButtonAction != nil, let previousButton = rightView as? UIButton {
             previousButton.removeTarget(self, action: selector, for: .touchUpInside)
@@ -109,7 +110,7 @@ extension AnimatedTextField: TextInput {
         return position(from: from, offset: offset)
     }
     
-    public func changeClearButtonMode(with newClearButtonMode: UITextFieldViewMode) {
+    public func changeClearButtonMode(with newClearButtonMode: UITextField.ViewMode) {
         clearButtonMode = newClearButtonMode
     }
 

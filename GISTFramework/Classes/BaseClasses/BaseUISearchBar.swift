@@ -44,7 +44,7 @@ open class BaseUISearchBar: UISearchBar, BaseView {
     @IBInspectable open var placeholderColor:String? = nil {
         didSet {
             if let plcHolder:String = self.placeholder, let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
-                self.textField?.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSForegroundColorAttributeName: color]);
+                self.textField?.attributedPlaceholder = NSAttributedString(string:plcHolder, attributes: [NSAttributedString.Key.foregroundColor: color]);
             }
         }
     } //P.E.
@@ -136,21 +136,21 @@ open class BaseUISearchBar: UISearchBar, BaseView {
     /// Inspectable propery for Search bar icon.
     @IBInspectable open var searchBarIcon:UIImage? = nil {
         didSet {
-            self.setImage(searchBarIcon, for: UISearchBarIcon.search, state: UIControlState.normal);
+            self.setImage(searchBarIcon, for: UISearchBar.Icon.search, state: UIControl.State.normal);
         }
     } //P.E.
     
     /// Inspectable propery for Search bar icon.
     @IBInspectable open var clearBtnIcon:UIImage? = nil {
         didSet {
-            self.setImage(clearBtnIcon, for: UISearchBarIcon.clear, state: UIControlState.normal);
+            self.setImage(clearBtnIcon, for: UISearchBar.Icon.clear, state: UIControl.State.normal);
         }
     } //P.E.
     
     /// Inspectable propery for Search bar icon.
     @IBInspectable open var searchFieldBgImage:UIImage? = nil {
         didSet {
-            self.setSearchFieldBackgroundImage(searchFieldBgImage, for: UIControlState.normal);
+            self.setSearchFieldBackgroundImage(searchFieldBgImage, for: UIControl.State.normal);
         }
     } //P.E.
     
@@ -182,7 +182,7 @@ open class BaseUISearchBar: UISearchBar, BaseView {
             }
             
             if let colorStyl:String = placeholderColor, let color:UIColor = SyncedColors.color(forKey: colorStyl) {
-                self.textField?.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSForegroundColorAttributeName: color]);
+                self.textField?.attributedPlaceholder = NSAttributedString(string:newPlaceHolder, attributes: [NSAttributedString.Key.foregroundColor: color]);
             } else {
                 super.placeholder = newPlaceHolder;
             }

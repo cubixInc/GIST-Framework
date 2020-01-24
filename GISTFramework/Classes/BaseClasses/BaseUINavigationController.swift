@@ -38,9 +38,9 @@ open class BaseUINavigationController: UINavigationController {
      /// Font name key from Sync Engine.
     @IBInspectable open var fontName:String = GIST_CONFIG.fontName {
         didSet {
-            var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
+            var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedString.Key : Any]()
              
-            attrDict[NSFontAttributeName] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            attrDict[NSAttributedString.Key.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             
             self.navigationBar.titleTextAttributes = attrDict;
         }
@@ -49,9 +49,9 @@ open class BaseUINavigationController: UINavigationController {
     /// Font size/style key from Sync Engine.
     @IBInspectable open var fontStyle:String = GIST_CONFIG.fontStyle {
         didSet {
-            var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
+            var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedString.Key : Any]()
              
-            attrDict[NSFontAttributeName] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+            attrDict[NSAttributedString.Key.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
             
             self.navigationBar.titleTextAttributes = attrDict;
         }
@@ -60,9 +60,9 @@ open class BaseUINavigationController: UINavigationController {
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColor:String? = nil {
         didSet {
-            var attrDict:[String : Any] = self.navigationBar.titleTextAttributes ?? [String : Any]();
+            var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.titleTextAttributes ?? [NSAttributedString.Key : Any]();
              
-            attrDict[NSForegroundColorAttributeName] = SyncedColors.color(forKey: fontColor);
+            attrDict[NSAttributedString.Key.foregroundColor] = SyncedColors.color(forKey: fontColor);
             
             self.navigationBar.titleTextAttributes = attrDict;
         }
@@ -97,8 +97,6 @@ open class BaseUINavigationController: UINavigationController {
         }
     } //P.E.
     
-    private var _lastSyncedDate:String?
-    
     //MARK: - Constructors
     
     /// Overridden constructor to setup/ initialize components.
@@ -128,8 +126,6 @@ open class BaseUINavigationController: UINavigationController {
     /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
-         
-         _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
 
     /// Overridden method to receive memory warning.
@@ -142,8 +138,8 @@ open class BaseUINavigationController: UINavigationController {
     /// Updating the appearance of Navigation Bar.
     private func updateAppearance() {
         //Update Font
-        var attrDict:[String : Any] = self.navigationBar.titleTextAttributes  ?? [String : Any]()
-        attrDict[NSFontAttributeName] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
+        var attrDict:[NSAttributedString.Key : Any] = self.navigationBar.titleTextAttributes  ?? [NSAttributedString.Key : Any]()
+        attrDict[NSAttributedString.Key.font] = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         self.navigationBar.titleTextAttributes = attrDict;
         
@@ -162,19 +158,5 @@ open class BaseUINavigationController: UINavigationController {
         }
         
     } //F.E.
-    
-    /// Recursive update of layout and content from Sync Engine.
-    @discardableResult func updateSyncedData() -> Bool {
-        if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
-            _lastSyncedDate = syncedDate;
-             
-            
-            //Update preference
-            self.updateAppearance();
-            
-            return true;
-        } else {
-            return false;
-        }
-    } //F.E.
-} //F.E.
+
+} //CLS END

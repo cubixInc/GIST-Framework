@@ -41,9 +41,26 @@ open class SyncEngine: NSObject {
         return urls[urls.count-1]
     }();
     
+    private var _versionNumber:String?
+    private var versionNumber:String {
+        get {
+            if (_versionNumber == nil) {
+                _versionNumber = AppInfo.versionNBuildNumber;
+            }
+            
+            return _versionNumber!;
+        }
+    }
+    
+    private var syncedFolderUrl: URL {
+        get {
+            return self.applicationDocumentsDirectory.appendingPathComponent("\(self.versionNumber)");
+        }
+    }
+    
     private var syncedFileUrl: URL {
         get {
-            return self.applicationDocumentsDirectory.appendingPathComponent("\(self.syncedFile + self._languageCode).plist");
+            return self.syncedFolderUrl.appendingPathComponent("\(self.syncedFile + self._languageCode).plist");
         }
     }
     
@@ -57,13 +74,16 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
-    /// Holds Last Synced Server Data
+    /*
+    
     open static var lastSyncedServerDate:String? {
         get {
             return SyncEngine.sharedInstance.lastSyncedServerDate;
         }
     } //P.E.
+    */
     
+    /// Holds Last Synced Server Data
     private var lastSyncedServerDate:String? {
         get {
             return UserDefaults.standard.object(forKey: "LAST_SYNCED_SERVER_DATE" + _languageCode) as? String;
@@ -86,6 +106,14 @@ open class SyncEngine: NSObject {
         }
     } //P.E.
     
+    public static var hasSyncDataUpdated:Bool {
+        get {
+            return SyncEngine.sharedInstance.hasSyncDataUpdated;
+        }
+    } //P.E.
+    
+    private var hasSyncDataUpdated:Bool = false;
+    
     //MARK: - Constructors
     
     override init() {
@@ -101,8 +129,8 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    public static func initialize(_ urlToSync:String, authorizationHandler: @autoclosure @escaping ()->(name:String, password:String)) {
-        SyncEngine.sharedInstance.initialize(urlToSync, authorizationHandler: authorizationHandler);
+    public static func initialize(_ serverBaseURL:URL, requestName:String?, headers:[String:String]?) {
+        SyncEngine.sharedInstance.initialize(serverBaseURL, requestName:requestName, headers: headers);
     } //F.E.
     
     /// Initializer for Sync Engine.
@@ -110,19 +138,19 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - urlToSync: Http request url for Sync data
     ///   - authentication: Authentication Header if any
-    private func initialize(_ urlToSync:String, authorizationHandler:(()->(name:String, password:String))?) {
-        _urlToSync = URL(string: urlToSync);
+    private func initialize(_ serverBaseURL:URL, requestName:String?, headers:[String:String]?) {
+        _urlToSync = serverBaseURL.appendingPathComponent(requestName ?? "se/get_all");
         
         //Adding Language Key
         _headers["language"] = GIST_CONFIG.currentLanguageCode;
         
         //Security Headers
-        if let authHeader = authorizationHandler?(), let data = "\(authHeader.name):\(authHeader.password)".data(using: .utf8) {
-            
-            let credential = data.base64EncodedString(options: [])
-            
-            _headers["Authorization"] = "Basic \(credential)";
+        if let dictHeaders:[String:String] = headers {
+            for header in dictHeaders {
+                _headers[header.key] = header.value;
+            }
         }
+        
     } //F.E.
     
     private func setupSyncedFile() {
@@ -137,15 +165,26 @@ open class SyncEngine: NSObject {
                 _languageCode = "";
             }
              
+            //If Folder does not exist
+            if (FileManager.default.fileExists(atPath: self.syncedFolderUrl.path) == false) {
+                do {
+                    try FileManager.default.createDirectory(at: self.syncedFolderUrl, withIntermediateDirectories: true, attributes: nil)
+                } catch  {
+                    let error = error as NSError
+                    NSLog("Unresolved error \(error), \(error.userInfo)")
+                    abort()
+                }
+            }
+            
             //If File does not exist
             if (FileManager.default.fileExists(atPath: self.syncedFileUrl.path) == false) {
                 do {
                     try FileManager.default.copyItem(at: URL(fileURLWithPath: syncedFileUrlRes), to: syncedFileUrl);
-                     
+                    
                     hasToSync = false; // NO Sync required, if new file created
                 } catch  {
-                    let nserror = error as NSError
-                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                    let error = error as NSError
+                    NSLog("Unresolved error \(error), \(error.userInfo)")
                     abort()
                 }
             }
@@ -157,7 +196,7 @@ open class SyncEngine: NSObject {
         
         
         //Fetching Data
-        _dictData = NSMutableDictionary(contentsOf: self.syncedFileUrl);//NSDictionary(contentsOfURL: self.syncedFileUrl);
+        _dictData = NSMutableDictionary(contentsOf: self.syncedFileUrl);
         
         if (hasToSync) {
             #if DEBUG
@@ -195,11 +234,11 @@ open class SyncEngine: NSObject {
     /// - Parameters:
     ///   - anObject: A SyncEngine object
     ///   - aKey: A key of SyncEngine
-    public class func syncObject(_ anObject: AnyObject, forKey aKey: String) {
+    public class func syncObject(_ anObject: Any, forKey aKey: String) {
         return self.sharedInstance.syncObject(anObject, forKey:aKey);
     } //F.E.
     
-    internal func syncObject(_ anObject: AnyObject, forKey aKey: String) {
+    internal func syncObject(_ anObject: Any, forKey aKey: String) {
         if (_isCustomData) {
             self.syncForCustomData([aKey:anObject]);
         } else {
@@ -314,7 +353,7 @@ open class SyncEngine: NSObject {
             
             print("Not initialized or invalid url path is provided; Call/Check SyncEngine.initialize(:) in application(didFinishLaunchingWithOptions:)");
             
-            abort();
+            return;
         }
         
         if self.hasSyncThresholdTimePassed {
@@ -355,10 +394,13 @@ open class SyncEngine: NSObject {
                         let message:String? = dictData["message"] as? String;
                         
                         //If Has data and no error ... !
-                        if let resData:NSDictionary = dictData["data"] as? NSDictionary , error == 0{
+                        if let resData:NSDictionary = dictData["data"] as? NSDictionary , error == 0, resData.count > 0 {
+                            
+                            self.hasSyncDataUpdated = true;
+                            
                             self.syncForServerData(resData);
                         } else {
-                            print("message : \(message)");
+                            print("message : \(String(describing: message))");
                         }
                     }
                 }
@@ -366,7 +408,7 @@ open class SyncEngine: NSObject {
                     print("INVALID JSON");
                 }
             } else {
-                print("Error : \(error?.localizedDescription)");
+                print("Error : \(String(describing: error?.localizedDescription))");
             }
         }.resume();
     } //F.E.
@@ -442,7 +484,18 @@ open class SyncEngine: NSObject {
                 languageCode = "-" + GIST_CONFIG.currentLanguageCode;
             }
             
-            let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(aKey+languageCode).plist");
+            //If Folder does not exist
+            if (FileManager.default.fileExists(atPath: self.syncedFolderUrl.path) == false) {
+                do {
+                    try FileManager.default.createDirectory(at: self.syncedFolderUrl, withIntermediateDirectories: true, attributes: nil)
+                } catch  {
+                    let error = error as NSError
+                    NSLog("Unresolved error \(error), \(error.userInfo)")
+                    abort()
+                }
+            }
+            
+            let url:URL = self.syncedFolderUrl.appendingPathComponent("\(aKey+languageCode).plist");
              
             var isFileExist:Bool = FileManager.default.fileExists(atPath: url.path);
             
@@ -506,8 +559,8 @@ open class SyncEngine: NSObject {
                 //Localization
                 languageCode = "-" + GIST_CONFIG.currentLanguageCode;
             }
-            //-
-            let url:URL = self.applicationDocumentsDirectory.appendingPathComponent("\(key+languageCode).plist");
+            
+            let url:URL = self.syncedFolderUrl.appendingPathComponent("\(key + languageCode).plist");
             _ = nValue.write(to: url, atomically: true);
         }
         

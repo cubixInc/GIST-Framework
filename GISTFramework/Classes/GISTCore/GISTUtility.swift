@@ -229,7 +229,7 @@ public class GISTUtility: NSObject {
             return false;
         }
         
-        for chr in text!.characters {
+        for chr in text! {
             if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
                 return false
             }

@@ -92,14 +92,14 @@ open class BaseUIButton: UIButton, BaseView {
     /// Font color key from Sync Engine.
     @IBInspectable open var fontColorStyle:String? = nil {
         didSet {
-            self.setTitleColor(SyncedColors.color(forKey: fontColorStyle), for: UIControlState.normal);
+            self.setTitleColor(SyncedColors.color(forKey: fontColorStyle), for: UIControl.State.normal);
         }
     } //P.E.
     
     /// Selected state font color key from Sync Engine.
     @IBInspectable open var fontSelectedColorStyle:String? = nil {
         didSet {
-            self.setTitleColor(SyncedColors.color(forKey: fontSelectedColorStyle), for: UIControlState.selected);
+            self.setTitleColor(SyncedColors.color(forKey: fontSelectedColorStyle), for: UIControl.State.selected);
         }
     } //P.E.
     
@@ -107,7 +107,7 @@ open class BaseUIButton: UIButton, BaseView {
         didSet {
             if (respectRTL != oldValue && self.respectRTL && GISTUtility.isRTL) {
                 
-                let states:[UIControlState] = [.normal, .selected, .highlighted, .disabled]
+                let states:[UIControl.State] = [.normal, .selected, .highlighted, .disabled]
                 
                 for state in states {
                     if let img = self.image(for: state) {
@@ -179,7 +179,7 @@ open class BaseUIButton: UIButton, BaseView {
     /// - Parameters:
     ///   - title: Button Title
     ///   - state: Button State
-    override open func setTitle(_ title: String?, for state: UIControlState) {
+    override open func setTitle(_ title: String?, for state: UIControl.State) {
         if let key:String = title , key.hasPrefix("#") == true{
             _titleKeys[state.rawValue] = key;  // holding key for using later
             super.setTitle(SyncedText.text(forKey: key), for: state);
@@ -188,7 +188,7 @@ open class BaseUIButton: UIButton, BaseView {
         }
     } //F.E.
     
-    open override func setImage(_ image: UIImage?, for state: UIControlState) {
+    open override func setImage(_ image: UIImage?, for state: UIControl.State) {
         super.setImage( (self.respectRTL && GISTUtility.isRTL) ? image?.mirrored() : image, for: state)
     } //F.E.
     
@@ -201,7 +201,7 @@ open class BaseUIButton: UIButton, BaseView {
         self.titleLabel?.font = UIFont.font(fontName, fontStyle: fontStyle, sizedForIPad: self.sizeForIPad);
         
         //Updating text with synced data
-        let states:[UIControlState] = [.normal, .selected, .highlighted, .disabled]
+        let states:[UIControl.State] = [.normal, .selected, .highlighted, .disabled]
         
         for state in states {
             // Assigning again to set value from synced data
@@ -242,7 +242,7 @@ open class BaseUIButton: UIButton, BaseView {
         
         for i:UInt in _titleKeys.keys {
             if let key:String = _titleKeys[i] {
-              self.setTitle(key, for: UIControlState(rawValue: i));
+                self.setTitle(key, for: UIControl.State(rawValue: i));
             }
         }
     } //F.E.

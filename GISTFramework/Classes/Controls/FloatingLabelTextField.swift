@@ -253,6 +253,7 @@ open class FloatingLabelTextField: ValidatedTextField {
     /**
      Invoked when the editing state of the textfield changes. Override to respond to this change.
      */
+    @objc
     open func editingChanged() {
         self.updateControl(true);
         self.updateTitleLabel(true);
@@ -434,7 +435,7 @@ open class FloatingLabelTextField: ValidatedTextField {
             self.titleLabel.frame = frame
         }
         if animated {
-            let animationOptions:UIViewAnimationOptions = .curveEaseOut;
+            let animationOptions:UIView.AnimationOptions = .curveEaseOut;
             let duration = self.isTitleVisible() ? titleFadeInDuration : titleFadeOutDuration
             
             UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: { () -> Void in

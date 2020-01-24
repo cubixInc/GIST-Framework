@@ -19,8 +19,6 @@ open class BaseUITableViewController: UITableViewController {
     private var _hasBackButton:Bool = true;
     private var _hasForcedBackButton = false;
     
-    private var _lastSyncedDate:String?
-    
     private var _titleKey:String?;
     
     /// Overriden title property to set title from SyncEngine (Hint '#' prefix).
@@ -82,8 +80,6 @@ open class BaseUITableViewController: UITableViewController {
     /// Overridden method to setup/ initialize components.
     override open func viewDidLoad() {
         super.viewDidLoad();
-         
-        _lastSyncedDate = SyncEngine.lastSyncedServerDate;
     } //F.E.
     
     /// Overridden method to setup/ initialize components.
@@ -91,7 +87,6 @@ open class BaseUITableViewController: UITableViewController {
         super.viewWillAppear(animated);
          
         self.setupBackBtn();
-        self.updateSyncedData();
     }//F.E.
     
     //MARK: - Methods
@@ -102,7 +97,7 @@ open class BaseUITableViewController: UITableViewController {
             if (self.navigationItem.leftBarButtonItem == nil && (_hasForcedBackButton || (self.navigationController != nil && (self.navigationController!.viewControllers as NSArray).count > 1))) {
                 self.navigationItem.hidesBackButton = true;
                  
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonTapped));
+                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: self.backBtnImageName), style:UIBarButtonItem.Style.plain, target: self, action: #selector(backButtonTapped));
             }
         }
     } //F.E.
@@ -111,6 +106,7 @@ open class BaseUITableViewController: UITableViewController {
     //MARK: - Methods
     
     ///Setting up custom back button.
+    @objc
     open func backButtonTapped() {
         self.view.endEditing(true);
         
@@ -121,23 +117,5 @@ open class BaseUITableViewController: UITableViewController {
         }
     } //F.E.
     
-    /// Recursive update of layout and content from Sync Engine.
-    @discardableResult func updateSyncedData() -> Bool {
-        if let syncedDate:String = SyncEngine.lastSyncedServerDate , syncedDate != _lastSyncedDate {
-            _lastSyncedDate = syncedDate;
-             
-            if _titleKey != nil {
-                self.title = _titleKey;
-            }
-             
-            self.view.updateSyncedData();
-            
-            (self.navigationController as? BaseUINavigationController)?.updateSyncedData();
-            
-            return true;
-        } else {
-            return false;
-        }
-    } //F.E.
 
 } //CLS END

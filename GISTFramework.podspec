@@ -99,7 +99,7 @@ Pod::Spec.new do |s|
   s.subspec 'GISTCore' do |sp|
     sp.source_files = 'GISTFramework/Classes/GISTCore/**/*.{swift}'
 
-    sp.dependency 'PhoneNumberKit', '~> 1.2.2'
+    sp.dependency 'PhoneNumberKit', '3.1.0'
   end
 
   s.subspec 'BaseClasses' do |sp|
@@ -115,7 +115,7 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/BaseClasses'
     sp.dependency 'GISTFramework/Extentions'
     sp.dependency 'GISTFramework/SyncEngine'
-    sp.dependency 'InputMask', '~> 2.2.5'
+    sp.dependency 'InputMask', '5.0.0'
   end
 
   s.subspec 'Extentions' do |sp|
@@ -127,7 +127,7 @@ Pod::Spec.new do |s|
   s.subspec 'SyncEngine' do |sp|
     sp.source_files = 'GISTFramework/Classes/SyncEngine/**/*.{swift}'
     sp.dependency 'GISTFramework/GISTCore'
-    sp.dependency 'UIColor_Hex_Swift', '~> 3.0.2'
+    sp.dependency 'UIColor_Hex_Swift', '5.1.0'
   end
 
   s.subspec 'GISTSocial' do |sp|
@@ -139,9 +139,9 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/Controls'
     sp.dependency 'GISTFramework/SyncEngine'
 
-    sp.dependency 'AlamofireObjectMapper', '~> 4.1.0'
-    sp.dependency 'IQKeyboardManagerSwift', '~> 4.0.9'
-    sp.dependency 'AFDateHelper', '4.2.4'
+    sp.dependency 'AlamofireObjectMapper', '6.2.0'
+    sp.dependency 'IQKeyboardManagerSwift', '6.5.4'
+    sp.dependency 'AFDateHelper', '4.3.0'
   end
 
   s.pod_target_xcconfig = {

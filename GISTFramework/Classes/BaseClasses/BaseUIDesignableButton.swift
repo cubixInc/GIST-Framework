@@ -76,7 +76,7 @@ open class BaseUIDesignableButton: BaseUIButton {
         _view.frame = bounds;
         
         // Make the view stretch with containing view
-        _view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight];
+        _view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight];
         
         // Adding custom subview on top of our view
         self.addSubview(_view);

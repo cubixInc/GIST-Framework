@@ -149,7 +149,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     ///
     /// - Parameter reuseIdentifier: Reuse identifier
     public convenience init(reuseIdentifier: String?) {
-        self.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier);
+        self.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: reuseIdentifier);
     } //F.E.
     
     /// Overridden constructor to setup/ initialize components.
@@ -157,10 +157,10 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     /// - Parameters:
     ///   - style: Table View Cell Style
     ///   - reuseIdentifier: Reuse identifier
-    override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
          
-        self.selectionStyle = UITableViewCellSelectionStyle.none;
+        self.selectionStyle = UITableViewCell.SelectionStyle.none;
          
         self.commonInit();
     } //F.E.
@@ -207,7 +207,7 @@ open class BaseUITableViewCell: UITableViewCell, BaseView {
     
     /// A common initializer to setup/initialize sub components.
     private func commonInit() {
-        self.selectionStyle = UITableViewCellSelectionStyle.none;
+        self.selectionStyle = UITableViewCell.SelectionStyle.none;
          
         self.contentView.backgroundColor  = UIColor.clear;
         

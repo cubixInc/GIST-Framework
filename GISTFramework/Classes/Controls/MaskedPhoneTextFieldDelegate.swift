@@ -108,7 +108,7 @@ open class MaskedPhoneTextFieldDelegate: NSObject, UITextFieldDelegate {
         var formattedNationalNumber = "";
         
         if let inputTxt = _textField.text {
-            let filteredCharacters = inputTxt.characters.filter {
+            let filteredCharacters = inputTxt.filter {
                 return  String($0).rangeOfCharacter(from: self.nonNumericSet as CharacterSet) == nil
             }
             
@@ -197,7 +197,7 @@ open class MaskedPhoneTextFieldDelegate: NSObject, UITextFieldDelegate {
         let changedRange = textAsNSString.substring(with: range) as NSString
         let modifiedTextField = textAsNSString.replacingCharacters(in: range, with: string)
         
-        let filteredCharacters = modifiedTextField.characters.filter {
+        let filteredCharacters = modifiedTextField.filter {
             return  String($0).rangeOfCharacter(from: self.nonNumericSet as CharacterSet) == nil
         }
         let rawNumberString = String(filteredCharacters)

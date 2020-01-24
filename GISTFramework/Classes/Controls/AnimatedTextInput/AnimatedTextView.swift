@@ -2,7 +2,7 @@ import UIKit
 
 final class AnimatedTextView: UITextView {
 
-    public var textAttributes: [String: Any]? {
+    public var textAttributes: [NSAttributedString.Key: Any]? {
         didSet {
             guard let attributes = textAttributes else { return }
             typingAttributes = attributes
@@ -12,7 +12,7 @@ final class AnimatedTextView: UITextView {
     public override var font: UIFont? {
         didSet {
             var attributes = typingAttributes
-            attributes[NSFontAttributeName] = font
+            attributes[NSAttributedString.Key.font] = font
             textAttributes = attributes
         }
     }
@@ -61,7 +61,7 @@ extension AnimatedTextView: TextInput {
         return position(from: from, offset: offset)
     }
     
-    public func changeClearButtonMode(with newClearButtonMode: UITextFieldViewMode) {}
+    public func changeClearButtonMode(with newClearButtonMode: UITextField.ViewMode) {}
     
 }
 

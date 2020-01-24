@@ -281,9 +281,9 @@ public class GISTAuth<T:GISTUser>: NSObject {
             let imgData:Data;
             
             if (rawImage.size.width > 400 || rawImage.size.height > 400) {
-                imgData = UIImageJPEGRepresentation(rawImage.scaleAndRotateImage(400), 100)!;
+                imgData = rawImage.scaleAndRotateImage(400).jpegData(compressionQuality: 100)!;
             } else {
-                imgData = UIImageJPEGRepresentation(rawImage, 90)!;
+                imgData = rawImage.jpegData(compressionQuality: 90)!;
             }
             
             uParams["raw_image"] = imgData;

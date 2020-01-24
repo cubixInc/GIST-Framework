@@ -158,13 +158,13 @@ open class PopoverControllerView: BaseUIView {
         //ContainerView
         _containerView = UIView(frame: containtViewRect);
         _containerView.backgroundColor = UIColor.clear;
-        _containerView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth];
+        _containerView.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth];
         _containerView.addRoundedCorners(6);
         
         self.addSubview(_containerView);
         
         _contentView!.frame = CGRect(x: 0, y: 0, width: containtViewRect.width, height: containtViewRect.height);
-        _contentView!.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth];
+        _contentView!.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth];
         _containerView.addSubview(_contentView!);
         
         //Arrow
@@ -199,6 +199,7 @@ open class PopoverControllerView: BaseUIView {
         }
     } //F.E.
     
+    @objc
     func backgroundViewTapped(_ gestureRecognizer:UITapGestureRecognizer) {
         self.dismissPopoverAnimated(true);
     } //F.E.

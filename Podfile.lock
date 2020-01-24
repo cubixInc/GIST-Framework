@@ -1,38 +1,49 @@
 PODS:
-  - AFDateHelper (4.2.2)
-  - Alamofire (4.5.0)
-  - AlamofireObjectMapper (4.1.0):
-    - Alamofire (~> 4.1)
-    - ObjectMapper (~> 2.0)
-  - InputMask (2.2.5)
-  - IQKeyboardManagerSwift (4.0.10)
-  - ObjectMapper (2.2.8)
-  - PhoneNumberKit (1.3.0):
-    - PhoneNumberKit/PhoneNumberKitCore (= 1.3.0)
-    - PhoneNumberKit/UIKit (= 1.3.0)
-  - PhoneNumberKit/PhoneNumberKitCore (1.3.0)
-  - PhoneNumberKit/UIKit (1.3.0):
+  - AFDateHelper (4.3.0)
+  - Alamofire (5.0.0-rc.2)
+  - AlamofireObjectMapper (6.2.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - ObjectMapper (~> 3.5.1)
+  - InputMask (5.0.0)
+  - IQKeyboardManagerSwift (6.5.4)
+  - ObjectMapper (3.5.1)
+  - PhoneNumberKit (3.1.0):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.1.0)
+    - PhoneNumberKit/UIKit (= 3.1.0)
+  - PhoneNumberKit/PhoneNumberKitCore (3.1.0)
+  - PhoneNumberKit/UIKit (3.1.0):
     - PhoneNumberKit/PhoneNumberKitCore
-  - UIColor_Hex_Swift (3.0.2)
+  - UIColor_Hex_Swift (5.1.0)
 
 DEPENDENCIES:
-  - AFDateHelper (~> 4.2.2)
-  - AlamofireObjectMapper (~> 4.1.0)
-  - InputMask (~> 2.2.5)
-  - IQKeyboardManagerSwift (~> 4.0.8)
-  - PhoneNumberKit (~> 1.3.0)
-  - UIColor_Hex_Swift (~> 3.0.2)
+  - AFDateHelper (= 4.3.0)
+  - AlamofireObjectMapper (= 6.2.0)
+  - InputMask (= 5.0.0)
+  - IQKeyboardManagerSwift (= 6.5.4)
+  - PhoneNumberKit (= 3.1.0)
+  - UIColor_Hex_Swift (= 5.1.0)
+
+SPEC REPOS:
+  trunk:
+    - AFDateHelper
+    - Alamofire
+    - AlamofireObjectMapper
+    - InputMask
+    - IQKeyboardManagerSwift
+    - ObjectMapper
+    - PhoneNumberKit
+    - UIColor_Hex_Swift
 
 SPEC CHECKSUMS:
-  AFDateHelper: 0f9588a442b4d7ef862568ae5d40ab883672efb5
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
-  InputMask: fe1da1c6bf39133d88c1f79c507bcb0bf7728d51
-  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
-  ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
-  PhoneNumberKit: 08aaf1968ea41a114327e9223cbb0391d76ae145
-  UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
+  AFDateHelper: b769c07d3d4784ee9a74633285304261bb27dc52
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
+  InputMask: 8a10dbc8ac3f94f0a5b4c380424bbe6795c69b16
+  IQKeyboardManagerSwift: 2dde0fc70110e8eac7ccce2a46fdbec6a850b414
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  PhoneNumberKit: adffe4e128af1918386e09e7421d3d851a2987af
+  UIColor_Hex_Swift: 8be7432edacb7fa91c78aa05ef3c30b66e4f9415
 
-PODFILE CHECKSUM: b1d0a83163d961416d06ca891a4ccb29b135642c
+PODFILE CHECKSUM: cb474924ba1f68c89353f3e82827b12dc7a7fcd4
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.8.4
