@@ -140,6 +140,14 @@ open class AnimatedTextInput: UIControl, BaseView, TextInputDelegate {
         }
     }
     
+    open var rightViewMode: UITextField.ViewMode = .never {
+        didSet {
+             if let animatedTextField:AnimatedTextField = self.textInput as? AnimatedTextField {
+                 animatedTextField.rightViewMode = rightViewMode;
+             }
+        }
+    }
+    
     /// Parameter key for service - Default Value is nil
     @IBInspectable open var paramKey:String?;
     
