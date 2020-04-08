@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "5.1.1"
-  s.summary      = "GISTFramework is bottom architecture layour of iOS apps."
+  s.version      = "5.1.2"
+  s.summary      = "GISTFramework is bottom architecture layer of iOS apps."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
