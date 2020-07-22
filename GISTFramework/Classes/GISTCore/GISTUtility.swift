@@ -138,7 +138,7 @@ public class GISTUtility: NSObject {
          (height/736.0)
          */
         
-        if (GISTUtility.isIPad && !sizedForIPad) {
+        if (GISTConfig.shared.convertToRatio == false || (GISTUtility.isIPad && !sizedForIPad)) {
             return value;
         }
         

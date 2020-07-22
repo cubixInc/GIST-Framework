@@ -152,9 +152,10 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
         let input: String = self.text!
         let result: Mask.Result = mask.apply(
             toText: CaretString(
-                string: input
-            ),
-            autocomplete: true // you may consider disabling autocompletion for your case
+                string: input,
+                caretPosition: input.endIndex,
+                caretGravity: CaretString.CaretGravity.forward(autocomplete: true)
+            )
         )
         
         self.isValidMask = result.complete;

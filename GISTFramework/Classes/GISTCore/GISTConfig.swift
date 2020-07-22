@@ -28,6 +28,7 @@ public class GISTConfig: NSObject {
     
     public var seperatorWidth:CGFloat = 1.0 / UIScreen.main.scale;//0.5;
     
+    public var convertToRatio:Bool = true;
     public var sizeForIPad:Bool = true;
     public var sizeForNavi:Bool = false;
     
