@@ -23,14 +23,22 @@ public var REACHABILITY_HELPER:ReachabilityHelper {
 
 public class ReachabilityHelper: NSObject {
     
-    fileprivate var _window: UIWindow!
+    private var window: UIWindow? {
+        get {
+            return (UIApplication.shared.connectedScenes.first?.delegate as? BaseSceneDelegate)?.window;
+        }
+    }
+    
+    private var statusBarFrameHeight:CGFloat {
+        return self.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0;
+    }
     
     static var sharedInstance: ReachabilityHelper = ReachabilityHelper();
     
-    fileprivate var _reachability:NetworkReachabilityManager?;
+    private var _reachability:NetworkReachabilityManager?;
     
-    fileprivate var _internetConnected:Bool = false;
-    fileprivate var internetConnected:Bool {
+    private var _internetConnected:Bool = false;
+    private var internetConnected:Bool {
         get {
             return _internetConnected;
         }
@@ -59,7 +67,7 @@ public class ReachabilityHelper: NSObject {
         get {
             
             if (_internetConnectionLbl == nil) {
-                let statusBarHeight:CGFloat = UIApplication.shared.statusBarFrame.height;
+                let statusBarHeight:CGFloat = self.statusBarFrameHeight;
                 let btnSize:CGSize = CGSize(width: UIScreen.main.bounds.width, height: 44 + statusBarHeight);
                 
                 _internetConnectionLbl = BaseUIButton();
@@ -77,7 +85,7 @@ public class ReachabilityHelper: NSObject {
                 //Adding Target
                 _internetConnectionLbl.addTarget(self, action: #selector(ReachabilityHelper.internetConnectionLabelTapHandler(_:)) , for: UIControl.Event.touchUpInside)
                 
-                _window.addSubview(_internetConnectionLbl);
+                self.window?.addSubview(_internetConnectionLbl);
             }
             
             return _internetConnectionLbl;
@@ -95,11 +103,11 @@ public class ReachabilityHelper: NSObject {
                 var newFrame = self.internetConnectionLbl.frame;
                 
                 if (_internetConnectionLabelHidden == true) {
-                    newFrame.origin.y = -(44 + UIApplication.shared.statusBarFrame.height);
+                    newFrame.origin.y = -(44 + self.statusBarFrameHeight);
                 } else {
                     newFrame.origin.y = 0;
                     
-                    _window.bringSubviewToFront(self.internetConnectionLbl);
+                    self.window?.bringSubviewToFront(self.internetConnectionLbl);
                 }
                 
                 UIView.animate(withDuration: 0.35, animations: { () -> Void in
@@ -117,11 +125,8 @@ public class ReachabilityHelper: NSObject {
     private var _delegates:NSHashTable<Weak<ReachabilityDelegate>> = NSHashTable();
     
     //MARK: - setupReachability
-    public func setupReachability(_ window: UIWindow!) {
-        _window = window;
-        
+    public func setupReachability() {
         _reachability = NetworkReachabilityManager();
-        
         _reachability!.startListening(onUpdatePerforming: reachabilityUpdate);
     } //F.E.
     

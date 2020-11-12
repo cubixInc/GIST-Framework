@@ -1,5 +1,5 @@
 //
-//  GISTAppDelegate.swift
+//  BaseAppDelegate.swift
 //  SocialGIST
 //
 //  Created by Shoaib Abdul on 13/03/2017.
@@ -10,11 +10,13 @@ import UIKit
 import IQKeyboardManagerSwift
 import UserNotifications
 
+open class BaseAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
-
-open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
-    public var window: UIWindow?
+    public var window: UIWindow? {
+        get {
+            return (UIApplication.shared.connectedScenes.first?.delegate as? BaseSceneDelegate)?.window;
+        }
+    }
     
     private lazy var transparentHUDView:UIView = {
         let viw = UIView(frame: self.window!.bounds);
@@ -24,11 +26,27 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
         return viw;
     } ();
     
+
+    // MARK: UISceneSession Lifecycle
+
+    open func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        // Called when a new scene session is being created.
+        // Use this method to select a configuration to create the new scene with.
+        return UISceneConfiguration(name: "GISTConfiguration", sessionRole: connectingSceneSession.role)
+    }
+
+    open func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        // Called when the user discards a scene session.
+        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
+        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+
+    
     //MARK: - Application Delegate
     open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         //Initialize Reachability
-        ReachabilityHelper.sharedInstance.setupReachability(self.window!);
+        ReachabilityHelper.sharedInstance.setupReachability();
        
         //Setting up keyboard avoiding
         self.setupKeyboardManager();
@@ -56,17 +74,11 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     } //F.E.
 
     open func applicationWillResignActive(_ application: UIApplication) {
-        GISTApplication.sharedInstance.applicationWillResignActive(application);
+        
     } //F.E.
 
     open func applicationDidEnterBackground(_ application: UIApplication) {
-        GISTApplication.sharedInstance.applicationDidEnterBackground(application);
         
-        //Resting App if the language is changed or has update in syncEngine data file
-        
-        if SyncEngine.hasSyncDataUpdated {
-            exit(0);
-        }
     } //F.E.
 
     open func applicationWillEnterForeground(_ application: UIApplication) {
@@ -74,21 +86,7 @@ open class GISTAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificati
     } //F.E.
 
     open func applicationDidBecomeActive(_ application: UIApplication) {
-        
-        if GIST_CONFIG.resetBadgeCount {
-            //Badge count to zero
-            application.applicationIconBadgeNumber = 0;
-        }
-        
-        if (HTTPServiceManager.sharedInstance.microService) {
-            GISTMicroAuth<ModelUser>.refreshAccessToken { (success) in
-                GISTApplication.sharedInstance.applicationDidBecomeActive(application);
-                SyncEngine.syncData();
-            }
-        } else {
-            GISTApplication.sharedInstance.applicationDidBecomeActive(application);
-            SyncEngine.syncData();
-        }
+    
     } //F.E.
 
     open func applicationWillTerminate(_ application: UIApplication) {

@@ -12,6 +12,7 @@ import UIKit
 @objc public protocol GISTApplicationDelegate {
     @objc optional func applicationWillTerminate(_ application: UIApplication);
     @objc optional func applicationDidBecomeActive(_ application: UIApplication);
+    @objc optional func applicationWillEnterForeground(_ application: UIApplication);
     @objc optional func applicationWillResignActive(_ application: UIApplication);
     @objc optional func applicationDidEnterBackground(_ application: UIApplication);
     @objc optional func applicationDidFinishLaunching(_ application: UIApplication);
@@ -127,6 +128,15 @@ open class GISTApplication: NSObject, UIApplicationDelegate {
         
         while let wTarget:Weak<GISTApplicationDelegate> = enumerator.nextObject() as? Weak<GISTApplicationDelegate> {
             wTarget.value?.applicationDidBecomeActive?(application);
+        }
+    } //F.E.
+    
+    open func applicationWillEnterForeground(_ application: UIApplication) {
+        //Calling Delegate Methods
+        let enumerator:NSEnumerator = self._delegates.objectEnumerator();
+        
+        while let wTarget:Weak<GISTApplicationDelegate> = enumerator.nextObject() as? Weak<GISTApplicationDelegate> {
+            wTarget.value?.applicationWillEnterForeground?(application);
         }
     } //F.E.
     

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "5.2"
+  s.version      = "6.0"
   s.summary      = "GISTFramework is bottom architecture layer of iOS apps."
 
   # This description is used to generate tags and improve search results.
@@ -68,7 +68,7 @@ Pod::Spec.new do |s|
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-    s.ios.deployment_target = "11.0"
+    s.ios.deployment_target = "13.0"
   # s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
@@ -99,7 +99,7 @@ Pod::Spec.new do |s|
   s.subspec 'GISTCore' do |sp|
     sp.source_files = 'GISTFramework/Classes/GISTCore/**/*.{swift}'
 
-    sp.dependency 'PhoneNumberKit', '~> 3.2.0'
+    sp.dependency 'PhoneNumberKit', '~> 3.3.1'
   end
 
   s.subspec 'BaseClasses' do |sp|
@@ -138,7 +138,7 @@ Pod::Spec.new do |s|
     sp.dependency 'GISTFramework/Extensions'
     sp.dependency 'GISTFramework/Controls'
     sp.dependency 'GISTFramework/SyncEngine'
-    sp.dependency 'Alamofire', '~> 5.2.2'
+    sp.dependency 'Alamofire', '~> 5.3.0'
     sp.dependency 'ObjectMapper', '~> 4.2.0'
     sp.dependency 'AFDateHelper', '~> 4.3.0'
     sp.dependency 'IQKeyboardManagerSwift', '~> 6.5.5'
