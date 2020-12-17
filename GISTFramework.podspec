@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "5.2"
+  s.version      = "5.2.1"
   s.summary      = "GISTFramework is bottom architecture layer of iOS apps."
 
   # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                    GISTFramework is a bottom layer architecture of all iOS apps. it has all basic features and reusable classes that an iOS app may require. We made it open source to be used by others.
                    DESC
 
-  s.homepage     = "https://github.com/cubixlabs/GIST-Framework"
+  s.homepage     = "https://github.com/cubixInc/GIST-Framework.git"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/cubixlabs/GIST-Framework.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/cubixInc/GIST-Framework.git", :tag => s.version.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
