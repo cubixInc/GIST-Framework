@@ -137,7 +137,7 @@ open class InputMaskTextField: BaseUITextField, MaskedTextFieldDelegateListener,
             toText: CaretString(
                 string: input,
                 caretPosition: input.endIndex,
-                caretGravity: CaretString.CaretGravity.forward(autocomplete: true)
+                caretGravity: .forward(autocomplete: true)
             )
         )
         

@@ -45,7 +45,7 @@ open class BaseUIViewController: UIViewController {
         if self.hasBackButton, self.navigationItem.leftBarButtonItem == nil, let navigationController = self.navigationController, navigationController.viewControllers.count > 1 {
             self.navigationItem.hidesBackButton = true;
 
-            GISTUtility.addBackButton(self, backButtonImageName: self.backButtonImageName, target: self, action: #selector(backButtonTapped));
+            BaseUIViewController.addBackButton(self, backButtonImageName: self.backButtonImageName, target: self, action: #selector(backButtonTapped));
         }
     } //F.E.
     
@@ -70,3 +70,28 @@ open class BaseUIViewController: UIViewController {
     } //F.E.
     
 } //CLS END
+
+extension BaseUIViewController {
+    public class func addBackButton(_ vc:UIViewController, backButtonImageName:String?, target: Any?, action: Selector?) {
+        var backButtonImage:UIImage?;
+        
+        if let backButtonImageName = backButtonImageName {
+            backButtonImage = UIImage(named: backButtonImageName);
+        } else {
+            let frameworkBundle = Bundle(for: BaseUIViewController.self);
+            
+            if let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("GISTFrameworkBundle.bundle") {
+                let bundle = Bundle(url: bundleURL);
+                
+                backButtonImage = UIImage(named: "backButton", in: bundle, compatibleWith: nil);
+            }
+        }
+        
+        let barButtonItem = BaseUIBarButtonItem(image: backButtonImage, style:UIBarButtonItem.Style.plain, target: target, action: action);
+        
+        barButtonItem.respectRTL = GISTConfig.shared.respectRTL;
+        
+        vc.navigationItem.hidesBackButton = true;
+        vc.navigationItem.leftBarButtonItem = barButtonItem;
+    } //F.E.
+}

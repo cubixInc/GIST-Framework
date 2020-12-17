@@ -344,21 +344,4 @@ public class GISTUtility: NSObject {
         return predicate.evaluate(with: text!);
     } //F.E.
     
-    public class func addBackButton(_ vc:UIViewController, backButtonImageName:String?, target: Any?, action: Selector?) {
-        var backButtonImage:UIImage?;
-        
-        if let backButtonImageName = backButtonImageName {
-            backButtonImage = UIImage(named: backButtonImageName);
-        } else {
-            backButtonImage = UIImage(named: "backButton", in: self.bundle, compatibleWith: nil);
-        }
-        
-        let barButtonItem = BaseUIBarButtonItem(image: backButtonImage, style:UIBarButtonItem.Style.plain, target: target, action: action);
-        
-        barButtonItem.respectRTL = GISTConfig.shared.respectRTL;
-        
-        vc.navigationItem.hidesBackButton = true;
-        vc.navigationItem.leftBarButtonItem = barButtonItem;
-    } //F.E.
-
 } //CLS END

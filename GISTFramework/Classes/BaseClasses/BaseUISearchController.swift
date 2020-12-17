@@ -187,7 +187,7 @@ open class BaseUISearchController: UISearchController {
         if self.hasBackButton, self.navigationItem.leftBarButtonItem == nil, let navigationController = self.navigationController, navigationController.viewControllers.count > 1 {
             self.navigationItem.hidesBackButton = true;
 
-            GISTUtility.addBackButton(self, backButtonImageName: self.backButtonImageName, target: self, action: #selector(backButtonTapped));
+            BaseUIViewController.addBackButton(self, backButtonImageName: self.backButtonImageName, target: self, action: #selector(backButtonTapped));
         }
     } //F.E.
     

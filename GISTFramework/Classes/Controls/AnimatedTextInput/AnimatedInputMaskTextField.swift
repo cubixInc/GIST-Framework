@@ -150,12 +150,9 @@ class AnimatedInputMaskTextField: UITextField, MaskedTextFieldDelegateListener, 
     open func applyMaskFormat()  {
         let mask: Mask = try! Mask(format: self.maskFormat!)
         let input: String = self.text!
+        
         let result: Mask.Result = mask.apply(
-            toText: CaretString(
-                string: input,
-                caretPosition: input.endIndex,
-                caretGravity: CaretString.CaretGravity.forward(autocomplete: true)
-            )
+            toText: CaretString(string: input, caretPosition: input.endIndex, caretGravity: .forward(autocomplete: true))
         )
         
         self.isValidMask = result.complete;
