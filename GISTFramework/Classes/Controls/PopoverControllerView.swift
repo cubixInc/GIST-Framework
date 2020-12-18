@@ -184,8 +184,8 @@ open class PopoverControllerView: BaseUIView {
     open func presentPopoverFromRect(_ rect:CGRect, permittedArrowDirection:UIPopoverArrowDirection, animated:Bool) {
         updatePopoverFrame(fromRect:rect, permittedArrowDirection:permittedArrowDirection);
          
-//        (UIApplication.sharedApplication().delegate as! AppDelegate).window!.addSubview(self); // THIS IS NOT WORKING IN THE FRAMEWORK
-        UIApplication.shared.keyWindow?.addSubview(self);
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first;
+        window?.addSubview(self);
          
         if (animated)
         {

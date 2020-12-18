@@ -2,11 +2,10 @@
 //  GISTFramework.h
 //  GISTFramework
 //
-//  Created by Shoaib Mac Book Pro on 5/27/19.
-//  Copyright © 2019 Shoaib Mac Book Pro. All rights reserved.
+//  Created by Shoaib Mac Book Pro on 12/18/20.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for GISTFramework.
 FOUNDATION_EXPORT double GISTFrameworkVersionNumber;

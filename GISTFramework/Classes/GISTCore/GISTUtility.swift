@@ -26,7 +26,8 @@ public class GISTUtility: NSObject {
     
     @nonobjc static var screenHeight:CGFloat  {
         if #available(iOS 11.0, *) {
-            let topInset:CGFloat = UIApplication.shared.statusBarFrame.height
+            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            let topInset:CGFloat = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
             
             guard topInset >= 44 else { return UIScreen.main.bounds.height }
             
@@ -53,7 +54,8 @@ public class GISTUtility: NSObject {
                 // with notch: 44.0 on iPhone X, XS, XS Max, XR.
                 // without notch: 24.0 on iPad Pro 12.9" 3rd generation, 20.0 on iPhone 8 on iOS 12+.
                 
-                return UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0 > 0
+                let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+                return window?.safeAreaInsets.bottom ?? 0 > 0
             }
             return false
         }
@@ -342,23 +344,6 @@ public class GISTUtility: NSObject {
         let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
         
         return predicate.evaluate(with: text!);
-    } //F.E.
-    
-    public class func addBackButton(_ vc:UIViewController, backButtonImageName:String?, target: Any?, action: Selector?) {
-        var backButtonImage:UIImage?;
-        
-        if let backButtonImageName = backButtonImageName {
-            backButtonImage = UIImage(named: backButtonImageName);
-        } else {
-            backButtonImage = UIImage(named: "backButton", in: self.bundle, compatibleWith: nil);
-        }
-        
-        let barButtonItem = BaseUIBarButtonItem(image: backButtonImage, style:UIBarButtonItem.Style.plain, target: target, action: action);
-        
-        barButtonItem.respectRTL = GISTConfig.shared.respectRTL;
-        
-        vc.navigationItem.hidesBackButton = true;
-        vc.navigationItem.leftBarButtonItem = barButtonItem;
     } //F.E.
 
 } //CLS END

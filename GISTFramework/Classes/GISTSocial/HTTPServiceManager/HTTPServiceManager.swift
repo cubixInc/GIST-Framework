@@ -353,8 +353,6 @@ open class HTTPServiceManager: NSObject {
     
     fileprivate func requestDidStart(httpRequest:HTTPRequest) {
         if (httpRequest.hasProgressHUD) {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true;
-            
             self.showProgressHUD();
         }
         
@@ -369,8 +367,6 @@ open class HTTPServiceManager: NSObject {
     
     fileprivate func requestDidFinish(httpRequest:HTTPRequest) {
         if (httpRequest.hasProgressHUD) {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false;
-            
             self.hideProgressHUD();
         }
         
