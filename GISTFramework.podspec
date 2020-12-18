@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GISTFramework"
-  s.version      = "5.2.1"
+  s.version      = "5.2.2"
   s.summary      = "GISTFramework is bottom architecture layer of iOS apps."
   s.swift_version = '5.0'
 
