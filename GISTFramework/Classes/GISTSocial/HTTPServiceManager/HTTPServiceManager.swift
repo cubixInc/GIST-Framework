@@ -240,7 +240,7 @@ open class HTTPServiceManager: NSObject {
         }
         
         dataRequest.responseJSON(queue: DispatchQueue.main, options: JSONSerialization.ReadingOptions.mutableContainers) { (response:AFDataResponse<Any>) in
-            self.responseResult(httpRequest: httpRequest, dataResponse: response);
+            self.responseResult(httpRequest: httpRequest, response: response);
         }
         
         //Request Did Start
@@ -262,37 +262,78 @@ open class HTTPServiceManager: NSObject {
     } //F.E.
     
     //MARK: - Response Handling
-    fileprivate func responseResult(httpRequest:HTTPRequest, dataResponse:AFDataResponse<Any>) {
-        switch dataResponse.result
+    
+    fileprivate func responseResult(httpRequest:HTTPRequest, response:AFDataResponse<Any>) {
+        switch response.result
         {
         case .success:
-            
-            let statusCode:Int = dataResponse.response?.statusCode ?? 200;
-            
-            if statusCode >= 200 && statusCode <= 299 {
-                self.requestDidSucceedWithData(httpRequest: httpRequest, data: dataResponse.value);
-            } else {
-                let dictData:[String:Any] = dataResponse.value as? [String:Any] ?? [:];
+            if let dictData = response.value as? NSMutableDictionary {
                 
-                let errorMessage:String = dictData["message"] as? String  ?? "Unknown error";
+                let message:String? = dictData["message"] as? String;
 
-                let userInfo:[AnyHashable : Any] = [
-                    NSLocalizedDescriptionKey: errorMessage,
-                    "data":dictData
-                ]
-                
-                let error = NSError(domain: "com.cubix.gist", code: statusCode, userInfo: (userInfo as! [String : Any]));
-                
-                if (statusCode == 403) {
-                    //Invalid session
-                    self.requestDidFailWithInvalidSession(httpRequest: httpRequest, error: error);
-                } else {
-                    //Error
-                     self.requestDidFailWithError(httpRequest: httpRequest, error: error);
+                let errorCode:Int = (dictData["error"] as? Int) ?? 0;
+                let invalidSession:Int = (dictData["kick_user"] as? Int) ?? 0;
+
+                //If api is not as per Cubix Standard, return response as it is.
+                if (errorCode == 0 && dictData["data"] == nil) {
+                    self.requestDidSucceedWithData(httpRequest: httpRequest, data: dictData);
+                    return;
                 }
+                
+                if (errorCode == 0 && invalidSession == 0) {
+                    let data:Any? = dictData["data"];
+                    
+                    if let msg:String = message, msg != ""  {
+                        
+                        let rtnData:NSMutableDictionary
+                        
+                        if let subData:NSMutableDictionary =  data as? NSMutableDictionary {
+                            rtnData = subData;
+                        } else {
+                            rtnData = NSMutableDictionary();
+                            
+                            if let sData:Any = data  {
+                                rtnData["data"] = sData;
+                            }
+                        }
+                        
+                        rtnData["message"] = msg;
+                        
+                        self.requestDidSucceedWithData(httpRequest: httpRequest, data: rtnData);
+                    } else {
+                        self.requestDidSucceedWithData(httpRequest: httpRequest, data: data);
+                    }
+                    
+                } else {
+                    //Failure
+                    let errorMessage: String = message ?? "Unknown error";
+//                    let data: [String:Any] = dictData["data"] as? [String:Any] ?? [:];
+                    
+//                    let userInfo:[AnyHashable : Any] = [
+//                        NSLocalizedDescriptionKey: errorMessage,
+//                        "data":data
+//                    ]
+                    
+                    let userInfo = [NSLocalizedDescriptionKey: errorMessage]
+                    
+                    let error = NSError(domain: "com.cubix.gist", code: errorCode, userInfo: userInfo);
+                    
+                    if (invalidSession == 0) {
+                        self.requestDidFailWithError(httpRequest: httpRequest, error: error);
+                    } else {
+                        self.requestDidFailWithInvalidSession(httpRequest: httpRequest, error: error);
+                    }
+                }
+            } else {
+                
+                //Failure
+                let errorMessage: String = "Unknown error";
+                let userInfo = [NSLocalizedDescriptionKey: errorMessage]
+                let error = NSError(domain: "com.cubix.gist", code: 404, userInfo: userInfo);
+                
+                self.requestDidFailWithError(httpRequest: httpRequest, error: error);
             }
 
-            
         case .failure (let err):
             let errorCode:Int = (err as NSError).code;
             let userInfo = [NSLocalizedDescriptionKey: err.localizedDescription]
@@ -301,8 +342,8 @@ open class HTTPServiceManager: NSObject {
             self.requestDidFailWithError(httpRequest: httpRequest, error: error);
             
             //For Debug
-            if let strData = dataResponse.data?.toString() {
-                print("Response Data: \(strData)");
+            if let responseData = response.data?.toString() {
+                print("Response Data: \(responseData)");
             }
         }
     } //F.E.
